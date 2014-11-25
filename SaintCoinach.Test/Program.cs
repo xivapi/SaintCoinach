@@ -10,6 +10,7 @@ namespace SaintCoinach.Test {
         static void Main(string[] args) {
             const string DataPath = @"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack\ffxiv";
 
+
             var coll = new IO.PackCollection(DataPath);
             var exColl = new Ex.Relational.RelationalExCollection(coll);
             exColl.ActiveLanguage = Ex.Language.English;
@@ -17,7 +18,42 @@ namespace SaintCoinach.Test {
             exColl.Definition.Compile();
 
             var sheet = exColl.GetSheet("Item");
-            
+            {
+                var def = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.2014.11.14.0000.0000.yaml");
+                var p1 = new IO.PackCollection(@"C:\XIVVersions\2014.11.14.0000.0000\game\sqpack\ffxiv");
+                var p2 = new IO.PackCollection(@"C:\XIVVersions\2014.10.03.0000.0000\game\sqpack\ffxiv");
+
+                var e1 = new Ex.Relational.RelationalExCollection(p1);
+                e1.ActiveLanguage = Ex.Language.English;
+                var e2 = new Ex.Relational.RelationalExCollection(p2);
+                e2.ActiveLanguage = Ex.Language.English;
+
+                var uDef = new Ex.Relational.Definition.RelationDefinition();
+
+                var s1 = e1.GetSheet("SpecialShop");
+                var sd1 = def.GetOrCreateSheet("SpecialShop");
+                var s2 = e2.GetSheet("SpecialShop");
+                var sd2 = uDef.GetOrCreateSheet("SpecialShop");
+
+                var u = new Ex.Relational.Update.SheetUpdater(s1, sd1, s2, sd2);
+                var c = u.Update();
+
+                /*SaveAsCsv(s1, "S1.csv");
+                SaveAsCsv(s2, "S2.csv");*/
+                Console.ReadLine();
+                /*
+                var updater = new Ex.Relational.Update.RelationUpdater(p1, exColl.Definition, p2);
+
+                var changes = updater.Update(false);
+
+                foreach (var c in changes)
+                    Console.WriteLine(c);
+
+                updater.Updated.Serialize("ex.2014.10.03.0000.0000.yaml");
+
+                Console.ReadLine();
+                 * */
+            }
             //var mdl = mdlF.GetModel();
             //var mdlF = (Graphics.ModelFile)coll.GetFile("chara/monster/m0099/obj/body/b0001/model/m0099b0001.mdl");
             //var mdlF = (Graphics.ModelFile)coll.GetFile("chara/equipment/e0003/model/c0101e0003_top.mdl");

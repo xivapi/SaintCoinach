@@ -95,6 +95,16 @@
     <Compile Include="Ex\DataSheet.cs" />
     <Compile Include="Ex\Relational\Serialization\ExRelationEventEmitter.cs" />
     <Compile Include="Ex\Relational\Serialization\ExRelationSerializer.cs" />
+    <Compile Include="Ex\Relational\Update\Changes\MovedDefinition.cs" />
+    <Compile Include="Ex\Relational\Update\Changes\RemovedDefinition.cs" />
+    <Compile Include="Ex\Relational\Update\Changes\RemovedSheet.cs" />
+    <Compile Include="Ex\Relational\Update\ChangeType.cs" />
+    <Compile Include="Ex\Relational\Update\Comparer.cs" />
+    <Compile Include="Ex\Relational\Update\Comparer.Levenshtein.cs" />
+    <Compile Include="Ex\Relational\Update\DefinitionUpdater.cs" />
+    <Compile Include="Ex\Relational\Update\IChange.cs" />
+    <Compile Include="Ex\Relational\Update\RelationUpdater.cs" />
+    <Compile Include="Ex\Relational\Update\SheetUpdater.cs" />
     <Compile Include="Ex\Relational\ValueConverters\ColorConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\IconConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\SheetLinkConverter.cs" />

@@ -122,7 +122,9 @@ namespace SaintCoinach.Ex {
         }
 
         public bool ContainsRow(int row) {
-            return Range.Contains(Header.DataFileRanges, row);
+            CreateAllPartialSheets();
+
+            return _RowToPartialSheetMap.ContainsKey(row);
         }
 
         IEnumerable<IRow> ISheet.GetAllRows() {
