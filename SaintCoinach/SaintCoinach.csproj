@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A7D65EB-3DE3-4631-B286-CC73A3126002}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaintCoinach</RootNamespace>
+    <AssemblyName>SaintCoinach</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BitConverter.cs" />
+    <Compile Include="Ex\Column.cs" />
+    <Compile Include="Ex\DataReader.cs" />
+    <Compile Include="Ex\DataReaders\DelegateDataReader.cs" />
+    <Compile Include="Ex\DataReaders\PackedBooleanDataReader.cs" />
+    <Compile Include="Ex\DataReaders\StringDataReader.cs" />
+    <Compile Include="Ex\ExCollection.cs" />
+    <Compile Include="Ex\Header.cs" />
+    <Compile Include="Ex\IDataRow.cs" />
+    <Compile Include="Ex\IDataSheet.Generic.cs" />
+    <Compile Include="Ex\IDataSheet.cs" />
+    <Compile Include="Ex\IMultiRow.cs" />
+    <Compile Include="Ex\IMultiSheet.cs" />
+    <Compile Include="Ex\IMultiSheet.Generic.cs" />
+    <Compile Include="Ex\IRow.cs" />
+    <Compile Include="Ex\ISheet.cs" />
+    <Compile Include="Ex\ISheet.Generic.cs" />
+    <Compile Include="Ex\Language.cs" />
+    <Compile Include="Ex\MultiRow.cs" />
+    <Compile Include="Ex\PartialDataSheet.cs" />
+    <Compile Include="Ex\MultiSheet.cs" />
+    <Compile Include="Ex\Relational\Definition\GroupDataDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\IDataDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\PositionedDataDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\RelationDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\RepeatDataDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\SheetDefinition.cs" />
+    <Compile Include="Ex\Relational\Definition\SingleDataDefinition.cs" />
+    <Compile Include="Ex\Relational\IRelationalDataRow.cs" />
+    <Compile Include="Ex\Relational\IRelationalDataSheet.cs" />
+    <Compile Include="Ex\Relational\IRelationalDataSheet.Generic.cs" />
+    <Compile Include="Ex\Relational\IRelationalMultiRow.cs" />
+    <Compile Include="Ex\Relational\IRelationalMultiSheet.cs" />
+    <Compile Include="Ex\Relational\IRelationalMultiSheet.Generic.cs" />
+    <Compile Include="Ex\Relational\IRelationalRow.cs" />
+    <Compile Include="Ex\Relational\IRelationalSheet.cs" />
+    <Compile Include="Ex\Relational\IRelationalSheet.Generic.cs" />
+    <Compile Include="Ex\Relational\IValueConverter.cs" />
+    <Compile Include="Ex\Relational\RelationalColumn.cs" />
+    <Compile Include="Ex\Relational\RelationalExCollection.cs" />
+    <Compile Include="Ex\Relational\RelationalHeader.cs" />
+    <Compile Include="Ex\Relational\RelationalMultiRow.cs" />
+    <Compile Include="Ex\Relational\RelationalMultiSheet.cs" />
+    <Compile Include="Ex\Relational\RelationalPartialDataSheet.cs" />
+    <Compile Include="Ex\Relational\RelationalDataRow.cs" />
+    <Compile Include="Ex\Relational\RelationalDataSheet.cs" />
+    <Compile Include="Ex\DataRow.cs" />
+    <Compile Include="Ex\DataSheet.cs" />
+    <Compile Include="Ex\Relational\Serialization\ExRelationEventEmitter.cs" />
+    <Compile Include="Ex\Relational\Serialization\ExRelationSerializer.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\ColorConverter.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\IconConverter.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\SheetLinkConverter.cs" />
+    <Compile Include="Graphics\Bone.cs" />
+    <Compile Include="Graphics\Material.cs" />
+    <Compile Include="Graphics\MaterialVersion.cs" />
+    <Compile Include="Graphics\Mesh.cs" />
+    <Compile Include="Graphics\MeshHeader.cs" />
+    <Compile Include="Graphics\Model.cs" />
+    <Compile Include="Graphics\ModelFile.cs" />
+    <Compile Include="Graphics\ModelHeader.cs" />
+    <Compile Include="Graphics\ModelQuality.cs" />
+    <Compile Include="Graphics\SubModel.cs" />
+    <Compile Include="Graphics\SubModelHeader.cs" />
+    <Compile Include="Graphics\Vector.cs" />
+    <Compile Include="Graphics\VertexBase.cs" />
+    <Compile Include="Graphics\VertexColor.cs" />
+    <Compile Include="Graphics\VertexDataReader.cs" />
+    <Compile Include="Graphics\VertexReader.cs" />
+    <Compile Include="Graphics\VertexBlend.cs" />
+    <Compile Include="Graphics\VertexColorBlend.cs" />
+    <Compile Include="HalfHelper.cs" />
+    <Compile Include="Imaging\ImageConverter.cs" />
+    <Compile Include="Imaging\ImageFile.cs" />
+    <Compile Include="Imaging\ImageFormat.cs" />
+    <Compile Include="Imaging\ImageHeader.cs" />
+    <Compile Include="IO\FileFactory.cs" />
+    <Compile Include="IO\FileCommonHeader.cs" />
+    <Compile Include="IO\Hash.cs" />
+    <Compile Include="IO\Index.cs" />
+    <Compile Include="IO\IndexDirectory.cs" />
+    <Compile Include="IO\IndexFile.cs" />
+    <Compile Include="IO\IndexHeader.cs" />
+    <Compile Include="IO\FileDefault.cs" />
+    <Compile Include="IO\Pack.cs" />
+    <Compile Include="IO\Pack.Enumeration.cs" />
+    <Compile Include="IO\Directory.cs" />
+    <Compile Include="IO\Directory.Enumeration.cs" />
+    <Compile Include="IO\File.cs" />
+    <Compile Include="IO\FileType.cs" />
+    <Compile Include="IO\PackCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Range.cs" />
+    <Compile Include="Sound\ScdDecoder.cs" />
+    <Compile Include="StringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotSquish\DotSquish.csproj">
+      <Project>{f9681545-4bea-4fd3-9ab9-a67bd37ab36d}</Project>
+      <Name>DotSquish</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YamlDotNet\YamlDotNet.csproj">
+      <Project>{bf32de1b-6276-4341-b212-f8862adbba7a}</Project>
+      <Name>YamlDotNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
