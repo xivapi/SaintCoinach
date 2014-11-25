@@ -10,9 +10,18 @@ using Tharga.Toolkit.Console.Command;
 namespace SaintCoinach.Cmd {
     class Program {
         static void Main(string[] args) {
-            const string DataPath = @"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack\ffxiv";
+            var dataPath = Properties.Settings.Default.DataPath;
 
-            var packColl = new IO.PackCollection(DataPath);
+            if (args.Length > 0) {
+                dataPath = args[0];
+                args = new string[0];
+            }
+            if (!System.IO.Directory.Exists(dataPath)) {
+                Console.WriteLine("Need data!");
+                return;
+            }
+
+            var packColl = new IO.PackCollection(dataPath);
             var dataColl = new Xiv.XivCollection(packColl);
             dataColl.ActiveLanguage = Ex.Language.English;
             dataColl.Definition = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.yaml");
