@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Ex.Relational.Update.Changes {
-    public class MovedDefinition : IChange {
+    public class DefinitionMoved : IChange {
         private string _SheetName;
         private int _PreviousIndex;
         private int _NewIndex;
@@ -17,7 +17,7 @@ namespace SaintCoinach.Ex.Relational.Update.Changes {
         public int NewIndex { get { return _NewIndex; } }
         public double Confidence { get { return _Confidence; } }
 
-        public MovedDefinition(string sheetName, int prevIndex, int newIndex, double c) {
+        public DefinitionMoved(string sheetName, int prevIndex, int newIndex, double c) {
             _SheetName = sheetName;
             _PreviousIndex = prevIndex;
             _NewIndex = newIndex;

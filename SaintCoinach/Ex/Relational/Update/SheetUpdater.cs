@@ -39,12 +39,12 @@ namespace SaintCoinach.Ex.Relational.Update {
 
                 if (updatedDef == null || double.IsNaN(c) || c < RequiredMatchConfidence) {
                     if (updatedDef != null)
-                        changes.Add(new Changes.RemovedDefinition(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
+                        changes.Add(new Changes.DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
                     else
-                        changes.Add(new Changes.RemovedDefinition(_PreviousDefinition.Name, def.DataDefinition.Index));
+                        changes.Add(new Changes.DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index));
                 } else {
                     if(updatedDef.Index != def.DataDefinition.Index)
-                        changes.Add(new Changes.MovedDefinition(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
+                        changes.Add(new Changes.DefinitionMoved(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
 
                     _UpdatedDefinition.DataDefinitions.Add(updatedDef);
                 }
@@ -68,13 +68,6 @@ namespace SaintCoinach.Ex.Relational.Update {
             }
 
             return defUpdaters;
-        }
-        public IEnumerable<IChange> DetectDataChanges() {
-            var changes = new List<IChange>();
-
-            throw new NotImplementedException();
-
-            return changes;
         }
         #endregion
     }

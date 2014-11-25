@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Ex.Relational.Update.Changes {
-    public class RemovedSheet : IChange {
+    public class SheetRemoved : IChange {
         private string _SheetName;
 
         public ChangeType ChangeType { get { return ChangeType.Structure | ChangeType.Breaking; } }
         public string SheetName { get { return _SheetName; } }
 
-        public RemovedSheet(string name) {
+        public SheetRemoved(string name) {
             _SheetName = name;
         }
 

@@ -34,14 +34,14 @@ namespace SaintCoinach.Ex.Relational.Update {
         #endregion
 
         #region Update
-        public IEnumerable<IChange> Update(bool detectDataChanges = false) {
+        public IEnumerable<IChange> Update() {
             var changes = new List<IChange>();
 
             foreach (var prevSheetDef in Previous.SheetDefinitions) {
                 System.Diagnostics.Trace.WriteLine(string.Format("Update sheet {0}.", prevSheetDef.Name));
 
                 if (!_Updated.SheetExists(prevSheetDef.Name)) {
-                    changes.Add(new Changes.RemovedSheet(prevSheetDef.Name));
+                    changes.Add(new Changes.SheetRemoved(prevSheetDef.Name));
                     continue;
                 }
 
@@ -53,8 +53,29 @@ namespace SaintCoinach.Ex.Relational.Update {
                 var sheetUpdater = new SheetUpdater(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
                 changes.AddRange(sheetUpdater.Update());
 
-                if (detectDataChanges)
-                    changes.AddRange(sheetUpdater.DetectDataChanges());
+                GC.Collect();
+            }
+
+            Updated.Compile();
+
+            return changes;
+        }
+        public IEnumerable<IChange> DetectDataChanges() {
+            var changes = new List<IChange>();
+
+            foreach (var prevSheetDef in Previous.SheetDefinitions) {
+                System.Diagnostics.Trace.WriteLine(string.Format("Detect data changes in {0}.", prevSheetDef.Name));
+
+                if (!_Updated.SheetExists(prevSheetDef.Name))
+                    continue;
+
+                var prevSheet = _Previous.GetSheet(prevSheetDef.Name);
+
+                var updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
+                var updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
+
+                var sheetComparer = new SheetComparer(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
+                changes.AddRange(sheetComparer.Compare());
 
                 GC.Collect();
             }

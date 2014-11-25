@@ -107,7 +107,7 @@ namespace SaintCoinach.Ex {
                 langs.Add(LanguageMap[buffer[position]]);
                 position += Length;
             }
-            _AvailableLanguages = langs.Where(_ => _ != null).ToArray();
+            _AvailableLanguages = langs.Where(_ => _ != Language.Unsupported).ToArray();
         }
         #endregion
 
