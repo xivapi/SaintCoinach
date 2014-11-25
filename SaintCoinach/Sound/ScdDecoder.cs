@@ -9,7 +9,7 @@ namespace SaintCoinach.Sound {
     public class ScdDecoder {
         #region Fields
         private byte[] _FileIn;
-        private byte[] _FileOut;
+        private byte[] _FileOut = null;
 
         private bool _UseLittleEndian = false;
 
@@ -19,16 +19,16 @@ namespace SaintCoinach.Sound {
         #endregion
 
         #region Properties
-        public byte[] GetData() { return _FileOut; }
+        public byte[] GetData() {
+            if (_FileOut == null)
+                Decode();
+            return _FileOut;
+        }
         #endregion
 
         #region Constructor
         public ScdDecoder(byte[] fileIn) {
             _FileIn = fileIn;
-            _FileOut = new byte[_FileIn.Length];
-            Array.Copy(_FileIn, _FileOut, _FileIn.Length);
-
-            Decode();
         }
         #endregion
 
@@ -65,6 +65,9 @@ namespace SaintCoinach.Sound {
                 _FileOut[_VorbHeaderOffset + i] ^= _Xor;
         }
         private void Init() {
+            _FileOut = new byte[_FileIn.Length];
+            Array.Copy(_FileIn, _FileOut, _FileIn.Length);
+
             // Check magic (SEDBSSCF)
             if (ReadInt64(0, false) != 0x5345444253534346)
                 throw new InvalidDataException();

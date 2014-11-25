@@ -55,5 +55,9 @@ namespace SaintCoinach.Xiv {
         }
 
         #endregion
+
+        public override string ToString() {
+            return _SourceRow.ToString();
+        }
     }
 }
