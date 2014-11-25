@@ -20,6 +20,7 @@ namespace SaintCoinach.Ex {
         public Header Header { get { return _Header; } }
         public ISheet<TData> ActiveSheet { get { return GetLocalisedSheet(Collection.ActiveLanguage); } }
         public IDictionary<int, TMulti> Rows { get { FillRows(); return _Rows; } }
+        public int Count { get { return Rows.Count; } }
         #endregion
 
         #region Constructor

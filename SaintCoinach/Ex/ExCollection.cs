@@ -66,9 +66,22 @@ namespace SaintCoinach.Ex {
         #endregion
 
         #region Get
+        public bool SheetExists(int id) {
+            return _SheetIdentifiers.ContainsKey(id);
+        }
         public bool SheetExists(string name) {
             //name = FixName(name);
             return AvailableSheets.Contains(name);
+        }
+        public ISheet<T> GetSheet<T>(int id) where T : IRow {
+            return (ISheet<T>)GetSheet(id);
+        }
+        public ISheet GetSheet(int id) {
+            var name = _SheetIdentifiers[id];
+            return GetSheet(name);
+        }
+        public ISheet<T> GetSheet<T>(string name) where T : IRow {
+            return (ISheet<T>)GetSheet(name);
         }
         public ISheet GetSheet(string name) {
             const string ExHPathFormat = "exd/{0}.exh";

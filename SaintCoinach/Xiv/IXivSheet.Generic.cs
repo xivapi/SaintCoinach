@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Ex.Relational {
-    public interface IRelationalSheet<T> : ISheet<T>, IRelationalSheet where T : IRelationalRow {
+namespace SaintCoinach.Xiv {
+    public interface IXivSheet<T> : Ex.Relational.IRelationalSheet<T>, IXivSheet where T : IXivRow {
         new T this[int key] { get; }
     }
 }

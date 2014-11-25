@@ -31,7 +31,7 @@ namespace SaintCoinach.Ex.Relational {
         }
 
         public object this[int row, string columnName] {
-            get { return this[row, columnName]; }
+            get { return this[row][columnName]; }
         }
         #endregion
     }

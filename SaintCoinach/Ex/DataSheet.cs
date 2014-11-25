@@ -19,6 +19,7 @@ namespace SaintCoinach.Ex {
         public ExCollection Collection { get { return _Collection; } }
         public Header Header { get { return _Header; } }
         public Language Language { get { return _Language; } }
+        public int Count { get { CreateAllPartialSheets(); return _PartialSheets.Values.Sum(_ => _.Count); } }
         #endregion
 
         #region Constructor
@@ -118,7 +119,7 @@ namespace SaintCoinach.Ex {
         #region ISheet Members
 
         public string Name {
-            get { return Header.Name + "_" + Language.GetCode(); }
+            get { return Header.Name + Language.GetSuffix(); }
         }
 
         public bool ContainsRow(int row) {

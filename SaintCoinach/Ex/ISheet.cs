@@ -11,6 +11,7 @@ namespace SaintCoinach.Ex {
         Header Header { get; }
         ExCollection Collection { get; }
 
+        int Count { get; }
         bool ContainsRow(int row);
         IEnumerable<IRow> GetAllRows();
 

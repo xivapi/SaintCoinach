@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EorzeaDateTime.cs" />
     <Compile Include="OrderedBitConverter.cs" />
     <Compile Include="Ex\Column.cs" />
     <Compile Include="Ex\DataReader.cs" />
@@ -157,6 +158,15 @@
     <Compile Include="Range.cs" />
     <Compile Include="Sound\ScdDecoder.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="Xiv\TerritoryType.cs" />
+    <Compile Include="Xiv\Weather.cs" />
+    <Compile Include="Xiv\WeatherRate.cs" />
+    <Compile Include="Xiv\XivSheet.cs" />
+    <Compile Include="Xiv\IXivRow.cs" />
+    <Compile Include="Xiv\IXivSheet.cs" />
+    <Compile Include="Xiv\IXivSheet.Generic.cs" />
+    <Compile Include="Xiv\XivCollection.cs" />
+    <Compile Include="Xiv\XivRow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotSquish\DotSquish.csproj">
@@ -168,7 +178,9 @@
       <Name>YamlDotNet</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Xiv\Collections\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

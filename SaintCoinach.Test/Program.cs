@@ -12,11 +12,24 @@ namespace SaintCoinach.Test {
 
 
             var coll = new IO.PackCollection(DataPath);
-            var exColl = new Ex.Relational.RelationalExCollection(coll);
+            var exColl = new Xiv.XivCollection(coll);
             exColl.ActiveLanguage = Ex.Language.English;
             exColl.Definition = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.yaml");
             exColl.Definition.Compile();
 
+            var territories = exColl.GetSheet<Xiv.TerritoryType>();
+            SaveAsCsv(territories, "TerritoryType.csv");
+
+            var now = new EorzeaDateTime();
+            foreach (var territory in territories.OrderBy(_ => _.Name)) {
+                if (territory.WeatherRate.Key == 0)
+                    continue;
+                var w = territory.WeatherRate.Forecast(now);
+                Console.WriteLine("{0}: {1}", territory.Name, w);
+            }
+            Console.ReadLine();
+
+            /*
             var sheet = exColl.GetSheet("Item");
             {
                 var def = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.2014.11.14.0000.0000.yaml");
@@ -54,7 +67,7 @@ namespace SaintCoinach.Test {
             //SaveAsWavefront(sub, "test.obj");
 
             SaveAsCsv(sheet, "test.csv");
-
+            */
             //Console.ReadLine();
         }
 

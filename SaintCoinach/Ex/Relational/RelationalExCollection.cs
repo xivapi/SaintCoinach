@@ -34,6 +34,15 @@ namespace SaintCoinach.Ex.Relational {
         #endregion
 
         #region Get
+        public new IRelationalSheet<T> GetSheet<T>(int id) where T : IRelationalRow {
+            return (IRelationalSheet<T>)GetSheet(id);
+        }
+        public new IRelationalSheet GetSheet(int id) {
+            return (IRelationalSheet)base.GetSheet(id);
+        }
+        public new IRelationalSheet<T> GetSheet<T>(string name) where T : IRelationalRow {
+            return (IRelationalSheet<T>)GetSheet(name);
+        }
         public new IRelationalSheet GetSheet(string name) {
             return (IRelationalSheet)base.GetSheet(name);
         }

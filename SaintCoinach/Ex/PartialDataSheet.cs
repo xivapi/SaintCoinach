@@ -18,6 +18,7 @@ namespace SaintCoinach.Ex {
         public Range Range { get { return _Range; } }
         public IO.File File { get { return _File; } }
         public Language Language { get { return SourceSheet.Language; } }
+        public int Count { get { return _Rows.Count; } }
         #endregion
 
         #region Constructor
