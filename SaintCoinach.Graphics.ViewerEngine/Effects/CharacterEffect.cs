@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SharpDX;
 using SharpDX.D3DCompiler;
+using SharpDX.Direct3D11;
 
 namespace SaintCoinach.Graphics.Viewer.Effects {
-    public class CharacterEffect {
+    public class CharacterEffect : Effect {
         #region Static
         private static CompilationResult _EffectByteCode;
 
@@ -23,6 +25,26 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
                         new ShaderCompilerInclude(@"Effects/HLSL"));
                 return _EffectByteCode;
             }
+        }
+        #endregion
+
+        #region Fields
+        
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
+        public CharacterEffect(Device device) : this(device, EffectFlags.None) { }
+        public CharacterEffect(Device device, EffectFlags flags) : base(device, EffectByteCode, flags) {
+            Init();
+        }
+        #endregion
+
+        #region Init
+        private void Init() {
+            
         }
         #endregion
     }

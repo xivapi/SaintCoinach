@@ -8,8 +8,27 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Viewer {
     public class ComponentContainer : Collection<IComponent>,
-        IComponentContainer, IDrawable, IUpdateable {
+        IComponentContainer, IDrawable, IUpdateable, IContentComponent {
 
+        #region Fields
+        private bool _IsLoaded = false;
+        private SharpDX.Direct3D11.Device _Device = null;
+        #endregion
+
+        #region Collection overrides
+        protected override void InsertItem(int index, IComponent item) {
+            if (item is IContentComponent && IsLoaded && !((IContentComponent)item).IsLoaded)
+                ((IContentComponent)item).Load(_Device);
+
+            base.InsertItem(index, item);
+        }
+        protected override void SetItem(int index, IComponent item) {
+            if (item is IContentComponent && IsLoaded && !((IContentComponent)item).IsLoaded)
+                ((IContentComponent)item).Load(_Device);
+
+            base.SetItem(index, item);
+        }
+        #endregion
 
         #region IDrawable Members
         public void Draw(SharpDX.Direct3D11.Device device, EngineTime time) {
@@ -23,6 +42,32 @@ namespace SaintCoinach.Graphics.Viewer {
             foreach (var c in this.OfType<IUpdateable>())
                 c.Update(time);
         }
+        #endregion
+
+        #region IContentComponent Members
+        public bool IsLoaded {
+            get { return _IsLoaded; }
+        }
+
+        public void Load(SharpDX.Direct3D11.Device device) {
+            _Device = device;
+            foreach (var c in this.OfType<IContentComponent>().Where(_ => !_.IsLoaded))
+                c.Load(device);
+            _IsLoaded = true;
+        }
+
+        public void Unload() {
+            Unload(true);
+        }
+        public void Unload(bool includeChildren) {
+            _IsLoaded = false;
+            if (includeChildren) {
+                foreach (var c in this.OfType<IContentComponent>().Where(_ => _.IsLoaded))
+                    c.Unload();
+            }
+            _Device = null;
+        }
+
         #endregion
     }
 }

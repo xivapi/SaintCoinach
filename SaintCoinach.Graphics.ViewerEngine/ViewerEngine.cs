@@ -65,8 +65,12 @@ namespace SaintCoinach.Graphics.Viewer {
 
             _RunTimer = new Stopwatch();
             _RunTimer.Start();
-            
+
+            Load(Device);
+
             RenderLoop.Run(Form, EngineLoop);
+
+            Unload(true);
         }
         private void EngineLoop() {
             var elapsed = _RunTimer.Elapsed;

@@ -63,15 +63,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentContainer.cs" />
+    <Compile Include="EffectPointLightVariable.cs" />
     <Compile Include="EngineTime.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
     <Compile Include="IComponentContainer.cs" />
+    <Compile Include="IContentComponent.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="IUpdateable.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Parts\Mesh.cs" />
+    <Compile Include="PointLight.cs" />
+    <Compile Include="Primitves\VertexPositionNormalTexture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShaderCompilerInclude.cs" />
     <Compile Include="ViewerEngine.cs" />
+    <Compile Include="XivEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Effects\HLSL\Common.fxh">
@@ -101,6 +108,7 @@
     <Content Include="sharpdx_direct3d11_effects_x64.dll" />
     <Content Include="sharpdx_direct3d11_effects_x86.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SharpDX.2.6.3\build\SharpDX.targets" Condition="Exists('..\packages\SharpDX.2.6.3\build\SharpDX.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
