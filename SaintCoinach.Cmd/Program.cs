@@ -40,6 +40,8 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new UiCommand(packColl));
             rootCmd.RegisterCommand(new ExdCommand(dataColl));
             rootCmd.RegisterCommand(new BgmCommand(packColl, dataColl));
+
+            rootCmd.RegisterCommand(new GraphicsCommand(packColl, dataColl));
         }
     }
 }

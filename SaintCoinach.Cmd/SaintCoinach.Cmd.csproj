@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="BgmCommand.cs" />
     <Compile Include="ExdCommand.cs" />
+    <Compile Include="GraphicsCommand.cs" />
     <Compile Include="ImageCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +74,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj">
+      <Project>{39675bac-1a1a-4a83-9835-b926bed04c9b}</Project>
+      <Name>SaintCoinach.Graphics.ViewerEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
       <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
       <Name>SaintCoinach</Name>
