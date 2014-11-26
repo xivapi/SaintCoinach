@@ -11,6 +11,8 @@ namespace SaintCoinach.Graphics {
         const string DummyTexturePath = "common/graphics/texture/dummy.tex";
 
         #region Fields
+        private int _EndOfStrings;
+
         private int _Version;
         private Material _Material;
         private bool _CanStain;
@@ -31,8 +33,12 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Properties
+        public int EndOfStrings { get { return _EndOfStrings; } }
+
         public int Version { get { return _Version; } }
         public Material Material { get { return _Material; } }
+
+        public IO.File CurrentFile { get { return _CurrentFile; } }
 
         public bool CanStain { get { return _CanStain; } }
         public IEnumerable<int> AvailableStains { get { return _AvailableStains; } }
@@ -141,6 +147,8 @@ namespace SaintCoinach.Graphics {
             const int StringsLengthOffset = 0x08;
             var stringsLength = BitConverter.ToInt16(buffer, StringsLengthOffset);
             offset += stringsLength;
+
+            _EndOfStrings = offset;
         }
         private void ReadShader(byte[] buffer, int dataOffset) {
             const int ShaderPositionOffset = 0x0A;

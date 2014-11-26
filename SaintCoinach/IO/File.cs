@@ -127,6 +127,20 @@ namespace SaintCoinach.IO {
         }
         #endregion
 
+        #region Hashcode / Equals
+        public override int GetHashCode() {
+            return Path.GetHashCode();
+        }
+        public override bool Equals(object obj) {
+            var asFile = obj as File;
+            if (asFile != null)
+                return (asFile.Index.FileKey == this.Index.FileKey
+                    && asFile.Index.DirectoryKey == this.Index.DirectoryKey
+                    && asFile.Index.DatFile == this.Index.DatFile);
+            return false;
+        }
+        #endregion
+
         public override string ToString() {
             return Path;
         }
