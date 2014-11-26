@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach.Graphics.Assets {
     public class MaterialVersion {
         const string DummyTextureInMaterial = "dummy.tex";
         const string DummyTexturePath = "common/graphics/texture/dummy.tex";

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach.Graphics.Assets {
     public static class VertexReader {
         static Dictionary<int, VertexDataReader> DataReaders = new Dictionary<int, VertexDataReader> {
             { 0x0C, VertexDataReader.NormalTexture },

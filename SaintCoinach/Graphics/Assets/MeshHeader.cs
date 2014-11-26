@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach.Graphics.Assets {
     public class MeshHeader {
         public const int Size = 0x24;
 

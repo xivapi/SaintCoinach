@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
-    public class VertexColor : VertexBase {
-        public Vector4 Color0 { get; set; }
+namespace SaintCoinach.Graphics.Assets {
+    public enum ModelQuality {
+        High = 0,
+        Medium = 1,
+        Low = 2
     }
 }

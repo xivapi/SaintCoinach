@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach.Graphics.Assets {
     public abstract class VertexDataReader {
         public abstract Type VertexType { get; }
         public abstract int Length { get; }

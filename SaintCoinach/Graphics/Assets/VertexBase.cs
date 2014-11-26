@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach.Graphics.Assets {
     public class VertexBase {
         public Vector4 Position { get; set; }
         public Vector3 Normal { get; set; }

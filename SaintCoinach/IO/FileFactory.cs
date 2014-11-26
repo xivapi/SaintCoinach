@@ -18,7 +18,7 @@ namespace SaintCoinach.IO {
                 case FileType.Image:
                     return new Imaging.ImageFile(directory, header);
                 case FileType.Model:
-                    return new Graphics.ModelFile(directory, header);
+                    return new Graphics.Assets.ModelFile(directory, header);
                 default:
                     throw new NotSupportedException(string.Format("Unknown file type {0:X2}h", header.FileType));
             }
