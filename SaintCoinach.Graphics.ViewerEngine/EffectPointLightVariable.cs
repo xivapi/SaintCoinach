@@ -16,6 +16,21 @@ namespace SaintCoinach.Graphics.Viewer {
         private EffectVectorVariable _SpecularMember;
         #endregion
 
+        #region Properties
+        public Vector3 Direction {
+            get { return _DirectionMember.GetVector<Vector3>(); }
+            set { _DirectionMember.Set(value); }
+        }
+        public Vector3 Diffuse {
+            get { return _DiffuseMember.GetVector<Vector3>(); }
+            set { _DiffuseMember.Set(value); }
+        }
+        public Vector3 Specular {
+            get { return _SpecularMember.GetVector<Vector3>(); }
+            set { _SpecularMember.Set(value); }
+        }
+        #endregion
+
         #region Constructor
         public EffectPointLightVariable(EffectVariable structureVar) {
             _StructureVariable = structureVar;
@@ -27,17 +42,17 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         public void Set(PointLight light) {
-            _DirectionMember.Set(light.Direction);
-            _DiffuseMember.Set(light.Diffuse);
-            _SpecularMember.Set(light.Specular);
+            this.Direction = light.Direction;
+            this.Diffuse = light.Diffuse;
+            this.Specular = light.Specular;
         }
 
         public PointLight Get() {
             PointLight light;
 
-            light.Direction = _DirectionMember.GetVector<Vector3>();
-            light.Diffuse = _DiffuseMember.GetVector<Vector3>();
-            light.Specular = _SpecularMember.GetVector<Vector3>();
+            light.Direction = this.Direction;
+            light.Diffuse = this.Diffuse;
+            light.Specular = this.Specular;
 
             return light;
         }

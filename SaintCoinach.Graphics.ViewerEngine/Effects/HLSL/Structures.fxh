@@ -37,7 +37,7 @@ struct VSInputCharacter
     float3 Tangent   : TANGENT;
     float3 Binormal  : BINORMAL;
 
-    float2 TexCoord  : TEXCOORD;
+    float2 TexCoord  : TEXCOORD0;
 };
 
 struct VSOutputCharacter

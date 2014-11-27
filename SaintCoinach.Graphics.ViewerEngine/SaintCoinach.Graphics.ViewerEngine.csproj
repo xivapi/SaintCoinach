@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="EffectPointLightVariable.cs" />
+    <Compile Include="EffectTextureVariable.cs" />
     <Compile Include="EngineTime.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
@@ -74,7 +75,8 @@
     <Compile Include="Model.cs" />
     <Compile Include="Parts\Mesh.cs" />
     <Compile Include="PointLight.cs" />
-    <Compile Include="Primitves\VertexPositionNormalTexture.cs" />
+    <Compile Include="Primitives\VertexCommon.cs" />
+    <Compile Include="Primitives\VertexDualTexture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShaderCompilerInclude.cs" />
     <Compile Include="ViewerEngine.cs" />

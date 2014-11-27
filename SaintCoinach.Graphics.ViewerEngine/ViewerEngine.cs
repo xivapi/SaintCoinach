@@ -15,7 +15,7 @@ using Buffer = SharpDX.Direct3D11.Buffer;
 using Device = SharpDX.Direct3D11.Device;
 
 namespace SaintCoinach.Graphics.Viewer {
-    public class ViewerEngine : ComponentContainer {
+    public class ViewerEngine : ComponentContainer, IDisposable {
         #region Fields
         private string _Title;
         private RenderForm _Form;
@@ -42,6 +42,18 @@ namespace SaintCoinach.Graphics.Viewer {
         public void Run() {
             _Form = new RenderForm(_Title);
 
+            CreateDevice();
+
+            _RunTimer = new Stopwatch();
+            _RunTimer.Start();
+
+            Load(Device);
+
+            RenderLoop.Run(Form, EngineLoop);
+
+            Unload(true);
+        }
+        private void CreateDevice() {
             var desc = new SwapChainDescription {
                 BufferCount = 1,
                 Flags = SwapChainFlags.None,
@@ -62,15 +74,6 @@ namespace SaintCoinach.Graphics.Viewer {
 
             var backBuffer = Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
             _RenderTarget = new RenderTargetView(Device, backBuffer);
-
-            _RunTimer = new Stopwatch();
-            _RunTimer.Start();
-
-            Load(Device);
-
-            RenderLoop.Run(Form, EngineLoop);
-
-            Unload(true);
         }
         private void EngineLoop() {
             var elapsed = _RunTimer.Elapsed;
@@ -81,8 +84,46 @@ namespace SaintCoinach.Graphics.Viewer {
             Update(time);
             Draw(Device, time);
 
-            _SwapChain.Present(0, PresentFlags.None);
+            try {
+                _SwapChain.Present(0, PresentFlags.None);
+            } catch (SharpDXException e) {
+                if (e.HResult == (int)SharpDX.DXGI.ResultCode.DeviceRemoved)
+                    HandleDeviceRemoved();
+                else
+                    throw;
+            }
         }
+
+        private void HandleDeviceRemoved() {
+            Unload(true);
+
+            _SwapChain.Dispose();
+            _Device.Dispose();
+
+            CreateDevice();
+
+            Load(Device);
+        }
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose() {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool managed) {
+            Unload(true);
+
+            if (_SwapChain != null)
+                _SwapChain.Dispose();
+            _SwapChain = null;
+
+            if (_Device != null)
+                _Device.Dispose();
+            _Device = null;
+        }
+
         #endregion
     }
 }
