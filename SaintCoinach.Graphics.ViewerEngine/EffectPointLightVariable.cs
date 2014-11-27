@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SharpDX;
 using SharpDX.Direct3D11;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public class EffectPointLightVariable {
         #region Fields
         private EffectVariable _StructureVariable;

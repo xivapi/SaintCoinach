@@ -81,12 +81,20 @@ void AddSpecular(inout float4 color, float3 specular)
     color.rgb += specular * color.a;
 }
 
+float3 Unpack(float2 vIn)
+{
+    float3 vOut;
+    vOut.rg = vIn.rg * 2 - 1;
+    vOut.b = sqrt(1 - vIn.r * vIn.r - vIn.g * vIn.g);
+    return vOut;
+}
+
 float3 CalculateNormalFromMap(float3 bumpyness, float3 normal, float3 tangent, float3 binorm, float3 sample) {
     normal = normalize(normal);
     tangent = normalize(tangent);
     binorm = normalize(binorm);
 
-    float3 bumps = (bumpyness * 2.0) * (sample.xyz - (0.5).xxx);
+    float3 bumps = (bumpyness * 2) * (sample - (0.5).xxx);
     float3 result = (bumps.x * tangent + bumps.y * binorm + bumps.z * normal);
     return normalize(result);
 }

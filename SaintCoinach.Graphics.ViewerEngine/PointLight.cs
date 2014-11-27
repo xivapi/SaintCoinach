@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using SharpDX;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     [StructLayout(LayoutKind.Sequential)]
     public struct PointLight {
         public Vector3 Direction;

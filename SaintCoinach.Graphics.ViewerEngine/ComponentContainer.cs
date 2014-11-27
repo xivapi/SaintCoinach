@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public class ComponentContainer : Collection<IComponent>,
         IComponentContainer, IDrawable, IUpdateable, IContentComponent {
 
@@ -49,7 +49,7 @@ namespace SaintCoinach.Graphics.Viewer {
             get { return _IsLoaded; }
         }
 
-        public void Load(SharpDX.Direct3D11.Device device) {
+        public virtual void Load(SharpDX.Direct3D11.Device device) {
             _Device = device;
             foreach (var c in this.OfType<IContentComponent>().Where(_ => !_.IsLoaded))
                 c.Load(device);
@@ -59,7 +59,7 @@ namespace SaintCoinach.Graphics.Viewer {
         public void Unload() {
             Unload(true);
         }
-        public void Unload(bool includeChildren) {
+        public virtual void Unload(bool includeChildren) {
             _IsLoaded = false;
             if (includeChildren) {
                 foreach (var c in this.OfType<IContentComponent>().Where(_ => _.IsLoaded))

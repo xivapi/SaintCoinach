@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics {
-    public interface IComponent {
-        
+    public static partial class Utilities {
     }
 }

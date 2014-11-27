@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Device = SharpDX.Direct3D11.Device;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public interface IDrawable : IComponent {
         void Draw(Device device, EngineTime time);
     }

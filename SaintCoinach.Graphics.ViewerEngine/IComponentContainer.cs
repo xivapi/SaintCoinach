@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public interface IComponentContainer : IComponent, ICollection<IComponent> {
     }
 }

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Viewer {
-    public interface IUpdateable {
+namespace SaintCoinach.Graphics {
+    public interface IUpdateable : IComponent {
         void Update(EngineTime time);
     }
 }

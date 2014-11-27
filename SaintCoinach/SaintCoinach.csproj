@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EorzeaDateTime.cs" />
+    <Compile Include="Graphics\Assets\MaterialParameterMapping.cs" />
     <Compile Include="Graphics\ShPk\Parameter.cs" />
     <Compile Include="Graphics\ShPk\ParameterHeader.cs" />
     <Compile Include="Graphics\ShPk\ParameterType.cs" />

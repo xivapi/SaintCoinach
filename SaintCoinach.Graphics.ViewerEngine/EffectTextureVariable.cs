@@ -8,12 +8,14 @@ using SharpDX;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public class EffectTextureVariable {
         #region Fields
         private Effect _Effect;
         private EffectShaderResourceVariable _TextureVar;
         private EffectSamplerVariable _SamplerVar;
+
+        private Texture2D _CurrentTexture;
         #endregion
 
         #region Properties
@@ -23,6 +25,10 @@ namespace SaintCoinach.Graphics.Viewer {
         }
         public Texture2D Texture {
             set {
+                if (value == _CurrentTexture)
+                    return;
+                _CurrentTexture = value;
+
                 if (value == null)
                     _TextureVar.SetResource(null);
                 else {

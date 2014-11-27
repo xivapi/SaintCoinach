@@ -7,7 +7,7 @@
     <ProjectGuid>{39675BAC-1A1A-4A83-9835-B926BED04C9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SaintCoinach.Graphics.Viewer</RootNamespace>
+    <RootNamespace>SaintCoinach.Graphics</RootNamespace>
     <AssemblyName>SaintCoinach.Graphics.ViewerEngine</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.DXGI.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX.RawInput, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SharpDXPackageBinDir)\SharpDX.RawInput.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -62,7 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
     <Compile Include="ComponentContainer.cs" />
+    <Compile Include="EffectCache.cs" />
     <Compile Include="EffectPointLightVariable.cs" />
     <Compile Include="EffectTextureVariable.cs" />
     <Compile Include="EngineTime.cs" />
@@ -71,10 +78,20 @@
     <Compile Include="IComponentContainer.cs" />
     <Compile Include="IContentComponent.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="IGeometricPrimitive.cs" />
+    <Compile Include="InputHandler.cs" />
     <Compile Include="IUpdateable.cs" />
+    <Compile Include="Keyboard.cs" />
+    <Compile Include="Materials\CharacterMaterial.cs" />
+    <Compile Include="TextureCache.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities.Effect.cs" />
+    <Compile Include="VectorExtensions.cs" />
+    <Compile Include="XivMaterial.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Parts\Mesh.cs" />
     <Compile Include="PointLight.cs" />
+    <Compile Include="Primitives\GeometricPrimitive.cs" />
     <Compile Include="Primitives\VertexCommon.cs" />
     <Compile Include="Primitives\VertexDualTexture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +113,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <Compile Include="Utilities.Vertex.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
@@ -107,8 +125,12 @@
     <Content Include="Effects\HLSL\Character.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sharpdx_direct3d11_effects_x64.dll" />
-    <Content Include="sharpdx_direct3d11_effects_x86.dll" />
+    <Content Include="sharpdx_direct3d11_effects_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sharpdx_direct3d11_effects_x86.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

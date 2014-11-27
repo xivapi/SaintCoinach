@@ -101,22 +101,36 @@ ColorPair ComputePointLight(PointLight light, float3 eyeVector, float3 worldNorm
     
     return result;
 };
-/*
-ColorPair ComputeLights(float3 eyeVector, float3 worldNormal, float specularPower, uniform int numLights)
+
+ColorPair ComputePointLights(float3 eyeVector, float3 worldNormal, float specularPower, uniform int numLights)
 {
     ColorPair result;
 
-    float3 halfVector = normalize(eyeVector - LightDirection);
-    float3 dotL = mul(-LightDirection, worldNormal);
-    float3 dotH = mul(halfVector, worldNormal);
+    float3x3 lightDirections = 0;
+    float3x3 lightDiffuse = 0;
+    float3x3 lightSpecular = 0;
+    float3x3 halfVectors = 0;
+
+    [unroll]
+    for (int i = 0; i < numLights; i++)
+    {
+        lightDirections[i] = float3x3(Light0.Direction, Light1.Direction, Light2.Direction)[i];
+        lightDiffuse[i] = float3x3(Light0.Diffuse, Light1.Diffuse, Light2.Diffuse)[i];
+        lightSpecular[i] = float3x3(Light0.Specular, Light1.Specular, Light2.Specular)[i];
+
+        halfVectors[i] = normalize(eyeVector - lightDirections[i]);
+    }
+
+    float3 dotL = mul(-lightDirections, worldNormal);
+    float3 dotH = mul(halfVectors, worldNormal);
 
     float3 zeroL = step(0, dotL);
 
-    float3 diffuse  = zeroL * dotL;
+    float3 diffuse = zeroL * dotL;
     float3 specular = pow(max(dotH, 0) * zeroL, specularPower);
-   
-    result.Diffuse  = mul(diffuse,  LightDiffuse) + EmissiveColor;
-    result.Specular = mul(specular, LightSpecular);
+
+    result.Diffuse = mul(diffuse, lightDiffuse);
+    result.Specular = mul(specular, lightSpecular);
 
     return result;
-}*/
+}

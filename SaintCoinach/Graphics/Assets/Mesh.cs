@@ -33,6 +33,9 @@ namespace SaintCoinach.Graphics.Assets {
             Array.Copy(_Vertices, b, b.Length);
             return b;
         }
+        public T[] GetVertices<T>() where T : VertexBase {
+            return _Vertices.Cast<T>().ToArray();
+        }
         #endregion
 
         #region Constructor

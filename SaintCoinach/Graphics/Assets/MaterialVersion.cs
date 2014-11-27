@@ -11,8 +11,6 @@ namespace SaintCoinach.Graphics.Assets {
         const string DummyTexturePath = "common/graphics/texture/dummy.tex";
 
         #region Fields
-        private int _EndOfStrings;
-
         private int _Version;
         private Material _Material;
         private bool _CanStain;
@@ -23,18 +21,17 @@ namespace SaintCoinach.Graphics.Assets {
         private IO.File _CurrentFile;
 
         private int _CurrentStain = 0;
-        private IReadOnlyCollection<Imaging.ImageFile> _Textures;
-        private IReadOnlyCollection<string> _Maps;
-        private IReadOnlyCollection<string> _DataSets;
+        private IReadOnlyList<Imaging.ImageFile> _Textures;
+        private IReadOnlyList<string> _Maps;
+        private IReadOnlyList<string> _DataSets;
         private int[] _AvailableStains;
         private string _Shader;
+        private MaterialParameterMapping[] _ParameterMappings;
 
         private IO.PackCollection _PackCollection;
         #endregion
 
         #region Properties
-        public int EndOfStrings { get { return _EndOfStrings; } }
-
         public int Version { get { return _Version; } }
         public Material Material { get { return _Material; } }
 
@@ -51,17 +48,20 @@ namespace SaintCoinach.Graphics.Assets {
                 Load();
             }
         }
-        public IReadOnlyCollection<Imaging.ImageFile> Textures {
+        public IReadOnlyList<Imaging.ImageFile> Textures {
             get { return _Textures; }
         }
-        public IReadOnlyCollection<string> Maps {
+        public IReadOnlyList<string> Maps {
             get { return _Maps; }
         }
-        public IReadOnlyCollection<string> DataSets {
+        public IReadOnlyList<string> DataSets {
             get { return _DataSets; }
         }
         public string Shader {
             get { return _Shader; }
+        }
+        public IEnumerable<MaterialParameterMapping> ParameterMappings {
+            get { return _ParameterMappings; }
         }
         #endregion
 
@@ -148,7 +148,7 @@ namespace SaintCoinach.Graphics.Assets {
             var stringsLength = BitConverter.ToInt16(buffer, StringsLengthOffset);
             offset += stringsLength;
 
-            _EndOfStrings = offset;
+            ReadAdditional(buffer, offset);
         }
         private void ReadShader(byte[] buffer, int dataOffset) {
             const int ShaderPositionOffset = 0x0A;
@@ -207,6 +207,22 @@ namespace SaintCoinach.Graphics.Assets {
                 dataSets.Add(GetNullTerminatedString(buffer, actualOffset));
             }
             _DataSets = new ReadOnlyCollection<string>(dataSets);
+        }
+
+        private void ReadAdditional(byte[] buffer, int offset) {
+            var c1 = BitConverter.ToInt16(buffer, offset + 0x06);
+            var c2 = BitConverter.ToInt16(buffer, offset + 0x08);
+            var mappingCount = BitConverter.ToInt16(buffer, offset + 0x0A);
+
+            offset += 0x10;
+            offset += c1 * 0x08;
+            offset += c2 * 0x08;
+
+            _ParameterMappings = new MaterialParameterMapping[mappingCount];
+            for (var i = 0; i < mappingCount; ++i) {
+                _ParameterMappings[i] = new MaterialParameterMapping(buffer, offset);
+                offset += MaterialParameterMapping.Size;
+            }
         }
 
         private static string GetNullTerminatedString(byte[] buffer, int offset) {

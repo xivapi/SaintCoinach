@@ -10,7 +10,7 @@ using SharpDX;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 
-namespace SaintCoinach.Graphics.Viewer.Primitives {
+namespace SaintCoinach.Graphics.Primitives {
     [StructLayout(LayoutKind.Sequential)]
     public struct VertexCommon {
         public Vector4 Position;
@@ -22,11 +22,11 @@ namespace SaintCoinach.Graphics.Viewer.Primitives {
         public static InputElement[] InputElements {
             get {
                 return new[]{
-                    new InputElement("POSITION",0, Format.R32G32B32A32_Float, 0, 0, InputClassification.PerVertexData, 0),
-                    new InputElement("NORMAL", 0, Format.R32G32B32_Float, 16, 0, InputClassification.PerVertexData, 0),
-                    new InputElement("TANGENT", 0, Format.R32G32B32_Float, 28, 0, InputClassification.PerVertexData, 0),
-                    new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 40, 0, InputClassification.PerVertexData, 0),
-                    new InputElement("TEXCOORD", 0, Format.R32G32_Float, 52, 0, InputClassification.PerVertexData, 0)
+                    new InputElement("SV_Position",0, Format.R32G32B32A32_Float, 0, 0),
+                    new InputElement("NORMAL", 0, Format.R32G32B32_Float, 16, 0),
+                    new InputElement("TANGENT", 0, Format.R32G32B32_Float, 28, 0),
+                    new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 40, 0),
+                    new InputElement("TEXCOORD", 0, Format.R32G32_Float, 52, 0)
                 };
             }
         }

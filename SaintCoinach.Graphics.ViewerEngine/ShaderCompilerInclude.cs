@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using SharpDX.D3DCompiler;
 
-namespace SaintCoinach.Graphics.Viewer {
+namespace SaintCoinach.Graphics {
     public class ShaderCompilerInclude : Include {
         #region Fields
         private DirectoryInfo _SourceDirectory;

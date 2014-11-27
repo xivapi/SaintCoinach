@@ -8,8 +8,8 @@ using SharpDX;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 
-namespace SaintCoinach.Graphics.Viewer.Effects {
-    public class CharacterEffect : Effect {
+namespace SaintCoinach.Graphics.Effects {
+    public class CharacterEffect : XivEffect {
         #region Static
         private static CompilationResult _EffectByteCode;
 
@@ -17,12 +17,12 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             get {
                 if (_EffectByteCode == null)
                     _EffectByteCode = ShaderBytecode.CompileFromFile(
-                        "Effects/HLSL/Character.fx", 
+                        System.IO.Path.Combine(@"A:\Users\Kalce\Documents\Visual Studio 2013\Projects\SaintCoinach\SaintCoinach.Graphics.ViewerEngine", "Effects", "HLSL", "Character.fx"),
                         "fx_5_0",
                         ShaderFlags.None,
                         EffectFlags.None,
                         new SharpDX.Direct3D.ShaderMacro[] { new SharpDX.Direct3D.ShaderMacro("SM4", "SM4") },
-                        new ShaderCompilerInclude(@"Effects/HLSL"));
+                        new ShaderCompilerInclude(System.IO.Path.Combine(@"A:\Users\Kalce\Documents\Visual Studio 2013\Projects\SaintCoinach\SaintCoinach.Graphics.ViewerEngine", "Effects", "HLSL")));
                 return _EffectByteCode;
             }
         }
@@ -58,6 +58,9 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         public Texture2D Table {
             set { _TableVar.Texture = value; }
         }
+        public override Type RequiredVertexType {
+            get { return typeof(Primitives.VertexCommon); }
+        }
         #endregion
 
         #region Constructor
@@ -76,7 +79,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             _MaskVar = new EffectTextureVariable(this, "Mask");
             _TableVar = new EffectTextureVariable(this, "Table");
 
-            var samplerState = new SamplerState(Device, new SamplerStateDescription {
+            var linearSamplerState = new SamplerState(Device, new SamplerStateDescription {
                  AddressU = TextureAddressMode.Clamp,
                  AddressV = TextureAddressMode.Clamp,
                  AddressW = TextureAddressMode.Clamp,
@@ -88,12 +91,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
                  MaximumLod = 16,
                  MipLodBias = 0
             });
-            _DiffuseVar.SamplerState = samplerState;
-            _SpecularVar.SamplerState = samplerState;
-            _NormalVar.SamplerState = samplerState;
-            _MaskVar.SamplerState = samplerState;
-
-            var tableSamplerState = new SamplerState(Device, new SamplerStateDescription {
+            var pointSamplerState = new SamplerState(Device, new SamplerStateDescription {
                 AddressU = TextureAddressMode.Clamp,
                 AddressV = TextureAddressMode.Clamp,
                 AddressW = TextureAddressMode.Clamp,
@@ -105,7 +103,14 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
                 MaximumLod = 16,
                 MipLodBias = 0
             });
-            _TableVar.SamplerState = tableSamplerState;
+
+            _DiffuseVar.SamplerState = linearSamplerState;
+            _SpecularVar.SamplerState = linearSamplerState;
+            _NormalVar.SamplerState = linearSamplerState;
+            _MaskVar.SamplerState = linearSamplerState;
+            _TableVar.SamplerState = pointSamplerState;
+
+            MulColor = Vector3.One;
         }
         #endregion
     }
