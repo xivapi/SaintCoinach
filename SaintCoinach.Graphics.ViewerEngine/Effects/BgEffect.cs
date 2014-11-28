@@ -72,32 +72,14 @@ namespace SaintCoinach.Graphics.Effects {
 
         #region Init
         private void Init() {
-            _Diffuse0Var = new EffectTextureVariable(this, "Diffuse0");
-            _Specular0Var = new EffectTextureVariable(this, "Specular0");
-            _Normal0Var = new EffectTextureVariable(this, "Normal0");
-            _Diffuse1Var = new EffectTextureVariable(this, "Diffuse1");
-            _Specular1Var = new EffectTextureVariable(this, "Specular1");
-            _Normal1Var = new EffectTextureVariable(this, "Normal1");
+            _Diffuse0Var = new EffectTextureVariable(this, "g_Diffuse0");
+            _Diffuse1Var = new EffectTextureVariable(this, "g_Diffuse1");
 
-            var texSampleState = new SamplerState(Device, new SamplerStateDescription {
-                AddressU = TextureAddressMode.Wrap,
-                AddressV = TextureAddressMode.Wrap,
-                AddressW = TextureAddressMode.Wrap,
-                Filter = Filter.Anisotropic,
-                BorderColor = Color.Purple,
-                ComparisonFunction = Comparison.Never,
-                MaximumAnisotropy = 16,
-                MinimumLod = 0,
-                MaximumLod = 16,
-                MipLodBias = 0
-            });
-            _Diffuse0Var.SamplerState = texSampleState;
-            _Specular0Var.SamplerState = texSampleState;
-            _Normal0Var.SamplerState = texSampleState;
+            _Normal0Var = new EffectTextureVariable(this, "g_Normal0");
+            _Normal1Var = new EffectTextureVariable(this, "g_Normal1");
 
-            _Diffuse1Var.SamplerState = texSampleState;
-            _Specular1Var.SamplerState = texSampleState;
-            _Normal1Var.SamplerState = texSampleState;
+            _Specular0Var = new EffectTextureVariable(this, "g_Specular0");
+            _Specular1Var = new EffectTextureVariable(this, "g_Specular1");
         }
         #endregion
     }

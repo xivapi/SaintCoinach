@@ -66,42 +66,11 @@ namespace SaintCoinach.Graphics.Effects {
 
         #region Init
         private void Init() {
-            _DiffuseVar = new EffectTextureVariable(this, "Diffuse");
-            _SpecularVar = new EffectTextureVariable(this, "Specular");
-            _NormalVar = new EffectTextureVariable(this, "Normal");
-            _MaskVar = new EffectTextureVariable(this, "Mask");
-            _TableVar = new EffectTextureVariable(this, "Table");
-
-            var texSampleState = new SamplerState(Device, new SamplerStateDescription {
-                 AddressU = TextureAddressMode.Clamp,
-                 AddressV = TextureAddressMode.Clamp,
-                 AddressW = TextureAddressMode.Clamp,
-                 Filter = Filter.Anisotropic,
-                 BorderColor = Color.Purple,
-                 ComparisonFunction = Comparison.Never,
-                 MaximumAnisotropy = 16,
-                 MinimumLod = 0,
-                 MaximumLod = 16,
-                 MipLodBias = 0
-            });
-            var pointSamplerState = new SamplerState(Device, new SamplerStateDescription {
-                AddressU = TextureAddressMode.Clamp,
-                AddressV = TextureAddressMode.Clamp,
-                AddressW = TextureAddressMode.Clamp,
-                Filter = Filter.MinMagMipPoint,
-                BorderColor = Color.Purple,
-                ComparisonFunction = Comparison.Never,
-                MaximumAnisotropy = 16,
-                MinimumLod = 0,
-                MaximumLod = 16,
-                MipLodBias = 0
-            });
-
-            _DiffuseVar.SamplerState = texSampleState;
-            _SpecularVar.SamplerState = texSampleState;
-            _NormalVar.SamplerState = texSampleState;
-            _MaskVar.SamplerState = texSampleState;
-            _TableVar.SamplerState = pointSamplerState;
+            _DiffuseVar = new EffectTextureVariable(this, "g_Diffuse");
+            _SpecularVar = new EffectTextureVariable(this, "g_Specular");
+            _NormalVar = new EffectTextureVariable(this, "g_Normal");
+            _MaskVar = new EffectTextureVariable(this, "g_Mask");
+            _TableVar = new EffectTextureVariable(this, "g_Table");
         }
         #endregion
     }

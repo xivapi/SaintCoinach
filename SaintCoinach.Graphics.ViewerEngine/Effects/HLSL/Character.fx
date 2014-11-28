@@ -1,182 +1,204 @@
 #include "Macros.fxh"
 #include "Structures.fxh"
 
-DECLARE_TEXTURE(Diffuse, 0);
-DECLARE_TEXTURE(Specular, 2);
-DECLARE_TEXTURE(Normal, 4);
-sampler NormalPointSampler : register(s5)
+DECLARE_TEXTURE(g_Diffuse, 0)
+{
+    AddressU = Clamp;
+    AddressV = Clamp;
+    Filter = MIN_MAG_MIP_LINEAR;
+};
+DECLARE_TEXTURE(g_Normal, 1)
+{
+    AddressU = Clamp;
+    AddressV = Clamp;
+    Filter = MIN_MAG_MIP_LINEAR;
+};
+sampler g_NormalPointSampler : register(s2)
 {
     AddressU = Clamp;
     AddressV = Clamp;
     Filter = MIN_MAG_MIP_POINT;
-    MinLOD = 0;
-    MaxLOD = 0;
 };
-DECLARE_TEXTURE(Mask, 6);
-DECLARE_TEXTURE(Table, 8);
+DECLARE_TEXTURE(g_Specular, 3)
+{
+    AddressU = Clamp;
+    AddressV = Clamp;
+    Filter = MIN_MAG_MIP_LINEAR;
+};
+DECLARE_TEXTURE(g_Mask, 4)
+{
+    AddressU = Clamp;
+    AddressV = Clamp;
+    Filter = MIN_MAG_MIP_LINEAR;
+};
+DECLARE_TEXTURE(g_Table, 5)
+{
+    AddressU = Clamp;
+    AddressV = Clamp;
+    Filter = MIN_MAG_MIP_LINEAR;
+};
 
+row_major float4x4 g_World;
+row_major float4x4 g_WorldInverseTranspose;
+row_major float4x4 g_WorldViewProjection;
 
-BEGIN_CONSTANTS
+cbuffer g_CameraParameters : register(b0)
+{
+    row_major float3x4 m_View                       : packoffset(c0);
+    row_major float4x3 m_ViewInverse                : packoffset(c4);
+    row_major float4x4 m_ViewProjection             : packoffset(c8);
+    row_major float4x4 m_ViewProjectionInverse      : packoffset(c12);
+    row_major float4x4 m_Projection                 : packoffset(c16);
+    row_major float4x4 m_ProjectionInverse          : packoffset(c20);
 
-// Camera
-float3 EyePosition                          _vs(c12)  _ps(c1)  _cb(c0);
+    float3 m_EyePosition                            : packoffset(c24);
+};
 
-// Scene
-PointLight Light0                           _vs(c13)  _ps(c2)   _cb(c1);
-PointLight Light1                           _vs(c16)  _ps(c5)   _cb(c4);
-PointLight Light2                           _vs(c19)  _ps(c8)   _cb(c7);
-float3 EmissiveColor                        _vs(c22)  _ps(c11)  _cb(c10);
-float3 AmbientColor                         _vs(c23)  _ps(c12)  _cb(c11);
-
-// Instance
-float3 MulColor                             _vs(c24)  _ps(c13)  _cb(c12);
-
-MATRIX_CONSTANTS
-
-row_major float4x4 World                    _vs(c0)             _cb(c0);
-row_major float3x3 WorldInverseTranspose    _vs(c4)             _cb(c4);
-
-row_major float4x4 WorldViewProj            _vs(c8)             _cb(c8);
-
-END_CONSTANTS
+cbuffer g_LightingParameters : register(b1)
+{
+    float4 m_DiffuseColor     : packoffset(c0);
+    float3 m_EmissiveColor    : packoffset(c1);
+    float3 m_AmbientColor     : packoffset(c2);
+    float3 m_SpecularColor    : packoffset(c3);
+    float  m_SpecularPower : packoffset(c3.w);
+    DirectionalLight m_Light0 : packoffset(c4);
+    DirectionalLight m_Light1 : packoffset(c7);
+    DirectionalLight m_Light2 : packoffset(c10);
+};
 
 #include "Common.fxh"
 #include "Lighting.fxh"
 
-float Bumpy = 1.0;
-float SpecularPower = 16;
-
 struct TableSamples
 {
-    float Y;
     float4 Diffuse;
     float4 Specular;
+    float4 Blend;
 };
-TableSamples GetTableSamples(float4 normal)
-{
-    int tableKey = floor(normal.a * 15);
-    float tableY = (tableKey + 0.5) * 0.0625;
-    
-    float2 diffuseCoord = float2(0.125, tableY);
-    float2 specularCoord = float2(0.375, tableY);
-    
-    TableSamples samples;
 
-    samples.Y = tableY;
-    samples.Diffuse = SAMPLE_TEXTURE(Table, diffuseCoord);
-    samples.Specular = SAMPLE_TEXTURE(Table, specularCoord);
-    
+TableSamples GetTableSamples(float2 uv)
+{
+    float4 texNormalPoint = g_Normal.Sample(g_NormalPointSampler, uv);
+
+        int tableKey = floor(texNormalPoint.a * 15);
+    float tableY = (tableKey + 0.5) * 0.0625;
+
+    float2 diffuseUV = float2(0.125, tableY);
+        float2 specularUV = float2(0.375, tableY);
+        float2 blendUV = float2(0.625, tableY);
+
+        TableSamples samples;
+
+    samples.Diffuse = g_Table.Sample(g_TableSampler, diffuseUV);
+    samples.Specular = g_Table.Sample(g_TableSampler, specularUV);
+    samples.Blend = g_Table.Sample(g_TableSampler, blendUV);
+
     return samples;
 };
 
-float4 ComputeDiffusePS(VSOutputCharacter pin) : SV_Target0
+float ApplyTable(float2 uv, inout float4 diffuse, inout float4 specular, bool blendSpecIntoDiff)
 {
-    float4 texDiffuse = SAMPLE_TEXTURE(Diffuse, pin.TexCoord);
-    float4 texNormal = SAMPLE_TEXTURE(Normal, pin.TexCoord);
+    TableSamples table = GetTableSamples(uv);
 
-    float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-    float3 worldNormal = CalculateNormalFromMap(Bumpy, pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
+    float3 diff = table.Diffuse.rgb;
+        if (blendSpecIntoDiff)
+        {
+            diff += table.Blend.w * table.Specular.rgb;
+        }
+    diffuse.rgb *= diff;
+    specular = table.Specular * specular.g;
 
-    ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
+    return table.Specular.w;
+};
 
-    float4 color = ComputeCommonPSOutput(texDiffuse, float4((0).xxx, 1), lightResult, texNormal.b);
-    color.rgb *= MulColor;
+float4 ComputeCommon(VSOutputCommon pin, float4 diffuse, float4 specular)
+{
+    float4 texNormal = g_Normal.Sample(g_NormalSampler, pin.TexCoord);
+
+        float3 normal = CalculateNormal(pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
+
+        float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
+        LightResult light = ComputeLights(eyeVector, normal, 3);
+
+    float4 color = float4(diffuse.rgb, texNormal.b);
+
+        color.rgb *= light.Diffuse.rgb;
+    color.rgb += light.Specular.rgb * specular.rgb * color.a;
+
     return color;
-}
+};
 
-float4 ComputeDiffuseSpecularPS(VSOutputCharacter pin) : SV_Target0
+float4 PSDiffuse(VSOutputCommon pin) : SV_Target0
 {
-    float4 texDiffuse = SAMPLE_TEXTURE(Diffuse, pin.TexCoord);
-    float4 texNormal = SAMPLE_TEXTURE(Normal, pin.TexCoord);
-    float4 texSpecular = SAMPLE_TEXTURE(Specular, pin.TexCoord);
+    float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.TexCoord);
 
-    float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-    float3 worldNormal = CalculateNormalFromMap(Bumpy, pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
-    
-    ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
-    
-    float4 color = ComputeCommonPSOutput(texDiffuse, texSpecular, lightResult, texNormal.b);
-    color.rgb *= MulColor;
-    return color;
-}
-
-float4 ComputeDiffuseSpecularTablePS(VSOutputCharacter pin) : SV_Target0
+    return ComputeCommon(pin, texDiffuse, (0).xxxx);
+};
+float4 PSDiffuseSpecular(VSOutputCommon pin) : SV_Target0
 {
-    float4 texDiffuse = SAMPLE_TEXTURE(Diffuse, pin.TexCoord);
-    float4 texNormal = SAMPLE_TEXTURE(Normal, pin.TexCoord);
-    float4 texSpecular = SAMPLE_TEXTURE(Specular, pin.TexCoord);
+    float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.TexCoord);
+    float4 texSpecular = g_Specular.Sample(g_SpecularSampler, pin.TexCoord);
 
-    float4 texNPoint = Normal.Sample(NormalPointSampler, pin.TexCoord);
-    TableSamples samples = GetTableSamples(texNPoint);
-
-
-    float4 diffuse = texDiffuse * samples.Diffuse;
-    float4 specular = samples.Specular * texSpecular.g;
-
-    float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-    float3 worldNormal = CalculateNormalFromMap(Bumpy, pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
-
-    ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
-
-    float4 color = ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
-    color.rgb *= MulColor;
-    return color;
-}
-
-float4 ComputeMaskTablePS(VSOutputCharacter pin) : SV_Target0
+    return ComputeCommon(pin, texDiffuse, texSpecular);
+};
+float4 PSDiffuseSpecularTable(VSOutputCommon pin) : SV_Target0
 {
-    float4 texNormal = SAMPLE_TEXTURE(Normal, pin.TexCoord);
-    float4 texMask = SAMPLE_TEXTURE(Mask, pin.TexCoord);
+    float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.TexCoord);
+    float4 texSpecular = g_Specular.Sample(g_SpecularSampler, pin.TexCoord);
 
-    float4 texNPoint = Normal.Sample(NormalPointSampler, pin.TexCoord);
-    TableSamples samples = GetTableSamples(texNPoint);
-    
-    float4 diffuse = samples.Diffuse;
+    float4 diffuse = texDiffuse;
+    float4 specular = float4(texSpecular.ggg, 1);
+
+    ApplyTable(pin.TexCoord, diffuse, specular, false);
+
+    return ComputeCommon(pin, diffuse, diffuse);
+};
+float4 PSMaskTable(VSOutputCommon pin) : SV_Target0
+{
+    float4 texMask = g_Mask.Sample(g_MaskSampler, pin.TexCoord);
+
+    float4 diffuse = (1).xxxx;
+    float4 specular = (1).xxxx;
+
+
+    float specPow = ApplyTable(pin.TexCoord, diffuse, specular, true);
+
     diffuse.rgb *= texMask.b;
-    float4 specular = samples.Specular;
-    
-    float3 eyeVector = normalize(EyePosition - pin.PositionWS.xyz);
-    float3 worldNormal = CalculateNormalFromMap(Bumpy, pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
-    
-    ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
-    
-    float4 color = ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
-    color.rgb *= MulColor;
-    return color;
-}
 
-technique10 CharacterDiffuse
+
+    return ComputeCommon(pin, diffuse, specular);
+};
+
+
+technique11 Diffuse
 {
     pass P0 {
         SetGeometryShader(0);
-        SetVertexShader(CompileShader(vs_4_0, ComputeCharacterVSOutput()));
-        SetPixelShader(CompileShader(ps_4_0, ComputeDiffusePS()));
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSDiffuse()));
     }
 }
-
-technique10 CharacterDiffuseSpecular
+technique11 DiffuseSpecular
 {
     pass P0 {
         SetGeometryShader(0);
-        SetVertexShader(CompileShader(vs_4_0, ComputeCharacterVSOutput()));
-        SetPixelShader(CompileShader(ps_4_0, ComputeDiffuseSpecularPS()));
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSDiffuseSpecular()));
     }
 }
-
-technique10 CharacterDiffuseSpecularTable
+technique11 DiffuseSpecularTable
 {
     pass P0 {
         SetGeometryShader(0);
-        SetVertexShader(CompileShader(vs_4_0, ComputeCharacterVSOutput()));
-        SetPixelShader(CompileShader(ps_4_0, ComputeDiffuseSpecularTablePS()));
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSDiffuseSpecularTable()));
     }
 }
-
-technique10 CharacterMaskTable
+technique11 MaskTable
 {
     pass P0 {
         SetGeometryShader(0);
-        SetVertexShader(CompileShader(vs_4_0, ComputeCharacterVSOutput()));
-        SetPixelShader(CompileShader(ps_4_0, ComputeMaskTablePS()));
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSMaskTable()));
     }
 }

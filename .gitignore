@@ -228,4 +228,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+# DX Things
 *.tkb
+sharpdx_direct3d11_effects_*.dll

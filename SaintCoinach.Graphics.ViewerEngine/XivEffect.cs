@@ -16,11 +16,16 @@ namespace SaintCoinach.Graphics {
         private EffectPointLightVariable _Light0Var;
         private EffectPointLightVariable _Light1Var;
         private EffectPointLightVariable _Light2Var;
+        private EffectVectorVariable _DiffuseColorVar;
         private EffectVectorVariable _EmissiveColorVar;
         private EffectVectorVariable _AmbientColorVar;
+        private EffectVectorVariable _SpecularColorVar;
+        private EffectScalarVariable _SpecularPowerVar;
+
         private EffectMatrixVariable _WorldVar;
         private EffectMatrixVariable _WorldInverseTransposeVar;
         private EffectMatrixVariable _WorldViewProjectionVar;
+        private EffectMatrixVariable _ViewInverseVar;
         #endregion
 
         #region Variable values
@@ -40,6 +45,10 @@ namespace SaintCoinach.Graphics {
             get { return _Light2Var.Get(); }
             set { _Light2Var.Set(value); }
         }
+        public Vector4 DiffuseColor {
+            get { return _DiffuseColorVar.GetVector<Vector4>(); }
+            set { _DiffuseColorVar.Set(value); }
+        }
         public Vector3 EmissiveColor {
             get { return _EmissiveColorVar.GetVector<Vector3>(); }
             set { _EmissiveColorVar.Set(value); }
@@ -47,6 +56,14 @@ namespace SaintCoinach.Graphics {
         public Vector3 AmbientColor {
             get { return _AmbientColorVar.GetVector<Vector3>(); }
             set { _AmbientColorVar.Set(value); }
+        }
+        public Vector3 SpecularColor {
+            get { return _SpecularColorVar.GetVector<Vector3>(); }
+            set { _SpecularColorVar.Set(value); }
+        }
+        public float SpecularPower {
+            get { return _SpecularPowerVar.GetFloat(); }
+            set { _SpecularPowerVar.Set(value); }
         }
         public Matrix World {
             get { return _WorldVar.GetMatrix(); }
@@ -59,6 +76,10 @@ namespace SaintCoinach.Graphics {
         public Matrix WorldViewProjection {
             get { return _WorldViewProjectionVar.GetMatrix(); }
             set { _WorldViewProjectionVar.SetMatrix(value); }
+        }
+        public Matrix ViewInverse {
+            get { return _ViewInverseVar.GetMatrix(); }
+            set { _ViewInverseVar.SetMatrix(value); }
         }
         public abstract Type RequiredVertexType { get; }
         #endregion
@@ -74,65 +95,49 @@ namespace SaintCoinach.Graphics {
 
         #region Init
         private void Init() {
-            _EyePositionVar = GetVariableByName("EyePosition").AsVector();
-            _Light0Var = new EffectPointLightVariable(GetVariableByName("Light0"));
-            _Light1Var = new EffectPointLightVariable(GetVariableByName("Light1"));
-            _Light2Var = new EffectPointLightVariable(GetVariableByName("Light2"));
-            _EmissiveColorVar = GetVariableByName("EmissiveColor").AsVector();
-            _AmbientColorVar = GetVariableByName("AmbientColor").AsVector();
-            _WorldVar = GetVariableByName("World").AsMatrix();
-            _WorldInverseTransposeVar = GetVariableByName("WorldInverseTranspose").AsMatrix();
-            _WorldViewProjectionVar = GetVariableByName("WorldViewProj").AsMatrix();
+            _WorldVar = GetVariableByName("g_World").AsMatrix();
+            _WorldInverseTransposeVar = GetVariableByName("g_WorldInverseTranspose").AsMatrix();
+            _WorldViewProjectionVar = GetVariableByName("g_WorldViewProjection").AsMatrix();
 
-            // Key light.
-            Light0 = new PointLight {
-                Direction = new Vector3(0.5265408f, -0.5735765f, 0.6275069f),
-                Diffuse = new Vector3(1, 1, 1),
-                Specular = new Vector3(1, 1, 1),
-            };
+            _ViewInverseVar = GetVariableByName("m_ViewInverse").AsMatrix();
 
-            // Fill light.
-            Light1 = new PointLight {
-                Direction = new Vector3(-0.7198464f, 0.3420201f, -0.6040227f),
-                Diffuse = new Vector3(0.7607844f, 0.7607844f, 0.7607844f),
-                Specular = Vector3.Zero,
-            };
+            _EyePositionVar = GetVariableByName("m_EyePosition").AsVector();
+            _Light0Var = new EffectPointLightVariable(GetVariableByName("m_Light0"));
+            _Light1Var = new EffectPointLightVariable(GetVariableByName("m_Light1"));
+            _Light2Var = new EffectPointLightVariable(GetVariableByName("m_Light2"));
+            _DiffuseColorVar = GetVariableByName("m_DiffuseColor").AsVector();
+            _EmissiveColorVar = GetVariableByName("m_EmissiveColor").AsVector();
+            _AmbientColorVar = GetVariableByName("m_AmbientColor").AsVector();
+            _SpecularColorVar = GetVariableByName("m_SpecularColor").AsVector();
+            _SpecularPowerVar = GetVariableByName("m_SpecularPower").AsScalar();
 
-            // Back light.
-            Light2 = new PointLight {
-                Direction = new Vector3(-0.4545195f, -0.7660444f, -0.4545195f),
-                Diffuse = new Vector3(0.3937255f, 0.3937255f, 0.3937255f),
-                Specular = new Vector3(0.3937255f, 0.3937255f, 0.3937255f),
-            };
+            SetDefaults();
+        }
 
-            //EmissiveColor = new Vector3(0.2f, 0.2f, 0.2f);
-            AmbientColor = 3 * new Vector3(0.09882354f, 0.09882354f, 0.09882354f);
-            EmissiveColor = AmbientColor;
+        public virtual void SetDefaults() {
+            DiffuseColor = Vector4.One;
+            EmissiveColor = Vector3.Zero;
 
-            /*
-            // Key light.
+            SpecularColor = Vector3.One;
+            SpecularPower = 16;
+
             Light0 = new PointLight {
                 Direction = new Vector3(-0.5265408f, -0.5735765f, -0.6275069f),
-                Diffuse = Vector3.One,
-                Specular = new Vector3(.75f, .75f, .75f),
+                Diffuse = new Vector3(1, 0.9607844f, 0.8078432f),
+                Specular = new Vector3(1, 0.9607844f, 0.8078432f),
             };
-
-            // Fill light.
             Light1 = new PointLight {
                 Direction = new Vector3(0.7198464f, 0.3420201f, 0.6040227f),
-                Diffuse = Vector3.One,
-                Specular = Vector3.Zero
+                Diffuse = new Vector3(0.9647059f, 0.7607844f, 0.4078432f),
+                Specular = Vector3.Zero,
             };
-
-            // Back light.
             Light2 = new PointLight {
                 Direction = new Vector3(0.4545195f, -0.7660444f, 0.4545195f),
-                Diffuse = Vector3.One,
-                Specular = new Vector3(0.3607844f, 0.3607844f, 0.3607844f)
+                Diffuse = new Vector3(0.3231373f, 0.3607844f, 0.3937255f),
+                Specular = new Vector3(0.3231373f, 0.3607844f, 0.3937255f),
             };
 
-            //EmissiveColor = new Vector3(0.2f, 0.2f, 0.2f);
-            AmbientColor = new Vector3(0.1819608f, 0.1819608f, 0.1819608f);*/
+            AmbientColor = new Vector3(0.05333332f, 0.09882354f, 0.1819608f);
         }
         #endregion
 
@@ -154,6 +159,7 @@ namespace SaintCoinach.Graphics {
 
             Matrix viewInverse;
             Matrix.Invert(ref view, out viewInverse);
+            this.ViewInverse = viewInverse;
 
             EyePosition = viewInverse.TranslationVector;
         }

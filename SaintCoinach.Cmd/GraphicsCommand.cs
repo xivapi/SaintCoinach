@@ -25,7 +25,7 @@ namespace SaintCoinach.Cmd {
                 if (string.IsNullOrWhiteSpace(paramList)) {
                     paramList = @"chara/monster/m0099/obj/body/b0001/model/m0099b0001.mdl";
                     //paramList = @"chara/equipment/e0124/model/c1101e0124_top.mdl 1 83";
-                    //paramList = @"chara/equipment/e0075/model/c1101e0075_top.mdl 1 83";
+                    //paramList = @"chara/equipment/e0075/model/c1101e0075_top.mdl 1 112";
                     //paramList = @"bg/ffxiv/sea_s1/hou/s1h1/bgplate/0031.mdl";
                 }
 

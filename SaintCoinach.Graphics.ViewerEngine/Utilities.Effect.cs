@@ -51,10 +51,10 @@ namespace SaintCoinach.Graphics {
 
             #region Technique map
             static readonly Dictionary<uint[], string> BgTechniqueMap = new Dictionary<uint[], string> {
-                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, }, "BgSingleTexture" },
-                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12 }, "BgSingleTextureSpecular" },
-                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x6968DF0A, 0xDDB3E97F }, "BgDualTexture" },
-                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12, 0x6968DF0A, 0xDDB3E97F, 0x6CBB1F84 }, "BgDualTextureSpecular" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, }, "Single" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12 }, "SingleSpecular" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x6968DF0A, 0xDDB3E97F }, "Dual" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12, 0x6968DF0A, 0xDDB3E97F, 0x6CBB1F84 }, "DualSpecular" },
             };
             #endregion
 
@@ -112,10 +112,10 @@ namespace SaintCoinach.Graphics {
 
             #region Technique map
             static readonly Dictionary<uint[], string> CharacterTechniqueMap = new Dictionary<uint[], string> {
-                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0xCC28F4AD }, "CharacterDiffuse" },
-                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025 }, "CharacterDiffuseSpecular" },
-                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025, 0x2005679F }, "CharacterDiffuseSpecularTable" },
-                { new uint[] { 0x0C5EC1F1, 0x8A4E82B6, 0x2005679F }, "CharacterMaskTable" },
+                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0xCC28F4AD }, "Diffuse" },
+                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025 }, "DiffuseSpecular" },
+                { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025, 0x2005679F }, "DiffuseSpecularTable" },
+                { new uint[] { 0x0C5EC1F1, 0x8A4E82B6, 0x2005679F }, "MaskTable" },
             };
             #endregion
 
