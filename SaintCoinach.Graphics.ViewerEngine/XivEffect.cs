@@ -118,7 +118,7 @@ namespace SaintCoinach.Graphics {
             DiffuseColor = Vector4.One;
             EmissiveColor = Vector3.Zero;
 
-            SpecularColor = Vector3.One;
+            SpecularColor = Vector3.One * 0.5f;
             SpecularPower = 16;
 
             Light0 = new PointLight {
