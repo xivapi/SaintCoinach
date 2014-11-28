@@ -50,24 +50,12 @@ namespace SaintCoinach.Cmd {
                                         stain = temp;
                                 }
 
-                                var stainAll = true;
-                                var versionAll = true;
-
                                 foreach (var mesh in component.Meshes) {
                                     if (mesh.AvailableMaterialVersions.Contains(v))
                                         mesh.MaterialVersion = v;
-                                    else
-                                        versionAll = false;
                                     if (stain.HasValue && mesh.CanStain && mesh.AvailableStains.Contains(stain.Value))
                                         mesh.MaterialStain = stain.Value;
-                                    else if(stain.HasValue)
-                                        stainAll = false;
                                 }
-
-                                if (!versionAll)
-                                    OutputWarning("Version not present on all materials, using default on some.");
-                                if (!stainAll)
-                                    OutputWarning("Stain not present on all materials, using default on some.");
                             } else
                                 OutputError("Version input could not be parsed.");
                         }
