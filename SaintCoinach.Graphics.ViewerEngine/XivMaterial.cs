@@ -49,6 +49,8 @@ namespace SaintCoinach.Graphics {
             switch (material.Shader) {
                 case "character.shpk":
                     return new Materials.CharacterMaterial(device, material);
+                case "bg.shpk":
+                    return new Materials.BgMaterial(device, material);
             }
             throw new NotSupportedException();
         }

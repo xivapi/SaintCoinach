@@ -77,12 +77,6 @@
 //-----------------------------------------------------------------------------
 
 
-struct ColorPair
-{
-    float3 Diffuse;
-    float3 Specular;
-};
-
 ColorPair ComputePointLight(PointLight light, float3 eyeVector, float3 worldNormal, float specularPower)
 {
     ColorPair result;

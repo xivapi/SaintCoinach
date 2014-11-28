@@ -89,6 +89,17 @@ float3 Unpack(float2 vIn)
     return vOut;
 }
 
+float4 ComputeCommonPSOutput(float4 diffuse, float4 specular, ColorPair lightResult, float a)
+{
+    float4 color = float4(saturate(AmbientColor + lightResult.Diffuse) * diffuse.rgb, 1);
+    float3 totalSpecular = lightResult.Specular * specular.rgb;
+
+    color.a = a;
+    AddSpecular(color, totalSpecular);
+
+    return float4(color.rgb, a);
+};
+
 float3 CalculateNormalFromMap(float3 bumpyness, float3 normal, float3 tangent, float3 binorm, float3 sample) {
     normal = normalize(normal);
     tangent = normalize(tangent);

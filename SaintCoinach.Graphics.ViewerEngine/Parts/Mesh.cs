@@ -27,6 +27,7 @@ namespace SaintCoinach.Graphics.Parts {
         private object _Vertices;
         private ushort[] _Indices;
 
+        private Matrix _Transformation;
         private XivMaterial _Material;
         private IGeometricPrimitive _Primitive;
 
@@ -63,10 +64,12 @@ namespace SaintCoinach.Graphics.Parts {
         #endregion
 
         #region Constructor
-        public Mesh(Assets.Mesh sourceMesh) {
+        public Mesh(Assets.Mesh sourceMesh) : this(sourceMesh, Matrix.Identity) { }
+        public Mesh(Assets.Mesh sourceMesh, Matrix transform) {
             _SourceMesh = sourceMesh;
             _SourceMaterial = sourceMesh.Material;
             MaterialVersion = _SourceMaterial.AvailableVersions.First();
+            _Transformation = transform;
 
             PreProcess();
         }
@@ -80,7 +83,7 @@ namespace SaintCoinach.Graphics.Parts {
             if (_SourceMesh.VertexType == typeof(Assets.VertexBase) || _SourceMesh.VertexType == typeof(Assets.VertexColor)) {
                 _VertexType = typeof(Primitives.VertexCommon);
                 _Vertices = Utilities.Vertex.Convert(_SourceMesh.GetVertices(), _Indices);
-            } else if (_SourceMesh.VertexType == typeof(Assets.VertexBlend)) {
+            } else if (_SourceMesh.VertexType == typeof(Assets.VertexBlend) || _SourceMesh.VertexType == typeof(Assets.VertexColorBlend)) {
                 _VertexType = typeof(Primitives.VertexDualTexture);
                 _Vertices = Utilities.Vertex.Convert(_SourceMesh.GetVertices<Assets.VertexBlend>(), _Indices);
             } else
@@ -89,20 +92,14 @@ namespace SaintCoinach.Graphics.Parts {
         #endregion
 
         #region IDrawable Members
-
-        float _Rot = 0;
-        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time) {
-            /*
-            var world = Matrix.RotationY(_Rot);
-            var view = Camera.Instance.View;
-            var proj = Camera.Instance.Projection;
-            _Rot += (float)time.ElapsedTime.TotalSeconds;
-            _Material.Effect.Apply(ref world, ref view, ref proj);*/
+        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
+            var transformedWorld = _Transformation * world;
 
             var ia = device.ImmediateContext.InputAssembler;
 
             var tech = _Material.CurrentTechnique;
 
+            _Material.Effect.Apply(ref transformedWorld, ref view, ref projection);
             _Material.Apply();
 
             ia.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.TriangleList;

@@ -26,6 +26,7 @@ namespace SaintCoinach.Cmd {
                     paramList = @"chara/monster/m0099/obj/body/b0001/model/m0099b0001.mdl";
                     //paramList = @"chara/equipment/e0124/model/c1101e0124_top.mdl 1 83";
                     //paramList = @"chara/equipment/e0075/model/c1101e0075_top.mdl 1 83";
+                    //paramList = @"bg/ffxiv/sea_s1/hou/s1h1/bgplate/0031.mdl";
                 }
 
                 var splitParam = paramList.Split(' ');
@@ -68,10 +69,29 @@ namespace SaintCoinach.Cmd {
                 return true;
             }
         }
+        class MapCommand : ActionCommandBase {
+            private IO.PackCollection _Pack;
+            private Xiv.XivCollection _Data;
+            public MapCommand(IO.PackCollection pack, Xiv.XivCollection data)
+                : base("map", "Display a map.") {
+                _Pack = pack;
+                _Data = data;
+            }
+
+            public async override Task<bool> InvokeAsync(string paramList) {
+                if (string.IsNullOrWhiteSpace(paramList))
+                    paramList = "bg/ffxiv/sea_s1/hou/s1h1";
+                var component = new Graphics.Map(_Pack, paramList);
+                RunViewer(component, paramList);
+
+                return true;
+            }
+        }
 
         public GraphicsCommand(IO.PackCollection pack, Xiv.XivCollection data)
             : base("3d") {
                 SubCommands.Add(new ModelCommand(pack, data));
+                SubCommands.Add(new MapCommand(pack, data));
         }
 
         static void RunViewer(Graphics.IComponent component, string title) {

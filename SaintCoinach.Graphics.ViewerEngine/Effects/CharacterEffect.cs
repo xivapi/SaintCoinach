@@ -17,20 +17,18 @@ namespace SaintCoinach.Graphics.Effects {
             get {
                 if (_EffectByteCode == null)
                     _EffectByteCode = ShaderBytecode.CompileFromFile(
-                        System.IO.Path.Combine(@"A:\Users\Kalce\Documents\Visual Studio 2013\Projects\SaintCoinach\SaintCoinach.Graphics.ViewerEngine", "Effects", "HLSL", "Character.fx"),
+                        System.IO.Path.Combine("Effects", "HLSL", "Character.fx"),
                         "fx_5_0",
                         ShaderFlags.None,
                         EffectFlags.None,
                         new SharpDX.Direct3D.ShaderMacro[] { new SharpDX.Direct3D.ShaderMacro("SM4", "SM4") },
-                        new ShaderCompilerInclude(System.IO.Path.Combine(@"A:\Users\Kalce\Documents\Visual Studio 2013\Projects\SaintCoinach\SaintCoinach.Graphics.ViewerEngine", "Effects", "HLSL")));
+                        new ShaderCompilerInclude(System.IO.Path.Combine("Effects", "HLSL")));
                 return _EffectByteCode;
             }
         }
         #endregion
 
         #region Fields
-        private EffectVectorVariable _MulColorVar;
-
         private EffectTextureVariable _DiffuseVar;
         private EffectTextureVariable _SpecularVar;
         private EffectTextureVariable _NormalVar;
@@ -39,10 +37,6 @@ namespace SaintCoinach.Graphics.Effects {
         #endregion
 
         #region Properties
-        public Vector3 MulColor {
-            get { return _MulColorVar.GetVector<Vector3>(); }
-            set { _MulColorVar.Set(value); }
-        }
         public Texture2D Diffuse {
             set { _DiffuseVar.Texture = value; }
         }
@@ -72,14 +66,13 @@ namespace SaintCoinach.Graphics.Effects {
 
         #region Init
         private void Init() {
-            _MulColorVar = GetVariableByName("MulColor").AsVector();
             _DiffuseVar = new EffectTextureVariable(this, "Diffuse");
             _SpecularVar = new EffectTextureVariable(this, "Specular");
             _NormalVar = new EffectTextureVariable(this, "Normal");
             _MaskVar = new EffectTextureVariable(this, "Mask");
             _TableVar = new EffectTextureVariable(this, "Table");
 
-            var linearSamplerState = new SamplerState(Device, new SamplerStateDescription {
+            var texSampleState = new SamplerState(Device, new SamplerStateDescription {
                  AddressU = TextureAddressMode.Clamp,
                  AddressV = TextureAddressMode.Clamp,
                  AddressW = TextureAddressMode.Clamp,
@@ -104,13 +97,11 @@ namespace SaintCoinach.Graphics.Effects {
                 MipLodBias = 0
             });
 
-            _DiffuseVar.SamplerState = linearSamplerState;
-            _SpecularVar.SamplerState = linearSamplerState;
-            _NormalVar.SamplerState = linearSamplerState;
-            _MaskVar.SamplerState = linearSamplerState;
+            _DiffuseVar.SamplerState = texSampleState;
+            _SpecularVar.SamplerState = texSampleState;
+            _NormalVar.SamplerState = texSampleState;
+            _MaskVar.SamplerState = texSampleState;
             _TableVar.SamplerState = pointSamplerState;
-
-            MulColor = Vector3.One;
         }
         #endregion
     }

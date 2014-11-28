@@ -210,6 +210,22 @@ namespace SaintCoinach.Graphics.Assets {
         }
 
         private void ReadAdditional(byte[] buffer, int offset) {
+            // [00h]    1   ? -> If 11h then U1 = 20h
+            // [01h]    1   ?
+            // [02h]    1   0
+            // [03h]    1   0
+            // [04h]    U1  U1
+            // [+U1]    2   End param length
+            // [*  ]    2   Count 1
+            // [*  ]    2   Count 2
+            // [*  ]    3   Param map count
+            var c0 = buffer[offset];
+
+
+            // XXX: Hackery
+            if (c0 == 0x11)
+                offset += 0x20;
+
             var c1 = BitConverter.ToInt16(buffer, offset + 0x06);
             var c2 = BitConverter.ToInt16(buffer, offset + 0x08);
             var mappingCount = BitConverter.ToInt16(buffer, offset + 0x0A);

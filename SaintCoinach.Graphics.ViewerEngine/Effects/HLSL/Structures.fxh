@@ -5,6 +5,12 @@ struct PointLight
     float3 Specular;
 };
 
+struct ColorPair
+{
+    float3 Diffuse;
+    float3 Specular;
+};
+
 struct VSInputBg
 {
     float4 Position  : SV_Position;

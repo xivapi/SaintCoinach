@@ -88,8 +88,8 @@ namespace SaintCoinach.Graphics {
 
             public static Primitives.VertexCommon[] Convert(Assets.VertexBase[] vertices, ushort[] indices) {
                 var converted = vertices.Select(_ => new Primitives.VertexCommon {
-                    Position = new Vector4(-_.Position.X, _.Position.Y, -_.Position.Z, _.Position.W),
-                    Normal = new Vector3(-_.Normal.X, _.Normal.Y, -_.Normal.Z),
+                    Position = new Vector4(_.Position.X, _.Position.Y, _.Position.Z, _.Position.W),
+                    Normal = Vector3.Normalize(new Vector3(_.Normal.X, _.Normal.Y, _.Normal.Z)),
                     TextureCoordinates = _.TextureCoordinates0.ToDX()
                 }).ToArray();
 
@@ -101,8 +101,8 @@ namespace SaintCoinach.Graphics {
             }
             public static Primitives.VertexDualTexture[] Convert(Assets.VertexBlend[] vertices, ushort[] indices) {
                 var converted = vertices.Select(_ => new Primitives.VertexDualTexture {
-                    Position = new Vector4(-_.Position.X, _.Position.Y, -_.Position.Z, _.Position.W),
-                    Normal = new Vector3(-_.Normal.X, _.Normal.Y, -_.Normal.Z),
+                    Position = new Vector4(_.Position.X, _.Position.Y, _.Position.Z, _.Position.W),
+                    Normal = Vector3.Normalize(new Vector3(_.Normal.X, _.Normal.Y, _.Normal.Z)),
                     TextureCoordinates0 = _.TextureCoordinates0.ToDX(),
                     TextureCoordinates1 = _.TextureCoordinates1.ToDX(),
                     BlendWeight = _.BlendWeight.ToDX()

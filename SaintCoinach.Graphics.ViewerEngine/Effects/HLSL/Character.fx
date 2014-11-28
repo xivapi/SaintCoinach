@@ -46,19 +46,6 @@ END_CONSTANTS
 float Bumpy = 1.0;
 float SpecularPower = 16;
 
-float4 ComputeCommonPSOutput(float4 diffuse, float4 specular, ColorPair lightResult, float a)
-{
-    float4 color = float4(saturate(AmbientColor + lightResult.Diffuse) * diffuse.rgb, 1);
-    float3 totalSpecular = lightResult.Specular * specular.rgb;
-
-    color.a = a;
-    AddSpecular(color, totalSpecular);
-
-    color.rgb *= MulColor;
-    
-    return float4(color.rgb, a);
-};
-
 struct TableSamples
 {
     float Y;
@@ -92,8 +79,9 @@ float4 ComputeDiffusePS(VSOutputCharacter pin) : SV_Target0
 
     ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
 
-    return ComputeCommonPSOutput(texDiffuse, float4((0).xxx, 1), lightResult, texNormal.b);
-    return texDiffuse;
+    float4 color = ComputeCommonPSOutput(texDiffuse, float4((0).xxx, 1), lightResult, texNormal.b);
+    color.rgb *= MulColor;
+    return color;
 }
 
 float4 ComputeDiffuseSpecularPS(VSOutputCharacter pin) : SV_Target0
@@ -107,8 +95,9 @@ float4 ComputeDiffuseSpecularPS(VSOutputCharacter pin) : SV_Target0
     
     ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
     
-    return ComputeCommonPSOutput(texDiffuse, texSpecular, lightResult, texNormal.b);
-    return texDiffuse;
+    float4 color = ComputeCommonPSOutput(texDiffuse, texSpecular, lightResult, texNormal.b);
+    color.rgb *= MulColor;
+    return color;
 }
 
 float4 ComputeDiffuseSpecularTablePS(VSOutputCharacter pin) : SV_Target0
@@ -129,7 +118,9 @@ float4 ComputeDiffuseSpecularTablePS(VSOutputCharacter pin) : SV_Target0
 
     ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
 
-    return ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
+    float4 color = ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
+    color.rgb *= MulColor;
+    return color;
 }
 
 float4 ComputeMaskTablePS(VSOutputCharacter pin) : SV_Target0
@@ -149,7 +140,9 @@ float4 ComputeMaskTablePS(VSOutputCharacter pin) : SV_Target0
     
     ColorPair lightResult = ComputePointLights(eyeVector, worldNormal, SpecularPower, 3);
     
-    return ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
+    float4 color = ComputeCommonPSOutput(diffuse, specular, lightResult, texNormal.b);
+    color.rgb *= MulColor;
+    return color;
 }
 
 technique10 CharacterDiffuse

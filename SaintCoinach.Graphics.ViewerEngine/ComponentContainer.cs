@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SharpDX;
+
 namespace SaintCoinach.Graphics {
     public class ComponentContainer : Collection<IComponent>,
         IComponentContainer, IDrawable, IUpdateable, IContentComponent {
@@ -31,9 +33,9 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region IDrawable Members
-        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time) {
+        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
             foreach (var c in this.OfType<IDrawable>())
-                c.Draw(device, time);
+                c.Draw(device, time, ref world, ref view, ref projection);
         }
         #endregion
 

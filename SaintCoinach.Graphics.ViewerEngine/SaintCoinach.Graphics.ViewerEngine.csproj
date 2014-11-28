@@ -71,6 +71,7 @@
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="EffectCache.cs" />
     <Compile Include="EffectPointLightVariable.cs" />
+    <Compile Include="Effects\BgEffect.cs" />
     <Compile Include="EffectTextureVariable.cs" />
     <Compile Include="EngineTime.cs" />
     <Compile Include="IComponent.cs" />
@@ -82,7 +83,11 @@
     <Compile Include="InputHandler.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="Keyboard.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Materials\BgMaterial.cs" />
     <Compile Include="Materials\CharacterMaterial.cs" />
+    <Compile Include="Parts\BgPlate.cs" />
+    <Compile Include="Parts\BgPlateBlock.cs" />
     <Compile Include="TextureCache.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Utilities.Effect.cs" />
@@ -101,16 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Effects\HLSL\Common.fxh">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Lighting.fxh">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Macros.fxh">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Structures.fxh">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <Compile Include="Utilities.Vertex.cs" />
@@ -122,8 +127,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Effects\HLSL\Bg.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Effects\HLSL\Character.fx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="sharpdx_direct3d11_effects_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

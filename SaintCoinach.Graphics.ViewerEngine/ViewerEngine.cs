@@ -209,12 +209,12 @@ namespace SaintCoinach.Graphics {
             var world = Matrix.Identity;
             var view = _Camera.View;
             var proj = _Camera.Projection;
-            _EffectCache.ApplyAll(ref world, ref view, ref proj);
+            //_EffectCache.ApplyAll(ref world, ref view, ref proj);
 
 
             Device.ImmediateContext.ClearRenderTargetView(_RenderTargetView, Color.CornflowerBlue);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
-            Draw(Device, time);
+            Draw(Device, time, ref world, ref view, ref proj);
 
             _SwapChain.Present(0, PresentFlags.None);
         }

@@ -63,7 +63,7 @@ namespace SaintCoinach.Graphics {
         #region Things
         public void Reset() {
             _CameraPosition = Vector3.Zero + 1.8f * Vector3.BackwardLH + 1.2f * Vector3.Up;
-            _Yaw = MathUtil.Pi;
+            _Yaw = 0;
             _Pitch = 0;
 
             UpdateViewMatrix();

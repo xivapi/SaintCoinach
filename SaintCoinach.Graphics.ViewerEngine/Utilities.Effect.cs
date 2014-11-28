@@ -12,6 +12,8 @@ namespace SaintCoinach.Graphics {
                 switch (material.Shader) {
                     case "character.shpk":
                         return GetCharacterTechniqueName(material);
+                    case "bg.shpk":
+                        return GetBgTechniqueName(material);
                 }
                 throw new NotSupportedException();
             }
@@ -32,23 +34,41 @@ namespace SaintCoinach.Graphics {
                 // { 0xA9442826, "g_CommonParameter" },
                 // { 0xA296769F, "g_AmbientParam" },
                 // { 0xC8755A51, "g_BGAmbientParameter" },
-                // { 0x1BBC2F12, "g_SamplerSpecularMap0" },
-                // { 0x1E6FEF9C, "g_SamplerColorMap0" },
+                { 0x1BBC2F12, "Specular0" }, // { 0x1BBC2F12, "g_SamplerSpecularMap0" },
+                { 0x1E6FEF9C, "Diffuse0" }, // { 0x1E6FEF9C, "g_SamplerColorMap0" },
                 // { 0xBA8D7950, "g_SamplerFresnel" },
                 // { 0xEBBB29BD, "g_SamplerGBuffer" },
                 // { 0x23D0F850, "g_SamplerLightDiffuse" },
                 // { 0x6C19ACA4, "g_SamplerLightSpecular" },
                 // { 0x32667BD7, "g_SamplerOcclusion" },
                 // { 0x9F467267, "g_SamplerDither" },
-                // { 0xAAB4D9E9, "g_SamplerNormalMap0" },
-                // { 0x6CBB1F84, "g_SamplerSpecularMap1" },
-                // { 0x6968DF0A, "g_SamplerColorMap1" },
-                // { 0xDDB3E97F, "g_SamplerNormalMap1" },
+                { 0xAAB4D9E9, "Normal0" }, // { 0xAAB4D9E9, "g_SamplerNormalMap0" },
+                { 0x6CBB1F84, "Specular1" }, // { 0x6CBB1F84, "g_SamplerSpecularMap1" },
+                { 0x6968DF0A, "Diffuse1" }, // { 0x6968DF0A, "g_SamplerColorMap1" },
+                { 0xDDB3E97F, "Normal1" }, // { 0xDDB3E97F, "g_SamplerNormalMap1" },
             });
             #endregion
 
             #region Technique map
+            static readonly Dictionary<uint[], string> BgTechniqueMap = new Dictionary<uint[], string> {
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, }, "BgSingleTexture" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12 }, "BgSingleTextureSpecular" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x6968DF0A, 0xDDB3E97F }, "BgDualTexture" },
+                { new uint[] { 0x1E6FEF9C, 0xAAB4D9E9, 0x1BBC2F12, 0x6968DF0A, 0xDDB3E97F, 0x6CBB1F84 }, "BgDualTextureSpecular" },
+            };
             #endregion
+
+            static string GetBgTechniqueName(Assets.MaterialVersion material) {
+                var idFromMat = material.ParameterMappings.Select(_ => _.Id).ToArray();
+                var names = idFromMat.ToDictionary(_ => _, _ => BgParameterMap.Where(__ => __.Key == _).Select(__ => __.Value).FirstOrDefault());
+
+                var techRes = BgTechniqueMap.Where(_ => EqualContent(_.Key, idFromMat));
+                if (!techRes.Any()) {
+                    throw new NotSupportedException();
+                }
+
+                return techRes.First().Value;
+            }
 
             #endregion
 
@@ -95,7 +115,6 @@ namespace SaintCoinach.Graphics {
                 { new uint[] { 0x115306BE, 0x0C5EC1F1, 0xCC28F4AD }, "CharacterDiffuse" },
                 { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025 }, "CharacterDiffuseSpecular" },
                 { new uint[] { 0x115306BE, 0x0C5EC1F1, 0x2B99E025, 0x2005679F }, "CharacterDiffuseSpecularTable" },
-                //{ new uint[] { 0x115306BE, 0x0C5EC1F1, 0x8A4E82B6, 0x2005679F }, "CharacterDiffuseMaskTable" },
                 { new uint[] { 0x0C5EC1F1, 0x8A4E82B6, 0x2005679F }, "CharacterMaskTable" },
             };
             #endregion

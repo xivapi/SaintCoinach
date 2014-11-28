@@ -30,17 +30,20 @@ namespace SaintCoinach.Graphics {
         #region Fields
         private Device _Device;
         private Effects.CharacterEffect _CharacterEffect;
+        private Effects.BgEffect _BgEffect;
         #endregion
 
         #region Properties
         public Device Device { get { return _Device; } }
 
+        public Effects.BgEffect BgEffect { get { return _BgEffect; } }
         public Effects.CharacterEffect CharacterEffect { get { return _CharacterEffect; } }
         #endregion
 
         #region Apply
         public void ApplyAll(ref Matrix world, ref Matrix view, ref Matrix proj) {
             CharacterEffect.Apply(ref world, ref view, ref proj);
+            _BgEffect.Apply(ref world, ref view, ref proj);
         }
         #endregion
 
@@ -52,6 +55,7 @@ namespace SaintCoinach.Graphics {
 
         public void Load(Device device) {
             _CharacterEffect = new Effects.CharacterEffect(device);
+            _BgEffect = new Effects.BgEffect(device);
 
             _Device = device;
             Register(device, this);
@@ -64,6 +68,10 @@ namespace SaintCoinach.Graphics {
             if (_CharacterEffect != null)
                 _CharacterEffect.Dispose();
             _CharacterEffect = null;
+
+            if (_BgEffect != null)
+                _BgEffect.Dispose();
+            _BgEffect = null;
         }
 
         #endregion

@@ -39,6 +39,10 @@ namespace SaintCoinach.IO {
             var pack = GetPack(path);
             return pack.GetFile(path);
         }
+        public Directory GetDirectory(string path) {
+            var pack = GetPack(path);
+            return pack.GetDirectory(path);
+        }
         public Pack GetPack(string path) {
             var key = Pack.GetSqPackKey(path);
             Pack pack;
@@ -54,6 +58,14 @@ namespace SaintCoinach.IO {
                 return pack.TryGetFile(path, out file);
 
             file = null;
+            return false;
+        }
+        public bool TryGetDirectory(string path, out Directory dir) {
+            Pack pack;
+            if (TryGetPack(path, out pack))
+                return pack.TryGetDirectory(path, out dir);
+
+            dir = null;
             return false;
         }
         public bool TryGetPack(string path, out Pack pack) {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SharpDX;
+
 namespace SaintCoinach.Graphics {
     public class Model : IDrawable, IContentComponent {
         #region Fields
@@ -25,9 +27,9 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region IDrawable Members
-        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time) {
+        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
             foreach (var mesh in _Meshes)
-                mesh.Draw(device, time);
+                mesh.Draw(device, time, ref world, ref view, ref projection);
         }
         #endregion
 
