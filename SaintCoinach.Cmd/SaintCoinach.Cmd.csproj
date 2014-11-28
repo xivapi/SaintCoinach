@@ -62,6 +62,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RawCommand.cs" />
+    <Compile Include="TempCommand.cs" />
     <Compile Include="UiCommand.cs" />
   </ItemGroup>
   <ItemGroup>

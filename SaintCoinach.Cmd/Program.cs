@@ -49,6 +49,8 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new BgmCommand(packColl, dataColl));
 
             rootCmd.RegisterCommand(new GraphicsCommand(packColl, dataColl));
+
+            rootCmd.RegisterCommand(new TempCommand(packColl, dataColl));
         }
 
         static string SearchForDataPath() {

@@ -31,6 +31,8 @@ namespace SaintCoinach.Graphics {
         private Device _Device;
         private Effects.CharacterEffect _CharacterEffect;
         private Effects.BgEffect _BgEffect;
+        private Effects.SkinEffect _SkinEffect;
+        private Effects.HairEffect _HairEffect;
         #endregion
 
         #region Properties
@@ -38,12 +40,16 @@ namespace SaintCoinach.Graphics {
 
         public Effects.BgEffect BgEffect { get { return _BgEffect; } }
         public Effects.CharacterEffect CharacterEffect { get { return _CharacterEffect; } }
+        public Effects.SkinEffect SkinEffect { get { return _SkinEffect; } }
+        public Effects.HairEffect HairEffect { get { return _HairEffect; } }
         #endregion
 
         #region Apply
         public void ApplyAll(ref Matrix world, ref Matrix view, ref Matrix proj) {
             CharacterEffect.Apply(ref world, ref view, ref proj);
-            _BgEffect.Apply(ref world, ref view, ref proj);
+            BgEffect.Apply(ref world, ref view, ref proj);
+            SkinEffect.Apply(ref world, ref view, ref proj);
+            HairEffect.Apply(ref world, ref view, ref proj);
         }
         #endregion
 
@@ -56,6 +62,8 @@ namespace SaintCoinach.Graphics {
         public void Load(Device device) {
             _CharacterEffect = new Effects.CharacterEffect(device);
             _BgEffect = new Effects.BgEffect(device);
+            _SkinEffect = new Effects.SkinEffect(device);
+            _HairEffect = new Effects.HairEffect(device);
 
             _Device = device;
             Register(device, this);
@@ -72,6 +80,14 @@ namespace SaintCoinach.Graphics {
             if (_BgEffect != null)
                 _BgEffect.Dispose();
             _BgEffect = null;
+
+            if (_SkinEffect != null)
+                _SkinEffect.Dispose();
+            _SkinEffect = null;
+
+            if (_HairEffect != null)
+                _HairEffect.Dispose();
+            _HairEffect = null;
         }
 
         #endregion

@@ -72,6 +72,8 @@
     <Compile Include="EffectCache.cs" />
     <Compile Include="EffectPointLightVariable.cs" />
     <Compile Include="Effects\BgEffect.cs" />
+    <Compile Include="Effects\HairEffect.cs" />
+    <Compile Include="Effects\SkinEffect.cs" />
     <Compile Include="EffectTextureVariable.cs" />
     <Compile Include="EngineTime.cs" />
     <Compile Include="IComponent.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Map.cs" />
     <Compile Include="Materials\BgMaterial.cs" />
     <Compile Include="Materials\CharacterMaterial.cs" />
+    <Compile Include="Materials\HairMaterial.cs" />
+    <Compile Include="Materials\SkinMaterial.cs" />
     <Compile Include="Parts\BgPlate.cs" />
     <Compile Include="Parts\BgPlateBlock.cs" />
     <Compile Include="TextureCache.cs" />
@@ -106,16 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Effects\HLSL\Common.fxh">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Lighting.fxh">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Macros.fxh">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Effects\HLSL\Structures.fxh">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <Compile Include="Utilities.Vertex.cs" />
@@ -127,11 +131,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Effects\HLSL\Hair.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Effects\HLSL\Bg.fx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Character.fx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\Skin.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sharpdx_direct3d11_effects_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -23,23 +23,8 @@ namespace SaintCoinach.Graphics {
             get { return _SamplerVar.GetSampler(); }
             set { _SamplerVar.SetSampler(0, value); }
         }
-        public Texture2D Texture {
-            set {
-                if (value == _CurrentTexture)
-                    return;
-                _CurrentTexture = value;
-
-                if (value == null)
-                    _TextureVar.SetResource(null);
-                else {
-                    var current = _TextureVar.GetResource();
-                    var texView = new ShaderResourceView(_Effect.Device, value);
-                    _TextureVar.SetResource(texView);
-
-                    if (current != null)
-                        current.Dispose();
-                }
-            }
+        public ShaderResourceView Texture {
+            set { _TextureVar.SetResource(value); }
         }
         #endregion
 

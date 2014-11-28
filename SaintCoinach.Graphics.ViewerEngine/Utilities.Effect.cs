@@ -14,6 +14,10 @@ namespace SaintCoinach.Graphics {
                         return GetCharacterTechniqueName(material);
                     case "bg.shpk":
                         return GetBgTechniqueName(material);
+                    case "skin.shpk":
+                        return GetSkinTechniqueName(material);
+                    case "hair.shpk":
+                        return GetHairTechniqueName(material);
                 }
                 throw new NotSupportedException();
             }
@@ -123,6 +127,59 @@ namespace SaintCoinach.Graphics {
                 var idFromMat = material.ParameterMappings.Select(_ => _.Id).ToArray();
 
                 var techRes = CharacterTechniqueMap.Where(_ => EqualContent(_.Key, idFromMat));
+                if (!techRes.Any())
+                    throw new NotSupportedException();
+
+                return techRes.First().Value;
+            }
+            #endregion
+
+            #region Skin
+
+            #region Parameter map
+            public static readonly IReadOnlyDictionary<uint, string> SkinParameterMap = new ReadOnlyDictionary<uint, string>(new Dictionary<uint, string> {
+                { 0x0C5EC1F1, "Normal" }, // { 0x0C5EC1F1, "g_SamplerNormal" },
+                { 0x8A4E82B6, "Mask" }, // { 0x8A4E82B6, "g_SamplerMask" },
+                { 0x115306BE, "Diffuse" }, // { 0x115306BE, "g_SamplerDiffuse" },
+            });
+            #endregion
+
+            #region Technique map
+            static readonly Dictionary<uint[], string> SkinTechniqueMap = new Dictionary<uint[], string> {
+                { new uint[] { 0x0C5EC1F1, 0x115306BE, 0x8A4E82B6 }, "Skin" },
+            };
+            #endregion
+
+            static string GetSkinTechniqueName(Assets.MaterialVersion material) {
+                var idFromMat = material.ParameterMappings.Select(_ => _.Id).ToArray();
+
+                var techRes = SkinTechniqueMap.Where(_ => EqualContent(_.Key, idFromMat));
+                if (!techRes.Any())
+                    throw new NotSupportedException();
+
+                return techRes.First().Value;
+            }
+            #endregion
+
+            #region Hair
+
+            #region Parameter map
+            public static readonly IReadOnlyDictionary<uint, string> HairParameterMap = new ReadOnlyDictionary<uint, string>(new Dictionary<uint, string> {
+                { 0x0C5EC1F1, "Normal" }, // { 0x0C5EC1F1, "g_SamplerNormal" },
+                { 0x8A4E82B6, "Mask" }, // { 0x8A4E82B6, "g_SamplerMask" },
+            });
+            #endregion
+
+            #region Technique map
+            static readonly Dictionary<uint[], string> HairTechniqueMap = new Dictionary<uint[], string> {
+                { new uint[] { 0x0C5EC1F1, 0x8A4E82B6 }, "Hair" },
+            };
+            #endregion
+
+            static string GetHairTechniqueName(Assets.MaterialVersion material) {
+                var idFromMat = material.ParameterMappings.Select(_ => _.Id).ToArray();
+
+                var techRes = HairTechniqueMap.Where(_ => EqualContent(_.Key, idFromMat));
                 if (!techRes.Any())
                     throw new NotSupportedException();
 

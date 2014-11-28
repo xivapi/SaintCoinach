@@ -9,7 +9,7 @@ using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 
 namespace SaintCoinach.Graphics.Effects {
-    public class CharacterEffect : XivEffect {
+    public class HairEffect : XivEffect {
         #region Static
         private static CompilationResult _EffectByteCode;
 
@@ -17,7 +17,7 @@ namespace SaintCoinach.Graphics.Effects {
             get {
                 if (_EffectByteCode == null)
                     _EffectByteCode = ShaderBytecode.CompileFromFile(
-                        System.IO.Path.Combine("Effects", "HLSL", "Character.fx"),
+                        System.IO.Path.Combine("Effects", "HLSL", "Hair.fx"),
                         "fx_5_0",
                         ShaderFlags.None,
                         EffectFlags.None,
@@ -30,36 +30,42 @@ namespace SaintCoinach.Graphics.Effects {
 
         #region Fields
         private EffectTextureVariable _DiffuseVar;
-        private EffectTextureVariable _SpecularVar;
-        private EffectTextureVariable _NormalVar;
         private EffectTextureVariable _MaskVar;
-        private EffectTextureVariable _TableVar;
+        private EffectTextureVariable _NormalVar;
+
+        private EffectVectorVariable _HairColorVar;
+        private EffectVectorVariable _MeshColorVar;
         #endregion
 
         #region Properties
         public ShaderResourceView Diffuse {
             set { _DiffuseVar.Texture = value; }
         }
-        public ShaderResourceView Specular {
-            set { _SpecularVar.Texture = value; }
+        public ShaderResourceView Mask {
+            set { _MaskVar.Texture = value; }
         }
         public ShaderResourceView Normal {
             set { _NormalVar.Texture = value; }
         }
-        public ShaderResourceView Mask {
-            set { _MaskVar.Texture = value; }
+
+        public Vector3 HairColor {
+            get { return _HairColorVar.GetVector<Vector3>(); }
+            set { _HairColorVar.Set(value); }
         }
-        public ShaderResourceView Table {
-            set { _TableVar.Texture = value; }
+        public Vector3 MeshColor {
+            get { return _MeshColorVar.GetVector<Vector3>(); }
+            set { _MeshColorVar.Set(value); }
         }
+
         public override Type RequiredVertexType {
             get { return typeof(Primitives.VertexCommon); }
         }
         #endregion
 
         #region Constructor
-        public CharacterEffect(Device device) : this(device, EffectFlags.None) { }
-        public CharacterEffect(Device device, EffectFlags flags) : base(device, EffectByteCode, flags) {
+        public HairEffect(Device device) : this(device, EffectFlags.None) { }
+        public HairEffect(Device device, EffectFlags flags)
+            : base(device, EffectByteCode, flags) {
             Init();
         }
         #endregion
@@ -67,10 +73,14 @@ namespace SaintCoinach.Graphics.Effects {
         #region Init
         private void Init() {
             _DiffuseVar = new EffectTextureVariable(this, "g_Diffuse");
-            _SpecularVar = new EffectTextureVariable(this, "g_Specular");
-            _NormalVar = new EffectTextureVariable(this, "g_Normal");
             _MaskVar = new EffectTextureVariable(this, "g_Mask");
-            _TableVar = new EffectTextureVariable(this, "g_Table");
+            _NormalVar = new EffectTextureVariable(this, "g_Normal");
+
+            _HairColorVar = GetVariableByName("m_HairColor").AsVector();
+            _MeshColorVar = GetVariableByName("m_MeshColor").AsVector();
+
+            HairColor = new Vector3(1f, 0f, 0f);
+            MeshColor = new Vector3(0f, 1f, 1f);
         }
         #endregion
     }

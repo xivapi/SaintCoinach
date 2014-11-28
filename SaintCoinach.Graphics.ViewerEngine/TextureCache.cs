@@ -30,6 +30,7 @@ namespace SaintCoinach.Graphics {
         #region Fields
         private Device _Device;
         private Dictionary<string, Texture2D> _Textures = new Dictionary<string, Texture2D>();
+        private Dictionary<string, ShaderResourceView> _TextureResourceViews = new Dictionary<string, ShaderResourceView>();
         #endregion
 
         #region Properties
@@ -37,7 +38,16 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Get
-        public unsafe Texture2D Get(Imaging.ImageFile file) {
+        public unsafe ShaderResourceView GetResource(Imaging.ImageFile file) {
+            var key = file.Path;
+            ShaderResourceView view;
+            if (_TextureResourceViews.TryGetValue(key, out view))
+                return view;
+
+            view = new ShaderResourceView(Device, GetTexture(file));
+            return view;
+        }
+        public unsafe Texture2D GetTexture(Imaging.ImageFile file) {
             var key = file.Path;
             Texture2D tex;
             if (_Textures.TryGetValue(key, out tex))

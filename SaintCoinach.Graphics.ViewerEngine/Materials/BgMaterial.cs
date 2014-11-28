@@ -10,21 +10,21 @@ using SharpDX.Direct3D11;
 namespace SaintCoinach.Graphics.Materials {
     public class BgMaterial : XivMaterial {
         #region Fields
-        private Texture2D _Diffuse0;
-        private Texture2D _Specular0;
-        private Texture2D _Normal0;
-        private Texture2D _Diffuse1;
-        private Texture2D _Specular1;
-        private Texture2D _Normal1;
+        private ShaderResourceView _Diffuse0;
+        private ShaderResourceView _Specular0;
+        private ShaderResourceView _Normal0;
+        private ShaderResourceView _Diffuse1;
+        private ShaderResourceView _Specular1;
+        private ShaderResourceView _Normal1;
         #endregion
 
         #region Properties
-        public Texture2D Diffuse0 { get { return _Diffuse0; } }
-        public Texture2D Specular0 { get { return _Specular0; } }
-        public Texture2D Normal0 { get { return _Normal0; } }
-        public Texture2D Diffuse1 { get { return _Diffuse1; } }
-        public Texture2D Specular1 { get { return _Specular1; } }
-        public Texture2D Normal1 { get { return _Normal1; } }
+        public ShaderResourceView Diffuse0 { get { return _Diffuse0; } }
+        public ShaderResourceView Specular0 { get { return _Specular0; } }
+        public ShaderResourceView Normal0 { get { return _Normal0; } }
+        public ShaderResourceView Diffuse1 { get { return _Diffuse1; } }
+        public ShaderResourceView Specular1 { get { return _Specular1; } }
+        public ShaderResourceView Normal1 { get { return _Normal1; } }
 
         public new Effects.BgEffect Effect { get { return (Effects.BgEffect)base.Effect; } }
         #endregion
@@ -45,31 +45,31 @@ namespace SaintCoinach.Graphics.Materials {
 
                 switch (target) {
                     case "Diffuse0":
-                        _Diffuse0 = texCache.Get(tex);
+                        _Diffuse0 = texCache.GetResource(tex);
                         break;
                     case "Specular0":
-                        _Specular0 = texCache.Get(tex);
+                        _Specular0 = texCache.GetResource(tex);
                         break;
                     case "Normal0":
-                        _Normal0 = texCache.Get(tex);
+                        _Normal0 = texCache.GetResource(tex);
                         break;
                     case "Diffuse1":
                         if (tex.Name.Contains("/dummy"))
                             _Diffuse1 = _Diffuse0;
                         else
-                            _Diffuse1 = texCache.Get(tex);
+                            _Diffuse1 = texCache.GetResource(tex);
                         break;
                     case "Specular1":
                         if (tex.Name.Contains("/dummy"))
                             _Specular1 = _Specular0;
                         else
-                            _Specular1 = texCache.Get(tex);
+                            _Specular1 = texCache.GetResource(tex);
                         break;
                     case "Normal1":
                         if (tex.Name.Contains("/dummy"))
                             _Normal1 = _Normal0;
                         else
-                            _Normal1 = texCache.Get(tex);
+                            _Normal1 = texCache.GetResource(tex);
                         break;
                     default:
                         System.Diagnostics.Trace.WriteLine(string.Format("Unknown parameter {0} for {1}.", texParam.Id, tex.Path));

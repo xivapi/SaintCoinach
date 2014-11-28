@@ -8,28 +8,24 @@ using SharpDX;
 using SharpDX.Direct3D11;
 
 namespace SaintCoinach.Graphics.Materials {
-    public class CharacterMaterial : XivMaterial {
+    public class SkinMaterial : XivMaterial {
         #region Fields
         private ShaderResourceView _Diffuse;
-        private ShaderResourceView _Specular;
-        private ShaderResourceView _Normal;
         private ShaderResourceView _Mask;
-        private ShaderResourceView _Table;
+        private ShaderResourceView _Normal;
         #endregion
 
         #region Properties
         public ShaderResourceView Diffuse { get { return _Diffuse; } }
-        public ShaderResourceView Specular { get { return _Specular; } }
-        public ShaderResourceView Normal { get { return _Normal; } }
         public ShaderResourceView Mask { get { return _Mask; } }
-        public ShaderResourceView Table { get { return _Table; } }
+        public ShaderResourceView Normal { get { return _Normal; } }
 
-        public new Effects.CharacterEffect Effect { get { return (Effects.CharacterEffect)base.Effect; } }
+        public new Effects.SkinEffect Effect { get { return (Effects.SkinEffect)base.Effect; } }
         #endregion
 
         #region Constructor
-        public CharacterMaterial(Device device, Assets.MaterialVersion material)
-            : base(device, material, EffectCache.Get(device).CharacterEffect) {
+        public SkinMaterial(Device device, Assets.MaterialVersion material)
+            : base(device, material, EffectCache.Get(device).SkinEffect) {
 
 
             var texCache = TextureCache.Get(device);
@@ -46,17 +42,11 @@ namespace SaintCoinach.Graphics.Materials {
                     case "Diffuse":
                         _Diffuse = texCache.GetResource(tex);
                         break;
-                    case "Specular":
-                        _Specular = texCache.GetResource(tex);
-                        break;
                     case "Normal":
                         _Normal = texCache.GetResource(tex);
                         break;
                     case "Mask":
                         _Mask = texCache.GetResource(tex);
-                        break;
-                    case "Table":
-                        _Table = texCache.GetResource(tex);
                         break;
                     default:
                         System.Diagnostics.Trace.WriteLine(string.Format("Unknown parameter {0} for {1}.", texParam.Id, tex.Path));
@@ -71,10 +61,8 @@ namespace SaintCoinach.Graphics.Materials {
         #region Apply
         public override void Apply() {
             Effect.Diffuse = this.Diffuse;
-            Effect.Specular = this.Specular;
             Effect.Normal = this.Normal;
             Effect.Mask = this.Mask;
-            Effect.Table = this.Table;
         }
         #endregion
     }

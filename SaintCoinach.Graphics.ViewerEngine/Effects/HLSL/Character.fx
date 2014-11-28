@@ -3,38 +3,38 @@
 
 DECLARE_TEXTURE(g_Diffuse, 0)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_LINEAR;
 };
 DECLARE_TEXTURE(g_Normal, 1)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_LINEAR;
 };
 sampler g_NormalPointSampler : register(s2)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_POINT;
 };
 DECLARE_TEXTURE(g_Specular, 3)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_LINEAR;
 };
 DECLARE_TEXTURE(g_Mask, 4)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_LINEAR;
 };
 DECLARE_TEXTURE(g_Table, 5)
 {
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Wrap;
+    AddressV = Wrap;
     Filter = MIN_MAG_MIP_LINEAR;
 };
 
@@ -60,7 +60,7 @@ cbuffer g_LightingParameters : register(b1)
     float3 m_EmissiveColor    : packoffset(c1);
     float3 m_AmbientColor     : packoffset(c2);
     float3 m_SpecularColor    : packoffset(c3);
-    float  m_SpecularPower : packoffset(c3.w);
+    float  m_SpecularPower    : packoffset(c3.w);
     DirectionalLight m_Light0 : packoffset(c4);
     DirectionalLight m_Light1 : packoffset(c7);
     DirectionalLight m_Light2 : packoffset(c10);

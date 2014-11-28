@@ -51,6 +51,10 @@ namespace SaintCoinach.Graphics {
                     return new Materials.CharacterMaterial(device, material);
                 case "bg.shpk":
                     return new Materials.BgMaterial(device, material);
+                case "skin.shpk":
+                    return new Materials.SkinMaterial(device, material);
+                case "hair.shpk":
+                    return new Materials.HairMaterial(device, material);
             }
             throw new NotSupportedException();
         }

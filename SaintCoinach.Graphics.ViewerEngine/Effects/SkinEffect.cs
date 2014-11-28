@@ -9,7 +9,7 @@ using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 
 namespace SaintCoinach.Graphics.Effects {
-    public class CharacterEffect : XivEffect {
+    public class SkinEffect : XivEffect {
         #region Static
         private static CompilationResult _EffectByteCode;
 
@@ -17,7 +17,7 @@ namespace SaintCoinach.Graphics.Effects {
             get {
                 if (_EffectByteCode == null)
                     _EffectByteCode = ShaderBytecode.CompileFromFile(
-                        System.IO.Path.Combine("Effects", "HLSL", "Character.fx"),
+                        System.IO.Path.Combine("Effects", "HLSL", "Skin.fx"),
                         "fx_5_0",
                         ShaderFlags.None,
                         EffectFlags.None,
@@ -30,36 +30,42 @@ namespace SaintCoinach.Graphics.Effects {
 
         #region Fields
         private EffectTextureVariable _DiffuseVar;
-        private EffectTextureVariable _SpecularVar;
-        private EffectTextureVariable _NormalVar;
         private EffectTextureVariable _MaskVar;
-        private EffectTextureVariable _TableVar;
+        private EffectTextureVariable _NormalVar;
+
+        private EffectVectorVariable _SkinColorVar;
+        private EffectVectorVariable _LipColorVar;
         #endregion
 
         #region Properties
         public ShaderResourceView Diffuse {
             set { _DiffuseVar.Texture = value; }
         }
-        public ShaderResourceView Specular {
-            set { _SpecularVar.Texture = value; }
+        public ShaderResourceView Mask {
+            set { _MaskVar.Texture = value; }
         }
         public ShaderResourceView Normal {
             set { _NormalVar.Texture = value; }
         }
-        public ShaderResourceView Mask {
-            set { _MaskVar.Texture = value; }
+
+        public Vector4 SkinColor {
+            get { return _SkinColorVar.GetVector<Vector4>(); }
+            set { _SkinColorVar.Set(value); }
         }
-        public ShaderResourceView Table {
-            set { _TableVar.Texture = value; }
+        public Vector4 LipColor {
+            get { return _LipColorVar.GetVector<Vector4>(); }
+            set { _LipColorVar.Set(value); }
         }
+
         public override Type RequiredVertexType {
             get { return typeof(Primitives.VertexCommon); }
         }
         #endregion
 
         #region Constructor
-        public CharacterEffect(Device device) : this(device, EffectFlags.None) { }
-        public CharacterEffect(Device device, EffectFlags flags) : base(device, EffectByteCode, flags) {
+        public SkinEffect(Device device) : this(device, EffectFlags.None) { }
+        public SkinEffect(Device device, EffectFlags flags)
+            : base(device, EffectByteCode, flags) {
             Init();
         }
         #endregion
@@ -67,10 +73,14 @@ namespace SaintCoinach.Graphics.Effects {
         #region Init
         private void Init() {
             _DiffuseVar = new EffectTextureVariable(this, "g_Diffuse");
-            _SpecularVar = new EffectTextureVariable(this, "g_Specular");
-            _NormalVar = new EffectTextureVariable(this, "g_Normal");
             _MaskVar = new EffectTextureVariable(this, "g_Mask");
-            _TableVar = new EffectTextureVariable(this, "g_Table");
+            _NormalVar = new EffectTextureVariable(this, "g_Normal");
+
+            _SkinColorVar = GetVariableByName("m_SkinColor").AsVector();
+            _LipColorVar = GetVariableByName("m_LipColor").AsVector();
+
+            SkinColor = new Vector4(1f, 0f, 0f, 1f);
+            LipColor = new Vector4(0f, 0f, 1f, 0.5f);
         }
         #endregion
     }

@@ -39,22 +39,22 @@ namespace SaintCoinach.Graphics.Effects {
         #endregion
 
         #region Properties
-        public Texture2D Diffuse0 {
+        public ShaderResourceView Diffuse0 {
             set { _Diffuse0Var.Texture = value; }
         }
-        public Texture2D Specular0 {
+        public ShaderResourceView Specular0 {
             set { _Specular0Var.Texture = value; }
         }
-        public Texture2D Normal0 {
+        public ShaderResourceView Normal0 {
             set { _Normal0Var.Texture = value; }
         }
-        public Texture2D Diffuse1 {
+        public ShaderResourceView Diffuse1 {
             set { _Diffuse1Var.Texture = value; }
         }
-        public Texture2D Specular1 {
+        public ShaderResourceView Specular1 {
             set { _Specular1Var.Texture = value; }
         }
-        public Texture2D Normal1 {
+        public ShaderResourceView Normal1 {
             set { _Normal1Var.Texture = value; }
         }
         public override Type RequiredVertexType {
