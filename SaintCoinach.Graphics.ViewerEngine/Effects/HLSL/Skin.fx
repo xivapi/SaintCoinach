@@ -62,14 +62,14 @@ float4 ComputeCommon(VSOutputCommon pin, float4 diffuse, float4 specular)
 {
     float4 texNormal = g_Normal.Sample(g_NormalSampler, pin.TexCoord);
 
-        float3 normal = CalculateNormal(pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
+    float3 normal = CalculateNormal(pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, texNormal.xyz);
 
-        float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
-        LightResult light = ComputeLights(eyeVector, normal, 3);
+    float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
+    LightResult light = ComputeLights(eyeVector, normal, 3);
 
-    float4 color = float4(diffuse.rgb, texNormal.b);
+    float4 color = float4(diffuse.rgb, texNormal.a);
 
-        color.rgb *= light.Diffuse.rgb;
+    color.rgb *= light.Diffuse.rgb;
     color.rgb += light.Specular.rgb * specular.rgb * color.a;
 
     return color;
