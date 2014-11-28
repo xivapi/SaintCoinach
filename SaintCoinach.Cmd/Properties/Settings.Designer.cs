@@ -25,8 +25,7 @@ namespace SaintCoinach.Cmd.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn\\game\\sqpack\\" +
-            "ffxiv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DataPath {
             get {
                 return ((string)(this["DataPath"]));

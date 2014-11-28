@@ -35,6 +35,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -165,8 +168,10 @@
     <Compile Include="IO\PackCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Range.cs" />
+    <Compile Include="ARealmReversed.cs" />
     <Compile Include="Sound\ScdDecoder.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="UpdateReport.cs" />
     <Compile Include="Xiv\TerritoryType.cs" />
     <Compile Include="Xiv\Weather.cs" />
     <Compile Include="Xiv\WeatherRate.cs" />
@@ -187,7 +192,12 @@
       <Name>YamlDotNet</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="SaintCoinach.History.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

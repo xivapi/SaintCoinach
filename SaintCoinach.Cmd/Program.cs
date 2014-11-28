@@ -16,25 +16,32 @@ namespace SaintCoinach.Cmd {
                 dataPath = args[0];
                 args = new string[0];
             }
-            if (!System.IO.Directory.Exists(dataPath)) {
+            if (string.IsNullOrWhiteSpace(dataPath))
+                dataPath = SearchForDataPath();
+            if (string.IsNullOrWhiteSpace(dataPath) || !System.IO.Directory.Exists(dataPath)) {
                 Console.WriteLine("Need data!");
                 return;
             }
 
+            /*
             var packColl = new IO.PackCollection(dataPath);
             var dataColl = new Xiv.XivCollection(packColl);
             dataColl.ActiveLanguage = Ex.Language.English;
             dataColl.Definition = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.yaml");
-            dataColl.Definition.Compile();
+            dataColl.Definition.Compile();*/
+            var realm = new ARealmReversed(dataPath, Ex.Language.English);
 
             var cmd = new RootCommand();
 
-            Setup(cmd, packColl, dataColl);
+            Setup(cmd, realm);
 
             (new CommandEngine(cmd)).Run(args);
         }
 
-        static void Setup(RootCommand rootCmd, IO.PackCollection packColl, Xiv.XivCollection dataColl) {
+        static void Setup(RootCommand rootCmd, ARealmReversed realm) {
+            var packColl = realm.Packs;
+            var dataColl = realm.GameData;
+
             rootCmd.RegisterCommand(new RawCommand(packColl));
             rootCmd.RegisterCommand(new ImageCommand(packColl));
             rootCmd.RegisterCommand(new UiCommand(packColl));
@@ -42,6 +49,16 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new BgmCommand(packColl, dataColl));
 
             rootCmd.RegisterCommand(new GraphicsCommand(packColl, dataColl));
+        }
+
+        static string SearchForDataPath() {
+            string programDir;
+            if(Environment.Is64BitProcess)
+                programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+            else
+                programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+
+            return System.IO.Path.Combine(programDir, "SquareEnix", "FINAL FANTASY XIV - A Realm Reborn");
         }
     }
 }
