@@ -42,38 +42,8 @@ namespace SaintCoinach.Cmd {
                         var subMdl = mdl.GetSubModel(0);
 
                         var component = new Graphics.Model(subMdl);
-
-                        if (splitParam.Length > 1) {
-                            int v;
-                            if (int.TryParse(splitParam[1], out v)) {
-                                int? stain = null;
-                                if (splitParam.Length > 2) {
-                                    int temp;
-                                    if (int.TryParse(splitParam[2], out temp))
-                                        stain = temp;
-                                }
-
-                                var stainAll = true;
-                                var versionAll = true;
-
-                                foreach (var mesh in component.Meshes) {
-                                    if (mesh.AvailableMaterialVersions.Contains(v))
-                                        mesh.MaterialVersion = v;
-                                    else
-                                        versionAll = false;
-                                    if (stain.HasValue && mesh.CanStain && mesh.AvailableStains.Contains(stain.Value))
-                                        mesh.MaterialStain = stain.Value;
-                                    else if(stain.HasValue)
-                                        stainAll = false;
-                                }
-
-                                if (!versionAll)
-                                    OutputWarning("Version not present on all materials, using default on some.");
-                                if (!stainAll)
-                                    OutputWarning("Stain not present on all materials, using default on some.");
-                            } else
-                                OutputError("Version input could not be parsed.");
-                        }
+                        foreach (var msg in ApplyMaterial(component, splitParam, 1))
+                            OutputWarning(msg);
 
                         RunViewer(component, file.Name);
                     } else
@@ -102,11 +72,88 @@ namespace SaintCoinach.Cmd {
                 return true;
             }
         }
+        class MonsterCommand : ActionCommandBase {
+            private IO.PackCollection _Pack;
+            private Xiv.XivCollection _Data;
+            public MonsterCommand(IO.PackCollection pack, Xiv.XivCollection data)
+                : base("monster", "Display a monster.") {
+                _Pack = pack;
+                _Data = data;
+            }
+
+            public async override Task<bool> InvokeAsync(string paramList) {
+                var splitParam = paramList.Split(' ');
+
+                int m, b;
+                if (splitParam.Length >= 1 && int.TryParse(splitParam[0], out m)) {
+                    if (splitParam.Length < 2 || !int.TryParse(splitParam[1], out b))
+                        b = 1;
+
+                    var path = string.Format("chara/monster/m{0:D4}/obj/body/b{1:D4}/model/m{0:D4}b{1:D4}.mdl", m, b);
+
+                    IO.File file;
+                    if (_Pack.TryGetFile(path, out file)) {
+                        var mdlFile = file as Graphics.Assets.ModelFile;
+                        if (mdlFile != null) {
+                            var mdl = mdlFile.GetModel();
+                            var subMdl = mdl.GetSubModel(0);
+
+                            var component = new Graphics.Model(subMdl);
+                            foreach (var msg in ApplyMaterial(component, splitParam, 2))
+                                OutputWarning(msg);
+
+                            RunViewer(component, file.Name);
+                        } else
+                            OutputError("File is not a model file.");
+                    } else
+                        OutputError("File could not be found.");
+                } else
+                    OutputError("Unable to parse input.");
+
+                return true;
+            }
+        }
 
         public GraphicsCommand(IO.PackCollection pack, Xiv.XivCollection data)
             : base("3d") {
                 SubCommands.Add(new ModelCommand(pack, data));
                 SubCommands.Add(new MapCommand(pack, data));
+                SubCommands.Add(new MonsterCommand(pack, data));
+        }
+
+        static IEnumerable<string> ApplyMaterial(Graphics.Model model, string[] parts, int offset) {
+
+            if (parts.Length > offset) {
+                int v;
+                if (int.TryParse(parts[offset], out v)) {
+                    int? stain = null;
+                    if (parts.Length > offset + 1) {
+                        int temp;
+                        if (int.TryParse(parts[offset + 1], out temp))
+                            stain = temp;
+                    }
+
+                    var stainAll = true;
+                    var versionAll = true;
+
+                    foreach (var mesh in model.Meshes) {
+                        if (mesh.AvailableMaterialVersions.Contains(v))
+                            mesh.MaterialVersion = v;
+                        else
+                            versionAll = false;
+                        if (stain.HasValue && mesh.CanStain && mesh.AvailableStains.Contains(stain.Value))
+                            mesh.MaterialStain = stain.Value;
+                        else if (stain.HasValue)
+                            stainAll = false;
+                    }
+
+                    if (!versionAll)
+                        yield return ("Version not present on all materials, using default on some.");
+                    if (!stainAll)
+                        yield return ("Stain not present on all materials, using default on some.");
+                } else
+                    yield return ("Version input could not be parsed.");
+            }
         }
 
         static void RunViewer(Graphics.IComponent component, string title) {
@@ -126,40 +173,4 @@ namespace SaintCoinach.Cmd {
             e.Run();
         }
     }
-    /*
-    public class GraphicsCommand : ActionCommandBase {
-        private IO.PackCollection _Pack;
-        private Xiv.XivCollection _Data;
-
-        public GraphicsCommand(IO.PackCollection pack, Xiv.XivCollection data)
-            : base("3d", "Just for testing.") {
-            _Pack = pack;
-            _Data = data;
-        }
-
-        public async override Task<bool> InvokeAsync(string paramList) {
-            var thread = new Thread(RunEngineAsync);
-            thread.IsBackground = true;
-            thread.Name = "3D";
-
-            var eng = new Graphics.ViewerEngine("Rawr");
-
-            thread.Start(eng);
-
-            return true;
-        }
-
-        private void RunEngineAsync(object state) {
-            var e = (Graphics.ViewerEngine)state;
-            var mdlF = (Graphics.Assets.ModelFile)_Pack.GetFile(@"chara/monster/m8005/obj/body/b0001/model/m8005b0001.mdl");
-            var mdl = mdlF.GetModel();
-            var subMdl = mdl.GetSubModel(0);
-            var mesh = subMdl.Meshes.ElementAt(0);
-            var vMesh = new Graphics.Parts.Mesh(mesh);
-
-            e.Add(vMesh);
-            
-            e.Run();
-        }
-    }*/
 }

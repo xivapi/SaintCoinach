@@ -41,20 +41,21 @@ namespace SaintCoinach.Xiv {
             return _WeatherRates.Where(_ => target < _.Item1).Select(_ => _.Item2).FirstOrDefault();
         }
         private static int CalculateTarget(EorzeaDateTime time) {
-            const int Mod = 0x64;
-
+            var unix = time.GetUnixTime();
             // Get Eorzea hour for weather start
             // Do the magic 'cause for calculations 16:00 is 0, 00:00 is 8 and 08:00 is 16
-            uint increment = (uint)(time.Bell + 8 - time.Bell % 8) % 24;
+            var bell = unix / 175;
+            uint increment = (uint)(bell + 8 - bell % 8) % 24;
+
             // Take Eorzea days since unix epoch
-            uint totalDays = (uint)(time.GetUnixTime() / 4200);
+            uint totalDays = (uint)(unix / 4200);
 
             uint calcBase = (totalDays * 0x64) + increment;
 
             var step1 = (calcBase << 0xB) ^ calcBase;
             var step2 = (step1 >> 8) ^ step1;
 
-            return (int)(step2 % Mod);
+            return (int)(step2 % 0x64);
         }
         #endregion
     }

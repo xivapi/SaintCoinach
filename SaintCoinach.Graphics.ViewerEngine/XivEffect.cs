@@ -123,21 +123,21 @@ namespace SaintCoinach.Graphics {
 
             Light0 = new PointLight {
                 Direction = new Vector3(-0.5265408f, -0.5735765f, -0.6275069f),
-                Diffuse = new Vector3(1, 0.9607844f, 0.8078432f),
-                Specular = new Vector3(1, 0.9607844f, 0.8078432f),
+                Diffuse = new Vector3(1, 1, 1),
+                Specular = new Vector3(1, 1, 1),
             };
             Light1 = new PointLight {
                 Direction = new Vector3(0.7198464f, 0.3420201f, 0.6040227f),
-                Diffuse = new Vector3(0.9647059f, 0.7607844f, 0.4078432f),
+                Diffuse = new Vector3(0.7607844f, 0.7607844f, 0.7607844f),
                 Specular = Vector3.Zero,
             };
             Light2 = new PointLight {
                 Direction = new Vector3(0.4545195f, -0.7660444f, 0.4545195f),
-                Diffuse = new Vector3(0.3231373f, 0.3607844f, 0.3937255f),
-                Specular = new Vector3(0.3231373f, 0.3607844f, 0.3937255f),
+                Diffuse = new Vector3(0.3607844f, 0.3607844f, 0.3607844f),
+                Specular = new Vector3(0.3607844f, 0.3607844f, 0.3607844f),
             };
 
-            AmbientColor = new Vector3(0.05333332f, 0.09882354f, 0.1819608f);
+            AmbientColor = new Vector3(0.09882354f, 0.09882354f, 0.09882354f);
         }
         #endregion
 
