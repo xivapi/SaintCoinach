@@ -10,6 +10,20 @@ namespace SaintCoinach.Xiv {
     using Ex.Relational;
 
     public class XivCollection : RelationalExCollection {
+        #region Fields
+        private Collections.ENpcCollection _ENpcs;
+        private Collections.EquipSlotCollection _EquipSlots;
+        private Collections.ItemCollection _Items;
+        private Collections.ShopCollection _Shops;
+        #endregion
+
+        #region Constructor
+        public Collections.ENpcCollection ENpcs { get { return _ENpcs ?? (_ENpcs = new Collections.ENpcCollection(this)); } }
+        public Collections.EquipSlotCollection EquipSlots { get { return _EquipSlots ?? (_EquipSlots = new Collections.EquipSlotCollection(this)); } }
+        public Collections.ItemCollection Items { get { return _Items ?? (_Items = new Collections.ItemCollection(this)); } }
+        public Collections.ShopCollection Shops { get { return _Shops ?? (_Shops = new Collections.ShopCollection(this)); } }
+        #endregion
+
         #region Constructor
         public XivCollection(IO.PackCollection packCollection) : base(packCollection) { }
         #endregion
@@ -37,7 +51,8 @@ namespace SaintCoinach.Xiv {
         #region Factory
         protected delegate IXivSheet XivSheetCreator(XivCollection collection, IRelationalSheet sourceSheet);
         protected static Dictionary<string, XivSheetCreator> SpecialSheetTypes = new Dictionary<string, XivSheetCreator> {
-            { "Item", (c, s) => null },
+            { "Item", (c, s) => new Sheets.InventoryItemSheet(c, s) },
+            // TODO: ItemAction
         };
         protected override ISheet CreateSheet(Header header) {
             var baseSheet = (IRelationalSheet)base.CreateSheet(header);

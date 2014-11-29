@@ -23,12 +23,6 @@ namespace SaintCoinach.Cmd {
                 return;
             }
 
-            /*
-            var packColl = new IO.PackCollection(dataPath);
-            var dataColl = new Xiv.XivCollection(packColl);
-            dataColl.ActiveLanguage = Ex.Language.English;
-            dataColl.Definition = Ex.Relational.Definition.RelationDefinition.Deserialize("ex.yaml");
-            dataColl.Definition.Compile();*/
             var realm = new ARealmReversed(dataPath, Ex.Language.English);
 
             var cmd = new RootCommand();

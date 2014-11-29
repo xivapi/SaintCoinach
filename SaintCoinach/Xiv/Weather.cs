@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Xiv {
     public class Weather : XivRow {
         #region Properties
-        public string Name { get { return (string)this["Name"]; } }
-        public string Description { get { return (string)this["Description"]; } }
+        public string Name { get { return AsString("Name"); } }
+        public string Description { get { return AsString("Description"); } }
+        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
         #endregion
 
         #region ToString

@@ -54,7 +54,7 @@ namespace SaintCoinach.Cmd {
         public static void SaveAsCsv(Ex.Relational.IRelationalSheet sheet, string path) {
             using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
                 var indexLine = new StringBuilder("key");
-                var nameLine = new StringBuilder("");
+                var nameLine = new StringBuilder("#");
                 var typeLine = new StringBuilder("int32");
 
                 var colIndices = new List<int>();
@@ -70,7 +70,7 @@ namespace SaintCoinach.Cmd {
                 s.WriteLine(nameLine);
                 s.WriteLine(typeLine);
 
-                foreach (var row in sheet.GetAllRows()) {
+                foreach (var row in sheet.GetAllRows().OrderBy(_ => _.Key)) {
                     s.Write(row.Key);
                     foreach (var col in colIndices) {
                         var v = row[col];

@@ -24,13 +24,13 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Properties
-        public string Name { get { return (string)this["Name"]; } }
-        public string Bg { get { return (string)this["Bg"]; } }
-        //public Map Map { get { return (Map))this["Map"];} }
+        public string Name { get { return AsString("Name"); } }
+        public string Bg { get { return AsString("Bg"); } }
+        //public Map Map { get { return As<Map>(); } }
         public WeatherRate WeatherRate {
             get {
                 if (_WeatherRate == null) {
-                    var rateKey = Convert.ToInt32(this["WeatherRate"]);
+                    var rateKey = AsInt32("WeatherRate");
                     if (WeatherGroups.ContainsKey(rateKey))
                         rateKey = WeatherGroups[rateKey];
                     _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
