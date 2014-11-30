@@ -66,6 +66,7 @@ namespace SaintCoinach.Xiv.Collections {
         private IXivSheet<ENpcResident> _ResidentSheet;
 
         private Dictionary<int, ENpc> _Inner = new Dictionary<int, ENpc>();
+        private Dictionary<int, List<ENpc>> _ENpcDataMap = null;
         #endregion
 
         #region Properties
@@ -95,11 +96,24 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Find
         public IEnumerable<ENpc> FindWithData(int value) {
+            if (_ENpcDataMap == null)
+                BuildDataMap();
+            if (_ENpcDataMap.ContainsKey(value))
+                return _ENpcDataMap[value];
+            return new ENpc[0];
+        }
+        private void BuildDataMap() {
+            _ENpcDataMap = new Dictionary<int, List<ENpc>>();
+
             foreach (var npc in this) {
                 for (var i = 0; i < ENpcBase.DataCount; ++i) {
                     var val = npc.Base.GetData(i);
-                    if (val == value)
-                        yield return npc;
+                    if (val != 0) {
+                        List<ENpc> l;
+                        if (!_ENpcDataMap.TryGetValue(val, out l))
+                            _ENpcDataMap.Add(val, l = new List<ENpc>());
+                        l.Add(npc);
+                    }
                 }
             }
         }

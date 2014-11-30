@@ -10,6 +10,8 @@ namespace SaintCoinach.Xiv {
         public float X { get { return AsSingle("X"); } }
         public float Y { get { return AsSingle("Y"); } }
         public float Z { get { return AsSingle("Z"); } }
+        public double MapX { get { return ToMapCoordinate(X); } }
+        public double MapY { get { return ToMapCoordinate(Z); } }
         public float Yaw { get { return AsSingle("Yaw"); } }
         public float Radius { get { return AsSingle("Radius"); } }
         public int Type { get { return AsInt32("Type"); } }
@@ -21,5 +23,11 @@ namespace SaintCoinach.Xiv {
         public Level(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
         #endregion
 
+        private double ToMapCoordinate(double val) {
+            var c = Map.Size;
+
+            val *= c;
+            return (40 / c) * ((val + 1024.0) / 2048.0) + 1;
+        }
     }
 }

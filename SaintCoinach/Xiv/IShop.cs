@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
     public interface IShop {
+        int Key { get; }
         string Name { get; }
         IEnumerable<ENpc> ENpcs { get; }
         IEnumerable<IShopItem> ShopItems { get; }
