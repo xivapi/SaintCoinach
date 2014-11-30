@@ -26,10 +26,6 @@ namespace SaintCoinach.Cmd {
                     paramList = @"chara/monster/m0099/obj/body/b0001/model/m0099b0001.mdl";
                     //paramList = @"chara/equipment/e0124/model/c1101e0124_top.mdl 1 83";
                     //paramList = @"chara/equipment/e0075/model/c1101e0075_top.mdl 1 112";
-                    //paramList = @"bg/ffxiv/sea_s1/hou/s1h1/bgplate/0031.mdl";
-                    paramList = @"chara/equipment/e9041/model/c0101e9041_top.mdl";
-                    //paramList = @"chara/human/c0101/obj/face/f0006/model/c0101f0006_fac.mdl";
-                    paramList = @"chara/human/c1201/obj/hair/h0001/model/c1201h0001_hir.mdl";
                 }
 
                 var splitParam = paramList.Split(' ');
