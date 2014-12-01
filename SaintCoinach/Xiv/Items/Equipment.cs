@@ -41,6 +41,30 @@ namespace SaintCoinach.Xiv.Items {
         public Equipment(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
         #endregion
 
+        #region Helpers
+        public int GetMateriaMeldCap(BaseParam baseParam, bool onHq) {
+            var maxBase = ItemLevel.GetMaximum(baseParam);
+            var slotFactor = baseParam.GetValue(EquipSlotCategory);
+
+            var max = (int)Math.Round(maxBase * slotFactor / 100.0);
+            
+            int current = 0;
+            var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);
+            if (present != null) {
+                var baseValue = present.FirstOrDefault(_ => _.Type == ParameterType.Base);
+                if (baseValue != null)
+                    current += (int)((ParameterValueFixed)baseValue).Amount;
+                if (onHq) {
+                    var hqValue = present.FirstOrDefault(_ => _.Type == ParameterType.HQ);
+                    if (hqValue != null)
+                        current += (int)((ParameterValueFixed)hqValue).Amount;
+                }
+            }
+
+            return Math.Max(0, max - current);
+        }
+        #endregion
+
         #region Build
         protected virtual ParameterCollection BuildSecondaryParameters() {
             var parameters = new ParameterCollection();

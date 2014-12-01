@@ -231,6 +231,7 @@
     <Compile Include="Xiv\ItemAction.cs" />
     <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\ItemFood.cs" />
+    <Compile Include="Xiv\ItemLevel.cs" />
     <Compile Include="Xiv\ItemSearchCategory.cs" />
     <Compile Include="Xiv\ItemSeries.cs" />
     <Compile Include="Xiv\ItemSpecialBonus.cs" />

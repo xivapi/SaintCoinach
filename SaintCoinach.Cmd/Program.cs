@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace SaintCoinach.Cmd {
             }
 
             var realm = new ARealmReversed(dataPath, Ex.Language.English);
+
+            var useDir = Path.Combine(Directory.GetCurrentDirectory(), realm.GameVersion);
+            if (!Directory.Exists(useDir))
+                Directory.CreateDirectory(useDir);
+            Directory.SetCurrentDirectory(useDir);
 
             var cmd = new RootCommand();
 

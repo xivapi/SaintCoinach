@@ -16,7 +16,7 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Properties
-        public int ItemLeve { get { return AsInt32("Level{Item}"); } }
+        public ItemLevel ItemLevel { get { return As<ItemLevel>("Level{Item}"); } }
         public bool IsUnique { get { return AsBoolean("IsUnique"); } }
         public bool IsUntradable { get { return AsBoolean("IsUntradable"); } }
         public bool IsIndisposable { get { return AsBoolean("IsIndisposable"); } }
