@@ -20,6 +20,9 @@ namespace SaintCoinach.Xiv {
         public ENpcResident Resident { get { return _Resident ?? (_Resident = Collection.ResidentSheet[Key]); } }
         public ENpcBase Base { get { return _Base ?? (_Base = Collection.BaseSheet[Key]); } }
         public IEnumerable<Level> Levels { get { return _Levels ?? (_Levels = BuildLevels()); } }
+        public string Singular { get { return Resident.Singular; } }
+        public string Plural { get { return Resident.Plural; } }
+        public string Title { get { return Resident.Title; } }
         #endregion
 
         #region Constructor

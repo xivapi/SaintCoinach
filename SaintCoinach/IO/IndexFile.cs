@@ -12,14 +12,14 @@ namespace SaintCoinach.IO {
     public class IndexFile {
         #region Fields
         private uint _FileKey;
-        private int _DirectoryKey;
+        private uint _DirectoryKey;
         private int _Offset;
         private byte _DatFile;
         #endregion
 
         #region Properties
         public uint FileKey { get { return _FileKey; } }
-        public int DirectoryKey { get { return _DirectoryKey; } }
+        public uint DirectoryKey { get { return _DirectoryKey; } }
         public int Offset { get { return _Offset; } }
         /// <summary>
         /// In which .dat* file the data is located.
@@ -30,7 +30,7 @@ namespace SaintCoinach.IO {
         #region Constructor
         public IndexFile(BinaryReader reader) {
             _FileKey = reader.ReadUInt32();
-            _DirectoryKey = reader.ReadInt32();
+            _DirectoryKey = reader.ReadUInt32();
 
             var baseOffset = reader.ReadInt32();
             _DatFile = (byte)((baseOffset & 0x7) >> 1);

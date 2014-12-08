@@ -73,8 +73,9 @@ namespace SaintCoinach.Graphics.Assets {
             { Tuple.Create('c', 'b'), "chara/human/c{0:D4}/obj/body/b{1:D4}/material/mt_c{0:D4}b{1:D4}_a.mtrl" },
             { Tuple.Create('c', 'f'), "chara/human/c{0:D4}/obj/face/f{1:D4}/material/mt_c{0:D4}f{1:D4}_fac_a.mtrl" },
             { Tuple.Create('c', 'h'), "chara/human/c{0:D4}/obj/hair/h{1:D4}/material/v{{0:D4}}/mt_c{0:D4}h{1:D4}_hir_a.mtrl" },
+            { Tuple.Create('m', 'b'), "chara/monster/m{0:D4}/obj/body/b{1:D4}/material/v{{0:D4}}/mt_m{0:D4}b{1:D4}_a.mtrl" },
         };
-        private static Regex MaterialTypePattern = new Regex(@"_(?<t1>[a-z])(?<v1>\d{4})(?<t2>[a-z])(?<v2>\d{4})_", RegexOptions.Compiled);
+        private static Regex MaterialTypePattern = new Regex(@"[_/](?<t1>[a-z])(?<v1>\d{4})(?<t2>[a-z])(?<v2>\d{4})[_/\.]", RegexOptions.Compiled);
         private string ExpandPath(string path) {
             var modelPath = Model.File.Path;
 
@@ -92,7 +93,9 @@ namespace SaintCoinach.Graphics.Assets {
                     var secondToLast = modelPath.LastIndexOf('/', last - 1);
                     path = modelPath.Substring(0, secondToLast) + "/material/v{0:D4}" + path;
                 }
-            } else
+            } else if (path != modelPath)
+                return ExpandPath(modelPath);
+            else
                 throw new NotSupportedException(string.Format("Unable to expand material file path '{0}':'{1}'.", modelPath, path));
 
             return path;

@@ -17,12 +17,12 @@ namespace SaintCoinach.Graphics.Effects {
             get {
                 if (_EffectByteCode == null)
                     _EffectByteCode = ShaderBytecode.CompileFromFile(
-                        System.IO.Path.Combine("Effects", "HLSL", "Character.fx"),
+                        System.IO.Path.Combine(".", "Effects", "HLSL", "Character.fx"),
                         "fx_5_0",
                         ShaderFlags.None,
                         EffectFlags.None,
                         new SharpDX.Direct3D.ShaderMacro[] { new SharpDX.Direct3D.ShaderMacro("SM4", "SM4") },
-                        new ShaderCompilerInclude(System.IO.Path.Combine("Effects", "HLSL")));
+                        new ShaderCompilerInclude(System.IO.Path.Combine(".", "Effects", "HLSL")));
                 return _EffectByteCode;
             }
         }

@@ -13,6 +13,7 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
         public CraftType CraftType { get { return As<CraftType>(); } }
+        public ClassJob ClassJob { get { return CraftType.ClassJob; } }
         public RecipeElement RecipeElement { get { return As<RecipeElement>(); } }
         public RecipeLevel RecipeLevel { get { return _RecipeLevel ?? (_RecipeLevel = new RecipeLevel(this)); } }
 
@@ -60,7 +61,7 @@ namespace SaintCoinach.Xiv {
             }
             for (var i = 0; i < CrystalCount; ++i) {
                 var craftCrystal = As<CraftCrystalType>("CraftCrystalType", i);
-                if (craftCrystal.Key == 0)
+                if (craftCrystal == null)
                     continue;
 
                 var count = AsInt32("Amount{Crystal}", i);

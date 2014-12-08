@@ -19,6 +19,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintCoinach.Cmd", "SaintCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintCoinach.Graphics.ViewerEngine", "SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj", "{39675BAC-1A1A-4A83-9835-B926BED04C9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thaliak", "Thaliak\Thaliak.csproj", "{9F651616-5F74-465D-9118-9BC009B9CF99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{698ADC79-0240-4DCC-BAD7-F2F0503323F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3317DB90-5444-4002-BFA7-7EC123800E68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thaliak.Infrastructure", "Common\Thaliak.Infrastructure\Thaliak.Infrastructure.csproj", "{54900499-5C2D-4517-96EF-E04A839A000D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thaliak.Modules.Core", "Modules\Thaliak.Modules.Core\Thaliak.Modules.Core.csproj", "{11009091-147E-4AE4-B80D-9833C5E05A86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,8 +99,51 @@ Global
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Portable-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Portable-Signed|Any CPU.Build.0 = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Portable-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Portable-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{9F651616-5F74-465D-9118-9BC009B9CF99}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Portable-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Portable-Signed|Any CPU.Build.0 = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Portable-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Portable-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{54900499-5C2D-4517-96EF-E04A839A000D}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Portable-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Portable-Signed|Any CPU.Build.0 = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Portable-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Portable-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{11009091-147E-4AE4-B80D-9833C5E05A86}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54900499-5C2D-4517-96EF-E04A839A000D} = {3317DB90-5444-4002-BFA7-7EC123800E68}
+		{11009091-147E-4AE4-B80D-9833C5E05A86} = {698ADC79-0240-4DCC-BAD7-F2F0503323F9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

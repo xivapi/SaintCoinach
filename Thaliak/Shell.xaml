@@ -1,0 +1,96 @@
+﻿<Controls:MetroWindow x:Class="Thaliak.Shell"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:prism="http://www.codeplex.com/prism" 
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:inf="clr-namespace:Thaliak;assembly=Thaliak.Infrastructure"
+                      xmlns:infBehaviors="clr-namespace:Thaliak.Behaviors"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:System="clr-namespace:System;assembly=mscorlib"
+                      xmlns:kb="clr-namespace:Kent.Boogaart.Windows.Controls"
+        Title="Thaliak" Height="800" Width="1024">
+    <Window.Resources>
+        <DataTemplate x:Key="TabItemHeaderTemplate">
+            <Grid DataContext="{Binding Path=Content.DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Margin="2" Content="&lt;"
+                        Command="{Binding GoBackCommand}"
+                        IsEnabled="{Binding CanGoBack}"
+                        VerticalAlignment="Center" Height="20" />
+                <TextBlock Grid.Column="1" Text="{Binding Title}" VerticalAlignment="Center" />
+                <Button Grid.Column="2" Margin="2" Content="&#10799;"
+                        Command="{Binding CloseCommand}"
+                        VerticalAlignment="Center" Height="20" />
+                <Button Grid.Column="3" Margin="2" Content="&gt;"
+                        Command="{Binding GoForwardCommand}"
+                        IsEnabled="{Binding CanGoForward}"
+                        VerticalAlignment="Center" Height="20" />
+            </Grid>
+        </DataTemplate>
+        <System:Double x:Key="TabItemFontSize">18</System:Double>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Margin="2" x:Name="_SearchTextBox" />
+            <Button Grid.Column="1" Margin="2" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=_SearchTextBox}" />
+        </Grid>
+        <ItemsControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainToolBarRegion}"
+                      Grid.Row="0" Grid.Column="1" Margin="4">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" LastChildFill="True">
+            <Expander DockPanel.Dock="Left" ExpandDirection="Right">
+                <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.LeftDockRegion}"
+                                Width="250" />
+            </Expander>
+            <Expander DockPanel.Dock="Right" ExpandDirection="Left">
+                <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.RightDockRegion}"
+                                Width="250" />
+            </Expander>
+
+            <Controls:MetroAnimatedTabControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}"
+                                              VerticalAlignment="Stretch" Margin="4">
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="TabItem">
+                        <Setter Property="HeaderTemplate" Value="{StaticResource TabItemHeaderTemplate}" />
+
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled">
+                                        <ContentControl Content="{Binding}" />
+                                    </ScrollViewer>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.ItemContainerStyle>
+            </Controls:MetroAnimatedTabControl>
+        </DockPanel>
+    </Grid>
+</Controls:MetroWindow>

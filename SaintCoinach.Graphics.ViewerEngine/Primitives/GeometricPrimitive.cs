@@ -37,8 +37,8 @@ namespace SaintCoinach.Graphics.Primitives {
         public GeometricPrimitive(Device device, T[] vertices, ushort[] indices) {
             _Device = device;
 
-            if (indices.Length >= 0xFFFF)
-                throw new InvalidOperationException("Cannot generate more than 65535 indices.");
+            /*if (indices.Length >= 0xFFFF)
+                throw new InvalidOperationException("Cannot generate more than 65535 indices.");*/
 
             _VertexBuffer = Buffer.Create<T>(device, BindFlags.VertexBuffer, vertices);
             _IndexBuffer = Buffer.Create<ushort>(device, BindFlags.IndexBuffer, indices);

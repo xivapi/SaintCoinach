@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Thaliak.Modules.Core.Views.Main.Xiv.Parts.ItemRecipesAsMaterial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:data="clr-namespace:Thaliak.Modules.Core.Data"
+             xmlns:xiv="clr-namespace:SaintCoinach.Xiv;assembly=SaintCoinach"
+             xmlns:listItems="clr-namespace:Thaliak.Modules.Core.Views.ListItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="RecipeTemplate" DataType="{x:Type xiv:Recipe}">
+            <Border BorderBrush="{DynamicResource SeperatorBrush}" BorderThickness="1"
+                    CornerRadius="4"
+                    Padding="2"
+                    Margin="0 2">
+                <listItems:Recipe NavigateToRecipeItem="True" />
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Expander ExpandDirection="Down" Header="Used in" IsExpanded="False">
+        <ItemsControl ItemsSource="{Binding RecipesAsMaterial}" Margin="2"
+                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                 ItemTemplate="{StaticResource RecipeTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel IsItemsHost="True" Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Expander>
+</UserControl>

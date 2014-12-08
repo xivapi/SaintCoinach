@@ -56,7 +56,7 @@ namespace SaintCoinach.Xiv {
             var shopItems = new List<IShopItem>();
             foreach (var shop in shops)
                 shopItems.AddRange(shop.ShopItems.Where(_ => _.Item == this));
-            return shopItems.ToArray();
+            return shopItems.Distinct().ToArray();
         }
         private IShopItemCost[] BuildAsShopPayment() {
             if (Key == 1)
@@ -72,7 +72,7 @@ namespace SaintCoinach.Xiv {
                     checkedItems.Add(item);
                 }
             }
-            return shopItemCosts.ToArray();
+            return shopItemCosts.Distinct().ToArray();
         }
         #endregion
     }

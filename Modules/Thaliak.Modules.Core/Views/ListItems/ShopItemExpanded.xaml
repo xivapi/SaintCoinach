@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Thaliak.Modules.Core.Views.ListItems.ShopItemExpanded"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:data="clr-namespace:Thaliak.Modules.Core.Data"
+             xmlns:xiv="clr-namespace:SaintCoinach.Xiv;assembly=SaintCoinach"
+             xmlns:conv="clr-namespace:Thaliak.Modules.Core.Converters"
+             xmlns:bConv="http://schemas.kent.boogaart.com/converters"
+             xmlns:local="clr-namespace:Thaliak.Modules.Core.Views.ListItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <bConv:MapConverter FallbackBehavior="ReturnUnsetValue"
+                            x:Key="StringToVisibilityConverter">
+            <bConv:Mapping From="" To="{x:Static Visibility.Collapsed}" />
+            <bConv:Mapping From="{x:Null}" To="{x:Static Visibility.Collapsed}" />
+        </bConv:MapConverter>
+        
+        <ItemsPanelTemplate x:Key="LevelPanelTemplate">
+            <StackPanel IsItemsHost="True" Orientation="Vertical" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="LevelTemplate" DataType="{x:Type xiv:Level}">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} ({1:F0},{2:F0})">
+                        <Binding Path="Map.PlaceName" />
+                        <Binding Path="MapX" />
+                        <Binding Path="MapY" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ENpcPanelTemplate">
+            <StackPanel IsItemsHost="True" Orientation="Vertical" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="ENpcTemplate" DataType="{x:Type xiv:ENpc}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ContentControl Grid.Row="0" HorizontalAlignment="Stretch"
+                                MouseDoubleClick="ENpc_MouseDoubleClick" TouchUp="ENpc_TouchUp">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Singular}" Grid.Column="0" />
+                        <TextBlock Text="{Binding Title, StringFormat='{}&#171;{0}&#187;'}"
+                                   Grid.Column="1" FontWeight="SemiBold" HorizontalAlignment="Stretch"
+                                   Margin="4 0" Visibility="{Binding Title, Converter={StaticResource StringToVisibilityConverter}}"/>
+                    </Grid>
+                </ContentControl>
+                
+                <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                              Margin="10 2 0 0" ItemsSource="{Binding Levels}"
+                              ItemsPanel="{StaticResource LevelPanelTemplate}"
+                              ItemTemplate="{StaticResource LevelTemplate}" />
+            </Grid>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ShopPanelTemplate">
+            <StackPanel IsItemsHost="True" Orientation="Vertical" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="ShopTemplate" DataType="{x:Type xiv:IShop}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ContentControl Grid.Row="0" HorizontalAlignment="Stretch"
+                                MouseDoubleClick="Shop_MouseDoubleClick"
+                                TouchUp="Shop_TouchUp">
+                    <TextBlock Text="{Binding Name}" Grid.Row="0" />
+                </ContentControl>
+                <ItemsControl Grid.Row="1" Margin="10 2 0 0" ItemsSource="{Binding ENpcs}"
+                              ItemsPanel="{StaticResource ENpcPanelTemplate}"
+                              ItemTemplate="{StaticResource ENpcTemplate}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel Grid.IsSharedSizeScope="True">
+        <local:ShopItem x:Name="_BaseShopItem" x:FieldModifier="private" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="ShopItemIconColumn" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ItemsControl Grid.Column="1"
+                          ItemsSource="{Binding Path=(xiv:IShopItem.Shops)}"
+                          ItemTemplate="{StaticResource ShopTemplate}"
+                          ItemsPanel="{StaticResource ShopPanelTemplate}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

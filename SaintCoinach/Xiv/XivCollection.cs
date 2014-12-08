@@ -52,7 +52,7 @@ namespace SaintCoinach.Xiv {
         protected delegate IXivSheet XivSheetCreator(XivCollection collection, IRelationalSheet sourceSheet);
         protected static Dictionary<string, XivSheetCreator> SpecialSheetTypes = new Dictionary<string, XivSheetCreator> {
             { "Item", (c, s) => new Sheets.InventoryItemSheet(c, s) },
-            // TODO: ItemAction
+            { "ItemAction", (c, s) => new Sheets.ItemActionSheet(c, s) },
         };
         protected override ISheet CreateSheet(Header header) {
             var baseSheet = (IRelationalSheet)base.CreateSheet(header);

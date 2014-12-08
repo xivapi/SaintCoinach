@@ -18,5 +18,9 @@ namespace SaintCoinach.Xiv {
             return Convert.ToInt32(this[Offset + baseParam.Key]);
         }
         #endregion
+
+        public override string ToString() {
+            return Key.ToString();
+        }
     }
 }
