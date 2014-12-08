@@ -91,6 +91,9 @@
     <Compile Include="Data\ItemActionTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\CoreViewSource.cs" />
+    <Compile Include="Search\ClassJobQuery.cs" />
+    <Compile Include="Search\EquipSlotQuery.cs" />
+    <Compile Include="Search\ItemCategoryQuery.cs" />
     <Compile Include="Search\ItemLevelQuery.cs" />
     <Compile Include="Search\ParameterQuery.cs" />
     <Compile Include="Search\Sources\GenericXivSource.cs" />

@@ -7,7 +7,7 @@
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" 
                       xmlns:System="clr-namespace:System;assembly=mscorlib"
                       xmlns:kb="clr-namespace:Kent.Boogaart.Windows.Controls"
-        Title="Thaliak" Height="800" Width="1024">
+                      Title="Thaliak" Height="800" Width="1024" Icon="Resources/Zodiac.png">
     <Window.Resources>
         <DataTemplate x:Key="TabItemHeaderTemplate">
             <Grid DataContext="{Binding Path=Content.DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}">

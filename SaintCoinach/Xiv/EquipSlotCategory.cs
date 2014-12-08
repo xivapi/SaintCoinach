@@ -28,7 +28,7 @@ namespace SaintCoinach.Xiv {
             var blocked = new List<EquipSlot>();
 
             foreach (var slot in Sheet.Collection.EquipSlots) {
-                var val = Convert.ToInt32(slot.Key);
+                var val = Convert.ToInt32(this[slot.Key]);
 
                 if (val > 0)
                     possible.Add(slot);
