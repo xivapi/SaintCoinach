@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv.Items {
-    public abstract class Equipment : InventoryItem {
+    public abstract class Equipment : InventoryItem, IParameterObject {
         #region Fields
         private ParameterCollection _SecondaryParameters = null;
         private ParameterCollection _AllParameters = null;
@@ -13,6 +13,7 @@ namespace SaintCoinach.Xiv.Items {
 
         #region Properties
         public abstract IEnumerable<Parameter> PrimaryParameters { get; }
+        IEnumerable<Parameter> IParameterObject.Parameters { get { return AllParameters; } }
         public IEnumerable<Parameter> SecondaryParameters { get { return _SecondaryParameters ?? (_SecondaryParameters = BuildSecondaryParameters()); } }
         public IEnumerable<Parameter> AllParameters {
             get {

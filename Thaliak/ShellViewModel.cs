@@ -14,6 +14,8 @@ using System.Windows.Input;
 namespace Thaliak {
     [Export]
     public class ShellViewModel : BindableBase {
+        public const int MaximumResults = 250;  // TODO: Maybe add back/forward to results view? Or at least show there are too many!
+
         [Import]
         private Services.ISearchProvider _SearchProvider;
         [Import]
@@ -35,6 +37,8 @@ namespace Thaliak {
                         evt.Publish(items[0], false);
                     else {
                         var navParam = new NavigationParameters();
+                        if (items.Length > MaximumResults)
+                            items = items.Take(MaximumResults).ToArray();
                         var objId = _ObjectStore.Store(items);
                         var qId = _ObjectStore.Store(q);
                         navParam.Add("ID", objId);

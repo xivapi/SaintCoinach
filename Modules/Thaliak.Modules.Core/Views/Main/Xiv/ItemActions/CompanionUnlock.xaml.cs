@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Thaliak.Modules.Core.Views.Main.Xiv.Parts {
+namespace Thaliak.Modules.Core.Views.Main.Xiv.ItemActions {
     /// <summary>
-    /// Interaction logic for ItemRecipesAsMaterialView.xaml
+    /// Interaction logic for CompanionUnlock.xaml
     /// </summary>
-    public partial class ItemRecipesAsMaterial : UserControl {
-        public ItemRecipesAsMaterial() {
+    public partial class CompanionUnlock : UserControl {
+        public CompanionUnlock() {
             InitializeComponent();
         }
     }

@@ -30,10 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kent.Boogaart.Converters">
+    <Reference Include="Kent.Boogaart.Converters, Version=1.3.1.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Kent.Boogaart.Converters.1.3.1\lib\net45\Kent.Boogaart.Converters.dll</HintPath>
     </Reference>
-    <Reference Include="Kent.Boogaart.HelperTrinity">
+    <Reference Include="Kent.Boogaart.HelperTrinity, Version=1.5.2.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Kent.Boogaart.HelperTrinity.1.5.2\lib\net45\Kent.Boogaart.HelperTrinity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
@@ -45,20 +47,25 @@
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
       <HintPath>..\..\packages\Prism.MEFExtensions.5.0.0\lib\NET45\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
-      <HintPath>..\..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.PubSubEvents.1.1.2\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -81,8 +88,14 @@
     <Compile Include="Converters\ParameterSelectorByType.cs" />
     <Compile Include="CoreModule.cs" />
     <Compile Include="Data\AttachedImage.cs" />
+    <Compile Include="Data\ItemActionTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\CoreViewSource.cs" />
+    <Compile Include="Search\ItemLevelQuery.cs" />
+    <Compile Include="Search\ParameterQuery.cs" />
+    <Compile Include="Search\Sources\GenericXivSource.cs" />
+    <Compile Include="Search\Sources\ItemSource.cs" />
+    <Compile Include="Search\Sources\RecipeSource.cs" />
     <Compile Include="TitledNavigationTarget.cs" />
     <Compile Include="Views\ListItems\Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
@@ -105,8 +118,47 @@
     <Compile Include="Views\Main\Xiv\InventoryItemView.xaml.cs">
       <DependentUpon>InventoryItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\AttributeReset.xaml.cs">
+      <DependentUpon>AttributeReset.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\BuddyEquipUnlock.xaml.cs">
+      <DependentUpon>BuddyEquipUnlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\BuddySummon.xaml.cs">
+      <DependentUpon>BuddySummon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\ChocoboFeed.xaml.cs">
+      <DependentUpon>ChocoboFeed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\CompanionUnlock.xaml.cs">
+      <DependentUpon>CompanionUnlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\Enhancement.xaml.cs">
+      <DependentUpon>Enhancement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\Fantasia.xaml.cs">
+      <DependentUpon>Fantasia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\MountUnlock.xaml.cs">
+      <DependentUpon>MountUnlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\PointRecovery.xaml.cs">
+      <DependentUpon>PointRecovery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\Raise.xaml.cs">
+      <DependentUpon>Raise.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\RecipeBookUnlock.xaml.cs">
+      <DependentUpon>RecipeBookUnlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\ItemActions\Sanction.xaml.cs">
+      <DependentUpon>Sanction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Main\Xiv\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\Parts\ParameterObjectParameters.xaml.cs">
+      <DependentUpon>ParameterObjectParameters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\Xiv\Parts\PrimaryEquipmentParameters.xaml.cs">
       <DependentUpon>PrimaryEquipmentParameters.xaml</DependentUpon>
@@ -114,11 +166,11 @@
     <Compile Include="Views\Main\Xiv\Parts\ItemHead.xaml.cs">
       <DependentUpon>ItemHead.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\Xiv\Parts\ItemRecipesAsMaterial.xaml.cs">
-      <DependentUpon>ItemRecipesAsMaterial.xaml</DependentUpon>
+    <Compile Include="Views\Main\Xiv\Parts\RecipeList.xaml.cs">
+      <DependentUpon>RecipeList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\Xiv\Parts\ItemRecipesAsResult.xaml.cs">
-      <DependentUpon>ItemRecipesAsResult.xaml</DependentUpon>
+    <Compile Include="Views\Main\Xiv\Parts\RecipeListExpanded.xaml.cs">
+      <DependentUpon>RecipeListExpanded.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\Xiv\Parts\ItemShops.xaml.cs">
       <DependentUpon>ItemShops.xaml</DependentUpon>
@@ -128,6 +180,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +230,59 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\AttributeReset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\BuddyEquipUnlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\BuddySummon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\ChocoboFeed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\CompanionUnlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\Enhancement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\Fantasia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\MountUnlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\PointRecovery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\Raise.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\RecipeBookUnlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\ItemActions\Sanction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main\Xiv\ItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Main\Xiv\Parts\ParameterObjectParameters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,11 +294,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Main\Xiv\Parts\ItemRecipesAsMaterial.xaml">
+    <Page Include="Views\Main\Xiv\Parts\RecipeList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Main\Xiv\Parts\ItemRecipesAsResult.xaml">
+    <Page Include="Views\Main\Xiv\Parts\RecipeListExpanded.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

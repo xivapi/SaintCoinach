@@ -7,6 +7,11 @@
              xmlns:xiv="clr-namespace:SaintCoinach.Xiv;assembly=SaintCoinach"
              xmlns:conv="clr-namespace:Thaliak.Modules.Core.Converters"
              xmlns:bConv="http://schemas.kent.boogaart.com/converters"
+             xmlns:beh="clr-namespace:Thaliak.Behaviors;assembly=Thaliak.Infrastructure"
+             x:Name="_Self"
+             beh:NavigationHelper.DragEnabled="{Binding ElementName=_Self, Path=NavigateToShopItem}"
+             beh:NavigationHelper.NavigationEnabled="{Binding ElementName=_Self, Path=NavigateToShopItem}"
+             beh:NavigationHelper.NavigationObject="{Binding Path=(xiv:IShopItem.Item)}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,8 +21,9 @@
             <StackPanel IsItemsHost="True" Orientation="Horizontal" />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="ShopItemCostTemplate" DataType="{x:Type xiv:IShopItemCost}">
-            <ContentControl MouseDoubleClick="ShopItemCost_MouseDoubleClick"
-                            TouchUp="ShopItemCost_TouchUp">
+            <ContentControl beh:NavigationHelper.DragEnabled="{Binding ElementName=_Self, Path=NavigateToCostItems}"
+                            beh:NavigationHelper.NavigationEnabled="{Binding ElementName=_Self, Path=NavigateToCostItems}"
+                            beh:NavigationHelper.NavigationObject="{Binding Path=(xiv:IShopItemCost.Item)}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

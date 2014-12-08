@@ -9,7 +9,7 @@ using Microsoft.Practices.Prism.Regions;
 namespace Thaliak.Events {
     public class NavigationResultArguments {
         #region Properties
-        public Guid Id { get; set; }
+        public NavigationRequestArguments Request { get; set; }
         public NavigationResult NavigationResult { get; set; }
         #endregion
     }

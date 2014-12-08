@@ -11,7 +11,7 @@ namespace Thaliak.Services.Search {
         public ISearchQuery InnerQuery { get; set; }
 
         #region ISearchQuery Members
-
+        void ISearchQuery.Set(string args) { throw new NotSupportedException(); }
         public IEnumerable<Type> MatchedTypes {
             get { return InnerQuery.MatchedTypes; }
         }

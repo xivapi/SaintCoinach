@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel.Composition;
+using System.Windows.Input;
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -17,7 +18,7 @@ namespace Thaliak.Controllers {
         private IRegionManager _RegionManager;
         private IEventAggregator _EventAggregator;
 
-        private Dictionary<Guid, IContentPresenter> _KnownContent = new Dictionary<Guid, IContentPresenter>();
+        private Dictionary<Guid, Tuple<IContentPresenter, string>> _KnownContent = new Dictionary<Guid, Tuple<IContentPresenter, string>>();
 
         [ImportingConstructor]
         public NavigationController(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator) {
@@ -32,43 +33,65 @@ namespace Thaliak.Controllers {
             _EventAggregator = eventAggregator;
             _ServiceLocator = serviceLocator;
 
-            var navReqEvt = _EventAggregator.GetEvent<Events.NavigationRequestEvent>();
-            navReqEvt.Subscribe(OnNavigationRequest, ThreadOption.UIThread);
+            _EventAggregator.GetEvent<Events.NavigationRequestEvent>().Subscribe(OnNavigationRequest, ThreadOption.UIThread);
+            _EventAggregator.GetEvent<Events.TabCloseRequestEvent>().Subscribe(OnTabCloseRequest, ThreadOption.UIThread);
         }
 
+        #region TabClose
+        private void OnTabCloseRequest(Guid id) {
+            Tuple<IContentPresenter, string> presenter;
+            if (_KnownContent.TryGetValue(id, out presenter)) {
+                var region = _RegionManager.Regions.First(_ => _.Name == presenter.Item2);
+                region.Remove(presenter.Item1);
+            }
+        }
+        #endregion
+
         #region Nav request
-        // TODO: Support other regions (i.e. docks)
         const string DefaultRegion = RegionNames.MainRegion;
-        static readonly string[] ValidNavigationRegions = new[] {
+        static readonly string[] TabbedRegions = new[] {
             RegionNames.MainRegion
+        };
+        static readonly string[] DirectRegions = new[]{
+            RegionNames.LeftDockRegion,
+            RegionNames.RightDockRegion
         };
 
         private void OnNavigationRequest(Events.NavigationRequestArguments e) {
             string targetRegionName = DefaultRegion;
             if (!string.IsNullOrWhiteSpace(e.Region))
-                targetRegionName = e.Region;
-            if (!ValidNavigationRegions.Contains(targetRegionName)) {
-                _EventAggregator.GetEvent<Events.NavigationResultEvent>().Publish(e.Id, new NavigationResult(null, false));
-                return;
-            }
+                e.Region = targetRegionName = e.Region;
 
             var region = _RegionManager.Regions.First(_ => _.Name == targetRegionName);
-            var openNewTab = e.ForceNewTab || !region.ActiveViews.Any();
+            if (TabbedRegions.Contains(targetRegionName))
+                NavigateTabbedRegion(e, region);
+            else if (DirectRegions.Contains(targetRegionName))
+                NavigateDirectRegion(e, region);
+            else
+                _EventAggregator.GetEvent<Events.NavigationResultEvent>().Publish(e, new NavigationResult(null, false));
+        }
+        private void NavigateDirectRegion(Events.NavigationRequestArguments e, IRegion region) {
+            region.RequestNavigate(e.Uri, (r) => {
+                _EventAggregator.GetEvent<Events.NavigationResultEvent>().Publish(e, r);
+            });
+        }
+        private void NavigateTabbedRegion(Events.NavigationRequestArguments e, IRegion region) {
+            var openNewTab = e.ForceNewTab || !region.ActiveViews.Any() || Keyboard.Modifiers.HasFlag(ModifierKeys.Control);
 
             IContentPresenter targetPresenter;
             if (openNewTab) {
-                targetPresenter = _ServiceLocator.GetInstance<Views.MainRegionTabView>();   // TODO: Change this to get proper (i.e. docks)
+                targetPresenter = _ServiceLocator.GetInstance<Views.MainRegionTabView>();
 
                 var innerRegionManager = region.Add(targetPresenter, targetPresenter.Id.ToString(), true);
                 region.Activate(targetPresenter);
 
                 targetPresenter.RegionManager = innerRegionManager;
-                _KnownContent.Add(targetPresenter.Id, targetPresenter);
+                _KnownContent.Add(targetPresenter.Id, Tuple.Create(targetPresenter, region.Name));
             } else
                 targetPresenter = (IContentPresenter)region.ActiveViews.First();
 
             targetPresenter.RegionManager.RequestNavigate(targetPresenter.TargetRegion, e.Uri, (r) => {
-                _EventAggregator.GetEvent<Events.NavigationResultEvent>().Publish(e.Id, r);
+                _EventAggregator.GetEvent<Events.NavigationResultEvent>().Publish(e, r);
             });
         }
         #endregion

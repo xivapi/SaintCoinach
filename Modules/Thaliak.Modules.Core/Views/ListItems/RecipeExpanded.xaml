@@ -8,6 +8,8 @@
              xmlns:conv="clr-namespace:Thaliak.Modules.Core.Converters"
              xmlns:bConv="http://schemas.kent.boogaart.com/converters"
              xmlns:local="clr-namespace:Thaliak.Modules.Core.Views.ListItems"
+             xmlns:beh="clr-namespace:Thaliak.Behaviors;assembly=Thaliak.Infrastructure"
+             x:Name="_Self"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,8 +18,9 @@
         </ItemsPanelTemplate>
         <DataTemplate x:Key="MaterialTemplate" DataType="{x:Type xiv:RecipeIngredient}">
             <UserControl HorizontalAlignment="Stretch"
-                         MouseDoubleClick="RecipeMaterial_MouseDoubleClick"
-                         TouchUp="RecipeMaterial_TouchUp">
+                         beh:NavigationHelper.DragEnabled="{Binding ElementName=_Self, Path=NavigateToRecipeMaterials}"
+                         beh:NavigationHelper.NavigationEnabled="{Binding ElementName=_Self, Path=NavigateToRecipeMaterials}"
+                         beh:NavigationHelper.NavigationObject="{Binding Item}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

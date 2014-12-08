@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.ComponentModel.Composition;
+
 namespace Thaliak.Services.Search {
+    [Behaviors.SearchFunctionExport(Function = "text")]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class StringQuery : Interfaces.ISearchQuery {
         public string SearchString { get; set; }
+
+        public void Set(string args) {
+            SearchString = args;
+        }
 
         #region ISearchQuery Members
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv.ItemActions {
-    public class Enhancement : ItemAction {
+    public class Enhancement : ItemAction, IParameterObject {
         const int GroupKey = 0;
         const int ItemFoodKey = 1;
         const int DurationKey = 2;

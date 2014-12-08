@@ -41,7 +41,9 @@ namespace Thaliak {
         }
 
         protected override Microsoft.Practices.Prism.Modularity.IModuleCatalog CreateModuleCatalog() {
-            return new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
+            if (System.IO.Directory.Exists(@".\Modules"))
+                return new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
+            return base.CreateModuleCatalog();
         }
 
         protected override void ConfigureContainer() {

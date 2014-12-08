@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Thaliak {
-    class SearchNavigationTarget {
+namespace SaintCoinach.Xiv {
+    public interface IParameterObject {
+        IEnumerable<Parameter> Parameters { get; }
     }
 }

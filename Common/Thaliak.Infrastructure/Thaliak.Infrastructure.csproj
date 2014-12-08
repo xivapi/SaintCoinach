@@ -36,20 +36,25 @@
     <Reference Include="Microsoft.Practices.Prism.Interactivity">
       <HintPath>..\..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
-      <HintPath>..\..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.PubSubEvents.1.1.2\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
-      <HintPath>..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -66,8 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AutoPopulateExportedViewsBehavior.cs" />
+    <Compile Include="Behaviors\ISearchFunctionRegistration.cs" />
     <Compile Include="Behaviors\IViewRegionRegistration.cs" />
+    <Compile Include="Behaviors\NavigationHelper.cs" />
     <Compile Include="Behaviors\RegionAwareBehavior.cs" />
+    <Compile Include="Behaviors\SearchFunctionExportAttribute.cs" />
     <Compile Include="Behaviors\ViewExportAttribute.cs" />
     <Compile Include="Behaviors\ModelToViewMappingAttribute.cs" />
     <Compile Include="Converters\EnumerableToVisibilityConverter.cs" />
@@ -81,10 +89,8 @@
     <Compile Include="Interfaces\ITitledView.cs" />
     <Compile Include="Behaviors\IRegionManagerAware.cs" />
     <Compile Include="Interfaces\ISearchDataSource.cs" />
-    <Compile Include="Interfaces\ISearchQueryFactory.cs" />
     <Compile Include="Interfaces\ISearchQuery.cs" />
     <Compile Include="ServiceExtensions.cs" />
-    <Compile Include="Services\CommonSearchQueryFactory.cs" />
     <Compile Include="Services\ISearchProvider.cs" />
     <Compile Include="Services\IViewSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,16 +101,19 @@
     <Compile Include="Services\ObjectStore.cs" />
     <Compile Include="Services\SearchProvider.cs" />
     <Compile Include="Services\Search\AndQuery.cs" />
+    <Compile Include="Services\Search\IntegerRangeQuery.cs" />
     <Compile Include="Services\Search\InvertQuery.cs" />
     <Compile Include="Services\Search\OrQuery.cs" />
     <Compile Include="Services\Search\QueryCollection.cs" />
     <Compile Include="Services\Search\StringQuery.cs" />
+    <Compile Include="Services\Search\TypeQuery.cs" />
     <Compile Include="Services\ViewSourceBase.cs" />
     <Compile Include="Services\ViewLocator.cs" />
     <Compile Include="TreeHelper.cs" />
     <Compile Include="ViewContexts.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

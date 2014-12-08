@@ -13,9 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.ServiceLocation;
-
 namespace Thaliak.Modules.Core.Views.ListItems {
     /// <summary>
     /// Interaction logic for ShopItem.xaml
@@ -25,54 +22,18 @@ namespace Thaliak.Modules.Core.Views.ListItems {
     public partial class ShopItem : UserControl {
         public ShopItem() {
             InitializeComponent();
-
-            NavigateToCostItems = true;
-            NavigateToShopItems = true;
         }
 
-        private IServiceLocator CurrentServiceLocator { get { return ServiceLocator.Current; } }
-        private IEventAggregator EventAggregator { get { return CurrentServiceLocator.GetInstance<IEventAggregator>(); } }
-        public Events.NavigationRequestEvent NavigationEvent { get { return EventAggregator.GetEvent<Events.NavigationRequestEvent>(); } }
-
-        public bool NavigateToShopItems { get; set; }
-        public bool NavigateToCostItems { get; set; }
-
-        #region ShopItem
-        private void ShopItem_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            NavigateToShopItem(sender);
+        public static DependencyProperty NavigateToShopItemProperty = DependencyProperty.Register("NavigateToShopItem", typeof(bool), typeof(Recipe), new PropertyMetadata(true));
+        public bool NavigateToShopItem {
+            get { return (bool)GetValue(NavigateToShopItemProperty); }
+            set { SetValue(NavigateToShopItemProperty, value); }
         }
 
-        private void ShopItem_TouchUp(object sender, TouchEventArgs e) {
-            NavigateToShopItem(sender);
+        public static DependencyProperty NavigateToCostItemsProperty = DependencyProperty.Register("NavigateToCostItems", typeof(bool), typeof(Recipe), new PropertyMetadata(true));
+        public bool NavigateToCostItems {
+            get { return (bool)GetValue(NavigateToCostItemsProperty); }
+            set { SetValue(NavigateToCostItemsProperty, value); }
         }
-
-        private void NavigateToShopItem(object sender) {
-            if (!NavigateToShopItems)
-                return;
-
-            var shopItem = ((FrameworkElement)sender).DataContext as SaintCoinach.Xiv.IShopItem;
-            if (shopItem != null)
-                NavigationEvent.Publish(shopItem.Item, false);
-        }
-        #endregion
-
-        #region ShopItemCost
-        private void ShopItemCost_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            NavigateToShopItemCost(sender);
-        }
-
-        private void ShopItemCost_TouchUp(object sender, TouchEventArgs e) {
-            NavigateToShopItemCost(sender);
-        }
-
-        private void NavigateToShopItemCost(object sender) {
-            if (!NavigateToCostItems)
-                return;
-
-            var shopItemCost = ((FrameworkElement)sender).DataContext as SaintCoinach.Xiv.IShopItemCost;
-            if (shopItemCost != null)
-                NavigationEvent.Publish(shopItemCost.Item, false);
-        }
-        #endregion
     }
 }

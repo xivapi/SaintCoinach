@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public class ItemFood : XivRow {
+    public class ItemFood : XivRow, IParameterObject {
         #region Fields
         private ParameterCollection _Parameters;
         #endregion

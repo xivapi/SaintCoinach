@@ -13,9 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.ServiceLocation;
-
 namespace Thaliak.Modules.Core.Views.ListItems {
     /// <summary>
     /// Interaction logic for Recipe.xaml
@@ -25,33 +22,12 @@ namespace Thaliak.Modules.Core.Views.ListItems {
     public partial class Recipe : UserControl {
         public Recipe() {
             InitializeComponent();
-
-            NavigateToRecipeItem = true;
         }
 
-        private IServiceLocator CurrentServiceLocator { get { return ServiceLocator.Current; } }
-        private IEventAggregator EventAggregator { get { return CurrentServiceLocator.GetInstance<IEventAggregator>(); } }
-        public Events.NavigationRequestEvent NavigationEvent { get { return EventAggregator.GetEvent<Events.NavigationRequestEvent>(); } }
-
-        public bool NavigateToRecipeItem { get; set; }
-
-        #region Nav
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            NavToRecipe();
+        public static DependencyProperty NavigateToRecipeItemProperty = DependencyProperty.Register("NavigateToRecipeItem", typeof(bool), typeof(Recipe), new PropertyMetadata(true));
+        public bool NavigateToRecipeItem {
+            get { return (bool)GetValue(NavigateToRecipeItemProperty); }
+            set { SetValue(NavigateToRecipeItemProperty, value); }
         }
-
-        private void UserControl_TouchUp(object sender, TouchEventArgs e) {
-            NavToRecipe();
-        }
-
-        private void NavToRecipe() {
-            if (!NavigateToRecipeItem)
-                return;
-
-            var rec = DataContext as SaintCoinach.Xiv.Recipe;
-            if (rec != null)
-                NavigationEvent.Publish(rec.ResultItem, false);
-        }
-        #endregion
     }
 }

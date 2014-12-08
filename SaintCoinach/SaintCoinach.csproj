@@ -226,6 +226,7 @@
     <Compile Include="Xiv\HousingItemCategory.cs" />
     <Compile Include="Xiv\HousingYardObject.cs" />
     <Compile Include="Xiv\InventoryItem.cs" />
+    <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />
     <Compile Include="Xiv\IShopItem.cs" />
     <Compile Include="Xiv\ItemAction.cs" />
@@ -264,13 +265,13 @@
     <Compile Include="Xiv\Items\CraftingTool.cs" />
     <Compile Include="Xiv\Items\Equipment.cs" />
     <Compile Include="Xiv\Items\GatheringTool.cs" />
-    <Compile Include="Xiv\Items\HousingItem.cs" />
+    <Compile Include="Xiv\Items\Housing.cs" />
     <Compile Include="Xiv\Items\MagicWeapon.cs" />
     <Compile Include="Xiv\Items\MateriaItem.cs" />
     <Compile Include="Xiv\Items\PhysicalWeapon.cs" />
     <Compile Include="Xiv\Items\Shield.cs" />
     <Compile Include="Xiv\Items\SoulCrystal.cs" />
-    <Compile Include="Xiv\Items\UseableItem.cs" />
+    <Compile Include="Xiv\Items\Usable.cs" />
     <Compile Include="Xiv\Items\Weapon.cs" />
     <Compile Include="Xiv\ItemUICategory.cs" />
     <Compile Include="Xiv\Leve.cs" />

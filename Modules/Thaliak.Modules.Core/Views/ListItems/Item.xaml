@@ -5,8 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:parts="clr-namespace:Thaliak.Modules.Core.Views.Main.Xiv.Parts"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             MouseDoubleClick="UserControl_MouseDoubleClick"
-             TouchUp="UserControl_TouchUp">
+             d:DesignHeight="300" d:DesignWidth="300">
     <parts:ItemHead />
 </UserControl>

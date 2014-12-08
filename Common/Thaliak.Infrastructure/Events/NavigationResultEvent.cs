@@ -8,9 +8,9 @@ using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Thaliak.Events {
     public class NavigationResultEvent : PubSubEvent<NavigationResultArguments> {
-        public void Publish(Guid id, Microsoft.Practices.Prism.Regions.NavigationResult result) {
+        public void Publish(NavigationRequestArguments request, Microsoft.Practices.Prism.Regions.NavigationResult result) {
             Publish(new NavigationResultArguments {
-                Id = id,
+                Request = request,
                 NavigationResult = result
             });
         }

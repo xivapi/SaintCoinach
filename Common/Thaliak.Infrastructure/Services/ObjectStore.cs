@@ -30,7 +30,6 @@ namespace Thaliak.Services {
         public object Retrieve(Guid id) {
             return _Store[id];
         }
-
         #endregion
     }
 }

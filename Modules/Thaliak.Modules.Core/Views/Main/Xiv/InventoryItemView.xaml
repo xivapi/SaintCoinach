@@ -7,11 +7,15 @@
              xmlns:parts="clr-namespace:Thaliak.Modules.Core.Views.Main.Xiv.Parts"
              xmlns:conv="clr-namespace:Thaliak.Converters;assembly=Thaliak.Infrastructure"
              xmlns:bConv="http://schemas.kent.boogaart.com/converters"
+             xmlns:data="clr-namespace:Thaliak.Modules.Core.Data"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <conv:EnumerableToVisibilityConverter x:Key="EnumerableToVisibilityConverter" />
         <bConv:BooleanToVisibilityConverter x:Key="IndisposableToVisibilityConverter" IsReversed="True" UseHidden="False" />
+        <data:ItemActionTemplateSelector x:Key="ItemActionTemplateSelector" />
+        
+        <DataTemplate x:Key="ItemAction_Default" />
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 Grid.IsSharedSizeScope="True"
@@ -20,10 +24,15 @@
         <parts:ItemHead />
         <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
         <Border Height="2" CornerRadius="1" HorizontalAlignment="Stretch" Background="{DynamicResource SeperatorBrush}" Margin="2" />
+        <ContentControl Content="{Binding ItemAction}" ContentTemplateSelector="{StaticResource ItemActionTemplateSelector}" />
         <TextBlock Text="{Binding Bid, StringFormat='{}Sells for {0}'}"
                    Visibility="{Binding IsIndisposable, Converter={StaticResource IndisposableToVisibilityConverter}}" />
         <parts:ItemShops Visibility="{Binding AsShopItems, Converter={StaticResource EnumerableToVisibilityConverter}}" />
-        <parts:ItemRecipesAsResult Visibility="{Binding RecipesAsResult, Converter={StaticResource EnumerableToVisibilityConverter}}" />
-        <parts:ItemRecipesAsMaterial Visibility="{Binding RecipesAsMaterial, Converter={StaticResource EnumerableToVisibilityConverter}}" />
+        <parts:RecipeListExpanded Visibility="{Binding Converter={StaticResource EnumerableToVisibilityConverter}}"
+                                  DataContext="{Binding RecipesAsResult}"
+                                  Header="Recipes" IsExpanded="True" />
+        <parts:RecipeList Visibility="{Binding Converter={StaticResource EnumerableToVisibilityConverter}}"
+                          DataContext="{Binding RecipesAsMaterial}"
+                          Header="Used in" IsExpanded="False" />
     </StackPanel>
 </UserControl>

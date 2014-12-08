@@ -40,7 +40,7 @@ namespace Thaliak.Views {
         }
         public string TargetRegion { get { return RegionNames.ActiveContentRegion; } }
         private Guid _Id = Guid.NewGuid();
-        public Guid Id { get { return _Id; } }
+        public Guid Id { get { return ViewModel.Id; } }
         #endregion
     }
 }

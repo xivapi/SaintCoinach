@@ -8,6 +8,8 @@
              xmlns:conv="clr-namespace:Thaliak.Modules.Core.Converters"
              xmlns:bConv="http://schemas.kent.boogaart.com/converters"
              xmlns:local="clr-namespace:Thaliak.Modules.Core.Views.ListItems"
+             xmlns:beh="clr-namespace:Thaliak.Behaviors;assembly=Thaliak.Infrastructure"
+             x:Name="_Self"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -41,7 +43,9 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ContentControl Grid.Row="0" HorizontalAlignment="Stretch"
-                                MouseDoubleClick="ENpc_MouseDoubleClick" TouchUp="ENpc_TouchUp">
+                                beh:NavigationHelper.DragEnabled="{Binding ElementName=_Self, Path=NavigateToENpcs}"
+                                beh:NavigationHelper.NavigationEnabled="{Binding ElementName=_Self, Path=NavigateToENpcs}"
+                                beh:NavigationHelper.NavigationObject="{Binding}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -72,8 +76,9 @@
                 </Grid.RowDefinitions>
 
                 <ContentControl Grid.Row="0" HorizontalAlignment="Stretch"
-                                MouseDoubleClick="Shop_MouseDoubleClick"
-                                TouchUp="Shop_TouchUp">
+                                beh:NavigationHelper.DragEnabled="{Binding ElementName=_Self, Path=NavigateToShops}"
+                                beh:NavigationHelper.NavigationEnabled="{Binding ElementName=_Self, Path=NavigateToShops}"
+                                beh:NavigationHelper.NavigationObject="{Binding}">
                     <TextBlock Text="{Binding Name}" Grid.Row="0" />
                 </ContentControl>
                 <ItemsControl Grid.Row="1" Margin="10 2 0 0" ItemsSource="{Binding ENpcs}"

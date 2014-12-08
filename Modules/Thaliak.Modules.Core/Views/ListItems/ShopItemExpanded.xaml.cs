@@ -13,9 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.ServiceLocation;
-
 namespace Thaliak.Modules.Core.Views.ListItems {
     /// <summary>
     /// Interaction logic for ShopItemExpanded.xaml
@@ -25,62 +22,26 @@ namespace Thaliak.Modules.Core.Views.ListItems {
     public partial class ShopItemExpanded : UserControl {
         public ShopItemExpanded() {
             InitializeComponent();
-
-            NavigateToShops = true;
-            NavigateToENpcs = true;
         }
 
-        private IServiceLocator CurrentServiceLocator { get { return ServiceLocator.Current; } }
-        private IEventAggregator EventAggregator { get { return CurrentServiceLocator.GetInstance<IEventAggregator>(); } }
-        public Events.NavigationRequestEvent NavigationEvent { get { return EventAggregator.GetEvent<Events.NavigationRequestEvent>(); } }
-
-        public bool NavigateToShopItems {
-            get { return _BaseShopItem.NavigateToShopItems; }
-            set { _BaseShopItem.NavigateToShopItems = value; }
+        public bool NavigateToShopItem {
+            get { return _BaseShopItem.NavigateToShopItem; }
+            set { _BaseShopItem.NavigateToShopItem = value; }
         }
         public bool NavigateToCostItems {
             get { return _BaseShopItem.NavigateToCostItems; }
             set { _BaseShopItem.NavigateToCostItems = value; }
         }
-        public bool NavigateToShops { get; set; }
-        public bool NavigateToENpcs { get; set; }
-
-        #region ENpc
-        private void ENpc_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            NavigateToENpc(sender);
+        public static DependencyProperty NavigateToShopsProperty = DependencyProperty.Register("NavigateToShops", typeof(bool), typeof(Recipe), new PropertyMetadata(true));
+        public bool NavigateToShops {
+            get { return (bool)GetValue(NavigateToShopsProperty); }
+            set { SetValue(NavigateToShopsProperty, value); }
         }
 
-        private void ENpc_TouchUp(object sender, TouchEventArgs e) {
-            NavigateToENpc(sender);
+        public static DependencyProperty NavigateToENpcsProperty = DependencyProperty.Register("NavigateToENpcs", typeof(bool), typeof(Recipe), new PropertyMetadata(true));
+        public bool NavigateToENpcs {
+            get { return (bool)GetValue(NavigateToENpcsProperty); }
+            set { SetValue(NavigateToENpcsProperty, value); }
         }
-
-        private void NavigateToENpc(object sender) {
-            if (!NavigateToENpcs)
-                return;
-
-            var enpc = ((FrameworkElement)sender).DataContext as SaintCoinach.Xiv.ENpc;
-            if (enpc != null)
-                NavigationEvent.Publish(enpc, false);
-        }
-        #endregion
-
-        #region ENpc
-        private void Shop_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            NavigateToShop(sender);
-        }
-
-        private void Shop_TouchUp(object sender, TouchEventArgs e) {
-            NavigateToShop(sender);
-        }
-
-        private void NavigateToShop(object sender) {
-            if (!NavigateToShops)
-                return;
-
-            var shop = ((FrameworkElement)sender).DataContext as SaintCoinach.Xiv.IShop;
-            if (shop != null)
-                NavigationEvent.Publish(shop, false);
-        }
-        #endregion
     }
 }

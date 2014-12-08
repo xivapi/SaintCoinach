@@ -19,7 +19,7 @@
                     Margin="0 2">
                 <listItems:ShopItemExpanded NavigateToCostItems="True"
                                             NavigateToENpcs="True"
-                                            NavigateToShopItems="False"
+                                            NavigateToShopItem="False"
                                             NavigateToShops="True" />
             </Border>
         </DataTemplate>

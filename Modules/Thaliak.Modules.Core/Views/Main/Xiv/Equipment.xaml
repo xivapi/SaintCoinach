@@ -25,7 +25,11 @@
         <TextBlock Text="{Binding Bid, StringFormat='{}Sells for {0}'}"
                    Visibility="{Binding IsIndisposable, Converter={StaticResource IndisposableToVisibilityConverter}}" />
         <parts:ItemShops Visibility="{Binding AsShopItems, Converter={StaticResource EnumerableToVisibilityConverter}}" />
-        <parts:ItemRecipesAsResult Visibility="{Binding RecipesAsResult, Converter={StaticResource EnumerableToVisibilityConverter}}" />
-        <parts:ItemRecipesAsMaterial Visibility="{Binding RecipesAsMaterial, Converter={StaticResource EnumerableToVisibilityConverter}}" />
+        <parts:RecipeListExpanded Visibility="{Binding Converter={StaticResource EnumerableToVisibilityConverter}}"
+                                  DataContext="{Binding RecipesAsResult}"
+                                  Header="Recipes" IsExpanded="True" />
+        <parts:RecipeList Visibility="{Binding Converter={StaticResource EnumerableToVisibilityConverter}}"
+                          DataContext="{Binding RecipesAsMaterial}"
+                          Header="Used in" IsExpanded="False" />
     </StackPanel>
 </UserControl>

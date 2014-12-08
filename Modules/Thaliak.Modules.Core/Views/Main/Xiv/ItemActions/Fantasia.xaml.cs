@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Thaliak.Modules.Core.Views.Main.Xiv.Parts {
+namespace Thaliak.Modules.Core.Views.Main.Xiv.ItemActions {
     /// <summary>
-    /// Interaction logic for ItemRecipesAsResult.xaml
+    /// Interaction logic for Fantasia.xaml
     /// </summary>
-    public partial class ItemRecipesAsResult : UserControl {
-        public ItemRecipesAsResult() {
+    public partial class Fantasia : UserControl {
+        public Fantasia() {
             InitializeComponent();
         }
     }

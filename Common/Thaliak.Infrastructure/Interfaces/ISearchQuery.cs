@@ -8,5 +8,7 @@ namespace Thaliak.Interfaces {
     public interface ISearchQuery {
         IEnumerable<Type> MatchedTypes { get; }
         bool IsMatch(object value);
+
+        void Set(string args);
     }
 }

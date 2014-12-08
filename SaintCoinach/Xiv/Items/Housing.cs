@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv.Items {
-    public class HousingItem : InventoryItem {
+    public class Housing : InventoryItem {
         #region Constructor
-        public HousingItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public Housing(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
         #endregion
     }
 }

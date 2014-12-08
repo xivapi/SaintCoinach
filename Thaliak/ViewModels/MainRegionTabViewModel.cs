@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
 namespace Thaliak.ViewModels {
@@ -19,6 +20,11 @@ namespace Thaliak.ViewModels {
         private string _Title;
         private Interfaces.ITitledView _ActiveTitledView;
         private IRegionManager _RegionManager;
+        private Guid _Id = Guid.NewGuid();
+
+        [Import]
+        private IEventAggregator EventAggregator { get; set; }
+        public Guid Id { get { return _Id; } }
 
         public IRegionManager RegionManager {
             get { return _RegionManager; }
@@ -79,13 +85,18 @@ namespace Thaliak.ViewModels {
         #region Commands
         private DelegateCommand _GoBackCommand;
         private DelegateCommand _GoForwardCommand;
+        private DelegateCommand _CloseCommand;
 
         public ICommand GoBackCommand { get { return _GoBackCommand ?? (_GoBackCommand = new DelegateCommand(GoBack, () => this.CanGoBack)); } }
         public ICommand GoForwardCommand { get { return _GoForwardCommand ?? (_GoForwardCommand = new DelegateCommand(GoForward, () => this.CanGoForward)); } }
+        public ICommand CloseCommand { get { return _CloseCommand ?? (_CloseCommand = new DelegateCommand(Close)); } }
 
         public bool CanGoBack { get { return ActiveContentRegion.NavigationService.Journal.CanGoBack; } }
         public bool CanGoForward { get { return ActiveContentRegion.NavigationService.Journal.CanGoForward; } }
 
+        public void Close() {
+            EventAggregator.GetEvent<Events.TabCloseRequestEvent>().Publish(Id);
+        }
         public void GoBack() {
             ActiveContentRegion.NavigationService.Journal.GoBack();
         }

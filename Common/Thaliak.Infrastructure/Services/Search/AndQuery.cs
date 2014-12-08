@@ -17,7 +17,9 @@ namespace Thaliak.Services.Search {
                         valid = new List<Type>(q.MatchedTypes);
                     else {
                         var qt = q.MatchedTypes.ToArray();
-                        foreach (var t in valid.ToArray()) {
+                        valid.AddRange(qt.Where(_ => _.IsInterface));
+
+                        foreach (var t in valid.Where(_ => !_.IsInterface).ToArray()) {
                             if(qt.Any(_ => _.IsAssignableFrom(t)))
                                 continue;
                             var reverse = qt.FirstOrDefault(_ => t.IsAssignableFrom(_));

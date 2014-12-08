@@ -6,6 +6,10 @@
              xmlns:conv="clr-namespace:Thaliak.Modules.Core.Converters"
              xmlns:data="clr-namespace:Thaliak.Modules.Core.Data"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:beh="clr-namespace:Thaliak.Behaviors;assembly=Thaliak.Infrastructure"
+             beh:NavigationHelper.DragEnabled="True"
+             beh:NavigationHelper.NavigationEnabled="True"
+             beh:NavigationHelper.NavigationObject="{Binding}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="_Control">

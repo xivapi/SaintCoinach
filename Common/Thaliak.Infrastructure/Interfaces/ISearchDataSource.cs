@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Thaliak.Interfaces {
     public interface ISearchDataSource {
         IEnumerable<Type> ContainedTypes { get; }
+        bool IncludeByDefault { get; }
         IEnumerator GetEnumerator();
         IEnumerable GetEnumerable();
     }

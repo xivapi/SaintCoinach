@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Thaliak.Modules.Core.Views.Main.Xiv.Parts.ItemRecipesAsResult"
+﻿<UserControl x:Class="Thaliak.Modules.Core.Views.Main.Xiv.Parts.RecipeList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,13 +14,12 @@
                     CornerRadius="4"
                     Padding="2"
                     Margin="0 2">
-                <listItems:RecipeExpanded NavigateToRecipeItem="False"
-                                          NavigateToRecipeMaterials="True" />
+                <listItems:Recipe NavigateToRecipeItem="True" />
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-    <Expander ExpandDirection="Down" Header="Recipes" IsExpanded="True">
-        <ItemsControl ItemsSource="{Binding RecipesAsResult}" Margin="2"
+    <Expander ExpandDirection="Down" x:Name="_Expander">
+        <ItemsControl ItemsSource="{Binding}" Margin="2"
                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                  ItemTemplate="{StaticResource RecipeTemplate}">
             <ItemsControl.ItemsPanel>

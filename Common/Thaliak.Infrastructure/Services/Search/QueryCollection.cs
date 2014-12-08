@@ -25,6 +25,7 @@ namespace Thaliak.Services.Search {
         #endregion
 
         #region ISearchQuery Members
+        void Interfaces.ISearchQuery.Set(string args) { throw new NotSupportedException(); }
         public abstract IEnumerable<Type> MatchedTypes { get; }
 
         public abstract bool IsMatch(object value);

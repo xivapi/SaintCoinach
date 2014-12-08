@@ -62,18 +62,52 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
 
-        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" LastChildFill="True">
-            <Expander DockPanel.Dock="Left" ExpandDirection="Right">
-                <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.LeftDockRegion}"
-                                Width="250" />
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" x:Name="_DockLeftColumn" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" x:Name="_DockRightColumn" />
+            </Grid.ColumnDefinitions>
+
+            <Expander DockPanel.Dock="Left" ExpandDirection="Right" AllowDrop="True"
+                      HorizontalContentAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      Grid.Column="0" Expanded="ExpanderDockLeft_Expanded" Collapsed="ExpanderDockLeft_Collapsed"
+                      x:Name="ExpanderDockLeft"
+                      DragEnter="Element_DragEnter" DragLeave="Element_DragLeave" DragOver="Element_DragOver"
+                      Drop="Element_Drop">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.LeftDockRegion}" />
+                </ScrollViewer>
             </Expander>
-            <Expander DockPanel.Dock="Right" ExpandDirection="Left">
-                <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.RightDockRegion}"
-                                Width="250" />
+            <GridSplitter Width="4" Grid.Column="0" x:Name="_DockRightSplitter"
+                          IsEnabled="{Binding ElementName=ExpanderDockLeft, Path=IsExpanded}"
+                          HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                          ResizeBehavior="CurrentAndNext" ResizeDirection="Columns" />
+            <GridSplitter Width="4" Grid.Column="2" x:Name="_DockLeftSplitter"
+                          IsEnabled="{Binding ElementName=ExpanderDockRight, Path=IsExpanded}"
+                          HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                          ResizeBehavior="PreviousAndCurrent" ResizeDirection="Columns" />
+            <Expander DockPanel.Dock="Right" ExpandDirection="Left" AllowDrop="True"
+                      HorizontalContentAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      Grid.Column="2" Expanded="ExpanderDockRight_Expanded" Collapsed="ExpanderDockRight_Collapsed"
+                      x:Name="ExpanderDockRight"
+                      DragEnter="Element_DragEnter" DragLeave="Element_DragLeave" DragOver="Element_DragOver"
+                      Drop="Element_Drop">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.RightDockRegion}" />
+                </ScrollViewer>
             </Expander>
 
             <Controls:MetroAnimatedTabControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}"
-                                              VerticalAlignment="Stretch" Margin="4">
+                                              VerticalAlignment="Stretch" Margin="4"
+                                              Grid.Column="1" Name="MainRegionControl"
+                                              AllowDrop="True"
+                                              DragEnter="Element_DragEnter" DragLeave="Element_DragLeave" DragOver="Element_DragOver"
+                                              Drop="Element_Drop">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="HeaderTemplate" Value="{StaticResource TabItemHeaderTemplate}" />
@@ -91,6 +125,6 @@
                     </Style>
                 </TabControl.ItemContainerStyle>
             </Controls:MetroAnimatedTabControl>
-        </DockPanel>
+        </Grid>
     </Grid>
 </Controls:MetroWindow>

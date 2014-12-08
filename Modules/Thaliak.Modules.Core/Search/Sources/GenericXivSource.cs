@@ -5,26 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel.Composition;
+using Xiv = SaintCoinach.Xiv;
 
-namespace Thaliak {
-    [Export(typeof(Interfaces.ISearchDataSource))]
-    public class TestItemSource : Interfaces.ISearchDataSource {
-
+namespace Thaliak.Modules.Core.Search.Sources {
+    public abstract class GenericXivSource<T> : Interfaces.ISearchDataSource where T : Xiv.IXivRow {
         [Import]
-        private SaintCoinach.Xiv.XivCollection _Xiv;
+        private Xiv.XivCollection Data { get; set; }
 
         #region ISearchDataSource Members
 
         public IEnumerable<Type> ContainedTypes {
-            get { yield return typeof(SaintCoinach.Xiv.Item); }
+            get { yield return typeof(T); }
         }
+        public abstract bool IncludeByDefault { get; }
 
         public System.Collections.IEnumerator GetEnumerator() {
-            return _Xiv.GetSheet<SaintCoinach.Xiv.Item>().GetEnumerator();
+            return Data.GetSheet<T>().GetEnumerator();
         }
 
         public System.Collections.IEnumerable GetEnumerable() {
-            return _Xiv.GetSheet<SaintCoinach.Xiv.Item>();
+            return Data.GetSheet<T>();
         }
 
         #endregion

@@ -14,10 +14,11 @@ namespace Thaliak.Services {
 
     [Export(typeof(ISearchProvider))]
     public class SearchProvider : ISearchProvider {
-
-        
+        /*[ImportMany(AllowRecomposition = true)]
+        public Lazy<ISearchQuery, Behaviors.ISearchFunctionRegistration>[] QueryFunctions { get; set; }*/
         [ImportMany(AllowRecomposition = true)]
-        public Lazy<ISearchQueryFactory>[] QueryFactories { get; set; }
+        public ExportFactory<ISearchQuery, Behaviors.ISearchFunctionRegistration>[] QueryFunctions { get; set; }
+        
 
         [ImportMany(AllowRecomposition = true)]
         public Lazy<ISearchDataSource>[] DataSources { get; set; }
@@ -151,15 +152,21 @@ namespace Thaliak.Services {
         }
 
         public ISearchQuery GetQuery(string function, string args) {
-            var factory = QueryFactories.Where(f => f.Value.HandledFunctions.Any(fn => string.Equals(fn, function, StringComparison.OrdinalIgnoreCase))).Select(f => f.Value).FirstOrDefault();
-            if (factory == null)
+            var funcFactory = QueryFunctions.FirstOrDefault(_ => string.Equals(_.Metadata.Function, function, StringComparison.OrdinalIgnoreCase));
+            if (funcFactory == null)
                 return null;
-            return factory.CreateQuery(function, args);
+            var func = funcFactory.CreateExport().Value;
+            func.Set(args);
+            return func;
         }
 
         public System.Collections.IEnumerable Search(Interfaces.ISearchQuery query) {
-            var queryTypes = query.MatchedTypes.ToArray();
-            var sources = DataSources.Where(s => s.Value.ContainedTypes.Any(t => queryTypes.Any(qt => qt.IsAssignableFrom(t))));
+            var queryTypes = query.MatchedTypes.Where(_ => !_.IsInterface).ToArray();
+            IEnumerable<Lazy<ISearchDataSource>> sources;
+            if (!queryTypes.Any() || queryTypes.Any(_ => _ == typeof(object)))
+                sources = DataSources.Where(s => s.Value.IncludeByDefault);
+            else
+                sources = DataSources.Where(s => s.Value.ContainedTypes.Any(t => queryTypes.Any(qt => t.IsAssignableFrom(qt) || qt.IsAssignableFrom(t))));
             var sourceEnum = sources.SelectMany(s => s.Value.GetEnumerable().Cast<object>());
 
             return sourceEnum.Where(o => query.IsMatch(o));

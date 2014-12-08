@@ -35,6 +35,8 @@ namespace SaintCoinach.Xiv {
         public int DifficultyFactor { get { return AsInt32("DifficultyFactor"); } }
         public int QualityFactor { get { return AsInt32("QualityFactor"); } }
         public int DurabilityFactor { get { return AsInt32("DurabilityFactor"); } }
+
+        public int UnlockKey { get { return AsInt32("UnlockKey"); } }
         #endregion
 
         #region Constructor
