@@ -39,6 +39,7 @@ namespace SaintCoinach.Cmd {
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {
+            rootCmd.RegisterCommand(new Commands.LanguageCommand(realm));
             rootCmd.RegisterCommand(new Commands.RawCommand(realm));
             rootCmd.RegisterCommand(new Commands.ImageCommand(realm));
             rootCmd.RegisterCommand(new Commands.UiCommand(realm));

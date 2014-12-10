@@ -57,7 +57,7 @@
     <Compile Include="Commands\Graphics\MapCommand.cs" />
     <Compile Include="Commands\Graphics\TerritoryCommand.cs" />
     <Compile Include="Commands\Graphics\ModelCommand.cs" />
-    <Compile Include="GraphicsCommand.cs" />
+    <Compile Include="Commands\LanguageCommand.cs" />
     <Compile Include="Commands\ImageCommand.cs" />
     <Compile Include="GraphicsHelper.cs" />
     <Compile Include="Program.cs" />

@@ -144,7 +144,7 @@ namespace SaintCoinach.Graphics {
                 Usage = Usage.RenderTargetOutput | Usage.BackBuffer,
             };
 
-            Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.Debug, desc, out _Device, out _SwapChain);
+            Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out _Device, out _SwapChain);
 
             var factory = _SwapChain.GetParent<Factory>();
             factory.MakeWindowAssociation(Form.Handle, WindowAssociationFlags.IgnoreAll);
