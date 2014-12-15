@@ -11,17 +11,20 @@ namespace SaintCoinach.Xiv {
             #region Fields
             private Item _Item;
             private int _Value;
+            private int _Tier;
             #endregion
 
             #region Properties
             public Item Item { get { return _Item; } }
             public int Value { get { return _Value; } }
+            public int Tier { get { return _Tier; } }
             #endregion
 
             #region Constructor
-            public ItemValue(Item item, int value) {
+            public ItemValue(Item item, int value, int tier) {
                 _Item = item;
                 _Value = value;
+                _Tier = tier;
             }
             #endregion
         }
@@ -52,7 +55,7 @@ namespace SaintCoinach.Xiv {
                     continue;
 
                 var val = AsInt32("Value", i);
-                items.Add(new ItemValue(item, val));
+                items.Add(new ItemValue(item, val, i));
             }
 
             return items.ToArray();

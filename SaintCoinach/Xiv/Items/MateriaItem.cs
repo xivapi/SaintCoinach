@@ -10,6 +10,13 @@ namespace SaintCoinach.Xiv.Items {
         private bool _IsBuilt = false;
         private BaseParam _BaseParam;
         private int _Value;
+        private int _Tier;
+        #endregion
+
+        #region Properties
+        public BaseParam BaseParam { get { Build(); return _BaseParam; } }
+        public int Value { get { Build(); return _Value; } }
+        public int Tier { get { Build(); return _Tier; } }
         #endregion
 
         #region Constructor
@@ -28,6 +35,7 @@ namespace SaintCoinach.Xiv.Items {
                     if (entry.Item == this) {
                         _BaseParam = materia.BaseParam;
                         _Value = entry.Value;
+                        _Tier = entry.Tier;
                         found = true;
                         break;
                     }
@@ -37,6 +45,7 @@ namespace SaintCoinach.Xiv.Items {
             }
 
             if (!found) {
+                _Tier = -1;
                 _Value = 0;
                 _BaseParam = Sheet.Collection.GetSheet<BaseParam>()[0];
             }
