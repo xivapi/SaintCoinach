@@ -28,7 +28,9 @@ namespace Thaliak.Services {
         }
 
         public object Retrieve(Guid id) {
-            return _Store[id];
+            if (_Store.ContainsKey(id))
+                return _Store[id];
+            return null;
         }
         #endregion
     }

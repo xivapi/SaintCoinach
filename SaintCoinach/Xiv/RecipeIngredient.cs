@@ -10,12 +10,17 @@ namespace SaintCoinach.Xiv {
         private RecipeIngredientType _Type;
         private Item _Item;
         private int _Count;
+        private int _QualityPerItem;
         #endregion
 
         #region Properties
         public RecipeIngredientType Type { get { return _Type; } }
         public Item Item { get { return _Item; } }
         public int Count { get { return _Count; } }
+        public int QualityPerItem {
+            get { return _QualityPerItem; }
+            internal set { _QualityPerItem = value; }
+        }
         #endregion
 
         #region Constructor

@@ -33,6 +33,27 @@ namespace SaintCoinach.Graphics {
         }
         #endregion
 
+        public bool SetMaterialVersion(int v) {
+            var result = true;
+            foreach (var mesh in Meshes) {
+                if (mesh.AvailableMaterialVersions.Contains(v))
+                    mesh.MaterialVersion = v;
+                else
+                    result = false;
+            }
+            return result;
+        }
+        public bool SetMaterialStain(int stain) {
+            var result = true;
+            foreach (var mesh in Meshes) {
+                if (mesh.CanStain && mesh.AvailableStains.Contains(stain))
+                    mesh.MaterialStain = stain;
+                else
+                    result = false;
+            }
+            return result;
+        }
+
         #region IContentComponent Members
         public bool IsLoaded {
             get { return _IsLoaded; }

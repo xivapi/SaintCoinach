@@ -86,6 +86,7 @@
     <Compile Include="Converters\BooleanToStringConverter.cs" />
     <Compile Include="Converters\ItemToItemAttributesConverter.cs" />
     <Compile Include="Converters\ParameterSelectorByType.cs" />
+    <Compile Include="Converters\ShopItemCostsToShopItemsConverter.cs" />
     <Compile Include="CoreModule.cs" />
     <Compile Include="Data\AttachedImage.cs" />
     <Compile Include="Data\ItemActionTemplateSelector.cs" />
@@ -100,6 +101,10 @@
     <Compile Include="Search\Sources\ItemSource.cs" />
     <Compile Include="Search\Sources\RecipeSource.cs" />
     <Compile Include="TitledNavigationTarget.cs" />
+    <Compile Include="ToolbarItems\RecipeBasketToolbarItem.xaml.cs">
+      <DependentUpon>RecipeBasketToolbarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolbarItems\RecipeBasketViewModel.cs" />
     <Compile Include="Views\ListItems\Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
@@ -160,6 +165,9 @@
     <Compile Include="Views\Main\Xiv\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\Xiv\Parts\EquipmentViewOptions.xaml.cs">
+      <DependentUpon>EquipmentViewOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Main\Xiv\Parts\ParameterObjectParameters.xaml.cs">
       <DependentUpon>ParameterObjectParameters.xaml</DependentUpon>
     </Compile>
@@ -175,8 +183,11 @@
     <Compile Include="Views\Main\Xiv\Parts\RecipeListExpanded.xaml.cs">
       <DependentUpon>RecipeListExpanded.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\Xiv\Parts\ItemShops.xaml.cs">
-      <DependentUpon>ItemShops.xaml</DependentUpon>
+    <Compile Include="Views\Main\Xiv\Parts\ShopItems.xaml.cs">
+      <DependentUpon>ShopItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Xiv\Parts\ShopItemsExpanded.xaml.cs">
+      <DependentUpon>ShopItemsExpanded.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\Xiv\Parts\SecondaryEquipmentParameters.xaml.cs">
       <DependentUpon>SecondaryEquipmentParameters.xaml</DependentUpon>
@@ -201,10 +212,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\ListItems\Parts\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ToolbarItems\RecipeBasketToolbarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListItems\Item.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -285,6 +299,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Main\Xiv\Parts\EquipmentViewOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main\Xiv\Parts\ParameterObjectParameters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -305,7 +323,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Main\Xiv\Parts\ItemShops.xaml">
+    <Page Include="Views\Main\Xiv\Parts\ShopItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Main\Xiv\Parts\ShopItemsExpanded.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

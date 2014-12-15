@@ -20,12 +20,14 @@ namespace Thaliak {
 
         private SaintCoinach.ARealmReversed _Arr;
         private Controllers.NavigationController _NavigationController;
+        private Controllers.GraphicsController _GraphicsController;
 
         #region Initialize
         protected override void InitializeShell() {
             base.InitializeShell();
 
             _NavigationController = Container.GetExportedValue<Controllers.NavigationController>();
+            _GraphicsController = Container.GetExportedValue<Controllers.GraphicsController>();
 
             Application.Current.MainWindow = (Shell)this.Shell;
             Application.Current.MainWindow.Show();

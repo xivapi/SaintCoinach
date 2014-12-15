@@ -9,10 +9,19 @@
              xmlns:bConv="http://schemas.kent.boogaart.com/converters"
              xmlns:local="clr-namespace:Thaliak.Modules.Core.Views.ListItems"
              xmlns:beh="clr-namespace:Thaliak.Behaviors;assembly=Thaliak.Infrastructure"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Name="_Self"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+        <bConv:MapConverter x:Key="HiderOfZeros" FallbackBehavior="ReturnUnsetValue">
+            <bConv:Mapping From="{x:Null}" To="{x:Static Visibility.Collapsed}" />
+            <bConv:Mapping To="{x:Static Visibility.Collapsed}">
+                <bConv:Mapping.From>
+                    <sys:Int32>0</sys:Int32>
+                </bConv:Mapping.From>
+            </bConv:Mapping>
+        </bConv:MapConverter>
         <ItemsPanelTemplate x:Key="MaterialPanelTemplate">
             <StackPanel Orientation="Vertical" IsItemsHost="True" />
         </ItemsPanelTemplate>
@@ -23,32 +32,28 @@
                          beh:NavigationHelper.NavigationObject="{Binding Item}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="ResultItemIconColumn" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0"
+                    <TextBlock Text="{Binding QualityPerItem}" Grid.Column="0" FontWeight="SemiBold"
+                               HorizontalAlignment="Right" VerticalAlignment="Center"
+                               Visibility="{Binding QualityPerItem, Converter={StaticResource HiderOfZeros}}"/>
+                    <Image Grid.Column="1"
                            Margin="2" Width="20" Height="20" 
                            data:AttachedImage.Image="{Binding Item.Icon}" />
-                    <TextBlock Text="{Binding Count}" Margin="2 0" Grid.Column="1" />
-                    <TextBlock Text="{Binding Item.Name}" Grid.Column="2" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Count}" Margin="2 0" Grid.Column="2" />
+                    <TextBlock Text="{Binding Item.Name}" Grid.Column="3" FontWeight="SemiBold" />
                 </Grid>
             </UserControl>
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel Grid.IsSharedSizeScope="True">
         <local:Recipe x:Name="_BaseRecipe" x:FieldModifier="private" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition SharedSizeGroup="ResultItemIconColumn" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <ItemsControl Grid.Column="1"
-                          ItemsSource="{Binding Ingredients}"
-                          ItemsPanel="{StaticResource MaterialPanelTemplate}"
-                          ItemTemplate="{StaticResource MaterialTemplate}" />
-        </Grid>
+        <ItemsControl ItemsSource="{Binding Ingredients}"
+                      ItemsPanel="{StaticResource MaterialPanelTemplate}"
+                      ItemTemplate="{StaticResource MaterialTemplate}" />
     </StackPanel>
 </UserControl>

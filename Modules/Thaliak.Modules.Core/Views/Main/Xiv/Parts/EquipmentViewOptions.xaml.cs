@@ -17,32 +17,42 @@ using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.ServiceLocation;
 
-namespace Thaliak.Modules.Core.Views.Main.Xiv {
+namespace Thaliak.Modules.Core.Views.Main.Xiv.Parts {
     /// <summary>
-    /// Interaction logic for Equipment.xaml
+    /// Interaction logic for EquipmentViewOptions.xaml
     /// </summary>
-    [Export("EquipmentView")]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
-    public partial class Equipment : UserControl {
-        public Equipment() {
+    public partial class EquipmentViewOptions : UserControl {
+        public EquipmentViewOptions() {
             InitializeComponent();
-        }
 
-        [Import]
-        TitledNavigationTarget ViewModel {
-            get { return (TitledNavigationTarget)DataContext; }
-            set { this.DataContext = value; }
+            _StainCombo.ItemsSource = ServiceLocator.Current.GetInstance<SaintCoinach.Xiv.XivCollection>().GetSheet<SaintCoinach.Xiv.Stain>();
         }
 
         private void View_Click(object sender, RoutedEventArgs e) {
-            var eq = ViewModel.NavigationObject as SaintCoinach.Xiv.Items.Equipment;
+            var eq = DataContext as SaintCoinach.Xiv.Items.Equipment;
 
             int matVersion;
-            var mdl = eq.GetModel(out matVersion);
+            int characterType;
+            switch (_GenderCombo.SelectedItem.ToString()) {
+                case "M":
+                    characterType = 0101;
+                    break;
+                case "F":
+                default:
+                    characterType = 0201;
+                    break;
+            }
+
+            var mdl = eq.GetModel(characterType, out matVersion);
             if (mdl != null) {
                 var subMdl = mdl.GetSubModel(0);
                 var component = new SaintCoinach.Graphics.Model(subMdl);
-                
+                component.SetMaterialVersion(matVersion);
+
+                var stain = _StainCombo.SelectedItem as SaintCoinach.Xiv.Stain;
+                if (stain != null)
+                    component.SetMaterialStain(stain.Key);
+
                 var evt = ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events.GraphicsViewRequestEvent>();
                 evt.Publish(new Events.GraphicsViewRequestArguments {
                     Component = component,

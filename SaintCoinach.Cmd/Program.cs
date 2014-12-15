@@ -51,6 +51,8 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new GraphicsCommand(packColl, dataColl));
 
             rootCmd.RegisterCommand(new TempCommand(packColl, dataColl));
+
+            rootCmd.RegisterCommand(new EquipmentInfoCommand(dataColl));
         }
 
         static string SearchForDataPath() {

@@ -95,6 +95,8 @@ namespace SaintCoinach.Graphics {
 
                 ReverseWinding(converted, indices, DataSourceCommon);
 
+                Array.Reverse(indices);
+
                 CalculateTangents(converted, indices, DataSourceCommon);
 
                 return converted;
@@ -109,6 +111,8 @@ namespace SaintCoinach.Graphics {
                 }).ToArray();
 
                 ReverseWinding(converted, indices, DataSourceDualTexture);
+
+                Array.Reverse(indices);
 
                 CalculateTangents(converted, indices, DataSourceDualTexture);
 

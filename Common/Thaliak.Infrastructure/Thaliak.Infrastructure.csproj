@@ -82,6 +82,9 @@
     <Compile Include="Behaviors\IModelToViewRegistration.cs" />
     <Compile Include="Converters\ObjectEnumerableToViewsConverter.cs" />
     <Compile Include="Converters\ObjectToViewConverter.cs" />
+    <Compile Include="DragDropExtensions.cs" />
+    <Compile Include="Events\GraphicsViewRequestArguments.cs" />
+    <Compile Include="Events\GraphicsViewRequestEvent.cs" />
     <Compile Include="Events\NavigationRequestEvent.cs" />
     <Compile Include="Events\NavigationRequestArguments.cs" />
     <Compile Include="Events\NavigationResultEvent.cs" />
@@ -116,7 +119,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj">
+      <Project>{39675bac-1a1a-4a83-9835-b926bed04c9b}</Project>
+      <Name>SaintCoinach.Graphics.ViewerEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

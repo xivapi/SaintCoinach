@@ -109,12 +109,55 @@ namespace SaintCoinach.Cmd {
                 return true;
             }
         }
+        class WeaponCommand : ActionCommandBase {
+            private IO.PackCollection _Pack;
+            private Xiv.XivCollection _Data;
+            public WeaponCommand(IO.PackCollection pack, Xiv.XivCollection data)
+                : base("weapon", "Display a weapon.") {
+                _Pack = pack;
+                _Data = data;
+            }
+
+            public async override Task<bool> InvokeAsync(string paramList) {
+                var wI = _Data.GetSheet<Xiv.Item>().FirstOrDefault(_ => string.Equals(_.Name, paramList.Trim(), StringComparison.OrdinalIgnoreCase)) as Xiv.Items.Equipment;
+                if (wI == null) {
+                    OutputError("Weapon not found.");
+                    return false;
+                }
+                var mdlKey = Convert.ToInt64(wI["Model{Main}"]);
+                var w = mdlKey & 0xFFFF;
+                var b = (mdlKey >> 16) & 0xFFFF;
+                var v = (mdlKey >> 32) & 0xFFFF;
+
+                var path = string.Format("chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl", w, b);
+
+                IO.File file;
+                if (_Pack.TryGetFile(path, out file)) {
+                    var mdlFile = file as Graphics.Assets.ModelFile;
+                    if (mdlFile != null) {
+                        var mdl = mdlFile.GetModel();
+                        var subMdl = mdl.GetSubModel(0);
+
+                        var component = new Graphics.Model(subMdl);
+                        foreach (var msg in ApplyMaterial(component, new[] { v.ToString() }, 0))
+                            OutputWarning(msg);
+
+                        RunViewer(component, file.Name);
+                    } else
+                        OutputError("File is not a model file.");
+                } else
+                    OutputError("File could not be found.");
+
+                return true;
+            }
+        }
 
         public GraphicsCommand(IO.PackCollection pack, Xiv.XivCollection data)
             : base("3d") {
                 SubCommands.Add(new ModelCommand(pack, data));
                 SubCommands.Add(new MapCommand(pack, data));
                 SubCommands.Add(new MonsterCommand(pack, data));
+                SubCommands.Add(new WeaponCommand(pack, data));
         }
 
         static IEnumerable<string> ApplyMaterial(Graphics.Model model, string[] parts, int offset) {

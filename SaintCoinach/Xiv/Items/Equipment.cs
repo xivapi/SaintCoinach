@@ -36,6 +36,8 @@ namespace SaintCoinach.Xiv.Items {
         public ItemSeries ItemSeries { get { return As<ItemSeries>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public int RequiredPvPRank { get { return AsInt32("PvPRank"); } }
+        public long PrimaryModelKey { get { return AsInt64("Model{Main}"); } }
+        public long SecondaryModelKey { get { return AsInt64("Model{Sub}"); } }
         #endregion
 
         #region Constructor
@@ -115,5 +117,26 @@ namespace SaintCoinach.Xiv.Items {
             parameters.AddParameterValue(baseParam, new ParameterValueFixed(type, value));
         }
         #endregion
+
+        public Graphics.Assets.Model GetModel(out int materialVersion) {
+            materialVersion = 0;
+            var slot = EquipSlotCategory.PossibleSlots.FirstOrDefault();
+            if (slot == null)
+                return null;
+            return GetModel(slot, out materialVersion);
+        }
+        public Graphics.Assets.Model GetModel(EquipSlot equipSlot, out int materialVersion) {
+            return equipSlot.GetModel(PrimaryModelKey, out materialVersion);
+        }
+        public Graphics.Assets.Model GetModel(int characterType, out int materialVersion) {
+            materialVersion = 0;
+            var slot = EquipSlotCategory.PossibleSlots.FirstOrDefault();
+            if (slot == null)
+                return null;
+            return GetModel(slot, characterType, out materialVersion);
+        }
+        public Graphics.Assets.Model GetModel(EquipSlot equipSlot, int characterType, out int materialVersion) {
+            return equipSlot.GetModel(PrimaryModelKey, characterType, out materialVersion);
+        }
     }
 }

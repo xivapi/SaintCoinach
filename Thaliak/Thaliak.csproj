@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controls\Automation\Peers\ResizerAutomationPeer.cs" />
     <Compile Include="Controls\ResizeDirection.cs" />
@@ -156,6 +157,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -164,6 +166,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +192,10 @@
       <Project>{54900499-5c2d-4517-96ef-e04a839a000d}</Project>
       <Name>Thaliak.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj">
+      <Project>{39675bac-1a1a-4a83-9835-b926bed04c9b}</Project>
+      <Name>SaintCoinach.Graphics.ViewerEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
       <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
       <Name>SaintCoinach</Name>
@@ -196,6 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Zodiac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

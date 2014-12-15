@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BgmCommand.cs" />
+    <Compile Include="EquipmentInfoCommand.cs" />
     <Compile Include="ExdCommand.cs" />
     <Compile Include="GraphicsCommand.cs" />
     <Compile Include="ImageCommand.cs" />

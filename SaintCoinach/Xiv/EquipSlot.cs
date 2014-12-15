@@ -58,6 +58,50 @@ namespace SaintCoinach.Xiv {
         }
         #endregion
 
+        #region Model
+        private static readonly Dictionary<int, int> CharacterTypeFallback = new Dictionary<int, int> {
+            { 0201, 0101 },
+            { 0301, 0101 },
+            { 0401, 0201 },
+            { 0501, 0101 },
+            { 0601, 0201 },
+            { 0701, 0101 },
+            { 0801, 0201 },
+            { 0901, 0101 },
+            { 1001, 0201 },
+            { 1101, 0101 },
+            { 1201, 0201 },
+        };
+        public const int DefaultCharacterType = 0101;
+        public Graphics.Assets.Model GetModel(long key, out int materialVersion) {
+            return GetModel(key, DefaultCharacterType, out materialVersion);
+        }
+        public Graphics.Assets.Model GetModel(long key, int characterType, out int materialVersion) {
+            materialVersion = 0;
+
+            Tuple<string, int> format;
+            if (!ModelNameFormats.TryGetValue(this.Key, out format))
+                return null;
+            if (format == null)
+                return null;
+
+            var a = (key) & 0xFFFF;
+            var b = (key >> 16) & 0xFFFF;
+            var c = (key >> 32) & 0xFFFF;
+            var d = (key >> 48) & 0xFFFF;
+            materialVersion = (int)((key >> (format.Item2 * 16)) & 0xFFFF);
+
+            IO.File file;
+            var pack = Collection.Collection.PackCollection;
+            while (!pack.TryGetFile(string.Format(format.Item1, a, b, c, d, characterType), out file)) {
+                if (!CharacterTypeFallback.TryGetValue(characterType, out characterType))
+                    return null;
+            }
+
+            return ((Graphics.Assets.ModelFile)file).GetModel();
+        }
+        #endregion
+
         public override string ToString() {
             return Name;
         }

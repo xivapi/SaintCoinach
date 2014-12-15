@@ -70,8 +70,12 @@ namespace SaintCoinach.Xiv {
                 if (count == 0)
                     continue;
 
-                ingredients.Add(new RecipeIngredient(RecipeIngredientType.Material, craftCrystal.Item, count));
+                ingredients.Add(new RecipeIngredient(RecipeIngredientType.Crystal, craftCrystal.Item, count));
             }
+            var itemLevelSum = ingredients.Where(_ => _.Type == RecipeIngredientType.Material).Sum(_ => _.Count * ((InventoryItem)_.Item).ItemLevel.Key);
+            var qualityFromMats = RecipeLevel.Quality / 2;
+            foreach (var mat in ingredients.Where(_ => _.Type == RecipeIngredientType.Material))
+                mat.QualityPerItem = ((InventoryItem)mat.Item).ItemLevel.Key * qualityFromMats / itemLevelSum;
 
             return ingredients.ToArray();
         }

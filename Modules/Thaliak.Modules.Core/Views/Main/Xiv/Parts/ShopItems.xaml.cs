@@ -20,9 +20,18 @@ namespace Thaliak.Modules.Core.Views.Main.Xiv.Parts {
     /// <summary>
     /// Interaction logic for ItemShopsView.xaml
     /// </summary>
-    public partial class ItemShops : UserControl {
-        public ItemShops() {
+    public partial class ShopItems : UserControl {
+        public ShopItems() {
             InitializeComponent();
+        }
+
+        public object Header {
+            get { return _Expander.Header; }
+            set { _Expander.Header = value; }
+        }
+        public bool IsExpanded {
+            get { return _Expander.IsExpanded; }
+            set { _Expander.IsExpanded = value; }
         }
     }
 }

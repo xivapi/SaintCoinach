@@ -62,13 +62,8 @@ namespace Thaliak {
 
         #region Drag/Drop
         private void Element_DragEnter(object sender, DragEventArgs e) {
-            e.Effects = DragDropEffects.None;
-            if (e.Data.GetDataPresent(DataFormats.StringFormat)) {
-                var str = (string)e.Data.GetData(DataFormats.StringFormat);
-                Guid id;
-                if (Guid.TryParse(str, out id))
-                    e.Effects = DragDropEffects.Link;
-            }
+            var o = _ObjectStore.TryGetDragObject(e);
+            e.Effects = o == null ? DragDropEffects.None : DragDropEffects.Link;
         }
 
         private void Element_DragLeave(object sender, DragEventArgs e) {
@@ -82,30 +77,26 @@ namespace Thaliak {
         private void Element_Drop(object sender, DragEventArgs e) {
             var frameworkElement = sender as FrameworkElement;
 
-            if (frameworkElement != null && e.Data.GetDataPresent(DataFormats.StringFormat)) {
-                var str = (string)e.Data.GetData(DataFormats.StringFormat);
-                Guid id;
-                if (Guid.TryParse(str, out id)) {
-                    var obj = _ObjectStore.Retrieve(id);
-                    var evt = _EventAggregator.GetEvent<Events.NavigationRequestEvent>();
+            var obj = _ObjectStore.TryGetDragObject(e);
+            if (frameworkElement != null && obj != null) {
+                var evt = _EventAggregator.GetEvent<Events.NavigationRequestEvent>();
 
-                    string targetRegion;
-                    switch (frameworkElement.Name) {
-                        case "ExpanderDockLeft":
-                            targetRegion = RegionNames.LeftDockRegion;
-                            break;
-                        case "ExpanderDockRight":
-                            targetRegion = RegionNames.RightDockRegion;
-                            break;
-                        case "MainRegionControl":
-                            targetRegion = RegionNames.MainRegion;
-                            break;
-                        default:
-                            throw new NotSupportedException();
-                    }
-
-                    evt.Publish(obj, false, targetRegion);
+                string targetRegion;
+                switch (frameworkElement.Name) {
+                    case "ExpanderDockLeft":
+                        targetRegion = RegionNames.LeftDockRegion;
+                        break;
+                    case "ExpanderDockRight":
+                        targetRegion = RegionNames.RightDockRegion;
+                        break;
+                    case "MainRegionControl":
+                        targetRegion = RegionNames.MainRegion;
+                        break;
+                    default:
+                        throw new NotSupportedException();
                 }
+
+                evt.Publish(obj, false, targetRegion);
             }
         }
         #endregion
