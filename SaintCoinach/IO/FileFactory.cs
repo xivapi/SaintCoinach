@@ -13,6 +13,8 @@ namespace SaintCoinach.IO {
             var header = new FileCommonHeader(file, stream);
 
             switch (header.FileType) {
+                case FileType.Empty:
+                    return new EmptyFile(directory, header);
                 case FileType.Default:
                     return new FileDefault(directory, header);
                 case FileType.Image:
@@ -20,7 +22,7 @@ namespace SaintCoinach.IO {
                 case FileType.Model:
                     return new Graphics.Assets.ModelFile(directory, header);
                 default:
-                    throw new NotSupportedException(string.Format("Unknown file type {0:X2}h", header.FileType));
+                    throw new NotSupportedException(string.Format("Unknown file type {0:X2}h", (int)header.FileType));
             }
         }
     }

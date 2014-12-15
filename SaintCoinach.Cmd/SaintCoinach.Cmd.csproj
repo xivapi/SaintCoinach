@@ -50,11 +50,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BgmCommand.cs" />
-    <Compile Include="EquipmentInfoCommand.cs" />
-    <Compile Include="ExdCommand.cs" />
+    <Compile Include="Commands\BgmCommand.cs" />
+    <Compile Include="Commands\ExdCommand.cs" />
+    <Compile Include="Commands\GraphicsCommand.cs" />
+    <Compile Include="Commands\Graphics\EquipmentCommand.cs" />
+    <Compile Include="Commands\Graphics\MapCommand.cs" />
+    <Compile Include="Commands\Graphics\TerritoryCommand.cs" />
+    <Compile Include="Commands\Graphics\ModelCommand.cs" />
     <Compile Include="GraphicsCommand.cs" />
-    <Compile Include="ImageCommand.cs" />
+    <Compile Include="Commands\ImageCommand.cs" />
+    <Compile Include="GraphicsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -62,9 +67,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RawCommand.cs" />
-    <Compile Include="TempCommand.cs" />
-    <Compile Include="UiCommand.cs" />
+    <Compile Include="Commands\RawCommand.cs" />
+    <Compile Include="Commands\UiCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,6 +91,7 @@
   <ItemGroup>
     <Content Include="Cmd.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

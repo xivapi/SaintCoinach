@@ -58,6 +58,7 @@
     <Compile Include="Graphics\ShPk\ShaderType.cs" />
     <Compile Include="Graphics\ShPk\ShPkFile.cs" />
     <Compile Include="Graphics\ShPk\ShPkHeader.cs" />
+    <Compile Include="IO\EmptyFile.cs" />
     <Compile Include="OrderedBitConverter.cs" />
     <Compile Include="Ex\Column.cs" />
     <Compile Include="Ex\DataReader.cs" />

@@ -8,18 +8,17 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 using Tharga.Toolkit.Console.Command.Base;
 
-namespace SaintCoinach.Cmd {
+namespace SaintCoinach.Cmd.Commands {
     public class BgmCommand : ActionCommandBase {
-        private IO.PackCollection _Pack;
-        private Xiv.XivCollection _Data;
+        private ARealmReversed _Realm;
 
-        public BgmCommand(IO.PackCollection pack, Xiv.XivCollection data) : base("bgm", "Export all BGM files.") {
-            _Pack = pack;
-            _Data = data;
+        public BgmCommand(ARealmReversed realm)
+            : base("bgm", "Export all BGM files.") {
+            _Realm = realm;
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
-            var bgms = _Data.GetSheet("BGM");
+            var bgms = _Realm.GameData.GetSheet("BGM");
 
             var successCount = 0;
             var failCount = 0;
@@ -32,8 +31,8 @@ namespace SaintCoinach.Cmd {
                         continue;
 
                     IO.File file;
-                    if (_Pack.TryGetFile(filePath, out file)) {
-                        var fInfo = new System.IO.FileInfo(filePath + ".ogg");
+                    if (_Realm.Packs.TryGetFile(filePath, out file)) {
+                        var fInfo = new System.IO.FileInfo(System.IO.Path.Combine(_Realm.GameVersion, filePath + ".ogg"));
 
                         if (!fInfo.Directory.Exists)
                             fInfo.Directory.Create();

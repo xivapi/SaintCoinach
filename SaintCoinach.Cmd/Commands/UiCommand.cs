@@ -9,7 +9,7 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 using Tharga.Toolkit.Console.Command.Base;
 
-namespace SaintCoinach.Cmd {
+namespace SaintCoinach.Cmd.Commands {
     public class UiCommand : ActionCommandBase {
         const string UiImagePathFormat = "ui/icon/{0:D3}000{1}/{2:D6}.tex";
         static string[] UiVersions = new string[] {
@@ -21,11 +21,11 @@ namespace SaintCoinach.Cmd {
             "/hq"
         };
 
-        private IO.PackCollection _Pack;
+        private ARealmReversed _Realm;
 
-        public UiCommand(IO.PackCollection pack)
+        public UiCommand(ARealmReversed realm)
             : base("ui", "Export all, a single, or a range of UI icons.") {
-            _Pack = pack;
+            _Realm = realm;
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
@@ -84,12 +84,12 @@ namespace SaintCoinach.Cmd {
             var filePath = string.Format(UiImagePathFormat, i / 1000, version, i);
 
             IO.File file;
-            if (_Pack.TryGetFile(filePath, out file)) {
+            if (_Realm.Packs.TryGetFile(filePath, out file)) {
                 var imgFile = file as Imaging.ImageFile;
                 if (imgFile != null) {
                     var img = imgFile.GetImage();
 
-                    var target = new FileInfo(file.Path);
+                    var target = new FileInfo(Path.Combine(_Realm.GameVersion, file.Path));
                     if (!target.Directory.Exists)
                         target.Directory.Create();
                     var pngPath = target.FullName.Substring(0, target.FullName.Length - target.Extension.Length) + ".png";

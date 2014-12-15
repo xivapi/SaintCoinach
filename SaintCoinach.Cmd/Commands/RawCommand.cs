@@ -9,20 +9,20 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 using Tharga.Toolkit.Console.Command.Base;
 
-namespace SaintCoinach.Cmd {
+namespace SaintCoinach.Cmd.Commands {
     public class RawCommand : ActionCommandBase {
-        private IO.PackCollection _Pack;
+        private ARealmReversed _Realm;
 
-        public RawCommand(IO.PackCollection pack)
+        public RawCommand(ARealmReversed realm)
             : base("raw", "Save raw contents of a file.") {
-            _Pack = pack;
+            _Realm = realm;
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
             try {
                 IO.File file;
-                if (_Pack.TryGetFile(paramList.Trim(), out file)) {
-                    var target = new FileInfo(file.Path);
+                if (_Realm.Packs.TryGetFile(paramList.Trim(), out file)) {
+                    var target = new FileInfo(Path.Combine(_Realm.GameVersion, file.Path));
                     if (!target.Directory.Exists)
                         target.Directory.Create();
 

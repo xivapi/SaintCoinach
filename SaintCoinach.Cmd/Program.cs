@@ -39,20 +39,13 @@ namespace SaintCoinach.Cmd {
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {
-            var packColl = realm.Packs;
-            var dataColl = realm.GameData;
+            rootCmd.RegisterCommand(new Commands.RawCommand(realm));
+            rootCmd.RegisterCommand(new Commands.ImageCommand(realm));
+            rootCmd.RegisterCommand(new Commands.UiCommand(realm));
+            rootCmd.RegisterCommand(new Commands.ExdCommand(realm));
+            rootCmd.RegisterCommand(new Commands.BgmCommand(realm));
 
-            rootCmd.RegisterCommand(new RawCommand(packColl));
-            rootCmd.RegisterCommand(new ImageCommand(packColl));
-            rootCmd.RegisterCommand(new UiCommand(packColl));
-            rootCmd.RegisterCommand(new ExdCommand(dataColl));
-            rootCmd.RegisterCommand(new BgmCommand(packColl, dataColl));
-
-            rootCmd.RegisterCommand(new GraphicsCommand(packColl, dataColl));
-
-            rootCmd.RegisterCommand(new TempCommand(packColl, dataColl));
-
-            rootCmd.RegisterCommand(new EquipmentInfoCommand(dataColl));
+            rootCmd.RegisterCommand(new Commands.GraphicsCommand(realm));
         }
 
         static string SearchForDataPath() {

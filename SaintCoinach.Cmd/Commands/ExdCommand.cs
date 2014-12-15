@@ -9,13 +9,13 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 using Tharga.Toolkit.Console.Command.Base;
 
-namespace SaintCoinach.Cmd {
+namespace SaintCoinach.Cmd.Commands {
     public class ExdCommand : ActionCommandBase {
-        private Xiv.XivCollection _Data;
+        private ARealmReversed _Realm;
 
-        public ExdCommand(Xiv.XivCollection data)
+        public ExdCommand(ARealmReversed realm)
             : base("exd", "Export all data (default), or only specific data files, seperated by spaces.") {
-            _Data = data;
+            _Realm = realm;
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
@@ -24,17 +24,17 @@ namespace SaintCoinach.Cmd {
             IEnumerable<string> filesToExport;
 
             if (string.IsNullOrWhiteSpace(paramList))
-                filesToExport = _Data.AvailableSheets;
+                filesToExport = _Realm.GameData.AvailableSheets;
             else
-                filesToExport = paramList.Split(' ').Select(_ => _Data.FixName(_));
+                filesToExport = paramList.Split(' ').Select(_ => _Realm.GameData.FixName(_));
 
             var successCount = 0;
             var failCount = 0;
             foreach (var name in filesToExport) {
                 try {
-                    var sheet = _Data.GetSheet(name);
+                    var sheet = _Realm.GameData.GetSheet(name);
 
-                    var target = new FileInfo(string.Format(CsvFileFormat, name));
+                    var target = new FileInfo(Path.Combine(_Realm.GameVersion, string.Format(CsvFileFormat, name)));
                     if (!target.Directory.Exists)
                         target.Directory.Create();
 
