@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Ionic.Zip;
 using YamlDotNet.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SaintCoinach {
     using Ex.Relational.Definition;
@@ -18,6 +19,7 @@ namespace SaintCoinach {
         const string VersionFile = "ffxivgame.ver";
         const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
         const string UpdateReportYamlFile = "logs/report-{0}-{1}.yaml";
+        const string UpdateReportBinFile = "logs/report-{0}-{1}.bin";
 
         static readonly Encoding ZipEncoding = Encoding.UTF8;
         
@@ -123,6 +125,15 @@ namespace SaintCoinach {
                 }
             }
             zip.UpdateEntry(yamlTarget, yamlBuffer);
+
+            var binTarget = string.Format(UpdateReportBinFile, report.PreviousVersion, report.UpdateVersion);
+            var formatter = new BinaryFormatter();
+            byte[] binBuffer;
+            using (var ms = new MemoryStream()) {
+                formatter.Serialize(ms, report);
+                binBuffer = ms.ToArray();
+            }
+            zip.UpdateEntry(binTarget, binBuffer);
         }
         #endregion
 

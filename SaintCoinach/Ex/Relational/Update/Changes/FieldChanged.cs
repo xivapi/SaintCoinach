@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Ex.Relational.Update.Changes {
+    [Serializable]
     public class FieldChanged : IChange {
         private string _SheetName;
         private string _ColumnName;
