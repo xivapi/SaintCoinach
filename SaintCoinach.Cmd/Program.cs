@@ -26,16 +26,18 @@ namespace SaintCoinach.Cmd {
 
             var realm = new ARealmReversed(dataPath, Ex.Language.English);
 
-            /*var useDir = Path.Combine(Directory.GetCurrentDirectory(), realm.GameVersion);
-            if (!Directory.Exists(useDir))
-                Directory.CreateDirectory(useDir);
-            Directory.SetCurrentDirectory(useDir);*/
-
             var cmd = new RootCommand();
 
             Setup(cmd, realm);
 
             (new CommandEngine(cmd)).Run(args);
+        }
+        static void WriteAll(StreamWriter writer, string type, string[] texts) {
+            writer.WriteLine("|-");
+            writer.WriteLine("! {0}", type);
+            foreach (var t in texts)
+                writer.WriteLine("| {0}", t);
+
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {
