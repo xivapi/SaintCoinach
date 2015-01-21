@@ -8,13 +8,13 @@ namespace SaintCoinach.Xiv {
     public class SpecialShop : XivRow, IShop {
         #region Fields
         private ENpc[] _ENpcs;
-        private SpecialShopItem[] _ShopItems;
+        private SpecialShopListing[] _ShopItems;
         #endregion
 
         #region Properties
         public string Name { get { return AsString("Name"); } }
         public IEnumerable<ENpc> ENpcs { get { return _ENpcs ?? (_ENpcs = BuildENpcs()); } }
-        public IEnumerable<SpecialShopItem> Items { get { return _ShopItems ?? (_ShopItems = BuildShopItems()); } }
+        public IEnumerable<SpecialShopListing> Items { get { return _ShopItems ?? (_ShopItems = BuildShopItems()); } }
         #endregion
 
         #region Constructor
@@ -25,13 +25,13 @@ namespace SaintCoinach.Xiv {
         private ENpc[] BuildENpcs() {
             return Sheet.Collection.ENpcs.FindWithData(this.Key).ToArray();
         }
-        private SpecialShopItem[] BuildShopItems() {
+        private SpecialShopListing[] BuildShopItems() {
             const int Count = 160;
 
-            var items = new List<SpecialShopItem>();
+            var items = new List<SpecialShopListing>();
             for (var i = 0; i < Count; ++i) {
-                var item = new SpecialShopItem(this, i);
-                if (item.Item.Key != 0 && item.Count != 0)
+                var item = new SpecialShopListing(this, i);
+                if(item.Rewards.Any())
                     items.Add(item);
             }
 
@@ -44,8 +44,8 @@ namespace SaintCoinach.Xiv {
         }
 
         #region IShop Members
-        IEnumerable<IShopItem> IShop.ShopItems {
-            get { return Items.Cast<IShopItem>(); }
+        IEnumerable<IShopListing> IShop.ShopListings {
+            get { return Items.Cast<IShopListing>(); }
         }
         #endregion
     }

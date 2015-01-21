@@ -229,7 +229,7 @@
     <Compile Include="Xiv\InventoryItem.cs" />
     <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />
-    <Compile Include="Xiv\IShopItem.cs" />
+    <Compile Include="Xiv\IShopListing.cs" />
     <Compile Include="Xiv\ItemAction.cs" />
     <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\ItemActions\AttributeReset.cs" />
@@ -303,7 +303,7 @@
     <Compile Include="Xiv\PlaceName.cs" />
     <Compile Include="Xiv\ProbabilityPair.cs" />
     <Compile Include="Xiv\Quest.cs" />
-    <Compile Include="Xiv\IShopItemCost.cs" />
+    <Compile Include="Xiv\IShopListingItem.cs" />
     <Compile Include="Xiv\Recipe.cs" />
     <Compile Include="Xiv\RecipeElement.cs" />
     <Compile Include="Xiv\RecipeIngredient.cs" />
@@ -317,9 +317,9 @@
     <Compile Include="Xiv\Sheets\ItemActionSheet.cs" />
     <Compile Include="Xiv\Shop.cs" />
     <Compile Include="Xiv\ShopItem.cs" />
-    <Compile Include="Xiv\ShopItemCost.cs" />
+    <Compile Include="Xiv\ShopListingItem.cs" />
     <Compile Include="Xiv\SpecialShop.cs" />
-    <Compile Include="Xiv\SpecialShopItem.cs" />
+    <Compile Include="Xiv\SpecialShopListing.cs" />
     <Compile Include="Xiv\Stain.cs" />
     <Compile Include="Xiv\Status.cs" />
     <Compile Include="Xiv\TerritoryType.cs" />

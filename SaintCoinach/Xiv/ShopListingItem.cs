@@ -5,33 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public class ShopItemCost : IShopItemCost {
+    public class ShopListingItem : IShopListingItem {
         #region Fields
-        private IShopItem _ShopItem;
+        private IShopListing _ShopItem;
         private Item _Item;
         private int _Count;
-        private bool _RequireHq;
+        private bool _IsHq;
         #endregion
 
         #region Properties
-        public IShopItem ShopItem { get { return _ShopItem; } }
+        public IShopListing ShopItem { get { return _ShopItem; } }
         public Item Item {
             get { return _Item; }
         }
         public int Count {
             get { return _Count; }
         }
-        public bool RequireHq {
-            get { return _RequireHq; }
+        public bool IsHq {
+            get { return _IsHq; }
         }
         #endregion
 
         #region Constructor
-        public ShopItemCost(IShopItem shopItem, Item item, int count, bool requireHq) {
+        public ShopListingItem(IShopListing shopItem, Item item, int count, bool isHq) {
             _ShopItem = shopItem;
             _Item = item;
             _Count = count;
-            _RequireHq = requireHq;
+            _IsHq = isHq;
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace SaintCoinach.Xiv {
             if (Count > 1)
                 sb.AppendFormat("{0} ", Count);
             sb.Append(Item);
-            if (RequireHq)
+            if (IsHq)
                 sb.Append(" (HQ)");
             return sb.ToString();
         }

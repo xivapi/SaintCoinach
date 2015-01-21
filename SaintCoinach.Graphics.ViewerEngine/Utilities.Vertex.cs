@@ -93,7 +93,7 @@ namespace SaintCoinach.Graphics {
                     TextureCoordinates = _.TextureCoordinates0.ToDX()
                 }).ToArray();
 
-                ReverseWinding(converted, indices, DataSourceCommon);
+                //ReverseWinding(converted, indices, DataSourceCommon);
 
                 Array.Reverse(indices);
 
@@ -110,7 +110,7 @@ namespace SaintCoinach.Graphics {
                     BlendWeight = _.BlendWeight.ToDX()
                 }).ToArray();
 
-                ReverseWinding(converted, indices, DataSourceDualTexture);
+                //ReverseWinding(converted, indices, DataSourceDualTexture);
 
                 Array.Reverse(indices);
 

@@ -36,7 +36,7 @@ namespace SaintCoinach {
         };
         private delegate void SpecialProcessor(byte[] data, ref byte[] output, int offset, string typeName);
         private static Dictionary<byte, SpecialProcessor> SpecialTypeProcessors = new Dictionary<byte, SpecialProcessor> {
-            { 0x08, IfProcessor },
+            // { 0x08, IfProcessor }, // TODO: Do the thing again
             { 0x10, SkipProcessor },
             { 0x1A, FormattingProcessor },
             { 0x1F, SkipProcessor },
@@ -122,7 +122,7 @@ namespace SaintCoinach {
                     var isFirst = true;
 
                     temp.Add((byte)'(');
-
+                    /*
                     for (var i = 0; i < length - 1 && paramOffset + i < data.Length; ++i) {
                         if (isFirst)
                             isFirst = false;
@@ -133,11 +133,11 @@ namespace SaintCoinach {
                         i += GetInteger(data, paramOffset + i, out tmpInt);
                         temp.AddRange(Encoding.GetBytes(tmpInt.ToString()));
                     }
-
-                    /*var builder = new StringBuilder();
+                    */
+                    var builder = new StringBuilder();
                     for (int i = 0; i < length - 1 && paramOffset + i < data.Length; ++i)    // Last one is always 03h
                         builder.Append(data[paramOffset + i].ToString("X2"));
-                    temp.AddRange(Encoding.GetBytes(builder.ToString()));*/
+                    temp.AddRange(Encoding.GetBytes(builder.ToString()));
 
                     temp.Add((byte)')');
                 }
@@ -284,7 +284,7 @@ namespace SaintCoinach {
         #region GetInt
         private static int GetInteger(byte[] data, int offset, out int result) {
             var t = data[offset];
-            if (t < 0xF0) {
+            if (t < 0xF2) {
                 result = t;
                 return 1;
             }

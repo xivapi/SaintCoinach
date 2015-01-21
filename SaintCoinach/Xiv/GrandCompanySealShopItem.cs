@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public class GrandCompanySealShopItem : XivRow, IShopItem {
+    public class GrandCompanySealShopItem : XivRow, IShopListing, IShopListingItem {
         #region Fields
         private GCShop _GCShop;
-        private ShopItemCost _Cost;
+        private ShopListingItem _Cost;
         #endregion
 
         #region Properties
         public Item Item { get { return As<Item>("Item"); } }
         public int Count { get { return AsInt32("Count"); } }
         public GCShop GCShop { get { return _GCShop; } }
-        public ShopItemCost Cost { get { return _Cost; } }
+        public ShopListingItem Cost { get { return _Cost; } }
         public GrandCompanyRank GrandCompanyRank { get { return As<GrandCompanyRank>(); } }
         public GCShopItemCategory GCShopItemCategory { get { return As<GCShopItemCategory>(); } }
         #endregion
@@ -26,7 +26,7 @@ namespace SaintCoinach.Xiv {
 
             if (_GCShop != null) {
                 var sealItem = _GCShop.GrandCompany.SealItem;
-                _Cost = new ShopItemCost(this, sealItem, AsInt32("Cost"), false);
+                _Cost = new ShopListingItem(this, sealItem, AsInt32("Cost"), false);
             }
         }
         #endregion
@@ -35,14 +35,29 @@ namespace SaintCoinach.Xiv {
             return string.Format("{0}", Item);
         }
 
-        #region IShopItem Members
+        #region IShopListing Members
 
-        IEnumerable<IShopItemCost> IShopItem.Costs {
-            get { return new IShopItemCost[] { _Cost }; }
+        IEnumerable<IShopListingItem> IShopListing.Rewards {
+            get { yield return this; }
         }
 
-        IEnumerable<IShop> IShopItem.Shops {
-            get { return new IShop[] { _GCShop }; }
+        IEnumerable<IShopListingItem> IShopListing.Costs {
+            get { yield return _Cost; }
+        }
+
+        IEnumerable<IShop> IShopListing.Shops {
+            get { yield return _GCShop; }
+        }
+
+        #endregion
+
+        #region IShopListingItem Members
+        bool IShopListingItem.IsHq {
+            get { return false; }
+        }
+
+        IShopListing IShopListingItem.ShopItem {
+            get { return this; }
         }
 
         #endregion

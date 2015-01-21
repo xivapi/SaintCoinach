@@ -11,8 +11,8 @@ namespace SaintCoinach.Xiv {
         #region Fields
         private Recipe[] _RecipesAsMaterial = null;
         private Recipe[] _RecipesAsResult = null;
-        private IShopItem[] _AsShopItems = null;
-        private IShopItemCost[] _AsShopPayment = null;
+        private IShopListing[] _AsShopItems = null;
+        private IShopListingItem[] _AsShopPayment = null;
         #endregion
 
         #region Properties
@@ -31,8 +31,8 @@ namespace SaintCoinach.Xiv {
 
         public IEnumerable<Recipe> RecipesAsMaterial { get { return _RecipesAsMaterial ?? (_RecipesAsMaterial = BuildRecipesAsMaterial()); } }
         public IEnumerable<Recipe> RecipesAsResult { get { return _RecipesAsResult ?? (_RecipesAsResult = BuildRecipesAsResult()); } }
-        public IEnumerable<IShopItem> AsShopItems { get { return _AsShopItems ?? (_AsShopItems = BuildAsShopItems()); } }
-        public IEnumerable<IShopItemCost> AsShopPayment { get { return _AsShopPayment ?? (_AsShopPayment = BuildAsShopPayment()); } }
+        public IEnumerable<IShopListing> AsShopItems { get { return _AsShopItems ?? (_AsShopItems = BuildAsShopItems()); } }
+        public IEnumerable<IShopListingItem> AsShopPayment { get { return _AsShopPayment ?? (_AsShopPayment = BuildAsShopPayment()); } }
         #endregion
 
         #region Constructor
@@ -50,24 +50,24 @@ namespace SaintCoinach.Xiv {
 
             return rSheet.Where(recipe => recipe.ResultItem == this).ToArray();
         }
-        private IShopItem[] BuildAsShopItems() {
+        private IShopListing[] BuildAsShopItems() {
             var shops = Sheet.Collection.Shops;
 
-            var shopItems = new List<IShopItem>();
+            var shopItems = new List<IShopListing>();
             foreach (var shop in shops)
-                shopItems.AddRange(shop.ShopItems.Where(_ => _.Item == this));
+                shopItems.AddRange(shop.ShopListings.Where(l => l.Rewards.Any(li => li.Item == this)));
             return shopItems.Distinct().ToArray();
         }
-        private IShopItemCost[] BuildAsShopPayment() {
+        private IShopListingItem[] BuildAsShopPayment() {
             if (Key == 1)
-                return new IShopItemCost[0];    // XXX: DO NOT BUILD THIS FOR GIL, THAT WOULD BE BAD.
+                return new IShopListingItem[0];    // XXX: DO NOT BUILD THIS FOR GIL, THAT WOULD BE BAD.
 
             var shops = Sheet.Collection.Shops;
 
-            var checkedItems = new List<IShopItem>();
-            var shopItemCosts = new List<IShopItemCost>();
+            var checkedItems = new List<IShopListing>();
+            var shopItemCosts = new List<IShopListingItem>();
             foreach (var shop in shops) {
-                foreach (var item in shop.ShopItems.Except(checkedItems).ToArray()) {
+                foreach (var item in shop.ShopListings.Except(checkedItems).ToArray()) {
                     shopItemCosts.AddRange(item.Costs.Where(_ => _.Item == this));
                     checkedItems.Add(item);
                 }

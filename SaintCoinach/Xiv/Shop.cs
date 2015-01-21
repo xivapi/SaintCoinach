@@ -49,8 +49,8 @@ namespace SaintCoinach.Xiv {
 
         #region IShop Members
 
-        IEnumerable<IShopItem> IShop.ShopItems {
-            get { return Items.Cast<IShopItem>(); }
+        IEnumerable<IShopListing> IShop.ShopListings {
+            get { return Items.Cast<IShopListing>(); }
         }
 
         #endregion

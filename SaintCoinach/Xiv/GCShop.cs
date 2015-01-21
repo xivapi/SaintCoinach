@@ -26,7 +26,7 @@ namespace SaintCoinach.Xiv {
             }
         }
         public IEnumerable<GrandCompanySealShopItem> Items { get { return _Items ?? (_Items = BuildItems()); } }
-        IEnumerable<IShopItem> IShop.ShopItems { get { return Items.Cast<IShopItem>(); } }
+        IEnumerable<IShopListing> IShop.ShopListings { get { return Items.Cast<IShopListing>(); } }
         string IShop.Name { get { return string.Format("{0}", GrandCompany); } }
         #endregion
 
@@ -44,6 +44,8 @@ namespace SaintCoinach.Xiv {
             var gcItems = Sheet.Collection.GetSheet<GrandCompanySealShopItem>();
             for (var i = Min; i <= Max; ++i) {
                 var item = gcItems[i];
+                if (item.Item.Key != 0)
+                    items.Add(item);
             }
 
             return items.ToArray();

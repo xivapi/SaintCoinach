@@ -71,7 +71,8 @@ cbuffer g_LightingParameters : register(b1)
 
 float4 ComputeCommon(VSOutputDualTexture pin, float4 diffuse, float4 mapNormal, float4 specular)
 {
-    float3 normal = CalculateNormal(pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, mapNormal.xyz);
+    //float3 normal = CalculateNormal(pin.WorldNormal, pin.WorldTangent, pin.WorldBinormal, mapNormal.xyz);
+    float3 normal = pin.WorldNormal; // XXX: My tangent calculation results in 0/0/0 at times, that makes things fail.
     
     float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
     LightResult light = ComputeLights(eyeVector, normal, 3);

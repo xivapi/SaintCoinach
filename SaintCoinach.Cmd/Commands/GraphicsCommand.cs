@@ -16,6 +16,7 @@ namespace SaintCoinach.Cmd.Commands {
                 SubCommands.Add(new Graphics.TerritoryCommand(realm));
                 SubCommands.Add(new Graphics.MapCommand(realm));
                 SubCommands.Add(new Graphics.EquipmentCommand(realm));
+                SubCommands.Add(new Graphics.MonsterCommand(realm));
         }
     }
 }

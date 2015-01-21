@@ -77,6 +77,11 @@ namespace SaintCoinach.Graphics.Materials {
                 }
             }
 
+            if (_Normal1 == null)
+                _Normal1 = _Normal0;
+            if (_Diffuse1 == null)
+                _Diffuse1 = _Diffuse0;
+
             CurrentTechniqueName = Utilities.Effect.GetTechniqueName(material);
         }
         #endregion

@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public interface IShopItemCost {
+    public interface IShopListingItem {
         Item Item { get; }
         int Count { get; }
-        bool RequireHq { get; }
-        IShopItem ShopItem { get; }
+        bool IsHq { get; }
+        IShopListing ShopItem { get; }
     }
 }

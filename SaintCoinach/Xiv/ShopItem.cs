@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public class ShopItem : XivRow, IShopItem {
+    public class ShopItem : XivRow, IShopListing, IShopListingItem {
         const int GilItemKey = 1;
 
         #region Fields
         private Shop[] _Shops;
-        private ShopItemCost _Cost;
+        private ShopListingItem _Cost;
         #endregion
 
         #region Properties
@@ -21,7 +21,7 @@ namespace SaintCoinach.Xiv {
 
         #region Constructor
         public ShopItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) {
-            _Cost = new ShopItemCost(this, Sheet.Collection.GetSheet<Item>()[GilItemKey], (PriceFactor * ((InventoryItem)Item).Ask) / 100, false);
+            _Cost = new ShopListingItem(this, Sheet.Collection.GetSheet<Item>()[GilItemKey], (PriceFactor * ((InventoryItem)Item).Ask) / 100, false);
         }
         #endregion
 
@@ -29,13 +29,13 @@ namespace SaintCoinach.Xiv {
             return string.Format("{0}", Item);
         }
 
-        #region IShopItem Members
-        int IShopItem.Count {
-            get { return 1; }
+        #region IShopListing Members
+        IEnumerable<IShopListingItem> IShopListing.Rewards {
+            get { yield return this; }
         }
 
-        IEnumerable<IShopItemCost> IShopItem.Costs {
-            get { yield return (IShopItemCost)_Cost; }
+        IEnumerable<IShopListingItem> IShopListing.Costs {
+            get { yield return (IShopListingItem)_Cost; }
         }
 
         public IEnumerable<IShop> Shops {
@@ -49,6 +49,21 @@ namespace SaintCoinach.Xiv {
             var sSheet = Sheet.Collection.GetSheet<Shop>();
             return sSheet.Where(shop => shop.Items.Contains(this)).ToArray();
         }
+        #endregion
+
+        #region IShopListingItem Members
+        int IShopListingItem.Count {
+            get { return 1; }
+        }
+
+        bool IShopListingItem.IsHq {
+            get { return false; }
+        }
+
+        IShopListing IShopListingItem.ShopItem {
+            get { return this; }
+        }
+
         #endregion
     }
 }

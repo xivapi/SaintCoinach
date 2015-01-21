@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public interface IShopItem {
-        Item Item { get; }
-        int Count { get; }
-
-        IEnumerable<IShopItemCost> Costs { get; }
+    public interface IShopListing {
+        IEnumerable<IShopListingItem> Rewards { get; }
+        IEnumerable<IShopListingItem> Costs { get; }
         IEnumerable<IShop> Shops { get; }
     }
 }

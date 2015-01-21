@@ -43,6 +43,14 @@ namespace SaintCoinach.IO {
             var pack = GetPack(path);
             return pack.GetDirectory(path);
         }
+        public Pack GetPack(byte key) {
+            Pack pack;
+            if (!_Packs.TryGetValue(key, out pack)) {
+                pack = new Pack(this, DataDirectory, key);
+                _Packs.Add(key, pack);
+            }
+            return pack;
+        }
         public Pack GetPack(string path) {
             var key = Pack.GetSqPackKey(path);
             Pack pack;

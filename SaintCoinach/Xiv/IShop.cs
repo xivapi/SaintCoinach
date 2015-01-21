@@ -9,6 +9,6 @@ namespace SaintCoinach.Xiv {
         int Key { get; }
         string Name { get; }
         IEnumerable<ENpc> ENpcs { get; }
-        IEnumerable<IShopItem> ShopItems { get; }
+        IEnumerable<IShopListing> ShopListings { get; }
     }
 }
