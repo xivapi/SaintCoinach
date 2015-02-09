@@ -8,6 +8,18 @@ namespace SaintCoinach {
         public static readonly DateTime Zero = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         public const double RealToEorzeanFactor = 60.0 / (35 / 12.0);
 
+        private const long _NowUpdateInterval = TimeSpan.TicksPerSecond;
+        private static long _LastNowUpdate = long.MinValue;
+        private static EorzeaDateTime _Now = null;
+        public static EorzeaDateTime Now {
+            get {
+                var d = DateTime.UtcNow.Ticks - _LastNowUpdate;
+                if (d > _NowUpdateInterval)
+                    _Now = new EorzeaDateTime();
+                return _Now;
+            }
+        }
+
         private int _Minute;
         private int _Bell;
         private int _Sun;
@@ -93,6 +105,13 @@ namespace SaintCoinach {
             get { return Year + ((Moon + ((Sun + (Bell + (Minute / 60.0)) / 24.0) / 32.0)) / 12.0); }
         }
 
+        public EorzeaDateTime(EorzeaDateTime source) {
+            this.Minute = source.Minute;
+            this.Bell = source.Bell;
+            this.Sun = source.Sun;
+            this.Moon = source.Moon;
+            this.Year = source.Year;
+        }
         public EorzeaDateTime() : this(DateTime.UtcNow) { }
         public EorzeaDateTime(int unixTime) : this((long)unixTime) { }
         public EorzeaDateTime(long unixTime) {
@@ -176,13 +195,7 @@ namespace SaintCoinach {
         }
 
         public EorzeaDateTime Clone() {
-            return new EorzeaDateTime() {
-                Minute = this.Minute,
-                Bell = this.Bell,
-                Sun = this.Sun,
-                Moon = this.Moon,
-                Year = this.Year
-            };
+            return new EorzeaDateTime(this);
         }
     }
 }

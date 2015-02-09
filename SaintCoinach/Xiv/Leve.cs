@@ -11,6 +11,7 @@ namespace SaintCoinach.Xiv {
         public string Description { get { return AsString("Description"); } }
         public LeveClient LeveClient { get { return As<LeveClient>(); } }
         public LeveAssignmentType LeveAssignmentType { get { return As<LeveAssignmentType>(); } }
+        public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public int CharacterLevel { get { return AsInt32("CLevel"); } }
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
         public PlaceName ZonePlaceName { get { return As<PlaceName>("PlaceName{Zone}"); } }

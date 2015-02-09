@@ -26,6 +26,7 @@ namespace SaintCoinach.Xiv.Items {
             }
         }
         public int EquipmentLevel { get { return AsInt32("Level{Equip}"); } }
+        public int BaseParamModifier { get { return AsInt32("BaseParamModifier"); } }
         public EquipSlotCategory EquipSlotCategory { get { return As<EquipSlotCategory>(); } }
         public int FreeMateriaSlots { get { return AsInt32("MateriaSlotCount"); } }
         public long ModelIdentifierPrimary { get { return AsInt64("Model{Main}"); } }
@@ -47,9 +48,10 @@ namespace SaintCoinach.Xiv.Items {
         #region Helpers
         public int GetMateriaMeldCap(BaseParam baseParam, bool onHq) {
             var maxBase = ItemLevel.GetMaximum(baseParam);
-            var slotFactor = baseParam.GetValue(EquipSlotCategory);
+            var slotFactor = baseParam.GetMaximum(EquipSlotCategory);
+            var roleModifier = baseParam.GetModifier(BaseParamModifier);
 
-            var max = (int)Math.Round(maxBase * slotFactor / 100.0);
+            var max = (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0);
             
             int current = 0;
             var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);
