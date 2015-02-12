@@ -6,7 +6,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Xiv.Items;
 
 namespace SaintCoinach.Xiv.Sheets {
-    public class InventoryItemSheet : XivSheet<Item> {
+    public class InventoryItemSheet : XivSheet<InventoryItem> {
         #region Static
 
         // Types as defined in ItemUICategory
@@ -175,17 +175,13 @@ namespace SaintCoinach.Xiv.Sheets {
 
         #region Constructors
 
-        #region Constructor
-
         public InventoryItemSheet(XivCollection collection, IRelationalSheet source) : base(collection, source) { }
-
-        #endregion
 
         #endregion
 
         #region Factory
 
-        protected override Item CreateRow(IRelationalRow sourceRow) {
+        protected override InventoryItem CreateRow(IRelationalRow sourceRow) {
             var uiCategory = (ItemUICategory)sourceRow["ItemUICategory"];
 
             Type type;
@@ -198,7 +194,7 @@ namespace SaintCoinach.Xiv.Sheets {
             const BindingFlags ActivatorBindFlags =
                 BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.Public
                 | BindingFlags.NonPublic;
-            return (Item)Activator.CreateInstance(type, ActivatorBindFlags, null, args, null);
+            return (InventoryItem)Activator.CreateInstance(type, ActivatorBindFlags, null, args, null);
         }
 
         #endregion

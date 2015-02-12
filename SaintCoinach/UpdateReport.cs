@@ -52,8 +52,6 @@ namespace SaintCoinach {
 
         #region Constructors
 
-        #region Constructor
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UpdateReport" /> class.
         /// </summary>
@@ -65,8 +63,6 @@ namespace SaintCoinach {
             _UpdatedVersion = updatedVersion;
             _Changes = new List<IChange>(changes);
         }
-
-        #endregion
 
         #endregion
     }
