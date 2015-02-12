@@ -51,7 +51,7 @@ namespace SaintCoinach.Xiv.Items {
             var slotFactor = baseParam.GetMaximum(EquipSlotCategory);
             var roleModifier = baseParam.GetModifier(BaseParamModifier);
 
-            var max = (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0);
+            var max = (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0);   // XXX: 
             
             int current = 0;
             var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);

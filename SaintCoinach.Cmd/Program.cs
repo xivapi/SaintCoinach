@@ -9,6 +9,16 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 
 namespace SaintCoinach.Cmd {
+    class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
+
+        #region IProgress<UpdateProgress> Members
+
+        public void Report(Ex.Relational.Update.UpdateProgress value) {
+            Console.WriteLine(value);
+        }
+
+        #endregion
+    }
     class Program {
         static void Main(string[] args) {
             var dataPath = Properties.Settings.Default.DataPath;
@@ -26,31 +36,16 @@ namespace SaintCoinach.Cmd {
 
             var realm = new ARealmReversed(dataPath, Ex.Language.English);
 
-            var leves = realm.GameData.GetSheet<Xiv.Leve>();
-            var craftLeves = realm.GameData.GetSheet<Xiv.CraftLeve>();
-            var levesOfCrafting = leves.Where(_ => _.ClassJobCategory.ClassJobs.Any(cj => cj.Abbreviation == "FSH") && _.CharacterLevel == 45).OrderBy(_ => _.LeveAssignmentType.Key).GroupBy(_ => _.LeveAssignmentType);
-            foreach (var levesOfCraftingGroup in levesOfCrafting) {
-                System.Diagnostics.Trace.WriteLine(levesOfCraftingGroup.Key.Name);
-                foreach (var leveOfCrafting in levesOfCraftingGroup) {
-                    var dataId = leveOfCrafting.DataId;
-                    var craftLeve = craftLeves.FirstOrDefault(_ => _.Key == dataId);
-                    if (craftLeve == null)
-                        continue;
-                    /*System.Diagnostics.Trace.WriteLine(string.Format("    {0}: {1}", leveOfCrafting.Name,
-                        string.Join("; ", craftLeve.Items.Select(_ => string.Format("{0} {1}", _.Count, _.Item)))));*/
-                    System.Diagnostics.Trace.WriteLine(string.Format("  {0}", leveOfCrafting.Name));
-                    foreach (var item in craftLeve.Items) {
-                        System.Diagnostics.Trace.WriteLine(string.Format("    {0} {1}", item.Count, item.Item));
-                        var ii = item.Item as Xiv.InventoryItem;
-                        var r = ii.RecipesAsResult.FirstOrDefault();
-                        if (r != null) {
-                            System.Diagnostics.Trace.WriteLine(string.Format("      {0} {1}", r.ClassJob, r.RecipeLevel.RecipeLevelTable.Key));
-                            foreach (var mat in r.Ingredients.Where(_ => _.Type != Xiv.RecipeIngredientType.Crystal)) {
-                                System.Diagnostics.Trace.WriteLine(string.Format("      {0} {1}", mat.Count, mat.Item));
-                            }
-                        }
-                    }
-                }
+            Console.WriteLine("Game version: {0}", realm.GameVersion);
+            Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
+
+            if (!realm.IsCurrentVersion) {
+                Console.Write("Update is available, perform update (Y/n)? ");
+                var updateQuery = Console.ReadLine();
+                if (string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
+                    realm.Update(true, new ConsoleProgressReporter());
+                } else
+                    Console.WriteLine("Skipping update");
             }
 
             var cmd = new RootCommand();

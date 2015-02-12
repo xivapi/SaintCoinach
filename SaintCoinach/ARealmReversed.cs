@@ -6,45 +6,111 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Ionic.Zip;
+
 using YamlDotNet.Serialization;
+
+using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SaintCoinach {
     using Ex.Relational.Definition;
     using Ex.Relational.Update;
-    
-    public class ARealmReversed {
-        const string StateFile = "SaintCoinach.History.zip";
-        const string DefinitionFile = "ex.yaml";
-        const string VersionFile = "ffxivgame.ver";
-        const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
-        const string UpdateReportYamlFile = "logs/report-{0}-{1}.yaml";
-        const string UpdateReportBinFile = "logs/report-{0}-{1}.bin";
 
-        static readonly Encoding ZipEncoding = Encoding.UTF8;
-        
+    /// <summary>
+    /// Central class for accessing game assets.
+    /// </summary>
+    public class ARealmReversed {
+        /// <summary>
+        /// File name of the archive containing current and past data mappings.
+        /// </summary>
+        private const string StateFile = "SaintCoinach.History.zip";
+
+        /// <summary>
+        /// File name inside the archive of the data mappings.
+        /// </summary>
+        private const string DefinitionFile = "ex.yaml";
+
+        /// <summary>
+        /// File name containg the current version string.
+        /// </summary>
+        private const string VersionFile = "ffxivgame.ver";
+
+        /// <summary>
+        /// Format string to create the file name for update reports in text form. {0} is the previous and {1} the new version.
+        /// </summary>
+        private const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
+
+        /// <summary>
+        /// Format string to create the file name for update reports in YAML form. {0} is the previous and {1} the new version.
+        /// </summary>
+        private const string UpdateReportYamlFile = "logs/report-{0}-{1}.yaml";
+
+        /// <summary>
+        /// Format string to create the file name for update reports in binary form. {0} is the previous and {1} the new version.
+        /// </summary>
+        private const string UpdateReportBinFile = "logs/report-{0}-{1}.bin";
+
+        private static readonly Encoding ZipEncoding = Encoding.UTF8;
+
         #region Fields
+
+        /// <summary>
+        /// Root directory of the game installation.
+        /// </summary>
         private DirectoryInfo _GameDirectory;
+
+        /// <summary>
+        /// Pack collection for the data files.
+        /// </summary>
         private IO.PackCollection _Packs;
+
+        /// <summary>
+        /// Game data collection for the data files.
+        /// </summary>
         private Xiv.XivCollection _GameData;
 
+        /// <summary>
+        /// Version of the game data.
+        /// </summary>
         private string _GameVersion;
-        private UpdateReport _UpdateReport;
+
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Root directory of the game installation.
+        /// </summary>
         public DirectoryInfo GameDirectory { get { return _GameDirectory; } }
 
+        /// <summary>
+        /// Pack collection for the data files.
+        /// </summary>
         public IO.PackCollection Packs { get { return _Packs; } }
+
+        /// <summary>
+        /// Game data collection for the data files.
+        /// </summary>
         public Xiv.XivCollection GameData { get { return _GameData; } }
 
+        /// <summary>
+        /// Version of the game data.
+        /// </summary>
         public string GameVersion { get { return _GameVersion; } }
-        public UpdateReport UpdateReport { get { return _UpdateReport; } }
-        public bool WasUpdated { get { return _UpdateReport != null; } }
+
+        /// <summary>
+        /// Version of the loaded definition.
+        /// </summary>
+        public string DefinitionVersion { get { return GameData.Definition.Version; } }
+
+        public bool IsCurrentVersion { get { return GameVersion == DefinitionVersion; } }
+
         #endregion
 
         #region Constructor
+
         public ARealmReversed(string gamePath, Ex.Language language) : this(new DirectoryInfo(gamePath), language) { }
+
         public ARealmReversed(DirectoryInfo gameDirectory, Ex.Language language) {
             _GameDirectory = gameDirectory;
             _Packs = new IO.PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack", "ffxiv"));
@@ -54,29 +120,34 @@ namespace SaintCoinach {
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
 
             using (var zipFile = new ZipFile(StateFile, ZipEncoding)) {
-                if (zipFile.ContainsEntry(VersionFile))
-                    _GameData.Definition = CheckForUpdate(zipFile);
-                else
+                if (zipFile.ContainsEntry(VersionFile)) {
+                    RelationDefinition def;
+                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out def))
+                        def = ReadDefinition(zipFile);
+
+                    _GameData.Definition = def;
+                } else
                     _GameData.Definition = Setup(zipFile);
             }
 
             _GameData.Definition.Compile();
         }
+
         #endregion
 
         #region Shared
-        private void StoreDefinitionHistory(ZipFile zip) {
-            ZipCopy(zip, DefinitionFile, string.Format("{0}/{1}", GameVersion, DefinitionFile));
-        }
+
         private void StorePacks(ZipFile zip) {
             const string ExdPackPattern = "0a0000.*";
 
             foreach (var file in Packs.DataDirectory.EnumerateFiles(ExdPackPattern))
                 zip.UpdateFile(file.FullName, GameVersion);
         }
+
         private void UpdateVersion(ZipFile zip) {
             zip.UpdateEntry(VersionFile, GameVersion);
         }
+
         private void ZipCopy(ZipFile zip, string source, string target) {
             var entry = zip[source];
 
@@ -90,6 +161,11 @@ namespace SaintCoinach {
 
             zip.UpdateEntry(target, buffer);
         }
+
+        private RelationDefinition ReadDefinition(ZipFile zip) {
+            return ReadDefinition(zip, DefinitionFile);
+        }
+
         private RelationDefinition ReadDefinition(ZipFile zip, string entry) {
             RelationDefinition def;
 
@@ -101,6 +177,7 @@ namespace SaintCoinach {
 
             return def;
         }
+
         private void StoreDefinition(ZipFile zip, RelationDefinition definition, string path) {
             using (var ms = new MemoryStream()) {
                 using (var writer = new StreamWriter(ms, ZipEncoding)) {
@@ -110,9 +187,11 @@ namespace SaintCoinach {
                 }
             }
         }
+
         private void StoreReport(ZipFile zip, UpdateReport report) {
             var textTarget = string.Format(UpdateReportTextFile, report.PreviousVersion, report.UpdateVersion);
-            zip.UpdateEntry(textTarget, string.Join(Environment.NewLine, report.ExChanges.Select(_ => _.ToString())), ZipEncoding);
+            zip.UpdateEntry(textTarget, string.Join(Environment.NewLine, report.ExChanges.Select(_ => _.ToString())),
+                ZipEncoding);
 
             var yamlTarget = string.Format(UpdateReportYamlFile, report.PreviousVersion, report.UpdateVersion);
             var serializer = new Serializer();
@@ -135,78 +214,81 @@ namespace SaintCoinach {
             }
             zip.UpdateEntry(binTarget, binBuffer);
         }
+
         #endregion
 
         #region Update
-        private RelationDefinition CheckForUpdate(ZipFile zip) {
-            var previousVersionEntry = zip[VersionFile];
-            string previousVersion;
-            using (var s = previousVersionEntry.OpenReader()) {
+
+        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition) {
+            var storedVersionEntry = zip[VersionFile];
+            string storedVersion;
+            using (var s = storedVersionEntry.OpenReader()) {
                 using (var r = new StreamReader(s))
-                    previousVersion = r.ReadToEnd();
+                    storedVersion = r.ReadToEnd();
             }
 
-            RelationDefinition def;
-            if (previousVersion != GameVersion) {
-                var existingDef = string.Format("{0}/{1}", GameVersion, DefinitionFile);
-                if (zip.ContainsEntry(existingDef)) {
-                    System.Diagnostics.Trace.WriteLine("Version changed, but information already present.");
-
-                    ZipCopy(zip, existingDef, DefinitionFile);
+            if (storedVersion != version) {
+                var existingDefPath = string.Format("{0}/{1}", version, DefinitionFile);
+                if (zip.ContainsEntry(existingDefPath)) {
+                    ZipCopy(zip, existingDefPath, DefinitionFile);
                     UpdateVersion(zip);
                     zip.Save();
 
-                    def = ReadDefinition(zip, DefinitionFile);
-                } else {
-                    def = Update(zip, previousVersion);
+                    definition = ReadDefinition(zip);
+                    return true;
                 }
-            } else {
-                System.Diagnostics.Trace.WriteLine(string.Format("Up-to-date (version {0})", GameVersion));
-                def = ReadDefinition(zip, DefinitionFile);
+
+                definition = null;
+                return false;
             }
 
-            return def;
+            definition = ReadDefinition(zip);
+            return true;
         }
-        private RelationDefinition Update(ZipFile zip, string previousVersion) {
-            System.Diagnostics.Trace.WriteLine(string.Format("Update required (from {0} to {1})", previousVersion, GameVersion));
+
+        public UpdateReport Update(bool detectDataChanges, IProgress<UpdateProgress> progress) {
+            System.Diagnostics.Trace.WriteLine(string.Format("Beginning update from {0} to {1}.", DefinitionVersion,
+                GameVersion));
+            var previousVersion = DefinitionVersion;
 
             string tempPath = null;
-            RelationDefinition definition;
+            UpdateReport report;
             try {
-                tempPath = ExtractPreviousPacks(zip, previousVersion);
-                var previousPack = new IO.PackCollection(Path.Combine(tempPath, previousVersion));
-                var previousDefinition = ReadDefinition(zip, DefinitionFile);
+                using (var zip = new ZipFile(StateFile, ZipEncoding)) {
+                    tempPath = ExtractPreviousPacks(zip, previousVersion);
+                    var previousPack = new IO.PackCollection(Path.Combine(tempPath, previousVersion));
+                    var previousDefinition = ReadDefinition(zip, DefinitionFile);
 
-                var updater = new RelationUpdater(previousPack, previousDefinition, Packs);
+                    var updater = new RelationUpdater(previousPack, previousDefinition, Packs, GameVersion, progress);
 
-                System.Diagnostics.Trace.WriteLine("Detecting structure changes.");
-                var structureChanges = updater.Update();
+                    var changes = updater.Update(detectDataChanges);
+                    report = new SaintCoinach.UpdateReport(previousVersion, GameVersion, changes);
 
-                foreach (var c in structureChanges.Where(_ => _.ChangeType.HasFlag(ChangeType.Breaking)))
-                    Console.Error.WriteLine(c);
+                    var definition = updater.Updated;
 
-                System.Diagnostics.Trace.Write("Detecting data changes.");
-                var dataChanges = updater.DetectDataChanges();
+                    StorePacks(zip);
+                    StoreDefinition(zip, definition, DefinitionFile);
+                    StoreDefinition(zip, definition, string.Format("{0}/{1}", definition.Version, DefinitionFile));
+                    StoreReport(zip, report);
+                    zip.Save();
 
-                _UpdateReport = new SaintCoinach.UpdateReport(previousVersion, GameVersion, structureChanges.Concat(dataChanges));
+                    GameData.Definition = definition;
+                    GameData.Definition.Compile();
 
-                definition = updater.Updated;
-
-                StorePacks(zip);
-                StoreDefinition(zip, definition, DefinitionFile);
-                StoreDefinition(zip, definition, string.Format("{0}/{1}", GameVersion, DefinitionFile));
-                StoreReport(zip, _UpdateReport);
-                zip.Save();
-
-                System.Diagnostics.Trace.WriteLine(string.Format("Update complete (version {0})", GameVersion));
+                    System.Diagnostics.Trace.WriteLine(string.Format("Update complete (version {0})", GameVersion));
+                }
             } finally {
                 if (tempPath != null) {
-                    try { Directory.Delete(tempPath, true); } catch { Console.Error.WriteLine("Failed to delete temporary directory {0}.", tempPath); }
+                    try {
+                        Directory.Delete(tempPath, true);
+                    } catch {
+                        Console.Error.WriteLine("Failed to delete temporary directory {0}.", tempPath);
+                    }
                 }
             }
-
-            return definition;
+            return report;
         }
+
         private string ExtractPreviousPacks(ZipFile zip, string previousVersion) {
             var tempPath = Path.GetTempFileName();
             File.Delete(tempPath);
@@ -216,20 +298,31 @@ namespace SaintCoinach {
 
             return tempPath;
         }
+
         #endregion
 
         #region Setup
+
         private RelationDefinition Setup(ZipFile zip) {
             System.Diagnostics.Trace.WriteLine("No version information present, performing first-time setup.");
-            StoreDefinitionHistory(zip);
+
+            var def = ReadDefinition(zip, DefinitionFile);
+            if (def.Version != GameVersion)
+                System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})",
+                    def.Version, GameVersion));
+
+            def.Version = GameVersion;
+            StoreDefinition(zip, def, string.Format("{0}/{1}", def.Version, DefinitionFile));
             StorePacks(zip);
             UpdateVersion(zip);
 
             zip.Save();
 
             System.Diagnostics.Trace.WriteLine(string.Format("First-time setup complete (version {0})", GameVersion));
-            return ReadDefinition(zip, DefinitionFile);
+
+            return def;
         }
+
         #endregion
     }
 }

@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
     public class WeatherRate : XivRow {
+        public static readonly TimeSpan WeatherChangeInterval = TimeSpan.FromHours(8);
+
         #region Fields
         private Weather[] _PossibleWeathers;
         private Tuple<int, Weather>[] _WeatherRates;
+        #endregion
+
+        #region Properties
+        public IEnumerable<Weather> PossibleWeathers { get { return _PossibleWeathers; } }
         #endregion
 
         #region Constructor
@@ -29,7 +35,7 @@ namespace SaintCoinach.Xiv {
 
                 min += rate;
             }
-            _PossibleWeathers = w.ToArray();
+            _PossibleWeathers = w.Distinct().ToArray();
             _WeatherRates = wr.ToArray();
         }
         #endregion

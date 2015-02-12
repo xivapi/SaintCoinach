@@ -10,6 +10,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         private bool _IsCompiled = false;
         private ICollection<SheetDefinition> _SheetDefinitions = new List<SheetDefinition>();
         private Dictionary<string, SheetDefinition> _SheetMap = null;
+        private string _Version;
         #endregion
 
         #region Properties
@@ -18,6 +19,10 @@ namespace SaintCoinach.Ex.Relational.Definition {
             internal set {
                 _SheetDefinitions = value;
             }
+        }
+        public string Version {
+            get { return _Version; }
+            set { _Version = value; }
         }
         #endregion
 

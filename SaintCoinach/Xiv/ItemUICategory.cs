@@ -9,6 +9,9 @@ namespace SaintCoinach.Xiv {
         #region Properties
         public string Name { get { return AsString("Name"); } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+
+        public int MinorOrder { get { return AsInt32("Order{Minor}"); } }
+        public int MajorOrder { get { return AsInt32("Order{Major}"); } }
         #endregion
 
         #region Constructor

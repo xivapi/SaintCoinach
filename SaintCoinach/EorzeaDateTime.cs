@@ -9,13 +9,16 @@ namespace SaintCoinach {
         public const double RealToEorzeanFactor = 60.0 / (35 / 12.0);
 
         private const long _NowUpdateInterval = TimeSpan.TicksPerSecond;
-        private static long _LastNowUpdate = long.MinValue;
-        private static EorzeaDateTime _Now = null;
+        private static long _LastNowUpdate = DateTime.UtcNow.Ticks;
+        private static EorzeaDateTime _Now = new EorzeaDateTime();
         public static EorzeaDateTime Now {
             get {
-                var d = DateTime.UtcNow.Ticks - _LastNowUpdate;
-                if (d > _NowUpdateInterval)
+                var nt = DateTime.UtcNow.Ticks;
+                var d = nt - _LastNowUpdate;
+                if (d > _NowUpdateInterval) {
                     _Now = new EorzeaDateTime();
+                    _LastNowUpdate = nt;
+                }
                 return _Now;
             }
         }

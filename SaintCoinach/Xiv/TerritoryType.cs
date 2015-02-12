@@ -26,7 +26,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
         public string Name { get { return AsString("Name"); } }
         public string Bg { get { return AsString("Bg"); } }
-        //public Map Map { get { return As<Map>(); } }
+        public Map Map { get { return As<Map>(); } }
         public WeatherRate WeatherRate {
             get {
                 if (_WeatherRate == null) {
