@@ -14,7 +14,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="item">The item of the entry.</param>
         /// <param name="count">The count for the entry.</param>
         /// <param name="isHq">A value indicating whether the <c>item</c> is high-quality.</param>
-        public ShopListingItem(IShopListing shopItem, Item item, int count, bool isHq) {
+        public ShopListingItem(IShopListing shopItem, ItemBase item, int count, bool isHq) {
             ShopItem = shopItem;
             Item = item;
             Count = count;
@@ -33,7 +33,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the item of the current listing entry.
         /// </summary>
         /// <value>The item of the current listing entry.</value>
-        public Item Item { get; private set; }
+        public ItemBase Item { get; private set; }
 
         /// <summary>
         ///     Gets the count for the current listing entry.

@@ -6,11 +6,11 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Xiv.Items;
 
 namespace SaintCoinach.Xiv.Sheets {
-    public class InventoryItemSheet : XivSheet<InventoryItem> {
+    public class InventoryItemSheet : XivSheet<Item> {
         #region Static
 
         // Types as defined in ItemUICategory
-        private static readonly Type DefaultItemType = typeof(InventoryItem);
+        private static readonly Type DefaultItemType = typeof(Item);
 
         private static readonly Dictionary<int, Type> ItemTypes = new Dictionary<int, Type> {
             // 
@@ -181,7 +181,7 @@ namespace SaintCoinach.Xiv.Sheets {
 
         #region Factory
 
-        protected override InventoryItem CreateRow(IRelationalRow sourceRow) {
+        protected override Item CreateRow(IRelationalRow sourceRow) {
             var uiCategory = (ItemUICategory)sourceRow["ItemUICategory"];
 
             Type type;
@@ -194,7 +194,7 @@ namespace SaintCoinach.Xiv.Sheets {
             const BindingFlags ActivatorBindFlags =
                 BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.Public
                 | BindingFlags.NonPublic;
-            return (InventoryItem)Activator.CreateInstance(type, ActivatorBindFlags, null, args, null);
+            return (Item)Activator.CreateInstance(type, ActivatorBindFlags, null, args, null);
         }
 
         #endregion

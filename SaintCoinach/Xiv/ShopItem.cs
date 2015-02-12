@@ -22,6 +22,7 @@ namespace SaintCoinach.Xiv {
 
         public Quest Quest { get { return As<Quest>(); } }
         public int PriceFactor { get { return AsInt32("PriceFactor{Mid}"); } }
+        public Item Item { get { return As<Item>(); } }
 
         #endregion
 
@@ -31,14 +32,12 @@ namespace SaintCoinach.Xiv {
 
         public ShopItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) {
             _Cost = new ShopListingItem(this, Sheet.Collection.GetSheet<Item>()[GilItemKey],
-                (PriceFactor * ((InventoryItem)Item).Ask) / 100, false);
+                (PriceFactor * Item.Ask) / 100, false);
         }
 
         #endregion
 
         #endregion
-
-        public Item Item { get { return As<Item>(); } }
 
         public override string ToString() {
             return string.Format("{0}", Item);
@@ -64,6 +63,8 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region IShopListingItem Members
+
+        ItemBase IShopListingItem.Item { get { return Item; } }
 
         int IShopListingItem.Count { get { return 1; } }
 

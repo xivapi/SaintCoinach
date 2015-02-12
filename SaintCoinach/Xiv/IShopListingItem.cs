@@ -9,7 +9,7 @@
         ///     Gets the item of the current listing entry.
         /// </summary>
         /// <value>The item of the current listing entry.</value>
-        Item Item { get; }
+        ItemBase Item { get; }
 
         /// <summary>
         ///     Gets the count for the current listing entry.

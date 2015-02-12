@@ -88,12 +88,11 @@ namespace SaintCoinach.Xiv {
         ///     Mappings of requested types to a different type.
         /// </summary>
         /// <remarks>
+        ///     As you can see, not actually used. Was added when <see cref="Item"/> was called InventoryItem.
         ///     TODO: Solve with attributes instead.
         /// </remarks>
         protected static readonly Dictionary<string, string> ForwardedSheets = new Dictionary<string, string> {
-            {
-                "InventoryItem", "Item"
-            }
+            
         };
 
         /// <summary>

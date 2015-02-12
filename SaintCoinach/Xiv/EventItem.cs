@@ -1,7 +1,7 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class EventItem : Item {
+    public class EventItem : ItemBase {
         #region Properties
 
         public Quest Quest { get { return As<Quest>(); } }

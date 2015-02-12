@@ -227,12 +227,12 @@
     <Compile Include="Xiv\HousingItem.cs" />
     <Compile Include="Xiv\HousingItemCategory.cs" />
     <Compile Include="Xiv\HousingYardObject.cs" />
-    <Compile Include="Xiv\InventoryItem.cs" />
+    <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />
     <Compile Include="Xiv\IShopListing.cs" />
     <Compile Include="Xiv\ItemAction.cs" />
-    <Compile Include="Xiv\Item.cs" />
+    <Compile Include="Xiv\ItemBase.cs" />
     <Compile Include="Xiv\ItemActions\AttributeReset.cs" />
     <Compile Include="Xiv\ItemActions\BuddyEquipUnlock.cs" />
     <Compile Include="Xiv\ItemActions\BuddySummon.cs" />

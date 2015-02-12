@@ -1,7 +1,7 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
-    public class Housing : InventoryItem {
+    public class Housing : Item {
         #region Constructors
 
         #region Constructor

@@ -3,7 +3,7 @@ using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
-    public class MateriaItem : InventoryItem {
+    public class MateriaItem : Item {
         #region Fields
 
         private BaseParam _BaseParam;

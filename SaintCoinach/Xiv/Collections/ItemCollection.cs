@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace SaintCoinach.Xiv.Collections {
-    public class ItemCollection : IEnumerable<Item> {
+    public class ItemCollection : IEnumerable<ItemBase> {
         #region Fields
 
         private readonly Range[] _EventRanges;
@@ -20,8 +20,6 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Constructors
 
-        #region Constructor
-
         public ItemCollection(XivCollection collection) {
             Collection = collection;
 
@@ -34,11 +32,9 @@ namespace SaintCoinach.Xiv.Collections {
 
         #endregion
 
-        #endregion
-
         #region IEnumerable<Item> Members
 
-        public IEnumerator<Item> GetEnumerator() {
+        public IEnumerator<ItemBase> GetEnumerator() {
             return new Enumerator(this);
         }
 
@@ -54,7 +50,7 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Enumerator
 
-        private class Enumerator : IEnumerator<Item> {
+        private class Enumerator : IEnumerator<ItemBase> {
             #region Fields
 
             private readonly IEnumerator<EventItem> _EventItemEnumerator;
@@ -78,7 +74,7 @@ namespace SaintCoinach.Xiv.Collections {
 
             #region IEnumerator<Item> Members
 
-            public Item Current { get; private set; }
+            public ItemBase Current { get; private set; }
 
             #endregion
 
@@ -131,7 +127,7 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Things
 
-        public Item this[int index] {
+        public ItemBase this[int index] {
             get {
                 if (Range.Contains(_InventoryRanges, index))
                     return InventoryItemSheet[index];

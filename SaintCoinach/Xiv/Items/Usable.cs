@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
-    public class Usable : InventoryItem, IParameterObject {
+    public class Usable : Item, IParameterObject {
         #region Properties
 
         public TimeSpan Cooldown { get { return TimeSpan.FromSeconds(AsDouble("Cooldown<s>")); } }

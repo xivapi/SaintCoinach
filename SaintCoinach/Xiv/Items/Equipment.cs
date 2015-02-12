@@ -6,7 +6,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Graphics.Assets;
 
 namespace SaintCoinach.Xiv.Items {
-    public abstract class Equipment : InventoryItem, IParameterObject {
+    public abstract class Equipment : Item, IParameterObject {
         #region Fields
 
         private ParameterCollection _AllParameters;
@@ -40,7 +40,7 @@ namespace SaintCoinach.Xiv.Items {
         public long ModelIdentifierPrimary { get { return AsInt64("Model{Main}"); } }
         public long ModelIdentifierSecondary { get { return AsInt64("Model{Sub}"); } }
         public ClassJob RepairClassJob { get { return As<ClassJob>("ClassJob{Repair}"); } }
-        public InventoryItem RepairItem { get { return As<InventoryItem>("Item{Repair}"); } }
+        public Item RepairItem { get { return As<Item>("Item{Repair}"); } }
         public ItemSpecialBonus ItemSpecialBonus { get { return As<ItemSpecialBonus>(); } }
         public ItemSeries ItemSeries { get { return As<ItemSeries>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }

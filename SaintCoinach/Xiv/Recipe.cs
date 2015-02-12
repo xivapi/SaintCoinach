@@ -82,10 +82,10 @@ namespace SaintCoinach.Xiv {
             }
             var itemLevelSum =
                 ingredients.Where(_ => _.Type == RecipeIngredientType.Material)
-                           .Sum(_ => _.Count * ((InventoryItem)_.Item).ItemLevel.Key);
+                           .Sum(_ => _.Count * _.Item.ItemLevel.Key);
             var qualityFromMats = RecipeLevel.Quality / 2;
             foreach (var mat in ingredients.Where(_ => _.Type == RecipeIngredientType.Material))
-                mat.QualityPerItem = ((InventoryItem)mat.Item).ItemLevel.Key * qualityFromMats / itemLevelSum;
+                mat.QualityPerItem = mat.Item.ItemLevel.Key * qualityFromMats / itemLevelSum;
 
             return ingredients.ToArray();
         }
