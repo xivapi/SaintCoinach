@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Xiv {
+﻿namespace SaintCoinach.Xiv {
     public class RecipeLevel {
-        #region Fields
-        private RecipeLevelTable _RecipeLevelTable;
-        private int _Difficulty;
-        private int _Quality;
-        private int _Durability;
+        #region Properties
+
+        public RecipeLevelTable RecipeLevelTable { get; private set; }
+        public int Difficulty { get; private set; }
+        public int Quality { get; private set; }
+        public int Durability { get; private set; }
+
         #endregion
 
-        #region Properties
-        public RecipeLevelTable RecipeLevelTable { get { return _RecipeLevelTable; } }
-        public int Difficulty { get { return _Difficulty; } }
-        public int Quality { get { return _Quality; } }
-        public int Durability { get { return _Durability; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public RecipeLevel(Recipe recipe) {
-            _RecipeLevelTable = recipe.RecipeLevelTable;
-            _Difficulty = (RecipeLevelTable.Difficulty * recipe.DifficultyFactor) / 100;
-            _Quality = (RecipeLevelTable.Quality * recipe.QualityFactor) / 100;
-            _Durability = (RecipeLevelTable.Durability * recipe.DurabilityFactor) / 100;
+            RecipeLevelTable = recipe.RecipeLevelTable;
+            Difficulty = (RecipeLevelTable.Difficulty * recipe.DifficultyFactor) / 100;
+            Quality = (RecipeLevelTable.Quality * recipe.QualityFactor) / 100;
+            Durability = (RecipeLevelTable.Durability * recipe.DurabilityFactor) / 100;
         }
+
+        #endregion
+
         #endregion
     }
 }

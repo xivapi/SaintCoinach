@@ -1,13 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.ItemActions {
     public class ItemRoulette : ItemAction {
+        #region Constructors
+
         #region Constructor
-        public ItemRoulette(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public ItemRoulette(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
     }
 }

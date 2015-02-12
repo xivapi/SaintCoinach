@@ -1,62 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational.Serialization;
+using SaintCoinach.Ex.Relational.ValueConverters;
+
+using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class RelationDefinition : ICloneable {
         #region Fields
-        private bool _IsCompiled = false;
+
+        private bool _IsCompiled;
         private ICollection<SheetDefinition> _SheetDefinitions = new List<SheetDefinition>();
-        private Dictionary<string, SheetDefinition> _SheetMap = null;
-        private string _Version;
+        private Dictionary<string, SheetDefinition> _SheetMap;
+
         #endregion
 
         #region Properties
+
         public ICollection<SheetDefinition> SheetDefinitions {
             get { return _SheetDefinitions; }
-            internal set {
-                _SheetDefinitions = value;
-            }
-        }
-        public string Version {
-            get { return _Version; }
-            set { _Version = value; }
-        }
-        #endregion
-
-        #region Helpers
-        public bool TryGetSheet(string name, out SheetDefinition def) {
-            if (_IsCompiled)
-                return _SheetMap.TryGetValue(name, out def);
-
-            var res = SheetDefinitions.Where(_ => string.Equals(_.Name, name, StringComparison.OrdinalIgnoreCase));
-            if (res.Any())
-                def = res.First();
-            else
-                def = null;
-
-            return (def != null);
+            internal set { _SheetDefinitions = value; }
         }
 
-        public SheetDefinition GetOrCreateSheet(string name) {
-            SheetDefinition def;
-            if (!TryGetSheet(name, out def))
-                SheetDefinitions.Add(def = new SheetDefinition() { Name = name });
-            return def;
-        }
-        #endregion
+        public string Version { get; set; }
 
-        #region Compile
-        public void Compile() {
-            _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _, StringComparer.OrdinalIgnoreCase);
-
-            foreach (var sheet in SheetDefinitions)
-                sheet.Compile();
-
-            _IsCompiled = true;
-        }
         #endregion
 
         #region ICloneable Members
@@ -67,33 +38,74 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #endregion
 
+        #region Compile
+
+        public void Compile() {
+            _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var sheet in SheetDefinitions)
+                sheet.Compile();
+
+            _IsCompiled = true;
+        }
+
+        #endregion
+
+        #region Helpers
+
+        public bool TryGetSheet(string name, out SheetDefinition def) {
+            if (_IsCompiled)
+                return _SheetMap.TryGetValue(name, out def);
+
+            var res =
+                SheetDefinitions.Where(_ => string.Equals(_.Name, name, StringComparison.OrdinalIgnoreCase)).ToArray();
+            def = res.Any() ? res.First() : null;
+
+            return (def != null);
+        }
+
+        public SheetDefinition GetOrCreateSheet(string name) {
+            SheetDefinition def;
+            if (!TryGetSheet(name, out def))
+                SheetDefinitions.Add(def = new SheetDefinition {
+                    Name = name
+                });
+            return def;
+        }
+
+        #endregion
+
         #region Serialization
+
         public void Serialize(string filePath) {
-            using (var writer = new System.IO.StreamWriter(filePath, false, Encoding.UTF8))
+            using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 Serialize(writer);
         }
-        public void Serialize(System.IO.TextWriter writer) {
-            var serializer = new Serialization.ExRelationSerializer();
+
+        public void Serialize(TextWriter writer) {
+            var serializer = new ExRelationSerializer();
             serializer.Serialize(writer, this);
         }
 
         public static RelationDefinition Deserialize(string filePath) {
-            using (var reader = new System.IO.StreamReader(filePath, Encoding.UTF8))
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
                 return Deserialize(reader);
         }
-        public static RelationDefinition Deserialize(System.IO.TextReader reader) {
-            var deserializer = new YamlDotNet.Serialization.Deserializer();
 
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ValueConverters.ColorConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(ValueConverters.IconConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:link_conv", typeof(ValueConverters.SheetLinkConverter));
+        public static RelationDefinition Deserialize(TextReader reader) {
+            var deserializer = new Deserializer();
 
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:group_def", typeof(Definition.GroupDataDefinition));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:repeat_def", typeof(Definition.RepeatDataDefinition));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:single_def", typeof(Definition.SingleDataDefinition));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ColorConverter));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(IconConverter));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:link_conv", typeof(SheetLinkConverter));
 
-            return deserializer.Deserialize<Definition.RelationDefinition>(reader);
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:group_def", typeof(GroupDataDefinition));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:repeat_def", typeof(RepeatDataDefinition));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:single_def", typeof(SingleDataDefinition));
+
+            return deserializer.Deserialize<RelationDefinition>(reader);
         }
+
         #endregion
     }
 }

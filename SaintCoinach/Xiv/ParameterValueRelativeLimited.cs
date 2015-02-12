@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Xiv {
+﻿namespace SaintCoinach.Xiv {
     public class ParameterValueRelativeLimited : ParameterValueRelative {
-        #region Fields
-        private int _Maximum;
+        #region Properties
+
+        public int Maximum { get; private set; }
+
         #endregion
 
-        #region Properties
-        public int Maximum { get { return _Maximum; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public ParameterValueRelativeLimited(ParameterType type, double amount, int maximum)
             : base(type, amount) {
-            _Maximum = maximum;
+            Maximum = maximum;
         }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

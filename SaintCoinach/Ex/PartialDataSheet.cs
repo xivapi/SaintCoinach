@@ -1,37 +1,71 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex {
     public class PartialDataSheet<T> : IDataSheet<T> where T : IDataRow {
         #region Fields
-        private IDataSheet<T> _SourceSheet;
-        private Range _Range;
-        private IO.File _File;
+
         private Dictionary<int, T> _Rows;
+
         #endregion
 
         #region Properties
-        public IDataSheet<T> SourceSheet { get { return _SourceSheet; } }
-        public Range Range { get { return _Range; } }
-        public IO.File File { get { return _File; } }
-        public Language Language { get { return SourceSheet.Language; } }
-        public int Count { get { return _Rows.Count; } }
+
+        public IDataSheet<T> SourceSheet { get; private set; }
+        public Range Range { get; private set; }
+        public File File { get; private set; }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public PartialDataSheet(IDataSheet<T> sourceSheet, Range range, IO.File file) {
-            _SourceSheet = sourceSheet;
-            _Range = range;
-            _File = file;
+
+        public PartialDataSheet(IDataSheet<T> sourceSheet, Range range, File file) {
+            SourceSheet = sourceSheet;
+            Range = range;
+            File = file;
 
             Build();
         }
+
+        #endregion
+
+        #endregion
+
+        public Language Language { get { return SourceSheet.Language; } }
+        public int Count { get { return _Rows.Count; } }
+
+        #region IEnumerable<T> Members
+
+        public IEnumerator<T> GetEnumerator() {
+            return _Rows.Values.GetEnumerator();
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
+
+        #region IDataSheet Members
+
+        public byte[] GetBuffer() {
+            return File.GetData();
+        }
+
         #endregion
 
         #region Build
+
         private void Build() {
             const int HeaderLengthOffset = 0x08;
 
@@ -48,19 +82,22 @@ namespace SaintCoinach.Ex {
             var currentPosition = EntriesOffset;
 
             _Rows = new Dictionary<int, T>();
-            for (int i = 0; i < count; ++i) {
+            for (var i = 0; i < count; ++i) {
                 var key = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryKeyOffset, true);
                 var off = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryPositionOffset, true);
                 _Rows.Add(key, CreateRow(key, off));
                 currentPosition += EntryLength;
             }
         }
+
         #endregion
 
         #region Factory
+
         protected virtual T CreateRow(int key, int offset) {
             return (T)Activator.CreateInstance(typeof(T), this, key, offset);
         }
+
         #endregion
 
         #region ISheet<T> Members
@@ -69,41 +106,17 @@ namespace SaintCoinach.Ex {
             return _Rows.Values;
         }
 
-        public T this[int row] {
-            get { return _Rows[row]; }
-        }
-
-        #endregion
-
-        #region IEnumerable<T> Members
-
-        public IEnumerator<T> GetEnumerator() {
-            return _Rows.Values.GetEnumerator();
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            return GetEnumerator();
-        }
+        public T this[int row] { get { return _Rows[row]; } }
 
         #endregion
 
         #region ISheet Members
 
-        public string Name {
-            get { return SourceSheet.Name + "_" + Range.Start.ToString(); }
-        }
+        public string Name { get { return SourceSheet.Name + "_" + Range.Start; } }
 
-        public Header Header {
-            get { return SourceSheet.Header; }
-        }
+        public Header Header { get { return SourceSheet.Header; } }
 
-        public ExCollection Collection {
-            get { return SourceSheet.Collection; }
-        }
+        public ExCollection Collection { get { return SourceSheet.Collection; } }
 
         public bool ContainsRow(int row) {
             return _Rows.ContainsKey(row);
@@ -113,21 +126,9 @@ namespace SaintCoinach.Ex {
             return _Rows.Values.Cast<IRow>();
         }
 
-        IRow ISheet.this[int row] {
-            get { return this[row]; }
-        }
+        IRow ISheet.this[int row] { get { return this[row]; } }
 
-        public object this[int row, int column] {
-            get { return this[row][column]; }
-        }
-
-        #endregion
-
-        #region IDataSheet Members
-
-        public byte[] GetBuffer() {
-            return File.GetData();
-        }
+        public object this[int row, int column] { get { return this[row][column]; } }
 
         #endregion
     }

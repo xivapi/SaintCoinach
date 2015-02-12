@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public struct UpdateProgress {
+        #region Properties
+
         public int CurrentStep { get; set; }
         public int TotalSteps { get; set; }
-
         public double Percentage { get { return CurrentStep / (double)TotalSteps; } }
-
         public string CurrentFile { get; set; }
         public string CurrentOperation { get; set; }
+
+        #endregion
 
         public override string ToString() {
             var sb = new StringBuilder();

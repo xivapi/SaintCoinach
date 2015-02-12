@@ -20,26 +20,53 @@
 //  SOFTWARE.
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Globalization;
-using YamlDotNet;
+using System.Linq;
+
+using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.Ex.Relational.ValueConverters;
+
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.EventEmitters;
 
 namespace SaintCoinach.Ex.Relational.Serialization {
     public sealed class ExRelationEventEmitter : ChainedEventEmitter {
+        #region Fields
+
+        private readonly Dictionary<Type, string> _Tags = new Dictionary<Type, string> {
+            {
+                typeof(ColorConverter), "color_conv"
+            }, {
+                typeof(IconConverter), "icon_conv"
+            }, {
+                typeof(SheetLinkConverter), "link_conv"
+            }, {
+                typeof(GroupDataDefinition), "group_def"
+            }, {
+                typeof(RepeatDataDefinition), "repeat_def"
+            }, {
+                typeof(SingleDataDefinition), "single_def"
+            }
+        };
+
+        #endregion
+
+        #region Constructors
+
         public ExRelationEventEmitter(IEventEmitter nextEmitter)
-            : base(nextEmitter) {
-        }
+            : base(nextEmitter) { }
+
+        #endregion
 
         public override void Emit(ScalarEventInfo eventInfo) {
             eventInfo.IsPlainImplicit = true;
             eventInfo.Style = ScalarStyle.Plain;
 
             var typeCode = eventInfo.Source.Value != null
-                ? Type.GetTypeCode(eventInfo.Source.Type)
-                : TypeCode.Empty;
+                               ? Type.GetTypeCode(eventInfo.Source.Type)
+                               : TypeCode.Empty;
 
             switch (typeCode) {
                 case TypeCode.Boolean:
@@ -69,7 +96,10 @@ namespace SaintCoinach.Ex.Relational.Serialization {
                 case TypeCode.String:
                 case TypeCode.Char:
                     eventInfo.Tag = "tag:yaml.org,2002:str";
-                    eventInfo.RenderedValue = eventInfo.Source.Value.ToString();
+                    if (eventInfo.Source != null)
+                        eventInfo.RenderedValue = eventInfo.Source.Value == null
+                                                      ? string.Empty
+                                                      : eventInfo.Source.Value.ToString();
                     eventInfo.Style = ScalarStyle.Any;
                     break;
 
@@ -84,12 +114,11 @@ namespace SaintCoinach.Ex.Relational.Serialization {
                     break;
 
                 default:
-                    if (eventInfo.Source.Type == typeof(TimeSpan)) {
-                        eventInfo.RenderedValue = YamlFormatter.FormatTimeSpan(eventInfo.Source.Value);
-                        break;
-                    }
-
-                    throw new NotSupportedException(string.Format(CultureInfo.InvariantCulture, "TypeCode.{0} is not supported.", typeCode));
+                    if (eventInfo.Source.Type != typeof(TimeSpan))
+                        throw new NotSupportedException(string.Format(CultureInfo.InvariantCulture,
+                            "TypeCode.{0} is not supported.", typeCode));
+                    eventInfo.RenderedValue = YamlFormatter.FormatTimeSpan(eventInfo.Source.Value);
+                    break;
             }
 
             base.Emit(eventInfo);
@@ -105,24 +134,14 @@ namespace SaintCoinach.Ex.Relational.Serialization {
             base.Emit(eventInfo);
         }
 
-
-        private System.Collections.Generic.Dictionary<Type, string> _Tags = new System.Collections.Generic.Dictionary<Type, string> {
-            { typeof(ValueConverters.ColorConverter), "color_conv" },
-            { typeof(ValueConverters.IconConverter), "icon_conv" },
-            { typeof(ValueConverters.SheetLinkConverter), "link_conv" },
-
-            { typeof(Definition.GroupDataDefinition), "group_def" },
-            { typeof(Definition.RepeatDataDefinition), "repeat_def" },
-            { typeof(Definition.SingleDataDefinition), "single_def" },
-        };
         private void AssignTypeIfDifferent(ObjectEventInfo eventInfo) {
-            if (eventInfo.Source.Value != null) {
-                if (eventInfo.Source.Type != eventInfo.Source.StaticType) {
-                    var tagRes = _Tags.Where(_ => _.Key.IsAssignableFrom(eventInfo.Source.Type)).Select(_ => _.Value);
-                    if (tagRes.Any())
-                        eventInfo.Tag = "!!" + tagRes.First();
-                }
-            }
+            if (eventInfo.Source.Value == null) return;
+            if (eventInfo.Source.Type == eventInfo.Source.StaticType) return;
+
+            var tagRes =
+                _Tags.Where(_ => _.Key.IsAssignableFrom(eventInfo.Source.Type)).Select(_ => _.Value).ToArray();
+            if (tagRes.Any())
+                eventInfo.Tag = "!!" + tagRes.First();
         }
     }
 }

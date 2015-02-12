@@ -1,38 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
     /// <summary>
-    /// A file inside SqPack without special attributes.
+    ///     A file inside SqPack without special attributes.
     /// </summary>
     public class FileDefault : File {
         #region Fields
-        private WeakReference<byte[]> _BufferCache = null;
+
+        private WeakReference<byte[]> _BufferCache;
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
+
         public FileDefault(Directory directory, FileCommonHeader header) : base(directory, header) { }
+
+        #endregion
+
         #endregion
 
         #region Read
+
         public override byte[] GetData() {
             byte[] buffer;
 
-            if (_BufferCache == null || !_BufferCache.TryGetTarget(out buffer)) {
-                buffer = Read();
+            if (_BufferCache != null && _BufferCache.TryGetTarget(out buffer)) return buffer;
 
-                if (_BufferCache == null)
-                    _BufferCache = new WeakReference<byte[]>(buffer);
-                else
-                    _BufferCache.SetTarget(buffer);
-            }
+            buffer = Read();
+
+            if (_BufferCache == null)
+                _BufferCache = new WeakReference<byte[]>(buffer);
+            else
+                _BufferCache.SetTarget(buffer);
 
             return buffer;
         }
+
         private byte[] Read() {
             const int BlockCountOffset = 0x14;
             const int BlockInfoOffset = 0x18;
@@ -54,6 +60,7 @@ namespace SaintCoinach.IO {
 
             return data;
         }
+
         #endregion
     }
 }

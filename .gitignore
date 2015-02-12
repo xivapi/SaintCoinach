@@ -232,3 +232,4 @@ $RECYCLE.BIN/
 # DX Things
 *.tkb
 sharpdx_direct3d11_effects_*.dll
+*.StyleCop

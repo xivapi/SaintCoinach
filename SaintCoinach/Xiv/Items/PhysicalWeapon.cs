@@ -1,13 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
     public class PhysicalWeapon : Weapon {
+        #region Constructors
+
         #region Constructor
-        public PhysicalWeapon(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public PhysicalWeapon(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
     }
 }

@@ -1,17 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    // ReSharper disable once InconsistentNaming
     public class BGM : XivRow {
         #region Properties
+
         public string File { get { return AsString("File"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public BGM(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BGM(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

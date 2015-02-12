@@ -1,48 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
     /// <summary>
-    /// Directory-entry inside an index file.
+    ///     Directory-entry inside an index file.
     /// </summary>
     public class IndexDirectory {
-        #region Fields
-        private uint _Key;
-        private int _Offset;
-        private int _Count;
-        private IReadOnlyDictionary<uint, IndexFile> _Files;
+        #region Properties
+
+        public uint Key { get; private set; }
+        public int Offset { get; private set; }
+        public int Count { get; private set; }
+        public IReadOnlyDictionary<uint, IndexFile> Files { get; private set; }
+
         #endregion
 
-        #region Properties
-        public uint Key { get { return _Key; } }
-        public int Offset { get { return _Offset; } }
-        public int Count { get { return _Count; } }
-        public IReadOnlyDictionary<uint, IndexFile> Files { get { return _Files; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public IndexDirectory(BinaryReader reader) {
             ReadMeta(reader);
             var pos = reader.BaseStream.Position;
             ReadFiles(reader);
             reader.BaseStream.Position = pos;
         }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private void ReadMeta(BinaryReader reader) {
-            _Key = reader.ReadUInt32();
-            _Offset = reader.ReadInt32();
+            Key = reader.ReadUInt32();
+            Offset = reader.ReadInt32();
             var len = reader.ReadInt32();
-            _Count = len / 0x10;
+            Count = len / 0x10;
 
             reader.ReadInt32(); // Zero
         }
+
         private void ReadFiles(BinaryReader reader) {
             reader.BaseStream.Position = Offset;
 
@@ -51,8 +51,9 @@ namespace SaintCoinach.IO {
             while (rem-- > 0)
                 files.Add(new IndexFile(reader));
 
-            _Files = new ReadOnlyDictionary<uint, IndexFile>(files.ToDictionary(_ => _.FileKey, _ => _));
+            Files = new ReadOnlyDictionary<uint, IndexFile>(files.ToDictionary(_ => _.FileKey, _ => _));
         }
+
         #endregion
     }
 }

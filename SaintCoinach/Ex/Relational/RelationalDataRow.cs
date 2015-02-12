@@ -1,27 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Ex.Relational {
     public class RelationalDataRow : DataRow, IRelationalDataRow {
-        #region Properties
-        public new IRelationalDataSheet Sheet { get { return (IRelationalDataSheet)base.Sheet; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public RelationalDataRow(IRelationalDataSheet sheet, int key, int offset) : base(sheet, key, offset) { }
+
         #endregion
 
+        #endregion
+
+        public new IRelationalDataSheet Sheet { get { return (IRelationalDataSheet)base.Sheet; } }
+
+        public override string ToString() {
+            var defCol = Sheet.Header.DefaultColumn;
+            return defCol == null
+                       ? string.Format("{0}#{1}", Sheet.Header.Name, Key)
+                       : string.Format("{0}", this[defCol.Index]);
+        }
+
         #region IRelationalRow Members
+
         IRelationalSheet IRelationalRow.Sheet { get { return Sheet; } }
+
         public object DefaultValue {
             get {
                 var defCol = Sheet.Header.DefaultColumn;
-                if (defCol == null)
-                    return null;
-                return this[defCol.Index];
+                return defCol == null ? null : this[defCol.Index];
             }
         }
 
@@ -35,12 +42,5 @@ namespace SaintCoinach.Ex.Relational {
         }
 
         #endregion
-
-        public override string ToString() {
-            var defCol = Sheet.Header.DefaultColumn;
-            if (defCol == null)
-                return string.Format("{0}#{1}", Sheet.Header.Name, Key);
-            return string.Format("{0}", this[defCol.Index]);
-        }
     }
 }

@@ -1,16 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class FishingSpot : XivRow {
         #region Fields
-        private Item[] _Items = null;
+
+        private Item[] _Items;
+
         #endregion
 
         #region Properties
+
         public int Level { get { return AsInt32("Level"); } }
         public string OnReachBigFish { get { return AsString("BigFish{OnReach}"); } }
         public string OnEndBigFish { get { return AsString("BigFish{OnEnd}"); } }
@@ -20,13 +21,22 @@ namespace SaintCoinach.Xiv {
         public int Z { get { return AsInt32("Z"); } }
         public int Radius { get { return AsInt32("Radius"); } }
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
+        public IEnumerable<Item> Items { get { return _Items ?? (_Items = BuildItems()); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public FishingSpot(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public FishingSpot(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private Item[] BuildItems() {
             const int Count = 10;
 
@@ -39,6 +49,7 @@ namespace SaintCoinach.Xiv {
 
             return items.ToArray();
         }
+
         #endregion
 
         public override string ToString() {

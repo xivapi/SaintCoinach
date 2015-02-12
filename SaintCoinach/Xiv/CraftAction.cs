@@ -1,13 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class CraftAction : ActionBase {
+        #region Constructors
+
         #region Constructor
-        public CraftAction(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public CraftAction(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
     }
 }

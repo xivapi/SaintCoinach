@@ -1,20 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class GrandCompany : XivRow {
-        const int SealItemOffset = 19;
+        #region Static
 
-        #region Properties
-        public string Name { get { return AsString("Name"); } }
-        public Item SealItem { get { return Sheet.Collection.GetSheet<Item>()[Key + SealItemOffset]; } }
+        private const int SealItemOffset = 19;
+
         #endregion
 
+        #region Properties
+
+        public string Name { get { return AsString("Name"); } }
+        public Item SealItem { get { return Sheet.Collection.GetSheet<Item>()[Key + SealItemOffset]; } }
+
+        #endregion
+
+        #region Constructors
+
         #region Constructor
-        public GrandCompany(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public GrandCompany(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Ex.Relational {
-    public interface IRelationalMultiSheet<TMulti, TData> : IRelationalSheet, IMultiSheet<TMulti, TData>, IRelationalSheet<TMulti>, IRelationalMultiSheet
+    public interface IRelationalMultiSheet<out TMulti, out TData> : IMultiSheet<TMulti, TData>,
+                                                                    IRelationalSheet<TMulti>, IRelationalMultiSheet
         where TMulti : IRelationalMultiRow
         where TData : IRelationalDataRow {
-        new IRelationalSheet<TData> ActiveSheet { get; }
-        new IRelationalSheet<TData> GetLocalisedSheet(Language language);
+        #region Properties
 
-        new IEnumerable<TMulti> GetAllRows();
+        new IRelationalSheet<TData> ActiveSheet { get; }
         new TMulti this[int row] { get; }
+
+        #endregion
+
+        new IRelationalSheet<TData> GetLocalisedSheet(Language language);
+        new IEnumerable<TMulti> GetAllRows();
     }
 }

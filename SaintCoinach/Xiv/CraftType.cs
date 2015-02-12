@@ -1,23 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class CraftType : XivRow {
-        // XXX: Here be magic number
-        const int ClassJobOffset = 8;
+        #region Static
 
-        #region Properties
-        public string Name { get { return AsString("Name"); } }
-        public CraftCrystalType PrimaryCraftCrystal { get { return As<CraftCrystalType>("CraftCrystalType{Primary}"); } }
-        public CraftCrystalType SecondaryCraftCrystal { get { return As<CraftCrystalType>("CraftCrystalType{Secondary}"); } }
-        public ClassJob ClassJob { get { return Sheet.Collection.GetSheet<ClassJob>()[ClassJobOffset + this.Key]; } }
+        // XXX: Here be magic number
+        private const int ClassJobOffset = 8;
+
         #endregion
 
+        #region Properties
+
+        public string Name { get { return AsString("Name"); } }
+
+        public CraftCrystalType PrimaryCraftCrystal {
+            get { return As<CraftCrystalType>("CraftCrystalType{Primary}"); }
+        }
+
+        public CraftCrystalType SecondaryCraftCrystal {
+            get { return As<CraftCrystalType>("CraftCrystalType{Secondary}"); }
+        }
+
+        public ClassJob ClassJob { get { return Sheet.Collection.GetSheet<ClassJob>()[ClassJobOffset + Key]; } }
+
+        #endregion
+
+        #region Constructors
+
         #region Constructor
-        public CraftType(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public CraftType(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

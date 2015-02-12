@@ -1,44 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Imaging;
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Graphics.Assets {
     public class MaterialVersion {
-        const string DummyTextureInMaterial = "dummy.tex";
-        const string DummyTexturePath = "common/graphics/texture/dummy.tex";
+        #region Static
+
+        private const string DummyTextureInMaterial = "dummy.tex";
+        private const string DummyTexturePath = "common/graphics/texture/dummy.tex";
+
+        #endregion
 
         #region Fields
-        private int _Version;
-        private Material _Material;
-        private bool _CanStain;
 
-        private string _BasePath;
+        private readonly string _BasePath;
+        private readonly PackCollection _PackCollection;
+        private int[] _AvailableStains;
+        private int _CurrentStain;
+        private MaterialParameterMapping[] _ParameterMappings;
         private string _StainedFormat;
 
-        private IO.File _CurrentFile;
-
-        private int _CurrentStain = 0;
-        private IReadOnlyList<Imaging.ImageFile> _Textures;
-        private IReadOnlyList<string> _Maps;
-        private IReadOnlyList<string> _DataSets;
-        private int[] _AvailableStains;
-        private string _Shader;
-        private MaterialParameterMapping[] _ParameterMappings;
-
-        private IO.PackCollection _PackCollection;
         #endregion
 
         #region Properties
-        public int Version { get { return _Version; } }
-        public Material Material { get { return _Material; } }
 
-        public IO.File CurrentFile { get { return _CurrentFile; } }
-
-        public bool CanStain { get { return _CanStain; } }
+        public int Version { get; private set; }
+        public Material Material { get; private set; }
+        public File CurrentFile { get; private set; }
+        public bool CanStain { get; private set; }
         public IEnumerable<int> AvailableStains { get { return _AvailableStains; } }
+
         public int CurrentStain {
             get { return _CurrentStain; }
             set {
@@ -48,43 +44,46 @@ namespace SaintCoinach.Graphics.Assets {
                 Load();
             }
         }
-        public IReadOnlyList<Imaging.ImageFile> Textures {
-            get { return _Textures; }
-        }
-        public IReadOnlyList<string> Maps {
-            get { return _Maps; }
-        }
-        public IReadOnlyList<string> DataSets {
-            get { return _DataSets; }
-        }
-        public string Shader {
-            get { return _Shader; }
-        }
-        public IEnumerable<MaterialParameterMapping> ParameterMappings {
-            get { return _ParameterMappings; }
-        }
+
+        public IReadOnlyList<ImageFile> Textures { get; private set; }
+        public IReadOnlyList<string> Maps { get; private set; }
+        public IReadOnlyList<string> DataSets { get; private set; }
+        public string Shader { get; private set; }
+        public IEnumerable<MaterialParameterMapping> ParameterMappings { get { return _ParameterMappings; } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
+
         public MaterialVersion(Material material, int version, string path) {
-            _Material = material;
+            Material = material;
             _BasePath = path;
-            _Version = version;
+            Version = version;
 
             _PackCollection = Material.Model.File.Directory.Pack.Collection;
 
             Load();
             CheckForStaining();
         }
+
         #endregion
 
+        #endregion
+
+        public override string ToString() {
+            return _BasePath;
+        }
+
         #region Load
+
         private void CheckForStaining() {
             var lastSep = _BasePath.LastIndexOf('/');
             var ext = _BasePath.LastIndexOf('.');
 
             _StainedFormat = string.Format(
-                "{0}/staining{1}_s{{0:D4}}{2}",
+                                           "{0}/staining{1}_s{{0:D4}}{2}",
                 _BasePath.Substring(0, lastSep),
                 _BasePath.Substring(lastSep, ext - lastSep),
                 _BasePath.Substring(ext));
@@ -94,26 +93,28 @@ namespace SaintCoinach.Graphics.Assets {
 
             var stains = new List<int>();
 
-            for (int i = Minimum; i <= Maximum; ++i) {
+            for (var i = Minimum; i <= Maximum; ++i) {
                 var f = string.Format(_StainedFormat, i);
                 if (_PackCollection.FileExists(f))
                     stains.Add(i);
             }
 
-            _CanStain = stains.Count > 0;
+            CanStain = stains.Count > 0;
             _AvailableStains = stains.ToArray();
         }
+
         private void Load() {
             if (CurrentStain == 0)
-                _CurrentFile = _PackCollection.GetFile(_BasePath);
+                CurrentFile = _PackCollection.GetFile(_BasePath);
             else {
                 var path = string.Format(_StainedFormat, CurrentStain);
-                _CurrentFile = _PackCollection.GetFile(path);
+                CurrentFile = _PackCollection.GetFile(path);
             }
 
-            var buffer = _CurrentFile.GetData();
+            var buffer = CurrentFile.GetData();
             Read(buffer);
         }
+
         private void Read(byte[] buffer) {
             const int TextureCountOffset = 0x0C;
             const int MapCountOffset = 0x0D;
@@ -150,42 +151,45 @@ namespace SaintCoinach.Graphics.Assets {
 
             ReadAdditional(buffer, offset);
         }
+
         private void ReadShader(byte[] buffer, int dataOffset) {
             const int ShaderPositionOffset = 0x0A;
 
             var shaderOffset = BitConverter.ToUInt16(buffer, ShaderPositionOffset);
-            _Shader = GetNullTerminatedString(buffer, dataOffset + shaderOffset);
+            Shader = GetNullTerminatedString(buffer, dataOffset + shaderOffset);
         }
 
         private void ReadTextures(byte[] buffer, int infoOffset, int dataOffset, int count) {
             var offsets = new int[count];
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
                 offsets[i] = BitConverter.ToUInt16(buffer, infoOffset + 0x04 * i);
 
-            var textures = new List<Imaging.ImageFile>(count);
+            var textures = new List<ImageFile>(count);
             foreach (var offset in offsets) {
                 var actualOffset = dataOffset + offset;
                 var str = GetNullTerminatedString(buffer, actualOffset);
                 if (DummyTextureInMaterial.Equals(str, StringComparison.OrdinalIgnoreCase))
                     str = DummyTexturePath;
-                IO.File file;
+                File file;
                 if (_PackCollection.TryGetFile(str, out file)) {
-                    if (!(file is Imaging.ImageFile))
-                        System.Diagnostics.Trace.WriteLine(string.Format("Material<{0}>: Texture '{1}' is not an image.", _CurrentFile.Path, str));
+                    if (!(file is ImageFile))
+                        Trace.WriteLine(string.Format("Material<{0}>: Texture '{1}' is not an image.", CurrentFile.Path,
+                            str));
                 } else {
-                    System.Diagnostics.Trace.WriteLine(string.Format("Material<{0}>: Texture '{1}' could not be found.", _CurrentFile.Path, str));
+                    Trace.WriteLine(string.Format("Material<{0}>: Texture '{1}' could not be found.", CurrentFile.Path,
+                        str));
                     file = null;
                 }
 
-                textures.Add(file as Imaging.ImageFile);
+                textures.Add(file as ImageFile);
             }
 
-            _Textures = new ReadOnlyCollection<Imaging.ImageFile>(textures);
+            Textures = new ReadOnlyCollection<ImageFile>(textures);
         }
 
         private void ReadMaps(byte[] buffer, int infoOffset, int dataOffset, int count) {
             var offsets = new int[count];
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
                 offsets[i] = BitConverter.ToUInt16(buffer, infoOffset + 0x04 * i);
 
             var maps = new List<string>();
@@ -193,12 +197,12 @@ namespace SaintCoinach.Graphics.Assets {
                 var actualOffset = dataOffset + offset;
                 maps.Add(GetNullTerminatedString(buffer, actualOffset));
             }
-            _Maps = new ReadOnlyCollection<string>(maps);
+            Maps = new ReadOnlyCollection<string>(maps);
         }
 
         private void ReadDataSets(byte[] buffer, int infoOffset, int dataOffset, int count) {
             var offsets = new int[count];
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
                 offsets[i] = BitConverter.ToUInt16(buffer, infoOffset + 0x04 * i);
 
             var dataSets = new List<string>();
@@ -206,7 +210,7 @@ namespace SaintCoinach.Graphics.Assets {
                 var actualOffset = dataOffset + offset;
                 dataSets.Add(GetNullTerminatedString(buffer, actualOffset));
             }
-            _DataSets = new ReadOnlyCollection<string>(dataSets);
+            DataSets = new ReadOnlyCollection<string>(dataSets);
         }
 
         private void ReadAdditional(byte[] buffer, int offset) {
@@ -243,14 +247,11 @@ namespace SaintCoinach.Graphics.Assets {
 
         private static string GetNullTerminatedString(byte[] buffer, int offset) {
             var end = offset - 1;
-            while (++end < buffer.Length && buffer[end] != 0) ;
+            while (++end < buffer.Length && buffer[end] != 0) { }
             var len = end - offset;
             return Encoding.ASCII.GetString(buffer, offset, len);
         }
-        #endregion
 
-        public override string ToString() {
-            return _BasePath;
-        }
+        #endregion
     }
 }

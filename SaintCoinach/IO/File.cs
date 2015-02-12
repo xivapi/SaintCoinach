@@ -1,52 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
     /// <summary>
-    /// Base class for files inside the SqPack.
+    ///     Base class for files inside the SqPack.
     /// </summary>
     public abstract class File {
         #region Fields
-        private Directory _Directory;
-        private FileCommonHeader _CommonHeader;
+
         private string _Name;
+
         #endregion
 
         #region Properties
-        public Directory Directory { get { return _Directory; } }
-        public FileCommonHeader CommonHeader { get { return _CommonHeader; } }
+
+        public Directory Directory { get; private set; }
+        public FileCommonHeader CommonHeader { get; private set; }
         public IndexFile Index { get { return CommonHeader.Index; } }
-        public string Name {
-            get { return _Name ?? Index.FileKey.ToString("X8"); }
-            internal set { _Name = value; }
-        }
-        public string Path {
-            get { return string.Join("/", Directory.Path, this.Name); }
-        }
+        public string Name { get { return _Name ?? Index.FileKey.ToString("X8"); } internal set { _Name = value; } }
+        public string Path { get { return string.Join("/", Directory.Path, Name); } }
+
         #endregion
+
+        #region Constructors
 
         #region Constructor
+
         protected File(Directory directory, FileCommonHeader commonHeader) {
-            _Directory = directory;
-            _CommonHeader = commonHeader;
+            Directory = directory;
+            CommonHeader = commonHeader;
         }
+
         #endregion
 
+        #endregion
+
+        public override string ToString() {
+            return Path;
+        }
+
         #region Abstracts
+
         public abstract byte[] GetData();
+
         public virtual Stream GetStream() {
             return new MemoryStream(GetData());
         }
+
         #endregion
 
         #region Helpers
+
         protected Stream GetSourceStream() {
-            return _Directory.Pack.GetDataStream(Index.DatFile);
+            return Directory.Pack.GetDataStream(Index.DatFile);
         }
 
         protected static byte[] ReadBlock(Stream stream) {
@@ -57,6 +64,7 @@ namespace SaintCoinach.IO {
             }
             return block;
         }
+
         protected static void ReadBlock(Stream inStream, Stream outStream) {
             const uint Magic = 0x00000010;
 
@@ -95,14 +103,10 @@ namespace SaintCoinach.IO {
 
             var isCompressed = sourceSize < CompressionThreshold;
 
-            int blockSize;
-            if (isCompressed)
-                blockSize = sourceSize;
-            else
-                blockSize = rawSize;
+            var blockSize = isCompressed ? sourceSize : rawSize;
 
             if ((blockSize + HeaderLength) % BlockPadding != 0)
-                blockSize += BlockPadding - ((blockSize + HeaderLength) % BlockPadding);    // Add padding if necessary
+                blockSize += BlockPadding - ((blockSize + HeaderLength) % BlockPadding); // Add padding if necessary
 
             var buffer = new byte[blockSize];
             if (inStream.Read(buffer, 0, blockSize) != blockSize)
@@ -118,6 +122,7 @@ namespace SaintCoinach.IO {
                 outStream.Write(buffer, 0, buffer.Length);
             }
         }
+
         private static void Inflate(byte[] buffer, Stream outStream) {
             using (var ms = new MemoryStream(buffer)) {
                 using (var deflate = new DeflateStream(ms, CompressionMode.Decompress)) {
@@ -125,24 +130,24 @@ namespace SaintCoinach.IO {
                 }
             }
         }
+
         #endregion
 
         #region Hashcode / Equals
+
         public override int GetHashCode() {
             return Path.GetHashCode();
         }
+
         public override bool Equals(object obj) {
             var asFile = obj as File;
             if (asFile != null)
-                return (asFile.Index.FileKey == this.Index.FileKey
-                    && asFile.Index.DirectoryKey == this.Index.DirectoryKey
-                    && asFile.Index.DatFile == this.Index.DatFile);
+                return (asFile.Index.FileKey == Index.FileKey
+                        && asFile.Index.DirectoryKey == Index.DirectoryKey
+                        && asFile.Index.DatFile == Index.DatFile);
             return false;
         }
-        #endregion
 
-        public override string ToString() {
-            return Path;
-        }
+        #endregion
     }
 }

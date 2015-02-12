@@ -1,30 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational.Definition;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class DefinitionUpdater {
         #region Fields
-        private Definition.PositionedDataDefintion _DataDefinition;
-        private Definition.SheetDefinition _SheetDefinition;
-        private Dictionary<int, List<double>> _IndexMatchConfidence = new Dictionary<int, List<double>>();
-        private int _RowMatchCount = 0;
+
+        private readonly Dictionary<int, List<double>> _IndexMatchConfidence = new Dictionary<int, List<double>>();
+        private readonly SheetDefinition _SheetDefinition;
+        private int _RowMatchCount;
+
         #endregion
 
         #region Properties
-        public Definition.PositionedDataDefintion DataDefinition { get { return _DataDefinition; } }
+
+        public PositionedDataDefintion DataDefinition { get; private set; }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public DefinitionUpdater(Definition.SheetDefinition sheetDefinition, Definition.PositionedDataDefintion dataDefinition) {
+
+        public DefinitionUpdater(SheetDefinition sheetDefinition, PositionedDataDefintion dataDefinition) {
             _SheetDefinition = sheetDefinition;
-            _DataDefinition = dataDefinition;
+            DataDefinition = dataDefinition;
         }
+
+        #endregion
+
         #endregion
 
         #region Match
+
         public void MatchRow(object[] previousRowData, object[] updatedRowData) {
             for (var updatedI = 0; updatedI <= updatedRowData.Length - DataDefinition.Length; ++updatedI) {
                 var matches = 0;
@@ -40,18 +50,19 @@ namespace SaintCoinach.Ex.Relational.Update {
                         ++matches;
                 }
 
-                if (matches > 0) {
-                    var c = matches / (double)DataDefinition.Length;
-                    if (!_IndexMatchConfidence.ContainsKey(updatedI))
-                        _IndexMatchConfidence.Add(updatedI, new List<double>());
-                    _IndexMatchConfidence[updatedI].Add(c);
-                }
+                if (matches <= 0) continue;
+
+                var c = matches / (double)DataDefinition.Length;
+                if (!_IndexMatchConfidence.ContainsKey(updatedI))
+                    _IndexMatchConfidence.Add(updatedI, new List<double>());
+                _IndexMatchConfidence[updatedI].Add(c);
             }
 
             ++_RowMatchCount;
         }
-        public Definition.PositionedDataDefintion GetBestMatch(out double confidence) {
-            int index = GetBestMatchIndex(out confidence);
+
+        public PositionedDataDefintion GetBestMatch(out double confidence) {
+            var index = GetBestMatchIndex(out confidence);
             if (index < 0)
                 return null;
 
@@ -68,21 +79,24 @@ namespace SaintCoinach.Ex.Relational.Update {
 
             var matches = _IndexMatchConfidence.Select(_ => new {
                 Index = _.Key,
-                Count = _.Value.Count,
-                Sum = _.Value.Sum(),
+                _.Value.Count,
+                Sum = _.Value.Sum()
             }).GroupBy(_ => _.Sum).OrderByDescending(_ => _.Key);
 
             var bestMatch = matches.First();
 
-            confidence = bestMatch.Key / (double)_RowMatchCount;
+            confidence = bestMatch.Key / _RowMatchCount;
 
-            if(bestMatch.Count() > 1)
-                Console.WriteLine("Multiple possible matches on '{2}' @ '{3}' for {4} ({0} with c={1:P})", bestMatch.Count(), confidence, _SheetDefinition.Name, DataDefinition.GetName(DataDefinition.Index), DataDefinition.Length);
+            if (bestMatch.Count() > 1)
+                Console.WriteLine("Multiple possible matches on '{2}' @ '{3}' for {4} ({0} with c={1:P})",
+                    bestMatch.Count(), confidence, _SheetDefinition.Name, DataDefinition.GetName(DataDefinition.Index),
+                    DataDefinition.Length);
 
-            if (bestMatch.Any(_ => _.Index == DataDefinition.Index))
-                return DataDefinition.Index;
-            return bestMatch.OrderBy(_ => Math.Abs(DataDefinition.Index - _.Index)).Select(_ => _.Index).First();
+            return bestMatch.Any(_ => _.Index == DataDefinition.Index)
+                       ? DataDefinition.Index
+                       : bestMatch.OrderBy(_ => Math.Abs(DataDefinition.Index - _.Index)).Select(_ => _.Index).First();
         }
+
         #endregion
     }
 }

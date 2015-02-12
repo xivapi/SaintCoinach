@@ -1,19 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class GatheringItem : XivRow {
         #region Properties
+
         public Item Item { get { return As<Item>("Item"); } }
         public int ItemLevel { get { return AsInt32("ItemLevel"); } }
         public bool IsRare { get { return AsBoolean("IsRare"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public GatheringItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public GatheringItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

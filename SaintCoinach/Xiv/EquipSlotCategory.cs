@@ -1,28 +1,38 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class EquipSlotCategory : XivRow {
         #region Fields
-        private EquipSlot[] _PossibleSlots;
+
         private EquipSlot[] _BlockedSlots;
+        private EquipSlot[] _PossibleSlots;
+
         #endregion
 
         #region Properties
+
         public IEnumerable<EquipSlot> PossibleSlots { get { return _PossibleSlots; } }
         public IEnumerable<EquipSlot> BlockedSlots { get { return _BlockedSlots; } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public EquipSlotCategory(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) {
+
+        public EquipSlotCategory(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) {
             Build();
         }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private void Build() {
             var possible = new List<EquipSlot>();
             var blocked = new List<EquipSlot>();
@@ -39,6 +49,7 @@ namespace SaintCoinach.Xiv {
             _PossibleSlots = possible.ToArray();
             _BlockedSlots = blocked.ToArray();
         }
+
         #endregion
     }
 }

@@ -1,21 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class ENpcBase : XivRow {
+        #region Static
+
         public const int DataCount = 32;
 
-        #region Properties
+        #endregion
+
+        #region Constructors
+
+        #region Constructor
+
+        public ENpcBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
+        #endregion
+
         public int GetData(int index) {
             return AsInt32("ENpcData", index);
         }
-        #endregion
-
-        #region Constructor
-        public ENpcBase(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-        #endregion
     }
 }

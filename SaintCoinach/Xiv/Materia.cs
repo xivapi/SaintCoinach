@@ -1,49 +1,38 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class Materia : XivRow {
-        #region MateriaItem
-        public class ItemValue {
-            #region Fields
-            private Item _Item;
-            private int _Value;
-            private int _Tier;
-            #endregion
-
-            #region Properties
-            public Item Item { get { return _Item; } }
-            public int Value { get { return _Value; } }
-            public int Tier { get { return _Tier; } }
-            #endregion
-
-            #region Constructor
-            public ItemValue(Item item, int value, int tier) {
-                _Item = item;
-                _Value = value;
-                _Tier = tier;
-            }
-            #endregion
-        }
-        #endregion
+        #region Fields
 
         #region FIelds
-        private ItemValue[] _Items = null;
+
+        private ItemValue[] _Items;
+
+        #endregion
+
         #endregion
 
         #region Properties
+
         public BaseParam BaseParam { get { return As<BaseParam>(); } }
         public IEnumerable<ItemValue> Items { get { return _Items ?? (_Items = BuildItems()); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public Materia(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public Materia(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private ItemValue[] BuildItems() {
             const int Count = 10;
 
@@ -60,6 +49,35 @@ namespace SaintCoinach.Xiv {
 
             return items.ToArray();
         }
+
+        #endregion
+
+        #region MateriaItem
+
+        public class ItemValue {
+            #region Properties
+
+            public Item Item { get; private set; }
+            public int Value { get; private set; }
+            public int Tier { get; private set; }
+
+            #endregion
+
+            #region Constructors
+
+            #region Constructor
+
+            public ItemValue(Item item, int value, int tier) {
+                Item = item;
+                Value = value;
+                Tier = tier;
+            }
+
+            #endregion
+
+            #endregion
+        }
+
         #endregion
     }
 }

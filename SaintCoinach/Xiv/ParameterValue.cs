@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Xiv {
+﻿namespace SaintCoinach.Xiv {
     public abstract class ParameterValue {
-        #region Fields
-        private ParameterType _Type;
+        #region Properties
+
+        public ParameterType Type { get; private set; }
+
         #endregion
 
-        #region Properties
-        public ParameterType Type { get { return _Type; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         protected ParameterValue(ParameterType type) {
-            _Type = type;
+            Type = type;
         }
+
+        #endregion
+
         #endregion
     }
 }

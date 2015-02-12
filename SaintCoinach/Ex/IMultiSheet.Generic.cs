@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Ex {
-    public interface IMultiSheet<TMulti, TData> : ISheet<TMulti>, IMultiSheet 
-        where TMulti : IMultiRow 
+    public interface IMultiSheet<out TMulti, out TData> : ISheet<TMulti>, IMultiSheet
+        where TMulti : IMultiRow
         where TData : IRow {
-        new ISheet<TData> ActiveSheet { get; }
-        new ISheet<TData> GetLocalisedSheet(Language language);
+        #region Properties
 
-        new IEnumerable<TMulti> GetAllRows();
+        new ISheet<TData> ActiveSheet { get; }
         new TMulti this[int row] { get; }
+
+        #endregion
+
+        new ISheet<TData> GetLocalisedSheet(Language language);
+        new IEnumerable<TMulti> GetAllRows();
     }
 }

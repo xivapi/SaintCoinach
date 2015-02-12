@@ -1,39 +1,52 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.ItemActions {
     public class StatusRemoval : ItemAction {
-        const int StatusCount = 9;
-        const int StatusOffset = 0;
+        #region Static
+
+        private const int StatusCount = 9;
+        private const int StatusOffset = 0;
+
+        #endregion
 
         #region Fields
-        private FriendlyEffect[] _Statuses = null;
-        private FriendlyEffect[] _StatusesHq = null;
+
+        private FriendlyEffect[] _Statuses;
+        private FriendlyEffect[] _StatusesHq;
+
         #endregion
 
         #region Properties
+
         public IEnumerable<FriendlyEffect> Statuses { get { return _Statuses ?? (_Statuses = BuildStatuses(false)); } }
-        public IEnumerable<FriendlyEffect> StatusesHq { get { return _StatusesHq ?? (_StatusesHq = BuildStatuses(true)); } }
+
+        public IEnumerable<FriendlyEffect> StatusesHq {
+            get { return _StatusesHq ?? (_StatusesHq = BuildStatuses(true)); }
+        }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public StatusRemoval(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public StatusRemoval(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private FriendlyEffect[] BuildStatuses(bool hq) {
             var statuses = new List<FriendlyEffect>();
             var statusSheet = Sheet.Collection.GetSheet<FriendlyEffect>();
 
             for (var i = 0; i < StatusCount; ++i) {
-                int statusKey;
-                if (hq)
-                    statusKey = GetHqData(StatusOffset + i);
-                else
-                    statusKey = GetData(StatusOffset + i);
+                var statusKey = hq ? GetHqData(StatusOffset + i) : GetData(StatusOffset + i);
 
                 if (statusKey == 0 || statuses.Any(_ => _.Key == statusKey))
                     continue;
@@ -43,6 +56,7 @@ namespace SaintCoinach.Xiv.ItemActions {
 
             return statuses.ToArray();
         }
+
         #endregion
     }
 }

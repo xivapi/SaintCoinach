@@ -1,50 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach {
+    /// <summary>
+    ///     Class for converting the game's raw strings to usable ones.
+    /// </summary>
+    /// <remarks>
+    ///     This is very much a work-in-progress.
+    /// </remarks>
     public static class StringHelper {
 #if DEBUG
-        public static bool Debug = true;
+        private static bool _Debug = true;
 #else
-        public static bool Debug = false;
+        private static bool _Debug = false;
 #endif
 
-        static readonly Encoding Encoding = Encoding.UTF8;
+        public static bool Debug { get { return _Debug; } set { _Debug = value; } }
+
+        private static readonly Encoding Encoding = Encoding.UTF8;
 
         #region Types
-        private static Dictionary<byte, string> SpecialTypeNames = new Dictionary<byte, string> {
-            { 0x08, "IF" },
-            { 0x09, "SWITCH" },
-            { 0x10, Environment.NewLine },
-            { 0x11, "WAIT" },
-            { 0x12, "GUI" },
-            { 0x13, "COLOR" },
-            { 0x1A, "EM" },
-            { 0x1F, "–" },
-            { 0x20, "VALUE" },
-            { 0x22, "FORMAT" },
-            { 0x24, "ZERO" },
-            { 0x25, "TIME" },
-            { 0x28, "SHEET" },
-            { 0x2E, "FIXED" },
-            { 0x31, "SHEETEN" },
-            { 0x32, "SHEETDE" },
-            { 0x33, "SHEETFR" },
+
+        private static readonly Dictionary<byte, string> SpecialTypeNames = new Dictionary<byte, string> {
+            {
+                0x08, "IF"
+            }, {
+                0x09, "SWITCH"
+            }, {
+                0x10, Environment.NewLine
+            }, {
+                0x11, "WAIT"
+            }, {
+                0x12, "GUI"
+            }, {
+                0x13, "COLOR"
+            }, {
+                0x1A, "EM"
+            }, {
+                0x1F, "–"
+            }, {
+                0x20, "VALUE"
+            }, {
+                0x22, "FORMAT"
+            }, {
+                0x24, "ZERO"
+            }, {
+                0x25, "TIME"
+            }, {
+                0x28, "SHEET"
+            }, {
+                0x2E, "FIXED"
+            }, {
+                0x31, "SHEETEN"
+            }, {
+                0x32, "SHEETDE"
+            }, {
+                0x33, "SHEETFR"
+            }
         };
+
         private delegate void SpecialProcessor(byte[] data, ref byte[] output, int offset, string typeName);
-        private static Dictionary<byte, SpecialProcessor> SpecialTypeProcessors = new Dictionary<byte, SpecialProcessor> {
-            // { 0x08, IfProcessor }, // TODO: Do the thing again
-            { 0x10, SkipProcessor },
-            { 0x1A, FormattingProcessor },
-            { 0x1F, SkipProcessor },
-        };
+
+        private static readonly Dictionary<byte, SpecialProcessor> SpecialTypeProcessors =
+            new Dictionary<byte, SpecialProcessor> {
+                // { 0x08, IfProcessor }, // TODO: Do the thing again
+                {
+                    0x10, SkipProcessor
+                }, {
+                    0x1A, FormattingProcessor
+                }, {
+                    0x1F, SkipProcessor
+                }
+            };
+
         #endregion
 
-        const int SpecialTypeOffset = 0x01;
-        const int SpecialLengthOffset = 0x02;
+        private const int SpecialTypeOffset = 0x01;
+        private const int SpecialLengthOffset = 0x02;
 
         private static byte[] DecodeToBinary(byte[] binary) {
             const byte SpecialIdentifier = 0x02;
@@ -54,14 +87,14 @@ namespace SaintCoinach {
                 throw new ArgumentNullException("binary");
 
             var fullHex = new StringBuilder();
-            for (var i = 0; i < binary.Length; ++i)
-                fullHex.AppendFormat("{0:X2}", binary[i]);
+            foreach (var v in binary)
+                fullHex.AppendFormat("{0:X2}", v);
 
             var decoded = new byte[0];
 
-            int currentIndex = 0;
+            var currentIndex = 0;
             while (currentIndex < binary.Length) {
-                var nextSpecial = Array.IndexOf<byte>(binary, SpecialIdentifier, currentIndex);
+                var nextSpecial = Array.IndexOf(binary, SpecialIdentifier, currentIndex);
 
                 if (nextSpecial < 0 || binary.Length - nextSpecial < SpecialMinimumLength) {
                     AddRange(ref decoded, binary, currentIndex, binary.Length - currentIndex);
@@ -75,10 +108,7 @@ namespace SaintCoinach {
                 string type;
 
                 if (!SpecialTypeNames.TryGetValue(typeKey, out type)) {
-                    if (Debug)
-                        type = string.Format("{0:X2}", typeKey);
-                    else
-                        type = null;
+                    type = Debug ? string.Format("{0:X2}", typeKey) : null;
                 }
                 if (!SpecialTypeProcessors.TryGetValue(typeKey, out processor))
                     processor = DefaultProcessor;
@@ -98,6 +128,7 @@ namespace SaintCoinach {
 
             return decoded;
         }
+
         public static string Decode(byte[] binary) {
             var decoded = DecodeToBinary(binary);
 
@@ -105,6 +136,7 @@ namespace SaintCoinach {
         }
 
         #region Processors
+
         private static void DefaultProcessor(byte[] data, ref byte[] output, int offset, string type) {
             var temp = new List<byte>();
 
@@ -119,10 +151,10 @@ namespace SaintCoinach {
                 if (length == 2 && data[paramOffset] == 0xEC)
                     isClose = true;
                 else {
-                    var isFirst = true;
-
                     temp.Add((byte)'(');
                     /*
+                    var isFirst = true;
+
                     for (var i = 0; i < length - 1 && paramOffset + i < data.Length; ++i) {
                         if (isFirst)
                             isFirst = false;
@@ -135,7 +167,7 @@ namespace SaintCoinach {
                     }
                     */
                     var builder = new StringBuilder();
-                    for (int i = 0; i < length - 1 && paramOffset + i < data.Length; ++i)    // Last one is always 03h
+                    for (var i = 0; i < length - 1 && paramOffset + i < data.Length; ++i) // Last one is always 03h
                         builder.Append(data[paramOffset + i].ToString("X2"));
                     temp.AddRange(Encoding.GetBytes(builder.ToString()));
 
@@ -155,26 +187,34 @@ namespace SaintCoinach {
 
             AddRange(ref output, temp.ToArray(), 0, temp.Count);
         }
+
         private static void SkipProcessor(byte[] data, ref byte[] output, int offset, string type) {
             var b = Encoding.GetBytes(type);
             AddRange(ref output, b, 0, b.Length);
         }
+
         private static void FormattingProcessor(byte[] data, ref byte[] output, int offset, string type) {
             int fullLen;
             offset += GetInteger(data, offset, out fullLen);
             var fType = data[offset];
 
             string str;
-            if (fType == 0x01)
-                str = string.Format("</{0}>", type);
-            else if (fType == 0x02)
-                str = string.Format("<{0}>", type);
-            else
-                str = string.Format("<?{0}({1})>", type, fType);
+            switch (fType) {
+                case 0x01:
+                    str = string.Format("</{0}>", type);
+                    break;
+                case 0x02:
+                    str = string.Format("<{0}>", type);
+                    break;
+                default:
+                    str = string.Format("<?{0}({1})>", type, fType);
+                    break;
+            }
 
             var b = Encoding.GetBytes(str);
             AddRange(ref output, b, 0, b.Length);
         }
+
         private static void IfProcessor(byte[] data, ref byte[] output, int offset, string type) {
             var strBuilder = new StringBuilder("<" + type + "(");
 
@@ -186,7 +226,8 @@ namespace SaintCoinach {
             currentOffset += lenLen;
             var condLen = ParseIfCondition(data, currentOffset, strBuilder);
             //if (condLen < 0) {
-            if(true) {  // TODO: Change this back, but need it not crashing for now.
+            if (true) {
+                // TODO: Change this back, but need it not crashing for now.
                 strBuilder = new StringBuilder("<" + type + "?(");
 
                 for (var i = 0; i < fullLen && offset + lenLen + i < data.Length; ++i)
@@ -204,6 +245,7 @@ namespace SaintCoinach {
             var b = Encoding.GetBytes(strBuilder.ToString());
             AddRange(ref output, b, 0, b.Length);
         }
+
         private static int ParseIfCondition(byte[] data, int offset, StringBuilder output) {
             /*
              * E3: x <= y
@@ -211,46 +253,47 @@ namespace SaintCoinach {
              * Default: x?
              * E9 -> argument
              */
-            
+
             switch (data[offset]) {
                 case 0xE0: {
-                        var arg = (int)BitConverter.ToUInt16(data, offset + 1);
-                        //arg |= (int)(data[offset + 2] >> 16);
+                    var arg = (int)BitConverter.ToUInt16(data, offset + 1);
+                    //arg |= (int)(data[offset + 2] >> 16);
 
-                        //var comp = data[offset + 3];
-                        int comp;
-                        var l = GetInteger(data, offset + 3, out comp);
-                        output.AppendFormat("{0:X4} >= {1}", arg, comp);
-                        return 3 + l;
-                    }
+                    //var comp = data[offset + 3];
+                    int comp;
+                    var l = GetInteger(data, offset + 3, out comp);
+                    output.AppendFormat("{0:X4} >= {1}", arg, comp);
+                    return 3 + l;
+                }
                 case 0xE3: {
-                        var arg = (int)BitConverter.ToUInt16(data, offset + 1);
-                        arg |= (int)(data[offset + 2] >> 16);
+                    var arg = (int)BitConverter.ToUInt16(data, offset + 1);
+                    arg |= data[offset + 2] >> 16;
 
-                        //var comp = data[offset + 3];
-                        int comp;
-                        var l = GetInteger(data, offset + 3, out comp);
-                        output.AppendFormat("{0:X4} <= {1}", arg, comp);
-                        return 4 + l;
-                    }
+                    //var comp = data[offset + 3];
+                    int comp;
+                    var l = GetInteger(data, offset + 3, out comp);
+                    output.AppendFormat("{0:X4} <= {1}", arg, comp);
+                    return 4 + l;
+                }
                 case 0xE4: {
-                        var arg = (int)BitConverter.ToUInt16(data, offset + 1);
-                        arg |= (int)(data[offset + 2] >> 16);
+                    var arg = (int)BitConverter.ToUInt16(data, offset + 1);
+                    arg |= data[offset + 2] >> 16;
 
-                        //var comp = data[offset + 3];
-                        int comp;
-                        var l = GetInteger(data, offset + 3, out comp);
-                        output.AppendFormat("{0:X4} = {1}", arg, comp);
-                        return 4 + l;
-                    }
+                    //var comp = data[offset + 3];
+                    int comp;
+                    var l = GetInteger(data, offset + 3, out comp);
+                    output.AppendFormat("{0:X4} = {1}", arg, comp);
+                    return 4 + l;
+                }
                 case 0xE9: {
-                        var arg = BitConverter.ToUInt16(data, offset);
-                        output.AppendFormat("{0:X4}", arg);
-                        return 3;
-                    }
+                    var arg = BitConverter.ToUInt16(data, offset);
+                    output.AppendFormat("{0:X4}", arg);
+                    return 3;
+                }
             }
             return -1;
         }
+
         private static int ParseIfBlock(byte[] data, int offset, StringBuilder output) {
             if (data[offset] == 0xFF) {
                 // String
@@ -266,22 +309,27 @@ namespace SaintCoinach {
                 output.Append(Decode(block));
 
                 return blockLength + ll + 1;
-            } else if (data[offset] < 0xF0)  // TODO: I just put the value here in case there are more special cases, who knows
+            }
+            if (data[offset] < 0xF0) // TODO: I just put the value here in case there are more special cases, who knows
                 return data[offset];
             throw new NotSupportedException();
         }
+
         #endregion
 
         #region Extensions
+
         private static void AddRange(ref byte[] self, byte[] data, int offset, int count) {
             var oLen = self.Length;
             Array.Resize(ref self, oLen + count);
             //Array.Copy(self, oLen, data, offset, count);
             Array.Copy(data, offset, self, oLen, count);
         }
+
         #endregion
 
         #region GetInt
+
         private static int GetInteger(byte[] data, int offset, out int result) {
             var t = data[offset];
             if (t < 0xF2) {
@@ -291,29 +339,29 @@ namespace SaintCoinach {
 
             switch (data[offset]) {
                 case 0xF2: {
-                        var v = 0;
-                        v |= data[offset + 1] << 8;
-                        v |= data[offset + 2];
-                        result = v;
-                        return 3;
-                    }
+                    var v = 0;
+                    v |= data[offset + 1] << 8;
+                    v |= data[offset + 2];
+                    result = v;
+                    return 3;
+                }
                 case 0xFA: {
-                        var v = 0;
-                        v |= data[offset + 1] << 16;
-                        v |= data[offset + 2] << 8;
-                        v |= data[offset + 3];
-                        result = v;
-                        return 4;
-                    }
+                    var v = 0;
+                    v |= data[offset + 1] << 16;
+                    v |= data[offset + 2] << 8;
+                    v |= data[offset + 3];
+                    result = v;
+                    return 4;
+                }
                 case 0xFE: {
-                        result = BitConverter.ToInt32(data, offset + 1);
-                        return 5;
-                    }
+                    result = BitConverter.ToInt32(data, offset + 1);
+                    return 5;
+                }
                 case 0xF0:
                 case 0xFF: {
-                        result = data[offset + 1];
-                        return 2;
-                    }
+                    result = data[offset + 1];
+                    return 2;
+                }
             }
             var sb = new StringBuilder();
             for (var i = Math.Max(0, offset - 8); i < data.Length; ++i) {
@@ -323,6 +371,7 @@ namespace SaintCoinach {
             }
             throw new NotSupportedException();
         }
+
         #endregion
     }
 }

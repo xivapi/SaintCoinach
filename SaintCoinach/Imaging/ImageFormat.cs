@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Imaging {
+﻿namespace SaintCoinach.Imaging {
     public enum ImageFormat {
         Unknown = 0,
-        A16R16G16B16_Float = 0x2460,
+        A16R16G16B16Float = 0x2460,
 
         A8R8G8B8_1 = 0x1131,
         A8R8G8B8_2 = 0x1450,
@@ -19,8 +13,8 @@ namespace SaintCoinach.Imaging {
         A1R5G5B5 = 0x1441,
         R3G3B2 = 0x1130,
 
-        DXT1 = 0x3420,
-        DXT3 = 0x3430,
-        DXT5 = 0x3431,
+        Dxt1 = 0x3420,
+        Dxt3 = 0x3430,
+        Dxt5 = 0x3431
     }
 }

@@ -1,33 +1,84 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv.Collections {
     public class ItemCollection : IEnumerable<Item> {
+        #region Fields
+
+        private readonly Range[] _EventRanges;
+        private readonly Range[] _InventoryRanges;
+
+        #endregion
+
+        #region Properties
+
+        public XivCollection Collection { get; private set; }
+        public IXivSheet<Item> InventoryItemSheet { get; private set; }
+        public IXivSheet<EventItem> EventItemSheet { get; private set; }
+
+        #endregion
+
+        #region Constructors
+
+        #region Constructor
+
+        public ItemCollection(XivCollection collection) {
+            Collection = collection;
+
+            InventoryItemSheet = collection.GetSheet<Item>();
+            EventItemSheet = collection.GetSheet<EventItem>();
+
+            _InventoryRanges = Range.Combine(InventoryItemSheet.Header.DataFileRanges);
+            _EventRanges = Range.Combine(EventItemSheet.Header.DataFileRanges);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region IEnumerable<Item> Members
+
+        public IEnumerator<Item> GetEnumerator() {
+            return new Enumerator(this);
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
+
         #region Enumerator
+
         private class Enumerator : IEnumerator<Item> {
             #region Fields
-            private ItemCollection _Collection;
-            private IEnumerator<Item> _InventoryItemEnumerator;
-            private IEnumerator<EventItem> _EventItemEnumerator;
-            private int _State = 0;
-            private Item _Current;
+
+            private readonly IEnumerator<EventItem> _EventItemEnumerator;
+            private readonly IEnumerator<Item> _InventoryItemEnumerator;
+            private int _State;
+
             #endregion
 
+            #region Constructors
+
             #region Constructor
+
             public Enumerator(ItemCollection collection) {
-                _Collection = collection;
                 _InventoryItemEnumerator = collection.InventoryItemSheet.GetEnumerator();
                 _EventItemEnumerator = collection.EventItemSheet.GetEnumerator();
             }
+
+            #endregion
+
             #endregion
 
             #region IEnumerator<Item> Members
-            public Item Current {
-                get { return _Current; }
-            }
+
+            public Item Current { get; private set; }
 
             #endregion
 
@@ -42,25 +93,24 @@ namespace SaintCoinach.Xiv.Collections {
 
             #region IEnumerator Members
 
-            object System.Collections.IEnumerator.Current {
-                get { return Current; }
-            }
+            object IEnumerator.Current { get { return Current; } }
 
             public bool MoveNext() {
                 var result = false;
 
-                _Current = null;
+                Current = null;
                 if (_State == 0) {
                     result = _InventoryItemEnumerator.MoveNext();
                     if (result)
-                        _Current = _InventoryItemEnumerator.Current;
+                        Current = _InventoryItemEnumerator.Current;
                     else
                         ++_State;
                 }
+                // ReSharper disable once InvertIf
                 if (_State == 1) {
                     result = _EventItemEnumerator.MoveNext();
                     if (result)
-                        _Current = _EventItemEnumerator.Current;
+                        Current = _EventItemEnumerator.Current;
                     else
                         ++_State;
                 }
@@ -76,35 +126,11 @@ namespace SaintCoinach.Xiv.Collections {
 
             #endregion
         }
-        #endregion
 
-        #region Fields
-        private XivCollection _Collection;
-        private IXivSheet<Item> _InventoryItemSheet;
-        private IXivSheet<EventItem> _EventItemSheet;
-        private Range[] _InventoryRanges;
-        private Range[] _EventRanges;
-        #endregion
-
-        #region Properties
-        public XivCollection Collection { get { return _Collection; } }
-        public IXivSheet<Item> InventoryItemSheet { get { return _InventoryItemSheet; } }
-        public IXivSheet<EventItem> EventItemSheet { get { return _EventItemSheet; } }
-        #endregion
-
-        #region Constructor
-        public ItemCollection(XivCollection collection) {
-            _Collection = collection;
-
-            _InventoryItemSheet = collection.GetSheet<Item>();
-            _EventItemSheet = collection.GetSheet<EventItem>();
-
-            _InventoryRanges = Range.Combine(InventoryItemSheet.Header.DataFileRanges);
-            _EventRanges = Range.Combine(EventItemSheet.Header.DataFileRanges);
-        }
         #endregion
 
         #region Things
+
         public Item this[int index] {
             get {
                 if (Range.Contains(_InventoryRanges, index))
@@ -114,27 +140,13 @@ namespace SaintCoinach.Xiv.Collections {
                 throw new KeyNotFoundException();
             }
         }
+
         public bool ContainsRow(int index) {
             if (Range.Contains(_InventoryRanges, index))
                 return InventoryItemSheet.ContainsRow(index);
             if (Range.Contains(_EventRanges, index))
                 return EventItemSheet.ContainsRow(index);
             return false;
-        }
-        #endregion
-
-        #region IEnumerable<Item> Members
-
-        public IEnumerator<Item> GetEnumerator() {
-            return new Enumerator(this);
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            return GetEnumerator();
         }
 
         #endregion

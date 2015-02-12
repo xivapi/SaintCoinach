@@ -1,29 +1,55 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
     public class MateriaItem : InventoryItem {
         #region Fields
-        private bool _IsBuilt = false;
+
         private BaseParam _BaseParam;
-        private int _Value;
+        private bool _IsBuilt;
         private int _Tier;
+        private int _Value;
+
         #endregion
 
         #region Properties
-        public BaseParam BaseParam { get { Build(); return _BaseParam; } }
-        public int Value { get { Build(); return _Value; } }
-        public int Tier { get { Build(); return _Tier; } }
+
+        public BaseParam BaseParam {
+            get {
+                Build();
+                return _BaseParam;
+            }
+        }
+
+        public int Value {
+            get {
+                Build();
+                return _Value;
+            }
+        }
+
+        public int Tier {
+            get {
+                Build();
+                return _Tier;
+            }
+        }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public MateriaItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public MateriaItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private void Build() {
             if (_IsBuilt)
                 return;
@@ -31,17 +57,14 @@ namespace SaintCoinach.Xiv.Items {
             var found = false;
             var materiaSheet = Sheet.Collection.GetSheet<Materia>();
             foreach (var materia in materiaSheet) {
-                foreach (var entry in materia.Items) {
-                    if (entry.Item == this) {
-                        _BaseParam = materia.BaseParam;
-                        _Value = entry.Value;
-                        _Tier = entry.Tier;
-                        found = true;
-                        break;
-                    }
-                }
-                if (found)
-                    break;
+                var entry = materia.Items.FirstOrDefault(e => e.Item == this);
+                if (entry == null) continue;
+
+                _BaseParam = materia.BaseParam;
+                _Value = entry.Value;
+                _Tier = entry.Tier;
+                found = true;
+                break;
             }
 
             if (!found) {
@@ -52,6 +75,7 @@ namespace SaintCoinach.Xiv.Items {
 
             _IsBuilt = true;
         }
+
         #endregion
     }
 }

@@ -1,51 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+
+using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex.Relational {
     public class RelationalExCollection : ExCollection {
         #region Fields
-        private Definition.RelationDefinition _Definition = new Definition.RelationDefinition();
+
+        private RelationDefinition _Definition = new RelationDefinition();
+
         #endregion
 
         #region Properties
-        public Definition.RelationDefinition Definition {
-            get { return _Definition; }
-            set { _Definition = value; }
-        }
+
+        public RelationDefinition Definition { get { return _Definition; } set { _Definition = value; } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public RelationalExCollection(IO.PackCollection packCollection) : base(packCollection) { }
+
+        public RelationalExCollection(PackCollection packCollection) : base(packCollection) { }
+
+        #endregion
+
         #endregion
 
         #region Factory
-        protected override Header CreateHeader(string name, IO.File file) {
+
+        protected override Header CreateHeader(string name, File file) {
             return new RelationalHeader(this, name, file);
         }
+
         protected override ISheet CreateSheet(Header header) {
             var relHeader = (RelationalHeader)header;
             if (header.AvailableLanguages.Count() > 1)
                 return new RelationalMultiSheet<RelationalMultiRow, RelationalDataRow>(this, relHeader);
             return new RelationalDataSheet<RelationalDataRow>(this, relHeader, header.AvailableLanguages.First());
         }
+
         #endregion
 
         #region Get
+
         public new IRelationalSheet<T> GetSheet<T>(int id) where T : IRelationalRow {
             return (IRelationalSheet<T>)GetSheet(id);
         }
+
         public new IRelationalSheet GetSheet(int id) {
             return (IRelationalSheet)base.GetSheet(id);
         }
+
         public new IRelationalSheet<T> GetSheet<T>(string name) where T : IRelationalRow {
             return (IRelationalSheet<T>)GetSheet(name);
         }
+
         public new IRelationalSheet GetSheet(string name) {
             return (IRelationalSheet)base.GetSheet(name);
         }
+
         #endregion
     }
 }

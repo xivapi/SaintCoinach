@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Xiv {
+﻿namespace SaintCoinach.Xiv {
     public enum RecipeIngredientType {
         Material,
         Crystal

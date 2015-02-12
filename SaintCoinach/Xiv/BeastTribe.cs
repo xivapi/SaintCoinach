@@ -1,20 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     public class BeastTribe : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
         public string RelationName { get { return AsString("Name{Relation}"); } }
-        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
-        public Imaging.ImageFile ReputationIcon { get { return AsImage("Icon{Reputation}"); } }
+        public ImageFile Icon { get { return AsImage("Icon"); } }
+        public ImageFile ReputationIcon { get { return AsImage("Icon{Reputation}"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public BeastTribe(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BeastTribe(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

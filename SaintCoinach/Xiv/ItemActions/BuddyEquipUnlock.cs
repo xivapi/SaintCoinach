@@ -1,24 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.ItemActions {
     public class BuddyEquipUnlock : ItemAction {
-        const int BuddyEquipIndex = 0;
+        #region Static
+
+        private const int BuddyEquipIndex = 0;
+
+        #endregion
 
         #region Properties
+
         public BuddyEquip BuddyEquip {
             get {
                 var key = GetData(BuddyEquipIndex);
                 return Sheet.Collection.GetSheet<BuddyEquip>()[key];
             }
         }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public BuddyEquipUnlock(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BuddyEquipUnlock(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
     }
 }

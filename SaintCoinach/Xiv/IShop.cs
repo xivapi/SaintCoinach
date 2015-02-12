@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Xiv {
     public interface IShop {
+        #region Properties
+
         int Key { get; }
         string Name { get; }
         IEnumerable<ENpc> ENpcs { get; }
         IEnumerable<IShopListing> ShopListings { get; }
+
+        #endregion
     }
 }

@@ -1,18 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class BeastReputationRank : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
         public int RequiredReputation { get { return AsInt32("RequiredReputation"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public BeastReputationRank(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BeastReputationRank(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

@@ -1,25 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Assets {
     public abstract class VertexDataReader {
+        #region Properties
+
         public abstract Type VertexType { get; }
         public abstract int Length { get; }
-        public abstract void Fill(VertexBase vertex, byte[] data, int offset);
 
+        #endregion
+
+        public abstract void Fill(VertexBase vertex, byte[] data, int offset);
         // 0x0C
+
         #region NTx
-        public static VertexDataReader NormalTexture = new NTxReader();
+
+        public static readonly VertexDataReader NormalTexture = new NTxReader();
+
         private class NTxReader : VertexDataReader {
-            public override Type VertexType {
-                get { return typeof(VertexBase); }
-            }
-            public override int Length {
-                get { return 0x0C; }
-            }
+            #region Properties
+
+            public override Type VertexType { get { return typeof(VertexBase); } }
+            public override int Length { get { return 0x0C; } }
+
+            #endregion
+
             public override void Fill(VertexBase vertex, byte[] data, int offset) {
                 const int NormalOffset = 0x00;
                 const int TextureOffset = 0x08;
@@ -34,22 +38,24 @@ namespace SaintCoinach.Graphics.Assets {
                 vertex.TextureCoordinates0 = new Vector2(tX, tY);
             }
         }
+
         #endregion
 
         // 0x10
+
         #region NTxBlend
-        public static VertexDataReader NormalTextureBlend = new NTxBlendReader();
+
+        public static readonly VertexDataReader NormalTextureBlend = new NTxBlendReader();
+
         private class NTxBlendReader : VertexDataReader {
-            public override Type VertexType {
-                get { return typeof(VertexBlend); }
-            }
-            public override int Length {
-                get { return 0x10; }
-            }
+            #region Properties
+
+            public override Type VertexType { get { return typeof(VertexBlend); } }
+            public override int Length { get { return 0x10; } }
+
+            #endregion
 
             public override void Fill(VertexBase vertex, byte[] data, int offset) {
-                const int Length = 0x10;
-
                 const int NormalOffset = 0x00;
                 const int TextureWeightOffset = 0x08;
                 const int TextureOffset = 0x0C;
@@ -74,18 +80,22 @@ namespace SaintCoinach.Graphics.Assets {
                 v.TextureCoordinates1 = vertex.TextureCoordinates0;
             }
         }
+
         #endregion
 
         // 0x14
+
         #region NTxColBlend
-        public static VertexDataReader NormalTextureColorBlend = new NTxColBlendReader();
+
+        public static readonly VertexDataReader NormalTextureColorBlend = new NTxColBlendReader();
+
         private class NTxColBlendReader : VertexDataReader {
-            public override Type VertexType {
-                get { return typeof(VertexColorBlend); }
-            }
-            public override int Length {
-                get { return 0x14; }
-            }
+            #region Properties
+
+            public override Type VertexType { get { return typeof(VertexColorBlend); } }
+            public override int Length { get { return 0x14; } }
+
+            #endregion
 
             public override void Fill(VertexBase vertex, byte[] data, int offset) {
                 const int NormalOffset = 0x00;
@@ -122,18 +132,23 @@ namespace SaintCoinach.Graphics.Assets {
                 v.TextureCoordinates1 = v.TextureCoordinates0;
             }
         }
+
         #endregion
 
         // 0x1C
+
         #region NTx2Col2Blend
-        public static VertexDataReader NormalTextureColorBlend2 = new NTx2Col2BlendReader();
+
+        public static readonly VertexDataReader NormalTextureColorBlend2 = new NTx2Col2BlendReader();
+
         private class NTx2Col2BlendReader : VertexDataReader {
-            public override Type VertexType {
-                get { return typeof(VertexColorBlend); }
-            }
-            public override int Length {
-                get { return 0x1C; }
-            }
+            #region Properties
+
+            public override Type VertexType { get { return typeof(VertexColorBlend); } }
+            public override int Length { get { return 0x1C; } }
+
+            #endregion
+
             public override void Fill(VertexBase vertex, byte[] data, int offset) {
                 const int NormalOffset = 0x00;
                 const int Color0Offset = 0x08;
@@ -180,18 +195,23 @@ namespace SaintCoinach.Graphics.Assets {
                 }
             }
         }
+
         #endregion
 
         // 0x18
+
         #region NTxCol
-        public static VertexDataReader NormalTextureColor = new NTxColReader();
+
+        public static readonly VertexDataReader NormalTextureColor = new NTxColReader();
+
         private class NTxColReader : VertexDataReader {
-            public override Type VertexType {
-                get { return typeof(VertexColor); }
-            }
-            public override int Length {
-                get { return 0x18; }
-            }
+            #region Properties
+
+            public override Type VertexType { get { return typeof(VertexColor); } }
+            public override int Length { get { return 0x18; } }
+
+            #endregion
+
             public override void Fill(VertexBase vertex, byte[] data, int offset) {
                 const int NormalOffset = 0x00;
                 const int ColorOffset = 0x0C;
@@ -215,6 +235,7 @@ namespace SaintCoinach.Graphics.Assets {
                 v.TextureCoordinates0 = new Vector2(tX, tY);
             }
         }
+
         #endregion
     }
 }

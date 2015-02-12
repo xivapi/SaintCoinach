@@ -1,32 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.Ex.Relational.Update.Changes;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class SheetUpdater {
-        const double RequiredMatchConfidence = 0.05;    // One in twenty has to be an exact match
+        #region Static
 
-        #region Fields
-        private IRelationalSheet _PreviousSheet;
-        private Definition.SheetDefinition _PreviousDefinition;
+        private const double RequiredMatchConfidence = 0.05; // One in twenty has to be an exact match
 
-        private IRelationalSheet _UpdatedSheet;
-        private Definition.SheetDefinition _UpdatedDefinition;
         #endregion
 
+        #region Fields
+
+        private readonly SheetDefinition _PreviousDefinition;
+        private readonly IRelationalSheet _PreviousSheet;
+        private readonly SheetDefinition _UpdatedDefinition;
+        private readonly IRelationalSheet _UpdatedSheet;
+
+        #endregion
+
+        #region Constructors
+
         #region Constructor
-        public SheetUpdater(IRelationalSheet prevSheet, Definition.SheetDefinition prevDefinition, IRelationalSheet upSheet, Definition.SheetDefinition upDefinition) {
+
+        public SheetUpdater(IRelationalSheet prevSheet,
+                            SheetDefinition prevDefinition,
+                            IRelationalSheet upSheet,
+                            SheetDefinition upDefinition) {
             _PreviousSheet = prevSheet;
             _PreviousDefinition = prevDefinition;
 
             _UpdatedSheet = upSheet;
             _UpdatedDefinition = upDefinition;
         }
+
+        #endregion
+
         #endregion
 
         #region Update
+
         public IEnumerable<IChange> Update() {
             var changes = new List<IChange>();
 
@@ -39,12 +54,14 @@ namespace SaintCoinach.Ex.Relational.Update {
 
                 if (updatedDef == null || double.IsNaN(c) || c < RequiredMatchConfidence) {
                     if (updatedDef != null)
-                        changes.Add(new Changes.DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
+                        changes.Add(new DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index,
+                            updatedDef.Index, c));
                     else
-                        changes.Add(new Changes.DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index));
+                        changes.Add(new DefinitionRemoved(_PreviousDefinition.Name, def.DataDefinition.Index));
                 } else {
-                    if(updatedDef.Index != def.DataDefinition.Index)
-                        changes.Add(new Changes.DefinitionMoved(_PreviousDefinition.Name, def.DataDefinition.Index, updatedDef.Index, c));
+                    if (updatedDef.Index != def.DataDefinition.Index)
+                        changes.Add(new DefinitionMoved(_PreviousDefinition.Name, def.DataDefinition.Index,
+                            updatedDef.Index, c));
 
                     _UpdatedDefinition.DataDefinitions.Add(updatedDef);
                 }
@@ -52,23 +69,28 @@ namespace SaintCoinach.Ex.Relational.Update {
 
             return changes;
         }
+
         private IEnumerable<DefinitionUpdater> MatchRows() {
-            var defUpdaters = _PreviousDefinition.DataDefinitions.Select(_ => new DefinitionUpdater(_PreviousDefinition, _)).ToArray();
+            var defUpdaters =
+                _PreviousDefinition.DataDefinitions.Select(_ => new DefinitionUpdater(_PreviousDefinition, _)).ToArray();
 
             var prevRows = _PreviousSheet.GetAllRows();
             foreach (var prevRow in prevRows) {
-                var prevRowFields = _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
-                if (_UpdatedSheet.ContainsRow(prevRow.Key)) {
-                    var updatedRow = _UpdatedSheet[prevRow.Key];
-                    var updatedRowFields = _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
+                var prevRowFields =
+                    _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
+                if (!_UpdatedSheet.ContainsRow(prevRow.Key)) continue;
 
-                    foreach (var def in defUpdaters)
-                        def.MatchRow(prevRowFields, updatedRowFields);
-                }
+                var updatedRow = _UpdatedSheet[prevRow.Key];
+                var updatedRowFields =
+                    _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
+
+                foreach (var def in defUpdaters)
+                    def.MatchRow(prevRowFields, updatedRowFields);
             }
 
             return defUpdaters;
         }
+
         #endregion
     }
 }

@@ -2,156 +2,198 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
     using IOFile = System.IO.File;
 
     /// <summary>
-    /// Class for a SqPack.
+    ///     Class for a SqPack.
     /// </summary>
     public partial class Pack {
-        const string IndexFileFormat = "{0:x2}0000.win32.index";
-        const string DatFileFormat = "{0:x2}0000.win32.dat{1}";
+        #region Static
 
-        #region Name <> Key mapping
-        private static readonly Dictionary<string, byte> _RootToSqMap = new Dictionary<string, byte>(StringComparer.OrdinalIgnoreCase) {
-            { "common", 0x00 },
-            { "bgcommon", 0x01 },
-            { "bg", 0x02 },
-            { "cut", 0x03 },
-            { "chara", 0x04 },
-            { "shader", 0x05 },
-            { "ui", 0x06 },
-            { "sound", 0x07 },
-            { "vfx", 0x08 },
-            { "ui_script", 0x09 },
-            { "exd", 0x0a },
-            { "game_script", 0x0b },
-            { "music", 0x0c },
-            
-            { "_sqpack_test", 0x12 },
-            { "_debug", 0x13 },
-        };
-        private static readonly Dictionary<byte, string> _SqToRootMap = _RootToSqMap.ToDictionary(_ => _.Value, _ => _.Key);
+        private const string IndexFileFormat = "{0:x2}0000.win32.index";
+        private const string DatFileFormat = "{0:x2}0000.win32.dat{1}";
 
-        static string GetPathRoot(string path) {
-            var search = path;
-            var i = search.IndexOf('/');
-            if (i >= 0)
-                search = search.Substring(0, i);
-            return search;
-        }
-        public static bool TryGetSqPackKey(string path, out byte key) {
-            var search = GetPathRoot(path);
-            return _RootToSqMap.TryGetValue(search, out key);
-        }
-        public static byte GetSqPackKey(string path) {
-            var search = GetPathRoot(path);
-            return _RootToSqMap[search];
-        }
-        public static bool TryGetSqPackName(byte key, out string name) {
-            return _SqToRootMap.TryGetValue(key, out name);
-        }
-        public static string GetSqPackName(byte key) {
-            return _SqToRootMap[key];
-        }
         #endregion
 
         #region Fields
-        private PackCollection _Collection;
-        private DirectoryInfo _DataDirectory;
-        private Index _Index;
-        private byte _Key;
-        private string _Name;
-        private Dictionary<uint, WeakReference<Directory>> _Directories = new Dictionary<uint, WeakReference<Directory>>();
-        private Dictionary<string, uint> _DirectoryPathMap = new Dictionary<string, uint>();
 
-        private Dictionary<Tuple<Thread, byte>, WeakReference<Stream>> _DataStreams = new Dictionary<Tuple<Thread, byte>, WeakReference<Stream>>();
+        private readonly Dictionary<Tuple<Thread, byte>, WeakReference<Stream>> _DataStreams =
+            new Dictionary<Tuple<Thread, byte>, WeakReference<Stream>>();
+
+        private readonly Dictionary<uint, WeakReference<Directory>> _Directories =
+            new Dictionary<uint, WeakReference<Directory>>();
+
+        private readonly Dictionary<string, uint> _DirectoryPathMap = new Dictionary<string, uint>();
+        private readonly string _Name;
+
         #endregion
 
         #region Properties
-        public PackCollection Collection { get { return _Collection; } }
-        public Index Index { get { return _Index; } }
-        public DirectoryInfo DataDirectory { get { return _DataDirectory; } }
-        public byte Key { get { return _Key; } }
+
+        public PackCollection Collection { get; private set; }
+        public Index Index { get; private set; }
+        public DirectoryInfo DataDirectory { get; private set; }
+        public byte Key { get; private set; }
         public string Name { get { return _Name ?? Key.ToString("x2"); } }
-        #endregion
 
-        #region Constructor
-        public Pack(string dataPath, byte key) : this(null, new DirectoryInfo(dataPath), key) { }
-        public Pack(DirectoryInfo dataDirectory, byte key) : this(null, dataDirectory, key) { }
-        public Pack(PackCollection collection, string dataPath, byte key) : this(collection, new DirectoryInfo(dataPath), key) { }
-        public Pack(PackCollection collection, DirectoryInfo dataDirectory, byte key) {
-            if (dataDirectory == null)
-                throw new ArgumentNullException("dataDirectory");
-            if (!dataDirectory.Exists)
-                throw new DirectoryNotFoundException();
-
-            _Collection = collection;
-            _DataDirectory = dataDirectory;
-            _Key = key;
-            TryGetSqPackName(key, out _Name);
-
-            var indexPath = Path.Combine(DataDirectory.FullName, string.Format(IndexFileFormat, Key));
-            _Index = new Index(indexPath);
-        }
         #endregion
 
         #region Helpers
+
         public Stream GetDataStream(byte datFile = 0) {
             var thread = Thread.CurrentThread;
 
             var key = Tuple.Create(thread, datFile);
             WeakReference<Stream> streamRef;
             Stream stream;
-            lock (_DataStreams) {
-                if (!_DataStreams.TryGetValue(key, out streamRef))
-                    streamRef = null;
-            }
+            lock (_DataStreams)
+                _DataStreams.TryGetValue(key, out streamRef);
 
             if (streamRef == null || !streamRef.TryGetTarget(out stream))
                 stream = null;
 
-            if (stream == null) {
-                var baseName = String.Format(DatFileFormat, this.Key, datFile);
-                var fullPath = Path.Combine(DataDirectory.FullName, baseName);
+            if (stream != null) return stream;
 
-                stream = IOFile.OpenRead(fullPath);
+            var baseName = String.Format(DatFileFormat, Key, datFile);
+            var fullPath = Path.Combine(DataDirectory.FullName, baseName);
 
-                lock (_DataStreams) {
-                    if (_DataStreams.ContainsKey(key))
-                        _DataStreams[key].SetTarget(stream);
-                    else
-                        _DataStreams.Add(key, new WeakReference<Stream>(stream));
-                }
+            stream = IOFile.OpenRead(fullPath);
+
+            lock (_DataStreams) {
+                if (_DataStreams.ContainsKey(key))
+                    _DataStreams[key].SetTarget(stream);
+                else
+                    _DataStreams.Add(key, new WeakReference<Stream>(stream));
             }
 
             return stream;
         }
+
+        #endregion
+
+        public override string ToString() {
+            return Name;
+        }
+
+        #region Name <> Key mapping
+
+        private static readonly Dictionary<string, byte> RootToSqMap =
+            new Dictionary<string, byte>(StringComparer.OrdinalIgnoreCase) {
+                {
+                    "common", 0x00
+                }, {
+                    "bgcommon", 0x01
+                }, {
+                    "bg", 0x02
+                }, {
+                    "cut", 0x03
+                }, {
+                    "chara", 0x04
+                }, {
+                    "shader", 0x05
+                }, {
+                    "ui", 0x06
+                }, {
+                    "sound", 0x07
+                }, {
+                    "vfx", 0x08
+                }, {
+                    "ui_script", 0x09
+                }, {
+                    "exd", 0x0a
+                }, {
+                    "game_script", 0x0b
+                }, {
+                    "music", 0x0c
+                }, {
+                    "_sqpack_test", 0x12
+                }, {
+                    "_debug", 0x13
+                }
+            };
+
+        private static readonly Dictionary<byte, string> SqToRootMap = RootToSqMap.ToDictionary(_ => _.Value,
+            _ => _.Key);
+
+        private static string GetPathRoot(string path) {
+            var search = path;
+            var i = search.IndexOf('/');
+            if (i >= 0)
+                search = search.Substring(0, i);
+            return search;
+        }
+
+        public static bool TryGetSqPackKey(string path, out byte key) {
+            var search = GetPathRoot(path);
+            return RootToSqMap.TryGetValue(search, out key);
+        }
+
+        public static byte GetSqPackKey(string path) {
+            var search = GetPathRoot(path);
+            return RootToSqMap[search];
+        }
+
+        public static bool TryGetSqPackName(byte key, out string name) {
+            return SqToRootMap.TryGetValue(key, out name);
+        }
+
+        public static string GetSqPackName(byte key) {
+            return SqToRootMap[key];
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public Pack(string dataPath, byte key) : this(null, new DirectoryInfo(dataPath), key) { }
+        public Pack(DirectoryInfo dataDirectory, byte key) : this(null, dataDirectory, key) { }
+
+        public Pack(PackCollection collection, string dataPath, byte key)
+            : this(collection, new DirectoryInfo(dataPath), key) { }
+
+        public Pack(PackCollection collection, DirectoryInfo dataDirectory, byte key) {
+            if (dataDirectory == null)
+                throw new ArgumentNullException("dataDirectory");
+            if (!dataDirectory.Exists)
+                throw new DirectoryNotFoundException();
+
+            Collection = collection;
+            DataDirectory = dataDirectory;
+            Key = key;
+            TryGetSqPackName(key, out _Name);
+
+            var indexPath = Path.Combine(DataDirectory.FullName, string.Format(IndexFileFormat, Key));
+            Index = new Index(indexPath);
+        }
+
         #endregion
 
         #region Get
+
         public bool DirectoryExists(string path) {
             uint hash;
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
                 _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
             return DirectoryExists(hash);
         }
+
         public bool DirectoryExists(uint key) {
             return Index.Directories.ContainsKey(key);
         }
+
         public Directory GetDirectory(string path) {
             uint hash;
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
                 _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
 
-            Directory dir = GetDirectory(hash);
+            var dir = GetDirectory(hash);
             dir.Path = path;
             return dir;
         }
+
         public Directory GetDirectory(uint key) {
             WeakReference<Directory> dirRef;
             Directory directory;
@@ -166,6 +208,7 @@ namespace SaintCoinach.IO {
                 _Directories.Add(key, new WeakReference<Directory>(directory));
             return directory;
         }
+
         public bool TryGetDirectory(string path, out Directory directory) {
             uint hash;
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
@@ -176,6 +219,7 @@ namespace SaintCoinach.IO {
                 directory.Path = path;
             return result;
         }
+
         public bool TryGetDirectory(uint key, out Directory directory) {
             WeakReference<Directory> dirRef;
             if (_Directories.TryGetValue(key, out dirRef) && dirRef.TryGetTarget(out directory))
@@ -203,10 +247,9 @@ namespace SaintCoinach.IO {
             var dirPath = path.Substring(0, lastSeperator);
             var baseName = path.Substring(lastSeperator + 1);
             Directory dir;
-            if (TryGetDirectory(dirPath, out dir))
-                return dir.FileExists(baseName);
-            return false;
+            return TryGetDirectory(dirPath, out dir) && dir.FileExists(baseName);
         }
+
         public File GetFile(string path) {
             var lastSeperator = path.LastIndexOf('/');
             if (lastSeperator < 0)
@@ -217,10 +260,12 @@ namespace SaintCoinach.IO {
             var dir = GetDirectory(dirPath);
             return dir.GetFile(baseName);
         }
+
         public File GetFile(uint directoryKey, uint fileKey) {
             var dir = GetDirectory(directoryKey);
             return dir.GetFile(fileKey);
         }
+
         public bool TryGetFile(string path, out File file) {
             var lastSeperator = path.LastIndexOf('/');
             if (lastSeperator < 0) {
@@ -237,6 +282,7 @@ namespace SaintCoinach.IO {
             file = null;
             return false;
         }
+
         public bool TryGetFile(uint directoryKey, uint fileKey, out File file) {
             Directory dir;
             if (TryGetDirectory(directoryKey, out dir))
@@ -245,10 +291,7 @@ namespace SaintCoinach.IO {
             file = null;
             return false;
         }
-        #endregion
 
-        public override string ToString() {
-            return Name;
-        }
+        #endregion
     }
 }

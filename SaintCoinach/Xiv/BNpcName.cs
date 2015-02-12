@@ -1,18 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class BNpcName : XivRow {
         #region Properties
+
         public string Singular { get { return AsString("Singular"); } }
         public string Plural { get { return AsString("Plural"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public BNpcName(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BNpcName(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

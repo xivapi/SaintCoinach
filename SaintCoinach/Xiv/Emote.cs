@@ -1,21 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     public class Emote : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
         public EmoteCategory EmoteCategory { get { return As<EmoteCategory>(); } }
-        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+        public ImageFile Icon { get { return AsImage("Icon"); } }
         public LogMessage TargetedLogMessage { get { return As<LogMessage>("LogMessage{Targeted}"); } }
         public LogMessage UntargetedLogMessage { get { return As<LogMessage>("LogMessage{Untargeted}"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public Emote(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public Emote(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

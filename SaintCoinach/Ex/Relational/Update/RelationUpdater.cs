@@ -1,61 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+
+using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.Ex.Relational.Update.Changes;
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class RelationUpdater {
-        const Language UsedLanguage = Language.Japanese;
+        #region Static
+
+        private const Language UsedLanguage = Language.Japanese;
+
+        #endregion
 
         #region Fields
-        private RelationalExCollection _Previous;
-        private Definition.RelationDefinition _PreviousDefinition;
-        private RelationalExCollection _Updated;
-        private Definition.RelationDefinition _UpdatedDefinition;
-        private IProgress<UpdateProgress> _Progress;
+
+        private readonly RelationalExCollection _Previous;
+        private readonly IProgress<UpdateProgress> _Progress;
+        private readonly RelationalExCollection _Updated;
+
         #endregion
 
         #region Properties
-        public Definition.RelationDefinition Previous { get { return _PreviousDefinition; } }
-        public Definition.RelationDefinition Updated { get { return _UpdatedDefinition; } }
+
+        public RelationDefinition Previous { get; private set; }
+        public RelationDefinition Updated { get; private set; }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public RelationUpdater(IO.PackCollection previousPacks, Definition.RelationDefinition previousDefinition, IO.PackCollection updatedPacks, string updatedVersion, IProgress<UpdateProgress> progress) {
-            _Progress = progress;
+
+        public RelationUpdater(PackCollection previousPacks,
+                               RelationDefinition previousDefinition,
+                               PackCollection updatedPacks,
+                               string updatedVersion,
+                               IProgress<UpdateProgress> progress) {
+            _Progress = progress ?? new NullProgress();
 
             _Previous = new RelationalExCollection(previousPacks);
-            _PreviousDefinition = previousDefinition;
+            Previous = previousDefinition;
 
             _Updated = new RelationalExCollection(updatedPacks);
-            _UpdatedDefinition = new Definition.RelationDefinition {
+            Updated = new RelationDefinition {
                 Version = updatedVersion
             };
 
             _Previous.ActiveLanguage = UsedLanguage;
             _Updated.ActiveLanguage = UsedLanguage;
         }
+
+        #endregion
+
         #endregion
 
         #region Update
+
         public IEnumerable<IChange> Update(bool detectDataChanges) {
             var changes = new List<IChange>();
 
             var progress = new UpdateProgress {
                 CurrentOperation = "Structure",
                 CurrentStep = 0,
-                TotalSteps = (detectDataChanges ? 2 : 1) * Previous.SheetDefinitions.Count,
+                TotalSteps = (detectDataChanges ? 2 : 1) * Previous.SheetDefinitions.Count
             };
             {
                 foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                    System.Diagnostics.Trace.WriteLine(string.Format("Update sheet {0}.", prevSheetDef.Name));
+                    Trace.WriteLine(string.Format("Update sheet {0}.", prevSheetDef.Name));
 
                     progress.CurrentFile = prevSheetDef.Name;
                     _Progress.Report(progress);
 
                     if (!_Updated.SheetExists(prevSheetDef.Name)) {
-                        changes.Add(new Changes.SheetRemoved(prevSheetDef.Name));
+                        changes.Add(new SheetRemoved(prevSheetDef.Name));
                         continue;
                     }
 
@@ -79,7 +98,7 @@ namespace SaintCoinach.Ex.Relational.Update {
                 progress.CurrentOperation = "Data";
 
                 foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                    System.Diagnostics.Trace.WriteLine(string.Format("Detect data changes in {0}.", prevSheetDef.Name));
+                    Trace.WriteLine(string.Format("Detect data changes in {0}.", prevSheetDef.Name));
 
                     progress.CurrentFile = prevSheetDef.Name;
                     _Progress.Report(progress);
@@ -107,7 +126,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             _Progress.Report(progress);
 
             return changes;
-        }/*
+        } /*
         public IEnumerable<IChange> Update() {
             var changes = new List<IChange>();
 
@@ -156,6 +175,15 @@ namespace SaintCoinach.Ex.Relational.Update {
 
             return changes;
         }*/
+
         #endregion
+
+        private class NullProgress : IProgress<UpdateProgress> {
+            #region IProgress<UpdateProgress> Members
+
+            public void Report(UpdateProgress value) { }
+
+            #endregion
+        }
     }
 }

@@ -1,17 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    // ReSharper disable once InconsistentNaming
     public class GCShopItemCategory : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public GCShopItemCategory(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public GCShopItemCategory(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

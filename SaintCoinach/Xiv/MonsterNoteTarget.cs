@@ -1,47 +1,36 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     public class MonsterNoteTarget : XivRow {
-        #region Location class
-        public class Location {
-            #region Fields
-            private PlaceName _ZonePlaceName;
-            private PlaceName _LocationPlaceName;
-            #endregion
-
-            #region Properties
-            public PlaceName ZonePlaceName { get { return _ZonePlaceName; } }
-            public PlaceName LocationPlaceName { get { return _LocationPlaceName; } }
-            #endregion
-
-            #region Constructor
-            public Location(PlaceName zonePlace, PlaceName locationPlace) {
-                _ZonePlaceName = zonePlace;
-                _LocationPlaceName = locationPlace;
-            }
-            #endregion
-        }
-        #endregion
-
         #region Fields
+
         private Location[] _Locations;
+
         #endregion
 
         #region Properties
+
         public BNpcName BNpcName { get { return As<BNpcName>(); } }
-        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+        public ImageFile Icon { get { return AsImage("Icon"); } }
         public IEnumerable<Location> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public MonsterNoteTarget(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public MonsterNoteTarget(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private Location[] BuildLocations() {
             const int Count = 3;
 
@@ -57,6 +46,33 @@ namespace SaintCoinach.Xiv {
 
             return locations.ToArray();
         }
+
+        #endregion
+
+        #region Location class
+
+        public class Location {
+            #region Properties
+
+            public PlaceName ZonePlaceName { get; private set; }
+            public PlaceName LocationPlaceName { get; private set; }
+
+            #endregion
+
+            #region Constructors
+
+            #region Constructor
+
+            public Location(PlaceName zonePlace, PlaceName locationPlace) {
+                ZonePlaceName = zonePlace;
+                LocationPlaceName = locationPlace;
+            }
+
+            #endregion
+
+            #endregion
+        }
+
         #endregion
     }
 }

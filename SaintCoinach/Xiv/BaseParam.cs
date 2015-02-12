@@ -1,27 +1,37 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class BaseParam : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
         public string Description { get { return AsString("Description"); } }
+
         #endregion
+
+        #region Constructors
 
         #region Constructor
-        public BaseParam(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public BaseParam(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
         #endregion
 
+        #endregion
+
+        public override string ToString() {
+            return Name;
+        }
+
         #region Helpers
+
         public int GetMaximum(EquipSlotCategory category) {
             const int Offset = 2;
-            if (category.Key == 0)
-                return 0;
-            return Convert.ToInt32(this[Offset + category.Key]);
+            return category.Key == 0 ? 0 : Convert.ToInt32(this[Offset + category.Key]);
         }
+
         public int GetModifier(int key) {
             const int Offset = 24;
             const int Maximum = 12;
@@ -29,10 +39,7 @@ namespace SaintCoinach.Xiv {
                 return 0;
             return Convert.ToInt32(this[Offset + key]);
         }
-        #endregion
 
-        public override string ToString() {
-            return Name;
-        }
+        #endregion
     }
 }

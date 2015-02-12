@@ -1,18 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public abstract class HousingItem : XivRow {
         #region Properties
+
         public HousingItemCategory HousingItemCategory { get { return As<HousingItemCategory>(); } }
         public Item Item { get { return As<Item>("Item"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public HousingItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        protected HousingItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

@@ -1,76 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex.Relational {
     public class RelationalHeader : Header {
         #region Fields
-        private RelationalColumn[] _Columns;
+
+        private readonly RelationalColumn[] _Columns;
+
         #endregion
 
         #region Properties
+
         public new RelationalExCollection Collection { get { return (RelationalExCollection)base.Collection; } }
         public new IEnumerable<RelationalColumn> Columns { get { return _Columns; } }
+
         public RelationalColumn DefaultColumn {
             get {
                 var def = SheetDefinition;
-                if (def != null) {
-                    var i = def.GetDefaultColumnIndex();
-                    if (i.HasValue)
-                        return GetColumn(i.Value);
-                }
-                return null;
+                if (def == null) return null;
+
+                var i = def.GetDefaultColumnIndex();
+                return i.HasValue ? GetColumn(i.Value) : null;
             }
             set {
                 var def = GetOrCreateSheetDefinition();
-                if (value == null)
-                    def.DefaultColumn = null;
-                else
-                    def.DefaultColumn = value.Name;
+                def.DefaultColumn = value == null ? null : value.Name;
             }
         }
 
-        public new RelationalColumn GetColumn(int index) { return _Columns[index]; }
-
-        public Definition.SheetDefinition SheetDefinition {
+        public SheetDefinition SheetDefinition {
             get {
-                Definition.SheetDefinition def;
-                if (Collection.Definition.TryGetSheet(Name, out def))
-                    return def;
-                return null;
+                SheetDefinition def;
+                return Collection.Definition.TryGetSheet(Name, out def) ? def : null;
             }
         }
-        public Definition.SheetDefinition GetOrCreateSheetDefinition() {
-            return Collection.Definition.GetOrCreateSheet(Name);
-        }
+
         #endregion
+
+        #region Constructors
 
         #region Constructor
-        public RelationalHeader(RelationalExCollection collection, string name, IO.File file)
-            : base(collection, name, file) {
 
+        public RelationalHeader(RelationalExCollection collection, string name, File file)
+            : base(collection, name, file) {
             _Columns = base.Columns.Cast<RelationalColumn>().ToArray();
         }
+
         #endregion
 
+        #endregion
+
+        public new RelationalColumn GetColumn(int index) {
+            return _Columns[index];
+        }
+
+        public SheetDefinition GetOrCreateSheetDefinition() {
+            return Collection.Definition.GetOrCreateSheet(Name);
+        }
+
         #region Factory
+
         protected override Column CreateColumn(int index, byte[] data, int offset) {
             return new RelationalColumn(this, index, data, offset);
         }
+
         #endregion
 
         #region Helpers
+
         public RelationalColumn FindColumn(string name) {
             var def = SheetDefinition;
-            if (def != null) {
-                var i = def.FindColumn(name);
-                if (i.HasValue)
-                    return GetColumn(i.Value);
-            }
-            return null;
+            if (def == null) return null;
+
+            var i = def.FindColumn(name);
+            return i.HasValue ? GetColumn(i.Value) : null;
         }
+
         #endregion
     }
 }

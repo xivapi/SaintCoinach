@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Ex.Relational {
     public interface IRelationalSheet : ISheet {
+        #region Properties
+
         new RelationalHeader Header { get; }
         new RelationalExCollection Collection { get; }
-        new IEnumerable<IRelationalRow> GetAllRows();
         new IRelationalRow this[int row] { get; }
         object this[int row, string columnName] { get; }
+
+        #endregion
+
+        new IEnumerable<IRelationalRow> GetAllRows();
     }
 }

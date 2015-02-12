@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Ex.Relational.Update {
+﻿namespace SaintCoinach.Ex.Relational.Update {
     public interface IChange {
+        #region Properties
+
         ChangeType ChangeType { get; }
         string SheetName { get; }
+
+        #endregion
     }
 }

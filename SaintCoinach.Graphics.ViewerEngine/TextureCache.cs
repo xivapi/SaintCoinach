@@ -65,7 +65,7 @@ namespace SaintCoinach.Graphics {
                 SampleDescription = new SharpDX.DXGI.SampleDescription(1, 0),
                 Usage = ResourceUsage.Immutable
             };
-            if (file.Format == Imaging.ImageFormat.A16R16G16B16_Float) {
+            if (file.Format == Imaging.ImageFormat.A16R16G16B16Float) {
                 buffer = file.GetData();
                 desc.Format = SharpDX.DXGI.Format.R16G16B16A16_Float;
             } else {

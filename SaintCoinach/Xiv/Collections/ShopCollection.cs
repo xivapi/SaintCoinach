@@ -1,37 +1,72 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv.Collections {
     public class ShopCollection : IEnumerable<IShop> {
+        #region Properties
+
+        public XivCollection Collection { get; private set; }
+
+        #endregion
+
+        #region Constructors
+
+        #region Constructor
+
+        public ShopCollection(XivCollection collection) {
+            Collection = collection;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region IEnumerable<IShop> Members
+
+        public IEnumerator<IShop> GetEnumerator() {
+            return new Enumerator(Collection);
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
+
         #region Enumerator
+
         private class Enumerator : IEnumerator<IShop> {
             #region Fields
-            private XivCollection _Collection;
 
-            private IEnumerator<Shop> _ShopEnumerator;
-            private IEnumerator<GCShop> _GCShopEnumerator;
-            private IEnumerator<SpecialShop> _SpecialShopEnumerator;
+            // ReSharper disable once InconsistentNaming
+            private readonly IEnumerator<GCShop> _GCShopEnumerator;
+            private readonly IEnumerator<Shop> _ShopEnumerator;
+            private readonly IEnumerator<SpecialShop> _SpecialShopEnumerator;
+            private int _State;
 
-            private int _State = 0;
-            private IShop _Current;
             #endregion
 
+            #region Constructors
+
             #region Constructor
+
             public Enumerator(XivCollection collection) {
-                _Collection = collection;
                 _ShopEnumerator = collection.GetSheet<Shop>().GetEnumerator();
                 _GCShopEnumerator = collection.GetSheet<GCShop>().GetEnumerator();
                 _SpecialShopEnumerator = collection.GetSheet<SpecialShop>().GetEnumerator();
             }
+
+            #endregion
+
             #endregion
 
             #region IEnumerator<Item> Members
-            public IShop Current {
-                get { return _Current; }
-            }
+
+            public IShop Current { get; private set; }
 
             #endregion
 
@@ -47,32 +82,31 @@ namespace SaintCoinach.Xiv.Collections {
 
             #region IEnumerator Members
 
-            object System.Collections.IEnumerator.Current {
-                get { return Current; }
-            }
+            object IEnumerator.Current { get { return Current; } }
 
             public bool MoveNext() {
                 var result = false;
 
-                _Current = null;
+                Current = null;
                 if (_State == 0) {
                     result = _ShopEnumerator.MoveNext();
                     if (result)
-                        _Current = _ShopEnumerator.Current;
+                        Current = _ShopEnumerator.Current;
                     else
                         ++_State;
                 }
                 if (_State == 1) {
                     result = _GCShopEnumerator.MoveNext();
                     if (result)
-                        _Current = _GCShopEnumerator.Current;
+                        Current = _GCShopEnumerator.Current;
                     else
                         ++_State;
                 }
+                // ReSharper disable once InvertIf
                 if (_State == 2) {
                     result = _SpecialShopEnumerator.MoveNext();
                     if (result)
-                        _Current = _SpecialShopEnumerator.Current;
+                        Current = _SpecialShopEnumerator.Current;
                     else
                         ++_State;
                 }
@@ -88,34 +122,6 @@ namespace SaintCoinach.Xiv.Collections {
             }
 
             #endregion
-        }
-        #endregion
-
-        #region Fields
-        private XivCollection _Collection;
-        #endregion
-
-        #region Properties
-        public XivCollection Collection { get { return _Collection; } }
-        #endregion
-
-        #region Constructor
-        public ShopCollection(XivCollection collection) {
-            _Collection = collection;
-        }
-        #endregion
-
-        #region IEnumerable<IShop> Members
-        public IEnumerator<IShop> GetEnumerator() {
-            return new Enumerator(Collection);
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            return GetEnumerator();
         }
 
         #endregion

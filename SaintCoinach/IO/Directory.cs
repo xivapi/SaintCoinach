@@ -1,48 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
     /// <summary>
-    /// Directory inside a SqPack.
+    ///     Directory inside a SqPack.
     /// </summary>
     public partial class Directory {
         #region Fields
-        private Pack _Pack;
-        private IndexDirectory _Index;
+
+        private readonly Dictionary<string, uint> _FileNameMap = new Dictionary<string, uint>();
+        private readonly Dictionary<uint, WeakReference<File>> _Files = new Dictionary<uint, WeakReference<File>>();
         private string _Path;
-        private Dictionary<uint, WeakReference<File>> _Files = new Dictionary<uint, WeakReference<File>>();
-        private Dictionary<string, uint> _FileNameMap = new Dictionary<string, uint>();
+
         #endregion
 
         #region Properties
-        public Pack Pack { get { return _Pack; } }
-        public IndexDirectory Index { get { return _Index; } }
+
+        public Pack Pack { get; private set; }
+        public IndexDirectory Index { get; private set; }
+
         public string Path {
             get { return _Path ?? string.Join("/", Pack.Name, Index.Key.ToString("X8")); }
             internal set { _Path = value; }
         }
+
         #endregion
+
+        #region Constructors
 
         #region Constructor
+
         public Directory(Pack pack, IndexDirectory index) {
-            _Pack = pack;
-            _Index = index;
+            Pack = pack;
+            Index = index;
         }
+
         #endregion
 
+        #endregion
+
+        public override string ToString() {
+            return Path;
+        }
+
         #region Get
+
         public bool FileExists(string name) {
             uint hash;
             if (!_FileNameMap.TryGetValue(name, out hash))
                 _FileNameMap.Add(name, hash = Hash.Compute(name));
             return FileExists(hash);
         }
+
         public bool FileExists(uint fileKey) {
             return Index.Files.ContainsKey(fileKey);
         }
+
         public File GetFile(string name) {
             uint hash;
             if (!_FileNameMap.TryGetValue(name, out hash))
@@ -52,6 +65,7 @@ namespace SaintCoinach.IO {
             file.Name = name;
             return file;
         }
+
         public File GetFile(uint key) {
             WeakReference<File> fileRef;
             File file;
@@ -66,6 +80,7 @@ namespace SaintCoinach.IO {
                 _Files.Add(key, new WeakReference<File>(file));
             return file;
         }
+
         public bool TryGetFile(string name, out File file) {
             uint hash;
             if (!_FileNameMap.TryGetValue(name, out hash))
@@ -76,6 +91,7 @@ namespace SaintCoinach.IO {
                 file.Name = name;
             return result;
         }
+
         public bool TryGetFile(uint key, out File file) {
             WeakReference<File> fileRef;
             if (_Files.TryGetValue(key, out fileRef) && fileRef.TryGetTarget(out file))
@@ -94,10 +110,7 @@ namespace SaintCoinach.IO {
             file = null;
             return false;
         }
-        #endregion
 
-        public override string ToString() {
-            return Path;
-        }
+        #endregion
     }
 }

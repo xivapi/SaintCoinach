@@ -1,19 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     public class GatheringType : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
-        public Imaging.ImageFile MainIcon { get { return AsImage("Icon{Main}"); } }
-        public Imaging.ImageFile SubIcon { get { return AsImage("Icon{Off}"); } }
+        public ImageFile MainIcon { get { return AsImage("Icon{Main}"); } }
+        public ImageFile SubIcon { get { return AsImage("Icon{Off}"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public GatheringType(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public GatheringType(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

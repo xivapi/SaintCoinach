@@ -1,19 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     public class LeveAssignmentType : XivRow {
         #region Properties
+
         public string Name { get { return AsString("Name"); } }
         public bool IsFaction { get { return AsBoolean("IsFaction"); } }
-        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+        public ImageFile Icon { get { return AsImage("Icon"); } }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public LeveAssignmentType(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public LeveAssignmentType(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

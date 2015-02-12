@@ -1,49 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.Sound {
     public class ScdDecoder {
         #region Fields
-        private byte[] _FileIn;
-        private byte[] _FileOut = null;
 
-        private bool _UseLittleEndian = false;
-
-        private int _VorbHeaderOffset;
+        private readonly byte[] _FileIn;
+        private byte[] _FileOut;
+        private bool _UseLittleEndian;
         private int _VorbHeaderLength;
+        private int _VorbHeaderOffset;
         private byte _Xor;
+
         #endregion
 
-        #region Properties
+        #region Constructors
+
+        #region Constructor
+
+        public ScdDecoder(byte[] fileIn) {
+            _FileIn = fileIn;
+        }
+
+        #endregion
+
+        #endregion
+
         public byte[] GetData() {
             if (_FileOut == null)
                 Decode();
             return _FileOut;
         }
-        #endregion
-
-        #region Constructor
-        public ScdDecoder(byte[] fileIn) {
-            _FileIn = fileIn;
-        }
-        #endregion
 
         #region Decode
+
         private void Decode() {
             Init();
             ParseMeta();
             Unscramble();
         }
+
         private void ParseMeta() {
             var metaOffsetOffset = 0x40 + ReadInt16(0x0E);
             var metaOffset = ReadInt32(metaOffsetOffset);
 
             var codecId = ReadInt32(metaOffset + 0x0C);
-            if (codecId != 0x06)    // OGG
+            if (codecId != 0x06) // OGG
                 throw new NotSupportedException(string.Format("Codec {0:X2}h not supported.", codecId));
 
             var postMetaOffset = metaOffset + 0x20;
@@ -58,12 +60,14 @@ namespace SaintCoinach.Sound {
             _VorbHeaderOffset = postMetaOffset + 0x20 + seekTableSize;
             _VorbHeaderLength = ReadInt32(postMetaOffset + 0x14);
         }
+
         private void Unscramble() {
             if (_Xor == 0)
                 return;
-            for (int i = 0; i < _VorbHeaderLength; ++i)
+            for (var i = 0; i < _VorbHeaderLength; ++i)
                 _FileOut[_VorbHeaderOffset + i] ^= _Xor;
         }
+
         private void Init() {
             _FileOut = new byte[_FileIn.Length];
             Array.Copy(_FileIn, _FileOut, _FileIn.Length);
@@ -73,28 +77,33 @@ namespace SaintCoinach.Sound {
                 throw new InvalidDataException();
 
             // Check endianness
-            var verBE = ReadInt32(8, false);
-            var verLE = ReadInt32(8, true);
+            var verBigEndian = ReadInt32(8, false);
+            var verLittleEndian = ReadInt32(8, true);
 
-            if (verBE == 2 || verBE == 3) {
+            if (verBigEndian == 2 || verBigEndian == 3) {
                 _UseLittleEndian = false;
-            } else if (verLE == 2 || verLE == 3) {
+            } else if (verLittleEndian == 2 || verLittleEndian == 3) {
                 _UseLittleEndian = true;
             } else
                 throw new InvalidDataException();
         }
+
         #endregion
 
         #region Helpers
+
         private short ReadInt16(int offset) {
             return ReadInt16(offset, _UseLittleEndian);
         }
+
         private int ReadInt32(int offset) {
             return ReadInt32(offset, _UseLittleEndian);
         }
+
         private long ReadInt64(int offset) {
             return ReadInt64(offset, _UseLittleEndian);
         }
+
         private short ReadInt16(int offset, bool littleEndian) {
             var buffer = new byte[2];
 
@@ -104,6 +113,7 @@ namespace SaintCoinach.Sound {
 
             return BitConverter.ToInt16(buffer, 0);
         }
+
         private int ReadInt32(int offset, bool littleEndian) {
             var buffer = new byte[4];
 
@@ -113,6 +123,7 @@ namespace SaintCoinach.Sound {
 
             return BitConverter.ToInt32(buffer, 0);
         }
+
         private long ReadInt64(int offset, bool littleEndian) {
             var buffer = new byte[8];
 
@@ -122,6 +133,7 @@ namespace SaintCoinach.Sound {
 
             return BitConverter.ToInt64(buffer, 0);
         }
+
         #endregion
     }
 }

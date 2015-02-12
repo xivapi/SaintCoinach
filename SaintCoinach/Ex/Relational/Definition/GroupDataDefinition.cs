@@ -1,32 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class GroupDataDefinition : IDataDefinition {
         #region Fields
+
         private ICollection<IDataDefinition> _Members = new List<IDataDefinition>();
+
         #endregion
 
         #region Properties
-        public ICollection<IDataDefinition> Members {
-            get { return _Members; }
-            internal set { _Members = value; }
-        }
-        [YamlDotNet.Serialization.YamlIgnore]
-        public int Length {
-            get { return _Members.Sum(_ => _.Length); }
-        }
+
+        public ICollection<IDataDefinition> Members { get { return _Members; } internal set { _Members = value; } }
+
         #endregion
 
+        [YamlIgnore]
+        public int Length { get { return _Members.Sum(_ => _.Length); } }
+
+        public IDataDefinition Clone() {
+            var clone = new GroupDataDefinition();
+
+            foreach (var member in Members)
+                clone.Members.Add(member.Clone());
+
+            return clone;
+        }
+
         #region IDataDefinition Members
+
         public object Convert(IDataRow row, object value, int index) {
             if (index < 0 || index >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
-            object convertedValue = value;
+            var convertedValue = value;
             var pos = 0;
             foreach (var member in Members) {
                 var newPos = pos + member.Length;
@@ -77,15 +87,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
             }
             return value;
         }
+
         #endregion
-
-        public IDataDefinition Clone() {
-            var clone = new GroupDataDefinition();
-
-            foreach (var member in this.Members)
-                clone.Members.Add(member.Clone());
-
-            return clone;
-        }
     }
 }

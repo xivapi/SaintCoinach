@@ -1,24 +1,29 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class ItemFood : XivRow, IParameterObject {
         #region Fields
+
         private ParameterCollection _Parameters;
+
         #endregion
 
-        #region Properties
-        public IEnumerable<Parameter> Parameters { get { return _Parameters ?? (_Parameters = BuildParameters()); } }
-        #endregion
+        #region Constructors
 
         #region Constructor
-        public ItemFood(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public ItemFood(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
         #endregion
 
+        #endregion
+
+        public IEnumerable<Parameter> Parameters { get { return _Parameters ?? (_Parameters = BuildParameters()); } }
+
         #region Build
+
         private ParameterCollection BuildParameters() {
             const int Count = 3;
 
@@ -36,25 +41,26 @@ namespace SaintCoinach.Xiv {
                     var max = AsInt32("Max", i);
                     var maxHq = AsInt32("Max{HQ}", i);
 
-                    if (max == 0)
-                        parameters.AddParameterValue(param, new ParameterValueRelative(ParameterType.Base, val / 100.0));
-                    else
-                        parameters.AddParameterValue(param, new ParameterValueRelativeLimited(ParameterType.Base, val / 100.0, max));
+                    parameters.AddParameterValue(param,
+                        max == 0
+                            ? new ParameterValueRelative(ParameterType.Base, val / 100.0)
+                            : new ParameterValueRelativeLimited(ParameterType.Base, val / 100.0, max));
 
-                    if (maxHq != max || valHq != val) {
-                        if (maxHq == 0)
-                            parameters.AddParameterValue(param, new ParameterValueRelative(ParameterType.HQ, valHq / 100.0));
-                        else
-                            parameters.AddParameterValue(param, new ParameterValueRelativeLimited(ParameterType.HQ, valHq / 100.0, maxHq));
-                    }
+                    if (maxHq == max && valHq == val) continue;
+
+                    parameters.AddParameterValue(param,
+                        maxHq == 0
+                            ? new ParameterValueRelative(ParameterType.Hq, valHq / 100.0)
+                            : new ParameterValueRelativeLimited(ParameterType.Hq, valHq / 100.0, maxHq));
                 } else {
                     parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Base, val));
                     if (val != valHq)
-                        parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.HQ, valHq));
+                        parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Hq, valHq));
                 }
             }
             return parameters;
         }
+
         #endregion
     }
 }

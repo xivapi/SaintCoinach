@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Graphics.Assets;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.IO {
     public static class FileFactory {
@@ -18,9 +17,9 @@ namespace SaintCoinach.IO {
                 case FileType.Default:
                     return new FileDefault(directory, header);
                 case FileType.Image:
-                    return new Imaging.ImageFile(directory, header);
+                    return new ImageFile(directory, header);
                 case FileType.Model:
-                    return new Graphics.Assets.ModelFile(directory, header);
+                    return new ModelFile(directory, header);
                 default:
                     throw new NotSupportedException(string.Format("Unknown file type {0:X2}h", (int)header.FileType));
             }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Ex.Relational {
-    public interface IRelationalDataSheet<T> : IRelationalDataSheet, IDataSheet<T>, IRelationalSheet<T>
+﻿namespace SaintCoinach.Ex.Relational {
+    public interface IRelationalDataSheet<out T> : IRelationalDataSheet, IDataSheet<T>, IRelationalSheet<T>
         where T : IRelationalDataRow {
+        #region Properties
+
         new T this[int key] { get; }
+
+        #endregion
     }
 }

@@ -1,24 +1,35 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class LeveRewardItem : XivRow {
         #region Fields
+
         private ProbabilityPair<LeveRewardItemGroup>[] _ItemGroups;
+
         #endregion
 
         #region Properties
-        public IEnumerable<ProbabilityPair<LeveRewardItemGroup>> ItemGroups { get { return _ItemGroups ?? (_ItemGroups = BuildItemGroups()); } }
+
+        public IEnumerable<ProbabilityPair<LeveRewardItemGroup>> ItemGroups {
+            get { return _ItemGroups ?? (_ItemGroups = BuildItemGroups()); }
+        }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
-        public LeveRewardItem(IXivSheet sheet, Ex.Relational.IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        public LeveRewardItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
         #endregion
 
         #region Build
+
         private ProbabilityPair<LeveRewardItemGroup>[] BuildItemGroups() {
             const int Count = 8;
 
@@ -37,6 +48,7 @@ namespace SaintCoinach.Xiv {
 
             return itemGroups.ToArray();
         }
+
         #endregion
     }
 }

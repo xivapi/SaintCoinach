@@ -1,103 +1,44 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex {
     public class DataSheet<T> : IDataSheet<T> where T : IDataRow {
         #region Fields
-        private ExCollection _Collection;
-        private Header _Header;
-        private Language _Language;
-        private Dictionary<Range, ISheet<T>> _PartialSheets = new Dictionary<Range, ISheet<T>>();
-        private Dictionary<int, ISheet<T>> _RowToPartialSheetMap = new Dictionary<int, ISheet<T>>();
-        private T[] _AllRows = null;
+
+        private readonly Dictionary<Range, ISheet<T>> _PartialSheets = new Dictionary<Range, ISheet<T>>();
+        private readonly Dictionary<int, ISheet<T>> _RowToPartialSheetMap = new Dictionary<int, ISheet<T>>();
+        private T[] _AllRows;
+
         #endregion
 
-        #region Properties
-        public ExCollection Collection { get { return _Collection; } }
-        public Header Header { get { return _Header; } }
-        public Language Language { get { return _Language; } }
-        public int Count { get { CreateAllPartialSheets(); return _PartialSheets.Values.Sum(_ => _.Count); } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public DataSheet(ExCollection collection, Header header, Language language) {
-            _Collection = collection;
-            _Header = header;
-            _Language = language;
+            Collection = collection;
+            Header = header;
+            Language = language;
         }
+
         #endregion
 
-        #region Factory
-        protected virtual ISheet<T> CreatePartialSheet(Range range, IO.File file) {
-            return new PartialDataSheet<T>(this, range, file);
-        }
         #endregion
 
-        #region Helpers
-        protected IO.File GetPartialFile(Range range) {
-            const string PartialFileNameFormat = "exd/{0}_{1}{2}.exd";
+        public ExCollection Collection { get; private set; }
+        public Header Header { get; private set; }
+        public Language Language { get; private set; }
 
-            var partialFileName = string.Format(PartialFileNameFormat, Header.Name, range.Start, Language.GetSuffix());
-            var file = Collection.PackCollection.GetFile(partialFileName);
-
-            return file;
-        }
-        protected ISheet<T> GetPartialSheet(int row) {
-            if (_RowToPartialSheetMap.ContainsKey(row))
-                return _RowToPartialSheetMap[row];
-
-            var res = Header.DataFileRanges.Where(_ => _.Contains(row));
-            if (!res.Any())
-                throw new ArgumentOutOfRangeException();
-
-            ISheet<T> partial;
-            var range = res.First();
-            if (!_PartialSheets.TryGetValue(range, out partial)) {
-                partial = CreatePartialSheet(range);
-            }
-            return partial;
-        }
-        private void CreateAllPartialSheets() {
-            foreach (var range in Header.DataFileRanges) {
-                if (!_PartialSheets.ContainsKey(range))
-                    CreatePartialSheet(range);
+        public int Count {
+            get {
+                CreateAllPartialSheets();
+                return _PartialSheets.Values.Sum(_ => _.Count);
             }
         }
-        private ISheet<T> CreatePartialSheet(Range range) {
-            var file = GetPartialFile(range);
-
-            var partial = CreatePartialSheet(range, file);
-            _PartialSheets.Add(range, partial);
-            foreach (var row in partial.GetAllRows())
-                _RowToPartialSheetMap.Add(row.Key, partial);
-            return partial;
-        }
-        #endregion
-
-        #region ISheet<T> Members
-        public IEnumerable<T> GetAllRows() {
-            CreateAllPartialSheets();
-
-            if (_AllRows == null) {
-                var rows = new List<T>();
-
-                foreach (var partial in _PartialSheets.Values)
-                    rows.AddRange(partial.GetAllRows());
-
-                _AllRows = rows.ToArray();
-            }
-
-            return _AllRows;
-        }
-
-        public T this[int row] {
-            get { return GetPartialSheet(row)[row]; }
-        }
-
-        #endregion
 
         #region IEnumerable<T> Members
 
@@ -110,17 +51,97 @@ namespace SaintCoinach.Ex {
 
         #region IEnumerable Members
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
         #endregion
 
+        #region IDataSheet Members
+
+        public byte[] GetBuffer() {
+            throw new NotSupportedException();
+        }
+
+        #endregion
+
+        #region Factory
+
+        protected virtual ISheet<T> CreatePartialSheet(Range range, File file) {
+            return new PartialDataSheet<T>(this, range, file);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        protected File GetPartialFile(Range range) {
+            const string PartialFileNameFormat = "exd/{0}_{1}{2}.exd";
+
+            var partialFileName = string.Format(PartialFileNameFormat, Header.Name, range.Start, Language.GetSuffix());
+            var file = Collection.PackCollection.GetFile(partialFileName);
+
+            return file;
+        }
+
+        protected ISheet<T> GetPartialSheet(int row) {
+            if (_RowToPartialSheetMap.ContainsKey(row))
+                return _RowToPartialSheetMap[row];
+
+            var res = Header.DataFileRanges.Where(_ => _.Contains(row)).ToArray();
+            if (!res.Any())
+                throw new ArgumentOutOfRangeException();
+
+            ISheet<T> partial;
+            var range = res.First();
+            if (!_PartialSheets.TryGetValue(range, out partial)) {
+                partial = CreatePartialSheet(range);
+            }
+            return partial;
+        }
+
+        private void CreateAllPartialSheets() {
+            foreach (var range in Header.DataFileRanges.Where(range => !_PartialSheets.ContainsKey(range))) {
+                CreatePartialSheet(range);
+            }
+        }
+
+        private ISheet<T> CreatePartialSheet(Range range) {
+            var file = GetPartialFile(range);
+
+            var partial = CreatePartialSheet(range, file);
+            _PartialSheets.Add(range, partial);
+            foreach (var row in partial.GetAllRows())
+                _RowToPartialSheetMap.Add(row.Key, partial);
+            return partial;
+        }
+
+        #endregion
+
+        #region ISheet<T> Members
+
+        public IEnumerable<T> GetAllRows() {
+            CreateAllPartialSheets();
+
+            if (_AllRows != null) return _AllRows;
+
+            var rows = new List<T>();
+
+            foreach (var partial in _PartialSheets.Values)
+                rows.AddRange(partial.GetAllRows());
+
+            _AllRows = rows.ToArray();
+
+            return _AllRows;
+        }
+
+        public T this[int row] { get { return GetPartialSheet(row)[row]; } }
+
+        #endregion
+
         #region ISheet Members
 
-        public string Name {
-            get { return Header.Name + Language.GetSuffix(); }
-        }
+        public string Name { get { return Header.Name + Language.GetSuffix(); } }
 
         public bool ContainsRow(int row) {
             CreateAllPartialSheets();
@@ -132,20 +153,10 @@ namespace SaintCoinach.Ex {
             return GetAllRows().Cast<IRow>();
         }
 
-        IRow ISheet.this[int row] {
-            get { return (IRow)this[row]; }
-        }
+        IRow ISheet.this[int row] { get { return this[row]; } }
 
-        public object this[int row, int column] {
-            get { return this[row][column]; }
-        }
+        public object this[int row, int column] { get { return this[row][column]; } }
 
-        #endregion
-
-        #region IDataSheet Members
-        public byte[] GetBuffer() {
-            throw new NotSupportedException();
-        }
         #endregion
     }
 }

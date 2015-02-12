@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Ex {
-    public interface ISheet<T> : IEnumerable<T>, ISheet where T : IRow {
-        new IEnumerable<T> GetAllRows();
+    public interface ISheet<out T> : IEnumerable<T>, ISheet where T : IRow {
+        #region Properties
+
         new T this[int row] { get; }
+
+        #endregion
+
+        new IEnumerable<T> GetAllRows();
     }
 }

@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace SaintCoinach.Xiv {
     public class ParameterValueFixed : ParameterValue {
-        #region Fields
-        private double _Amount;
+        #region Properties
+
+        public double Amount { get; private set; }
+
         #endregion
 
-        #region Properties
-        public double Amount { get { return _Amount; } }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public ParameterValueFixed(ParameterType type, double amount)
             : base(type) {
-            _Amount = amount;
+            Amount = amount;
         }
+
+        #endregion
+
         #endregion
 
         public override string ToString() {

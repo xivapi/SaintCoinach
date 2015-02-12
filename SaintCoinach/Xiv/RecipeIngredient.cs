@@ -1,34 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Xiv {
+﻿namespace SaintCoinach.Xiv {
     public class RecipeIngredient {
-        #region Fields
-        private RecipeIngredientType _Type;
-        private Item _Item;
-        private int _Count;
-        private int _QualityPerItem;
+        #region Properties
+
+        public RecipeIngredientType Type { get; private set; }
+        public Item Item { get; private set; }
+        public int Count { get; private set; }
+        public int QualityPerItem { get; internal set; }
+
         #endregion
 
-        #region Properties
-        public RecipeIngredientType Type { get { return _Type; } }
-        public Item Item { get { return _Item; } }
-        public int Count { get { return _Count; } }
-        public int QualityPerItem {
-            get { return _QualityPerItem; }
-            internal set { _QualityPerItem = value; }
-        }
-        #endregion
+        #region Constructors
 
         #region Constructor
+
         public RecipeIngredient(RecipeIngredientType type, Item item, int count) {
-            _Type = type;
-            _Item = item;
-            _Count = count;
+            Type = type;
+            Item = item;
+            Count = count;
         }
+
+        #endregion
+
         #endregion
     }
 }

@@ -1,28 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Assets {
     public class MaterialParameterMapping {
+        #region Static
+
         public const int Size = 0x0C;
 
-        #region Fields
-        private int _Index;
-        private uint _Id;
         #endregion
 
         #region Properties
-        public int Index { get { return _Index; } }
-        public uint Id { get { return _Id; } }
+
+        public int Index { get; private set; }
+        public uint Id { get; private set; }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
+
         public MaterialParameterMapping(byte[] buffer, int offset) {
-            _Id = BitConverter.ToUInt32(buffer, offset + 0x00);
-            _Index = BitConverter.ToInt32(buffer, offset + 0x08);
+            Id = BitConverter.ToUInt32(buffer, offset + 0x00);
+            Index = BitConverter.ToInt32(buffer, offset + 0x08);
         }
+
+        #endregion
+
         #endregion
     }
 }

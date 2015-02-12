@@ -1,28 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class SheetLinkConverter : IValueConverter {
-        #region Fields
-        private string _TargetSheet;
-        #endregion
-
         #region Properties
-        public string TargetSheet {
-            get { return _TargetSheet; }
-            set { _TargetSheet = value; }
-        }
+
+        public string TargetSheet { get; set; }
+
         #endregion
 
         #region IValueConverter Members
 
-        [YamlDotNet.Serialization.YamlIgnore]
-        public string TargetTypeName {
-            get { return TargetSheet; }
-        }
+        [YamlIgnore]
+        public string TargetTypeName { get { return TargetSheet; } }
 
         public object Convert(IDataRow row, object rawValue) {
             var coll = row.Sheet.Collection;
@@ -32,11 +21,9 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             var sheet = coll.GetSheet(TargetSheet);
 
             var key = System.Convert.ToInt32(rawValue);
-            if (!sheet.ContainsRow(key))
-                return null;
-
-            return sheet[key];
+            return !sheet.ContainsRow(key) ? null : sheet[key];
         }
+
         #endregion
     }
 }

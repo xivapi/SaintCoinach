@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public interface IXivSheet : Ex.Relational.IRelationalSheet {
+    public interface IXivSheet : IRelationalSheet {
+        #region Properties
+
         new XivCollection Collection { get; }
-        new IEnumerable<IXivRow> GetAllRows();
         new IXivRow this[int row] { get; }
+
+        #endregion
+
+        new IEnumerable<IXivRow> GetAllRows();
     }
 }

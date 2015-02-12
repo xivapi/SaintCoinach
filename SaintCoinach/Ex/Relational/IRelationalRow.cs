@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaintCoinach.Ex.Relational {
+﻿namespace SaintCoinach.Ex.Relational {
     public interface IRelationalRow : IRow {
+        #region Properties
+
         new IRelationalSheet Sheet { get; }
         object DefaultValue { get; }
         object this[string columnName] { get; }
+
+        #endregion
     }
 }

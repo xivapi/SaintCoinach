@@ -1,30 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Xiv {
     public class SpecialShopListing : IShopListing {
         #region Fields
-        private SpecialShop _SpecialShop;
-        private ShopListingItem[] _Rewards;
-        private ShopListingItem[] _Costs;
-        private Item _Item;
-        private Quest _Quest;
-        private int _Count;
+
+        private readonly ShopListingItem[] _Costs;
+        private readonly ShopListingItem[] _Rewards;
+
         #endregion
 
         #region Properties
-        public IEnumerable<IShopListingItem> Rewards { get { return _Rewards; } }
-        public IEnumerable<IShopListingItem> Costs { get { return _Costs; } }
-        public SpecialShop SpecialShop { get { return _SpecialShop; } }
-        public Quest Quest { get { return _Quest; } }
+
+        public SpecialShop SpecialShop { get; private set; }
+        public Quest Quest { get; private set; }
+
         #endregion
 
+        #region Constructors
+
         #region Constructor
+
         public SpecialShopListing(SpecialShop shop, int index) {
-            _SpecialShop = shop;
+            SpecialShop = shop;
 
             const int RewardCount = 2;
             var rewards = new List<ShopListingItem>();
@@ -42,7 +39,7 @@ namespace SaintCoinach.Xiv {
                 rewards.Add(new ShopListingItem(this, item, count, hq));
             }
             _Rewards = rewards.ToArray();
-            _Quest = shop.As<Quest>("Quest{Item}", index);
+            Quest = shop.As<Quest>("Quest{Item}", index);
 
             const int CostCount = 3;
             var costs = new List<ShopListingItem>();
@@ -61,12 +58,17 @@ namespace SaintCoinach.Xiv {
             }
             _Costs = costs.ToArray();
         }
+
         #endregion
 
+        #endregion
+
+        public IEnumerable<IShopListingItem> Rewards { get { return _Rewards; } }
+        public IEnumerable<IShopListingItem> Costs { get { return _Costs; } }
+
         #region IShopItem Members
-        IEnumerable<IShop> IShopListing.Shops {
-            get { yield return SpecialShop; }
-        }
+
+        IEnumerable<IShop> IShopListing.Shops { get { yield return SpecialShop; } }
 
         #endregion
     }

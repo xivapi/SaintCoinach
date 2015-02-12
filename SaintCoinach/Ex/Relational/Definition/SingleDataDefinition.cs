@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class SingleDataDefinition : IDataDefinition {
-        #region Fields
-        private string _Name;
-        private IValueConverter _Converter;
+        #region Properties
+
+        public string Name { get; set; }
+        public IValueConverter Converter { get; set; }
+
         #endregion
 
-        #region Properties
-        [YamlDotNet.Serialization.YamlIgnore]
-        public int Length {
-            get { return 1; }
+        [YamlIgnore]
+        public int Length { get { return 1; } }
+
+        public IDataDefinition Clone() {
+            return new SingleDataDefinition {
+                Name = Name,
+                Converter = Converter
+            };
         }
-        public string Name {
-            get { return _Name; }
-            set { _Name = value; }
-        }
-        public IValueConverter Converter {
-            get { return _Converter; }
-            set { _Converter = value; }
-        }
-        #endregion
 
         #region IDataDefinition Members
+
         public object Convert(IDataRow row, object value, int index) {
             if (index != 0)
                 throw new ArgumentOutOfRangeException("index");
 
-            if (Converter != null)
-                return Converter.Convert(row, value);
-            return value;
+            return Converter != null ? Converter.Convert(row, value) : value;
         }
 
         public string GetName(int index) {
@@ -47,17 +41,9 @@ namespace SaintCoinach.Ex.Relational.Definition {
             if (index != 0)
                 throw new ArgumentOutOfRangeException("index");
 
-            if (Converter == null)
-                return null;
-            return Converter.TargetTypeName;
+            return Converter == null ? null : Converter.TargetTypeName;
         }
-        #endregion
 
-        public IDataDefinition Clone() {
-            return new SingleDataDefinition() {
-                Name = this.Name,
-                Converter = this.Converter
-            };
-        }
+        #endregion
     }
 }
