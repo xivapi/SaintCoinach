@@ -232,6 +232,13 @@
     <Compile Include="Xiv\IShop.cs" />
     <Compile Include="Xiv\IShopListing.cs" />
     <Compile Include="Xiv\ItemAction.cs" />
+    <Compile Include="Xiv\ItemActions\AetherytePendulum.cs" />
+    <Compile Include="Xiv\ItemActions\ChocoboActionReset.cs" />
+    <Compile Include="Xiv\ItemActions\ChocoboLevelCapIncrease.cs" />
+    <Compile Include="Xiv\ItemActions\DesynthSkillReset.cs" />
+    <Compile Include="Xiv\ItemActions\EternalBondInvitation.cs" />
+    <Compile Include="Xiv\ItemActions\EternityRing.cs" />
+    <Compile Include="Xiv\ItemActions\RealmRebornRed.cs" />
     <Compile Include="Xiv\ItemBase.cs" />
     <Compile Include="Xiv\ItemActions\AttributeReset.cs" />
     <Compile Include="Xiv\ItemActions\BuddyEquipUnlock.cs" />

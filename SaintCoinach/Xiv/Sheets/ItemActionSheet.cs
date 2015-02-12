@@ -65,6 +65,18 @@ namespace SaintCoinach.Xiv.Sheets {
                 2136, typeof(IA.RecipeBookUnlock)
             }, {
                 2483, typeof(IA.ChocoboFeed)
+            }, {
+                2633, typeof(IA.RealmRebornRed)
+            }, {
+                2634, typeof(IA.ChocoboActionReset)
+            }, {
+                2894, typeof(IA.EternityRing)
+            }, {
+                3237, typeof(IA.DesynthSkillReset)
+            }, {
+                3240, typeof(IA.EternalBondInvitation)
+            }, {
+                3292, typeof(IA.ChocoboLevelCapIncrease)
             }
         };
 
@@ -72,11 +84,7 @@ namespace SaintCoinach.Xiv.Sheets {
 
         #region Constructors
 
-        #region Constructor
-
         public ItemActionSheet(XivCollection collection, IRelationalSheet source) : base(collection, source) { }
-
-        #endregion
 
         #endregion
 

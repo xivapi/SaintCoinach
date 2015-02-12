@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SaintCoinach.Xiv.ItemActions;
+
 using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 
@@ -20,7 +22,7 @@ namespace SaintCoinach.Cmd {
         #endregion
     }
     class Program {
-        static void Main(string[] args) {
+        private static void Main(string[] args) {
             var dataPath = Properties.Settings.Default.DataPath;
 
             if (args.Length > 0) {
