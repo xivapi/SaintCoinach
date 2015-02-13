@@ -28,7 +28,7 @@ A library for extracting game assets and reading game assets from **Final Fantas
 
 ### Set-up
 
-**Note:** When building an application using this library make sure to include a copy of [https://github.com/Rogueadyn/SaintCoinach/blob/master/SaintCoinach/SaintCoinach.History.zip](`SaintCoinach/SaintCoinach.History.zip`) in the application's directory.
+**Note:** When building an application using this library make sure to include a copy of [`SaintCoinach/SaintCoinach.History.zip`](https://github.com/Rogueadyn/SaintCoinach/blob/master/SaintCoinach/SaintCoinach.History.zip]) in the application's directory.
 
 All important data is exposed by the class `SaintCoinach.ARealmReversed`, so setting up access to it is fairly straightforward.
 
@@ -48,7 +48,7 @@ if (!realm.IsCurrentVersion) {
 }
 ```
 
-`ARealmReversed.Update()` can also take one additional parameter of type `IProgress<UpdateProgress>` to which progress is reported. `UpdateReport` contains a list of changes that were detected during the update.
+`ARealmReversed.Update()` can also take one additional parameter of type `IProgress<UpdateProgress>` to which progress is reported. The returned `UpdateReport` contains a list of changes that were detected during the update.
 
 ### Usage
 
@@ -56,7 +56,8 @@ Game files can be access directly through `ARealmReversed.Packs`, game data can 
 
 #### Game Data (`XivCollection`)
 
-Specific collections can be retrieved using the `GetSheet<T>()` method. **Note:** This only works for objects whose game data files have the same name as the class, this applies for most classes directly inside the `SaintCoinach.Xiv` namespace.
+Specific collections can be retrieved using the `GetSheet<T>()` method.
+**Note:** This only works for objects whose game data files have the same name as the class. This applies for most classes directly inside the `SaintCoinach.Xiv` namespace, so there should be no need to worry about it in most cases.
 
 Special cases are exposed as properties:
 
@@ -64,6 +65,16 @@ Special cases are exposed as properties:
 * `EquipSlots`: There is no actual data for specific equipment slots in the game data, but having access to them makes things more convenient, so they're available here.
 * `Items`: This collection combines both `EventItem` and `Item`.
 * `Shops`: This collection contains all types of shops.
+
+The following is a simple example that outputs the name and colour of all `Stain` objects to the console:
+
+```C#
+var stains = realm.GameData.GetSheet<SaintCoinach.Xiv.Stain>();
+
+foreach(var stain in stains) {
+    Console.WriteLine("#{0}: {1} is {2}", stain.Key, stain.Name, stain.Color);
+}
+```
 
 ## Notes
 
