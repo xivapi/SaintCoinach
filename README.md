@@ -28,7 +28,7 @@ A library for extracting game assets and reading game assets from **Final Fantas
 
 ### Set-up
 
-**Note:** When building an application using this library make sure to include a copy of [https://github.com/Rogueadyn/SaintCoinach/blob/master/SaintCoinach/SaintCoinach.History.zip](`SaintCoinach/SaintCoinach.History.zip`) in the application's directory.
+**Note:** When building an application using this library make sure to include a copy of [`SaintCoinach/SaintCoinach.History.zip`](https://github.com/Rogueadyn/SaintCoinach/blob/master/SaintCoinach/SaintCoinach.History.zip]) in the application's directory.
 
 All important data is exposed by the class `SaintCoinach.ARealmReversed`, so setting up access to it is fairly straightforward.
 
