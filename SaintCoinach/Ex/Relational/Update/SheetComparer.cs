@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -99,8 +98,8 @@ namespace SaintCoinach.Ex.Relational.Update {
                     changes.AddRange(Compare(_PreviousSheet, _UpdatedSheet, Language.None, columns));
             } else {
                 changes.Add(new SheetTypeChanged(_UpdatedDefinition.Name));
-                Trace.WriteLine(string.Format("Type of sheet {0} has changed, unable to detect changes.",
-                    _UpdatedDefinition.Name));
+                System.Console.Error.WriteLine("Type of sheet {0} has changed, unable to detect changes.",
+                    _UpdatedDefinition.Name);
             }
 
             return changes;

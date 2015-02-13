@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -135,11 +134,9 @@ namespace SaintCoinach {
         /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
         /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
         private RelationDefinition Setup(ZipFile zip) {
-            Trace.WriteLine("No version information present, performing first-time setup.");
-
             var def = ReadDefinition(zip);
             if (def.Version != GameVersion)
-                Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})",
+                System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})",
                     def.Version, GameVersion));
 
             def.Version = GameVersion;
@@ -148,8 +145,6 @@ namespace SaintCoinach {
             UpdateVersion(zip);
 
             zip.Save();
-
-            Trace.WriteLine(string.Format("First-time setup complete (version {0})", GameVersion));
 
             return def;
         }
@@ -356,8 +351,6 @@ namespace SaintCoinach {
             if (DefinitionVersion == GameVersion)
                 throw new InvalidOperationException();
 
-            Trace.WriteLine(string.Format("Beginning update from {0} to {1}.", DefinitionVersion,
-                GameVersion));
             var previousVersion = DefinitionVersion;
 
             string tempPath = null;
@@ -383,8 +376,6 @@ namespace SaintCoinach {
 
                     GameData.Definition = definition;
                     GameData.Definition.Compile();
-
-                    Trace.WriteLine(string.Format("Update complete (version {0})", GameVersion));
                 }
             } finally {
                 if (tempPath != null) {

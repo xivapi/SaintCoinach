@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex.Relational.Update.Changes;
@@ -31,8 +30,6 @@ namespace SaintCoinach.Ex.Relational.Update {
 
         #region Constructors
 
-        #region Constructor
-
         public RelationUpdater(PackCollection previousPacks,
                                RelationDefinition previousDefinition,
                                PackCollection updatedPacks,
@@ -54,8 +51,6 @@ namespace SaintCoinach.Ex.Relational.Update {
 
         #endregion
 
-        #endregion
-
         #region Update
 
         public IEnumerable<IChange> Update(bool detectDataChanges) {
@@ -68,8 +63,6 @@ namespace SaintCoinach.Ex.Relational.Update {
             };
             {
                 foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                    Trace.WriteLine(string.Format("Update sheet {0}.", prevSheetDef.Name));
-
                     progress.CurrentFile = prevSheetDef.Name;
                     _Progress.Report(progress);
 
@@ -98,8 +91,6 @@ namespace SaintCoinach.Ex.Relational.Update {
                 progress.CurrentOperation = "Data";
 
                 foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                    Trace.WriteLine(string.Format("Detect data changes in {0}.", prevSheetDef.Name));
-
                     progress.CurrentFile = prevSheetDef.Name;
                     _Progress.Report(progress);
 
@@ -126,55 +117,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             _Progress.Report(progress);
 
             return changes;
-        } /*
-        public IEnumerable<IChange> Update() {
-            var changes = new List<IChange>();
-
-            foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                System.Diagnostics.Trace.WriteLine(string.Format("Update sheet {0}.", prevSheetDef.Name));
-
-                if (!_Updated.SheetExists(prevSheetDef.Name)) {
-                    changes.Add(new Changes.SheetRemoved(prevSheetDef.Name));
-                    continue;
-                }
-
-                var prevSheet = _Previous.GetSheet(prevSheetDef.Name);
-
-                var updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
-                var updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
-
-                var sheetUpdater = new SheetUpdater(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                changes.AddRange(sheetUpdater.Update());
-
-                GC.Collect();
-            }
-
-            Updated.Compile();
-
-            return changes;
         }
-        public IEnumerable<IChange> DetectDataChanges() {
-            var changes = new List<IChange>();
-
-            foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                System.Diagnostics.Trace.WriteLine(string.Format("Detect data changes in {0}.", prevSheetDef.Name));
-
-                if (!_Updated.SheetExists(prevSheetDef.Name))
-                    continue;
-
-                var prevSheet = _Previous.GetSheet(prevSheetDef.Name);
-
-                var updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
-                var updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
-
-                var sheetComparer = new SheetComparer(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                changes.AddRange(sheetComparer.Compare());
-
-                GC.Collect();
-            }
-
-            return changes;
-        }*/
 
         #endregion
 
