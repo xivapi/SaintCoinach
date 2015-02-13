@@ -3,27 +3,42 @@ using System.Collections.Generic;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    ///     Class for bonuses granted by consumable items.
+    /// </summary>
     public class ItemFood : XivRow, IParameterObject {
         #region Fields
 
+        /// <summary>
+        ///     <see cref="ParameterCollection" /> of the bonuses granted by the current consumable.
+        /// </summary>
         private ParameterCollection _Parameters;
 
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ItemFood" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public ItemFood(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 
-        #endregion
-
+        /// <summary>
+        ///     Gets the parameter bonuses granted the current consumable.
+        /// </summary>
+        /// <value>The parameter bonuses granted the current consumable.</value>
         public IEnumerable<Parameter> Parameters { get { return _Parameters ?? (_Parameters = BuildParameters()); } }
 
         #region Build
 
+        /// <summary>
+        ///     Build a <see cref="ParameterCollection" /> for the bonuses granted by the current consumable.
+        /// </summary>
+        /// <returns>A <see cref="ParameterCollection" /> for the bonuses granted by the current consumable.</returns>
         private ParameterCollection BuildParameters() {
             const int Count = 3;
 

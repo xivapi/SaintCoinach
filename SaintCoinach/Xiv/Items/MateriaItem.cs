@@ -3,18 +3,41 @@ using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
+    /// <summary>
+    ///     Class representing a materia item.
+    /// </summary>
     public class MateriaItem : Item {
         #region Fields
 
+        /// <summary>
+        ///     <see cref="BaseParam" /> granted by the current materia item.
+        /// </summary>
         private BaseParam _BaseParam;
+
+        /// <summary>
+        ///     Value indicating whether <see cref="BaseParam" />, <see cref="Tier" /> and <see cref="Value" /> have been
+        ///     retrieved.
+        /// </summary>
         private bool _IsBuilt;
+
+        /// <summary>
+        ///     Tier of the current materia item.
+        /// </summary>
         private int _Tier;
+
+        /// <summary>
+        ///     Bonus granted to <see cref="BaseParam" /> by the current materia item.
+        /// </summary>
         private int _Value;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the <see cref="BaseParam" /> granted by the current materia item.
+        /// </summary>
+        /// <value>The <see cref="BaseParam" /> granted by the current materia item.</value>
         public BaseParam BaseParam {
             get {
                 Build();
@@ -22,6 +45,10 @@ namespace SaintCoinach.Xiv.Items {
             }
         }
 
+        /// <summary>
+        ///     Gets the bonus granted to <see cref="BaseParam" /> by the current materia item.
+        /// </summary>
+        /// <value>The bonus granted to <see cref="BaseParam" /> by the current materia item.</value>
         public int Value {
             get {
                 Build();
@@ -29,6 +56,10 @@ namespace SaintCoinach.Xiv.Items {
             }
         }
 
+        /// <summary>
+        ///     Gets the tier of the current materia item.
+        /// </summary>
+        /// <value>The tier of the current materia item.</value>
         public int Tier {
             get {
                 Build();
@@ -40,16 +71,21 @@ namespace SaintCoinach.Xiv.Items {
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="MateriaItem" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public MateriaItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
-        #endregion
 
         #endregion
 
         #region Build
 
+        /// <summary>
+        ///     Retrieve the <see cref="BaseParam" />, <see cref="Value" /> and <see cref="Tier" /> from the <see cref="Materia" />
+        ///     to which the current item is assigned.
+        /// </summary>
         private void Build() {
             if (_IsBuilt)
                 return;

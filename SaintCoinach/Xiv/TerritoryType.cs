@@ -3,9 +3,18 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    ///     Class representing a territory (zone).
+    /// </summary>
     public class TerritoryType : XivRow {
         #region Static
 
+        /// <summary>
+        ///     Mappings of special weather rates.
+        /// </summary>
+        /// <remarks>
+        ///     Just guesswork on my part, but it's been working out so far.
+        /// </remarks>
         private static readonly Dictionary<int, int> WeatherGroups = new Dictionary<int, int> {
             {
                 128, 0x00
@@ -34,16 +43,37 @@ namespace SaintCoinach.Xiv {
 
         #region Fields
 
+        /// <summary>
+        ///     <see cref="WeatherRate" /> of the current territory.
+        /// </summary>
         private WeatherRate _WeatherRate;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the name of the current territory.
+        /// </summary>
+        /// <value>The name of the current territory.</value>
         public string Name { get { return AsString("Name"); } }
+
+        /// <summary>
+        ///     Gets the identifier used for the current territory.
+        /// </summary>
+        /// <value>The identifier used for the current territory.</value>
         public string Bg { get { return AsString("Bg"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="Map" /> of the current territory.
+        /// </summary>
+        /// <value>The <see cref="Map" /> of the current territory.</value>
         public Map Map { get { return As<Map>(); } }
 
+        /// <summary>
+        ///     Gets the <see cref="WeatherRate" /> of the current territory.
+        /// </summary>
+        /// <value>The <see cref="WeatherRate" /> of the current territory.</value>
         public WeatherRate WeatherRate {
             get {
                 if (_WeatherRate != null) return _WeatherRate;
@@ -60,11 +90,12 @@ namespace SaintCoinach.Xiv {
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TerritoryType" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public TerritoryType(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
-        #endregion
 
         #endregion
     }

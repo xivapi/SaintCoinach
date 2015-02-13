@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv.Items {
-    public class GatheringTool : Equipment {
-        #region Properties
-
-        public override IEnumerable<Parameter> PrimaryParameters { get { yield break; } }
-
-        #endregion
+    public class GatheringTool : Weapon {
 
         #region Constructors
 

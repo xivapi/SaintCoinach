@@ -1,25 +1,47 @@
 ﻿using System.Collections.Generic;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    ///     Class representing a listing in a <see cref="SpecialShop" />.
+    /// </summary>
     public class SpecialShopListing : IShopListing {
         #region Fields
 
+        /// <summary>
+        ///     Costs of the current listing.
+        /// </summary>
         private readonly ShopListingItem[] _Costs;
+
+        /// <summary>
+        ///     Rewards of the current listing.
+        /// </summary>
         private readonly ShopListingItem[] _Rewards;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the <see cref="SpecialShop" /> the current listing is from.
+        /// </summary>
+        /// <value>The <see cref="SpecialShop" /> the current listing is from.</value>
         public SpecialShop SpecialShop { get; private set; }
+
+        /// <summary>
+        ///     Gets the <see cref="Quest" /> required for the current listing.
+        /// </summary>
+        /// <value>The <see cref="Quest" /> required for the current listing.</value>
         public Quest Quest { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="SpecialShopListing" /> class.
+        /// </summary>
+        /// <param name="shop"><see cref="SpecialShop" /> for which the listing is.</param>
+        /// <param name="index">Position of the listing in the <c>shop</c>'s data.</param>
         public SpecialShopListing(SpecialShop shop, int index) {
             SpecialShop = shop;
 
@@ -61,13 +83,24 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        #endregion
-
+        /// <summary>
+        ///     Gets the rewards of the current listing.
+        /// </summary>
+        /// <value>The rewards of the current listing.</value>
         public IEnumerable<IShopListingItem> Rewards { get { return _Rewards; } }
+
+        /// <summary>
+        ///     Gets the costs of the current listing.
+        /// </summary>
+        /// <value>The costs of the current listing.</value>
         public IEnumerable<IShopListingItem> Costs { get { return _Costs; } }
 
         #region IShopItem Members
 
+        /// <summary>
+        ///     Gets the shops offering the current listing.
+        /// </summary>
+        /// <value>The shops offering the current listing.</value>
         IEnumerable<IShop> IShopListing.Shops { get { yield return SpecialShop; } }
 
         #endregion

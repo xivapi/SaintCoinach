@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    /// Class representing possible item reward groups for leves.
+    /// </summary>
     public class LeveRewardItem : XivRow {
         #region Fields
 
+        /// <summary>
+        /// The <see cref="LeveRewardItemGroup"/>s and their chance of appearing for the current reward.
+        /// </summary>
         private ProbabilityPair<LeveRewardItemGroup>[] _ItemGroups;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Gets the <see cref="LeveRewardItemGroup"/>s and their chance of appearing for the current reward.
+        /// </summary>
+        /// <value>The <see cref="LeveRewardItemGroup"/>s and their chance of appearing for the current reward.</value>
         public IEnumerable<ProbabilityPair<LeveRewardItemGroup>> ItemGroups {
             get { return _ItemGroups ?? (_ItemGroups = BuildItemGroups()); }
         }
@@ -20,16 +30,20 @@ namespace SaintCoinach.Xiv {
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="LeveRewardItem" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public LeveRewardItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 
-        #endregion
-
         #region Build
-
+        /// <summary>
+        /// Build an array of the <see cref="LeveRewardItemGroup"/>s and their chance of appearing for the current reward.
+        /// </summary>
+        /// <returns>An array of the <see cref="LeveRewardItemGroup"/>s and their chance of appearing for the current reward.</returns>
         private ProbabilityPair<LeveRewardItemGroup>[] BuildItemGroups() {
             const int Count = 8;
 

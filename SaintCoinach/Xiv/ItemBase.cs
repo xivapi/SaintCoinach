@@ -46,7 +46,7 @@ namespace SaintCoinach.Xiv {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemBase"/> class.
+        ///     Initializes a new instance of the <see cref="ItemBase" /> class.
         /// </summary>
         /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
         /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>

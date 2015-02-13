@@ -5,49 +5,144 @@ using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    ///     Class representing items that are in the default inventory.
+    /// </summary>
     public class Item : ItemBase {
         #region Static
 
+        /// <summary>
+        ///     Factor to convert between from an item's <see cref="Ask" /> to its <see cref="Bid" />.
+        /// </summary>
         private const double BidFactor = 0.05;
 
         #endregion
 
         #region Fields
 
+        /// <summary>
+        ///     Listings offering the current item as a reward.
+        /// </summary>
         private IShopListing[] _AsShopItems;
+
+        /// <summary>
+        ///     Listings requiring the current item as payment.
+        /// </summary>
         private IShopListingItem[] _AsShopPayment;
+
+        /// <summary>
+        ///     Recipes using the current item as material.
+        /// </summary>
         private Recipe[] _RecipesAsMaterial;
+
+        /// <summary>
+        ///     Recipes creating the current item.
+        /// </summary>
         private Recipe[] _RecipesAsResult;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the <see cref="ItemLevel" /> of the current item.
+        /// </summary>
+        /// <value>The <see cref="ItemLevel" /> of the current item.</value>
         public ItemLevel ItemLevel { get { return As<ItemLevel>("Level{Item}"); } }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current item is unique.
+        /// </summary>
+        /// <value>A value indicating whether the current item is unique.</value>
         public bool IsUnique { get { return AsBoolean("IsUnique"); } }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current item is untradable.
+        /// </summary>
+        /// <value>A value indicating whether the current item is untradable.</value>
         public bool IsUntradable { get { return AsBoolean("IsUntradable"); } }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current item is indisposable.
+        /// </summary>
+        /// <remarks>If <c>true</c> the current item can not be disposed of or sold to NPCs.</remarks>
+        /// <value>A value indicating whether the current item is indisposable.</value>
         public bool IsIndisposable { get { return AsBoolean("IsIndisposable"); } }
+
+        /// <summary>
+        ///     Gets a value indicating whether the current item is dyeable.
+        /// </summary>
+        /// <value>A value indicating whether the current item is dyeable.</value>
         public bool IsDyeable { get { return AsBoolean("IsDyeable"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="Stain" /> associated with the current item.
+        /// </summary>
+        /// <value>The <see cref="Stain" /> associated with the current item.</value>
         public Stain Stain { get { return As<Stain>(); } }
+
         // ReSharper disable once InconsistentNaming
+        /// <summary>
+        ///     Gets the <see cref="ItemUICategory" /> of the current item.
+        /// </summary>
+        /// <value>The <see cref="ItemUICategory" /> of the current item.</value>
         public ItemUICategory ItemUICategory { get { return As<ItemUICategory>(); } }
+
+        /// <summary>
+        ///     Gets the <see cref="ItemSearchCategory" /> of the current item.
+        /// </summary>
+        /// <value>The <see cref="ItemSearchCategory" /> of the current item.</value>
         public ItemSearchCategory ItemSearchCategory { get { return As<ItemSearchCategory>(); } }
+
+        /// <summary>
+        ///     Gets the <see cref="ItemAction" /> invoked when the current item is used.
+        /// </summary>
+        /// <value>The <see cref="ItemAction" /> invoked when the current item is used.</value>
         public ItemAction ItemAction { get { return As<ItemAction>(); } }
+
+        /// <summary>
+        ///     Gets the price in Gil of the current item in shops.
+        /// </summary>
+        /// <value>The price in Gil of the current item in shops.</value>
         public int Bid { get { return (int)Math.Max(1, Math.Round(Ask * BidFactor)); } }
+
+        /// <summary>
+        ///     Gets the price NPCs offer when selling the current item.
+        /// </summary>
+        /// <value>The price NPCs offer when selling the current item.</value>
         public int Ask { get { return AsInt32("Price{Mid}"); } }
 
+        /// <summary>
+        ///     Gets the recipes using the current item as material.
+        /// </summary>
+        /// <remarks>
+        ///     This property does not include recipes using the current item as catalyst (crystals).
+        /// </remarks>
+        /// <value>The recipes using the current item as material.</value>
         public IEnumerable<Recipe> RecipesAsMaterial {
             get { return _RecipesAsMaterial ?? (_RecipesAsMaterial = BuildRecipesAsMaterial()); }
         }
 
+        /// <summary>
+        ///     Gets the recipes creating the current item.
+        /// </summary>
+        /// <value>The recipes creating the current item.</value>
         public IEnumerable<Recipe> RecipesAsResult {
             get { return _RecipesAsResult ?? (_RecipesAsResult = BuildRecipesAsResult()); }
         }
 
+        /// <summary>
+        ///     Gets the shop listings offering the current item as reward.
+        /// </summary>
+        /// <value>The shop listings offering the current item as reward.</value>
         public IEnumerable<IShopListing> AsShopItems {
             get { return _AsShopItems ?? (_AsShopItems = BuildAsShopItems()); }
         }
 
+        /// <summary>
+        ///     Gets the shop listings requiring the current item as payment.
+        /// </summary>
+        /// <value>The shop listings requiring the current item as payment.</value>
         public IEnumerable<IShopListingItem> AsShopPayment {
             get { return _AsShopPayment ?? (_AsShopPayment = BuildAsShopPayment()); }
         }
@@ -56,16 +151,21 @@ namespace SaintCoinach.Xiv {
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Item" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public Item(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
-        #endregion
 
         #endregion
 
         #region Build
 
+        /// <summary>
+        ///     Build an array of recipes using the current item as material.
+        /// </summary>
+        /// <returns>An array of recipes using the current item as material.</returns>
         private Recipe[] BuildRecipesAsMaterial() {
             var rSheet = Sheet.Collection.GetSheet<Recipe>();
 
@@ -76,12 +176,20 @@ namespace SaintCoinach.Xiv {
                       .ToArray();
         }
 
+        /// <summary>
+        ///     Build an array of recipes creating the current item.
+        /// </summary>
+        /// <returns>An array of recipes creating the current item.</returns>
         private Recipe[] BuildRecipesAsResult() {
             var rSheet = Sheet.Collection.GetSheet<Recipe>();
 
             return rSheet.Where(recipe => recipe.ResultItem == this).ToArray();
         }
 
+        /// <summary>
+        ///     Build an array of shop listings offering the current item as reward.
+        /// </summary>
+        /// <returns>An array of shop listings offering the current item as reward.</returns>
         private IShopListing[] BuildAsShopItems() {
             var shops = Sheet.Collection.Shops;
 
@@ -91,6 +199,10 @@ namespace SaintCoinach.Xiv {
             return shopItems.Distinct().ToArray();
         }
 
+        /// <summary>
+        ///     Build an array of shop listings requiring the current item as payment.
+        /// </summary>
+        /// <returns>An array of shop listings requiring the current item as payment.</returns>
         private IShopListingItem[] BuildAsShopPayment() {
             if (Key == 1)
                 return new IShopListingItem[0]; // XXX: DO NOT BUILD THIS FOR GIL, THAT WOULD BE BAD.

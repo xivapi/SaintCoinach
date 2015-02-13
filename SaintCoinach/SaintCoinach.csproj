@@ -317,7 +317,9 @@
     <Compile Include="Xiv\RecipeIngredient.cs" />
     <Compile Include="Xiv\RecipeIngredientType.cs" />
     <Compile Include="Xiv\RecipeLevel.cs" />
-    <Compile Include="Xiv\RecipeLevelTable.cs" />
+    <Compile Include="Xiv\RecipeLevelTable.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Xiv\RelicNote.cs" />
     <Compile Include="Xiv\RelicNoteCategory.cs" />
     <Compile Include="Xiv\RelicNoteCategoryText.cs" />

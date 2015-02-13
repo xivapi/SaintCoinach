@@ -4,49 +4,89 @@ using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
+    /// <summary>
+    ///     Class representing a shop in which items are traded for other items.
+    /// </summary>
     public class SpecialShop : XivRow, IShop {
         #region Fields
 
+        /// <summary>
+        ///     The <see cref="ENpcs" /> offering the current shop.
+        /// </summary>
         private ENpc[] _ENpcs;
+
+        /// <summary>
+        ///     <see cref="SpecialShopListing" />s of the current shop.
+        /// </summary>
         private SpecialShopListing[] _ShopItems;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the <see cref="SpecialShopListing" />s of the current shop.
+        /// </summary>
+        /// <value>The <see cref="SpecialShopListing" />s of the current shop.</value>
         public IEnumerable<SpecialShopListing> Items { get { return _ShopItems ?? (_ShopItems = BuildShopItems()); } }
 
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="SpecialShop" /> class.
+        /// </summary>
+        /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
+        /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public SpecialShop(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 
-        #endregion
-
+        /// <summary>
+        ///     Gets the name of the current shop.
+        /// </summary>
+        /// <value>The name of the current shop.</value>
         public string Name { get { return AsString("Name"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="ENpc" />s offering the current shop.
+        /// </summary>
+        /// <value>The <see cref="ENpc" />s offering the current shop.</value>
         public IEnumerable<ENpc> ENpcs { get { return _ENpcs ?? (_ENpcs = BuildENpcs()); } }
 
         #region IShop Members
 
+        /// <summary>
+        ///     Gets the listings of the current shop.
+        /// </summary>
+        /// <value>The listings of the current shop.</value>
         IEnumerable<IShopListing> IShop.ShopListings { get { return Items; } }
 
         #endregion
 
+        /// <summary>
+        ///     Returns a string representation of the current shop.
+        /// </summary>
+        /// <returns>The value of <see cref="Name" />.</returns>
         public override string ToString() {
             return Name;
         }
 
         #region Build
 
+        /// <summary>
+        ///     Build an array of the <see cref="ENpc" />s offering the current shop.
+        /// </summary>
+        /// <returns>An array of the <see cref="ENpc" />s offering the current shop.</returns>
         private ENpc[] BuildENpcs() {
             return Sheet.Collection.ENpcs.FindWithData(Key).ToArray();
         }
 
+        /// <summary>
+        ///     Build an array of the <see cref="SpecialShopListing" />s of the current shop.
+        /// </summary>
+        /// <returns>An array of the <see cref="SpecialShopListing" />s of the current shop.</returns>
         private SpecialShopListing[] BuildShopItems() {
             const int Count = 160;
 
