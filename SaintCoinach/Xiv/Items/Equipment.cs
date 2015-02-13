@@ -147,45 +147,6 @@ namespace SaintCoinach.Xiv.Items {
         /// <seealso cref="AllParameters" />
         IEnumerable<Parameter> IParameterObject.Parameters { get { return AllParameters; } }
 
-        #region Helpers
-
-        /// <summary>
-        ///     Get the maximum amount of <see cref="BaseParam" /> that can be melded to the current item.
-        /// </summary>
-        /// <param name="baseParam"><see cref="BaseParam" /> for which to get the amount.</param>
-        /// <param name="onHq">A value indicating whether bonuses for a hiqh-quality item should be taken into account.</param>
-        /// <returns>The maximum amount of <c>baseParam</c> that can be melded to the current item.</returns>
-        public int GetMateriaMeldCap(BaseParam baseParam, bool onHq) {
-            // Base value for the param based on the item's level
-            var maxBase = ItemLevel.GetMaximum(baseParam);
-            // Factor, in percent, for the param when applied to the item's equip slot
-            var slotFactor = baseParam.GetMaximum(EquipSlotCategory);
-            // Factor, in percent, for the param when used for the item's role
-            var roleModifier = baseParam.GetModifier(BaseParamModifier);
-
-            // TODO: Not confirmed to use Round, could be Ceiling or Floor; or applied at different points
-            var max = (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0); // XXX: 
-
-            var current = 0;
-            var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);
-            // ReSharper disable InvertIf
-            if (present != null) {
-                var baseValue = present.FirstOrDefault(_ => _.Type == ParameterType.Base);
-                if (baseValue != null)
-                    current += (int)((ParameterValueFixed)baseValue).Amount;
-                if (onHq) {
-                    var hqValue = present.FirstOrDefault(_ => _.Type == ParameterType.Hq);
-                    if (hqValue != null)
-                        current += (int)((ParameterValueFixed)hqValue).Amount;
-                }
-            }
-            // ReSharper restore InvertIf
-
-            return Math.Max(0, max - current);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get the model for the current item.
         /// </summary>
@@ -229,6 +190,64 @@ namespace SaintCoinach.Xiv.Items {
         public Model GetModel(EquipSlot equipSlot, int characterType, out int materialVersion) {
             return equipSlot.GetModel(PrimaryModelKey, characterType, out materialVersion);
         }
+
+        #region Helpers
+
+        /// <summary>
+        ///     Get the maximum amount of <see cref="BaseParam" /> that can be melded to the current item.
+        /// </summary>
+        /// <param name="baseParam"><see cref="BaseParam" /> for which to get the amount.</param>
+        /// <param name="onHq">A value indicating whether bonuses for a hiqh-quality item should be taken into account.</param>
+        /// <returns>The maximum amount of <c>baseParam</c> that can be melded to the current item.</returns>
+        public int GetMateriaMeldCap(BaseParam baseParam, bool onHq) {
+            var max = GetMaximumParamValue(baseParam);
+            var present = GetParameterValue(baseParam, onHq);
+
+            return Math.Max(0, max - present);
+        }
+
+        /// <summary>
+        ///     Get the amount of <see cref="BaseParam" /> present on the current item.
+        /// </summary>
+        /// <param name="param"><see cref="BaseParam" /> for which to get the amount.</param>
+        /// <param name="includeNonBase">
+        ///     A value indicating whether to include bonuses that are not primary or the item's base
+        ///     parameter.
+        /// </param>
+        /// <returns>Returns the amount of <see cref="BaseParam" /> present on the current item.</returns>
+        public int GetParameterValue(BaseParam param, bool includeNonBase) {
+            var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);
+            // ReSharper disable InvertIf
+            if (present == null) return 0;
+
+            if (includeNonBase)
+                return (int)present.Cast<ParameterValueFixed>().Sum(p => p.Amount);
+
+            return
+                (int)
+                present.Where(_ => _.Type == ParameterType.Base || _.Type == ParameterType.Primary)
+                       .Cast<ParameterValueFixed>()
+                       .Sum(p => p.Amount);
+        }
+
+        /// <summary>
+        ///     Get the maximum amount of a <see cref="BaseParam" /> possible for the current item.
+        /// </summary>
+        /// <param name="baseParam"><see cref="BaseParam" /> for which to get the amount.</param>
+        /// <returns>The maximum amount of <c>baseParam</c> on the current item.</returns>
+        public int GetMaximumParamValue(BaseParam baseParam) {
+            // Base value for the param based on the item's level
+            var maxBase = ItemLevel.GetMaximum(baseParam);
+            // Factor, in percent, for the param when applied to the item's equip slot
+            var slotFactor = baseParam.GetMaximum(EquipSlotCategory);
+            // Factor, in percent, for the param when used for the item's role
+            var roleModifier = baseParam.GetModifier(BaseParamModifier);
+
+            // TODO: Not confirmed to use Round, could be Ceiling or Floor; or applied at different points
+            return (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0);
+        }
+
+        #endregion
 
         #region Build
 

@@ -19,6 +19,8 @@ namespace SaintCoinach.Cmd.Commands {
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
+            if (paramList == null)
+                return false;
             try {
                 IO.File file;
                 if (_Realm.Packs.TryGetFile(paramList.Trim(), out file)) {
