@@ -48,7 +48,7 @@ if (!realm.IsCurrentVersion) {
 }
 ```
 
-`ARealmReversed.Update()` can also take one additional parameter of type `IProgress<UpdateProgress>` to which progress is reported. `UpdateReport` contains a list of changes that were detected during the update.
+`ARealmReversed.Update()` can also take one additional parameter of type `IProgress<UpdateProgress>` to which progress is reported. The returned `UpdateReport` contains a list of changes that were detected during the update.
 
 ### Usage
 
