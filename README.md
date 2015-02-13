@@ -64,3 +64,11 @@ Special cases are exposed as properties:
 * `EquipSlots`: There is no actual data for specific equipment slots in the game data, but having access to them makes things more convenient, so they're available here.
 * `Items`: This collection combines both `EventItem` and `Item`.
 * `Shops`: This collection contains all types of shops.
+
+## Notes
+
+### State of documentation
+
+Only `SaintCoinach` contains documentation, and even that only in some places (anything directly in the `SaintCoinach` namespace as well as some things in `SaintCoinach.Xiv.*`), everything else is virtually void of documentation.
+
+There should, however, be enough documentation available to know how to use the library for game data, but figuring out the internal workings might prove difficult.
