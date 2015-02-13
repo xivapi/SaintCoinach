@@ -92,7 +92,7 @@ The following commands are currently supported:
 * `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`. If no argument is supplied the currently used language is shown.
 * `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
 * `image`: Exports a file from the game assets as a PNG-image. The argument should be the friendly name of the image file.
-* `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the range `0..999999` (inclusive).
+* `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
 * `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
 * `3d`: Displays 3D objects. Very experimental, further information is going to be omitted here.
