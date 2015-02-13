@@ -215,7 +215,7 @@ namespace SaintCoinach.Xiv.Items {
         ///     parameter.
         /// </param>
         /// <returns>Returns the amount of <see cref="BaseParam" /> present on the current item.</returns>
-        public int GetParameterValue(BaseParam param, bool includeNonBase) {
+        public int GetParameterValue(BaseParam baseParam, bool includeNonBase) {
             var present = AllParameters.FirstOrDefault(_ => _.BaseParam == baseParam);
             // ReSharper disable InvertIf
             if (present == null) return 0;
