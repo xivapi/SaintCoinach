@@ -255,6 +255,9 @@
     <None Include="YamlDotNet.Signed.nuspec" />
     <None Include="YamlDotNet.Unsigned.nuspec" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE" />
+  </ItemGroup>
   <Import Condition="'$(ImportPortableTargets)' == 'false'" Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Condition="'$(ImportPortableTargets)' == 'true'" Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
