@@ -1,6 +1,6 @@
 # Saint Coinach
 
-A library for extracting game assets and reading game assets from **Final Fantasy XIV: A Realm Reborn**.
+A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV: A Realm Reborn**.
 
 ## Functionality 
 ### Fully implemented
