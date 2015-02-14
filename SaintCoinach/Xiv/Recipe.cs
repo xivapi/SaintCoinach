@@ -20,6 +20,16 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         private RecipeLevel _RecipeLevel;
 
+        /// <summary>
+        ///     A value indicating whether the <see cref="UnlockItem"/> has been fetched.
+        /// </summary>
+        private bool _UnlockItemFetched;
+
+        /// <summary>
+        ///     <see cref="Item"/> required to unlock the current recipe.
+        /// </summary>
+        private Item _UnlockItem;
+
         #endregion
 
         #region Properties
@@ -144,6 +154,23 @@ namespace SaintCoinach.Xiv {
         /// </remarks>
         /// <value>The key required to unlock the current recipe.</value>
         public int UnlockKey { get { return AsInt32("UnlockKey"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="Item"/> required to unlock the current recipe.
+        /// </summary>
+        /// <value>The <see cref="Item"/> required to unlock the current recipe.</value>
+        public Item UnlockItem {
+            get {
+                if (!_UnlockItemFetched) {
+                    if (UnlockKey != 0) {
+                        var itemAction = Sheet.Collection.GetSheet<ItemAction>().OfType<ItemActions.RecipeBookUnlock>().Where(i => i.RecipeBook == this.UnlockKey);
+                        _UnlockItem = Sheet.Collection.GetSheet<Item>().FirstOrDefault(i => i.ItemAction == itemAction);
+                    }
+                    _UnlockItemFetched = true;
+                }
+                return _UnlockItem;
+            }
+        }
 
         #endregion
 

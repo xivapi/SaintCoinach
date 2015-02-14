@@ -12,7 +12,7 @@ namespace SaintCoinach {
     ///     One <see cref="Moon" /> is 32 <see cref="Sun" />s.
     ///     One <see cref="Bell" /> is 24 <see cref="Minute" />s.
     /// </remarks>
-    public class EorzeaDateTime {
+    public partial class EorzeaDateTime {
         #region Static
 
         /// <summary>
@@ -345,18 +345,6 @@ namespace SaintCoinach {
         }
 
         /// <summary>
-        ///     Get the string representation of this <see cref="EorzeaDateTime" />.
-        /// </summary>
-        /// <remarks>
-        ///     The format of the returned string is <c>Sun/Moon/Year Bell:Minute</c>, with all but Year having a leading zero of
-        ///     less than 10.
-        /// </remarks>
-        /// <returns>Returns the string representation of this <see cref="EorzeaDateTime" />.</returns>
-        public override string ToString() {
-            return string.Format("{0:D2}/{1:D2}/{2} {3:D2}:{4:D2}", Sun, Moon, Year, Bell, Minute);
-        }
-
-        /// <summary>
         ///     Increase the time and date of a <see cref="EorzeaDateTime" /> by a <see cref="TimeSpan" />.
         /// </summary>
         /// <param name="lh"><see cref="EorzeaDateTime" /> to use as base.</param>
@@ -437,5 +425,6 @@ namespace SaintCoinach {
         public EorzeaDateTime Clone() {
             return new EorzeaDateTime(this);
         }
+
     }
 }
