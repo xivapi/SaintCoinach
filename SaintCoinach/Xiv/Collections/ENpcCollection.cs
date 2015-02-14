@@ -136,8 +136,8 @@ namespace SaintCoinach.Xiv.Collections {
                     var val = npc.Base.GetData(i);
                     if (val == 0) continue;
                     List<ENpc> l;
-                    if (!_ENpcDataMap.TryGetValue(val, out l))
-                        _ENpcDataMap.Add(val, l = new List<ENpc>());
+                    if (!dataMap.TryGetValue(val, out l))
+                        dataMap.Add(val, l = new List<ENpc>());
                     l.Add(npc);
                 }
             }
