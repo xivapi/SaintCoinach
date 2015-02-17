@@ -4,12 +4,12 @@ using System.Linq;
 using SaintCoinach.Xiv.Collections;
 
 namespace SaintCoinach.Xiv {
-    public class ENpc {
+    public class ENpc : ILocatable {
         #region Fields
 
         private ENpcBase _Base;
-        private Level[] _Levels;
         private ENpcResident _Resident;
+        private ILocation[] _Locations;
 
         #endregion
 
@@ -19,10 +19,11 @@ namespace SaintCoinach.Xiv {
         public ENpcCollection Collection { get; private set; }
         public ENpcResident Resident { get { return _Resident ?? (_Resident = Collection.ResidentSheet[Key]); } }
         public ENpcBase Base { get { return _Base ?? (_Base = Collection.BaseSheet[Key]); } }
-        public IEnumerable<Level> Levels { get { return _Levels ?? (_Levels = BuildLevels()); } }
         public string Singular { get { return Resident.Singular; } }
         public string Plural { get { return Resident.Plural; } }
         public string Title { get { return Resident.Title; } }
+
+        public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
 
         #endregion
 
@@ -45,6 +46,31 @@ namespace SaintCoinach.Xiv {
             return Collection.Collection.GetSheet<Level>().Where(_ => _.ObjectKey == Key).ToArray();
         }
 
+        private ILocation[] BuildLocations() {
+            var coll = Collection.Collection;
+            if (!coll.IsLibraAvailable)
+                return BuildLevels().Cast<ILocation>().ToArray();
+
+            var libraENpc = coll.Libra.ENpcResidents.FirstOrDefault(i => i.Key == this.Key);
+            if (libraENpc == null)
+                return BuildLevels().Cast<ILocation>().ToArray();
+
+            var locations = new List<ILocation>();
+
+            var placeNames = coll.GetSheet<PlaceName>();
+            var maps = coll.GetSheet<Map>();
+
+            if (libraENpc.Coordinates != null) {
+                foreach (var coord in libraENpc.Coordinates) {
+                    var placeName = placeNames.First(i => i.Key == coord.Item1);
+
+                    foreach (var c in coord.Item2)
+                        locations.Add(new GenericLocation(placeName, c.X, c.Y));
+                }
+            }
+
+            return locations.ToArray();
+        }
         #endregion
 
         public override string ToString() {

@@ -1,6 +1,6 @@
 # Saint Coinach
 
-A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV: A Realm Reborn**.
+A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV: A Realm Reborn**, now with support for including the Libra Eorzea database.
 
 ## Functionality 
 ### Fully implemented
@@ -16,11 +16,11 @@ A .NET library written in C# for extracting game assets and reading game assets 
 
 * Decoding of the string format used by the game. Will return a good string for most queries, but more advanced things like conditional texts are not supported.
 * Parsing of model data works for *most* models but is far from complete.
+* Inclusion of data from the Libra Eorzea application.
 
 ### To-do
 
 * Ability to specify the location of the file that contains mapping and history data.
-* Inclusion of data from the Libra Eorzea application.
 * Support for audio formats other than OGG.
 
 

@@ -36,7 +36,14 @@ namespace SaintCoinach.Cmd {
                 return;
             }
 
-            var realm = new ARealmReversed(dataPath, Ex.Language.English);
+            var realm = new ARealmReversed(new DirectoryInfo(dataPath), Ex.Language.English, new FileInfo(@"C:\Users\Kalce\Doc\XIV\Libra Eorzea\2.5\app_data.sqlite"));
+
+            foreach (var npc in realm.GameData.ENpcs) {
+                Console.WriteLine(npc.Singular);
+                foreach (var loc in npc.Locations) {
+                    Console.WriteLine("  {0}: {1},{2}", loc.PlaceName, loc.MapX, loc.MapY);
+                }
+            }
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);

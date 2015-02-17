@@ -158,17 +158,18 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="gamePath">Directory path to the game installation.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), language) { }
+        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), language, null) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
         /// </summary>
         /// <param name="gameDirectory">Directory of the game installation.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(DirectoryInfo gameDirectory, Language language) {
+        /// <param name="libraDatabase">Location of the Libra Eorzea database file, or <c>null</c> if it should not be used.</param>
+        public ARealmReversed(DirectoryInfo gameDirectory, Language language, FileInfo libraDatabase) {
             _GameDirectory = gameDirectory;
             _Packs = new PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack", "ffxiv"));
-            _GameData = new XivCollection(Packs) {
+            _GameData = new XivCollection(Packs, libraDatabase) {
                 ActiveLanguage = language
             };
 
