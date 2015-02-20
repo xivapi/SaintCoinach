@@ -163,7 +163,7 @@ namespace SaintCoinach.Xiv {
             get {
                 if (!_UnlockItemFetched) {
                     if (UnlockKey != 0) {
-                        var itemAction = Sheet.Collection.GetSheet<ItemAction>().OfType<ItemActions.RecipeBookUnlock>().Where(i => i.RecipeBook == this.UnlockKey);
+                        var itemAction = Sheet.Collection.GetSheet<ItemAction>().OfType<ItemActions.RecipeBookUnlock>().FirstOrDefault(i => i.RecipeBook == this.UnlockKey);
                         _UnlockItem = Sheet.Collection.GetSheet<Item>().FirstOrDefault(i => i.ItemAction == itemAction);
                     }
                     _UnlockItemFetched = true;
