@@ -20,6 +20,11 @@ namespace SaintCoinach.Xiv {
         #region Fields
 
         /// <summary>
+        ///     Collection of <see cref="BNpc"/> objects.
+        /// </summary>
+        private BNpcCollection _BNpcs;
+
+        /// <summary>
         ///     Collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />).
         /// </summary>
         private ENpcCollection _ENpcs;
@@ -47,6 +52,24 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     Gets the collection of <see cref="BNpc"/> objects.
+        /// </summary>
+        /// <value>The collection of <see cref="BNpc"/> objects.</value>
+        /// <remarks>
+        /// This property is only supported when the Libra Eorzea database is present.
+        /// </remarks>
+        public BNpcCollection BNpcs {
+            get {
+                if (_BNpcs != null) return _BNpcs;
+                if (!IsLibraAvailable)
+                    throw new NotSupportedException("BNpcs are only available when Libra Eorzea database is present.");
+
+                _BNpcs = new BNpcCollection(this);
+                return _BNpcs;
+            }
+        }
 
         /// <summary>
         ///     Gets the collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />

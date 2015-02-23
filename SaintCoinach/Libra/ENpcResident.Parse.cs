@@ -50,7 +50,7 @@ namespace SaintCoinach.Libra {
                                     break;
                                 default:
                                     Console.Error.WriteLine("Unknown 'ENpcResident' data key: {0}", r.Value);
-                                    break;
+                                    throw new NotSupportedException();
                             }
                         }
                     }

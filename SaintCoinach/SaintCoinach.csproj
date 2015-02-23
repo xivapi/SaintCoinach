@@ -108,6 +108,7 @@
     <Compile Include="Libra\BNpcName.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Libra\BNpcName.Parse.cs" />
     <Compile Include="Libra\BNpcName_PlaceName.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
@@ -412,17 +413,27 @@
     <Compile Include="Xiv\BeastReputationRank.cs" />
     <Compile Include="Xiv\BeastTribe.cs" />
     <Compile Include="Xiv\BGM.cs" />
+    <Compile Include="Xiv\BNpc.cs" />
+    <Compile Include="Xiv\BNpcBase.cs" />
+    <Compile Include="Xiv\BNpcData.cs" />
+    <Compile Include="Xiv\BNpcLocation.cs" />
     <Compile Include="Xiv\BNpcName.cs" />
     <Compile Include="Xiv\BuddyAction.cs" />
     <Compile Include="Xiv\BuddyEquip.cs" />
     <Compile Include="Xiv\ClassJob.cs" />
     <Compile Include="Xiv\ClassJobCategory.cs" />
+    <Compile Include="Xiv\Collections\BNpcCollection.cs" />
     <Compile Include="Xiv\Collections\ENpcCollection.cs" />
     <Compile Include="Xiv\Collections\EquipSlotCollection.cs" />
+    <Compile Include="Xiv\ContentType.cs" />
+    <Compile Include="Xiv\IContentReward.cs" />
     <Compile Include="Xiv\Collections\ItemCollection.cs" />
     <Compile Include="Xiv\Collections\ShopCollection.cs" />
     <Compile Include="Xiv\Companion.cs" />
     <Compile Include="Xiv\CompanyAction.cs" />
+    <Compile Include="Xiv\ContentBase.cs" />
+    <Compile Include="Xiv\ContentReward.cs" />
+    <Compile Include="Xiv\ContentRoulette.cs" />
     <Compile Include="Xiv\CraftAction.cs" />
     <Compile Include="Xiv\CraftCrystalType.cs" />
     <Compile Include="Xiv\CraftLeve.cs" />
@@ -455,8 +466,14 @@
     <Compile Include="Xiv\HousingItem.cs" />
     <Compile Include="Xiv\HousingItemCategory.cs" />
     <Compile Include="Xiv\HousingYardObject.cs" />
+    <Compile Include="Xiv\IItemSource.cs" />
     <Compile Include="Xiv\ILocatable.cs" />
     <Compile Include="Xiv\ILocation.cs" />
+    <Compile Include="Xiv\InstanceContent.cs" />
+    <Compile Include="Xiv\InstanceContentData.cs" />
+    <Compile Include="Xiv\InstanceContentData.Fight.cs" />
+    <Compile Include="Xiv\InstanceContentData.RewardItem.cs" />
+    <Compile Include="Xiv\InstanceContentType.cs" />
     <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />
@@ -527,6 +544,7 @@
     <Compile Include="Xiv\MainCommandCategory.cs" />
     <Compile Include="Xiv\Map.cs" />
     <Compile Include="Xiv\Materia.cs" />
+    <Compile Include="Xiv\ModelChara.cs" />
     <Compile Include="Xiv\MonsterNote.cs" />
     <Compile Include="Xiv\MonsterNoteTarget.cs" />
     <Compile Include="Xiv\Mount.cs" />
@@ -607,6 +625,7 @@
     <None Include="SaintCoinach.History.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

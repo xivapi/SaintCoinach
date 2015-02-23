@@ -20,15 +20,11 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Constructors
 
-        #region Constructor
-
         public ENpcCollection(XivCollection xivCollection) {
             Collection = xivCollection;
             BaseSheet = xivCollection.GetSheet<ENpcBase>();
             ResidentSheet = xivCollection.GetSheet<ENpcResident>();
         }
-
-        #endregion
 
         #endregion
 
