@@ -96,25 +96,29 @@ namespace SaintCoinach.Xiv {
         public int NewPlayerBonus { get { return AsInt32("NewPlayerBonus"); } }
 
         /// <summary>
-        /// Gets the rewards received upon completing the current content.
+        /// Gets the rewards received over the course of the duty.
         /// </summary>
-        /// <value>The rewards received upon completing the current content.</value>
+        /// <value>The rewards received over the course of the duty.</value>
         public override IEnumerable<IContentReward> FixedRewards {
             get {
                 // XXX: Magic numbers here
-                const int SoldieryItemKey = 26;
-                const int PoeticsItemKey = 28;
-
-                var sold = AsInt32("Reward{Soldiery}");
-                var poe = AsInt32("Reward{Poetics}");
-                if (sold == 0 && poe == 0)
-                    yield break;
+                const int CurrencyAKey = 26;    // Soldiery
+                const int CurrencyBKey = 28;    // Poetics
+                const int CurrencyCount = 5;
 
                 var items = Sheet.Collection.GetSheet<Item>();
-                if (sold != 0)
-                    yield return new ContentReward(items[SoldieryItemKey], sold);
-                if (poe != 0)
-                    yield return new ContentReward(items[PoeticsItemKey], poe);
+
+                var sumA = 0;
+                var sumB = 0;
+                for (var i = 0; i < CurrencyCount; ++i) {
+                    sumA += AsInt32("BossCurrencyA", i);
+                    sumB += AsInt32("BossCurrencyB", i);
+                }
+
+                if (sumA != 0)
+                    yield return new ContentReward(items[CurrencyAKey], sumA);
+                if (sumB != 0)
+                    yield return new ContentReward(items[CurrencyBKey], sumB);
             }
         }
 
@@ -125,6 +129,8 @@ namespace SaintCoinach.Xiv {
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
 
         public InstanceContentData Data { get { return _Data ?? (_Data = new InstanceContentData(this)); } }
+
+        public BNpcBase Boss { get { return As<BNpcBase>("BNpcBase{Boss}"); } }
 
         #endregion
 
