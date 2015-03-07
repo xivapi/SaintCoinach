@@ -6,26 +6,22 @@ using System.Linq;
 using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex {
-    public class DataSheet<T> : IDataSheet<T> where T : IDataRow {
+    public partial class DataSheet<T> : IDataSheet<T> where T : IDataRow {
         #region Fields
 
+        private bool _PartialSheetsCreated = false;
         private readonly Dictionary<Range, ISheet<T>> _PartialSheets = new Dictionary<Range, ISheet<T>>();
         private readonly Dictionary<int, ISheet<T>> _RowToPartialSheetMap = new Dictionary<int, ISheet<T>>();
-        private T[] _AllRows;
 
         #endregion
 
         #region Constructors
-
-        #region Constructor
 
         public DataSheet(ExCollection collection, Header header, Language language) {
             Collection = collection;
             Header = header;
             Language = language;
         }
-
-        #endregion
 
         #endregion
 
@@ -40,11 +36,17 @@ namespace SaintCoinach.Ex {
             }
         }
 
+        public IEnumerable<int> Keys {
+            get {
+                CreateAllPartialSheets();
+                return _RowToPartialSheetMap.Keys;
+            }
+        }
+
         #region IEnumerable<T> Members
 
         public IEnumerator<T> GetEnumerator() {
-            // XXX: Make a proper enumerator
-            return GetAllRows().GetEnumerator();
+            return new Enumerator(this);
         }
 
         #endregion
@@ -101,9 +103,12 @@ namespace SaintCoinach.Ex {
         }
 
         private void CreateAllPartialSheets() {
+            if (_PartialSheetsCreated)
+                return;
             foreach (var range in Header.DataFileRanges.Where(range => !_PartialSheets.ContainsKey(range))) {
                 CreatePartialSheet(range);
             }
+            _PartialSheetsCreated = true;
         }
 
         private ISheet<T> CreatePartialSheet(Range range) {
@@ -111,29 +116,14 @@ namespace SaintCoinach.Ex {
 
             var partial = CreatePartialSheet(range, file);
             _PartialSheets.Add(range, partial);
-            foreach (var row in partial.GetAllRows())
-                _RowToPartialSheetMap.Add(row.Key, partial);
+            foreach (var key in partial.Keys)
+                _RowToPartialSheetMap.Add(key, partial);
             return partial;
         }
 
         #endregion
 
         #region ISheet<T> Members
-
-        public IEnumerable<T> GetAllRows() {
-            CreateAllPartialSheets();
-
-            if (_AllRows != null) return _AllRows;
-
-            var rows = new List<T>();
-
-            foreach (var partial in _PartialSheets.Values)
-                rows.AddRange(partial.GetAllRows());
-
-            _AllRows = rows.ToArray();
-
-            return _AllRows;
-        }
 
         public T this[int row] { get { return GetPartialSheet(row)[row]; } }
 
@@ -147,10 +137,6 @@ namespace SaintCoinach.Ex {
             CreateAllPartialSheets();
 
             return _RowToPartialSheetMap.ContainsKey(row);
-        }
-
-        IEnumerable<IRow> ISheet.GetAllRows() {
-            return GetAllRows().Cast<IRow>();
         }
 
         IRow ISheet.this[int row] { get { return this[row]; } }

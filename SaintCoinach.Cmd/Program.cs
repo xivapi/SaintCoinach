@@ -37,6 +37,7 @@ namespace SaintCoinach.Cmd {
             }
 
             var realm = new ARealmReversed(dataPath, @"SaintCoinach.History.zip", Ex.Language.English, @"app_data.sqlite");
+            realm.Packs.GetPack("exd").KeepInMemory = true;
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);

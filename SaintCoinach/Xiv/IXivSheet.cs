@@ -10,7 +10,5 @@ namespace SaintCoinach.Xiv {
         new IXivRow this[int row] { get; }
 
         #endregion
-
-        new IEnumerable<IXivRow> GetAllRows();
     }
 }

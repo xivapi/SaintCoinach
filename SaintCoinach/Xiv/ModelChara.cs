@@ -19,8 +19,9 @@ namespace SaintCoinach.Xiv {
         /// <value>The type of the current model.</value>
         /// <remarks>
         /// Confirmed values are:
-        ///   2: Demihuman (chara/demihuman/*)
-        ///   3: Monster (chara/monster/m####/base/b####/model/m####b####.mdl)
+        ///   2: Demihuman (chara/demihuman/d{Model}/obj/equipment/e{Base}/model/d{Model}e{Base}_{Variant}.mdl)
+        ///      -> TODO: Variant to str map
+        ///   3: Monster (chara/monster/m{Model}/base/b{Base}/model/m{Model}b{Base}.mdl)
         ///   4: Static object (?)
         ///   5: Attached to other NPC, Golem Soulstone, Titan Heart, etc.
         /// Unconfirmed:

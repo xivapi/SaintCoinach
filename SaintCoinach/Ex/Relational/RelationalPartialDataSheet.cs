@@ -14,12 +14,8 @@ namespace SaintCoinach.Ex.Relational {
 
         #region Constructors
 
-        #region Constructor
-
         public RelationalPartialDataSheet(IRelationalDataSheet<T> sourceSheet, Range range, File file)
             : base(sourceSheet, range, file) { }
-
-        #endregion
 
         #endregion
 
@@ -27,10 +23,6 @@ namespace SaintCoinach.Ex.Relational {
         public new RelationalExCollection Collection { get { return (RelationalExCollection)base.Collection; } }
 
         #region IRelationalSheet Members
-
-        IEnumerable<IRelationalRow> IRelationalSheet.GetAllRows() {
-            return GetAllRows().Cast<IRelationalRow>();
-        }
 
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 

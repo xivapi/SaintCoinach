@@ -12,6 +12,5 @@ namespace SaintCoinach.Ex {
         #endregion
 
         new ISheet<TData> GetLocalisedSheet(Language language);
-        new IEnumerable<TMulti> GetAllRows();
     }
 }

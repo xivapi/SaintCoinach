@@ -102,11 +102,14 @@ namespace SaintCoinach.Xiv {
         public override IEnumerable<IContentReward> FixedRewards {
             get {
                 // XXX: Magic numbers here
-                const int CurrencyAKey = 26;    // Soldiery
-                const int CurrencyBKey = 28;    // Poetics
+                const int TomestoneAKey = 2;    // Soldiery
+                const int TomestoneBKey = 3;    // Poetics
                 const int CurrencyCount = 5;
 
-                var items = Sheet.Collection.GetSheet<Item>();
+                var tomestones = Sheet.Collection.GetSheet<Tomestone>();
+
+                var tomeA = tomestones[TomestoneAKey].Item;
+                var tomeB = tomestones[TomestoneBKey].Item;
 
                 var sumA = 0;
                 var sumB = 0;
@@ -116,9 +119,9 @@ namespace SaintCoinach.Xiv {
                 }
 
                 if (sumA != 0)
-                    yield return new ContentReward(items[CurrencyAKey], sumA);
+                    yield return new ContentReward(tomeA, sumA);
                 if (sumB != 0)
-                    yield return new ContentReward(items[CurrencyBKey], sumB);
+                    yield return new ContentReward(tomeB, sumB);
             }
         }
 

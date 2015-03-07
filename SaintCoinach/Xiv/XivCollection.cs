@@ -140,26 +140,18 @@ namespace SaintCoinach.Xiv {
         #region Get
 
         /// <summary>
-        ///     Mappings of requested types to a different type.
-        /// </summary>
-        /// <remarks>
-        ///     As you can see, not actually used. Was added when <see cref="Item"/> was called InventoryItem.
-        ///     TODO: Solve with attributes instead.
-        /// </remarks>
-        protected static readonly Dictionary<string, string> ForwardedSheets = new Dictionary<string, string> {
-            
-        };
-
-        /// <summary>
         ///     Get the <see cref="IXivSheet{T}" /> for a specific type.
         /// </summary>
         /// <typeparam name="T">Type of the rows to get the <see cref="IXivSheet{T}" /> for.</typeparam>
         /// <returns>Returns the <see cref="IXivSheet{T}" /> for the specified <c>T</c>.</returns>
         public IXivSheet<T> GetSheet<T>() where T : IXivRow {
             var t = typeof(T);
+
+            var attr = t.GetCustomAttribute<XivSheetAttribute>();
+            if (attr != null)
+                return GetSheet<T>(attr.SheetName);
+
             var name = t.FullName.Substring(t.FullName.IndexOf(".Xiv.", StringComparison.OrdinalIgnoreCase) + 5);
-            if (ForwardedSheets.ContainsKey(name))
-                name = ForwardedSheets[name];
             return GetSheet<T>(name);
         }
 

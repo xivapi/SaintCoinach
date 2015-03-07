@@ -70,7 +70,7 @@ namespace SaintCoinach.Cmd.Commands {
                 s.WriteLine(nameLine);
                 s.WriteLine(typeLine);
 
-                foreach (var row in sheet.GetAllRows().OrderBy(_ => _.Key)) {
+                foreach (var row in sheet.Cast<Ex.IRow>().OrderBy(_ => _.Key)) {
                     s.Write(row.Key);
                     foreach (var col in colIndices) {
                         var v = row[col];

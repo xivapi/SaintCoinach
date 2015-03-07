@@ -76,6 +76,9 @@
   <ItemGroup>
     <Compile Include="EorzeaDateTime.cs" />
     <Compile Include="EorzeaDateTime.Formatter.cs" />
+    <Compile Include="Ex\DataSheet.Enumerator.cs" />
+    <Compile Include="Ex\MultiSheet.Enumerator.cs" />
+    <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Assets\MaterialParameterMapping.cs" />
     <Compile Include="Graphics\ShPk\Parameter.cs" />
@@ -397,6 +400,7 @@
     <Compile Include="IO\FileType.cs" />
     <Compile Include="IO\PackCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
     <Compile Include="Sound\ScdDecoder.cs" />
@@ -530,6 +534,8 @@
     <Compile Include="Xiv\Items\Usable.cs" />
     <Compile Include="Xiv\Items\Weapon.cs" />
     <Compile Include="Xiv\ItemUICategory.cs" />
+    <Compile Include="Xiv\JournalCategory.cs" />
+    <Compile Include="Xiv\JournalGenre.cs" />
     <Compile Include="Xiv\Leve.cs" />
     <Compile Include="Xiv\LeveAssignmentType.cs" />
     <Compile Include="Xiv\LeveClient.cs" />
@@ -560,6 +566,13 @@
     <Compile Include="Xiv\ProbabilityPair.cs" />
     <Compile Include="Xiv\Quest.cs" />
     <Compile Include="Xiv\IShopListingItem.cs" />
+    <Compile Include="Xiv\QuestRequirements.cs" />
+    <Compile Include="Xiv\QuestRequirements.InstanceContentRequirement.cs" />
+    <Compile Include="Xiv\QuestRequirements.PrerequisiteQuestsRequirement.cs" />
+    <Compile Include="Xiv\QuestRewardGroupType.cs" />
+    <Compile Include="Xiv\QuestRewardItem.cs" />
+    <Compile Include="Xiv\QuestRewardItemGroup.cs" />
+    <Compile Include="Xiv\QuestRewards.cs" />
     <Compile Include="Xiv\Recipe.cs" />
     <Compile Include="Xiv\RecipeElement.cs" />
     <Compile Include="Xiv\RecipeIngredient.cs" />
@@ -582,6 +595,7 @@
     <Compile Include="Xiv\Status.cs" />
     <Compile Include="Xiv\TerritoryType.cs" />
     <Compile Include="Xiv\Title.cs" />
+    <Compile Include="Xiv\Tomestone.cs" />
     <Compile Include="Xiv\Trait.cs" />
     <Compile Include="Xiv\Weather.cs" />
     <Compile Include="Xiv\WeatherRate.cs" />
@@ -591,6 +605,8 @@
     <Compile Include="Xiv\IXivSheet.Generic.cs" />
     <Compile Include="Xiv\XivCollection.cs" />
     <Compile Include="Xiv\XivRow.cs" />
+    <Compile Include="Xiv\XivSheet.Enumerator.cs" />
+    <Compile Include="Xiv\XivSheetAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotSquish\DotSquish.csproj">
@@ -626,6 +642,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
+    <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
+    <Compile Include="Xiv\QuestRequirements.PrerequisiteType.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

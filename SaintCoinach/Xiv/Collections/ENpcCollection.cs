@@ -46,6 +46,9 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Get
 
+        public ENpc this[int key] {
+            get { return Get(key); }
+        }
         public ENpc Get(int key) {
             if (_Inner.ContainsKey(key))
                 return _Inner[key];

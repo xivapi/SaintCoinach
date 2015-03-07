@@ -203,6 +203,7 @@ namespace SaintCoinach {
             };
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
+            _StateFile = storeFile;
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
                 if (zipFile.ContainsEntry(VersionFile)) {

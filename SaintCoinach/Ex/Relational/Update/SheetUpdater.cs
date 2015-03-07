@@ -74,8 +74,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             var defUpdaters =
                 _PreviousDefinition.DataDefinitions.Select(_ => new DefinitionUpdater(_PreviousDefinition, _)).ToArray();
 
-            var prevRows = _PreviousSheet.GetAllRows();
-            foreach (var prevRow in prevRows) {
+            foreach (IRow prevRow in _PreviousSheet) {
                 var prevRowFields =
                     _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
                 if (!_UpdatedSheet.ContainsRow(prevRow.Key)) continue;
