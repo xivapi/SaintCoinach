@@ -568,7 +568,7 @@
     <Compile Include="Xiv\IShopListingItem.cs" />
     <Compile Include="Xiv\QuestRequirements.cs" />
     <Compile Include="Xiv\QuestRequirements.InstanceContentRequirement.cs" />
-    <Compile Include="Xiv\QuestRequirements.PrerequisiteQuestsRequirement.cs" />
+    <Compile Include="Xiv\PrerequisiteQuestsRequirement.cs" />
     <Compile Include="Xiv\QuestRewardGroupType.cs" />
     <Compile Include="Xiv\QuestRewardItem.cs" />
     <Compile Include="Xiv\QuestRewardItemGroup.cs" />
@@ -597,6 +597,13 @@
     <Compile Include="Xiv\Title.cs" />
     <Compile Include="Xiv\Tomestone.cs" />
     <Compile Include="Xiv\Trait.cs" />
+    <Compile Include="Xiv\TripleTriad.cs" />
+    <Compile Include="Xiv\TripleTriadCard.cs" />
+    <Compile Include="Xiv\TripleTriadCardRarity.cs" />
+    <Compile Include="Xiv\TripleTriadCardResident.cs" />
+    <Compile Include="Xiv\TripleTriadCardType.cs" />
+    <Compile Include="Xiv\TripleTriadCompetition.cs" />
+    <Compile Include="Xiv\TripleTriadRule.cs" />
     <Compile Include="Xiv\Weather.cs" />
     <Compile Include="Xiv\WeatherRate.cs" />
     <Compile Include="Xiv\XivSheet.cs" />
@@ -643,7 +650,7 @@
     </None>
     <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
     <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
-    <Compile Include="Xiv\QuestRequirements.PrerequisiteType.cs" />
+    <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

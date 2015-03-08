@@ -11,7 +11,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     /// Class representing a duty.
     /// </summary>
-    public class InstanceContent : ContentBase {
+    public class InstanceContent : ContentBase, IItemSource {
         #region Fields
         private InstanceContentData _Data;
         #endregion
@@ -145,6 +145,25 @@ namespace SaintCoinach.Xiv {
         /// <param name="sheet"><see cref="IXivSheet"/> containing this object.</param>
         /// <param name="sourceRow"><see cref="IRelationalRow"/> to read data from.</param>
         public InstanceContent(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
+        #region IItemSource Members
+
+        IEnumerable<Item> IItemSource.Items {
+            get {
+                foreach (var item in FixedRewards)
+                    yield return item.Item;
+                foreach (var boss in Data.MidBosses)
+                    foreach (var item in boss.RewardItems)
+                        yield return item.Item;
+                foreach (var item in Data.Boss.RewardItems)
+                    yield return item.Item;
+                foreach (var coffer in Data.MapTreasures)
+                    foreach (var item in coffer.Items)
+                        yield return item;
+            }
+        }
 
         #endregion
     }

@@ -9,14 +9,14 @@ namespace SaintCoinach.Xiv {
         public class InstanceContentRequirement {
             #region Properties
             public IEnumerable<InstanceContent> InstanceContents { get; private set; }
-            public PreqrequisiteType Type { get; private set; }
+            public PrerequisiteQuestsRequirementType Type { get; private set; }
             #endregion
 
             #region Constructor
             internal InstanceContentRequirement(Quest quest) {
                 const int QuestCount = 3;
 
-                this.Type = (PreqrequisiteType)quest.AsInt32("InstanceContentJoin");
+                this.Type = (PrerequisiteQuestsRequirementType)quest.AsInt32("InstanceContentJoin");
 
                 var contents = new List<InstanceContent>();
                 for (var i = 0; i < QuestCount; ++i) {

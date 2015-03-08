@@ -1,9 +1,11 @@
+using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class Quest : XivRow {
+    public class Quest : XivRow, IItemSource {
         #region Fields
         private QuestRequirements _Requirements;
+        private QuestRewards _Rewards;
         #endregion
 
         #region Properties
@@ -30,6 +32,8 @@ namespace SaintCoinach.Xiv {
         public Imaging.ImageFile SpecialIcon { get { return AsImage("Icon{Special}"); } }
 
         public int SortKey { get { return AsInt32("SortKey"); } }
+
+        public QuestRewards Rewards { get { return _Rewards ?? (_Rewards = new QuestRewards(this)); } }
         #endregion
 
         #region Constructors
@@ -41,5 +45,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region IItemSource Members
+
+        System.Collections.Generic.IEnumerable<Item> IItemSource.Items {
+            get {
+                return Rewards.Items.SelectMany(g => g.Items.Select(i => i.Item));
+            }
+        }
+
+        #endregion
     }
 }
