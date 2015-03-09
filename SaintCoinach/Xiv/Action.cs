@@ -3,7 +3,7 @@ using System;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class Action : ActionBase {
+    public class Action : ClassJobActionBase {
         #region Properties
 
         public ActionCategory ActionCategory { get { return As<ActionCategory>(); } }

@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public abstract class ActionBase : XivRow {
+    public class ChocoboRaceTerritory : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public string Name { get { return As<GoldSaucerTextData>("Name").Text; } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 
         #endregion
 
         #region Constructors
 
-        protected ActionBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public ChocoboRaceTerritory(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 

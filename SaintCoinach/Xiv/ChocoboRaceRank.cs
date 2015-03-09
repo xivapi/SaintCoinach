@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public abstract class ActionBase : XivRow {
+    public class ChocoboRaceRank : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public string Name { get { return As<GoldSaucerTextData>("Name").Text; } }
+        public int MinimumRating { get { return AsInt32("Rating{Min}"); } }
+        public int MaximumRating { get { return AsInt32("Rating{Max}"); } }
+        public int Fee { get { return AsInt32("Fee"); } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 
         #endregion
 
         #region Constructors
 
-        protected ActionBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public ChocoboRaceRank(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 

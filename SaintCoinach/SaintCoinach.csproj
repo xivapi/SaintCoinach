@@ -400,6 +400,15 @@
     <Compile Include="IO\FileType.cs" />
     <Compile Include="IO\PackCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xiv\ActionBase.cs" />
+    <Compile Include="Xiv\ChocoboRace.cs" />
+    <Compile Include="Xiv\ChocoboRaceAbility.cs" />
+    <Compile Include="Xiv\ChocoboRaceAbilityType.cs" />
+    <Compile Include="Xiv\ChocoboRaceRank.cs" />
+    <Compile Include="Xiv\ChocoboRaceStatus.cs" />
+    <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
+    <Compile Include="Xiv\ChocobRaceItem.cs" />
+    <Compile Include="Xiv\GoldSaucerTextData.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
@@ -410,7 +419,7 @@
     <Compile Include="Xiv\AchievementCategory.cs" />
     <Compile Include="Xiv\AchievementKind.cs" />
     <Compile Include="Xiv\Action.cs" />
-    <Compile Include="Xiv\ActionBase.cs" />
+    <Compile Include="Xiv\ClassJobActionBase.cs" />
     <Compile Include="Xiv\ActionCategory.cs" />
     <Compile Include="Xiv\Addon.cs" />
     <Compile Include="Xiv\BaseParam.cs" />
@@ -573,6 +582,11 @@
     <Compile Include="Xiv\QuestRewardItem.cs" />
     <Compile Include="Xiv\QuestRewardItemGroup.cs" />
     <Compile Include="Xiv\QuestRewards.cs" />
+    <Compile Include="Xiv\RacingChocoboItem.cs" />
+    <Compile Include="Xiv\RacingChocoboName.cs" />
+    <Compile Include="Xiv\RacingChocoboNameCategory.cs" />
+    <Compile Include="Xiv\RacingChocoboNameInfo.cs" />
+    <Compile Include="Xiv\RacingChocoboParam.cs" />
     <Compile Include="Xiv\Recipe.cs" />
     <Compile Include="Xiv\RecipeElement.cs" />
     <Compile Include="Xiv\RecipeIngredient.cs" />

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public abstract class ActionBase : XivRow {
+    public class RacingChocoboNameCategory : XivRow {
         #region Properties
 
         public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
-        public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+
+        public int SortKey { get { return AsInt32("SortKey"); } }
 
         #endregion
 
         #region Constructors
 
-        protected ActionBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public RacingChocoboNameCategory(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 

@@ -1,7 +1,7 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class CraftAction : ActionBase {
+    public class CraftAction : ClassJobActionBase {
         #region Constructors
 
         #region Constructor
