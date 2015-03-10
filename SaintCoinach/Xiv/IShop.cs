@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Interface for shops.
     /// </summary>
-    public interface IShop {
+    public interface IShop : IItemSource {
         #region Properties
 
         /// <summary>

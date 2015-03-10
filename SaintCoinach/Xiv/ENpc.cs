@@ -29,14 +29,10 @@ namespace SaintCoinach.Xiv {
 
         #region Constructors
 
-        #region Constructor
-
         public ENpc(ENpcCollection collection, int key) {
             Key = key;
             Collection = collection;
         }
-
-        #endregion
 
         #endregion
 

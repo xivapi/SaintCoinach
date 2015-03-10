@@ -15,7 +15,7 @@ namespace SaintCoinach.Ex {
         private readonly Dictionary<int, string> _SheetIdentifiers = new Dictionary<int, string>();
 
         private readonly Dictionary<string, WeakReference<ISheet>> _Sheets =
-            new Dictionary<string, WeakReference<ISheet>>(StringComparer.OrdinalIgnoreCase);
+            new Dictionary<string, WeakReference<ISheet>>();
 
         private string[] _AvailableSheets;
 

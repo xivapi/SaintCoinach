@@ -140,12 +140,14 @@ namespace SaintCoinach.Xiv {
 
         #region IItemSource Members
 
+        private Item[] _ItemSourceItems;
+
         /// <summary>
         /// Gets the <see cref="Item"/>s that can be obtained from the current object.
         /// </summary>
         /// <value>The <see cref="Item"/>s that can be obtained from the current object.</value>
         IEnumerable<Item> IItemSource.Items {
-            get { return Items.Select(i => i.Item); }
+            get { return _ItemSourceItems ?? (_ItemSourceItems = Items.Select(i => i.Item).ToArray()); }
         }
 
         #endregion

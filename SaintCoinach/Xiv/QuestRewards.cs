@@ -20,7 +20,7 @@ namespace SaintCoinach.Xiv {
         public IEnumerable<QuestRewardItemGroup> Items { get { return _Items ?? (_Items = BuildItems()); } }
         public Emote Emote { get { return Quest.As<Emote>("Emote{Reward}"); } }
         public Action Action { get { return Quest.As<Action>("Action{Reward}"); } }
-        // TODO: GeneralAction{Reward}
+        public GeneralAction GeneralAction { get { return Quest.As<GeneralAction>("GeneralAction{Reward}"); } }
         public InstanceContent InstanceContent { get { return Quest.As<InstanceContent>("InstanceContent{Unlock}"); } }
         public int Reputation { get { return Quest.AsInt32("ReputationReward"); } }
         #endregion

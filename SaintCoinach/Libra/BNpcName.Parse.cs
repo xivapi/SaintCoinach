@@ -29,7 +29,7 @@ namespace SaintCoinach.Libra {
         #endregion
 
         #region Parse
-        private void Parse() {
+        public void Parse() {
             if (_IsParsed) return;
 
             var json = Encoding.UTF8.GetString(this.data);
@@ -42,13 +42,13 @@ namespace SaintCoinach.Libra {
                                     ParseRegions(r);
                                     break;
                                 case "nonpop":
-                                    ParseNonPops(r);
+                                    _NonPops = r.ReadInt32Array();
                                     break;
                                 case "item":
-                                    ParseItems(r);
+                                    _Items = r.ReadInt32Array();
                                     break;
                                 case "instance_contents":
-                                    ParseInstanceContents(r);
+                                    _InstanceContents = r.ReadInt32Array();
                                     break;
                                 default:
                                     Console.Error.WriteLine("Unknown 'BNpcName' data key: {0}", r.Value);
@@ -92,33 +92,6 @@ namespace SaintCoinach.Libra {
                 values.Add(Tuple.Create(region, zones.ToArray()));
             }
             _Regions = values.ToArray();
-        }
-        private void ParseNonPops(JsonTextReader reader) {
-            if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
-
-            var values = new List<int>();
-            while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
-                values.Add(Convert.ToInt32(reader.Value));
-            }
-            _NonPops = values.ToArray();
-        }
-        private void ParseItems(JsonTextReader reader) {
-            if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
-
-            var values = new List<int>();
-            while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
-                values.Add(Convert.ToInt32(reader.Value));
-            }
-            _Items = values.ToArray();
-        }
-        private void ParseInstanceContents(JsonTextReader reader) {
-            if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
-
-            var values = new List<int>();
-            while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
-                values.Add(Convert.ToInt32(reader.Value));
-            }
-            _InstanceContents = values.ToArray();
         }
         #endregion
     }

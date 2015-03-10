@@ -207,6 +207,7 @@
     <Compile Include="Libra\Item.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Libra\Item.Parse.cs" />
     <Compile Include="Libra\ItemCategory.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
@@ -231,6 +232,7 @@
     <Compile Include="Libra\JournalGenre.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Libra\JsonReaderExtensions.cs" />
     <Compile Include="Libra\LibraModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -408,6 +410,7 @@
     <Compile Include="Xiv\ChocoboRaceStatus.cs" />
     <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
     <Compile Include="Xiv\ChocobRaceItem.cs" />
+    <Compile Include="Xiv\GeneralAction.cs" />
     <Compile Include="Xiv\GoldSaucerTextData.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />

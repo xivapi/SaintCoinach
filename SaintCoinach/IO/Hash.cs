@@ -89,7 +89,7 @@ namespace SaintCoinach.IO {
         #region Const / Static
 
         private static readonly Dictionary<string, byte> RootToSqMap =
-            new Dictionary<string, byte>(StringComparer.OrdinalIgnoreCase) {
+            new Dictionary<string, byte> {
                 {
                     "common", 0x00
                 }, {

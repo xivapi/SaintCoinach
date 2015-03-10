@@ -26,7 +26,7 @@ namespace SaintCoinach.Libra {
         #endregion
 
         #region Parse
-        private void Parse() {
+        public void Parse() {
             if (_IsParsed)
                 return;
 
@@ -37,13 +37,13 @@ namespace SaintCoinach.Libra {
                         if (r.TokenType == JsonToken.PropertyName) {
                             switch (r.Value.ToString()) {
                                 case "client_quest":
-                                    ParseQuestClient(r);
+                                    _AsQuestClient = r.ReadInt32Array();
                                     break;
                                 case "coordinate":
                                     ParseCoordinate(r);
                                     break;
                                 case "quest":
-                                    ParseQuests(r);
+                                    _Quests = r.ReadInt32Array();
                                     break;
                                 case "shop":
                                     ParseShops(r);
@@ -60,17 +60,6 @@ namespace SaintCoinach.Libra {
             _IsParsed = true;
         }
 
-        private void ParseQuestClient(JsonTextReader reader) {
-            if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
-
-            var quests = new List<int>();
-            while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
-                if (reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-
-                quests.Add(Convert.ToInt32(reader.Value));
-            }
-            _AsQuestClient = quests.ToArray();
-        }
         private void ParseCoordinate(JsonTextReader reader) {
             if (!reader.Read() || reader.TokenType != JsonToken.StartObject)
                 throw new InvalidOperationException();
@@ -102,17 +91,6 @@ namespace SaintCoinach.Libra {
             }
 
             _Coordinates = allCoord.ToArray();
-        }
-        private void ParseQuests(JsonTextReader reader) {
-            if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
-
-            var quests = new List<int>();
-            while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
-                if (reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-
-                quests.Add(Convert.ToInt32(reader.Value));
-            }
-            _Quests = quests.ToArray();
         }
         private void ParseShops(JsonTextReader reader) {
             if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();

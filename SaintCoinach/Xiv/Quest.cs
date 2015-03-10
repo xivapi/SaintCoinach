@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using SaintCoinach.Ex.Relational;
 
@@ -6,6 +8,7 @@ namespace SaintCoinach.Xiv {
         #region Fields
         private QuestRequirements _Requirements;
         private QuestRewards _Rewards;
+        private ENpc[] _InvolvedENpcs;
         #endregion
 
         #region Properties
@@ -34,6 +37,8 @@ namespace SaintCoinach.Xiv {
         public int SortKey { get { return AsInt32("SortKey"); } }
 
         public QuestRewards Rewards { get { return _Rewards ?? (_Rewards = new QuestRewards(this)); } }
+
+        public IEnumerable<ENpc> InvolvedENpcs { get { return _InvolvedENpcs ?? (_InvolvedENpcs = BuildInvolvedENpcs()); } }
         #endregion
 
         #region Constructors
@@ -48,12 +53,31 @@ namespace SaintCoinach.Xiv {
 
         #region IItemSource Members
 
+        private Item[] _ItemSourceItems;
         System.Collections.Generic.IEnumerable<Item> IItemSource.Items {
             get {
-                return Rewards.Items.SelectMany(g => g.Items.Select(i => i.Item));
+                return _ItemSourceItems ?? (_ItemSourceItems =  Rewards.Items.SelectMany(g => g.Items.Select(i => i.Item)).ToArray());
             }
         }
 
+        #endregion
+
+        #region Build
+        private ENpc[] BuildInvolvedENpcs() {
+            var enpcs = new List<ENpc>();
+            enpcs.Add(IssuingENpc);
+
+            if (Sheet.Collection.IsLibraAvailable) {
+                var enpcColl = Sheet.Collection.ENpcs;
+                var libraRows = Sheet.Collection.Libra.ENpcResident_Quest.Where(i => i.Quest_Key == this.Key);
+                foreach (var r in libraRows)
+                    enpcs.Add(enpcColl[(int)r.ENpcResident_Key]);
+            }
+
+            enpcs.Add(TargetENpc);
+
+            return enpcs.Distinct().ToArray();
+        }
         #endregion
     }
 }

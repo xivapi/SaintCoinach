@@ -150,18 +150,34 @@ namespace SaintCoinach.Xiv {
 
         #region IItemSource Members
 
+        private Item[] _ItemSourceItems;
+
         IEnumerable<Item> IItemSource.Items {
             get {
-                foreach (var item in FixedRewards)
-                    yield return item.Item;
-                foreach (var boss in Data.MidBosses)
-                    foreach (var item in boss.RewardItems)
-                        yield return item.Item;
-                foreach (var item in Data.Boss.RewardItems)
-                    yield return item.Item;
-                foreach (var coffer in Data.MapTreasures)
-                    foreach (var item in coffer.Items)
-                        yield return item;
+                if (_ItemSourceItems != null)
+                    return _ItemSourceItems;
+
+                var items = new List<Item>();
+
+                if (FixedRewards != null) {
+                    foreach (var item in FixedRewards) items.Add(item.Item);
+                }
+
+                if (Data.MidBosses != null) {
+                    foreach (var boss in Data.MidBosses) {
+                        if (boss.RewardItems != null)
+                            foreach (var item in boss.RewardItems) items.Add(item.Item);
+                    }
+                }
+                if (Data.Boss != null && Data.Boss.RewardItems != null) {
+                    foreach (var item in Data.Boss.RewardItems) items.Add(item.Item);
+                }
+                if (Data.MapTreasures != null) {
+                    foreach (var coffer in Data.MapTreasures)
+                        foreach (var item in coffer.Items) items.Add(item);
+                }
+
+                return _ItemSourceItems = items.ToArray();
             }
         }
 

@@ -8,14 +8,13 @@ using Newtonsoft.Json;
 
 namespace SaintCoinach.Xiv {
     public partial class InstanceContentData : IItemSource {
-        #region Fields
-        #endregion
-
         #region Properties
+
         public InstanceContent InstanceContent { get; private set; }
         public Fight Boss { get; private set; }
         public IEnumerable<Fight> MidBosses { get; private set; }
         public IEnumerable<Treasure> MapTreasures { get; private set; }
+
         #endregion
 
         #region Constructor
@@ -95,8 +94,12 @@ namespace SaintCoinach.Xiv {
 
         #region IItemSource Members
 
+        private Item[] _ItemSourceItems;
         IEnumerable<Item> IItemSource.Items {
             get {
+                if (_ItemSourceItems != null)
+                    return _ItemSourceItems;
+
                 IEnumerable<Item> v = new Item[0];
 
                 if (Boss != null) {
@@ -110,7 +113,7 @@ namespace SaintCoinach.Xiv {
                 if (MapTreasures != null)
                     v.Concat(MapTreasures.SelectMany(i => i.Items));
 
-                return v.Distinct();
+                return _ItemSourceItems = v.Distinct().ToArray();
             }
         }
 

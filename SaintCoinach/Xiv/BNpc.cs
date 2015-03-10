@@ -12,6 +12,13 @@ namespace SaintCoinach.Xiv {
     /// This class relies on information provided by Libra Eorzea.
     /// </remarks>
     public class BNpc : ILocatable, IItemSource {
+        #region Fields
+        private Libra.BNpcName _LibraRow;
+        private ILocation[] _Locations;
+        private Item[] _Items;
+        private InstanceContent[] _InstanceContents;
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -45,32 +52,29 @@ namespace SaintCoinach.Xiv {
         /// Gets the locations of the current object.
         /// </summary>
         /// <value>The locations of the current object.</value>
-        public IEnumerable<ILocation> Locations { get; private set; }
+        public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations(_LibraRow)); } }
 
         /// <summary>
         /// Gets the items dropped by the current object.
         /// </summary>
         /// <value>The items dropped by the current object.</value>
-        public IEnumerable<Item> Items { get; private set; }
+        public IEnumerable<Item> Items { get { return _Items ?? (_Items = BuildItems(_LibraRow)); } }
 
         /// <summary>
         /// Gets the <see cref="InstanceContent"/>s the current BNpc appears in.
         /// </summary>
         /// <value>The <see cref="InstanceContent"/>s the current BNpc appears in.</value>
-        public IEnumerable<InstanceContent> InstanceContents { get; private set; }
+        public IEnumerable<InstanceContent> InstanceContents { get { return _InstanceContents ?? (_InstanceContents = BuildInstanceContents(_LibraRow)); } }
 
         #endregion
 
         #region Constructor
         public BNpc(Collections.BNpcCollection collection, Libra.BNpcName libra) {
             this.Collection = collection;
+            _LibraRow = libra;
             this.Key = libra.Key;
             this.Base = collection.BaseSheet[(int)libra.BaseKey];
             this.Name = collection.NameSheet[(int)libra.NameKey];
-
-            this.Locations = BuildLocations(libra);
-            this.Items = BuildItems(libra);
-            this.InstanceContents = BuildInstanceContents(libra);
         }
         #endregion
 

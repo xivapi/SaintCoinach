@@ -44,10 +44,6 @@ namespace SaintCoinach.Libra
         public Nullable<long> ShieldRate_hq { get; set; }
         public Nullable<long> ShieldBlockRate { get; set; }
         public Nullable<long> ShieldBlockRate_hq { get; set; }
-        public Nullable<long> AttackInterval { get; set; }
-        public Nullable<long> AttackInterval_hq { get; set; }
-        public Nullable<long> AutoAttack { get; set; }
-        public Nullable<long> AutoAttack_hq { get; set; }
         public Nullable<long> Price { get; set; }
         public Nullable<long> PriceMin { get; set; }
         public Nullable<long> MirageItem { get; set; }

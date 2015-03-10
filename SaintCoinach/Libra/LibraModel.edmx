@@ -1368,10 +1368,6 @@ warning 6013: The table/view 'main.app_data' does not have a primary key defined
           <Property Name="ShieldRate_hq" Type="Int64" />
           <Property Name="ShieldBlockRate" Type="Int64" />
           <Property Name="ShieldBlockRate_hq" Type="Int64" />
-          <Property Name="AttackInterval" Type="Int64" />
-          <Property Name="AttackInterval_hq" Type="Int64" />
-          <Property Name="AutoAttack" Type="Int64" />
-          <Property Name="AutoAttack_hq" Type="Int64" />
           <Property Name="Price" Type="Int64" />
           <Property Name="PriceMin" Type="Int64" />
           <Property Name="MirageItem" Type="Int64" />
@@ -2261,10 +2257,6 @@ warning 6013: The table/view 'main.app_data' does not have a primary key defined
                 <ScalarProperty Name="ShieldRate_hq" ColumnName="ShieldRate_hq" />
                 <ScalarProperty Name="ShieldBlockRate" ColumnName="ShieldBlockRate" />
                 <ScalarProperty Name="ShieldBlockRate_hq" ColumnName="ShieldBlockRate_hq" />
-                <ScalarProperty Name="AttackInterval" ColumnName="AttackInterval" />
-                <ScalarProperty Name="AttackInterval_hq" ColumnName="AttackInterval_hq" />
-                <ScalarProperty Name="AutoAttack" ColumnName="AutoAttack" />
-                <ScalarProperty Name="AutoAttack_hq" ColumnName="AutoAttack_hq" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="PriceMin" ColumnName="PriceMin" />
                 <ScalarProperty Name="MirageItem" ColumnName="MirageItem" />

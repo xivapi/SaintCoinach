@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SaintCoinach.Ex.Relational {
     public class RelationalDataRow : DataRow, IRelationalDataRow {
+        #region Fields
+        private Dictionary<string, WeakReference<object>> _ValueReferences = new Dictionary<string, WeakReference<object>>();
+        #endregion
+
         #region Constructors
 
-        #region Constructor
-
         public RelationalDataRow(IRelationalDataSheet sheet, int key, int offset) : base(sheet, key, offset) { }
-
-        #endregion
 
         #endregion
 
@@ -34,10 +35,21 @@ namespace SaintCoinach.Ex.Relational {
 
         public object this[string columnName] {
             get {
+                WeakReference<object> valRef;
+                object val;
+                if (_ValueReferences.TryGetValue(columnName, out valRef)) {
+                    if (valRef.TryGetTarget(out val))
+                        return val;
+                    _ValueReferences.Remove(columnName);
+                }
+
                 var col = Sheet.Header.FindColumn(columnName);
                 if (col == null)
                     throw new KeyNotFoundException();
-                return this[col.Index];
+                val = this[col.Index];
+
+                _ValueReferences.Add(columnName, new WeakReference<object>(val));
+                return val;
             }
         }
 

@@ -2,7 +2,7 @@
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class Achievement : XivRow {
+    public class Achievement : XivRow, IItemSource {
         #region Properties
 
         public AchievementCategory AchievementCategory { get { return As<AchievementCategory>(); } }
@@ -29,5 +29,13 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region IItemSource Members
+
+        System.Collections.Generic.IEnumerable<Item> IItemSource.Items {
+            get { yield return Item; }
+        }
+
+        #endregion
     }
 }

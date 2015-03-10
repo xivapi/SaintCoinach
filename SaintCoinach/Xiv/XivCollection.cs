@@ -20,6 +20,11 @@ namespace SaintCoinach.Xiv {
         #region Fields
 
         /// <summary>
+        ///     Mapping of sheet names to the object types to use for them.
+        /// </summary>
+        private Dictionary<string, Type> _SheetNameToTypeMap;
+
+        /// <summary>
         ///     Collection of <see cref="BNpc"/> objects.
         /// </summary>
         private BNpcCollection _BNpcs;
@@ -246,10 +251,7 @@ namespace SaintCoinach.Xiv {
             if (SpecialSheetTypes.TryGetValue(sourceSheet.Name, out specialCreator))
                 return specialCreator(this, sourceSheet);
 
-            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
-            var search = "Xiv." + sourceSheet.Name.Replace('/', '.');
-            var targetType = typeof(IXivRow);
-            var match = allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+            var match = GetXivRowType(sourceSheet.Name);
             if (match == null)
                 return null;
 
@@ -267,6 +269,28 @@ namespace SaintCoinach.Xiv {
             return (IXivSheet)constructor.Invoke(new object[] {
                 this, sourceSheet
             });
+        }
+
+        private Type GetXivRowType(string sheetName) {
+            if (_SheetNameToTypeMap == null)
+                BuildSheetToTypeMap();
+
+            Type match;
+            if (_SheetNameToTypeMap.TryGetValue(sheetName, out match))
+                return match;
+
+            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
+
+            var search = "Xiv." + sheetName.Replace('/', '.');
+            var targetType = typeof(IXivRow);
+            return allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+        }
+
+        private void BuildSheetToTypeMap() {
+            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
+            var attrTypes = allTypes.Select(t => new { Type = t, Attr = t.GetCustomAttribute<XivSheetAttribute>() }).Where(t => t.Attr != null);
+
+            _SheetNameToTypeMap = attrTypes.ToDictionary(i => i.Attr.SheetName, i => i.Type);
         }
 
         #endregion
