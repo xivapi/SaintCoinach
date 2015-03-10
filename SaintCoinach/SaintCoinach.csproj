@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SaintCoinach</RootNamespace>
     <AssemblyName>SaintCoinach</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>19634ab1</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,12 +36,37 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net451\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.94.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.94.1\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +76,9 @@
   <ItemGroup>
     <Compile Include="EorzeaDateTime.cs" />
     <Compile Include="EorzeaDateTime.Formatter.cs" />
+    <Compile Include="Ex\DataSheet.Enumerator.cs" />
+    <Compile Include="Ex\MultiSheet.Enumerator.cs" />
+    <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Assets\MaterialParameterMapping.cs" />
     <Compile Include="Graphics\ShPk\Parameter.cs" />
@@ -61,6 +90,209 @@
     <Compile Include="Graphics\ShPk\ShPkFile.cs" />
     <Compile Include="Graphics\ShPk\ShPkHeader.cs" />
     <Compile Include="IO\EmptyFile.cs" />
+    <Compile Include="Libra\Achievement.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\AchievementCategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\AchievementKind.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Action.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\BaseParam.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\BeastTribe.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\BNpcName.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\BNpcName.Parse.cs" />
+    <Compile Include="Libra\BNpcName_PlaceName.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ClassJob.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ClassJobCategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ClassJob_ClassJobCategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Colosseum.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ContentRoulette.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ContentType.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\CraftType.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Emote.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ENpcResident.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ENpcResident.Parse.cs" />
+    <Compile Include="Libra\ENpcResident_PlaceName.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ENpcResident_Quest.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Entities.cs" />
+    <Compile Include="Libra\FCHierarchy.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\FCRank.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\FCReputation.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Frontline01.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Gathering.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GatheringType.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankGridaniaFemaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankGridaniaMaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankLimsaFemaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankLimsaMaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankUldahFemaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GCRankUldahMaleText.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GeneralAction.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GrandCompany.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GuardianDeity.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\GuildOrder.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\InstanceContent.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\InstanceContentType.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Item.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Item.Parse.cs" />
+    <Compile Include="Libra\ItemCategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ItemSery.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ItemSpecialBonu.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ItemUICategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\ItemUIKind.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Item_ClassJob.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\JournalCategory.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\JournalGenre.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\JsonReaderExtensions.cs" />
+    <Compile Include="Libra\LibraModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\LibraModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\LibraModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\LodestoneSystemDefine.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\NotebookDivision.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\PlaceName.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Quest.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\QuestWebEx.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\QuestWebType.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Quest_ClassJob.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Race.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Recipe.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\RecipeElement.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Shop.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Status.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Title.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Tomestone.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Libra\Town.cs">
+      <DependentUpon>LibraModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderedBitConverter.cs" />
     <Compile Include="Ex\Column.cs" />
     <Compile Include="Ex\DataReader.cs" />
@@ -170,6 +402,25 @@
     <Compile Include="IO\FileType.cs" />
     <Compile Include="IO\PackCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xiv\ActionBase.cs" />
+    <Compile Include="Xiv\ChocoboRace.cs" />
+    <Compile Include="Xiv\ChocoboRaceAbility.cs" />
+    <Compile Include="Xiv\ChocoboRaceAbilityType.cs" />
+    <Compile Include="Xiv\ChocoboRaceRank.cs" />
+    <Compile Include="Xiv\ChocoboRaceStatus.cs" />
+    <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
+    <Compile Include="Xiv\ChocobRaceItem.cs" />
+    <Compile Include="Xiv\GatheringCondition.cs" />
+    <Compile Include="Xiv\GatheringExp.cs" />
+    <Compile Include="Xiv\GatheringNotebookList.cs" />
+    <Compile Include="Xiv\GatheringNotebookRegion.cs" />
+    <Compile Include="Xiv\GatheringPoint.cs" />
+    <Compile Include="Xiv\GatheringPointBase.cs" />
+    <Compile Include="Xiv\GatheringPointBonusType.cs" />
+    <Compile Include="Xiv\GatheringPointName.cs" />
+    <Compile Include="Xiv\GeneralAction.cs" />
+    <Compile Include="Xiv\GoldSaucerTextData.cs" />
+    <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
     <Compile Include="Sound\ScdDecoder.cs" />
@@ -179,24 +430,34 @@
     <Compile Include="Xiv\AchievementCategory.cs" />
     <Compile Include="Xiv\AchievementKind.cs" />
     <Compile Include="Xiv\Action.cs" />
-    <Compile Include="Xiv\ActionBase.cs" />
+    <Compile Include="Xiv\ClassJobActionBase.cs" />
     <Compile Include="Xiv\ActionCategory.cs" />
     <Compile Include="Xiv\Addon.cs" />
     <Compile Include="Xiv\BaseParam.cs" />
     <Compile Include="Xiv\BeastReputationRank.cs" />
     <Compile Include="Xiv\BeastTribe.cs" />
     <Compile Include="Xiv\BGM.cs" />
+    <Compile Include="Xiv\BNpc.cs" />
+    <Compile Include="Xiv\BNpcBase.cs" />
+    <Compile Include="Xiv\BNpcData.cs" />
+    <Compile Include="Xiv\BNpcLocation.cs" />
     <Compile Include="Xiv\BNpcName.cs" />
     <Compile Include="Xiv\BuddyAction.cs" />
     <Compile Include="Xiv\BuddyEquip.cs" />
     <Compile Include="Xiv\ClassJob.cs" />
     <Compile Include="Xiv\ClassJobCategory.cs" />
+    <Compile Include="Xiv\Collections\BNpcCollection.cs" />
     <Compile Include="Xiv\Collections\ENpcCollection.cs" />
     <Compile Include="Xiv\Collections\EquipSlotCollection.cs" />
+    <Compile Include="Xiv\ContentType.cs" />
+    <Compile Include="Xiv\IContentReward.cs" />
     <Compile Include="Xiv\Collections\ItemCollection.cs" />
     <Compile Include="Xiv\Collections\ShopCollection.cs" />
     <Compile Include="Xiv\Companion.cs" />
     <Compile Include="Xiv\CompanyAction.cs" />
+    <Compile Include="Xiv\ContentBase.cs" />
+    <Compile Include="Xiv\ContentReward.cs" />
+    <Compile Include="Xiv\ContentRoulette.cs" />
     <Compile Include="Xiv\CraftAction.cs" />
     <Compile Include="Xiv\CraftCrystalType.cs" />
     <Compile Include="Xiv\CraftLeve.cs" />
@@ -220,6 +481,7 @@
     <Compile Include="Xiv\GatheringType.cs" />
     <Compile Include="Xiv\GCShop.cs" />
     <Compile Include="Xiv\GCShopItemCategory.cs" />
+    <Compile Include="Xiv\GenericLocation.cs" />
     <Compile Include="Xiv\GrandCompany.cs" />
     <Compile Include="Xiv\GrandCompanyRank.cs" />
     <Compile Include="Xiv\GrandCompanySealShopItem.cs" />
@@ -228,6 +490,14 @@
     <Compile Include="Xiv\HousingItem.cs" />
     <Compile Include="Xiv\HousingItemCategory.cs" />
     <Compile Include="Xiv\HousingYardObject.cs" />
+    <Compile Include="Xiv\IItemSource.cs" />
+    <Compile Include="Xiv\ILocatable.cs" />
+    <Compile Include="Xiv\ILocation.cs" />
+    <Compile Include="Xiv\InstanceContent.cs" />
+    <Compile Include="Xiv\InstanceContentData.cs" />
+    <Compile Include="Xiv\InstanceContentData.Fight.cs" />
+    <Compile Include="Xiv\InstanceContentData.RewardItem.cs" />
+    <Compile Include="Xiv\InstanceContentType.cs" />
     <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />
@@ -284,6 +554,8 @@
     <Compile Include="Xiv\Items\Usable.cs" />
     <Compile Include="Xiv\Items\Weapon.cs" />
     <Compile Include="Xiv\ItemUICategory.cs" />
+    <Compile Include="Xiv\JournalCategory.cs" />
+    <Compile Include="Xiv\JournalGenre.cs" />
     <Compile Include="Xiv\Leve.cs" />
     <Compile Include="Xiv\LeveAssignmentType.cs" />
     <Compile Include="Xiv\LeveClient.cs" />
@@ -298,6 +570,7 @@
     <Compile Include="Xiv\MainCommandCategory.cs" />
     <Compile Include="Xiv\Map.cs" />
     <Compile Include="Xiv\Materia.cs" />
+    <Compile Include="Xiv\ModelChara.cs" />
     <Compile Include="Xiv\MonsterNote.cs" />
     <Compile Include="Xiv\MonsterNoteTarget.cs" />
     <Compile Include="Xiv\Mount.cs" />
@@ -313,6 +586,18 @@
     <Compile Include="Xiv\ProbabilityPair.cs" />
     <Compile Include="Xiv\Quest.cs" />
     <Compile Include="Xiv\IShopListingItem.cs" />
+    <Compile Include="Xiv\QuestRequirements.cs" />
+    <Compile Include="Xiv\QuestRequirements.InstanceContentRequirement.cs" />
+    <Compile Include="Xiv\PrerequisiteQuestsRequirement.cs" />
+    <Compile Include="Xiv\QuestRewardGroupType.cs" />
+    <Compile Include="Xiv\QuestRewardItem.cs" />
+    <Compile Include="Xiv\QuestRewardItemGroup.cs" />
+    <Compile Include="Xiv\QuestRewards.cs" />
+    <Compile Include="Xiv\RacingChocoboItem.cs" />
+    <Compile Include="Xiv\RacingChocoboName.cs" />
+    <Compile Include="Xiv\RacingChocoboNameCategory.cs" />
+    <Compile Include="Xiv\RacingChocoboNameInfo.cs" />
+    <Compile Include="Xiv\RacingChocoboParam.cs" />
     <Compile Include="Xiv\Recipe.cs" />
     <Compile Include="Xiv\RecipeElement.cs" />
     <Compile Include="Xiv\RecipeIngredient.cs" />
@@ -335,7 +620,15 @@
     <Compile Include="Xiv\Status.cs" />
     <Compile Include="Xiv\TerritoryType.cs" />
     <Compile Include="Xiv\Title.cs" />
+    <Compile Include="Xiv\Tomestone.cs" />
     <Compile Include="Xiv\Trait.cs" />
+    <Compile Include="Xiv\TripleTriad.cs" />
+    <Compile Include="Xiv\TripleTriadCard.cs" />
+    <Compile Include="Xiv\TripleTriadCardRarity.cs" />
+    <Compile Include="Xiv\TripleTriadCardResident.cs" />
+    <Compile Include="Xiv\TripleTriadCardType.cs" />
+    <Compile Include="Xiv\TripleTriadCompetition.cs" />
+    <Compile Include="Xiv\TripleTriadRule.cs" />
     <Compile Include="Xiv\Weather.cs" />
     <Compile Include="Xiv\WeatherRate.cs" />
     <Compile Include="Xiv\XivSheet.cs" />
@@ -344,6 +637,8 @@
     <Compile Include="Xiv\IXivSheet.Generic.cs" />
     <Compile Include="Xiv\XivCollection.cs" />
     <Compile Include="Xiv\XivRow.cs" />
+    <Compile Include="Xiv\XivSheet.Enumerator.cs" />
+    <Compile Include="Xiv\XivSheetAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotSquish\DotSquish.csproj">
@@ -356,13 +651,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <EntityDeploy Include="Libra\LibraModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LibraModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Libra\LibraModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibraModel.edmx</DependentUpon>
+      <LastGenOutput>LibraModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Libra\LibraModel.edmx.diagram">
+      <DependentUpon>LibraModel.edmx</DependentUpon>
+    </None>
+    <None Include="Libra\LibraModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibraModel.edmx</DependentUpon>
+      <LastGenOutput>LibraModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="SaintCoinach.History.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
+    <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
+    <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.94.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

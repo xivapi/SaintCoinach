@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
@@ -5,7 +8,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a Levequest.
     /// </summary>
-    public class Leve : XivRow {
+    public class Leve : XivRow, ILocatable {
         #region Properties
 
         /// <summary>
@@ -92,6 +95,11 @@ namespace SaintCoinach.Xiv {
         /// <value>The icon for the location of the current leve.</value>
         public ImageFile IssuerIcon { get { return AsImage("Icon{Issuer}"); } }
 
+        /// <summary>
+        /// Gets the locations of the current object.
+        /// </summary>
+        /// <value>The locations of the current object.</value>
+        public IEnumerable<ILocation> Locations { get { yield return this.Level; } }
         #endregion
 
         #region Constructors

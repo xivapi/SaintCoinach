@@ -7,7 +7,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a crafting recipe.
     /// </summary>
-    public class Recipe : XivRow {
+    public class Recipe : XivRow, IItemSource {
         #region Fields
 
         /// <summary>
@@ -227,6 +227,14 @@ namespace SaintCoinach.Xiv {
                 mat.QualityPerItem = mat.Item.ItemLevel.Key * qualityFromMats / itemLevelSum;
 
             return ingredients.ToArray();
+        }
+
+        #endregion
+
+        #region IItemSource Members
+
+        IEnumerable<Item> IItemSource.Items {
+            get { yield return this.ResultItem; }
         }
 
         #endregion

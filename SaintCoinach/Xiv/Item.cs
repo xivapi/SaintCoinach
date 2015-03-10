@@ -21,6 +21,11 @@ namespace SaintCoinach.Xiv {
         #region Fields
 
         /// <summary>
+        ///     Sources from which to obtain the current item.
+        /// </summary>
+        private IItemSource[] _Sources;
+
+        /// <summary>
         ///     Listings offering the current item as a reward.
         /// </summary>
         private IShopListing[] _AsShopItems;
@@ -147,6 +152,14 @@ namespace SaintCoinach.Xiv {
             get { return _AsShopPayment ?? (_AsShopPayment = BuildAsShopPayment()); }
         }
 
+        /// <summary>
+        ///     Gets the sources from which to obtain the current item.
+        /// </summary>
+        /// <value>The sources from which to obtain the current item.</value>
+        public IEnumerable<IItemSource> Sources {
+            get { return _Sources ?? (_Sources = BuildSources()); }
+        }
+
         #endregion
 
         #region Constructors
@@ -216,6 +229,43 @@ namespace SaintCoinach.Xiv {
                 checkedItems.Add(item);
             }
             return shopItemCosts.Distinct().ToArray();
+        }
+
+        /// <summary>
+        ///     Build an array of sources from which to obtain the current item.
+        /// </summary>
+        /// <returns>An array of sources from which to obtain the current item.</returns>
+        private IItemSource[] BuildSources() {
+            var sources = new List<IItemSource>();
+
+            Libra.Item libraRow = null;
+            if (Sheet.Collection.IsLibraAvailable)
+                libraRow = Sheet.Collection.Libra.Items.FirstOrDefault(i => i.Key == this.Key);
+
+            var bnpcColl = Sheet.Collection.BNpcs;
+            var instanceContents = Sheet.Collection.GetSheet<InstanceContent>();
+            var recipes = Sheet.Collection.GetSheet<Recipe>();
+            var quests = Sheet.Collection.GetSheet<Quest>();
+            var achievements = Sheet.Collection.GetSheet<Achievement>();
+            var shops = Sheet.Collection.Shops;
+
+            if (libraRow != null) {
+                foreach (var bnpc in libraRow.BNpcs)
+                    sources.Add(bnpcColl[bnpc]);
+                foreach (var ic in libraRow.InstanceContents)
+                    sources.Add(instanceContents[ic]);
+            }
+
+            /*sources.AddRange(bnpcColl.Where(i => i.Items.Contains(this)));
+            sources.AddRange(instanceContents.Cast<IItemSource>().Where(i => i.Items.Contains(this)));*/
+
+            // Not using libra for these because it has a higher likelyhood of being incomplete.
+            sources.AddRange(recipes.Where(i => i.ResultItem == this));
+            sources.AddRange(quests.Cast<IItemSource>().Where(i => i.Items.Contains(this)));
+            sources.AddRange(achievements.Where(i => i.Item == this));
+            sources.AddRange(shops.Where(i => i.Items.Contains(this)));
+
+            return sources.ToArray();
         }
 
         #endregion

@@ -10,7 +10,5 @@ namespace SaintCoinach.Ex.Relational {
         object this[int row, string columnName] { get; }
 
         #endregion
-
-        new IEnumerable<IRelationalRow> GetAllRows();
     }
 }

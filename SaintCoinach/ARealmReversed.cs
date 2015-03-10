@@ -25,9 +25,9 @@ namespace SaintCoinach {
         #region Static
 
         /// <summary>
-        ///     File name of the archive containing current and past data mappings.
+        ///     Default file name of the archive containing current and past data mappings.
         /// </summary>
-        private const string StateFile = "SaintCoinach.History.zip";
+        private const string DefaultStateFile = "SaintCoinach.History.zip";
 
         /// <summary>
         ///     File name inside the archive of the data mappings.
@@ -84,6 +84,11 @@ namespace SaintCoinach {
         /// </summary>
         private readonly PackCollection _Packs;
 
+        /// <summary>
+        ///     Archive file containing current and past data mappings. 
+        /// </summary>
+        private readonly FileInfo _StateFile;
+
         #endregion
 
         #region Properties
@@ -124,6 +129,12 @@ namespace SaintCoinach {
         /// <value>Whether the loaded definition is the same as the game data version.</value>
         public bool IsCurrentVersion { get { return GameVersion == DefinitionVersion; } }
 
+        /// <summary>
+        ///     Gets the archive file containing current and past data mappings.
+        /// </summary>
+        /// <value>The archive file containing current and past data mappings.</value>
+        public FileInfo StateFile { get { return _StateFile; } }
+
         #endregion
 
         #region Setup
@@ -158,23 +169,43 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="gamePath">Directory path to the game installation.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), language) { }
+        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), new FileInfo(DefaultStateFile), language, null) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
+        /// </summary>
+        /// <param name="gamePath">Directory path to the game installation.</param>
+        /// <param name="storePath">Path to the file used for storing definitions and history.</param>
+        /// <param name="language">Initial language to use.</param>
+        public ARealmReversed(string gamePath, string storePath, Language language) : this(new DirectoryInfo(gamePath), new FileInfo(storePath), language, null) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
+        /// </summary>
+        /// <param name="gamePath">Directory path to the game installation.</param>
+        /// <param name="storePath">Path to the file used for storing definitions and history.</param>
+        /// <param name="language">Initial language to use.</param>
+        /// <param name="libraPath">Path to the Libra Eorzea database file.</param>
+        public ARealmReversed(string gamePath, string storePath, Language language, string libraPath) : this(new DirectoryInfo(gamePath), new FileInfo(storePath), language, new FileInfo(libraPath)) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
         /// </summary>
         /// <param name="gameDirectory">Directory of the game installation.</param>
+        /// <param name="storeFile">File used for storing definitions and history.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(DirectoryInfo gameDirectory, Language language) {
+        /// <param name="libraFile">Location of the Libra Eorzea database file, or <c>null</c> if it should not be used.</param>
+        public ARealmReversed(DirectoryInfo gameDirectory, FileInfo storeFile, Language language, FileInfo libraFile) {
             _GameDirectory = gameDirectory;
             _Packs = new PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack", "ffxiv"));
-            _GameData = new XivCollection(Packs) {
+            _GameData = new XivCollection(Packs, libraFile) {
                 ActiveLanguage = language
             };
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
+            _StateFile = storeFile;
 
-            using (var zipFile = new ZipFile(StateFile, ZipEncoding)) {
+            using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
                 if (zipFile.ContainsEntry(VersionFile)) {
                     RelationDefinition def;
                     if (!TryGetDefinitionVersion(zipFile, GameVersion, out def))
@@ -356,7 +387,7 @@ namespace SaintCoinach {
             string tempPath = null;
             UpdateReport report;
             try {
-                using (var zip = new ZipFile(StateFile, ZipEncoding)) {
+                using (var zip = new ZipFile(StateFile.FullName, ZipEncoding)) {
                     tempPath = ExtractPacks(zip, previousVersion);
                     var previousPack = new PackCollection(Path.Combine(tempPath, previousVersion));
                     var previousDefinition = ReadDefinition(zip);

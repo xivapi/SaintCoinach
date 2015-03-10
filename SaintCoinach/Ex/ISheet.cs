@@ -11,10 +11,10 @@ namespace SaintCoinach.Ex {
         int Count { get; }
         IRow this[int row] { get; }
         object this[int row, int column] { get; }
+        IEnumerable<int> Keys { get; }
 
         #endregion
 
         bool ContainsRow(int row);
-        IEnumerable<IRow> GetAllRows();
     }
 }

@@ -8,7 +8,7 @@ using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class XivSheet<T> : IXivSheet<T> where T : IXivRow {
+    public partial class XivSheet<T> : IXivSheet<T> where T : IXivRow {
         #region Fields
 
         private readonly Dictionary<int, T> _Rows = new Dictionary<int, T>();
@@ -44,11 +44,11 @@ namespace SaintCoinach.Xiv {
             }
         }
 
+        public IEnumerable<int> Keys { get { return _Source.Keys; } }
+
         #endregion
 
         #region Constructors
-
-        #region Constructor
 
         public XivSheet(XivCollection collection, IRelationalSheet source) {
             Collection = collection;
@@ -57,14 +57,12 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        #endregion
-
         public XivCollection Collection { get; private set; }
 
         #region IEnumerable<T> Members
 
         public IEnumerator<T> GetEnumerator() {
-            return GetAllRows().GetEnumerator();
+            return new Enumerator(this);
         }
 
         #endregion
@@ -79,33 +77,6 @@ namespace SaintCoinach.Xiv {
 
         #region Factory
 
-        private void FillRows() {
-            if (_RowsFilled)
-                return;
-
-            foreach (IRelationalRow sourceRow in _Source) {
-                if (_Rows.ContainsKey(sourceRow.Key)) continue;
-
-                var row = CreateRow(sourceRow);
-                _Rows.Add(sourceRow.Key, row);
-            }
-
-            _RowsFilled = true;
-        }
-
-        private T Get(int key) {
-            T val;
-            if (_Rows.TryGetValue(key, out val)) return val;
-
-            if (!_Source.ContainsRow(key))
-                throw new KeyNotFoundException();
-
-            var sourceRow = _Source[key];
-            val = CreateRow(sourceRow);
-            _Rows.Add(key, val);
-            return val;
-        }
-
         protected virtual T CreateRow(IRelationalRow sourceRow) {
             if (RowConstructor == null)
                 throw new NotSupportedException("No matching constructor found.");
@@ -119,13 +90,20 @@ namespace SaintCoinach.Xiv {
 
         #region ISheet<T> Members
 
-        public IEnumerable<T> GetAllRows() {
-            FillRows();
+        public T this[int key] {
+            get {
+                T row;
+                if (_Rows.TryGetValue(key, out row)) return row;
 
-            return _Rows.Values;
+                if (!_Source.ContainsRow(key))
+                    throw new KeyNotFoundException();
+
+                var sourceRow = _Source[key];
+                row = CreateRow(sourceRow);
+                _Rows.Add(key, row);
+                return row;
+            }
         }
-
-        public T this[int row] { get { return Get(row); } }
 
         #endregion
 
@@ -143,10 +121,6 @@ namespace SaintCoinach.Xiv {
             return _Source.ContainsRow(row);
         }
 
-        IEnumerable<IRow> ISheet.GetAllRows() {
-            return GetAllRows().Cast<IRow>();
-        }
-
         IRow ISheet.this[int row] { get { return this[row]; } }
 
         public object this[int row, int column] { get { return this[row][column]; } }
@@ -159,10 +133,6 @@ namespace SaintCoinach.Xiv {
 
         RelationalExCollection IRelationalSheet.Collection { get { return Collection; } }
 
-        IEnumerable<IRelationalRow> IRelationalSheet.GetAllRows() {
-            return GetAllRows().Cast<IRelationalRow>();
-        }
-
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 
         public object this[int row, string columnName] { get { return this[row][columnName]; } }
@@ -170,10 +140,6 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region IXivSheet Members
-
-        IEnumerable<IXivRow> IXivSheet.GetAllRows() {
-            return GetAllRows().Cast<IXivRow>();
-        }
 
         IXivRow IXivSheet.this[int row] { get { return this[row]; } }
 

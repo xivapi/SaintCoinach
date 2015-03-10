@@ -29,6 +29,9 @@ namespace SaintCoinach.IO {
         private readonly Dictionary<string, uint> _DirectoryPathMap = new Dictionary<string, uint>();
         private readonly string _Name;
 
+        private bool _KeepInMemory = false;
+        private Dictionary<int, byte[]> _Buffers = new Dictionary<int,byte[]>();
+
         #endregion
 
         #region Properties
@@ -38,6 +41,22 @@ namespace SaintCoinach.IO {
         public DirectoryInfo DataDirectory { get; private set; }
         public byte Key { get; private set; }
         public string Name { get { return _Name ?? Key.ToString("x2"); } }
+        public bool KeepInMemory {
+            get { return _KeepInMemory; }
+            set {
+                if (value == _KeepInMemory)
+                    return;
+
+                Stream t;
+                if (_DataStreams.Any(i => i.Value.TryGetTarget(out t)))
+                    throw new InvalidOperationException();
+                _DataStreams.Clear();
+
+                _KeepInMemory = value;
+                if (!value)
+                    _Buffers.Clear();
+            }
+        }
 
         #endregion
 
@@ -60,7 +79,14 @@ namespace SaintCoinach.IO {
             var baseName = String.Format(DatFileFormat, Key, datFile);
             var fullPath = Path.Combine(DataDirectory.FullName, baseName);
 
-            stream = IOFile.OpenRead(fullPath);
+
+            if (KeepInMemory) {
+                if (!_Buffers.ContainsKey(datFile)) {
+                    _Buffers.Add(datFile, IOFile.ReadAllBytes(fullPath));
+                }
+                stream = new MemoryStream(_Buffers[datFile], false);
+            } else
+                stream = IOFile.OpenRead(fullPath);
 
             lock (_DataStreams) {
                 if (_DataStreams.ContainsKey(key))
@@ -81,7 +107,7 @@ namespace SaintCoinach.IO {
         #region Name <> Key mapping
 
         private static readonly Dictionary<string, byte> RootToSqMap =
-            new Dictionary<string, byte>(StringComparer.OrdinalIgnoreCase) {
+            new Dictionary<string, byte> {
                 {
                     "common", 0x00
                 }, {

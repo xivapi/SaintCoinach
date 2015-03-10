@@ -7,7 +7,5 @@ namespace SaintCoinach.Ex {
         new T this[int row] { get; }
 
         #endregion
-
-        new IEnumerable<T> GetAllRows();
     }
 }

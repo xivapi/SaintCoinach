@@ -7,12 +7,8 @@ namespace SaintCoinach.Ex.Relational {
         where TData : IRelationalDataRow {
         #region Constructors
 
-        #region Constructor
-
         public RelationalMultiSheet(RelationalExCollection collection, RelationalHeader header)
             : base(collection, header) { }
-
-        #endregion
 
         #endregion
 
@@ -38,10 +34,6 @@ namespace SaintCoinach.Ex.Relational {
 
         #region IRelationalSheet Members
 
-        IEnumerable<IRelationalRow> IRelationalSheet.GetAllRows() {
-            return base.GetAllRows().Cast<IRelationalRow>();
-        }
-
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 
         object IRelationalSheet.this[int row, string columnName] { get { return this[row][columnName]; } }
@@ -54,10 +46,6 @@ namespace SaintCoinach.Ex.Relational {
 
         IRelationalSheet IRelationalMultiSheet.GetLocalisedSheet(Language language) {
             return GetLocalisedSheet(language);
-        }
-
-        IEnumerable<IRelationalMultiRow> IRelationalMultiSheet.GetAllRows() {
-            return GetAllRows().Cast<IRelationalMultiRow>();
         }
 
         IRelationalMultiRow IRelationalMultiSheet.this[int row] { get { return this[row]; } }

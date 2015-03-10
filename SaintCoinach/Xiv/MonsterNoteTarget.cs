@@ -1,13 +1,15 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class MonsterNoteTarget : XivRow {
+    public class MonsterNoteTarget : XivRow, ILocatable {
         #region Fields
 
-        private Location[] _Locations;
+        private IEnumerable<ILocation> _Locations;
 
         #endregion
 
@@ -15,7 +17,7 @@ namespace SaintCoinach.Xiv {
 
         public BNpcName BNpcName { get { return As<BNpcName>(); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
-        public IEnumerable<Location> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
+        public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
 
         #endregion
 
@@ -31,10 +33,15 @@ namespace SaintCoinach.Xiv {
 
         #region Build
 
-        private Location[] BuildLocations() {
+        private IEnumerable<ILocation> BuildLocations() {
+            if (Sheet.Collection.IsLibraAvailable)
+                return BNpcName.Locations;
+
             const int Count = 3;
 
-            var locations = new List<Location>();
+            var locations = new List<ILocation>();
+
+            var maps = Sheet.Collection.GetSheet<Map>();
 
             for (var i = 0; i < Count; ++i) {
                 var zone = As<PlaceName>("PlaceName{Zone}", i);
@@ -51,24 +58,23 @@ namespace SaintCoinach.Xiv {
 
         #region Location class
 
-        public class Location {
+        public class Location : ILocation {
             #region Properties
 
-            public PlaceName ZonePlaceName { get; private set; }
+            double ILocation.MapX { get { return double.NaN; } }
+            double ILocation.MapY { get { return double.NaN; } }
+
+            public PlaceName PlaceName { get; private set; }
             public PlaceName LocationPlaceName { get; private set; }
 
             #endregion
 
             #region Constructors
 
-            #region Constructor
-
             public Location(PlaceName zonePlace, PlaceName locationPlace) {
-                ZonePlaceName = zonePlace;
+                PlaceName = zonePlace;
                 LocationPlaceName = locationPlace;
             }
-
-            #endregion
 
             #endregion
         }

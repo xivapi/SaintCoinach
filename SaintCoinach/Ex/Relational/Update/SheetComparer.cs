@@ -53,8 +53,8 @@ namespace SaintCoinach.Ex.Relational.Update {
             var changes = new List<IChange>();
 
 
-            var prevKeys = _PreviousSheet.GetAllRows().Select(_ => _.Key).ToArray();
-            var updatedKeys = _UpdatedSheet.GetAllRows().Select(_ => _.Key).ToArray();
+            var prevKeys = _PreviousSheet.Cast<IRow>().Select(_ => _.Key).ToArray();
+            var updatedKeys = _UpdatedSheet.Cast<IRow>().Select(_ => _.Key).ToArray();
 
             changes.AddRange(updatedKeys.Except(prevKeys).Select(_ => new RowAdded(_UpdatedDefinition.Name, _)));
             changes.AddRange(prevKeys.Except(updatedKeys).Select(_ => new RowRemoved(_PreviousDefinition.Name, _)));
@@ -109,8 +109,8 @@ namespace SaintCoinach.Ex.Relational.Update {
                                                     ISheet updatedSheet,
                                                     Language language,
                                                     ColumnMap[] columns) {
-            var prevRows = previousSheet.GetAllRows();
-            var updatedRows = updatedSheet.GetAllRows().ToDictionary(_ => _.Key, _ => _);
+            var prevRows = previousSheet.Cast<IRow>().ToArray();
+            var updatedRows = updatedSheet.Cast<IRow>().ToDictionary(_ => _.Key, _ => _);
 
 
             foreach (var prevRow in prevRows) {

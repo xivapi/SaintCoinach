@@ -6,10 +6,11 @@ using System.Linq;
 using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex {
-    public class PartialDataSheet<T> : IDataSheet<T> where T : IDataRow {
+    public partial class PartialDataSheet<T> : IDataSheet<T> where T : IDataRow {
         #region Fields
 
         private Dictionary<int, T> _Rows;
+        private Dictionary<int, int> _RowOffsets = new Dictionary<int, int>();
 
         #endregion
 
@@ -18,12 +19,11 @@ namespace SaintCoinach.Ex {
         public IDataSheet<T> SourceSheet { get; private set; }
         public Range Range { get; private set; }
         public File File { get; private set; }
+        public IEnumerable<int> Keys { get { return _RowOffsets.Keys; } }
 
         #endregion
 
         #region Constructors
-
-        #region Constructor
 
         public PartialDataSheet(IDataSheet<T> sourceSheet, Range range, File file) {
             SourceSheet = sourceSheet;
@@ -35,15 +35,13 @@ namespace SaintCoinach.Ex {
 
         #endregion
 
-        #endregion
-
         public Language Language { get { return SourceSheet.Language; } }
         public int Count { get { return _Rows.Count; } }
 
         #region IEnumerable<T> Members
 
         public IEnumerator<T> GetEnumerator() {
-            return _Rows.Values.GetEnumerator();
+            return new Enumerator(this);
         }
 
         #endregion
@@ -85,7 +83,8 @@ namespace SaintCoinach.Ex {
             for (var i = 0; i < count; ++i) {
                 var key = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryKeyOffset, true);
                 var off = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryPositionOffset, true);
-                _Rows.Add(key, CreateRow(key, off));
+                _RowOffsets.Add(key, off);
+                //_Rows.Add(key, CreateRow(key, off));
                 currentPosition += EntryLength;
             }
         }
@@ -106,7 +105,18 @@ namespace SaintCoinach.Ex {
             return _Rows.Values;
         }
 
-        public T this[int row] { get { return _Rows[row]; } }
+        public T this[int key] {
+            get {
+                T row;
+                if (_Rows.TryGetValue(key, out row))
+                    return row;
+
+                var offset = _RowOffsets[key];
+                _Rows.Add(key, row = CreateRow(key, offset));
+
+                return row;
+            }
+        }
 
         #endregion
 
@@ -119,11 +129,7 @@ namespace SaintCoinach.Ex {
         public ExCollection Collection { get { return SourceSheet.Collection; } }
 
         public bool ContainsRow(int row) {
-            return _Rows.ContainsKey(row);
-        }
-
-        IEnumerable<IRow> ISheet.GetAllRows() {
-            return _Rows.Values.Cast<IRow>();
+            return _RowOffsets.ContainsKey(row);
         }
 
         IRow ISheet.this[int row] { get { return this[row]; } }

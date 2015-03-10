@@ -8,7 +8,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a shop that trades using gil.
     /// </summary>
-    public class Shop : XivRow, IShop {
+    public class Shop : XivRow, IShop, IItemSource {
         #region Fields
 
         /// <summary>
@@ -127,6 +127,21 @@ namespace SaintCoinach.Xiv {
             }
 
             return items.ToArray();
+        }
+
+        #endregion
+
+
+        #region IItemSource Members
+
+        private Item[] _ItemSourceItems;
+
+        /// <summary>
+        /// Gets the <see cref="Item"/>s that can be obtained from the current object.
+        /// </summary>
+        /// <value>The <see cref="Item"/>s that can be obtained from the current object.</value>
+        IEnumerable<Item> IItemSource.Items {
+            get { return _ItemSourceItems ?? (_ItemSourceItems = Items.Select(i => i.Item).ToArray()); }
         }
 
         #endregion

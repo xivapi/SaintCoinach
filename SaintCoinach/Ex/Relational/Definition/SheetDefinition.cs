@@ -40,7 +40,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public void Compile() {
             _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefintion>();
-            _ColumnNameToIndexMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            _ColumnNameToIndexMap = new Dictionary<string, int>();
             _ColumnIndexToNameMap = new Dictionary<int, string>();
             _ColumnValueTypes = new Dictionary<int, string>();
             foreach (var def in DataDefinitions) {
@@ -97,7 +97,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
             foreach (var def in DataDefinitions) {
                 for (var i = 0; i < def.Length; ++i) {
                     var n = def.GetName(def.Index + i);
-                    if (string.Equals(columnName, n, StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(columnName, n))
                         return def.Index + i;
                 }
             }

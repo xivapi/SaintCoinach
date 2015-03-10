@@ -41,7 +41,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #region Compile
 
         public void Compile() {
-            _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _, StringComparer.OrdinalIgnoreCase);
+            _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _);
 
             foreach (var sheet in SheetDefinitions)
                 sheet.Compile();
@@ -58,7 +58,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 return _SheetMap.TryGetValue(name, out def);
 
             var res =
-                SheetDefinitions.Where(_ => string.Equals(_.Name, name, StringComparison.OrdinalIgnoreCase)).ToArray();
+                SheetDefinitions.Where(_ => string.Equals(_.Name, name)).ToArray();
             def = res.Any() ? res.First() : null;
 
             return (def != null);

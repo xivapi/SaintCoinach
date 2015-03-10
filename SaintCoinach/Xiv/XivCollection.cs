@@ -20,6 +20,16 @@ namespace SaintCoinach.Xiv {
         #region Fields
 
         /// <summary>
+        ///     Mapping of sheet names to the object types to use for them.
+        /// </summary>
+        private Dictionary<string, Type> _SheetNameToTypeMap;
+
+        /// <summary>
+        ///     Collection of <see cref="BNpc"/> objects.
+        /// </summary>
+        private BNpcCollection _BNpcs;
+
+        /// <summary>
         ///     Collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />).
         /// </summary>
         private ENpcCollection _ENpcs;
@@ -39,9 +49,32 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         private ShopCollection _Shops;
 
+        /// <summary>
+        ///     Database connection to Libra Eorzea data.
+        /// </summary>
+        private Libra.Entities _Libra;
+
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     Gets the collection of <see cref="BNpc"/> objects.
+        /// </summary>
+        /// <value>The collection of <see cref="BNpc"/> objects.</value>
+        /// <remarks>
+        /// This property is only supported when the Libra Eorzea database is present.
+        /// </remarks>
+        public BNpcCollection BNpcs {
+            get {
+                if (_BNpcs != null) return _BNpcs;
+                if (!IsLibraAvailable)
+                    throw new NotSupportedException("BNpcs are only available when Libra Eorzea database is present.");
+
+                _BNpcs = new BNpcCollection(this);
+                return _BNpcs;
+            }
+        }
 
         /// <summary>
         ///     Gets the collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />
@@ -70,30 +103,46 @@ namespace SaintCoinach.Xiv {
         /// <value>The collection of all shops.</value>
         public ShopCollection Shops { get { return _Shops ?? (_Shops = new ShopCollection(this)); } }
 
+        /// <summary>
+        /// Gets a value indicating whether the Libra Eorzea database is available.
+        /// </summary>
+        /// <value>A value indicating whether the Libra Eorzea database is available.</value>
+        public bool IsLibraAvailable { get { return _Libra != null; } }
+
+        /// <summary>
+        /// Gets the connection to the Libra Eorzea database.
+        /// </summary>
+        /// <value>The connection to the Libra Eorzea database.</value>
+        public Libra.Entities Libra { get { return _Libra; } }
+
         #endregion
 
         #region Constructors
+        
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="XivCollection" /> class.
+        /// </summary>
+        /// <param name="packCollection">The <see cref="PackCollection" /> to use to access game data.</param>
+        public XivCollection(PackCollection packCollection) : this(packCollection, null) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="XivCollection" /> class.
         /// </summary>
         /// <param name="packCollection">The <see cref="PackCollection" /> to use to access game data.</param>
-        public XivCollection(PackCollection packCollection) : base(packCollection) { }
+        /// <param name="libraDatabase"><see cref="FileInfo"/> of the Libra Eorzea database file, or <c>null</c> if Libra data should be disabled.</param>
+        public XivCollection(PackCollection packCollection, System.IO.FileInfo libraDatabase)
+            : base(packCollection) {
+
+            if (libraDatabase != null && libraDatabase.Exists) {
+                const string LibraConnectionStringFormat = @"metadata=res://*/Libra.LibraModel.csdl|res://*/Libra.LibraModel.ssdl|res://*/Libra.LibraModel.msl;provider=System.Data.SQLite.EF6;provider connection string='data source=""{0}""'";
+                var connStr = string.Format(LibraConnectionStringFormat, libraDatabase.FullName);
+                _Libra = new Libra.Entities(connStr);
+            }
+        }
 
         #endregion
 
         #region Get
-
-        /// <summary>
-        ///     Mappings of requested types to a different type.
-        /// </summary>
-        /// <remarks>
-        ///     As you can see, not actually used. Was added when <see cref="Item"/> was called InventoryItem.
-        ///     TODO: Solve with attributes instead.
-        /// </remarks>
-        protected static readonly Dictionary<string, string> ForwardedSheets = new Dictionary<string, string> {
-            
-        };
 
         /// <summary>
         ///     Get the <see cref="IXivSheet{T}" /> for a specific type.
@@ -102,9 +151,12 @@ namespace SaintCoinach.Xiv {
         /// <returns>Returns the <see cref="IXivSheet{T}" /> for the specified <c>T</c>.</returns>
         public IXivSheet<T> GetSheet<T>() where T : IXivRow {
             var t = typeof(T);
+
+            var attr = t.GetCustomAttribute<XivSheetAttribute>();
+            if (attr != null)
+                return GetSheet<T>(attr.SheetName);
+
             var name = t.FullName.Substring(t.FullName.IndexOf(".Xiv.", StringComparison.OrdinalIgnoreCase) + 5);
-            if (ForwardedSheets.ContainsKey(name))
-                name = ForwardedSheets[name];
             return GetSheet<T>(name);
         }
 
@@ -199,10 +251,7 @@ namespace SaintCoinach.Xiv {
             if (SpecialSheetTypes.TryGetValue(sourceSheet.Name, out specialCreator))
                 return specialCreator(this, sourceSheet);
 
-            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
-            var search = "Xiv." + sourceSheet.Name.Replace('/', '.');
-            var targetType = typeof(IXivRow);
-            var match = allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+            var match = GetXivRowType(sourceSheet.Name);
             if (match == null)
                 return null;
 
@@ -220,6 +269,28 @@ namespace SaintCoinach.Xiv {
             return (IXivSheet)constructor.Invoke(new object[] {
                 this, sourceSheet
             });
+        }
+
+        private Type GetXivRowType(string sheetName) {
+            if (_SheetNameToTypeMap == null)
+                BuildSheetToTypeMap();
+
+            Type match;
+            if (_SheetNameToTypeMap.TryGetValue(sheetName, out match))
+                return match;
+
+            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
+
+            var search = "Xiv." + sheetName.Replace('/', '.');
+            var targetType = typeof(IXivRow);
+            return allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+        }
+
+        private void BuildSheetToTypeMap() {
+            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
+            var attrTypes = allTypes.Select(t => new { Type = t, Attr = t.GetCustomAttribute<XivSheetAttribute>() }).Where(t => t.Attr != null);
+
+            _SheetNameToTypeMap = attrTypes.ToDictionary(i => i.Attr.SheetName, i => i.Type);
         }
 
         #endregion

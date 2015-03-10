@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a location in the game.
     /// </summary>
-    public class Level : XivRow {
+    public class Level : XivRow, ILocation {
         #region Properties
 
         /// <summary>
@@ -66,6 +66,12 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <value>The <see cref="Map" /> the current location is in.</value>
         public Map Map { get { return As<Map>(); } }
+
+        /// <summary>
+        /// Gets the <see cref="Map"/> for the current object.
+        /// </summary>
+        /// <value>The <see cref="Map"/> for the current object.</value>
+        PlaceName ILocation.PlaceName { get { return Map.PlaceName; } }
 
         #endregion
 

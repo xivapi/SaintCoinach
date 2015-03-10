@@ -7,12 +7,8 @@ namespace SaintCoinach.Ex.Relational {
     public class RelationalDataSheet<T> : DataSheet<T>, IRelationalDataSheet<T> where T : IRelationalDataRow {
         #region Constructors
 
-        #region Constructor
-
         public RelationalDataSheet(RelationalExCollection collection, RelationalHeader header, Language language)
             : base(collection, header, language) { }
-
-        #endregion
 
         #endregion
 
@@ -28,10 +24,6 @@ namespace SaintCoinach.Ex.Relational {
         #endregion
 
         #region IRelationalSheet Members
-
-        IEnumerable<IRelationalRow> IRelationalSheet.GetAllRows() {
-            return GetAllRows().Cast<IRelationalRow>();
-        }
 
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 

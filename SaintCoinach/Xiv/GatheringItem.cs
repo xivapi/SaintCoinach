@@ -12,11 +12,7 @@ namespace SaintCoinach.Xiv {
 
         #region Constructors
 
-        #region Constructor
-
         public GatheringItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
-        #endregion
 
         #endregion
 

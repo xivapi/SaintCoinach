@@ -13,6 +13,5 @@ namespace SaintCoinach.Ex.Relational {
         #endregion
 
         new IRelationalSheet<TData> GetLocalisedSheet(Language language);
-        new IEnumerable<TMulti> GetAllRows();
     }
 }

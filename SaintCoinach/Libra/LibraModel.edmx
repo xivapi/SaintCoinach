@@ -1,0 +1,2602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="ISO8601" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Achievement">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Category" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="Help_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Help_en" Type="varchar" MaxLength="255" />
+          <Property Name="Help_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Help_de" Type="varchar" MaxLength="255" />
+          <Property Name="Point" Type="integer" />
+          <Property Name="Item" Type="integer" />
+          <Property Name="Icon" Type="integer" />
+          <Property Name="Title" Type="integer" />
+          <Property Name="Priority" Type="integer" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="AchievementCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Kind" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="AchievementKind">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Icon" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="HelpWeb_ja" Type="varchar" MaxLength="255" />
+          <Property Name="HelpWeb_en" Type="varchar" MaxLength="255" />
+          <Property Name="HelpWeb_fr" Type="varchar" MaxLength="255" />
+          <Property Name="HelpWeb_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'main.app_data' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="app_data">
+          <Property Name="schema_version" Type="varchar" MaxLength="255" />
+          <Property Name="data_version" Type="varchar" MaxLength="255" />
+          <Property Name="data_sequence_no" Type="integer" />
+        </EntityType>-->
+        <EntityType Name="BaseParam">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BeastTribe">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+          <Property Name="ReputationValue_ja" Type="varchar" MaxLength="255" />
+          <Property Name="ReputationValue_en" Type="varchar" MaxLength="255" />
+          <Property Name="ReputationValue_fr" Type="varchar" MaxLength="255" />
+          <Property Name="ReputationValue_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BNpcName">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+          <Property Name="area" Type="varchar" MaxLength="255" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="BNpcName_PlaceName">
+          <Key>
+            <PropertyRef Name="BNpcName_Key" />
+            <PropertyRef Name="PlaceName_Key" />
+            <PropertyRef Name="region" />
+          </Key>
+          <Property Name="BNpcName_Key" Type="integer" Nullable="false" />
+          <Property Name="PlaceName_Key" Type="integer" Nullable="false" />
+          <Property Name="region" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassJob">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Label" Type="varchar" MaxLength="255" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="Abbreviation_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Abbreviation_en" Type="varchar" MaxLength="255" />
+          <Property Name="Abbreviation_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Abbreviation_de" Type="varchar" MaxLength="255" />
+          <Property Name="IsJob" Type="integer" />
+          <Property Name="UIPriority" Type="integer" />
+          <Property Name="filebase" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ClassJob_ClassJobCategory">
+          <Key>
+            <PropertyRef Name="ClassJob_Key" />
+            <PropertyRef Name="ClassJobCategory_Key" />
+          </Key>
+          <Property Name="ClassJob_Key" Type="integer" Nullable="false" />
+          <Property Name="ClassJobCategory_Key" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassJobCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="classjob" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Colosseum">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="WinExp" Type="integer" />
+          <Property Name="WinPoint" Type="integer" />
+          <Property Name="WinToken" Type="integer" />
+          <Property Name="LosePoint" Type="integer" />
+          <Property Name="LoseToken" Type="integer" />
+        </EntityType>
+        <EntityType Name="ContentRoulette">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CraftType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="ClassJob" Type="integer" />
+        </EntityType>
+        <EntityType Name="Emote">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Icon" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ENpcResident">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+          <Property Name="area" Type="varchar" MaxLength="255" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="has_shop" Type="bit" />
+          <Property Name="has_quest" Type="bit" />
+          <Property Name="has_condition_shop" Type="bit" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="ENpcResident_PlaceName">
+          <Key>
+            <PropertyRef Name="ENpcResident_Key" />
+            <PropertyRef Name="PlaceName_Key" />
+            <PropertyRef Name="region" />
+          </Key>
+          <Property Name="ENpcResident_Key" Type="integer" Nullable="false" />
+          <Property Name="PlaceName_Key" Type="integer" Nullable="false" />
+          <Property Name="region" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENpcResident_Quest">
+          <Key>
+            <PropertyRef Name="ENpcResident_Key" />
+            <PropertyRef Name="Quest_Key" />
+          </Key>
+          <Property Name="ENpcResident_Key" Type="integer" Nullable="false" />
+          <Property Name="Quest_Key" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FCHierarchy">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FCRank">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="CurrentPoint" Type="integer" />
+          <Property Name="NextPoint" Type="integer" />
+        </EntityType>
+        <EntityType Name="FCReputation">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Color" Type="integer" />
+          <Property Name="CurrentPoint" Type="integer" />
+          <Property Name="NextPoint" Type="integer" />
+          <Property Name="Text_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Text_en" Type="varchar" MaxLength="255" />
+          <Property Name="Text_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Text_de" Type="varchar" MaxLength="255" />
+          <Property Name="data" Type="blob" />
+        </EntityType>
+        <EntityType Name="Frontline01">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="WinPvPExp" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="WinPvPToken" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Gathering">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Item" Type="integer" />
+          <Property Name="GatheringType" Type="integer" />
+          <Property Name="Level" Type="integer" />
+          <Property Name="levelView" Type="integer" />
+          <Property Name="levelDiff" Type="integer" />
+          <Property Name="is_hidden" Type="bit" />
+          <Property Name="data" Type="blob" />
+          <Property Name="GatheringNotebookList" Type="integer" />
+          <Property Name="GatheringItemNo" Type="integer" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="GatheringType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Text_de" Type="varchar" MaxLength="255" />
+          <Property Name="Text_en" Type="varchar" MaxLength="255" />
+          <Property Name="Text_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Text_fr" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankGridaniaFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankGridaniaMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankLimsaFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankLimsaMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankUldahFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GCRankUldahMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GeneralAction">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Icon" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GrandCompany">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GuardianDeity">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GuildOrder">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Exp00" Type="integer" />
+          <Property Name="Exp01" Type="integer" />
+          <Property Name="Gil00" Type="integer" />
+          <Property Name="Gil01" Type="integer" />
+        </EntityType>
+        <EntityType Name="InstanceContent">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Type" Type="integer" />
+          <Property Name="Sortkey" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="Description_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Description_en" Type="varchar" MaxLength="255" />
+          <Property Name="Description_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Description_de" Type="varchar" MaxLength="255" />
+          <Property Name="LevelMin" Type="integer" />
+          <Property Name="LevelMax" Type="integer" />
+          <Property Name="Time" Type="integer" />
+          <Property Name="Halfway" Type="bit" />
+          <Property Name="RandomContentType" Type="integer" />
+          <Property Name="Alliance" Type="bit" />
+          <Property Name="FinderPartyCondition" Type="integer" />
+          <Property Name="PartyMemberCount" Type="integer" />
+          <Property Name="TankCount" Type="integer" />
+          <Property Name="HealerCount" Type="integer" />
+          <Property Name="AttackerCount" Type="integer" />
+          <Property Name="RangeCount" Type="integer" />
+          <Property Name="DifferentiateDPS" Type="bit" />
+          <Property Name="PartyCount" Type="integer" />
+          <Property Name="FreeRole" Type="bit" />
+          <Property Name="ItemLevel" Type="integer" />
+          <Property Name="ItemLevelMax" Type="integer" />
+          <Property Name="Colosseum" Type="integer" />
+          <Property Name="Area" Type="integer" />
+          <Property Name="ForceCount" Type="integer" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="is_koeru_usually" Type="bit" />
+          <Property Name="is_koeru_annihilation" Type="bit" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="InstanceContentType">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="integer" Nullable="false" />
+          <Property Name="Sortkey" Type="integer" />
+          <Property Name="ContentType" Type="integer" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Category" Type="integer" />
+          <Property Name="UICategory" Type="integer" />
+          <Property Name="UIName_ja" Type="varchar" MaxLength="255" />
+          <Property Name="UIName_en" Type="varchar" MaxLength="255" />
+          <Property Name="UIName_fr" Type="varchar" MaxLength="255" />
+          <Property Name="UIName_de" Type="varchar" MaxLength="255" />
+          <Property Name="Help_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Help_en" Type="varchar" MaxLength="255" />
+          <Property Name="Help_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Help_de" Type="varchar" MaxLength="255" />
+          <Property Name="Level" Type="integer" />
+          <Property Name="EquipLevel" Type="integer" />
+          <Property Name="Rarity" Type="integer" />
+          <Property Name="HQ" Type="bit" />
+          <Property Name="SpecialBonus" Type="integer" />
+          <Property Name="Series" Type="integer" />
+          <Property Name="Slot" Type="integer" />
+          <Property Name="Damage" Type="integer" />
+          <Property Name="Damage_hq" Type="integer" />
+          <Property Name="MagicDamage" Type="integer" />
+          <Property Name="MagicDamage_hq" Type="integer" />
+          <Property Name="Defense" Type="integer" />
+          <Property Name="Defense_hq" Type="integer" />
+          <Property Name="MagicDefense" Type="integer" />
+          <Property Name="MagicDefense_hq" Type="integer" />
+          <Property Name="ShieldRate" Type="integer" />
+          <Property Name="ShieldRate_hq" Type="integer" />
+          <Property Name="ShieldBlockRate" Type="integer" />
+          <Property Name="ShieldBlockRate_hq" Type="integer" />
+          <Property Name="AttackInterval" Type="integer" />
+          <Property Name="AttackInterval_hq" Type="integer" />
+          <Property Name="AutoAttack" Type="integer" />
+          <Property Name="AutoAttack_hq" Type="integer" />
+          <Property Name="Price" Type="integer" />
+          <Property Name="PriceMin" Type="integer" />
+          <Property Name="MirageItem" Type="integer" />
+          <Property Name="icon" Type="varchar" MaxLength="255" />
+          <Property Name="icon_hq" Type="varchar" MaxLength="255" />
+          <Property Name="classjob" Type="varchar" MaxLength="255" />
+          <Property Name="Salvage" Type="integer" />
+          <Property Name="data" Type="blob" />
+          <Property Name="legacy" Type="bit" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="SortId" Type="integer" />
+        </EntityType>
+        <EntityType Name="Item_ClassJob">
+          <Key>
+            <PropertyRef Name="Item_Key" />
+            <PropertyRef Name="ClassJob_Key" />
+          </Key>
+          <Property Name="Item_Key" Type="integer" Nullable="false" />
+          <Property Name="ClassJob_Key" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ItemSeries">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ItemSpecialBonus">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ItemUICategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Kind" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="Priority" Type="integer" />
+        </EntityType>
+        <EntityType Name="ItemUIKind">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="JournalCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="label" Type="varchar" MaxLength="255" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="JournalGenre">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Category" Type="integer" />
+          <Property Name="label" Type="varchar" MaxLength="255" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LodestoneSystemDefine">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="DefineName" Type="varchar" MaxLength="255" />
+          <Property Name="DefineValue" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NotebookDivision">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PlaceName">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="region" Type="integer" />
+          <Property Name="SGL_ja" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_en" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_fr" Type="varchar" MaxLength="255" />
+          <Property Name="SGL_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Genre" Type="integer" />
+          <Property Name="Area" Type="integer" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="CompanyPointType" Type="integer" />
+          <Property Name="CompanyPointNum" Type="integer" />
+          <Property Name="Gil" Type="integer" />
+          <Property Name="Client" Type="integer" />
+          <Property Name="ExpBonus" Type="integer" />
+          <Property Name="Header" Type="integer" />
+          <Property Name="ClassLevel" Type="integer" />
+          <Property Name="ClassLevel2" Type="integer" />
+          <Property Name="ClassJob" Type="integer" />
+          <Property Name="ClassJob2" Type="integer" />
+          <Property Name="QuestLevelOffset" Type="integer" />
+          <Property Name="Sort" Type="integer" />
+          <Property Name="BeastTribe" Type="integer" />
+          <Property Name="BeastReputationValueNum" Type="integer" />
+          <Property Name="WebType" Type="integer" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Quest_ClassJob">
+          <Key>
+            <PropertyRef Name="Quest_Key" />
+            <PropertyRef Name="ClassJob_Key" />
+          </Key>
+          <Property Name="Quest_Key" Type="integer" Nullable="false" />
+          <Property Name="ClassJob_Key" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestWebEx">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="QuestWebType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Text_de" Type="varchar" MaxLength="255" />
+          <Property Name="Text_en" Type="varchar" MaxLength="255" />
+          <Property Name="Text_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Text_fr" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="NameFemale_ja" Type="varchar" MaxLength="255" />
+          <Property Name="NameFemale_en" Type="varchar" MaxLength="255" />
+          <Property Name="NameFemale_fr" Type="varchar" MaxLength="255" />
+          <Property Name="NameFemale_de" Type="varchar" MaxLength="255" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="CanAutoCraft" Type="integer" />
+          <Property Name="CanHq" Type="integer" />
+          <Property Name="CraftItemId" Type="integer" />
+          <Property Name="CraftNum" Type="integer" />
+          <Property Name="CraftType" Type="integer" />
+          <Property Name="Level" Type="integer" />
+          <Property Name="levelView" Type="integer" />
+          <Property Name="levelDiff" Type="integer" />
+          <Property Name="Element" Type="integer" />
+          <Property Name="NeedCraftmanship" Type="integer" />
+          <Property Name="NeedControl" Type="integer" />
+          <Property Name="Number" Type="integer" />
+          <Property Name="NeedStatus" Type="integer" />
+          <Property Name="NeedEquipItem" Type="integer" />
+          <Property Name="data" Type="blob" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_ja" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_en" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_fr" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Index_de" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="RecipeElement">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+          <Property Name="BeastTribe" Type="integer" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Female_de" Type="varchar" MaxLength="255" />
+          <Property Name="Female_en" Type="varchar" MaxLength="255" />
+          <Property Name="Female_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Female_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Front_de" Type="bit" />
+          <Property Name="Front_en" Type="bit" />
+          <Property Name="Front_fr" Type="bit" />
+          <Property Name="Front_ja" Type="bit" />
+          <Property Name="Male_de" Type="varchar" MaxLength="255" />
+          <Property Name="Male_en" Type="varchar" MaxLength="255" />
+          <Property Name="Male_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Male_ja" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Tomestones">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="CatalogId" Type="integer" />
+          <Property Name="path" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="integer" Nullable="false" />
+          <Property Name="Name_ja" Type="varchar" MaxLength="255" />
+          <Property Name="Name_en" Type="varchar" MaxLength="255" />
+          <Property Name="Name_fr" Type="varchar" MaxLength="255" />
+          <Property Name="Name_de" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="LibraModelStoreContainer">
+          <EntitySet Name="Achievement" EntityType="Self.Achievement" store:Type="Tables" />
+          <EntitySet Name="AchievementCategory" EntityType="Self.AchievementCategory" store:Type="Tables" />
+          <EntitySet Name="AchievementKind" EntityType="Self.AchievementKind" store:Type="Tables" />
+          <EntitySet Name="Action" EntityType="Self.Action" store:Type="Tables" />
+          <EntitySet Name="BaseParam" EntityType="Self.BaseParam" store:Type="Tables" />
+          <EntitySet Name="BeastTribe" EntityType="Self.BeastTribe" store:Type="Tables" />
+          <EntitySet Name="BNpcName" EntityType="Self.BNpcName" store:Type="Tables" />
+          <EntitySet Name="BNpcName_PlaceName" EntityType="Self.BNpcName_PlaceName" store:Type="Tables" />
+          <EntitySet Name="ClassJob" EntityType="Self.ClassJob" store:Type="Tables" />
+          <EntitySet Name="ClassJob_ClassJobCategory" EntityType="Self.ClassJob_ClassJobCategory" store:Type="Tables" />
+          <EntitySet Name="ClassJobCategory" EntityType="Self.ClassJobCategory" store:Type="Tables" />
+          <EntitySet Name="Colosseum" EntityType="Self.Colosseum" store:Type="Tables" />
+          <EntitySet Name="ContentRoulette" EntityType="Self.ContentRoulette" store:Type="Tables" />
+          <EntitySet Name="ContentType" EntityType="Self.ContentType" store:Type="Tables" />
+          <EntitySet Name="CraftType" EntityType="Self.CraftType" store:Type="Tables" />
+          <EntitySet Name="Emote" EntityType="Self.Emote" store:Type="Tables" />
+          <EntitySet Name="ENpcResident" EntityType="Self.ENpcResident" store:Type="Tables" />
+          <EntitySet Name="ENpcResident_PlaceName" EntityType="Self.ENpcResident_PlaceName" store:Type="Tables" />
+          <EntitySet Name="ENpcResident_Quest" EntityType="Self.ENpcResident_Quest" store:Type="Tables" />
+          <EntitySet Name="FCHierarchy" EntityType="Self.FCHierarchy" store:Type="Tables" />
+          <EntitySet Name="FCRank" EntityType="Self.FCRank" store:Type="Tables" />
+          <EntitySet Name="FCReputation" EntityType="Self.FCReputation" store:Type="Tables" />
+          <EntitySet Name="Frontline01" EntityType="Self.Frontline01" store:Type="Tables" />
+          <EntitySet Name="Gathering" EntityType="Self.Gathering" store:Type="Tables" />
+          <EntitySet Name="GatheringType" EntityType="Self.GatheringType" store:Type="Tables" />
+          <EntitySet Name="GCRankGridaniaFemaleText" EntityType="Self.GCRankGridaniaFemaleText" store:Type="Tables" />
+          <EntitySet Name="GCRankGridaniaMaleText" EntityType="Self.GCRankGridaniaMaleText" store:Type="Tables" />
+          <EntitySet Name="GCRankLimsaFemaleText" EntityType="Self.GCRankLimsaFemaleText" store:Type="Tables" />
+          <EntitySet Name="GCRankLimsaMaleText" EntityType="Self.GCRankLimsaMaleText" store:Type="Tables" />
+          <EntitySet Name="GCRankUldahFemaleText" EntityType="Self.GCRankUldahFemaleText" store:Type="Tables" />
+          <EntitySet Name="GCRankUldahMaleText" EntityType="Self.GCRankUldahMaleText" store:Type="Tables" />
+          <EntitySet Name="GeneralAction" EntityType="Self.GeneralAction" store:Type="Tables" />
+          <EntitySet Name="GrandCompany" EntityType="Self.GrandCompany" store:Type="Tables" />
+          <EntitySet Name="GuardianDeity" EntityType="Self.GuardianDeity" store:Type="Tables" />
+          <EntitySet Name="GuildOrder" EntityType="Self.GuildOrder" store:Type="Tables" />
+          <EntitySet Name="InstanceContent" EntityType="Self.InstanceContent" store:Type="Tables" />
+          <EntitySet Name="InstanceContentType" EntityType="Self.InstanceContentType" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" store:Type="Tables" />
+          <EntitySet Name="Item_ClassJob" EntityType="Self.Item_ClassJob" store:Type="Tables" />
+          <EntitySet Name="ItemCategory" EntityType="Self.ItemCategory" store:Type="Tables" />
+          <EntitySet Name="ItemSeries" EntityType="Self.ItemSeries" store:Type="Tables" />
+          <EntitySet Name="ItemSpecialBonus" EntityType="Self.ItemSpecialBonus" store:Type="Tables" />
+          <EntitySet Name="ItemUICategory" EntityType="Self.ItemUICategory" store:Type="Tables" />
+          <EntitySet Name="ItemUIKind" EntityType="Self.ItemUIKind" store:Type="Tables" />
+          <EntitySet Name="JournalCategory" EntityType="Self.JournalCategory" store:Type="Tables" />
+          <EntitySet Name="JournalGenre" EntityType="Self.JournalGenre" store:Type="Tables" />
+          <EntitySet Name="LodestoneSystemDefine" EntityType="Self.LodestoneSystemDefine" store:Type="Tables" />
+          <EntitySet Name="NotebookDivision" EntityType="Self.NotebookDivision" store:Type="Tables" />
+          <EntitySet Name="PlaceName" EntityType="Self.PlaceName" store:Type="Tables" />
+          <EntitySet Name="Quest" EntityType="Self.Quest" store:Type="Tables" />
+          <EntitySet Name="Quest_ClassJob" EntityType="Self.Quest_ClassJob" store:Type="Tables" />
+          <EntitySet Name="QuestWebEx" EntityType="Self.QuestWebEx" store:Type="Tables" />
+          <EntitySet Name="QuestWebType" EntityType="Self.QuestWebType" store:Type="Tables" />
+          <EntitySet Name="Race" EntityType="Self.Race" store:Type="Tables" />
+          <EntitySet Name="Recipe" EntityType="Self.Recipe" store:Type="Tables" />
+          <EntitySet Name="RecipeElement" EntityType="Self.RecipeElement" store:Type="Tables" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" store:Type="Tables" />
+          <EntitySet Name="Tomestones" EntityType="Self.Tomestones" store:Type="Tables" />
+          <EntitySet Name="Town" EntityType="Self.Town" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Achievement">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Category" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Point" Type="Int64" />
+          <Property Name="Item" Type="Int64" />
+          <Property Name="Icon" Type="Int64" />
+          <Property Name="Title" Type="Int64" />
+          <Property Name="Priority" Type="Int64" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AchievementCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Kind" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AchievementKind">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Icon" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HelpWeb_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HelpWeb_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HelpWeb_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HelpWeb_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BaseParam">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BeastTribe">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReputationValue_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReputationValue_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReputationValue_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReputationValue_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BNpcName">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BNpcName_PlaceName">
+          <Key>
+            <PropertyRef Name="BNpcName_Key" />
+            <PropertyRef Name="PlaceName_Key" />
+            <PropertyRef Name="region" />
+          </Key>
+          <Property Name="BNpcName_Key" Type="Int64" Nullable="false" />
+          <Property Name="PlaceName_Key" Type="Int64" Nullable="false" />
+          <Property Name="region" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassJob">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Label" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Abbreviation_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Abbreviation_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Abbreviation_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Abbreviation_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsJob" Type="Int64" />
+          <Property Name="UIPriority" Type="Int64" />
+          <Property Name="filebase" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassJob_ClassJobCategory">
+          <Key>
+            <PropertyRef Name="ClassJob_Key" />
+            <PropertyRef Name="ClassJobCategory_Key" />
+          </Key>
+          <Property Name="ClassJob_Key" Type="Int64" Nullable="false" />
+          <Property Name="ClassJobCategory_Key" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClassJobCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="classjob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Colosseum">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="WinExp" Type="Int64" />
+          <Property Name="WinPoint" Type="Int64" />
+          <Property Name="WinToken" Type="Int64" />
+          <Property Name="LosePoint" Type="Int64" />
+          <Property Name="LoseToken" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ContentRoulette">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CraftType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="ClassJob" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Emote">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Icon" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ENpcResident">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="has_shop" Type="Boolean" />
+          <Property Name="has_quest" Type="Boolean" />
+          <Property Name="has_condition_shop" Type="Boolean" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ENpcResident_PlaceName">
+          <Key>
+            <PropertyRef Name="ENpcResident_Key" />
+            <PropertyRef Name="PlaceName_Key" />
+            <PropertyRef Name="region" />
+          </Key>
+          <Property Name="ENpcResident_Key" Type="Int64" Nullable="false" />
+          <Property Name="PlaceName_Key" Type="Int64" Nullable="false" />
+          <Property Name="region" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENpcResident_Quest">
+          <Key>
+            <PropertyRef Name="ENpcResident_Key" />
+            <PropertyRef Name="Quest_Key" />
+          </Key>
+          <Property Name="ENpcResident_Key" Type="Int64" Nullable="false" />
+          <Property Name="Quest_Key" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FCHierarchy">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FCRank">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="CurrentPoint" Type="Int64" />
+          <Property Name="NextPoint" Type="Int64" />
+        </EntityType>
+        <EntityType Name="FCReputation">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Color" Type="Int64" />
+          <Property Name="CurrentPoint" Type="Int64" />
+          <Property Name="NextPoint" Type="Int64" />
+          <Property Name="Text_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Frontline01">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="WinPvPExp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="WinPvPToken" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gathering">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Item" Type="Int64" />
+          <Property Name="GatheringType" Type="Int64" />
+          <Property Name="Level" Type="Int64" />
+          <Property Name="levelView" Type="Int64" />
+          <Property Name="levelDiff" Type="Int64" />
+          <Property Name="is_hidden" Type="Boolean" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="GatheringNotebookList" Type="Int64" />
+          <Property Name="GatheringItemNo" Type="Int64" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GatheringType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Text_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankGridaniaFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankGridaniaMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankLimsaFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankLimsaMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankUldahFemaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GCRankUldahMaleText">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GeneralAction">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Icon" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GrandCompany">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GuardianDeity">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GuildOrder">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Exp00" Type="Int64" />
+          <Property Name="Exp01" Type="Int64" />
+          <Property Name="Gil00" Type="Int64" />
+          <Property Name="Gil01" Type="Int64" />
+        </EntityType>
+        <EntityType Name="InstanceContent">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="Int64" />
+          <Property Name="Sortkey" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LevelMin" Type="Int64" />
+          <Property Name="LevelMax" Type="Int64" />
+          <Property Name="Time" Type="Int64" />
+          <Property Name="Halfway" Type="Boolean" />
+          <Property Name="RandomContentType" Type="Int64" />
+          <Property Name="Alliance" Type="Boolean" />
+          <Property Name="FinderPartyCondition" Type="Int64" />
+          <Property Name="PartyMemberCount" Type="Int64" />
+          <Property Name="TankCount" Type="Int64" />
+          <Property Name="HealerCount" Type="Int64" />
+          <Property Name="AttackerCount" Type="Int64" />
+          <Property Name="RangeCount" Type="Int64" />
+          <Property Name="DifferentiateDPS" Type="Boolean" />
+          <Property Name="PartyCount" Type="Int64" />
+          <Property Name="FreeRole" Type="Boolean" />
+          <Property Name="ItemLevel" Type="Int64" />
+          <Property Name="ItemLevelMax" Type="Int64" />
+          <Property Name="Colosseum" Type="Int64" />
+          <Property Name="Area" Type="Int64" />
+          <Property Name="ForceCount" Type="Int64" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="is_koeru_usually" Type="Boolean" />
+          <Property Name="is_koeru_annihilation" Type="Boolean" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InstanceContentType">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="Int64" Nullable="false" />
+          <Property Name="Sortkey" Type="Int64" />
+          <Property Name="ContentType" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Category" Type="Int64" />
+          <Property Name="UICategory" Type="Int64" />
+          <Property Name="UIName_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UIName_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UIName_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UIName_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Help_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="Int64" />
+          <Property Name="EquipLevel" Type="Int64" />
+          <Property Name="Rarity" Type="Int64" />
+          <Property Name="HQ" Type="Boolean" />
+          <Property Name="SpecialBonus" Type="Int64" />
+          <Property Name="Series" Type="Int64" />
+          <Property Name="Slot" Type="Int64" />
+          <Property Name="Damage" Type="Int64" />
+          <Property Name="Damage_hq" Type="Int64" />
+          <Property Name="MagicDamage" Type="Int64" />
+          <Property Name="MagicDamage_hq" Type="Int64" />
+          <Property Name="Defense" Type="Int64" />
+          <Property Name="Defense_hq" Type="Int64" />
+          <Property Name="MagicDefense" Type="Int64" />
+          <Property Name="MagicDefense_hq" Type="Int64" />
+          <Property Name="ShieldRate" Type="Int64" />
+          <Property Name="ShieldRate_hq" Type="Int64" />
+          <Property Name="ShieldBlockRate" Type="Int64" />
+          <Property Name="ShieldBlockRate_hq" Type="Int64" />
+          <Property Name="Price" Type="Int64" />
+          <Property Name="PriceMin" Type="Int64" />
+          <Property Name="MirageItem" Type="Int64" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="icon_hq" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="classjob" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Salvage" Type="Int64" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="legacy" Type="Boolean" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="SortId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Item_ClassJob">
+          <Key>
+            <PropertyRef Name="Item_Key" />
+            <PropertyRef Name="ClassJob_Key" />
+          </Key>
+          <Property Name="Item_Key" Type="Int64" Nullable="false" />
+          <Property Name="ClassJob_Key" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemSery">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemSpecialBonu">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemUICategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Kind" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Priority" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ItemUIKind">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JournalCategory">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="label" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JournalGenre">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Category" Type="Int64" />
+          <Property Name="label" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LodestoneSystemDefine">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="DefineName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DefineValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NotebookDivision">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PlaceName">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="region" Type="Int64" />
+          <Property Name="SGL_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SGL_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Genre" Type="Int64" />
+          <Property Name="Area" Type="Int64" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPointType" Type="Int64" />
+          <Property Name="CompanyPointNum" Type="Int64" />
+          <Property Name="Gil" Type="Int64" />
+          <Property Name="Client" Type="Int64" />
+          <Property Name="ExpBonus" Type="Int64" />
+          <Property Name="Header" Type="Int64" />
+          <Property Name="ClassLevel" Type="Int64" />
+          <Property Name="ClassLevel2" Type="Int64" />
+          <Property Name="ClassJob" Type="Int64" />
+          <Property Name="ClassJob2" Type="Int64" />
+          <Property Name="QuestLevelOffset" Type="Int64" />
+          <Property Name="Sort" Type="Int64" />
+          <Property Name="BeastTribe" Type="Int64" />
+          <Property Name="BeastReputationValueNum" Type="Int64" />
+          <Property Name="WebType" Type="Int64" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Quest_ClassJob">
+          <Key>
+            <PropertyRef Name="Quest_Key" />
+            <PropertyRef Name="ClassJob_Key" />
+          </Key>
+          <Property Name="Quest_Key" Type="Int64" Nullable="false" />
+          <Property Name="ClassJob_Key" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestWebEx">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="QuestWebType">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Text_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Text_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="NameFemale_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NameFemale_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NameFemale_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NameFemale_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="CanAutoCraft" Type="Int64" />
+          <Property Name="CanHq" Type="Int64" />
+          <Property Name="CraftItemId" Type="Int64" />
+          <Property Name="CraftNum" Type="Int64" />
+          <Property Name="CraftType" Type="Int64" />
+          <Property Name="Level" Type="Int64" />
+          <Property Name="levelView" Type="Int64" />
+          <Property Name="levelDiff" Type="Int64" />
+          <Property Name="Element" Type="Int64" />
+          <Property Name="NeedCraftmanship" Type="Int64" />
+          <Property Name="NeedControl" Type="Int64" />
+          <Property Name="Number" Type="Int64" />
+          <Property Name="NeedStatus" Type="Int64" />
+          <Property Name="NeedEquipItem" Type="Int64" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_ja" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_en" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_fr" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Index_de" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RecipeElement">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BeastTribe" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Female_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Female_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Female_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Female_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Front_de" Type="Boolean" />
+          <Property Name="Front_en" Type="Boolean" />
+          <Property Name="Front_fr" Type="Boolean" />
+          <Property Name="Front_ja" Type="Boolean" />
+          <Property Name="Male_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Male_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Male_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Male_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tomestone">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="CatalogId" Type="Int64" />
+          <Property Name="path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int64" Nullable="false" />
+          <Property Name="Name_ja" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_fr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name_de" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Achievements" EntityType="Self.Achievement" />
+          <EntitySet Name="AchievementCategories" EntityType="Self.AchievementCategory" />
+          <EntitySet Name="AchievementKinds" EntityType="Self.AchievementKind" />
+          <EntitySet Name="Actions" EntityType="Self.Action" />
+          <EntitySet Name="BaseParams" EntityType="Self.BaseParam" />
+          <EntitySet Name="BeastTribes" EntityType="Self.BeastTribe" />
+          <EntitySet Name="BNpcNames" EntityType="Self.BNpcName" />
+          <EntitySet Name="BNpcName_PlaceName" EntityType="Self.BNpcName_PlaceName" />
+          <EntitySet Name="ClassJobs" EntityType="Self.ClassJob" />
+          <EntitySet Name="ClassJob_ClassJobCategory" EntityType="Self.ClassJob_ClassJobCategory" />
+          <EntitySet Name="ClassJobCategories" EntityType="Self.ClassJobCategory" />
+          <EntitySet Name="Colosseums" EntityType="Self.Colosseum" />
+          <EntitySet Name="ContentRoulettes" EntityType="Self.ContentRoulette" />
+          <EntitySet Name="ContentTypes" EntityType="Self.ContentType" />
+          <EntitySet Name="CraftTypes" EntityType="Self.CraftType" />
+          <EntitySet Name="Emotes" EntityType="Self.Emote" />
+          <EntitySet Name="ENpcResidents" EntityType="Self.ENpcResident" />
+          <EntitySet Name="ENpcResident_PlaceName" EntityType="Self.ENpcResident_PlaceName" />
+          <EntitySet Name="ENpcResident_Quest" EntityType="Self.ENpcResident_Quest" />
+          <EntitySet Name="FCHierarchies" EntityType="Self.FCHierarchy" />
+          <EntitySet Name="FCRanks" EntityType="Self.FCRank" />
+          <EntitySet Name="FCReputations" EntityType="Self.FCReputation" />
+          <EntitySet Name="Frontline01" EntityType="Self.Frontline01" />
+          <EntitySet Name="Gatherings" EntityType="Self.Gathering" />
+          <EntitySet Name="GatheringTypes" EntityType="Self.GatheringType" />
+          <EntitySet Name="GCRankGridaniaFemaleTexts" EntityType="Self.GCRankGridaniaFemaleText" />
+          <EntitySet Name="GCRankGridaniaMaleTexts" EntityType="Self.GCRankGridaniaMaleText" />
+          <EntitySet Name="GCRankLimsaFemaleTexts" EntityType="Self.GCRankLimsaFemaleText" />
+          <EntitySet Name="GCRankLimsaMaleTexts" EntityType="Self.GCRankLimsaMaleText" />
+          <EntitySet Name="GCRankUldahFemaleTexts" EntityType="Self.GCRankUldahFemaleText" />
+          <EntitySet Name="GCRankUldahMaleTexts" EntityType="Self.GCRankUldahMaleText" />
+          <EntitySet Name="GeneralActions" EntityType="Self.GeneralAction" />
+          <EntitySet Name="GrandCompanies" EntityType="Self.GrandCompany" />
+          <EntitySet Name="GuardianDeities" EntityType="Self.GuardianDeity" />
+          <EntitySet Name="GuildOrders" EntityType="Self.GuildOrder" />
+          <EntitySet Name="InstanceContents" EntityType="Self.InstanceContent" />
+          <EntitySet Name="InstanceContentTypes" EntityType="Self.InstanceContentType" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Item_ClassJob" EntityType="Self.Item_ClassJob" />
+          <EntitySet Name="ItemCategories" EntityType="Self.ItemCategory" />
+          <EntitySet Name="ItemSeries" EntityType="Self.ItemSery" />
+          <EntitySet Name="ItemSpecialBonus" EntityType="Self.ItemSpecialBonu" />
+          <EntitySet Name="ItemUICategories" EntityType="Self.ItemUICategory" />
+          <EntitySet Name="ItemUIKinds" EntityType="Self.ItemUIKind" />
+          <EntitySet Name="JournalCategories" EntityType="Self.JournalCategory" />
+          <EntitySet Name="JournalGenres" EntityType="Self.JournalGenre" />
+          <EntitySet Name="LodestoneSystemDefines" EntityType="Self.LodestoneSystemDefine" />
+          <EntitySet Name="NotebookDivisions" EntityType="Self.NotebookDivision" />
+          <EntitySet Name="PlaceNames" EntityType="Self.PlaceName" />
+          <EntitySet Name="Quests" EntityType="Self.Quest" />
+          <EntitySet Name="Quest_ClassJob" EntityType="Self.Quest_ClassJob" />
+          <EntitySet Name="QuestWebExes" EntityType="Self.QuestWebEx" />
+          <EntitySet Name="QuestWebTypes" EntityType="Self.QuestWebType" />
+          <EntitySet Name="Races" EntityType="Self.Race" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipe" />
+          <EntitySet Name="RecipeElements" EntityType="Self.RecipeElement" />
+          <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <EntitySet Name="Tomestones" EntityType="Self.Tomestone" />
+          <EntitySet Name="Towns" EntityType="Self.Town" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Achievements">
+            <EntityTypeMapping TypeName="LibraModel.Achievement">
+              <MappingFragment StoreEntitySet="Achievement">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="Help_ja" ColumnName="Help_ja" />
+                <ScalarProperty Name="Help_en" ColumnName="Help_en" />
+                <ScalarProperty Name="Help_fr" ColumnName="Help_fr" />
+                <ScalarProperty Name="Help_de" ColumnName="Help_de" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AchievementCategories">
+            <EntityTypeMapping TypeName="LibraModel.AchievementCategory">
+              <MappingFragment StoreEntitySet="AchievementCategory">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AchievementKinds">
+            <EntityTypeMapping TypeName="LibraModel.AchievementKind">
+              <MappingFragment StoreEntitySet="AchievementKind">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="LibraModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="HelpWeb_ja" ColumnName="HelpWeb_ja" />
+                <ScalarProperty Name="HelpWeb_en" ColumnName="HelpWeb_en" />
+                <ScalarProperty Name="HelpWeb_fr" ColumnName="HelpWeb_fr" />
+                <ScalarProperty Name="HelpWeb_de" ColumnName="HelpWeb_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseParams">
+            <EntityTypeMapping TypeName="LibraModel.BaseParam">
+              <MappingFragment StoreEntitySet="BaseParam">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeastTribes">
+            <EntityTypeMapping TypeName="LibraModel.BeastTribe">
+              <MappingFragment StoreEntitySet="BeastTribe">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+                <ScalarProperty Name="ReputationValue_ja" ColumnName="ReputationValue_ja" />
+                <ScalarProperty Name="ReputationValue_en" ColumnName="ReputationValue_en" />
+                <ScalarProperty Name="ReputationValue_fr" ColumnName="ReputationValue_fr" />
+                <ScalarProperty Name="ReputationValue_de" ColumnName="ReputationValue_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BNpcNames">
+            <EntityTypeMapping TypeName="LibraModel.BNpcName">
+              <MappingFragment StoreEntitySet="BNpcName">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BNpcName_PlaceName">
+            <EntityTypeMapping TypeName="LibraModel.BNpcName_PlaceName">
+              <MappingFragment StoreEntitySet="BNpcName_PlaceName">
+                <ScalarProperty Name="BNpcName_Key" ColumnName="BNpcName_Key" />
+                <ScalarProperty Name="PlaceName_Key" ColumnName="PlaceName_Key" />
+                <ScalarProperty Name="region" ColumnName="region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassJobs">
+            <EntityTypeMapping TypeName="LibraModel.ClassJob">
+              <MappingFragment StoreEntitySet="ClassJob">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="Abbreviation_ja" ColumnName="Abbreviation_ja" />
+                <ScalarProperty Name="Abbreviation_en" ColumnName="Abbreviation_en" />
+                <ScalarProperty Name="Abbreviation_fr" ColumnName="Abbreviation_fr" />
+                <ScalarProperty Name="Abbreviation_de" ColumnName="Abbreviation_de" />
+                <ScalarProperty Name="IsJob" ColumnName="IsJob" />
+                <ScalarProperty Name="UIPriority" ColumnName="UIPriority" />
+                <ScalarProperty Name="filebase" ColumnName="filebase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassJob_ClassJobCategory">
+            <EntityTypeMapping TypeName="LibraModel.ClassJob_ClassJobCategory">
+              <MappingFragment StoreEntitySet="ClassJob_ClassJobCategory">
+                <ScalarProperty Name="ClassJob_Key" ColumnName="ClassJob_Key" />
+                <ScalarProperty Name="ClassJobCategory_Key" ColumnName="ClassJobCategory_Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassJobCategories">
+            <EntityTypeMapping TypeName="LibraModel.ClassJobCategory">
+              <MappingFragment StoreEntitySet="ClassJobCategory">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="classjob" ColumnName="classjob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colosseums">
+            <EntityTypeMapping TypeName="LibraModel.Colosseum">
+              <MappingFragment StoreEntitySet="Colosseum">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="WinExp" ColumnName="WinExp" />
+                <ScalarProperty Name="WinPoint" ColumnName="WinPoint" />
+                <ScalarProperty Name="WinToken" ColumnName="WinToken" />
+                <ScalarProperty Name="LosePoint" ColumnName="LosePoint" />
+                <ScalarProperty Name="LoseToken" ColumnName="LoseToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentRoulettes">
+            <EntityTypeMapping TypeName="LibraModel.ContentRoulette">
+              <MappingFragment StoreEntitySet="ContentRoulette">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentTypes">
+            <EntityTypeMapping TypeName="LibraModel.ContentType">
+              <MappingFragment StoreEntitySet="ContentType">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CraftTypes">
+            <EntityTypeMapping TypeName="LibraModel.CraftType">
+              <MappingFragment StoreEntitySet="CraftType">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ClassJob" ColumnName="ClassJob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emotes">
+            <EntityTypeMapping TypeName="LibraModel.Emote">
+              <MappingFragment StoreEntitySet="Emote">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENpcResidents">
+            <EntityTypeMapping TypeName="LibraModel.ENpcResident">
+              <MappingFragment StoreEntitySet="ENpcResident">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="has_shop" ColumnName="has_shop" />
+                <ScalarProperty Name="has_quest" ColumnName="has_quest" />
+                <ScalarProperty Name="has_condition_shop" ColumnName="has_condition_shop" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENpcResident_PlaceName">
+            <EntityTypeMapping TypeName="LibraModel.ENpcResident_PlaceName">
+              <MappingFragment StoreEntitySet="ENpcResident_PlaceName">
+                <ScalarProperty Name="ENpcResident_Key" ColumnName="ENpcResident_Key" />
+                <ScalarProperty Name="PlaceName_Key" ColumnName="PlaceName_Key" />
+                <ScalarProperty Name="region" ColumnName="region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENpcResident_Quest">
+            <EntityTypeMapping TypeName="LibraModel.ENpcResident_Quest">
+              <MappingFragment StoreEntitySet="ENpcResident_Quest">
+                <ScalarProperty Name="ENpcResident_Key" ColumnName="ENpcResident_Key" />
+                <ScalarProperty Name="Quest_Key" ColumnName="Quest_Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FCHierarchies">
+            <EntityTypeMapping TypeName="LibraModel.FCHierarchy">
+              <MappingFragment StoreEntitySet="FCHierarchy">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FCRanks">
+            <EntityTypeMapping TypeName="LibraModel.FCRank">
+              <MappingFragment StoreEntitySet="FCRank">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="CurrentPoint" ColumnName="CurrentPoint" />
+                <ScalarProperty Name="NextPoint" ColumnName="NextPoint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FCReputations">
+            <EntityTypeMapping TypeName="LibraModel.FCReputation">
+              <MappingFragment StoreEntitySet="FCReputation">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="CurrentPoint" ColumnName="CurrentPoint" />
+                <ScalarProperty Name="NextPoint" ColumnName="NextPoint" />
+                <ScalarProperty Name="Text_ja" ColumnName="Text_ja" />
+                <ScalarProperty Name="Text_en" ColumnName="Text_en" />
+                <ScalarProperty Name="Text_fr" ColumnName="Text_fr" />
+                <ScalarProperty Name="Text_de" ColumnName="Text_de" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Frontline01">
+            <EntityTypeMapping TypeName="LibraModel.Frontline01">
+              <MappingFragment StoreEntitySet="Frontline01">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="WinPvPExp" ColumnName="WinPvPExp" />
+                <ScalarProperty Name="WinPvPToken" ColumnName="WinPvPToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gatherings">
+            <EntityTypeMapping TypeName="LibraModel.Gathering">
+              <MappingFragment StoreEntitySet="Gathering">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="GatheringType" ColumnName="GatheringType" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="levelView" ColumnName="levelView" />
+                <ScalarProperty Name="levelDiff" ColumnName="levelDiff" />
+                <ScalarProperty Name="is_hidden" ColumnName="is_hidden" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="GatheringNotebookList" ColumnName="GatheringNotebookList" />
+                <ScalarProperty Name="GatheringItemNo" ColumnName="GatheringItemNo" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GatheringTypes">
+            <EntityTypeMapping TypeName="LibraModel.GatheringType">
+              <MappingFragment StoreEntitySet="GatheringType">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Text_de" ColumnName="Text_de" />
+                <ScalarProperty Name="Text_en" ColumnName="Text_en" />
+                <ScalarProperty Name="Text_ja" ColumnName="Text_ja" />
+                <ScalarProperty Name="Text_fr" ColumnName="Text_fr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankGridaniaFemaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankGridaniaFemaleText">
+              <MappingFragment StoreEntitySet="GCRankGridaniaFemaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankGridaniaMaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankGridaniaMaleText">
+              <MappingFragment StoreEntitySet="GCRankGridaniaMaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankLimsaFemaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankLimsaFemaleText">
+              <MappingFragment StoreEntitySet="GCRankLimsaFemaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankLimsaMaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankLimsaMaleText">
+              <MappingFragment StoreEntitySet="GCRankLimsaMaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankUldahFemaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankUldahFemaleText">
+              <MappingFragment StoreEntitySet="GCRankUldahFemaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GCRankUldahMaleTexts">
+            <EntityTypeMapping TypeName="LibraModel.GCRankUldahMaleText">
+              <MappingFragment StoreEntitySet="GCRankUldahMaleText">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralActions">
+            <EntityTypeMapping TypeName="LibraModel.GeneralAction">
+              <MappingFragment StoreEntitySet="GeneralAction">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrandCompanies">
+            <EntityTypeMapping TypeName="LibraModel.GrandCompany">
+              <MappingFragment StoreEntitySet="GrandCompany">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuardianDeities">
+            <EntityTypeMapping TypeName="LibraModel.GuardianDeity">
+              <MappingFragment StoreEntitySet="GuardianDeity">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuildOrders">
+            <EntityTypeMapping TypeName="LibraModel.GuildOrder">
+              <MappingFragment StoreEntitySet="GuildOrder">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Exp00" ColumnName="Exp00" />
+                <ScalarProperty Name="Exp01" ColumnName="Exp01" />
+                <ScalarProperty Name="Gil00" ColumnName="Gil00" />
+                <ScalarProperty Name="Gil01" ColumnName="Gil01" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstanceContents">
+            <EntityTypeMapping TypeName="LibraModel.InstanceContent">
+              <MappingFragment StoreEntitySet="InstanceContent">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Sortkey" ColumnName="Sortkey" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="Description_ja" ColumnName="Description_ja" />
+                <ScalarProperty Name="Description_en" ColumnName="Description_en" />
+                <ScalarProperty Name="Description_fr" ColumnName="Description_fr" />
+                <ScalarProperty Name="Description_de" ColumnName="Description_de" />
+                <ScalarProperty Name="LevelMin" ColumnName="LevelMin" />
+                <ScalarProperty Name="LevelMax" ColumnName="LevelMax" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Halfway" ColumnName="Halfway" />
+                <ScalarProperty Name="RandomContentType" ColumnName="RandomContentType" />
+                <ScalarProperty Name="Alliance" ColumnName="Alliance" />
+                <ScalarProperty Name="FinderPartyCondition" ColumnName="FinderPartyCondition" />
+                <ScalarProperty Name="PartyMemberCount" ColumnName="PartyMemberCount" />
+                <ScalarProperty Name="TankCount" ColumnName="TankCount" />
+                <ScalarProperty Name="HealerCount" ColumnName="HealerCount" />
+                <ScalarProperty Name="AttackerCount" ColumnName="AttackerCount" />
+                <ScalarProperty Name="RangeCount" ColumnName="RangeCount" />
+                <ScalarProperty Name="DifferentiateDPS" ColumnName="DifferentiateDPS" />
+                <ScalarProperty Name="PartyCount" ColumnName="PartyCount" />
+                <ScalarProperty Name="FreeRole" ColumnName="FreeRole" />
+                <ScalarProperty Name="ItemLevel" ColumnName="ItemLevel" />
+                <ScalarProperty Name="ItemLevelMax" ColumnName="ItemLevelMax" />
+                <ScalarProperty Name="Colosseum" ColumnName="Colosseum" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="ForceCount" ColumnName="ForceCount" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="is_koeru_usually" ColumnName="is_koeru_usually" />
+                <ScalarProperty Name="is_koeru_annihilation" ColumnName="is_koeru_annihilation" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstanceContentTypes">
+            <EntityTypeMapping TypeName="LibraModel.InstanceContentType">
+              <MappingFragment StoreEntitySet="InstanceContentType">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Sortkey" ColumnName="Sortkey" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="LibraModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="UICategory" ColumnName="UICategory" />
+                <ScalarProperty Name="UIName_ja" ColumnName="UIName_ja" />
+                <ScalarProperty Name="UIName_en" ColumnName="UIName_en" />
+                <ScalarProperty Name="UIName_fr" ColumnName="UIName_fr" />
+                <ScalarProperty Name="UIName_de" ColumnName="UIName_de" />
+                <ScalarProperty Name="Help_ja" ColumnName="Help_ja" />
+                <ScalarProperty Name="Help_en" ColumnName="Help_en" />
+                <ScalarProperty Name="Help_fr" ColumnName="Help_fr" />
+                <ScalarProperty Name="Help_de" ColumnName="Help_de" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="EquipLevel" ColumnName="EquipLevel" />
+                <ScalarProperty Name="Rarity" ColumnName="Rarity" />
+                <ScalarProperty Name="HQ" ColumnName="HQ" />
+                <ScalarProperty Name="SpecialBonus" ColumnName="SpecialBonus" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Slot" ColumnName="Slot" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="Damage_hq" ColumnName="Damage_hq" />
+                <ScalarProperty Name="MagicDamage" ColumnName="MagicDamage" />
+                <ScalarProperty Name="MagicDamage_hq" ColumnName="MagicDamage_hq" />
+                <ScalarProperty Name="Defense" ColumnName="Defense" />
+                <ScalarProperty Name="Defense_hq" ColumnName="Defense_hq" />
+                <ScalarProperty Name="MagicDefense" ColumnName="MagicDefense" />
+                <ScalarProperty Name="MagicDefense_hq" ColumnName="MagicDefense_hq" />
+                <ScalarProperty Name="ShieldRate" ColumnName="ShieldRate" />
+                <ScalarProperty Name="ShieldRate_hq" ColumnName="ShieldRate_hq" />
+                <ScalarProperty Name="ShieldBlockRate" ColumnName="ShieldBlockRate" />
+                <ScalarProperty Name="ShieldBlockRate_hq" ColumnName="ShieldBlockRate_hq" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceMin" ColumnName="PriceMin" />
+                <ScalarProperty Name="MirageItem" ColumnName="MirageItem" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="icon_hq" ColumnName="icon_hq" />
+                <ScalarProperty Name="classjob" ColumnName="classjob" />
+                <ScalarProperty Name="Salvage" ColumnName="Salvage" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="legacy" ColumnName="legacy" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_ClassJob">
+            <EntityTypeMapping TypeName="LibraModel.Item_ClassJob">
+              <MappingFragment StoreEntitySet="Item_ClassJob">
+                <ScalarProperty Name="Item_Key" ColumnName="Item_Key" />
+                <ScalarProperty Name="ClassJob_Key" ColumnName="ClassJob_Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCategories">
+            <EntityTypeMapping TypeName="LibraModel.ItemCategory">
+              <MappingFragment StoreEntitySet="ItemCategory">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemSeries">
+            <EntityTypeMapping TypeName="LibraModel.ItemSery">
+              <MappingFragment StoreEntitySet="ItemSeries">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemSpecialBonus">
+            <EntityTypeMapping TypeName="LibraModel.ItemSpecialBonu">
+              <MappingFragment StoreEntitySet="ItemSpecialBonus">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemUICategories">
+            <EntityTypeMapping TypeName="LibraModel.ItemUICategory">
+              <MappingFragment StoreEntitySet="ItemUICategory">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemUIKinds">
+            <EntityTypeMapping TypeName="LibraModel.ItemUIKind">
+              <MappingFragment StoreEntitySet="ItemUIKind">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JournalCategories">
+            <EntityTypeMapping TypeName="LibraModel.JournalCategory">
+              <MappingFragment StoreEntitySet="JournalCategory">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JournalGenres">
+            <EntityTypeMapping TypeName="LibraModel.JournalGenre">
+              <MappingFragment StoreEntitySet="JournalGenre">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LodestoneSystemDefines">
+            <EntityTypeMapping TypeName="LibraModel.LodestoneSystemDefine">
+              <MappingFragment StoreEntitySet="LodestoneSystemDefine">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="DefineName" ColumnName="DefineName" />
+                <ScalarProperty Name="DefineValue" ColumnName="DefineValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotebookDivisions">
+            <EntityTypeMapping TypeName="LibraModel.NotebookDivision">
+              <MappingFragment StoreEntitySet="NotebookDivision">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaceNames">
+            <EntityTypeMapping TypeName="LibraModel.PlaceName">
+              <MappingFragment StoreEntitySet="PlaceName">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="SGL_ja" ColumnName="SGL_ja" />
+                <ScalarProperty Name="SGL_en" ColumnName="SGL_en" />
+                <ScalarProperty Name="SGL_fr" ColumnName="SGL_fr" />
+                <ScalarProperty Name="SGL_de" ColumnName="SGL_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quests">
+            <EntityTypeMapping TypeName="LibraModel.Quest">
+              <MappingFragment StoreEntitySet="Quest">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="CompanyPointType" ColumnName="CompanyPointType" />
+                <ScalarProperty Name="CompanyPointNum" ColumnName="CompanyPointNum" />
+                <ScalarProperty Name="Gil" ColumnName="Gil" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="ExpBonus" ColumnName="ExpBonus" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="ClassLevel" ColumnName="ClassLevel" />
+                <ScalarProperty Name="ClassLevel2" ColumnName="ClassLevel2" />
+                <ScalarProperty Name="ClassJob" ColumnName="ClassJob" />
+                <ScalarProperty Name="ClassJob2" ColumnName="ClassJob2" />
+                <ScalarProperty Name="QuestLevelOffset" ColumnName="QuestLevelOffset" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="BeastTribe" ColumnName="BeastTribe" />
+                <ScalarProperty Name="BeastReputationValueNum" ColumnName="BeastReputationValueNum" />
+                <ScalarProperty Name="WebType" ColumnName="WebType" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quest_ClassJob">
+            <EntityTypeMapping TypeName="LibraModel.Quest_ClassJob">
+              <MappingFragment StoreEntitySet="Quest_ClassJob">
+                <ScalarProperty Name="Quest_Key" ColumnName="Quest_Key" />
+                <ScalarProperty Name="ClassJob_Key" ColumnName="ClassJob_Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestWebExes">
+            <EntityTypeMapping TypeName="LibraModel.QuestWebEx">
+              <MappingFragment StoreEntitySet="QuestWebEx">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestWebTypes">
+            <EntityTypeMapping TypeName="LibraModel.QuestWebType">
+              <MappingFragment StoreEntitySet="QuestWebType">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Text_de" ColumnName="Text_de" />
+                <ScalarProperty Name="Text_en" ColumnName="Text_en" />
+                <ScalarProperty Name="Text_ja" ColumnName="Text_ja" />
+                <ScalarProperty Name="Text_fr" ColumnName="Text_fr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Races">
+            <EntityTypeMapping TypeName="LibraModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="NameFemale_ja" ColumnName="NameFemale_ja" />
+                <ScalarProperty Name="NameFemale_en" ColumnName="NameFemale_en" />
+                <ScalarProperty Name="NameFemale_fr" ColumnName="NameFemale_fr" />
+                <ScalarProperty Name="NameFemale_de" ColumnName="NameFemale_de" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="LibraModel.Recipe">
+              <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="CanAutoCraft" ColumnName="CanAutoCraft" />
+                <ScalarProperty Name="CanHq" ColumnName="CanHq" />
+                <ScalarProperty Name="CraftItemId" ColumnName="CraftItemId" />
+                <ScalarProperty Name="CraftNum" ColumnName="CraftNum" />
+                <ScalarProperty Name="CraftType" ColumnName="CraftType" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="levelView" ColumnName="levelView" />
+                <ScalarProperty Name="levelDiff" ColumnName="levelDiff" />
+                <ScalarProperty Name="Element" ColumnName="Element" />
+                <ScalarProperty Name="NeedCraftmanship" ColumnName="NeedCraftmanship" />
+                <ScalarProperty Name="NeedControl" ColumnName="NeedControl" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="NeedStatus" ColumnName="NeedStatus" />
+                <ScalarProperty Name="NeedEquipItem" ColumnName="NeedEquipItem" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Index_ja" ColumnName="Index_ja" />
+                <ScalarProperty Name="Index_en" ColumnName="Index_en" />
+                <ScalarProperty Name="Index_fr" ColumnName="Index_fr" />
+                <ScalarProperty Name="Index_de" ColumnName="Index_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecipeElements">
+            <EntityTypeMapping TypeName="LibraModel.RecipeElement">
+              <MappingFragment StoreEntitySet="RecipeElement">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="LibraModel.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+                <ScalarProperty Name="BeastTribe" ColumnName="BeastTribe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="LibraModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="LibraModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Female_de" ColumnName="Female_de" />
+                <ScalarProperty Name="Female_en" ColumnName="Female_en" />
+                <ScalarProperty Name="Female_fr" ColumnName="Female_fr" />
+                <ScalarProperty Name="Female_ja" ColumnName="Female_ja" />
+                <ScalarProperty Name="Front_de" ColumnName="Front_de" />
+                <ScalarProperty Name="Front_en" ColumnName="Front_en" />
+                <ScalarProperty Name="Front_fr" ColumnName="Front_fr" />
+                <ScalarProperty Name="Front_ja" ColumnName="Front_ja" />
+                <ScalarProperty Name="Male_de" ColumnName="Male_de" />
+                <ScalarProperty Name="Male_en" ColumnName="Male_en" />
+                <ScalarProperty Name="Male_fr" ColumnName="Male_fr" />
+                <ScalarProperty Name="Male_ja" ColumnName="Male_ja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tomestones">
+            <EntityTypeMapping TypeName="LibraModel.Tomestone">
+              <MappingFragment StoreEntitySet="Tomestones">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="CatalogId" ColumnName="CatalogId" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towns">
+            <EntityTypeMapping TypeName="LibraModel.Town">
+              <MappingFragment StoreEntitySet="Town">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name_ja" ColumnName="Name_ja" />
+                <ScalarProperty Name="Name_en" ColumnName="Name_en" />
+                <ScalarProperty Name="Name_fr" ColumnName="Name_fr" />
+                <ScalarProperty Name="Name_de" ColumnName="Name_de" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,21 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class BNpcName : XivRow {
+    public class BNpcName : XivRow, ILocatable, IItemSource {
+
+        #region Fields
+        private ILocation[] _Locations;
+        private Item[] _Items;
+        private InstanceContent[] _InstanceContents;
+        #endregion
+
         #region Properties
 
         public string Singular { get { return AsString("Singular"); } }
         public string Plural { get { return AsString("Plural"); } }
 
+        public IEnumerable<BNpc> BNpcs {
+            get {
+                if (!Sheet.Collection.IsLibraAvailable)
+                    return new BNpc[0];
+                return Sheet.Collection.BNpcs.Where(i => i.Name == this);
+            }
+        }
+        public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BNpcs.SelectMany(i => i.Locations).ToArray()); } }
+        public IEnumerable<Item> Items { get { return _Items ?? (_Items = BNpcs.SelectMany(i => i.Items).ToArray()); } }
+        public IEnumerable<InstanceContent> InstanceContents { get { return _InstanceContents ?? (_InstanceContents = BNpcs.SelectMany(i => i.InstanceContents).ToArray()); } }
+
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
         public BNpcName(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
-        #endregion
 
         #endregion
 

@@ -20,15 +20,11 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Constructors
 
-        #region Constructor
-
         public ENpcCollection(XivCollection xivCollection) {
             Collection = xivCollection;
             BaseSheet = xivCollection.GetSheet<ENpcBase>();
             ResidentSheet = xivCollection.GetSheet<ENpcResident>();
         }
-
-        #endregion
 
         #endregion
 
@@ -50,6 +46,9 @@ namespace SaintCoinach.Xiv.Collections {
 
         #region Get
 
+        public ENpc this[int key] {
+            get { return Get(key); }
+        }
         public ENpc Get(int key) {
             if (_Inner.ContainsKey(key))
                 return _Inner[key];
