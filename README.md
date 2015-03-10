@@ -16,11 +16,10 @@ A .NET library written in C# for extracting game assets and reading game assets 
 
 * Decoding of the string format used by the game. Will return a good string for most queries, but more advanced things like conditional texts are not supported.
 * Parsing of model data works for *most* models but is far from complete.
-* Inclusion of data from the Libra Eorzea application.
+* Inclusion and parsing of data from the Libra Eorzea application.
 
 ### To-do
 
-* Ability to specify the location of the file that contains mapping and history data.
 * Support for audio formats other than OGG.
 
 
@@ -28,7 +27,7 @@ A .NET library written in C# for extracting game assets and reading game assets 
 
 ### Set-up
 
-**Note:** When building an application using this library make sure to include a copy of [`SaintCoinach/SaintCoinach.History.zip`](https://github.com/Rogueadyn/SaintCoinach/blob/master/SaintCoinach/SaintCoinach.History.zip]) in the application's directory. This should be done automatically if the project is included in the solution and referenced from there.
+**Note:** When building an application using this library make sure to include a copy of [`SaintCoinach/SaintCoinach.History.zip`](/SaintCoinach/SaintCoinach.History.zip) in the application's directory. This should be done automatically if the project is included in the solution and referenced from there.
 
 All important data is exposed by the class `SaintCoinach.ARealmReversed`, so setting up access to it is fairly straightforward.
 

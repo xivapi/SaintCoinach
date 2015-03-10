@@ -410,6 +410,14 @@
     <Compile Include="Xiv\ChocoboRaceStatus.cs" />
     <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
     <Compile Include="Xiv\ChocobRaceItem.cs" />
+    <Compile Include="Xiv\GatheringCondition.cs" />
+    <Compile Include="Xiv\GatheringExp.cs" />
+    <Compile Include="Xiv\GatheringNotebookList.cs" />
+    <Compile Include="Xiv\GatheringNotebookRegion.cs" />
+    <Compile Include="Xiv\GatheringPoint.cs" />
+    <Compile Include="Xiv\GatheringPointBase.cs" />
+    <Compile Include="Xiv\GatheringPointBonusType.cs" />
+    <Compile Include="Xiv\GatheringPointName.cs" />
     <Compile Include="Xiv\GeneralAction.cs" />
     <Compile Include="Xiv\GoldSaucerTextData.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
