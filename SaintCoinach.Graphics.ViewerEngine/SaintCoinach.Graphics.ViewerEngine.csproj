@@ -111,6 +111,7 @@
     <Compile Include="XivEffect.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Effects\HLSL\Common.fxh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

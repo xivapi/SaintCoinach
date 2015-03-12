@@ -40,7 +40,6 @@ namespace SaintCoinach.Cmd {
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
 
-
             if (!realm.IsCurrentVersion) {
                 Console.Write("Update is available, perform update (Y/n)? ");
                 var updateQuery = Console.ReadLine();
@@ -50,7 +49,8 @@ namespace SaintCoinach.Cmd {
                     Console.WriteLine("Skipping update");
             }
 
-            var cmd = new RootCommand();
+            var cns = new Tharga.Toolkit.Console.Command.Base.ClientConsole();
+            var cmd = new RootCommand(cns);
 
             Setup(cmd, realm);
 
