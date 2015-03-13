@@ -53,7 +53,16 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return string.Format("{0}[{1}]", baseName, repeatNr + NamingOffset);
         }
 
-        public string GetValueType(int index) {
+        public string GetValueTypeName(int index) {
+            if (index < 0 || index >= Length)
+                throw new ArgumentOutOfRangeException("index");
+
+            var innerIndex = index % RepeatedDefinition.Length;
+
+            return RepeatedDefinition.GetValueTypeName(innerIndex);
+        }
+
+        public Type GetValueType(int index) {
             if (index < 0 || index >= Length)
                 throw new ArgumentOutOfRangeException("index");
 

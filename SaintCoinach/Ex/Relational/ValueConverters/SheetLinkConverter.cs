@@ -1,4 +1,5 @@
-﻿using YamlDotNet.Serialization;
+﻿using System;
+using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class SheetLinkConverter : IValueConverter {
@@ -12,6 +13,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         [YamlIgnore]
         public string TargetTypeName { get { return TargetSheet; } }
+        [YamlIgnore]
+        public Type TargetType { get { return typeof(IRelationalRow); } }
 
         public object Convert(IDataRow row, object rawValue) {
             var coll = row.Sheet.Collection;

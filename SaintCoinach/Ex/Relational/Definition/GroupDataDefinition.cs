@@ -70,11 +70,29 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return value;
         }
 
-        public string GetValueType(int index) {
+        public string GetValueTypeName(int index) {
             if (index < 0 || index >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
             string value = null;
+            var pos = 0;
+            foreach (var member in Members) {
+                var newPos = pos + member.Length;
+                if (newPos > index) {
+                    var innerIndex = index - pos;
+                    value = member.GetValueTypeName(innerIndex);
+                    break;
+                }
+                pos = newPos;
+            }
+            return value;
+        }
+
+        public Type GetValueType(int index) {
+            if (index < 0 || index >= Length)
+                throw new ArgumentOutOfRangeException("index");
+
+            Type value = null;
             var pos = 0;
             foreach (var member in Members) {
                 var newPos = pos + member.Length;

@@ -16,7 +16,7 @@
                 var def = Header.SheetDefinition;
                 if (def == null) return base.ValueType;
 
-                var t = def.GetValueType(Index);
+                var t = def.GetValueTypeName(Index);
                 return t ?? base.ValueType;
             }
         }

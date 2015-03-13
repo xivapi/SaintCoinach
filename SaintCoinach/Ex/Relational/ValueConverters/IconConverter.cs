@@ -1,4 +1,5 @@
-﻿using SaintCoinach.IO;
+﻿using System;
+using SaintCoinach.IO;
 
 using YamlDotNet.Serialization;
 
@@ -8,6 +9,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         [YamlIgnore]
         public string TargetTypeName { get { return "Image"; } }
+        [YamlIgnore]
+        public Type TargetType { get { return typeof(Imaging.ImageFile); } }
 
         public object Convert(IDataRow row, object rawValue) {
             const string IconFileFormat = "ui/icon/{0:D3}000/{1}{2:D6}.tex";

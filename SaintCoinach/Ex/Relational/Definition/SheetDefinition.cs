@@ -9,7 +9,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
         private Dictionary<int, PositionedDataDefintion> _ColumnDefinitionMap;
         private Dictionary<int, string> _ColumnIndexToNameMap;
         private Dictionary<string, int> _ColumnNameToIndexMap;
-        private Dictionary<int, string> _ColumnValueTypes;
+        private Dictionary<int, string> _ColumnValueTypeNames;
+        private Dictionary<int, Type> _ColumnValueTypes;
         private ICollection<PositionedDataDefintion> _DataDefinitions = new List<PositionedDataDefintion>();
         private int? _DefaultColumnIndex;
         private bool _IsCompiled;
@@ -42,7 +43,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
             _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefintion>();
             _ColumnNameToIndexMap = new Dictionary<string, int>();
             _ColumnIndexToNameMap = new Dictionary<int, string>();
-            _ColumnValueTypes = new Dictionary<int, string>();
+            _ColumnValueTypeNames = new Dictionary<int, string>();
+            _ColumnValueTypes = new Dictionary<int, Type>();
             foreach (var def in DataDefinitions) {
                 for (var i = 0; i < def.Length; ++i) {
                     var offset = def.Index + i;
@@ -51,6 +53,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
                     var name = def.GetName(offset);
                     _ColumnNameToIndexMap.Add(name, offset);
                     _ColumnIndexToNameMap.Add(offset, name);
+                    _ColumnValueTypeNames.Add(offset, def.GetValueTypeName(offset));
                     _ColumnValueTypes.Add(offset, def.GetValueType(offset));
                 }
             }
@@ -126,7 +129,15 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return TryGetDefinition(index, out def) ? def.GetName(index) : null;
         }
 
-        public string GetValueType(int index) {
+        public string GetValueTypeName(int index) {
+            if (_IsCompiled)
+                return _ColumnValueTypeNames.ContainsKey(index) ? _ColumnValueTypeNames[index] : null;
+
+            PositionedDataDefintion def;
+            return TryGetDefinition(index, out def) ? def.GetValueTypeName(index) : null;
+        }
+
+        public Type GetValueType(int index) {
             if (_IsCompiled)
                 return _ColumnValueTypes.ContainsKey(index) ? _ColumnValueTypes[index] : null;
 

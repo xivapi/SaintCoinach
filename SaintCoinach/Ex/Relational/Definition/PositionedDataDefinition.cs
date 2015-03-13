@@ -43,7 +43,15 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return InnerDefinition.GetName(innerIndex);
         }
 
-        public string GetValueType(int index) {
+        public string GetValueTypeName(int index) {
+            var innerIndex = index - Index;
+            if (innerIndex < 0 || innerIndex >= Length)
+                throw new ArgumentOutOfRangeException("index");
+
+            return InnerDefinition.GetValueTypeName(innerIndex);
+        }
+
+        public Type GetValueType(int index) {
             var innerIndex = index - Index;
             if (innerIndex < 0 || innerIndex >= Length)
                 throw new ArgumentOutOfRangeException("index");

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 using YamlDotNet.Serialization;
 
@@ -22,6 +23,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         [YamlIgnore]
         public string TargetTypeName { get { return "Color"; } }
+        [YamlIgnore]
+        public Type TargetType { get { return typeof(Color); } }
 
         public object Convert(IDataRow row, object rawValue) {
             var argb = System.Convert.ToInt32(rawValue);

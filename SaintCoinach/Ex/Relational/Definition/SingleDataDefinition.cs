@@ -37,11 +37,18 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return Name;
         }
 
-        public string GetValueType(int index) {
+        public string GetValueTypeName(int index) {
             if (index != 0)
                 throw new ArgumentOutOfRangeException("index");
 
             return Converter == null ? null : Converter.TargetTypeName;
+        }
+
+        public Type GetValueType(int index) {
+            if (index != 0)
+                throw new ArgumentOutOfRangeException("index");
+
+            return Converter == null ? null : Converter.TargetType;
         }
 
         #endregion

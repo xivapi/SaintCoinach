@@ -1,4 +1,6 @@
-﻿namespace SaintCoinach.Ex.Relational.Definition {
+﻿using System;
+
+namespace SaintCoinach.Ex.Relational.Definition {
     public interface IDataDefinition {
         #region Properties
 
@@ -15,7 +17,10 @@
         string GetName(int index);
 
         /// <param name="index">Index in the definition on which the method is called.</param>
-        string GetValueType(int index);
+        string GetValueTypeName(int index);
+
+        /// <param name="index">Index in the definition on which the method is called.</param>
+        Type GetValueType(int index);
 
         IDataDefinition Clone();
     }
