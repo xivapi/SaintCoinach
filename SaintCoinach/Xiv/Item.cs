@@ -160,6 +160,20 @@ namespace SaintCoinach.Xiv {
             get { return _Sources ?? (_Sources = BuildSources()); }
         }
 
+        /// <summary>
+        ///    Gets the rarity of the current item.
+        /// </summary>
+        /// <value>The rarity of the current item.</value>
+        /// <remarks>
+        /// 1: Common (White)
+        /// 2: Uncommon (Green)
+        /// 3: Rare (Blue)
+        /// 4: Relic (Purple)
+        /// 7: Aetherial (Pink)
+        /// </remarks>
+        public int Rarity {
+            get { return AsInt32("Rarity"); }
+        }
         #endregion
 
         #region Constructors
