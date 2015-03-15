@@ -2,7 +2,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class BuddyEquip : XivRow {
+    public class BuddyEquip : XivRow, IQuantifiableName {
         #region Properties
 
         public string Name { get { return AsString("Name"); } }

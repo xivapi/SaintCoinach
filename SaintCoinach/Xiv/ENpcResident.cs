@@ -1,7 +1,7 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class ENpcResident : XivRow {
+    public class ENpcResident : XivRow, IQuantifiableName {
         #region Properties
 
         public string Singular { get { return AsString("Singular"); } }

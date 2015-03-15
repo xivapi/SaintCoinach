@@ -4,7 +4,7 @@ using System.Linq;
 using SaintCoinach.Xiv.Collections;
 
 namespace SaintCoinach.Xiv {
-    public class ENpc : ILocatable {
+    public class ENpc : ILocatable, IQuantifiableName {
         #region Fields
 
         private ENpcBase _Base;

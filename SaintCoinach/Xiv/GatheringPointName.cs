@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Xiv {
     using Ex.Relational;
 
-    public class GatheringPointName : XivRow {
+    public class GatheringPointName : XivRow, IQuantifiableName {
         #region Properties
 
         public string Singular { get { return AsString("Singular"); } }

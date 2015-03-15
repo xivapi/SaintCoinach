@@ -2,7 +2,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class Mount : XivRow {
+    public class Mount : XivRow, IQuantifiableName {
         #region Properties
 
         public string Singular { get { return AsString("Singular"); } }

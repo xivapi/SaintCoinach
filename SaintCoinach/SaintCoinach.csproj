@@ -421,6 +421,7 @@
     <Compile Include="Xiv\GatheringPointName.cs" />
     <Compile Include="Xiv\GeneralAction.cs" />
     <Compile Include="Xiv\GoldSaucerTextData.cs" />
+    <Compile Include="Xiv\IQuantifiableName.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
