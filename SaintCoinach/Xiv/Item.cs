@@ -262,6 +262,7 @@ namespace SaintCoinach.Xiv {
             var quests = Sheet.Collection.GetSheet<Quest>();
             var achievements = Sheet.Collection.GetSheet<Achievement>();
             var shops = Sheet.Collection.Shops;
+            var leves = Sheet.Collection.GetSheet<Leve>();
 
             if (libraRow != null) {
                 foreach (var bnpc in libraRow.BNpcs)
@@ -273,11 +274,14 @@ namespace SaintCoinach.Xiv {
             /*sources.AddRange(bnpcColl.Where(i => i.Items.Contains(this)));
             sources.AddRange(instanceContents.Cast<IItemSource>().Where(i => i.Items.Contains(this)));*/
 
-            // Not using libra for these because it has a higher likelyhood of being incomplete.
+            // Not using Libra for these because it has a higher likelyhood of being incomplete.
             sources.AddRange(recipes.Where(i => i.ResultItem == this));
             sources.AddRange(quests.Cast<IItemSource>().Where(i => i.Items.Contains(this)));
             sources.AddRange(achievements.Where(i => i.Item == this));
             sources.AddRange(shops.Where(i => i.Items.Contains(this)));
+
+            // Not using Libra for this because it doesn't even have information about it
+            sources.AddRange(leves.Where(i => i.Items.Contains(this)));
 
             return sources.ToArray();
         }

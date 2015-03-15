@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
@@ -8,7 +9,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a Levequest.
     /// </summary>
-    public class Leve : XivRow, ILocatable {
+    public class Leve : XivRow, ILocatable, IItemSource {
         #region Properties
 
         /// <summary>
@@ -120,5 +121,14 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region IItemSource Members
+
+        private Item[] _ItemSourceItems;
+        public IEnumerable<Item> Items {
+            get { return _ItemSourceItems ?? (_ItemSourceItems = LeveRewardItem.ItemGroups.SelectMany(g => g.Value.Items.Select(v => v.Item)).ToArray()); }
+        }
+
+        #endregion
     }
 }
