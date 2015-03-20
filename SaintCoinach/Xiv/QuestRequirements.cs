@@ -10,11 +10,15 @@ namespace SaintCoinach.Xiv {
         private readonly Quest _Quest;
         private ClassJobRequirement[] _ClassJobs;
         private Quest[] _QuestExclusion;
+        private InstanceContentRequirement _InstanceContents;
+        private PreviousQuestRequirement _PreviousQuests;
         #endregion
 
         #region Properties
         public Quest Quest { get { return _Quest; } }
         public IEnumerable<ClassJobRequirement> ClassJobs { get { return _ClassJobs ?? (_ClassJobs = BuildClassJobs()); } }
+        public InstanceContentRequirement InstanceContent { get { return _InstanceContents ?? (_InstanceContents = new InstanceContentRequirement(_Quest)); } }
+        public PreviousQuestRequirement PreviousQuest { get { return _PreviousQuests ?? (_PreviousQuests = new PreviousQuestRequirement(_Quest)); } }
         public int QuestLevelOffset { get { return Quest.AsInt32("QuestLevelOffset"); } }
         public IEnumerable<Quest> QuestExclusion { get { return _QuestExclusion ?? (_QuestExclusion = BuildQuestExclusion()); } }
         public GrandCompany GrandCompany { get { return Quest.As<GrandCompany>(); } }
@@ -57,7 +61,7 @@ namespace SaintCoinach.Xiv {
             var quests = new List<Quest>();
             for (var i = 0; i < Count; ++i) {
                 var q = Quest.As<Quest>("QuestLock", i);
-                if (q.Key != 0)
+                if (q != null && q.Key != 0)
                     quests.Add(q);
             }
             return quests.ToArray();
