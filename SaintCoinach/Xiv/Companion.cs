@@ -6,7 +6,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public string Singular { get { return AsString("Singular"); } }
-        public string Plural { get { return AsString("Plural"); } }
+        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public string Description { get { return AsString("Description"); } }
         public string GuideDescription { get { return AsString("Description{Enhanced}"); } }
         public string Tooltip { get { return AsString("Tooltip"); } }

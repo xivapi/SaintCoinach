@@ -29,7 +29,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the plural string of the current item.
         /// </summary>
         /// <value>The plural string of the current item.</value>
-        public string Plural { get { return AsString("Plural"); } }
+        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         /// <summary>
         /// Gets the icon of the current item.
         /// </summary>

@@ -7,7 +7,7 @@ namespace SaintCoinach.Xiv {
 
         public string Name { get { return AsString("Name"); } }
         public string Singular { get { return AsString("Singular"); } }
-        public string Plural { get { return AsString("Plural"); } }
+        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public GrandCompany GrandCompany { get { return As<GrandCompany>(); } }
         public ImageFile HeadIcon { get { return AsImage("Icon{Head}"); } }
         public ImageFile BodyIcon { get { return AsImage("Icon{Body}"); } }

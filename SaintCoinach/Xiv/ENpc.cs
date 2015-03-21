@@ -20,7 +20,7 @@ namespace SaintCoinach.Xiv {
         public ENpcResident Resident { get { return _Resident ?? (_Resident = Collection.ResidentSheet[Key]); } }
         public ENpcBase Base { get { return _Base ?? (_Base = Collection.BaseSheet[Key]); } }
         public string Singular { get { return Resident.Singular; } }
-        public string Plural { get { return Resident.Plural; } }
+        public string Plural { get { return Collection.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : Resident.Plural; } }
         public string Title { get { return Resident.Title; } }
 
         public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
