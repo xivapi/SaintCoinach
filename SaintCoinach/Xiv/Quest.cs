@@ -21,11 +21,21 @@ namespace SaintCoinach.Xiv {
 
         public BeastTribe BeastTribe { get { return As<BeastTribe>(); } }
 
-        public ENpc IssuingENpc { get { return Sheet.Collection.ENpcs[As<ENpcResident>("ENpcResident{Start}").Key]; } }
-        public ENpc TargetENpc { get { return Sheet.Collection.ENpcs[As<ENpcResident>("ENpcResident{End}").Key]; } }
+        public ENpc IssuingENpc {
+            get { 
+                var resident = As<ENpcResident>("ENpcResident{Start}");
+                return resident == null ? null : Sheet.Collection.ENpcs[resident.Key];
+            }
+        }
+        public ENpc TargetENpc {
+            get {
+                var resident = As<ENpcResident>("ENpcResident{End}");
+                return resident == null ? null : Sheet.Collection.ENpcs[resident.Key];
+            }
+        }
 
         public bool IsRepeatable { get { return AsBoolean("IsRepeatable"); } }
-        public QuestRepeatInterval RepeatInterval { get { return (QuestRepeatInterval)AsInt32("RepeatInterval"); } }
+        public QuestRepeatInterval RepeatInterval { get { return (QuestRepeatInterval)AsInt32("RepeatIntervalType"); } }
 
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
 
