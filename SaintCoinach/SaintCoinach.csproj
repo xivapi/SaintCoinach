@@ -681,6 +681,7 @@
     <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
     <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
     <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
+    <Compile Include="Xiv\QuestRequirements.PreviousQuestRequirement.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
