@@ -256,7 +256,6 @@ namespace SaintCoinach.Xiv {
             if (Sheet.Collection.IsLibraAvailable)
                 libraRow = Sheet.Collection.Libra.Items.FirstOrDefault(i => i.Key == this.Key);
 
-            var bnpcColl = Sheet.Collection.BNpcs;
             var instanceContents = Sheet.Collection.GetSheet<InstanceContent>();
             var recipes = Sheet.Collection.GetSheet<Recipe>();
             var quests = Sheet.Collection.GetSheet<Quest>();
@@ -265,6 +264,8 @@ namespace SaintCoinach.Xiv {
             var leves = Sheet.Collection.GetSheet<Leve>();
 
             if (libraRow != null) {
+                var bnpcColl = Sheet.Collection.BNpcs;
+
                 foreach (var bnpc in libraRow.BNpcs)
                     sources.Add(bnpcColl[bnpc]);
                 foreach (var ic in libraRow.InstanceContents)
