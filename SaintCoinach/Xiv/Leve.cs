@@ -114,6 +114,18 @@ namespace SaintCoinach.Xiv {
         /// <value>The plate icon used for the current leve.</value>
         public Imaging.ImageFile PlateIcon { get { return LeveVfx.Icon; } }
 
+        /// <summary>
+        /// Gets the <see cref="LeveVfx"/> used for the current leve.
+        /// </summary>
+        /// <value>The <see cref="LeveVfx"/> used for the current leve.</value>
+        public LeveVfx FrameLeveVfx { get { return As<LeveVfx>("LeveVfx{Frame}"); } }
+
+        /// <summary>
+        /// Gets the plate icon used for the current leve.
+        /// </summary>
+        /// <value>The plate icon used for the current leve.</value>
+        public Imaging.ImageFile FrameIcon { get { return FrameLeveVfx.Icon; } }
+
         #endregion
 
         #region Constructors
