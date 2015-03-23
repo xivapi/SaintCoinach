@@ -423,6 +423,7 @@
     <Compile Include="Xiv\GoldSaucerTextData.cs" />
     <Compile Include="Xiv\IQuantifiableName.cs" />
     <Compile Include="Xiv\ItemComparer.cs" />
+    <Compile Include="Xiv\LeveVfx.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
