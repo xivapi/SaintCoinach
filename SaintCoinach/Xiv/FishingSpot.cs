@@ -6,7 +6,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a fishing spot from the game data.
     /// </summary>
-    public class FishingSpot : XivRow {
+    public class FishingSpot : XivRow, IItemSource {
         #region Fields
 
         /// <summary>

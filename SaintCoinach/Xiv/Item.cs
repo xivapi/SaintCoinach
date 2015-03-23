@@ -256,15 +256,16 @@ namespace SaintCoinach.Xiv {
             if (Sheet.Collection.IsLibraAvailable)
                 libraRow = Sheet.Collection.Libra.Items.FirstOrDefault(i => i.Key == this.Key);
 
-            var instanceContents = Sheet.Collection.GetSheet<InstanceContent>();
             var recipes = Sheet.Collection.GetSheet<Recipe>();
             var quests = Sheet.Collection.GetSheet<Quest>();
             var achievements = Sheet.Collection.GetSheet<Achievement>();
             var shops = Sheet.Collection.Shops;
             var leves = Sheet.Collection.GetSheet<Leve>();
+            var fishingSpots = Sheet.Collection.GetSheet<FishingSpot>();
 
             if (libraRow != null) {
                 var bnpcColl = Sheet.Collection.BNpcs;
+                var instanceContents = Sheet.Collection.GetSheet<InstanceContent>();
 
                 foreach (var bnpc in libraRow.BNpcs)
                     sources.Add(bnpcColl[bnpc]);
@@ -283,6 +284,7 @@ namespace SaintCoinach.Xiv {
 
             // Not using Libra for this because it doesn't even have information about it
             sources.AddRange(leves.Where(i => i.Items.Contains(this)));
+            sources.AddRange(fishingSpots.Where(i => i.Items.Contains(this)));
 
             return sources.ToArray();
         }
