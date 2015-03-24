@@ -14,7 +14,7 @@ namespace SaintCoinach.Xiv {
     public class BNpc : ILocatable, IItemSource {
         #region Fields
         private Libra.BNpcName _LibraRow;
-        private ILocation[] _Locations;
+        private BNpcLocation[] _Locations;
         private Item[] _Items;
         private InstanceContent[] _InstanceContents;
         #endregion
@@ -52,7 +52,13 @@ namespace SaintCoinach.Xiv {
         /// Gets the locations of the current object.
         /// </summary>
         /// <value>The locations of the current object.</value>
-        public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations(_LibraRow)); } }
+        IEnumerable<ILocation> ILocatable.Locations { get { return this.Locations; } }
+
+        /// <summary>
+        /// Gets the locations of the current object.
+        /// </summary>
+        /// <value>The locations of the current object.</value>
+        public IEnumerable<BNpcLocation> Locations { get { return _Locations ?? (_Locations = BuildLocations(_LibraRow)); } }
 
         /// <summary>
         /// Gets the items dropped by the current object.
@@ -80,8 +86,8 @@ namespace SaintCoinach.Xiv {
 
 
         #region Build
-        private ILocation[] BuildLocations(Libra.BNpcName libraRow) {
-            var values = new List<ILocation>();
+        private BNpcLocation[] BuildLocations(Libra.BNpcName libraRow) {
+            var values = new List<BNpcLocation>();
             var placeNames = Collection.Collection.GetSheet<PlaceName>();
 
             foreach (var srcRegion in libraRow.Regions) {
