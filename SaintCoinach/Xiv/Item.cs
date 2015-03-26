@@ -174,6 +174,14 @@ namespace SaintCoinach.Xiv {
         public int Rarity {
             get { return AsInt32("Rarity"); }
         }
+
+        /// <summary>
+        /// Gets a flag indicating whether HQ versions of the current item exist.
+        /// </summary>
+        /// <value>A flag indicating whether HQ versions of the current item exist.</value>
+        public bool CanBeHq {
+            get { return AsBoolean("CanBeHq"); }
+        }
         #endregion
 
         #region Constructors
