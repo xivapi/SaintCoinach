@@ -14,7 +14,7 @@ namespace SaintCoinach.Cmd.Commands {
         private ARealmReversed _Realm;
 
         public RawExdCommand(ARealmReversed realm)
-            : base("rawexd", "Export all data (default), or only specific data files, seperated by spaces.") {
+            : base("rawexd", "Export all data (default), or only specific data files, seperated by spaces. No post-processing is applied to values.") {
             _Realm = realm;
         }
 
