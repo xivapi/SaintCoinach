@@ -55,6 +55,9 @@ namespace SaintCoinach.Xiv {
 
         public object this[string columnName] { get { return _SourceRow[columnName]; } }
 
+        object IRow.GetRaw(int columnIndex) { return _SourceRow.GetRaw(columnIndex); }
+        object IRelationalRow.GetRaw(string columnName) { return _SourceRow.GetRaw(columnName); }
+
         #endregion
 
         #region IRow Members

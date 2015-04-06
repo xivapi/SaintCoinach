@@ -5,6 +5,8 @@
         new IMultiSheet Sheet { get; }
         object this[int columnIndex, Language language] { get; }
 
+        object GetRaw(int columnIndex, Language language);
+
         #endregion
     }
 }

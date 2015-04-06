@@ -6,6 +6,8 @@
         int Key { get; }
         object this[int columnIndex] { get; }
 
+        object GetRaw(int columnIndex);
+
         #endregion
     }
 }

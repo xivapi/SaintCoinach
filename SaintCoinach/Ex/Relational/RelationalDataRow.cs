@@ -53,6 +53,13 @@ namespace SaintCoinach.Ex.Relational {
             }
         }
 
+        object IRelationalRow.GetRaw(string columnName) {
+            var column = Sheet.Header.FindColumn(columnName);
+            if (column == null)
+                throw new KeyNotFoundException();
+            return column.ReadRaw(Sheet.GetBuffer(), this);
+        }
+
         #endregion
     }
 }

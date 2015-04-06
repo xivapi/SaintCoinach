@@ -52,6 +52,11 @@ namespace SaintCoinach.Ex {
             }
         }
 
+        object IRow.GetRaw(int columnIndex) {
+            var column = Sheet.Header.GetColumn(columnIndex);
+            return column.ReadRaw(Sheet.GetBuffer(), this);
+        }
+
         #endregion
     }
 }

@@ -25,6 +25,14 @@
 
         public object this[int columnIndex] { get { return Sheet.ActiveSheet[Key, columnIndex]; } }
 
+        object IRow.GetRaw(int columnIndex) {
+            return Sheet.ActiveSheet[Key].GetRaw(columnIndex);
+        }
+
+        object IMultiRow.GetRaw(int columnIndex, Language language) {
+            return Sheet.GetLocalisedSheet(language)[Key].GetRaw(columnIndex);
+        }
+
         #endregion
     }
 }

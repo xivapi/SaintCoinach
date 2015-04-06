@@ -6,6 +6,8 @@
         object DefaultValue { get; }
         object this[string columnName] { get; }
 
+        object GetRaw(string columnName);
+
         #endregion
     }
 }

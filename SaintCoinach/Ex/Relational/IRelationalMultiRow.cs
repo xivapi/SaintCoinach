@@ -4,6 +4,7 @@
 
         new IRelationalMultiSheet Sheet { get; }
         object this[string columnName, Language language] { get; }
+        object GetRaw(string columnName, Language language);
 
         #endregion
     }

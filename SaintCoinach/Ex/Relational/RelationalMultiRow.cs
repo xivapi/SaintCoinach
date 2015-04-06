@@ -35,6 +35,14 @@
 
         public object this[string columnName] { get { return Sheet.ActiveSheet[Key, columnName]; } }
 
+        object IRelationalRow.GetRaw(string columnName) {
+            return Sheet.ActiveSheet[Key].GetRaw(columnName);
+        }
+
+        object IRelationalMultiRow.GetRaw(string columnName, Language language) {
+            return Sheet.GetLocalisedSheet(language)[Key].GetRaw(columnName);
+        }
+
         #endregion
     }
 }

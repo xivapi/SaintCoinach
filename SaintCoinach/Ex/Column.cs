@@ -73,15 +73,24 @@
         #region Read
 
         /// <summary>
-        ///     Read the column's value in a row.
+        ///     Read the column's value in a row, possibly post-processed depending on the column's implementation.
         /// </summary>
         /// <param name="buffer">A byte-array containing the contents of the data file.</param>
         /// <param name="row">The <see cref="IDataRow" /> whose data should be read.</param>
         /// <returns>Returns the column's value in <c>row</c>.</returns>
         public virtual object Read(byte[] buffer, IDataRow row) {
-            return Reader.Read(buffer, this, row);
+            return ReadRaw(buffer, row);
         }
 
+        /// <summary>
+        ///     Read the raw column's value in a row.
+        /// </summary>
+        /// <param name="buffer">A byte-array containing the contents of the data file.</param>
+        /// <param name="row">The <see cref="IDataRow" /> whose data should be read.</param>
+        /// <returns>Returns the raw column's value in <c>row</c>.</returns>
+        public object ReadRaw(byte[] buffer, IDataRow row) {
+            return Reader.Read(buffer, this, row);
+        }
         #endregion
     }
 }
