@@ -2,7 +2,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class Fate : XivRow {
+    public class Fate : XivRow, ILocatable {
         #region Properties
 
         public string Name { get { return AsString("Name"); } }
@@ -33,5 +33,13 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region ILocatable Members
+
+        System.Collections.Generic.IEnumerable<ILocation> ILocatable.Locations {
+            get { yield return Level; }
+        }
+
+        #endregion
     }
 }
