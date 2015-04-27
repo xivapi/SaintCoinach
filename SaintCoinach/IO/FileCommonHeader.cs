@@ -14,7 +14,7 @@ namespace SaintCoinach.IO {
 
         #region Properties
 
-        public IndexFile Index { get; private set; }
+        public IIndexFile Index { get; private set; }
         public FileType FileType { get; private set; }
         public long Length { get; private set; }
         public long EndOfHeader { get; private set; }
@@ -23,9 +23,7 @@ namespace SaintCoinach.IO {
 
         #region Constructors
 
-        #region Constructor
-
-        public FileCommonHeader(IndexFile index, Stream stream) {
+        public FileCommonHeader(IIndexFile index, Stream stream) {
             if (index == null)
                 throw new ArgumentNullException("index");
             if (stream == null)
@@ -35,8 +33,6 @@ namespace SaintCoinach.IO {
 
             Read(stream);
         }
-
-        #endregion
 
         #endregion
 

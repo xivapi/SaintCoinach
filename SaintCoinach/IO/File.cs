@@ -9,30 +9,25 @@ namespace SaintCoinach.IO {
     public abstract class File {
         #region Fields
 
-        private string _Name;
+        private string _Path;
 
         #endregion
 
         #region Properties
 
-        public Directory Directory { get; private set; }
+        public Pack Pack { get; private set; }
         public FileCommonHeader CommonHeader { get; private set; }
-        public IndexFile Index { get { return CommonHeader.Index; } }
-        public string Name { get { return _Name ?? Index.FileKey.ToString("X8"); } internal set { _Name = value; } }
-        public string Path { get { return string.Join("/", Directory.Path, Name); } }
+        public IIndexFile Index { get { return CommonHeader.Index; } }
+        public string Path { get { return _Path ?? Index.FileKey.ToString("X8"); } internal set { _Path = value; } }
 
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
-        protected File(Directory directory, FileCommonHeader commonHeader) {
-            Directory = directory;
+        protected File(Pack pack, FileCommonHeader commonHeader) {
+            Pack = pack;
             CommonHeader = commonHeader;
         }
-
-        #endregion
 
         #endregion
 
@@ -53,7 +48,7 @@ namespace SaintCoinach.IO {
         #region Helpers
 
         protected Stream GetSourceStream() {
-            return Directory.Pack.GetDataStream(Index.DatFile);
+            return this.Pack.GetDataStream(Index.DatFile);
         }
 
         protected static byte[] ReadBlock(Stream stream) {
@@ -140,7 +135,6 @@ namespace SaintCoinach.IO {
             var asFile = obj as File;
             if (asFile != null)
                 return (asFile.Index.FileKey == Index.FileKey
-                        && asFile.Index.DirectoryKey == Index.DirectoryKey
                         && asFile.Index.DatFile == Index.DatFile);
             return false;
         }

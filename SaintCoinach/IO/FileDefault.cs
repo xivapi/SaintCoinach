@@ -14,11 +14,7 @@ namespace SaintCoinach.IO {
 
         #region Constructors
 
-        #region Constructor
-
-        public FileDefault(Directory directory, FileCommonHeader header) : base(directory, header) { }
-
-        #endregion
+        public FileDefault(Pack pack, FileCommonHeader header) : base(pack, header) { }
 
         #endregion
 

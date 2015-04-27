@@ -10,10 +10,11 @@ namespace SaintCoinach.IO {
     /// <summary>
     ///     Class for a SqPack.
     /// </summary>
-    public partial class Pack {
+    public partial class Pack : IEnumerable<File> {
         #region Static
 
         private const string IndexFileFormat = "{0:x2}0000.win32.index";
+        private const string Index2FileFormat = "{0:x2}0000.win32.index2";
         private const string DatFileFormat = "{0:x2}0000.win32.dat{1}";
 
         #endregion
@@ -23,10 +24,6 @@ namespace SaintCoinach.IO {
         private readonly Dictionary<Tuple<Thread, byte>, WeakReference<Stream>> _DataStreams =
             new Dictionary<Tuple<Thread, byte>, WeakReference<Stream>>();
 
-        private readonly Dictionary<uint, WeakReference<Directory>> _Directories =
-            new Dictionary<uint, WeakReference<Directory>>();
-
-        private readonly Dictionary<string, uint> _DirectoryPathMap = new Dictionary<string, uint>();
         private readonly string _Name;
 
         private bool _KeepInMemory = false;
@@ -37,8 +34,8 @@ namespace SaintCoinach.IO {
         #region Properties
 
         public PackCollection Collection { get; private set; }
-        public Index Index { get; private set; }
         public DirectoryInfo DataDirectory { get; private set; }
+        public IPackSource Source { get; private set; }
         public byte Key { get; private set; }
         public string Name { get { return _Name ?? Key.ToString("x2"); } }
         public bool KeepInMemory {
@@ -192,130 +189,43 @@ namespace SaintCoinach.IO {
             TryGetSqPackName(key, out _Name);
 
             var indexPath = Path.Combine(DataDirectory.FullName, string.Format(IndexFileFormat, Key));
-            Index = new Index(indexPath);
+            var index2Path = Path.Combine(DataDirectory.FullName, string.Format(Index2FileFormat, Key));
+            if (IOFile.Exists(indexPath))
+                Source = new IndexSource(this, new Index(indexPath));
+            else if (IOFile.Exists(index2Path))
+                Source = new Index2Source(this, new Index2(index2Path));
+            else
+                throw new FileNotFoundException();
         }
 
         #endregion
 
-        #region Get
-
-        public bool DirectoryExists(string path) {
-            uint hash;
-            if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
-            return DirectoryExists(hash);
-        }
-
-        public bool DirectoryExists(uint key) {
-            return Index.Directories.ContainsKey(key);
-        }
-
-        public Directory GetDirectory(string path) {
-            uint hash;
-            if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
-
-            var dir = GetDirectory(hash);
-            dir.Path = path;
-            return dir;
-        }
-
-        public Directory GetDirectory(uint key) {
-            WeakReference<Directory> dirRef;
-            Directory directory;
-            if (_Directories.TryGetValue(key, out dirRef) && dirRef.TryGetTarget(out directory))
-                return directory;
-
-            var index = Index.Directories[key];
-            directory = new Directory(this, index);
-            if (_Directories.ContainsKey(key))
-                _Directories[key].SetTarget(directory);
-            else
-                _Directories.Add(key, new WeakReference<Directory>(directory));
-            return directory;
-        }
-
-        public bool TryGetDirectory(string path, out Directory directory) {
-            uint hash;
-            if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
-
-            var result = TryGetDirectory(hash, out directory);
-            if (result)
-                directory.Path = path;
-            return result;
-        }
-
-        public bool TryGetDirectory(uint key, out Directory directory) {
-            WeakReference<Directory> dirRef;
-            if (_Directories.TryGetValue(key, out dirRef) && dirRef.TryGetTarget(out directory))
-                return true;
-
-            IndexDirectory index;
-            if (Index.Directories.TryGetValue(key, out index)) {
-                directory = new Directory(this, index);
-                if (_Directories.ContainsKey(key))
-                    _Directories[key].SetTarget(directory);
-                else
-                    _Directories.Add(key, new WeakReference<Directory>(directory));
-                return true;
-            }
-
-            directory = null;
-            return false;
-        }
+        #region Fields
 
         public bool FileExists(string path) {
-            var lastSeperator = path.LastIndexOf('/');
-            if (lastSeperator < 0)
-                throw new ArgumentException();
-
-            var dirPath = path.Substring(0, lastSeperator);
-            var baseName = path.Substring(lastSeperator + 1);
-            Directory dir;
-            return TryGetDirectory(dirPath, out dir) && dir.FileExists(baseName);
+            return Source.FileExists(path);
         }
-
+        public bool TryGetFile(string path, out File value) {
+            return Source.TryGetFile(path, out value);
+        }
         public File GetFile(string path) {
-            var lastSeperator = path.LastIndexOf('/');
-            if (lastSeperator < 0)
-                throw new ArgumentException();
-
-            var dirPath = path.Substring(0, lastSeperator);
-            var baseName = path.Substring(lastSeperator + 1);
-            var dir = GetDirectory(dirPath);
-            return dir.GetFile(baseName);
+            return Source.GetFile(path);
         }
 
-        public File GetFile(uint directoryKey, uint fileKey) {
-            var dir = GetDirectory(directoryKey);
-            return dir.GetFile(fileKey);
+        #endregion
+
+        #region IEnumerable<File> Members
+
+        public IEnumerator<File> GetEnumerator() {
+            return Source.GetEnumerator();
         }
 
-        public bool TryGetFile(string path, out File file) {
-            var lastSeperator = path.LastIndexOf('/');
-            if (lastSeperator < 0) {
-                file = null;
-                return false;
-            }
+        #endregion
 
-            var dirPath = path.Substring(0, lastSeperator);
-            var baseName = path.Substring(lastSeperator + 1);
-            Directory dir;
-            if (TryGetDirectory(dirPath, out dir))
-                return dir.TryGetFile(baseName, out file);
+        #region IEnumerable Members
 
-            file = null;
-            return false;
-        }
-
-        public bool TryGetFile(uint directoryKey, uint fileKey, out File file) {
-            Directory dir;
-            if (TryGetDirectory(directoryKey, out dir))
-                return dir.TryGetFile(fileKey, out file);
-
-            file = null;
-            return false;
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
 
         #endregion

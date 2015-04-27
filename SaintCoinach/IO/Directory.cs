@@ -5,7 +5,7 @@ namespace SaintCoinach.IO {
     /// <summary>
     ///     Directory inside a SqPack.
     /// </summary>
-    public partial class Directory {
+    public partial class Directory : IPackSource {
         #region Fields
 
         private readonly Dictionary<string, uint> _FileNameMap = new Dictionary<string, uint>();
@@ -62,7 +62,7 @@ namespace SaintCoinach.IO {
                 _FileNameMap.Add(name, hash = Hash.Compute(name));
 
             var file = GetFile(hash);
-            file.Name = name;
+            file.Path = string.Format("{0}/{1}", this.Path, name);
             return file;
         }
 
@@ -73,7 +73,7 @@ namespace SaintCoinach.IO {
                 return file;
 
             var index = Index.Files[key];
-            file = FileFactory.Get(this, index);
+            file = FileFactory.Get(this.Pack, index);
             if (_Files.ContainsKey(key))
                 _Files[key].SetTarget(file);
             else
@@ -88,7 +88,7 @@ namespace SaintCoinach.IO {
 
             var result = TryGetFile(hash, out file);
             if (result)
-                file.Name = name;
+                file.Path = string.Format("{0}/{1}", this.Path, name);
             return result;
         }
 
@@ -99,7 +99,7 @@ namespace SaintCoinach.IO {
 
             IndexFile index;
             if (Index.Files.TryGetValue(key, out index)) {
-                file = FileFactory.Get(this, index);
+                file = FileFactory.Get(this.Pack, index);
                 if (_Files.ContainsKey(key))
                     _Files[key].SetTarget(file);
                 else

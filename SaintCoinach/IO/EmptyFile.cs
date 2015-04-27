@@ -2,11 +2,7 @@
     public class EmptyFile : File {
         #region Constructors
 
-        #region Constructor
-
-        public EmptyFile(Directory directory, FileCommonHeader header) : base(directory, header) { }
-
-        #endregion
+        public EmptyFile(Pack pack, FileCommonHeader header) : base(pack, header) { }
 
         #endregion
 

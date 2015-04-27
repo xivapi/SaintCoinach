@@ -62,7 +62,7 @@ namespace SaintCoinach.Graphics.Assets {
             _BasePath = path;
             Version = version;
 
-            _PackCollection = Material.Model.File.Directory.Pack.Collection;
+            _PackCollection = Material.Model.File.Pack.Collection;
 
             Load();
             CheckForStaining();

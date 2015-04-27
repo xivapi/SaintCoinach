@@ -31,8 +31,8 @@ namespace SaintCoinach.Cmd.Commands {
                         continue;
 
                     IO.File file;
+                    var fInfo = new System.IO.FileInfo(System.IO.Path.Combine(_Realm.GameVersion, filePath + ".ogg"));
                     if (_Realm.Packs.TryGetFile(filePath, out file)) {
-                        var fInfo = new System.IO.FileInfo(System.IO.Path.Combine(_Realm.GameVersion, filePath + ".ogg"));
 
                         if (!fInfo.Directory.Exists)
                             fInfo.Directory.Create();
@@ -46,6 +46,7 @@ namespace SaintCoinach.Cmd.Commands {
                         ++successCount;
                     } else {
                         OutputError("File {0} not found.", filePath);
+                        try { if (fInfo.Exists) { fInfo.Delete(); } } catch { }
                         ++failCount;
                     }
                 } catch(Exception e) {

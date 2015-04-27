@@ -31,10 +31,10 @@ namespace SaintCoinach.Cmd.Commands {
             var successCount = 0;
             var failCount = 0;
             foreach (var name in filesToExport) {
+                var target = new FileInfo(Path.Combine(_Realm.GameVersion, string.Format(CsvFileFormat, name)));
                 try {
                     var sheet = _Realm.GameData.GetSheet(name);
 
-                    var target = new FileInfo(Path.Combine(_Realm.GameVersion, string.Format(CsvFileFormat, name)));
                     if (!target.Directory.Exists)
                         target.Directory.Create();
 
@@ -43,6 +43,7 @@ namespace SaintCoinach.Cmd.Commands {
                     ++successCount;
                 } catch (Exception e) {
                     OutputError("Export of {0} failed: {1}", name, e.Message);
+                    try { if (target.Exists) { target.Delete(); } } catch { }
                     ++failCount;
                 }
             }

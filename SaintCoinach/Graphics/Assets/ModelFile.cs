@@ -29,18 +29,14 @@ namespace SaintCoinach.Graphics.Assets {
 
         #region Constructors
 
-        #region Constructor
-
-        public ModelFile(Directory directory, FileCommonHeader commonHeader) : base(directory, commonHeader) { }
-
-        #endregion
+        public ModelFile(Pack pack, FileCommonHeader commonHeader) : base(pack, commonHeader) { }
 
         #endregion
 
         #region Read
 
         public Model GetModel() {
-            if (Directory.Pack.Collection == null)
+            if (this.Pack.Collection == null)
                 throw new NotSupportedException();
 
             Model model;

@@ -40,9 +40,10 @@ namespace SaintCoinach.Graphics {
 
         #region Pre
         private void PreProcess() {
-            IO.Directory terrainDir;
-            if (_PackCollection.TryGetDirectory(_BasePath + "/bgplate", out terrainDir))
-                Add(new Parts.BgPlate(terrainDir));
+            var terrainDir = string.Format("{0}/bgplate/");
+
+            if(_PackCollection.FileExists(terrainDir + Parts.BgPlate.TerrainIndexFile))
+                Add(new Parts.BgPlate(_PackCollection, terrainDir));
         }
         #endregion
     }

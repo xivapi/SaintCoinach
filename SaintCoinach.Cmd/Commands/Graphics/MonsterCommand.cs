@@ -48,7 +48,7 @@ namespace SaintCoinach.Cmd.Commands.Graphics {
                     foreach (var msg in GraphicsHelper.ApplyMaterial(component, splitParam, 2))
                         OutputWarning(msg);
 
-                    GraphicsHelper.RunViewer(component, file.Name);
+                    GraphicsHelper.RunViewer(component, file.Path);
                 } else
                     OutputError("File is not a model file.");
             } else

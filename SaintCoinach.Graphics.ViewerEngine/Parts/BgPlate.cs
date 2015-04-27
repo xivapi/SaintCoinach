@@ -8,31 +8,32 @@ using SharpDX;
 
 namespace SaintCoinach.Graphics.Parts {
     public class BgPlate : ComponentContainer {
-        static readonly uint TerrainIndexFile = IO.Hash.Compute("terrain.tera");
+        public static readonly uint TerrainIndexFile = IO.Hash.Compute("terrain.tera");
 
         #region Fields
-        private IO.Directory _TerrainDirectory;
+        private string _TerrainDirectory;
         #endregion
 
         #region Properties
-        public IO.Directory TerrainDirectory { get { return _TerrainDirectory; } }
+        public string TerrainDirectory { get { return _TerrainDirectory; } }
         #endregion
 
         #region Constructor
-        public BgPlate(IO.Directory terrainDirectory) {
+        public BgPlate(IO.PackCollection pack, string terrainDirectory) {
             _TerrainDirectory = terrainDirectory;
 
-            IO.File terrainIndex = terrainDirectory.GetFile(TerrainIndexFile);
+            IO.File terrainIndex = pack.GetFile(TerrainDirectory + TerrainIndexFile);
             var terrainIndexData = terrainIndex.GetData();
 
             var blockCount = BitConverter.ToInt32(terrainIndexData, 0x04);
             var blockSize = BitConverter.ToInt32(terrainIndexData, 0x08);
 
             for (var block = 0; block < blockCount; ++block) {
-                var fileKey = IO.Hash.Compute(string.Format("{0:D4}.mdl", block));
-                if (!terrainDirectory.FileExists(fileKey))
+                var filePath = terrainDirectory + string.Format("{0:D4}.mdl", block);
+                IO.File file;
+                if (!pack.TryGetFile(filePath, out file))
                     continue;
-                var blockFile = (Assets.ModelFile)terrainDirectory.GetFile(fileKey);
+                var blockFile = (Assets.ModelFile)file;
 
                 var x = BitConverter.ToInt16(terrainIndexData, 0x34 + 4 * block + 0);
                 var z = BitConverter.ToInt16(terrainIndexData, 0x34 + 4 * block + 2);

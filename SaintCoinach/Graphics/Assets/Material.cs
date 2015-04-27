@@ -51,7 +51,7 @@ namespace SaintCoinach.Graphics.Assets {
             const int MaximumCheck = 9999;
             const int Default = 0;
 
-            var packColl = Model.File.Directory.Pack.Collection;
+            var packColl = Model.File.Pack.Collection;
             if (packColl.FileExists(Name)) {
                 _VersionFormat = Name;
                 available.Add(Default);

@@ -54,19 +54,19 @@ namespace SaintCoinach.Graphics.Materials {
                         _Normal0 = texCache.GetResource(tex);
                         break;
                     case "Diffuse1":
-                        if (tex.Name.Contains("/dummy"))
+                        if (tex.Path.Contains("/dummy"))
                             _Diffuse1 = _Diffuse0;
                         else
                             _Diffuse1 = texCache.GetResource(tex);
                         break;
                     case "Specular1":
-                        if (tex.Name.Contains("/dummy"))
+                        if (tex.Path.Contains("/dummy"))
                             _Specular1 = _Specular0;
                         else
                             _Specular1 = texCache.GetResource(tex);
                         break;
                     case "Normal1":
-                        if (tex.Name.Contains("/dummy"))
+                        if (tex.Path.Contains("/dummy"))
                             _Normal1 = _Normal0;
                         else
                             _Normal1 = texCache.GetResource(tex);

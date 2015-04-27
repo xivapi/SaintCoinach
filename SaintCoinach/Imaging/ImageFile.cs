@@ -31,16 +31,12 @@ namespace SaintCoinach.Imaging {
 
         #region Constructors
 
-        #region Constructor
-
-        public ImageFile(Directory directory, FileCommonHeader commonHeader)
-            : base(directory, commonHeader) {
+        public ImageFile(Pack pack, FileCommonHeader commonHeader)
+            : base(pack, commonHeader) {
             var stream = GetSourceStream();
             stream.Position = CommonHeader.EndOfHeader;
             ImageHeader = new ImageHeader(stream);
         }
-
-        #endregion
 
         #endregion
 

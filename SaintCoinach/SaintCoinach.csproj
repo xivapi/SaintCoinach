@@ -91,6 +91,15 @@
     <Compile Include="Graphics\ShPk\ShPkFile.cs" />
     <Compile Include="Graphics\ShPk\ShPkHeader.cs" />
     <Compile Include="IO\EmptyFile.cs" />
+    <Compile Include="IO\IIndexFile.cs" />
+    <Compile Include="IO\Index2.cs" />
+    <Compile Include="IO\Index2File.cs" />
+    <Compile Include="IO\Index2Header.cs" />
+    <Compile Include="IO\Index2Source.cs" />
+    <Compile Include="IO\Index2Source.Enumerator.cs" />
+    <Compile Include="IO\IndexSource.cs" />
+    <Compile Include="IO\IndexSource.Enumerator.cs" />
+    <Compile Include="IO\IPackSource.cs" />
     <Compile Include="Libra\Achievement.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>
@@ -396,7 +405,6 @@
     <Compile Include="IO\IndexHeader.cs" />
     <Compile Include="IO\FileDefault.cs" />
     <Compile Include="IO\Pack.cs" />
-    <Compile Include="IO\Pack.Enumeration.cs" />
     <Compile Include="IO\Directory.cs" />
     <Compile Include="IO\Directory.Enumeration.cs" />
     <Compile Include="IO\File.cs" />
