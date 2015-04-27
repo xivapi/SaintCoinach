@@ -85,6 +85,12 @@ namespace SaintCoinach.Xiv {
         public int ExpReward { get { return AsInt32("ExpReward"); } }
 
         /// <summary>
+        ///     Gets the gil reward of the current leve.
+        /// </summary>
+        /// <value>The gil reward of the current leve.</value>
+        public int GilReward { get { return AsInt32("GilReward"); } }
+
+        /// <summary>
         ///     Gets the <see cref="Level" /> object for the location of the current leve.
         /// </summary>
         /// <value>The <see cref="Level" /> object for the location of the current leve.</value>

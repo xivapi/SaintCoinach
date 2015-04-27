@@ -33,7 +33,7 @@ namespace SaintCoinach.Xiv {
             var items = new GatheringItem[Count];
             for (var i = 0; i < Count; ++i) {
                 var gi = As<GatheringItem>(i);
-                if (gi.Key != 0 && gi.Item.Key != 0)
+                if (gi.Key != 0 && gi.Item != null && gi.Item.Key != 0)
                     items[i] = gi;
             }
             return items;
