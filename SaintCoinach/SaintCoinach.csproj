@@ -100,6 +100,7 @@
     <Compile Include="IO\IndexSource.cs" />
     <Compile Include="IO\IndexSource.Enumerator.cs" />
     <Compile Include="IO\IPackSource.cs" />
+    <Compile Include="IO\PackIdentifier.cs" />
     <Compile Include="Libra\Achievement.cs">
       <DependentUpon>LibraModel.tt</DependentUpon>
     </Compile>

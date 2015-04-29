@@ -6,7 +6,7 @@ namespace SaintCoinach.IO {
     public class PackCollection {
         #region Fields
 
-        private readonly Dictionary<byte, Pack> _Packs = new Dictionary<byte, Pack>();
+        private readonly Dictionary<PackIdentifier, Pack> _Packs = new Dictionary<PackIdentifier, Pack>();
 
         #endregion
 
@@ -43,22 +43,22 @@ namespace SaintCoinach.IO {
             return pack.GetFile(path);
         }
 
-        public Pack GetPack(byte key) {
+        public Pack GetPack(PackIdentifier id) {
             Pack pack;
-            if (_Packs.TryGetValue(key, out pack)) return pack;
+            if (_Packs.TryGetValue(id, out pack)) return pack;
 
-            pack = new Pack(this, DataDirectory, key);
-            _Packs.Add(key, pack);
+            pack = new Pack(this, DataDirectory, id);
+            _Packs.Add(id, pack);
             return pack;
         }
 
         public Pack GetPack(string path) {
-            var key = Pack.GetSqPackKey(path);
+            var id = PackIdentifier.Get(path);
             Pack pack;
-            if (_Packs.TryGetValue(key, out pack)) return pack;
+            if (_Packs.TryGetValue(id, out pack)) return pack;
 
-            pack = new Pack(this, DataDirectory, key);
-            _Packs.Add(key, pack);
+            pack = new Pack(this, DataDirectory, id);
+            _Packs.Add(id, pack);
             return pack;
         }
 
@@ -74,14 +74,14 @@ namespace SaintCoinach.IO {
         public bool TryGetPack(string path, out Pack pack) {
             pack = null;
 
-            byte key;
-            if (!Pack.TryGetSqPackKey(path, out key))
+            PackIdentifier id;
+            if (!PackIdentifier.TryGet(path, out id))
                 return false;
 
-            if (_Packs.TryGetValue(key, out pack)) return true;
+            if (_Packs.TryGetValue(id, out pack)) return true;
 
-            pack = new Pack(this, DataDirectory, key);
-            _Packs.Add(key, pack);
+            pack = new Pack(this, DataDirectory, id);
+            _Packs.Add(id, pack);
             return true;
         }
 

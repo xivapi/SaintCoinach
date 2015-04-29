@@ -13,9 +13,9 @@ namespace SaintCoinach.IO {
     public partial class Pack : IEnumerable<File> {
         #region Static
 
-        private const string IndexFileFormat = "{0:x2}0000.win32.index";
-        private const string Index2FileFormat = "{0:x2}0000.win32.index2";
-        private const string DatFileFormat = "{0:x2}0000.win32.dat{1}";
+        private const string IndexFileFormat = "{0:x2}{1:x2}{2:x2}.win32.index";
+        private const string Index2FileFormat = "{0:x2}{1:x2}{2:x2}.win32.index2";
+        private const string DatFileFormat = "{0:x2}{1:x2}{2:x2}.win32.dat{3}";
 
         #endregion
 
@@ -24,8 +24,6 @@ namespace SaintCoinach.IO {
         private readonly Dictionary<Tuple<Thread, byte>, WeakReference<Stream>> _DataStreams =
             new Dictionary<Tuple<Thread, byte>, WeakReference<Stream>>();
 
-        private readonly string _Name;
-
         private bool _KeepInMemory = false;
         private Dictionary<int, byte[]> _Buffers = new Dictionary<int,byte[]>();
 
@@ -33,11 +31,10 @@ namespace SaintCoinach.IO {
 
         #region Properties
 
+        public PackIdentifier Id { get; private set; }
         public PackCollection Collection { get; private set; }
         public DirectoryInfo DataDirectory { get; private set; }
         public IPackSource Source { get; private set; }
-        public byte Key { get; private set; }
-        public string Name { get { return _Name ?? Key.ToString("x2"); } }
         public bool KeepInMemory {
             get { return _KeepInMemory; }
             set {
@@ -73,8 +70,8 @@ namespace SaintCoinach.IO {
 
             if (stream != null) return stream;
 
-            var baseName = String.Format(DatFileFormat, Key, datFile);
-            var fullPath = Path.Combine(DataDirectory.FullName, baseName);
+            var baseName = String.Format(DatFileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number, datFile);
+            var fullPath = Path.Combine(DataDirectory.FullName, Id.Expansion, baseName);
 
 
             if (KeepInMemory) {
@@ -98,86 +95,19 @@ namespace SaintCoinach.IO {
         #endregion
 
         public override string ToString() {
-            return Name;
+            return string.Format("{0}/{1:x2}{2:x2}{3:x2}", Id.Expansion, Id.TypeKey, Id.ExpansionKey, Id.Number);
         }
 
-        #region Name <> Key mapping
-
-        private static readonly Dictionary<string, byte> RootToSqMap =
-            new Dictionary<string, byte> {
-                {
-                    "common", 0x00
-                }, {
-                    "bgcommon", 0x01
-                }, {
-                    "bg", 0x02
-                }, {
-                    "cut", 0x03
-                }, {
-                    "chara", 0x04
-                }, {
-                    "shader", 0x05
-                }, {
-                    "ui", 0x06
-                }, {
-                    "sound", 0x07
-                }, {
-                    "vfx", 0x08
-                }, {
-                    "ui_script", 0x09
-                }, {
-                    "exd", 0x0a
-                }, {
-                    "game_script", 0x0b
-                }, {
-                    "music", 0x0c
-                }, {
-                    "_sqpack_test", 0x12
-                }, {
-                    "_debug", 0x13
-                }
-            };
-
-        private static readonly Dictionary<byte, string> SqToRootMap = RootToSqMap.ToDictionary(_ => _.Value,
-            _ => _.Key);
-
-        private static string GetPathRoot(string path) {
-            var search = path;
-            var i = search.IndexOf('/');
-            if (i >= 0)
-                search = search.Substring(0, i);
-            return search;
-        }
-
-        public static bool TryGetSqPackKey(string path, out byte key) {
-            var search = GetPathRoot(path);
-            return RootToSqMap.TryGetValue(search, out key);
-        }
-
-        public static byte GetSqPackKey(string path) {
-            var search = GetPathRoot(path);
-            return RootToSqMap[search];
-        }
-
-        public static bool TryGetSqPackName(byte key, out string name) {
-            return SqToRootMap.TryGetValue(key, out name);
-        }
-
-        public static string GetSqPackName(byte key) {
-            return SqToRootMap[key];
-        }
-
-        #endregion
 
         #region Constructor
 
-        public Pack(string dataPath, byte key) : this(null, new DirectoryInfo(dataPath), key) { }
-        public Pack(DirectoryInfo dataDirectory, byte key) : this(null, dataDirectory, key) { }
+        public Pack(string dataPath, PackIdentifier id) : this(null, new DirectoryInfo(dataPath), id) { }
+        public Pack(DirectoryInfo dataDirectory, PackIdentifier id) : this(null, dataDirectory, id) { }
 
-        public Pack(PackCollection collection, string dataPath, byte key)
-            : this(collection, new DirectoryInfo(dataPath), key) { }
+        public Pack(PackCollection collection, string dataPath, PackIdentifier id)
+            : this(collection, new DirectoryInfo(dataPath), id) { }
 
-        public Pack(PackCollection collection, DirectoryInfo dataDirectory, byte key) {
+        public Pack(PackCollection collection, DirectoryInfo dataDirectory, PackIdentifier id) {
             if (dataDirectory == null)
                 throw new ArgumentNullException("dataDirectory");
             if (!dataDirectory.Exists)
@@ -185,11 +115,10 @@ namespace SaintCoinach.IO {
 
             Collection = collection;
             DataDirectory = dataDirectory;
-            Key = key;
-            TryGetSqPackName(key, out _Name);
+            this.Id = id;
 
-            var indexPath = Path.Combine(DataDirectory.FullName, string.Format(IndexFileFormat, Key));
-            var index2Path = Path.Combine(DataDirectory.FullName, string.Format(Index2FileFormat, Key));
+            var indexPath = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(IndexFileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
+            var index2Path = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(Index2FileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
             if (IOFile.Exists(indexPath))
                 Source = new IndexSource(this, new Index(indexPath));
             else if (IOFile.Exists(index2Path))

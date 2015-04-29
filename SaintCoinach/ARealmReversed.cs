@@ -197,7 +197,7 @@ namespace SaintCoinach {
         /// <param name="libraFile">Location of the Libra Eorzea database file, or <c>null</c> if it should not be used.</param>
         public ARealmReversed(DirectoryInfo gameDirectory, FileInfo storeFile, Language language, FileInfo libraFile) {
             _GameDirectory = gameDirectory;
-            _Packs = new PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack", "ffxiv"));
+            _Packs = new PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack"));
             _GameData = new XivCollection(Packs, libraFile) {
                 ActiveLanguage = language
             };

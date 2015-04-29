@@ -28,8 +28,11 @@ namespace SaintCoinach.Graphics.Parts {
 
             var transform = Matrix.Translation(worldPosition);
 
-            foreach (var mesh in subModel.Meshes)
-                Add(new Mesh(mesh, transform));
+            foreach (var mesh in subModel.Meshes) {
+                try {
+                    Add(new Mesh(mesh, transform));
+                } catch { }
+            }
         }
         #endregion
     }

@@ -166,14 +166,14 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Input layouts
-        private Dictionary<Tuple<Type, int>, InputLayout> _InputLayouts = new Dictionary<Tuple<Type, int>, InputLayout>();
+        private Dictionary<Tuple<Type, long>, InputLayout> _InputLayouts = new Dictionary<Tuple<Type, long>, InputLayout>();
         public InputLayout GetInputLayout<T>(EffectPass pass) {
             var t = typeof(T);
             return GetInputLayout(pass, t);
         }
         public InputLayout GetInputLayout(EffectPass pass, Type type) {
 
-            var key = Tuple.Create<Type, int>(type, pass.NativePointer.ToInt32());
+            var key = Tuple.Create<Type, long>(type, pass.NativePointer.ToInt64());
             if (_InputLayouts.ContainsKey(key))
                 return _InputLayouts[key];
 

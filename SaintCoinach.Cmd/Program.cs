@@ -35,7 +35,7 @@ namespace SaintCoinach.Cmd {
             }
 
             var realm = new ARealmReversed(dataPath, @"SaintCoinach.History.zip", Ex.Language.English, @"app_data.sqlite");
-            realm.Packs.GetPack("exd").KeepInMemory = true;
+            realm.Packs.GetPack(new IO.PackIdentifier("exd", IO.PackIdentifier.DefaultExpansion, 0)).KeepInMemory = true;
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
@@ -55,13 +55,6 @@ namespace SaintCoinach.Cmd {
             Setup(cmd, realm);
 
             (new CommandEngine(cmd)).Run(args);
-        }
-        static void WriteAll(StreamWriter writer, string type, string[] texts) {
-            writer.WriteLine("|-");
-            writer.WriteLine("! {0}", type);
-            foreach (var t in texts)
-                writer.WriteLine("| {0}", t);
-
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {

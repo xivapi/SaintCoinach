@@ -8,7 +8,7 @@ using SharpDX;
 
 namespace SaintCoinach.Graphics.Parts {
     public class BgPlate : ComponentContainer {
-        public static readonly uint TerrainIndexFile = IO.Hash.Compute("terrain.tera");
+        public static readonly string TerrainIndexFile = "terrain.tera";
 
         #region Fields
         private string _TerrainDirectory;

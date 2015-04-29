@@ -20,7 +20,7 @@ namespace SaintCoinach.IO {
         public IndexDirectory Index { get; private set; }
 
         public string Path {
-            get { return _Path ?? string.Join("/", Pack.Name, Index.Key.ToString("X8")); }
+            get { return _Path ?? string.Join("/", Pack.ToString(), Index.Key.ToString("X8")); }
             internal set { _Path = value; }
         }
 
