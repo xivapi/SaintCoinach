@@ -59,7 +59,8 @@ namespace SaintCoinach.Graphics {
             get { return Device != null; }
         }
 
-        public void Load(Device device) {
+        public void Load(ViewerEngine engine) {
+            var device = engine.Device;
             _CharacterEffect = new Effects.CharacterEffect(device);
             _BgEffect = new Effects.BgEffect(device);
             _SkinEffect = new Effects.SkinEffect(device);

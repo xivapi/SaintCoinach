@@ -92,9 +92,11 @@
     <Compile Include="Materials\CharacterMaterial.cs" />
     <Compile Include="Materials\HairMaterial.cs" />
     <Compile Include="Materials\SkinMaterial.cs" />
+    <Compile Include="ModelFactory.cs" />
     <Compile Include="Parts\BgPlate.cs" />
     <Compile Include="Parts\BgPlateBlock.cs" />
     <Compile Include="TextureCache.cs" />
+    <Compile Include="TransformedComponent.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Utilities.Effect.cs" />
     <Compile Include="VectorExtensions.cs" />

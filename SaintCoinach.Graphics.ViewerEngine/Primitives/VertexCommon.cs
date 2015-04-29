@@ -26,7 +26,9 @@ namespace SaintCoinach.Graphics.Primitives {
                     new InputElement("NORMAL", 0, Format.R32G32B32_Float, 16, 0),
                     new InputElement("TANGENT", 0, Format.R32G32B32_Float, 28, 0),
                     new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 40, 0),
-                    new InputElement("TEXCOORD", 0, Format.R32G32_Float, 52, 0)
+                    new InputElement("TEXCOORD", 0, Format.R32G32_Float, 52, 0),
+                    new InputElement("TEXCOORD", 1, Format.R32G32_Float, 52, 0),
+                    new InputElement("TEXCOORD", 2, Format.R32G32B32A32_Float, 44, 0),
                 };
             }
         }

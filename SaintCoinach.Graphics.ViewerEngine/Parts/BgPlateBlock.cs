@@ -11,6 +11,7 @@ namespace SaintCoinach.Graphics.Parts {
         #region Fields
         private Point _MapPosition;
         private Vector3 _WorldPosition;
+        private Matrix _Transformation;
         #endregion
 
         #region Properties
@@ -26,14 +27,19 @@ namespace SaintCoinach.Graphics.Parts {
             var model = file.GetModel();
             var subModel = model.GetSubModel(0);
 
-            var transform = Matrix.Translation(worldPosition);
+            _Transformation = Matrix.Translation(worldPosition);
 
             foreach (var mesh in subModel.Meshes) {
                 try {
-                    Add(new Mesh(mesh, transform));
+                    Add(new Mesh(mesh));
                 } catch { }
             }
         }
         #endregion
+
+        public override void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
+            var transformedWorld = _Transformation * world;
+            base.Draw(device, time, ref transformedWorld, ref view, ref projection);
+        }
     }
 }

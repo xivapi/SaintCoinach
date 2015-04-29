@@ -97,8 +97,8 @@ namespace SaintCoinach.Graphics {
             get { return Device != null; }
         }
 
-        public void Load(Device device) {
-            _Device = device;
+        public void Load(ViewerEngine engine) {
+            _Device = engine.Device;
             Register(Device, this);
         }
 

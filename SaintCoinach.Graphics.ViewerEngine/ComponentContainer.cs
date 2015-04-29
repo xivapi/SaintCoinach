@@ -14,26 +14,26 @@ namespace SaintCoinach.Graphics {
 
         #region Fields
         private bool _IsLoaded = false;
-        private SharpDX.Direct3D11.Device _Device = null;
+        private ViewerEngine _Engine = null;
         #endregion
 
         #region Collection overrides
         protected override void InsertItem(int index, IComponent item) {
             if (item is IContentComponent && IsLoaded && !((IContentComponent)item).IsLoaded)
-                ((IContentComponent)item).Load(_Device);
+                ((IContentComponent)item).Load(_Engine);
 
             base.InsertItem(index, item);
         }
         protected override void SetItem(int index, IComponent item) {
             if (item is IContentComponent && IsLoaded && !((IContentComponent)item).IsLoaded)
-                ((IContentComponent)item).Load(_Device);
+                ((IContentComponent)item).Load(_Engine);
 
             base.SetItem(index, item);
         }
         #endregion
 
         #region IDrawable Members
-        public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
+        public virtual void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
             foreach (var c in this.OfType<IDrawable>())
                 c.Draw(device, time, ref world, ref view, ref projection);
         }
@@ -51,10 +51,10 @@ namespace SaintCoinach.Graphics {
             get { return _IsLoaded; }
         }
 
-        public virtual void Load(SharpDX.Direct3D11.Device device) {
-            _Device = device;
+        public virtual void Load(ViewerEngine engine) {
+            _Engine = engine;
             foreach (var c in this.OfType<IContentComponent>().Where(_ => !_.IsLoaded))
-                c.Load(device);
+                c.Load(engine);
             _IsLoaded = true;
         }
 
@@ -67,7 +67,7 @@ namespace SaintCoinach.Graphics {
                 foreach (var c in this.OfType<IContentComponent>().Where(_ => _.IsLoaded))
                     c.Unload();
             }
-            _Device = null;
+            _Engine = null;
         }
 
         #endregion

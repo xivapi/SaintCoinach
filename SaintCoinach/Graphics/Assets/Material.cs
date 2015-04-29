@@ -16,6 +16,7 @@ namespace SaintCoinach.Graphics.Assets {
         public Model Model { get; private set; }
         public string Name { get; private set; }
         public IEnumerable<int> AvailableVersions { get { return _AvailableVersions; } }
+        public string VersionFormat { get { return _VersionFormat; } }
 
         #endregion
 

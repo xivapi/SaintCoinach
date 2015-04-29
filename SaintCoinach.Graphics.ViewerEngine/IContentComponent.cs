@@ -8,7 +8,7 @@ namespace SaintCoinach.Graphics {
     public interface IContentComponent : IComponent {
         bool IsLoaded { get; }
 
-        void Load(SharpDX.Direct3D11.Device device);
+        void Load(ViewerEngine engine);
         void Unload();
     }
 }

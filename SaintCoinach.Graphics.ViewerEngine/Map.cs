@@ -10,6 +10,7 @@ namespace SaintCoinach.Graphics {
     public class Map : ComponentContainer {
         #region Fields
         private string _BasePath;
+        private ViewerEngine _Engine;
         private IO.PackCollection _PackCollection;
         private Xiv.TerritoryType _TerritoryType;
         #endregion
@@ -20,7 +21,8 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Constructor
-        public Map(IO.PackCollection packCollection, Xiv.TerritoryType territoryType) {
+        public Map(ViewerEngine engine, IO.PackCollection packCollection, Xiv.TerritoryType territoryType) {
+            _Engine = engine;
             _PackCollection = packCollection;
 
             var bg = territoryType.Bg;
@@ -32,12 +34,12 @@ namespace SaintCoinach.Graphics {
 
             PreProcess();
         }
-        public Map(IO.PackCollection packCollection, string basePath) {
+        public Map(ViewerEngine engine, IO.PackCollection packCollection, string basePath) {
+            _Engine = engine;
             _PackCollection = packCollection;
             _BasePath = basePath;
 
             PreProcess();
-            LoadLgb("bg.lgb");
         }
         #endregion
 
@@ -47,6 +49,8 @@ namespace SaintCoinach.Graphics {
 
             if(_PackCollection.FileExists(terrainDir + Parts.BgPlate.TerrainIndexFile))
                 Add(new Parts.BgPlate(_PackCollection, terrainDir));
+
+            LoadLgb("bg.lgb");
         }
         private void LoadLgb(string fileName) {
             var fullPath = string.Format("{0}/level/{1}", BasePath, fileName);
@@ -120,9 +124,10 @@ namespace SaintCoinach.Graphics {
   
             IO.File file;
             if (_PackCollection.TryGetFile(modelFileName, out file) && file is Assets.ModelFile) {
-                var subModel = ((Assets.ModelFile)file).GetModel().GetSubModel(0);
+                var mdlFile = ((Assets.ModelFile)file);
                 try {
-                    this.Add(new Model(subModel, transform));
+                    var mdl = _Engine.ModelFactory.GetModel(mdlFile);
+                    this.Add(new TransformedComponent(mdl, transform));
                 } catch { }
             } else {
                 //System.Diagnostics.Trace.WriteLine(string.Format("'{0}' Not found or not a model.", modelFileName), lgbFileName, offset);

@@ -23,8 +23,10 @@ namespace SaintCoinach.Cmd.Commands.Graphics {
                 OutputError("No territory specified.");
                 return false;
             }
-            var component = new G.Map(_Realm.Packs, paramList);
-            GraphicsHelper.RunViewer(component, paramList);
+            var e = new SaintCoinach.Graphics.ViewerEngine(paramList);
+            var component = new G.Map(e, _Realm.Packs, paramList);
+            e.Add(component);
+            GraphicsHelper.RunViewer(e);
 
             return true;
         }

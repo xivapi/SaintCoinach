@@ -34,17 +34,21 @@ namespace SaintCoinach.Graphics {
         private Camera _Camera;
         private EffectCache _EffectCache;
 
+        private ModelFactory _ModelFactory;
+
         private ComponentContainer _CoreComponents = new ComponentContainer();
         #endregion
 
         #region Properties
         public RenderForm Form { get { return _Form; } }
         public Device Device { get { return _Device; } }
+        public ModelFactory ModelFactory { get { return _ModelFactory; } }
         #endregion
 
         #region Constructor
         public ViewerEngine(string title) {
             _Title = title;
+            _ModelFactory = new ModelFactory();
         }
         #endregion
 
@@ -59,7 +63,7 @@ namespace SaintCoinach.Graphics {
 
                 SetupComponents();
 
-                Load(Device);
+                Load(this);
 
                 _RunTimer = new Stopwatch();
                 _RunTimer.Start();
@@ -221,10 +225,10 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Content
-        public override void Load(Device device) {
-            _CoreComponents.Load(device);
+        public override void Load(ViewerEngine engine) {
+            _CoreComponents.Load(engine);
 
-            base.Load(device);
+            base.Load(engine);
         }
 
         public override void Unload(bool includeChildren) {

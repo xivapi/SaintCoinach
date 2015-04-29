@@ -16,12 +16,10 @@ namespace SaintCoinach.Graphics {
 
         #region Properties
         public IEnumerable<Parts.Mesh> Meshes { get { return _Meshes; } }
-        public Matrix Transform { get; set; }
         #endregion
 
         #region Constructor
-        public Model(Assets.SubModel sourceModel) : this(sourceModel, Matrix.Identity) { }
-        public Model(Assets.SubModel sourceModel, Matrix transform) {
+        public Model(Assets.SubModel sourceModel) {
             _SourceModel = sourceModel;
 
             _Meshes = sourceModel.Meshes.Select(_ => new Parts.Mesh(_)).ToArray();
@@ -30,10 +28,8 @@ namespace SaintCoinach.Graphics {
 
         #region IDrawable Members
         public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
-            Matrix adjustedWorld = Transform * world;
-
             foreach (var mesh in _Meshes)
-                mesh.Draw(device, time, ref adjustedWorld, ref view, ref projection);
+                mesh.Draw(device, time, ref world, ref view, ref projection);
         }
         #endregion
 
@@ -63,13 +59,17 @@ namespace SaintCoinach.Graphics {
             get { return _IsLoaded; }
         }
 
-        public void Load(SharpDX.Direct3D11.Device device) {
+        public void Load(ViewerEngine engine) {
+            if (IsLoaded)
+                return;
             foreach (var mesh in _Meshes)
-                mesh.Load(device);
+                mesh.Load(engine);
             _IsLoaded = true;
         }
 
         public void Unload() {
+            if (!IsLoaded)
+                return;
             foreach (var mesh in _Meshes)
                 mesh.Unload();
             _IsLoaded = false;

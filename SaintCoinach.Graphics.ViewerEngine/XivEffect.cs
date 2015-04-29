@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,6 +12,13 @@ using SharpDX.Direct3D11;
 
 namespace SaintCoinach.Graphics {
     public abstract class XivEffect : Effect {
+        public static readonly ReadOnlyCollection<string> SupportedShaders = new ReadOnlyCollection<string>(new List<string> {
+            "character.shpk",
+            "bg.shpk",
+            "skin.shpk",
+            "hair.shpk"
+        });
+
         #region Effect variables
         private EffectVectorVariable _EyePositionVar;
         private EffectPointLightVariable _Light0Var;

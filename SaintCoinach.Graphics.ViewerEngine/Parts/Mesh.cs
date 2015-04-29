@@ -27,7 +27,6 @@ namespace SaintCoinach.Graphics.Parts {
         private object _Vertices;
         private ushort[] _Indices;
 
-        private Matrix _Transformation;
         private XivMaterial _Material;
         private IGeometricPrimitive _Primitive;
 
@@ -64,12 +63,10 @@ namespace SaintCoinach.Graphics.Parts {
         #endregion
 
         #region Constructor
-        public Mesh(Assets.Mesh sourceMesh) : this(sourceMesh, Matrix.Identity) { }
-        public Mesh(Assets.Mesh sourceMesh, Matrix transform) {
+        public Mesh(Assets.Mesh sourceMesh) {
             _SourceMesh = sourceMesh;
             _SourceMaterial = sourceMesh.Material;
             MaterialVersion = _SourceMaterial.AvailableVersions.First();
-            _Transformation = transform;
 
             PreProcess();
         }
@@ -93,13 +90,14 @@ namespace SaintCoinach.Graphics.Parts {
 
         #region IDrawable Members
         public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
-            var transformedWorld = _Transformation * world;
+            if (!IsLoaded || _Material == null)
+                return;
 
             var ia = device.ImmediateContext.InputAssembler;
 
             var tech = _Material.CurrentTechnique;
 
-            _Material.Effect.Apply(ref transformedWorld, ref view, ref projection);
+            _Material.Effect.Apply(ref world, ref view, ref projection);
             _Material.Apply();
 
             ia.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.TriangleList;
@@ -148,15 +146,19 @@ namespace SaintCoinach.Graphics.Parts {
                         _Material.Dispose();
                     _Material = null;
 
-                    _Material = XivMaterial.Create(_Device, _SourceMaterialVersion);
+                    if (XivEffect.SupportedShaders.Contains(_SourceMaterialVersion.Shader))
+                        _Material = XivMaterial.Create(_Device, _SourceMaterialVersion);
                 }
             }
 
             _DirtyFlags = DirtyFlags.None;
         }
 
-        public void Load(SharpDX.Direct3D11.Device device) {
-            _Device = device;
+        public void Load(ViewerEngine engine) {
+            if (IsLoaded)
+                return;
+
+            _Device = engine.Device;
 
             _DirtyFlags = DirtyFlags.All;
             CheckDirty();
@@ -164,6 +166,9 @@ namespace SaintCoinach.Graphics.Parts {
         }
 
         public void Unload() {
+            if (!IsLoaded)
+                return;
+
             if (_Material != null)
                 _Material.Dispose();
             _Material = null;
@@ -182,6 +187,8 @@ namespace SaintCoinach.Graphics.Parts {
         #region IUpdateable Members
 
         public void Update(EngineTime time) {
+            if (!IsLoaded)
+                return;
             CheckDirty();
         }
 

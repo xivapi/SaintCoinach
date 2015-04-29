@@ -48,6 +48,12 @@ namespace SaintCoinach.Cmd {
             thread.Name = "3D";
             thread.Start(Tuple.Create(component, title));
         }
+        public static void RunViewer(Graphics.ViewerEngine engine) {
+            var thread = new Thread(RunViewerDirectAsync);
+            thread.IsBackground = true;
+            thread.Name = "3D";
+            thread.Start(engine);
+        }
 
         static void RunViewerAsync(object state) {
             var t = (Tuple<Graphics.IComponent, string>)state;
@@ -57,6 +63,12 @@ namespace SaintCoinach.Cmd {
             e.Add(t.Item1);
 
             e.Run();
+            GC.Collect();
+        }
+        static void RunViewerDirectAsync(object state) {
+            var e = (Graphics.ViewerEngine)state;
+            e.Run();
+            GC.Collect();
         }
     }
 }

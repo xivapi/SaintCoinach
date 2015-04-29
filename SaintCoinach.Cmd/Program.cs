@@ -71,7 +71,7 @@ namespace SaintCoinach.Cmd {
 
         static string SearchForDataPath() {
             string programDir;
-            if(Environment.Is64BitProcess)
+            if (Environment.Is64BitProcess)
                 programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
             else
                 programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);

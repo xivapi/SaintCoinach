@@ -46,8 +46,10 @@ namespace SaintCoinach.Cmd.Commands.Graphics {
             }
             var bg = "bg/" + terr.Bg.Substring(0, bgEnd);
 
-            var component = new G.Map(_Realm.Packs, bg);
-            GraphicsHelper.RunViewer(component, string.Format("{0} ({1})", map, bg));
+            var e = new SaintCoinach.Graphics.ViewerEngine(string.Format("{0} ({1})", map, bg));
+            var component = new G.Map(e, _Realm.Packs, bg);
+            e.Add(component);
+            GraphicsHelper.RunViewer(e);
 
             return true;
         }
