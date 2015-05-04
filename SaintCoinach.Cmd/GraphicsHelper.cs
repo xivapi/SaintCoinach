@@ -62,13 +62,19 @@ namespace SaintCoinach.Cmd {
 
             e.Add(t.Item1);
 
-            e.Run();
-            GC.Collect();
+            try {
+                e.Run();
+            } finally {
+                GC.Collect();
+            }
         }
         static void RunViewerDirectAsync(object state) {
             var e = (Graphics.ViewerEngine)state;
-            e.Run();
-            GC.Collect();
+            try {
+                e.Run();
+            } finally {
+                GC.Collect();
+            }
         }
     }
 }

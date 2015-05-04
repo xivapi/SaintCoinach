@@ -10,6 +10,7 @@ namespace SaintCoinach.IO {
     public class IndexDirectory {
         #region Properties
 
+        public PackIdentifier PackId { get; private set; }
         public uint Key { get; private set; }
         public int Offset { get; private set; }
         public int Count { get; private set; }
@@ -19,16 +20,14 @@ namespace SaintCoinach.IO {
 
         #region Constructors
 
-        #region Constructor
+        public IndexDirectory(PackIdentifier packId, BinaryReader reader) {
+            PackId = packId;
 
-        public IndexDirectory(BinaryReader reader) {
             ReadMeta(reader);
             var pos = reader.BaseStream.Position;
             ReadFiles(reader);
             reader.BaseStream.Position = pos;
         }
-
-        #endregion
 
         #endregion
 
@@ -49,7 +48,7 @@ namespace SaintCoinach.IO {
             var rem = Count;
             var files = new List<IndexFile>();
             while (rem-- > 0)
-                files.Add(new IndexFile(reader));
+                files.Add(new IndexFile(PackId, reader));
 
             Files = new ReadOnlyDictionary<uint, IndexFile>(files.ToDictionary(_ => _.FileKey, _ => _));
         }

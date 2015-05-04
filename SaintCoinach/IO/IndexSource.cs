@@ -8,8 +8,8 @@ namespace SaintCoinach.IO {
     public partial class IndexSource : IPackSource {
         #region Fields
 
-        private readonly Dictionary<uint, WeakReference<Directory>> _Directories =
-            new Dictionary<uint, WeakReference<Directory>>();
+        private readonly Dictionary<uint, Directory> _Directories =
+            new Dictionary<uint, Directory>();
 
         private readonly Dictionary<string, uint> _DirectoryPathMap = new Dictionary<string, uint>();
 
@@ -55,17 +55,13 @@ namespace SaintCoinach.IO {
         }
 
         public Directory GetDirectory(uint key) {
-            WeakReference<Directory> dirRef;
             Directory directory;
-            if (_Directories.TryGetValue(key, out dirRef) && dirRef.TryGetTarget(out directory))
+            if (_Directories.TryGetValue(key, out directory))
                 return directory;
 
             var index = Index.Directories[key];
             directory = new Directory(this.Pack, index);
-            if (_Directories.ContainsKey(key))
-                _Directories[key].SetTarget(directory);
-            else
-                _Directories.Add(key, new WeakReference<Directory>(directory));
+            _Directories.Add(key, directory);
             return directory;
         }
 
@@ -81,17 +77,13 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetDirectory(uint key, out Directory directory) {
-            WeakReference<Directory> dirRef;
-            if (_Directories.TryGetValue(key, out dirRef) && dirRef.TryGetTarget(out directory))
+            if (_Directories.TryGetValue(key, out directory))
                 return true;
 
             IndexDirectory index;
             if (Index.Directories.TryGetValue(key, out index)) {
                 directory = new Directory(this.Pack, index);
-                if (_Directories.ContainsKey(key))
-                    _Directories[key].SetTarget(directory);
-                else
-                    _Directories.Add(key, new WeakReference<Directory>(directory));
+                _Directories.Add(key, directory);
                 return true;
             }
 

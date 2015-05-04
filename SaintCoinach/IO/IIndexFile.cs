@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.IO {
-    public interface IIndexFile {
+    public interface IIndexFile : IEquatable<IIndexFile> {
+        PackIdentifier PackId { get; }
         uint FileKey { get; }
         int Offset { get; }
         byte DatFile { get; }

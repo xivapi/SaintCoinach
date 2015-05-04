@@ -15,6 +15,7 @@ namespace SaintCoinach.IO {
     public class Index {
         #region Properties
 
+        public PackIdentifier PackId { get; private set; }
         public IndexHeader Header { get; private set; }
         public IReadOnlyDictionary<uint, IndexDirectory> Directories { get; private set; }
 
@@ -22,19 +23,25 @@ namespace SaintCoinach.IO {
 
         #region Constructor
 
-        public Index(string path) {
+        public Index(PackIdentifier packId, string path) {
+            PackId = packId;
+
             using (var file = IOFile.OpenRead(path)) {
                 using (var reader = new BinaryReader(file))
                     Build(reader);
             }
         }
 
-        public Index(Stream stream) {
+        public Index(PackIdentifier packId, Stream stream) {
+            PackId = packId;
+
             using (var reader = new BinaryReader(stream, Encoding.Default, true))
                 Build(reader);
         }
 
-        public Index(BinaryReader reader) {
+        public Index(PackIdentifier packId, BinaryReader reader) {
+            PackId = packId;
+
             Build(reader);
         }
 
@@ -70,7 +77,7 @@ namespace SaintCoinach.IO {
             var rem = Header.DirectoriesCount;
             var dirs = new List<IndexDirectory>();
             while (rem-- > 0)
-                dirs.Add(new IndexDirectory(reader));
+                dirs.Add(new IndexDirectory(PackId, reader));
 
             Directories = new ReadOnlyDictionary<uint, IndexDirectory>(dirs.ToDictionary(_ => _.Key, _ => _));
         }

@@ -120,9 +120,9 @@ namespace SaintCoinach.IO {
             var indexPath = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(IndexFileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
             var index2Path = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(Index2FileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
             if (IOFile.Exists(indexPath))
-                Source = new IndexSource(this, new Index(indexPath));
+                Source = new IndexSource(this, new Index(id, indexPath));
             else if (IOFile.Exists(index2Path))
-                Source = new Index2Source(this, new Index2(index2Path));
+                Source = new Index2Source(this, new Index2(id, index2Path));
             else
                 throw new FileNotFoundException();
         }

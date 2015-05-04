@@ -39,15 +39,15 @@ namespace SaintCoinach.IO {
         #endregion
 
         private readonly string _Type;
-        private readonly int _TypeKey;
+        private readonly byte _TypeKey;
         private readonly string _Expansion;
         private readonly byte _ExpansionKey;
         private readonly byte _Number;
 
         public string Type { get { return _Type; } }
-        public int TypeKey { get { return _TypeKey; } }
+        public byte TypeKey { get { return _TypeKey; } }
         public string Expansion { get { return _Expansion; } }
-        public int ExpansionKey { get { return _ExpansionKey; } }
+        public byte ExpansionKey { get { return _ExpansionKey; } }
         public byte Number { get { return _Number; } }
 
         public PackIdentifier(byte type, byte expansion, byte number) {

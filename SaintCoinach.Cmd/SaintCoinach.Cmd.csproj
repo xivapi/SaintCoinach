@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AutoCommand.cs" />
     <Compile Include="Commands\BgmCommand.cs" />
     <Compile Include="Commands\ExdCommand.cs" />
     <Compile Include="Commands\GraphicsCommand.cs" />

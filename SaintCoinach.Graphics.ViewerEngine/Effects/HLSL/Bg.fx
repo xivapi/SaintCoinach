@@ -5,37 +5,37 @@ DECLARE_TEXTURE(g_Diffuse0,    0)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 DECLARE_TEXTURE(g_Diffuse1,    1)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 DECLARE_TEXTURE(g_Normal0,   2)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 DECLARE_TEXTURE(g_Normal1,   3)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 DECLARE_TEXTURE(g_Specular0, 4)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 DECLARE_TEXTURE(g_Specular1, 5)
 {
     AddressU = Wrap;
     AddressV = Wrap;
-    Filter = MIN_MAG_MIP_LINEAR;
+    Filter = ANISOTROPIC;
 };
 
 row_major float4x4 g_World;

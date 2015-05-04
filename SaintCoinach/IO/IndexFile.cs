@@ -7,6 +7,7 @@ namespace SaintCoinach.IO {
     public class IndexFile : IIndexFile {
         #region Properties
 
+        public PackIdentifier PackId { get; private set; }
         public uint FileKey { get; private set; }
         public uint DirectoryKey { get; private set; }
         public int Offset { get; private set; }
@@ -20,9 +21,8 @@ namespace SaintCoinach.IO {
 
         #region Constructors
 
-        #region Constructor
-
-        public IndexFile(BinaryReader reader) {
+        public IndexFile(PackIdentifier packId, BinaryReader reader) {
+            PackId = packId;
             FileKey = reader.ReadUInt32();
             DirectoryKey = reader.ReadUInt32();
 
@@ -34,6 +34,22 @@ namespace SaintCoinach.IO {
         }
 
         #endregion
+
+        #region IEquatable<IIndexFile> Members
+
+        public override int GetHashCode() {
+            return (int)(((DatFile << 24) | PackId.GetHashCode()) ^ Offset);
+        }
+        public override bool Equals(object obj) {
+            if (obj is IIndexFile)
+                return Equals((IIndexFile)obj);
+            return false;
+        }
+        public bool Equals(IIndexFile other) {
+            return other.PackId.Equals(this.PackId)
+                && other.DatFile == this.DatFile
+                && other.Offset == this.Offset;
+        }
 
         #endregion
     }

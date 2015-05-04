@@ -46,7 +46,7 @@ namespace SaintCoinach.Graphics.Assets {
                     throw new NotSupportedException(string.Format("Unsupported mesh type {0:X8}h", mesh.Type));
             }
 
-            var positionOffset = mesh.Header.VertexOffset;
+            var positionOffset = mesh.Header.VertexPositionOffset;
             var dataOffset = positionOffset + mesh.Header.VertexCount * mesh.Header.BytesPerVertexPosition;
 
             var vertices = new VertexBase[mesh.Header.VertexCount];

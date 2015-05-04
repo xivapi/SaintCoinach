@@ -125,20 +125,15 @@ namespace SaintCoinach.IO {
 
         #endregion
 
-        #region Hashcode / Equals
-
+        #region Equals
         public override int GetHashCode() {
-            return Path.GetHashCode();
+            return Index.GetHashCode();
         }
-
         public override bool Equals(object obj) {
-            var asFile = obj as File;
-            if (asFile != null)
-                return (asFile.Index.FileKey == Index.FileKey
-                        && asFile.Index.DatFile == Index.DatFile);
+            if (obj is File)
+                return ((File)obj).Index.Equals(this.Index);
             return false;
         }
-
         #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace SaintCoinach.Graphics.Assets {
     public class ModelFile : File {
         #region Static
 
-        private const int PartsCount = 0x0B;
+        public const int PartsCount = 0x0B;
 
         #endregion
 

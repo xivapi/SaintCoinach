@@ -606,6 +606,7 @@
     <Compile Include="Xiv\QuestRewardItem.cs" />
     <Compile Include="Xiv\QuestRewardItemGroup.cs" />
     <Compile Include="Xiv\QuestRewards.cs" />
+    <Compile Include="Xiv\Race.cs" />
     <Compile Include="Xiv\RacingChocoboItem.cs" />
     <Compile Include="Xiv\RacingChocoboName.cs" />
     <Compile Include="Xiv\RacingChocoboNameCategory.cs" />
@@ -635,6 +636,7 @@
     <Compile Include="Xiv\Title.cs" />
     <Compile Include="Xiv\Tomestone.cs" />
     <Compile Include="Xiv\Trait.cs" />
+    <Compile Include="Xiv\Tribe.cs" />
     <Compile Include="Xiv\TripleTriad.cs" />
     <Compile Include="Xiv\TripleTriadCard.cs" />
     <Compile Include="Xiv\TripleTriadCardRarity.cs" />

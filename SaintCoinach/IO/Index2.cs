@@ -17,24 +17,31 @@ namespace SaintCoinach.IO {
 
         public Index2Header Header { get; private set; }
         public IReadOnlyDictionary<uint, Index2File> Files { get; private set; }
+        public PackIdentifier PackId { get; private set; }
 
         #endregion
         
         #region Constructor
 
-        public Index2(string path) {
+        public Index2(PackIdentifier packId, string path) {
+            this.PackId = packId;
+
             using (var file = IOFile.OpenRead(path)) {
                 using (var reader = new BinaryReader(file))
                     Build(reader);
             }
         }
 
-        public Index2(Stream stream) {
+        public Index2(PackIdentifier packId, Stream stream) {
+            this.PackId = packId;
+
             using (var reader = new BinaryReader(stream, Encoding.Default, true))
                 Build(reader);
         }
 
-        public Index2(BinaryReader reader) {
+        public Index2(PackIdentifier packId, BinaryReader reader) {
+            this.PackId = packId;
+
             Build(reader);
         }
 
@@ -70,7 +77,7 @@ namespace SaintCoinach.IO {
             var rem = Header.FileCount;
             var files = new List<Index2File>();
             while (rem-- > 0)
-                files.Add(new Index2File(reader));
+                files.Add(new Index2File(PackId, reader));
 
             Files = new ReadOnlyDictionary<uint, Index2File>(files.ToDictionary(_ => _.FileKey, _ => _));
         }

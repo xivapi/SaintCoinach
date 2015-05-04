@@ -168,23 +168,12 @@ namespace SaintCoinach.Xiv {
                 1101, 0101
             }, {
                 1201, 0201
+            }, {
+                1301, 0101
+            }, {
+                1401, 0201
             }
         };
-
-        /// <summary>
-        ///     Default character type to use.
-        /// </summary>
-        public const int DefaultCharacterType = 0101;
-
-        /// <summary>
-        ///     Get the model for a specific QWord and the current <see cref="EquipSlot" /> using the default character type.
-        /// </summary>
-        /// <param name="key">The identifier of the model.</param>
-        /// <param name="materialVersion">When this method returns, contains the variant contained within <c>key</c>.</param>
-        /// <returns>Returns the <see cref="Model" /> for the specified <c>key</c> and default character type.</returns>
-        public Model GetModel(long key, out int materialVersion) {
-            return GetModel(key, DefaultCharacterType, out materialVersion);
-        }
 
         /// <summary>
         ///     Get the model for a specific QWord, character type, and the current <see cref="EquipSlot" />.

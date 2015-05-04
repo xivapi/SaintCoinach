@@ -22,9 +22,22 @@ namespace SaintCoinach.Xiv.Items {
         /// </summary>
         private ParameterCollection _SecondaryParameters;
 
+        private Race[] _RacesEquippableBy;
+
         #endregion
 
         #region Properties
+
+        public IEnumerable<Race> RacesEquippableBy {
+            get { return _RacesEquippableBy ?? (_RacesEquippableBy = BuildRacesEquippableBy()); }
+        }
+
+        public bool EquippableByMale {
+            get { return AsBoolean("EquippableByGender{M}"); }
+        }
+        public bool EquippableByFemale {
+            get { return AsBoolean("EquippableByGender{F}"); }
+        }
 
         /// <summary>
         ///     Gets the primary <see cref="Parameter" />s of the current item.
@@ -148,27 +161,6 @@ namespace SaintCoinach.Xiv.Items {
         IEnumerable<Parameter> IParameterObject.Parameters { get { return AllParameters; } }
 
         /// <summary>
-        ///     Get the model for the current item.
-        /// </summary>
-        /// <param name="materialVersion">When this method returns contains the variant of the model for the current item.</param>
-        /// <returns>The model for the current item.</returns>
-        public Model GetModel(out int materialVersion) {
-            materialVersion = 0;
-            var slot = EquipSlotCategory.PossibleSlots.FirstOrDefault();
-            return slot == null ? null : GetModel(slot, out materialVersion);
-        }
-
-        /// <summary>
-        ///     Get the model for the current item in a specific <see cref="EquipSlot" />.
-        /// </summary>
-        /// <param name="equipSlot"><see cref="EquipSlot" /> for which to get the model.</param>
-        /// <param name="materialVersion">When this method returns contains the variant of the model for the current item.</param>
-        /// <returns>The model for the current item in <c>equipSlot</c>.</returns>
-        public Model GetModel(EquipSlot equipSlot, out int materialVersion) {
-            return equipSlot.GetModel(PrimaryModelKey, out materialVersion);
-        }
-
-        /// <summary>
         ///     Get the model for the current item and a specific character type.
         /// </summary>
         /// <param name="characterType">Character type to get the model for.</param>
@@ -262,6 +254,17 @@ namespace SaintCoinach.Xiv.Items {
             AddSpecialParameters(parameters);
 
             return parameters;
+        }
+
+        private Race[] BuildRacesEquippableBy() {
+            var allRaces = Sheet.Collection.GetSheet<Race>();
+            var races = new List<Race>();
+            foreach (var race in allRaces.Where(r => r.Key != 0)) {
+                if (AsBoolean("EquippableByRace", race.Key))
+                    races.Add(race);
+            }
+
+            return races.ToArray();
         }
 
         /// <summary>

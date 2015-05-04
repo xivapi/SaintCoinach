@@ -14,7 +14,8 @@ namespace SaintCoinach.Graphics.Assets {
         public int IndexCount { get; private set; }
         public int MaterialFileIndex { get; private set; }
         public int IndexOffset { get; private set; }
-        public int VertexOffset { get; private set; }
+        public int VertexPositionOffset { get; private set; }
+        public int VertexDataOffset { get; private set; }
         public int BytesPerVertexPosition { get; private set; }
         public int BytesPerVertexData { get; private set; }
         public int BytesPerIndex { get; private set; }
@@ -31,7 +32,8 @@ namespace SaintCoinach.Graphics.Assets {
             const int IndexCountOffset = 0x04;
             const int MaterialOffset = 0x08;
             const int IndexPositionOffset = 0x10;
-            const int VertexPositionOffset = 0x14;
+            const int VertexPositionOffsetOffset = 0x14;
+            const int VertexDataOffsetOffset = 0x18;
             const int BytesPerVertexPositionOffset = 0x20;
             const int BytesPerVDataOffset = 0x21;
             const int BytesPerIndexOffset = 0x23;
@@ -43,7 +45,8 @@ namespace SaintCoinach.Graphics.Assets {
             MaterialFileIndex = BitConverter.ToUInt16(buffer, offset + MaterialOffset);
 
             IndexOffset = BitConverter.ToInt32(buffer, offset + IndexPositionOffset);
-            VertexOffset = BitConverter.ToInt32(buffer, offset + VertexPositionOffset);
+            VertexPositionOffset = BitConverter.ToInt32(buffer, offset + VertexPositionOffsetOffset);
+            VertexDataOffset = BitConverter.ToInt32(buffer, offset + VertexDataOffsetOffset);
 
             BytesPerVertexPosition = buffer[offset + BytesPerVertexPositionOffset];
             BytesPerVertexData = buffer[offset + BytesPerVDataOffset];
