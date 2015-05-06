@@ -44,6 +44,7 @@ struct VSInputCommon
     float3 Binormal  : BINORMAL;
 
     float2 TexCoord  : TEXCOORD0;
+    float Flag : TEXCOORD3;
 };
 
 struct VSOutputCommon
@@ -55,4 +56,5 @@ struct VSOutputCommon
     float3 WorldBinormal  : BINORMAL;
     
     float2 TexCoord       : TEXCOORD0;
+    float Flag : TEXCOORD3;
 };

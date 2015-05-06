@@ -90,12 +90,13 @@ namespace SaintCoinach.Graphics {
                 var converted = vertices.Select(_ => new Primitives.VertexCommon {
                     Position = new Vector4(_.Position.X, _.Position.Y, _.Position.Z, _.Position.W),
                     Normal = Vector3.Normalize(new Vector3(_.Normal.X, _.Normal.Y, _.Normal.Z)),
-                    TextureCoordinates = _.TextureCoordinates0.ToDX()
+                    TextureCoordinates = _.TextureCoordinates0.ToDX(),
+                    Flag = _.Flag / (float)byte.MaxValue
                 }).ToArray();
 
                 //ReverseWinding(converted, indices, DataSourceCommon);
 
-                Array.Reverse(indices);
+                //Array.Reverse(indices);
 
                 CalculateTangents(converted, indices, DataSourceCommon);
 
@@ -112,7 +113,7 @@ namespace SaintCoinach.Graphics {
 
                 //ReverseWinding(converted, indices, DataSourceDualTexture);
 
-                Array.Reverse(indices);
+                //Array.Reverse(indices);
 
                 CalculateTangents(converted, indices, DataSourceDualTexture);
 

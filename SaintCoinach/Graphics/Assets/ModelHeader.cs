@@ -19,6 +19,7 @@ namespace SaintCoinach.Graphics.Assets {
         internal byte[] _FixedData;
         internal string[] _MaterialNames;
         internal MeshHeader[] _MeshHeaders;
+        internal MeshPartHeader[] _MeshPartHeaders;
         internal string[] _Strings;
         internal SubModelHeader[] _SubModelHeaders;
 
@@ -36,6 +37,7 @@ namespace SaintCoinach.Graphics.Assets {
         }
 
         public int MeshCount { get; private set; }
+        public int MeshPartCount { get; private set; }
         public IEnumerable<ModelQuality> AvailableQualities { get { return _AvailableQualities; } }
 
         #endregion
@@ -58,6 +60,10 @@ namespace SaintCoinach.Graphics.Assets {
 
         public MeshHeader GetMeshHeader(int index) {
             return _MeshHeaders[index];
+        }
+
+        public MeshPartHeader GetMeshPartHeader(int index) {
+            return _MeshPartHeaders[index];
         }
 
         public SubModelHeader GetSubModelHeader(int index) {
@@ -203,22 +209,28 @@ namespace SaintCoinach.Graphics.Assets {
 
         private void SkipToBones(ref int offset) {
             offset += 0x04 * AttributeCount;
-            offset += 0x14 * _FixedData[0x1A]; // Just a byte?
-            offset += 0x10 * BitConverter.ToInt16(_FixedData, 0x08); // Something about indices?
+            offset += 0x14 * _FixedData[0x1A];                              // 1 Just a byte?
+
+            MeshPartCount = BitConverter.ToInt16(_FixedData, 0x08);
+            _MeshPartHeaders = new MeshPartHeader[MeshPartCount];
+            for (var i = 0; i < MeshPartCount; ++i) {
+                _MeshPartHeaders[i] = new MeshPartHeader(_Buffer, offset);
+                offset += MeshPartHeader.Size;
+            }
 
             // XXX: Not sure about this block D:
             {
-                offset += 0x0C * BitConverter.ToInt16(_FixedData, 0x26); // Newp, possibly not in this order
+                offset += 0x0C * BitConverter.ToInt16(_FixedData, 0x26);    // 7 Newp, possibly not in this order
                 offset += 0x04 * MaterialCount;
                 offset += 0x04 * BoneCount;
             }
 
-            offset += 0x84 * BitConverter.ToInt16(_FixedData, 0x0E); // Something about models?
-            offset += 0x10 * BitConverter.ToInt16(_FixedData, 0x10); // Newp
-            offset += 0x0C * BitConverter.ToInt16(_FixedData, 0x12); // Newp
-            offset += 0x04 * BitConverter.ToInt16(_FixedData, 0x14); // Newp
+            offset += 0x84 * BitConverter.ToInt16(_FixedData, 0x0E);        // 3 Something about models?
+            offset += 0x10 * BitConverter.ToInt16(_FixedData, 0x10);        // 4 Newp
+            offset += 0x0C * BitConverter.ToInt16(_FixedData, 0x12);        // 5 Newp
+            offset += 0x04 * BitConverter.ToInt16(_FixedData, 0x14);        // 6 Newp
 
-            offset += BitConverter.ToInt32(_Buffer, offset) + 4; // Newp
+            offset += BitConverter.ToInt32(_Buffer, offset) + 4;            // Newp
 
             offset += _Buffer[offset] + 1; // Merely padding
 

@@ -160,11 +160,9 @@ float4 PSMaskTable(VSOutputCommon pin) : SV_Target0
     float4 diffuse = (1).xxxx;
     float4 specular = (1).xxxx;
 
-
     float specPow = ApplyTable(pin.TexCoord, diffuse, specular, true);
 
     diffuse.rgb *= texMask.b;
-
 
     return ComputeCommon(pin, diffuse, specular);
 };

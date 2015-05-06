@@ -34,6 +34,7 @@ VSOutputCommon VSCommon(VSInputCommon vin)
     vout.TexCoord = vin.TexCoord;
     
     SET_COMMON_VS_OUT;
+    vout.Flag = vin.Flag;
     
     return vout;
 };

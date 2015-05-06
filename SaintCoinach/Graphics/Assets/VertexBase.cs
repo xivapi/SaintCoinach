@@ -5,6 +5,7 @@
         public Vector4 Position { get; set; }
         public Vector3 Normal { get; set; }
         public Vector2 TextureCoordinates0 { get; set; }
+        public byte Flag { get; set; }
 
         #endregion
     }

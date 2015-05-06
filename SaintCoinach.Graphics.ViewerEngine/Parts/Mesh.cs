@@ -38,7 +38,7 @@ namespace SaintCoinach.Graphics.Parts {
 
         #region Properties
         public int VertexCount { get { return _SourceMesh.Header.VertexCount; } }
-        public int IndexCount { get { return _SourceMesh.Header.IndexCount; } }
+        public int IndexCount { get { return 0x000000AE;/* _SourceMesh.Header.IndexCount;*/ } }
         public IEnumerable<int> AvailableMaterialVersions { get { return _SourceMaterial.AvailableVersions; } }
         public int MaterialVersion {
             get { return _SourceMaterialVersion.Version; }
@@ -90,6 +90,8 @@ namespace SaintCoinach.Graphics.Parts {
 
         #region IDrawable Members
         public void Draw(SharpDX.Direct3D11.Device device, EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
+            const ushort TestMask = 0x17;
+
             if (!IsLoaded || _Material == null)
                 return;
 
@@ -111,7 +113,12 @@ namespace SaintCoinach.Graphics.Parts {
                 var pass = tech.GetPassByIndex(i);
 
                 pass.Apply(device.ImmediateContext);
-                device.ImmediateContext.DrawIndexed(IndexCount, 0, 0);
+
+                for (var part = 0; part < _SourceMesh.PartCount; ++part) {
+                    var ph = _SourceMesh.GetPart(part);
+                    if ((TestMask & ph.Mask) == ph.Mask)
+                        device.ImmediateContext.DrawIndexed(ph.IndexCount, ph.IndexOffset, 0); 
+                }
             }
         }
 

@@ -46,11 +46,12 @@ namespace SaintCoinach.Cmd.Commands {
             if (!target.Directory.Exists)
                 target.Directory.Create();
 
-            if (file is Imaging.ImageFile)
-                SaveImage((Imaging.ImageFile)file, target, saved);
-            else if (file is G.ModelFile)
+            if (file is G.ModelFile)
                 SaveModel((G.ModelFile)file, target, saved);
             else {
+                if (file is Imaging.ImageFile)
+                    SaveImage((Imaging.ImageFile)file, target, saved);
+
                 var data = file.GetData();
                 File.WriteAllBytes(target.FullName, data);
             }

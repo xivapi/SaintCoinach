@@ -82,6 +82,7 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Assets\MaterialParameterMapping.cs" />
+    <Compile Include="Graphics\Assets\MeshPartHeader.cs" />
     <Compile Include="Graphics\ShPk\Parameter.cs" />
     <Compile Include="Graphics\ShPk\ParameterHeader.cs" />
     <Compile Include="Graphics\ShPk\ParameterType.cs" />

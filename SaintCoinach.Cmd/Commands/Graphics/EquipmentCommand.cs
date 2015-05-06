@@ -81,7 +81,7 @@ namespace SaintCoinach.Cmd.Commands.Graphics {
             var component = new G.Model(subMdl);
 
             var matParam = new string[]{
-                v.ToString(),
+                (v & 0x7F).ToString(),
                 stainKey.ToString()
             };
             foreach (var msg in GraphicsHelper.ApplyMaterial(component, matParam, 0))

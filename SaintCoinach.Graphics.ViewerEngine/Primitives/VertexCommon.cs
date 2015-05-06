@@ -18,6 +18,7 @@ namespace SaintCoinach.Graphics.Primitives {
         public Vector3 Tangent;
         public Vector3 Binormal;
         public Vector2 TextureCoordinates;
+        public float Flag;
 
         public static InputElement[] InputElements {
             get {
@@ -29,6 +30,7 @@ namespace SaintCoinach.Graphics.Primitives {
                     new InputElement("TEXCOORD", 0, Format.R32G32_Float, 52, 0),
                     new InputElement("TEXCOORD", 1, Format.R32G32_Float, 52, 0),
                     new InputElement("TEXCOORD", 2, Format.R32G32B32A32_Float, 44, 0),
+                    new InputElement("TEXCOORD", 3, Format.R32_Float, 60, 0)
                 };
             }
         }

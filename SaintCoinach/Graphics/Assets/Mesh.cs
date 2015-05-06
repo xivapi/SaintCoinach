@@ -5,9 +5,10 @@ namespace SaintCoinach.Graphics.Assets {
     public class Mesh {
         #region Fields
 
-        private ushort[] _Indices;
+        internal ushort[] _Indices;
         private Type _VertexType;
-        private VertexBase[] _Vertices;
+        internal VertexBase[] _Vertices;
+        internal MeshPartHeader[] _Parts;
 
         #endregion
 
@@ -18,12 +19,14 @@ namespace SaintCoinach.Graphics.Assets {
         public int Type { get; private set; }
         public Type VertexType { get { return _VertexType; } }
         public Material Material { get; private set; }
+        public int PartCount { get { return _Parts.Length; } }
+        public MeshPartHeader GetPart(int index) {
+            return _Parts[index];
+        }
 
         #endregion
 
         #region Constructors
-
-        #region Constructor
 
         public Mesh(Model model, MeshHeader header, byte[] data, int index) {
             const int DataBlockLength = 0x88;
@@ -33,9 +36,10 @@ namespace SaintCoinach.Graphics.Assets {
             Header = header;
             Type = BitConverter.ToInt32(data, index * DataBlockLength + TypeOffset);
             Material = Model.GetMaterial(Header.MaterialFileIndex);
+            _Parts = new MeshPartHeader[Header.PartCount];
+            for (var i = 0; i < Header.PartCount; ++i)
+                _Parts[i] = Model.Header.GetMeshPartHeader(i + Header.PartOffset);
         }
-
-        #endregion
 
         #endregion
 

@@ -13,6 +13,8 @@ namespace SaintCoinach.Graphics.Assets {
         public int VertexCount { get; private set; }
         public int IndexCount { get; private set; }
         public int MaterialFileIndex { get; private set; }
+        public ushort PartOffset { get; private set; }
+        public ushort PartCount { get; private set; }
         public int IndexOffset { get; private set; }
         public int VertexPositionOffset { get; private set; }
         public int VertexDataOffset { get; private set; }
@@ -31,6 +33,8 @@ namespace SaintCoinach.Graphics.Assets {
             const int VertexCountOffset = 0x00;
             const int IndexCountOffset = 0x04;
             const int MaterialOffset = 0x08;
+            const int PartOffsetOffset = 0x0A;
+            const int PartCountOffset = 0x0C;
             const int IndexPositionOffset = 0x10;
             const int VertexPositionOffsetOffset = 0x14;
             const int VertexDataOffsetOffset = 0x18;
@@ -43,6 +47,9 @@ namespace SaintCoinach.Graphics.Assets {
             VertexCount = BitConverter.ToInt32(buffer, offset + VertexCountOffset);
             IndexCount = BitConverter.ToInt32(buffer, offset + IndexCountOffset);
             MaterialFileIndex = BitConverter.ToUInt16(buffer, offset + MaterialOffset);
+
+            PartOffset = BitConverter.ToUInt16(buffer, offset + PartOffsetOffset);
+            PartCount = BitConverter.ToUInt16(buffer, offset + PartCountOffset);
 
             IndexOffset = BitConverter.ToInt32(buffer, offset + IndexPositionOffset);
             VertexPositionOffset = BitConverter.ToInt32(buffer, offset + VertexPositionOffsetOffset);
