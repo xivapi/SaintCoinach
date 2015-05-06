@@ -236,7 +236,11 @@ namespace SaintCoinach.Xiv.Items {
             var roleModifier = baseParam.GetModifier(BaseParamModifier);
 
             // TODO: Not confirmed to use Round, could be Ceiling or Floor; or applied at different points
-            return (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0);
+            // Rounding appears to use AwayFromZero.  Tested with:
+            // Velveteen Work Gloves (#3601) for gathering (34.5 -> 35)
+            // Gryphonskin Ring (#4526) for wind resistance (4.5 -> 5)
+            // Fingerless Goatskin Gloves of Gathering (#3578) for GP (2.5 -> 3)
+            return (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0, MidpointRounding.AwayFromZero);
         }
 
         #endregion
