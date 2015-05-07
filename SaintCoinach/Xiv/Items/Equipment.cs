@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using SaintCoinach.Ex.Relational;
-using SaintCoinach.Graphics.Assets;
+using SaintCoinach.Graphics;
 
 namespace SaintCoinach.Xiv.Items {
     /// <summary>

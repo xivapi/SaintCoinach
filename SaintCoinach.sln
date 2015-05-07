@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintCoinach.Cmd", "SaintCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintCoinach.Graphics.ViewerEngine", "SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj", "{39675BAC-1A1A-4A83-9835-B926BED04C9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicsTest", "GraphicsTest\GraphicsTest.csproj", "{556105FE-8F74-4241-A279-592F1037A165}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39675BAC-1A1A-4A83-9835-B926BED04C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556105FE-8F74-4241-A279-592F1037A165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556105FE-8F74-4241-A279-592F1037A165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556105FE-8F74-4241-A279-592F1037A165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556105FE-8F74-4241-A279-592F1037A165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

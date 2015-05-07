@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using SaintCoinach.Graphics.Assets;
+using SaintCoinach.Graphics;
 using SaintCoinach.IO;
 using SaintCoinach.Xiv.Collections;
 
@@ -23,60 +23,130 @@ namespace SaintCoinach.Xiv {
         /// </remarks>
         private const int AddonKeyOffset = 738;
 
-        /// <summary>
-        ///     Mappings of <see cref="EquipSlot" />s to the formats used to get the file name of models.
-        /// </summary>
-        /// <remarks>
-        ///     First item in the values is the format string, the second value is which Word in a QWord is the material variant to
-        ///     be used.
-        ///     Parameters 0-3 in the format string are the respective Words in the supplied QWord, parameter 4 is the character
-        ///     type.
-        /// </remarks>
-        private static readonly Dictionary<int, Tuple<string, int>> ModelNameFormats =
-            new Dictionary<int, Tuple<string, int>> {
-                {
-                    0, Tuple.Create("chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl", 2)
-                }, // MH
-                {
-                    1, Tuple.Create("chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl", 2)
-                }, // OH
-                {
-                    2, Tuple.Create("chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_met.mdl", 1)
-                }, // Head
-                {
-                    3, Tuple.Create("chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_top.mdl", 1)
-                }, // Body
-                {
-                    4, Tuple.Create("chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_glv.mdl", 1)
-                }, // Hands
-                {
-                    5, null
-                }, // Waist (has nothing)
-                {
-                    6, Tuple.Create("chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_dwn.mdl", 1)
-                }, // Legs
-                {
-                    7, Tuple.Create("chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_sho.mdl", 1)
-                }, // Feet
-                {
-                    8, Tuple.Create("chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_ear.mdl", 1)
-                }, // Ears
-                {
-                    9, Tuple.Create("chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_nek.mdl", 1)
-                }, // Neck
-                {
-                    10, Tuple.Create("chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_wrs.mdl", 1)
-                }, // Wrists
-                {
-                    11, Tuple.Create("chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_rir.mdl", 1)
-                }, // R.Ring
-                {
-                    12, Tuple.Create("chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_ril.mdl", 1)
-                }, // L.Ring
-                {
-                    13, null
-                } // Soul crystal (has nothing)
-            };
+        #region Model helper class
+        private class ModelHelper {
+            #region Fields
+            public string ImcFileFormat { get; private set; }
+            public byte ImcPartKey { get; private set; }
+            public string ModelFileFormat { get; private set; }
+            public byte VariantIndexWord { get; private set; }
+            #endregion
+
+            public ModelHelper(string imcFileFormat, byte imcPartKey, string modelFileFormat, byte variantIndexWord) {
+                this.ImcFileFormat = imcFileFormat;
+                this.ImcPartKey = imcPartKey;
+                this.ModelFileFormat = modelFileFormat;
+                this.VariantIndexWord = variantIndexWord;
+            }
+        }
+        #endregion
+
+        private static readonly Dictionary<int, ModelHelper> ModelHelpers = new Dictionary<int, ModelHelper> {
+            {  // Main hand
+                0,
+                new ModelHelper(
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}.imc",
+                   0,
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl",
+                   2)
+            },
+            {  // Off hand
+                1,
+                new ModelHelper(
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}.imc",
+                   0,
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl",
+                   2)
+            },
+            {  // Head
+                2,
+                new ModelHelper(
+                   "chara/equipment/e{0:D4}/e{0:D4}.imc",
+                   0,
+                   "chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_met.mdl",
+                   1)
+            },
+            {  // Body
+                3,
+                new ModelHelper(
+                   "chara/equipment/e{0:D4}/e{0:D4}.imc",
+                   1,
+                   "chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_top.mdl",
+                   1)
+            },
+            {  // Hands
+                4,
+                new ModelHelper(
+                   "chara/equipment/e{0:D4}/e{0:D4}.imc",
+                   2,
+                   "chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_glv.mdl",
+                   1)
+            },
+            {  // Waist
+                5,
+                null
+            },
+            {  // Legs
+                6,
+                new ModelHelper(
+                   "chara/equipment/e{0:D4}/e{0:D4}.imc",
+                   3,
+                   "chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_dwn.mdl",
+                   1)
+            },
+            {  // Feet
+                7,
+                new ModelHelper(
+                   "chara/equipment/e{0:D4}/e{0:D4}.imc",
+                   4,
+                   "chara/equipment/e{0:D4}/model/c{4:D4}e{0:D4}_sho.mdl",
+                   1)
+            },
+            {  // Ears
+                8,
+                new ModelHelper(
+                   "chara/accessory/a{0:D4}/a{0:D4}.imc",
+                   0,
+                   "chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_ear.mdl",
+                   1)
+            },
+            {  // Neck
+                9,
+                new ModelHelper(
+                   "chara/accessory/a{0:D4}/a{0:D4}.imc",
+                   1,
+                   "chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_nek.mdl",
+                   1)
+            },
+            {  // Wrists
+                10,
+                new ModelHelper(
+                   "chara/accessory/a{0:D4}/a{0:D4}.imc",
+                   2,
+                   "chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_wrs.mdl",
+                   1)
+            },
+            {  // R.Ring
+                11,
+                new ModelHelper(
+                   "chara/accessory/a{0:D4}/a{0:D4}.imc",
+                   3,
+                   "chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_rir.mdl",
+                   1)
+            },
+            {  // L.Ring
+                12,
+                new ModelHelper(
+                   "chara/accessory/a{0:D4}/a{0:D4}.imc",
+                   4,
+                   "chara/accessory/a{0:D4}/model/c{4:D4}a{0:D4}_ril.mdl",
+                   1)
+            },
+            {  // Soul Crystal
+                13,
+                null
+            }
+        };
 
         #endregion
 
@@ -96,19 +166,6 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <value>The <see cref="EquipSlotCollection" />.</value>
         public EquipSlotCollection Collection { get; private set; }
-
-        /// <summary>
-        ///     Gets the format string for models for this <see cref="EquipSlot" />.
-        /// </summary>
-        /// <value>The format string for models for this <see cref="EquipSlot" />; or <c>null</c> if the slot has no models.</value>
-        public string ModelNameFormat {
-            get {
-                Tuple<string, int> fmt;
-                if (!ModelNameFormats.TryGetValue(Key, out fmt) || fmt == null)
-                    return null;
-                return fmt.Item1;
-            }
-        }
 
         /// <summary>
         ///     Gets the name of the <see cref="EquipSlot" />.
@@ -185,26 +242,22 @@ namespace SaintCoinach.Xiv {
         public Model GetModel(long key, int characterType, out int materialVersion) {
             materialVersion = 0;
 
-            Tuple<string, int> format;
-            if (!ModelNameFormats.TryGetValue(Key, out format))
+            ModelHelper helper;
+            if (!ModelHelpers.TryGetValue(Key, out helper))
                 return null;
-            if (format == null)
+            if (helper == null)
                 return null;
 
             var a = key & 0xFFFF;
             var b = (key >> 16) & 0xFFFF;
             var c = (key >> 32) & 0xFFFF;
             var d = (key >> 48) & 0xFFFF;
-            materialVersion = (int)((key >> (format.Item2 * 16)) & 0xFFFF);
+            materialVersion = (int)((key >> (helper.VariantIndexWord * 16)) & 0xFFFF);
 
-            File file;
-            var pack = Collection.Collection.PackCollection;
-            while (!pack.TryGetFile(string.Format(format.Item1, a, b, c, d, characterType), out file)) {
-                if (!CharacterTypeFallback.TryGetValue(characterType, out characterType))
-                    return null;
-            }
+            File imcBase;
+            File mdlFile;
 
-            return ((ModelFile)file).GetModel();
+            throw new NotImplementedException();
         }
 
         #endregion

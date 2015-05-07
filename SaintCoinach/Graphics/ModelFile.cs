@@ -7,7 +7,7 @@ using SaintCoinach.IO;
 using Directory = SaintCoinach.IO.Directory;
 using File = SaintCoinach.IO.File;
 
-namespace SaintCoinach.Graphics.Assets {
+namespace SaintCoinach.Graphics {
     /// <summary>
     ///     Model file stored inside SqPack.
     /// </summary>
@@ -23,7 +23,6 @@ namespace SaintCoinach.Graphics.Assets {
         private readonly WeakReference<byte[]>[] _PartsCache = new WeakReference<byte[]>[PartsCount];
         private int[] _BlockOffsets;
         private WeakReference<byte[]> _CombinedCache;
-        private WeakReference<Model> _ModelCache;
 
         #endregion
 
@@ -34,24 +33,6 @@ namespace SaintCoinach.Graphics.Assets {
         #endregion
 
         #region Read
-
-        public Model GetModel() {
-            if (this.Pack.Collection == null)
-                throw new NotSupportedException();
-
-            Model model;
-
-            if (_ModelCache != null && _ModelCache.TryGetTarget(out model)) return model;
-
-            model = new Model(this);
-
-            if (_ModelCache == null)
-                _ModelCache = new WeakReference<Model>(model);
-            else
-                _ModelCache.SetTarget(model);
-
-            return model;
-        }
 
         public override byte[] GetData() {
             byte[] data;

@@ -213,10 +213,6 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Mappings of source sheets to special <see cref="XivSheetCreator" />s.
         /// </summary>
-        /// ///
-        /// <remarks>
-        ///     TODO: Solve with attributes instead.
-        /// </remarks>
         protected static readonly Dictionary<string, XivSheetCreator> SpecialSheetTypes =
             new Dictionary<string, XivSheetCreator> {
                 {
