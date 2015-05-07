@@ -54,7 +54,6 @@ namespace GraphicsTest {
                     }
                 }
 
-
                 System.Diagnostics.Debugger.Break();
             }
 
