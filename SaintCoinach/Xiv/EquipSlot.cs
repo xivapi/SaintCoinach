@@ -239,8 +239,8 @@ namespace SaintCoinach.Xiv {
         /// <param name="characterType">Character type to get the model for.</param>
         /// <param name="materialVersion">When this method returns, contains the variant contained within <c>key</c>.</param>
         /// <returns>Returns the <see cref="Model" /> for the specified <c>key</c> and <c>characterType</c>.</returns>
-        public Model GetModel(long key, int characterType, out int materialVersion) {
-            materialVersion = 0;
+        public ModelDefinition GetModel(long key, int characterType, out Graphics.ImcVariant variant) {
+            variant = Graphics.ImcVariant.Default;
 
             ModelHelper helper;
             if (!ModelHelpers.TryGetValue(Key, out helper))
@@ -248,16 +248,29 @@ namespace SaintCoinach.Xiv {
             if (helper == null)
                 return null;
 
+            var packs = Collection.Collection.PackCollection;
+
             var a = key & 0xFFFF;
             var b = (key >> 16) & 0xFFFF;
             var c = (key >> 32) & 0xFFFF;
             var d = (key >> 48) & 0xFFFF;
-            materialVersion = (int)((key >> (helper.VariantIndexWord * 16)) & 0xFFFF);
+            var variantIndex = (int)((key >> (helper.VariantIndexWord * 16)) & 0xFFFF);
 
-            File imcBase;
-            File mdlFile;
+            var imcPath = string.Format(helper.ImcFileFormat, a, b, c, d, characterType);
+            IO.File imcBase;
+            if (!packs.TryGetFile(imcPath, out imcBase))
+                return null;
 
-            throw new NotImplementedException();
+            var imc = new Graphics.ImcFile(imcBase);
+            variant = imc.GetVariant(helper.ImcPartKey, variantIndex);
+
+            IO.File modelBase = null;
+            while (!packs.TryGetFile(string.Format(helper.ModelFileFormat, a, b, c, d, characterType), out modelBase) && CharacterTypeFallback.TryGetValue(characterType, out characterType)) { }
+
+            var asModel = modelBase as Graphics.ModelFile;
+            if (asModel == null)
+                return null;
+            return asModel.GetModelDefinition();
         }
 
         #endregion

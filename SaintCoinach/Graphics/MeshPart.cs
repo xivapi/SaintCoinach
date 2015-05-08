@@ -9,22 +9,25 @@ namespace SaintCoinach.Graphics {
         #region Properties
         public Mesh Mesh { get; private set; }
         public MeshPartHeader Header { get; private set; }
-        public ushort[] Indices { get; private set; }
+        public int IndexOffset { get { return Header.IndexOffset; } }
+        public int IndexCount { get { return Header.IndexCount; } }
+
+        public ModelAttribute[] Attributes { get; private set; }
         #endregion
 
         #region Constructor
         internal MeshPart(Mesh mesh, MeshPartHeader header, byte[] indexBuffer) {
-            const byte BytesPerIndex = 2;   // TODO: 99.999% sure this is constant, but you never know.
-
             this.Mesh = mesh;
             this.Header = header;
 
-            var position = header.IndexOffset * BytesPerIndex;
-            this.Indices = new ushort[header.IndexCount];
-            for (var i = 0; i < header.IndexCount; ++i) {
-                this.Indices[i] = BitConverter.ToUInt16(indexBuffer, position);
-                position += BytesPerIndex;
+            var attr = new List<ModelAttribute>();
+
+            for (var i = 0; i < Mesh.Model.Definition.Attributes.Length; ++i) {
+                if(((Header.AttributesMask >> i) & 1) == 1)
+                    attr.Add(Mesh.Model.Definition.Attributes[i]);
             }
+
+            Attributes = attr.ToArray();
         }
         #endregion
     }

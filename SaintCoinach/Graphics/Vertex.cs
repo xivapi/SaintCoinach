@@ -10,8 +10,11 @@ namespace SaintCoinach.Graphics {
         public Vector4? BlendWeights;
         public uint? BlendIndices;
         public Vector3? Normal;
-        public Vector4? UV;    // TODO: First two components are definitely UV, remaining two components not confirmed for anything (so far only seen values -1,2)
+
+        // TODO: For dual textures it's two components per texture, unknown purpose of Z and W components on others.
+        public Vector4? UV;
         public Vector4? Color;
-        public Vector4? Unknown06;
+        public Vector4? Tangent2;
+        public Vector4? Tangent1;
     }
 }

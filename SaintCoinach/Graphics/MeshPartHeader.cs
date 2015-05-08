@@ -10,7 +10,7 @@ namespace SaintCoinach.Graphics {
     public struct MeshPartHeader {
         public int IndexOffset;
         public int IndexCount;
-        public int VisibilityMask;
+        public int AttributesMask;
         public short BoneReferenceOffset; // In ModelStruct8.Bones
         public short BoneReferenceCount;  // In ModelStruct8.Bones
     }

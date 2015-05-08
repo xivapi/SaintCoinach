@@ -166,10 +166,10 @@ namespace SaintCoinach.Xiv.Items {
         /// <param name="characterType">Character type to get the model for.</param>
         /// <param name="materialVersion">When this method returns contains the variant of the model for the current item.</param>
         /// <returns>The model for the current item and <c>characterType</c>.</returns>
-        public Model GetModel(int characterType, out int materialVersion) {
-            materialVersion = 0;
+        public ModelDefinition GetModel(int characterType, out Graphics.ImcVariant variant) {
+            variant = Graphics.ImcVariant.Default;
             var slot = EquipSlotCategory.PossibleSlots.FirstOrDefault();
-            return slot == null ? null : GetModel(slot, characterType, out materialVersion);
+            return slot == null ? null : GetModel(slot, characterType, out variant);
         }
 
         /// <summary>
@@ -179,8 +179,8 @@ namespace SaintCoinach.Xiv.Items {
         /// <param name="characterType">Character type to get the model for.</param>
         /// <param name="materialVersion">When this method returns contains the variant of the model for the current item.</param>
         /// <returns>The model for the current item and <c>characterType</c> in <c>equipSlot</c>.</returns>
-        public Model GetModel(EquipSlot equipSlot, int characterType, out int materialVersion) {
-            return equipSlot.GetModel(PrimaryModelKey, characterType, out materialVersion);
+        public ModelDefinition GetModel(EquipSlot equipSlot, int characterType, out Graphics.ImcVariant variant) {
+            return equipSlot.GetModel(PrimaryModelKey, characterType, out variant);
         }
 
         #region Helpers

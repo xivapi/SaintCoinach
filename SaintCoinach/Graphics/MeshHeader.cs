@@ -15,13 +15,10 @@ namespace SaintCoinach.Graphics {
         public short PartCount;
         public short FileDataPart;
         public int IndexDataOffset;
-        public int VertexData1Offset;
-        public int VertexData2Offset;
-        public short Unknown2;
-        public short Unknown3;
-        public byte BytesPerVertexData1;
-        public byte BytesPerVertexData2;
-        public byte Unknown4;
-        public byte Unknown5;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        public int[] VertexDataOffsets;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        public byte[] BytesPerVertexData;
+        public byte VertexDataPartCount;
     }
 }

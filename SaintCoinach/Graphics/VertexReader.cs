@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics {
     static class VertexReader {
-        public static Vertex Read(byte[] buffer, VertexFormat format, int part1Offset, int part2Offset) {
+        public static Vertex Read(byte[] buffer, VertexFormat format, int[] offsets) {
             Vertex vertex = new Vertex();
 
             foreach (var element in format.Elements) {
-                int elementOffset;
-                if (element.SourcePart == 0)
-                    elementOffset = part1Offset;
-                else if (element.SourcePart == 1)
-                    elementOffset = part2Offset;
-                else
-                    throw new NotSupportedException();
+                int elementOffset = offsets[element.SourcePart];
 
                 ReadElement(buffer, element, elementOffset, ref vertex);
             }
@@ -42,11 +36,14 @@ namespace SaintCoinach.Graphics {
                 case VertexAttribute.Position:
                     vertex.Position = ForceToVector4(data);
                     break;
-                case VertexAttribute.Unknown06:
-                    vertex.Unknown06 = (Vector4)data;
+                case VertexAttribute.Tangent2:
+                    vertex.Tangent2 = (Vector4)data;
+                    break;
+                case VertexAttribute.Tangent1:
+                    vertex.Tangent1 = (Vector4)data;
                     break;
                 case VertexAttribute.UV:
-                    vertex.UV = (Vector4)data;
+                    vertex.UV = ForceToVector4(data);
                     break;
                 default:
                     throw new NotSupportedException();
@@ -68,6 +65,15 @@ namespace SaintCoinach.Graphics {
         static Vector4 ForceToVector4(object value) {
             if (value is Vector4)
                 return (Vector4)value;
+            if (value is Vector2) {
+                var v2 = (Vector2)value;
+                return new Vector4 {
+                    X = v2.X,
+                    Y = v2.Y,
+                    Z = 0,
+                    W = 0
+                };
+            }
             if (value is Vector3) {
                 var v3 = (Vector3)value;
                 return new Vector4 {
@@ -81,6 +87,11 @@ namespace SaintCoinach.Graphics {
         }
         static object ReadData(byte[] buffer, VertexDataType type, int offset) {
             switch (type) {
+                case VertexDataType.Half2:
+                    return new Vector2 {
+                        X = HalfHelper.Unpack(buffer, offset + 0x00),
+                        Y = HalfHelper.Unpack(buffer, offset + 0x02)
+                    };
                 case VertexDataType.Half4:
                     return new Vector4 {
                         X = HalfHelper.Unpack(buffer, offset + 0x00),
@@ -99,6 +110,8 @@ namespace SaintCoinach.Graphics {
                     };
                 case VertexDataType.Single3:
                     return buffer.ToStructure<Vector3>(offset);
+                case VertexDataType.Single4:
+                    return buffer.ToStructure<Vector4>(offset);
                 default:
                     throw new NotSupportedException();
             }

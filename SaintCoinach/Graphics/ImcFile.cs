@@ -13,6 +13,7 @@ namespace SaintCoinach.Graphics {
         #region Properties
         public IO.File SourceFile { get; private set; }
         public IEnumerable<ImcPart> Parts { get { return _Parts.Values; } }
+        public int Count { get; private set; }
         #endregion
 
         #region Constructor
@@ -20,7 +21,7 @@ namespace SaintCoinach.Graphics {
             this.SourceFile = sourceFile;
 
             var buffer = SourceFile.GetData();
-            var count = BitConverter.ToInt16(buffer, 0);
+            this.Count = BitConverter.ToInt16(buffer, 0);
             var typeMask = BitConverter.ToInt16(buffer, 2);
 
             var offset = 4;
@@ -30,7 +31,8 @@ namespace SaintCoinach.Graphics {
                     _Parts.Add(bit, new ImcPart(buffer, bit, ref offset));
             }
 
-            while (--count >= 0) {
+            var rem = Count;
+            while (--rem >= 0) {
                 foreach (var part in _Parts.Values)
                     part._Variants.Add(buffer.ToStructure<ImcVariant>(ref offset));
             }

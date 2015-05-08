@@ -144,17 +144,28 @@ namespace SaintCoinach.Graphics {
             this.Index = index;
             _Packs = definition.File.Pack.Collection;
 
-            if (!TryExpand(Name, out _PathFormat, out _StainedPathFormat, out _VariantsAvailable))
-                throw new NotSupportedException();
+            if (_Packs.FileExists(Name)) {
+                _DefaultPath = Name;
+                _VariantsAvailable = false;
+                _StainedPathFormat = _PathFormat = null;
+            } else {
+                if (!TryExpand(Name, out _PathFormat, out _StainedPathFormat, out _VariantsAvailable))
+                    throw new NotSupportedException();
 
-            if (VariantsAvailable)
-                _DefaultPath = string.Format(_PathFormat, 0);
-            else
-                _DefaultPath = _PathFormat;
+                if (VariantsAvailable)
+                    _DefaultPath = string.Format(_PathFormat, 0);
+                else
+                    _DefaultPath = _PathFormat;
+            }
         }
         #endregion
 
         #region Get
+        public Material Get(ModelVariantIdentifier variantId) {
+            if (variantId.StainKey.HasValue && StainsAvailable)
+                return Get(variantId.ImcVariant, variantId.StainKey.Value);
+            return Get(variantId.ImcVariant);
+        }
         public Material Get() {
             var path = _DefaultPath;
             return Create(path, ImcVariant.Default);
@@ -162,14 +173,14 @@ namespace SaintCoinach.Graphics {
         public Material Get(ImcVariant variant) {
             var path = _DefaultPath;
             if (VariantsAvailable)
-                path = string.Format(_PathFormat, variant.Variant);
+                path = string.Format(_PathFormat, variant.Variant & 0x03FF);
             return Create(path, variant);
         }
         public Material Get(ImcVariant variant, int stainKey) {
             if (!StainsAvailable)
                 throw new NotSupportedException();
 
-            var path = string.Format(_StainedPathFormat, variant.Variant, stainKey);
+            var path = string.Format(_StainedPathFormat, variant.Variant & 0x03FF, stainKey);
             return Create(path, variant);
         }
 

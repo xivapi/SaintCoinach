@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SaintCoinach.Graphics.Viewer.Content {
+    using SharpDX;
+
+    public class ContentModel : Drawable3DComponent {
+        #region Fields
+        private ComponentContainer _MeshContainer = new ComponentContainer();
+        #endregion
+
+        #region Properties
+        public ModelDefinition Definition { get; private set; }
+        public ModelVariantIdentifier Variant { get; private set; }
+        public ModelQuality Quality { get; private set; }
+        public ContentMesh[] Meshes { get; private set; }
+        public Matrix Transformation { get; set; }
+        public PrimitiveModel Primitive { get; private set; }
+        #endregion
+
+        #region Constructor
+        public ContentModel(Engine engine, ModelVariantIdentifier variant, ModelFile file) : this(engine, variant, file.GetModelDefinition(), ModelQuality.High) { }
+        public ContentModel(Engine engine, ModelVariantIdentifier variant, ModelFile file, ModelQuality quality) : this(engine, variant, file.GetModelDefinition(), quality) { }
+        public ContentModel(Engine engine, ModelVariantIdentifier variant, ModelDefinition definition) : this(engine, variant, definition, ModelQuality.High) { }
+        public ContentModel(Engine engine, ModelVariantIdentifier variant, ModelDefinition definition, ModelQuality quality)
+            : base(engine) {
+            this.Definition = definition;
+            this.Quality = quality;
+            this.Variant = variant;
+            this.Transformation = Matrix.Identity;
+        }
+        #endregion
+
+        #region Content
+        public override void LoadContent() {
+            Primitive = Engine.ModelFactory.Get(Definition, Quality);
+            Meshes = new ContentMesh[Primitive.Meshes.Length];
+            for (var i = 0; i < Primitive.Meshes.Length; ++i) {
+                Meshes[i] = new ContentMesh(this, Primitive.Meshes[i], Variant);
+                _MeshContainer.Add(Meshes[i]);
+            }
+           
+            _MeshContainer.LoadContent();
+            base.LoadContent();
+        }
+        public override void UnloadContent() {
+            base.UnloadContent();
+            _MeshContainer.UnloadContent();
+            _MeshContainer.Clear();
+            Meshes = null;
+        }
+        #endregion
+
+        #region Draw
+        public override void Draw(EngineTime time, ref SharpDX.Matrix world, ref SharpDX.Matrix view, ref SharpDX.Matrix projection) {
+            var transformedWorld = Transformation * world;
+            _MeshContainer.Draw(time, ref transformedWorld, ref view, ref projection);
+        }
+        #endregion
+
+        #region Update
+        public override void Update(EngineTime engineTime) {
+            _MeshContainer.Update(engineTime);
+            base.Update(engineTime);
+        }
+        #endregion
+    }
+}

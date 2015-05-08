@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics {
     public class Mesh {
+        public const byte BytesPerIndex = 2;   // TODO: 99.999% sure this is constant, but you never know.
+
         #region Fields
 
         #endregion
@@ -31,23 +33,33 @@ namespace SaintCoinach.Graphics {
                 this.Parts[i] = new MeshPart(this, Model.Definition.MeshPartHeaders[Header.PartOffset + i], indexBuffer);
 
             ReadVertices(vertexBuffer);
+            ReadIndices(indexBuffer);
         }
         #endregion
 
         #region Build
+        private void ReadIndices(byte[] buffer) {
+            var position = Header.IndexDataOffset * BytesPerIndex;
+            this.Indices = new ushort[Header.IndexCount];
+            for (var i = 0; i < Header.IndexCount; ++i) {
+                this.Indices[i] = BitConverter.ToUInt16(buffer, position);
+                position += BytesPerIndex;
+            }
+        }
         private void ReadVertices(byte[] buffer) {
             var header = Header;
             var format = VertexFormat;
 
-            var p1Offset = header.VertexData1Offset;
-            var p2Offset = header.VertexData2Offset;
+            var offsets = new int[header.VertexDataPartCount];
+            for (var oi = 0; oi < offsets.Length; ++oi)
+                offsets[oi] = header.VertexDataOffsets[oi];
 
             Vertices = new Vertex[Header.VertexCount];
             for (var i = 0; i < header.VertexCount; ++i) {
-                Vertices[i] = VertexReader.Read(buffer, format, p1Offset, p2Offset);
-
-                p1Offset += header.BytesPerVertexData1;
-                p2Offset += header.BytesPerVertexData2;
+                Vertices[i] = VertexReader.Read(buffer, format, offsets);
+                
+                for (var oi = 0; oi < offsets.Length; ++oi)
+                    offsets[oi] += header.BytesPerVertexData[oi];
             }
         }
         #endregion

@@ -82,6 +82,9 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Bone.cs" />
+    <Compile Include="Graphics\BoneDeformer.cs" />
+    <Compile Include="Graphics\BoneDeformerEntryHeader.cs" />
+    <Compile Include="Graphics\BoneDeformerEntryHeader2.cs" />
     <Compile Include="Graphics\ByteArrayExtensions.cs" />
     <Compile Include="Graphics\ImcFile.cs" />
     <Compile Include="Graphics\ImcPart.cs" />
@@ -93,6 +96,9 @@
     <Compile Include="Graphics\MaterialTextureParameter.cs" />
     <Compile Include="Graphics\Mesh.cs" />
     <Compile Include="Graphics\MeshPart.cs" />
+    <Compile Include="Graphics\ModelAttribute.cs" />
+    <Compile Include="Graphics\ModelVariantIdentifier.cs" />
+    <Compile Include="Graphics\Vector2.cs" />
     <Compile Include="Graphics\Vector3.cs" />
     <Compile Include="Graphics\Vertex.cs" />
     <Compile Include="Graphics\VertexDataType.cs" />

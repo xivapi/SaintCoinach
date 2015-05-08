@@ -11,9 +11,10 @@ namespace SaintCoinach.Graphics {
         BlendIndices = 0x02,
         Normal = 0x03,
         UV = 0x04,
-        Unknown06 = 0x06, // TODO: purpose unknown, possibly shinyness?
+        Tangent2 = 0x05, // Don't ask me why the second one (only present on dual-textured models) is first
+        Tangent1 = 0x06,
         Color = 0x07,
 
-        // TODO: Check for additional attributes (chara/* models checked, but not bg/*)
+        // TODO: Check for additional types (chara/* models checked, most in bg/* too, but some couldn't be read)
     }
 }

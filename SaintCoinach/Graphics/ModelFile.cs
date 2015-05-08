@@ -23,6 +23,7 @@ namespace SaintCoinach.Graphics {
         private readonly WeakReference<byte[]>[] _PartsCache = new WeakReference<byte[]>[PartsCount];
         private int[] _BlockOffsets;
         private WeakReference<byte[]> _CombinedCache;
+        private WeakReference<ModelDefinition> _DefinitionCache;
 
         #endregion
 
@@ -33,6 +34,20 @@ namespace SaintCoinach.Graphics {
         #endregion
 
         #region Read
+
+        public ModelDefinition GetModelDefinition() {
+            ModelDefinition def;
+            if (_DefinitionCache != null && _DefinitionCache.TryGetTarget(out def))
+                return def;
+
+            def = new ModelDefinition(this);
+            if (_DefinitionCache == null)
+                _DefinitionCache = new WeakReference<ModelDefinition>(def);
+            else
+                _DefinitionCache.SetTarget(def);
+
+            return def;
+        }
 
         public override byte[] GetData() {
             byte[] data;
@@ -45,7 +60,7 @@ namespace SaintCoinach.Graphics {
             for (var i = 0; i < PartsCount; ++i) {
                 var part = GetPart(i);
                 Array.Resize(ref data, data.Length + part.Length);
-                Array.Copy(data, o, part, 0, part.Length);
+                Array.Copy(part, 0, data, o, part.Length);
                 o += part.Length;
             }
 

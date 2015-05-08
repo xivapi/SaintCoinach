@@ -7,71 +7,49 @@ using System.Threading.Tasks;
 namespace GraphicsTest {
     class Program {
         static void Main(string[] args) {
-            var packs = new SaintCoinach.IO.PackCollection(@"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack");
+            var arr = new SaintCoinach.ARealmReversed(@"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn", SaintCoinach.Ex.Language.English);
+            var packs = arr.Packs;
+
             {
-                // m0099 is Ultima Weapon
+                /*
                 var imc = new SaintCoinach.Graphics.ImcFile(packs.GetFile("chara/monster/m0099/obj/body/b0001/b0001.imc"));
                 var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile("chara/monster/m0099/obj/body/b0001/model/m0099b0001.mdl");
-                var def = new SaintCoinach.Graphics.ModelDefinition(mdlFile);
-                var mdl = def.GetModel(0);
-                var mdl2 = def.GetModel(1);
+                var mdlDef = mdlFile.GetModelDefinition();
+                var imcVar = imc.GetVariant(1);
+                var mdlVar = imcVar;
+                */
+                /*
+                var imc = new SaintCoinach.Graphics.ImcFile(packs.GetFile("chara/equipment/e0124/e0124.imc"));
+                var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile("chara/equipment/e0124/model/c0201e0124_top.mdl");
+                var mdlDef = mdlFile.GetModelDefinition();
+                for (var j = 0; j <= 2; ++j) {
 
-                // Variant at 4 seems to be missing wings
-                var imcVar = imc.GetVariant(4);
-
-                var materials = new SaintCoinach.Graphics.Material[mdl.Meshes.Length];
-                for (var i = 0; i < mdl.Meshes.Length; ++i) {
-                    materials[i] = mdl.Meshes[i].Material.Get(imcVar);
-
-                    for (var j = 0; j < mdl.Meshes[i].Parts.Length; ++j) {
-                        // TODO: Confirm this to actually be true.
-                        var result = ((imcVar.PartVisibilityMask & mdl.Meshes[i].Parts[j].Header.VisibilityMask) == mdl.Meshes[i].Parts[j].Header.VisibilityMask);
-                        Console.WriteLine("Mesh[{0}].Part[{1}].Visible = {2}", i, j, result);
+                    for (byte i = 0; i < 5; ++i) {
+                        var v = imc.GetVariant(i, j);
+                        Console.WriteLine("IMC#{4}-{0}: {1:X4} / {2:X2} / {3:X2}", i, v.PartVisibilityMask, v.Unknown3, v.Unknown4, j);
                     }
                 }
-
-
-                System.Diagnostics.Debugger.Break();
-            }
-            {
-                // e0124 is PLD PvP armours
+                var imcVar = imc.GetVariant(1, 1);
+                */
+                /*
                 var imc = new SaintCoinach.Graphics.ImcFile(packs.GetFile("chara/equipment/e0124/e0124.imc"));
                 var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile("chara/equipment/e0124/model/c0101e0124_top.mdl");
-                var def = new SaintCoinach.Graphics.ModelDefinition(mdlFile);
-                var mdl = def.GetModel(0);
+                var mdlDef = mdlFile.GetModelDefinition();
+                var imcVar = imc.GetVariant(1, 2);*/
+                
+                var eq = (SaintCoinach.Xiv.Items.Equipment)arr.GameData.GetSheet<SaintCoinach.Xiv.Item>().First(i => i.Name == "Augmented Ironworks Armor of Fending");
+                SaintCoinach.Graphics.ImcVariant imcVar;
+                var mdlDef = eq.GetModel(101, out imcVar);
+                var mdlVar = new SaintCoinach.Graphics.ModelVariantIdentifier {
+                    ImcVariant = imcVar,
+                    StainKey = 14
 
-                // Variant at 1 should have no mane and missing a bit on the belt.
-                var imcVar = imc.GetVariant(1, 1);
+                };
 
-                var materials = new SaintCoinach.Graphics.Material[mdl.Meshes.Length];
-                for (var i = 0; i < mdl.Meshes.Length; ++i) {
-                    materials[i] = mdl.Meshes[i].Material.Get(imcVar);
-
-                    for (var j = 0; j < mdl.Meshes[i].Parts.Length; ++j) {
-                        // TODO: Confirm this to actually be true.
-                        var result = ((imcVar.PartVisibilityMask & mdl.Meshes[i].Parts[j].Header.VisibilityMask) == mdl.Meshes[i].Parts[j].Header.VisibilityMask);
-                        Console.WriteLine("Mesh[{0}].Part[{1}].Visible = {2}", i, j, result);
-                    }
-                }
-
-                System.Diagnostics.Debugger.Break();
-            }
-
-            {
-                var p = packs.GetPack(new SaintCoinach.IO.PackIdentifier("chara", "ffxiv", 0));
-                foreach (var mdlFile in p.OfType<SaintCoinach.Graphics.ModelFile>()) {
-                    SaintCoinach.Graphics.ModelDefinition def = null;
-                    try {
-                        def = new SaintCoinach.Graphics.ModelDefinition(mdlFile);
-                    } catch(NotSupportedException nse) {
-                        // For all in chara/* if exception is in MaterialDefinition..ctor then it's some weird material that can't be located
-                        if (nse.TargetSite.Name == ".ctor" && nse.TargetSite.DeclaringType != typeof(SaintCoinach.Graphics.MaterialDefinition))
-                            continue;
-                        throw;
-                    }
-                    foreach (var q in def.AvailableQualities)
-                        def.GetModel(q);
-                }
+                var eng = new SaintCoinach.Graphics.Viewer.Engine("Test");
+                var engMdl = new SaintCoinach.Graphics.Viewer.Content.ContentModel(eng, mdlVar, mdlDef, SaintCoinach.Graphics.ModelQuality.High);
+                eng.Components.Add(engMdl);
+                eng.Run();
             }
         }
     }

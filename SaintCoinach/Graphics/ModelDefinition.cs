@@ -14,6 +14,7 @@ namespace SaintCoinach.Graphics {
 
         #region Fields
         internal string[] MaterialNames;
+        internal string[] AttributeNames;
         private Model[] _Models = new Model[ModelCount];
         #endregion
 
@@ -25,7 +26,7 @@ namespace SaintCoinach.Graphics {
         public Unknowns.ModelStruct1[] UnknownStructs1 { get; private set; }
         public ModelHeader[] ModelHeaders { get; private set; }
         public MeshHeader[] MeshHeaders { get; private set; }
-        public string[] AttributeNames { get; private set; }
+        public ModelAttribute[] Attributes { get; private set; }
         public Unknowns.ModelStruct2[] UnknownStructs2 { get; private set; }
         public MeshPartHeader[] MeshPartHeaders { get; private set; }
         public Unknowns.ModelStruct3[] UnknownStructs3 { get; private set; }
@@ -80,7 +81,12 @@ namespace SaintCoinach.Graphics {
             this.AvailableQualities = availableQualities;
 
             this.MeshHeaders = buffer.ToStructures<MeshHeader>(Header.MeshCount, ref offset);
+
             this.AttributeNames = ReadStrings(buffer, Header.AttributeCount, ref offset);
+            this.Attributes = new ModelAttribute[Header.AttributeCount];
+            for (var i = 0; i < Header.AttributeCount; ++i)
+                this.Attributes[i] = new ModelAttribute(this, i);
+
             this.UnknownStructs2 = buffer.ToStructures<Unknowns.ModelStruct2>(Header.UnknownStruct2Count, ref offset);
             this.MeshPartHeaders = buffer.ToStructures<MeshPartHeader>(Header.PartCount, ref offset);
             this.UnknownStructs3 = buffer.ToStructures<Unknowns.ModelStruct3>(Header.UnknownStruct3Count, ref offset);
@@ -106,8 +112,9 @@ namespace SaintCoinach.Graphics {
             for (var i = 0; i < Header.BoneCount; ++i)
                 this.Bones[i] = new Bone(this, i, buffer, ref offset);
 
-            if (offset != buffer.Length)
-                System.Diagnostics.Debugger.Break();    // Something's not right here.
+            if (offset != buffer.Length) {
+                //System.Diagnostics.Debugger.Break();    // Something's not right here.
+            }
 
             BuildVertexFormats();
         }

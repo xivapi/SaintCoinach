@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics {
     [StructLayout(LayoutKind.Sequential)]
     public struct ImcVariant {
-        public short Variant;
+        public short Variant;   // TODO: Only lower 10 bits are for v####, upper 6 bits unknown
         public ushort PartVisibilityMask;
         public byte Unknown3;
         public byte Unknown4;
@@ -19,5 +19,10 @@ namespace SaintCoinach.Graphics {
             Unknown3 = 0x00,
             Unknown4 = 0x00
         };
+        public static implicit operator ModelVariantIdentifier(ImcVariant imcVariant) {
+            return new ModelVariantIdentifier {
+                ImcVariant = imcVariant
+            };
+        }
     }
 }
