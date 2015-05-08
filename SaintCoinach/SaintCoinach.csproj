@@ -95,6 +95,11 @@
     <Compile Include="Graphics\MeshPart.cs" />
     <Compile Include="Graphics\ModelAttribute.cs" />
     <Compile Include="Graphics\ModelVariantIdentifier.cs" />
+    <Compile Include="Graphics\Territory.cs" />
+    <Compile Include="Graphics\TerritoryParts\LgbFile.cs" />
+    <Compile Include="Graphics\TerritoryParts\LgbModelEntry.cs" />
+    <Compile Include="Graphics\TerritoryParts\Terrain.cs" />
+    <Compile Include="Graphics\TerritoryParts\TransformedModel.cs" />
     <Compile Include="Graphics\Vector2.cs" />
     <Compile Include="Graphics\Vector3.cs" />
     <Compile Include="Graphics\Vertex.cs" />

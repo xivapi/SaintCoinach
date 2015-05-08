@@ -32,6 +32,21 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             this.Variant = variant;
             this.Transformation = Matrix.Identity;
         }
+        public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel) : this(engine, transformedModel, ModelQuality.High) { }
+        public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel, ModelQuality quality) : base(engine) {
+            this.Definition = transformedModel.Model;
+            this.Quality = Quality;
+            this.Variant = new ModelVariantIdentifier {
+                ImcVariant = ImcVariant.Default,
+                StainKey = null
+            };
+            this.Transformation =
+                Matrix.Scaling(transformedModel.Scale.ToDx())
+                * Matrix.RotationX(transformedModel.Rotation.X)
+                * Matrix.RotationY(transformedModel.Rotation.Y)
+                * Matrix.RotationZ(transformedModel.Rotation.Z)
+                * Matrix.Translation(transformedModel.Translation.ToDx());
+        }
         #endregion
 
         #region Content

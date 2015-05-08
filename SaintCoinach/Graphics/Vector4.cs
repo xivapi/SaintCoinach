@@ -13,5 +13,8 @@ namespace SaintCoinach.Graphics {
         public float Y;
         public float Z;
         public float W;
+
+        public static readonly Vector4 One = new Vector4 { X = 1, Y = 1, Z = 1, W = 1 };
+        public static readonly Vector4 Zero = new Vector4 { X = 0, Y = 0, Z = 0, W = 0 };
     }
 }

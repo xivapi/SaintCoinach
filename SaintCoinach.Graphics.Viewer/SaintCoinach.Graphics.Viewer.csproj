@@ -71,6 +71,7 @@
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="Content\BgMaterial.cs" />
     <Compile Include="Content\CharacterMaterial.cs" />
+    <Compile Include="Content\ContentTerritory.cs" />
     <Compile Include="Content\Cube.cs" />
     <Compile Include="Content\HairMaterial.cs" />
     <Compile Include="Content\MaterialBase.cs" />
