@@ -70,9 +70,9 @@ namespace SaintCoinach.Graphics {
                 false),
             new PathExpander(
                 @"^/(?<basename>mt_c(?<c>[0-9]{4})h(?<h>[0-9]{4})_(?<suffix>[^\.]+))\.mtrl$",
-                @"chara/human/c${c}/obj/hair/h${h}/material/${basename}.mtrl",
+                @"chara/human/c${c}/obj/hair/h${h}/material/v{0:D4}/${basename}.mtrl",
                 null,
-                false),
+                true),
             new PathExpander(
                 @"^/(?<basename>mt_c(?<c>[0-9]{4})f(?<f>[0-9]{4})_(?<suffix>[^\.]+))\.mtrl$",
                 @"chara/human/c${c}/obj/face/f${f}/material/${basename}.mtrl",

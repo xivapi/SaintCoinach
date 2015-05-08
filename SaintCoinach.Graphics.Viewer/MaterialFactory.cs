@@ -29,6 +29,15 @@ namespace SaintCoinach.Graphics.Viewer {
                 case "character.shpk":
                     content = new Content.CharacterMaterial(_Engine, material);
                     break;
+                case "hair.shpk":
+                    content = new Content.HairMaterial(_Engine, material);
+                    break;
+                case "skin.shpk":
+                    content = new Content.SkinMaterial(_Engine, material);
+                    break;
+                case "bg.shpk":
+                    content = new Content.BgMaterial(_Engine, material);
+                    break;
                 default:
                     content = null;
                     break;

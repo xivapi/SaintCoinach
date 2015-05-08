@@ -130,7 +130,22 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             SpecularPower = 32;
 
             DiffuseColor = Vector4.One;
-
+            Light0 = new DirectionalLight {
+                Direction = new Vector3(-0.5265408f, -0.5735765f, -0.6275069f),
+                Diffuse = new Vector4(0.9607844f, 0.9607844f, 0.9607844f, 1),
+                Specular = new Vector4(0.9607844f, 0.9607844f, 0.9607844f, 1),
+            };
+            Light1 = new DirectionalLight {
+                Direction = new Vector3(0.7198464f, 0.3420201f, 0.6040227f),
+                Diffuse = new Vector4(0.7607844f, 0.7607844f, 0.7607844f, 1),
+                Specular = Vector4.One,
+            };
+            Light2 = new DirectionalLight {
+                Direction = new Vector3(0.4545195f, -0.7660444f, 0.4545195f),
+                Diffuse = new Vector4(0.3607844f, 0.3607844f, 0.3607844f, 1),
+                Specular = new Vector4(0.3607844f, 0.3607844f, 0.3607844f, 1),
+            };
+            /*
             Light0 = new DirectionalLight {
                 Direction = new Vector3(-0.5265408f, -0.5735765f, -0.6275069f),
                 Diffuse = new Vector4(1, 0.9607844f, 0.8078432f, 1),
@@ -146,7 +161,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
                 Diffuse = new Vector4(0.3231373f, 0.3607844f, 0.3937255f, 1),
                 Specular = new Vector4(0.3231373f, 0.3607844f, 0.3937255f, 1),
             };
-
+            */
             this.AmbientColor = new Vector3(0.05333332f, 0.09882354f, 0.1819608f);
         }
         #endregion

@@ -5,17 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SharpDX;
-using SharpDX.D3DCompiler;
-using SharpDX.Direct3D;
-using SharpDX.Direct3D11;
-using SharpDX.DXGI;
-using SharpDX.Windows;
-using Buffer = SharpDX.Direct3D11.Buffer;
-using Device = SharpDX.Direct3D11.Device;
 
 namespace SaintCoinach.Graphics.Viewer {
+    using SharpDX;
+    using SharpDX.D3DCompiler;
+    using SharpDX.Direct3D;
+    using SharpDX.Direct3D11;
+    using SharpDX.DXGI;
+    using SharpDX.Windows;
+    using Buffer = SharpDX.Direct3D11.Buffer;
+    using Device = SharpDX.Direct3D11.Device;
+
     public class Engine {
+
         #region Fields
         private string _Title;
         private RenderForm _Form;
@@ -27,13 +29,18 @@ namespace SaintCoinach.Graphics.Viewer {
         private Camera _Camera;
 
         private Texture2D _RenderTarget;
+        private RasterizerState _RasterizerState;
+        private DepthStencilState _StencilState;
         private RenderTargetView _RenderTargetView;
+        private BlendState _BlendState;
 
         private Texture2D _DepthStencil;
         private DepthStencilView _DepthStencilView;
 
         private Stopwatch _RunTimer;
         private long _TotalElapsedTime;
+
+        private Content.Cube _Cube;
 
         private ComponentContainer _CoreComponents;
         private ComponentContainer _Components;
@@ -50,6 +57,8 @@ namespace SaintCoinach.Graphics.Viewer {
         public InputService InputService { get { return _InputService; } }
         public Keyboard Keyboard { get { return _Keyboard; } }
         public Camera Camera { get { return _Camera; } }
+
+        public Content.Cube Cube { get { return _Cube; } }
 
         protected ComponentContainer CoreComponents { get { return _CoreComponents; } }
         public ComponentContainer Components { get { return _Components; } }
@@ -95,6 +104,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
             _RenderTargetView.Dispose();
             _RenderTarget.Dispose();
+
             _DepthStencilView.Dispose();
             _DepthStencil.Dispose();
 
@@ -111,79 +121,43 @@ namespace SaintCoinach.Graphics.Viewer {
                     Form.ClientSize.Width, Form.ClientSize.Height,
                     new Rational(60, 1), Format.R8G8B8A8_UNorm),
                 OutputHandle = Form.Handle,
-                SampleDescription = new SampleDescription(1, 0),
+                SampleDescription = new SampleDescription(8, 0), //new SampleDescription(8, Device.CheckMultisampleQualityLevels(Format.R8G8B8A8_UNorm, 8)),
                 SwapEffect = SwapEffect.Discard,
                 Usage = Usage.RenderTargetOutput | Usage.BackBuffer,
             };
 
-            Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out _Device, out _SwapChain);
+            SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out _Device, out _SwapChain);
 
             var factory = _SwapChain.GetParent<Factory>();
             factory.MakeWindowAssociation(Form.Handle, WindowAssociationFlags.IgnoreAll);
 
             CreateView();
 
-            var stencilStateDesc = new DepthStencilStateDescription {
-                IsDepthEnabled = true,
-                IsStencilEnabled = true,
-                DepthWriteMask = DepthWriteMask.All,
-                DepthComparison = Comparison.Less,
-                StencilReadMask = 0xFF,
-                StencilWriteMask = 0xFF,
-
-                // Stencil operation if pixel front-facing.
-                FrontFace = new DepthStencilOperationDescription() {
-                    FailOperation = StencilOperation.Keep,
-                    DepthFailOperation = StencilOperation.Increment,
-                    PassOperation = StencilOperation.Keep,
-                    Comparison = Comparison.Always
-                },
-                // Stencil operation if pixel is back-facing.
-                BackFace = new DepthStencilOperationDescription() {
-                    FailOperation = StencilOperation.Keep,
-                    DepthFailOperation = StencilOperation.Decrement,
-                    PassOperation = StencilOperation.Keep,
-                    Comparison = Comparison.Always
-                }
-            };
-            var stencilState = new DepthStencilState(Device, stencilStateDesc);
-
+            var depthDesc = DepthStencilStateDescription.Default();
+            _StencilState = new DepthStencilState(Device, depthDesc);
+            
             var blendDesc = new BlendStateDescription();
             blendDesc.RenderTarget[0].IsBlendEnabled = true;
             blendDesc.RenderTarget[0].SourceBlend = BlendOption.SourceAlpha;
             blendDesc.RenderTarget[0].DestinationBlend = BlendOption.InverseSourceAlpha;
             blendDesc.RenderTarget[0].BlendOperation = BlendOperation.Add;
-            blendDesc.RenderTarget[0].SourceAlphaBlend = BlendOption.One;
-            blendDesc.RenderTarget[0].DestinationAlphaBlend = BlendOption.InverseSourceAlpha;
+            blendDesc.RenderTarget[0].SourceAlphaBlend = BlendOption.Zero;
+            blendDesc.RenderTarget[0].DestinationAlphaBlend = BlendOption.Zero;
             blendDesc.RenderTarget[0].AlphaBlendOperation = BlendOperation.Add;
             blendDesc.RenderTarget[0].RenderTargetWriteMask = ColorWriteMaskFlags.All;
-            var blendState = new BlendState(Device, blendDesc);
+            _BlendState = new BlendState(Device, blendDesc);
 
-            Device.ImmediateContext.OutputMerger.SetDepthStencilState(stencilState);
-            Device.ImmediateContext.OutputMerger.SetBlendState(blendState, new Color4(0, 0, 0, 0));
-            Device.ImmediateContext.Rasterizer.State = new RasterizerState(Device, new RasterizerStateDescription {
+            Device.ImmediateContext.OutputMerger.SetDepthStencilState(_StencilState);
+            Device.ImmediateContext.OutputMerger.SetBlendState(_BlendState);
+
+            Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, new RasterizerStateDescription {
                 CullMode = CullMode.None,
                 FillMode = FillMode.Solid,
                 IsMultisampleEnabled = true,
             });
-
-
         }
         private void CreateView() {
-            var rtDesc = new Texture2DDescription {
-                ArraySize = 1,
-                BindFlags = BindFlags.RenderTarget,
-                CpuAccessFlags = CpuAccessFlags.None,
-                Format = _SwapChain.Description.ModeDescription.Format,
-                Width = _SwapChain.Description.ModeDescription.Width,
-                Height = _SwapChain.Description.ModeDescription.Height,
-                MipLevels = 1,
-                OptionFlags = ResourceOptionFlags.None,
-                SampleDescription = new SampleDescription(8, Device.CheckMultisampleQualityLevels(_SwapChain.Description.ModeDescription.Format, 8)),
-                Usage = ResourceUsage.Default
-            };
             _RenderTarget = Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
-            //_RenderTarget = new Texture2D(Device, rtDesc);
             _RenderTargetView = new RenderTargetView(Device, _RenderTarget);
 
             var dsTexDesc = new Texture2DDescription {
@@ -192,17 +166,22 @@ namespace SaintCoinach.Graphics.Viewer {
                 MipLevels = 1,
                 Width = _RenderTarget.Description.Width,
                 Height = _RenderTarget.Description.Height,
-                SampleDescription = new SampleDescription(1, 0),
+                SampleDescription = _SwapChain.Description.SampleDescription,
                 Usage = ResourceUsage.Default,
                 BindFlags = BindFlags.DepthStencil,
                 CpuAccessFlags = CpuAccessFlags.None,
-                OptionFlags = ResourceOptionFlags.None
+                OptionFlags = ResourceOptionFlags.None,
             };
             _DepthStencil = new Texture2D(Device, dsTexDesc);
-            _DepthStencilView = new DepthStencilView(Device, _DepthStencil);
+            _DepthStencilView = new DepthStencilView(Device, _DepthStencil, new DepthStencilViewDescription {
+                Flags = DepthStencilViewFlags.None,
+                Dimension = DepthStencilViewDimension.Texture2DMultisampled,
+                Format = dsTexDesc.Format
+            });
 
+            
             Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
-
+            
             Device.ImmediateContext.Rasterizer.SetViewport(new Viewport(0, 0, Form.ClientSize.Width, Form.ClientSize.Height));
         }
         #endregion
@@ -224,6 +203,10 @@ namespace SaintCoinach.Graphics.Viewer {
         private void Load() {
             CoreComponents.LoadContent();
             Components.LoadContent();
+
+            _Cube = new Content.Cube(this);
+            _Cube.LoadContent();
+
             LoadContent();
         }
         protected virtual void LoadContent() { }
@@ -231,6 +214,10 @@ namespace SaintCoinach.Graphics.Viewer {
         private void Unload() {
             Components.UnloadContent();
             CoreComponents.UnloadContent();
+
+            if (_Cube != null)
+                _Cube.UnloadContent();
+            _Cube = null;
 
             ModelFactory.UnloadAll();
             MaterialFactory.UnloadAll();
@@ -264,8 +251,14 @@ namespace SaintCoinach.Graphics.Viewer {
             var view = Camera.View;
             var proj = Camera.Projection;
 
+
             Device.ImmediateContext.ClearRenderTargetView(_RenderTargetView, Color.CornflowerBlue);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
+
+            Draw3D(time, ref world, ref view, ref proj);
+        }
+
+        private void Draw3D(EngineTime time, ref Matrix world, ref Matrix view, ref Matrix proj) {
             CoreComponents.Draw(time, ref world, ref view, ref proj);
             Components.Draw(time, ref world, ref view, ref proj);
         }

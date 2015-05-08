@@ -11,6 +11,7 @@ namespace SaintCoinach.Graphics {
         public ModelDefinition Definition { get; private set; }
         public string Name { get; private set; }
         public int Index { get; private set; }
+        // TODO: This is, in fact, wrong. Unless it's relative to something.
         public Vector4 Head { get; private set; }
         public Vector4 Tail { get; private set; }
         #endregion

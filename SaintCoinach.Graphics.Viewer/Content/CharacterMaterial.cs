@@ -26,6 +26,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             { CharacterParameter.Normal | CharacterParameter.Diffuse | CharacterParameter.Specular, "DiffuseSpecular" },
             { CharacterParameter.Normal | CharacterParameter.Diffuse | CharacterParameter.Specular | CharacterParameter.Table, "DiffuseSpecularTable" },
             { CharacterParameter.Normal | CharacterParameter.Mask | CharacterParameter.Table, "MaskTable" },
+            { CharacterParameter.Normal | CharacterParameter.Mask, "Mask" },
         };
 
         private static readonly IDictionary<uint, CharacterParameter> CharacterParameterMap = new Dictionary<uint, CharacterParameter> {

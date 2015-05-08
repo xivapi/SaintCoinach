@@ -87,8 +87,23 @@ namespace SaintCoinach.Graphics.Viewer {
                 case "character.shpk":
                     return GetEffect(
                         name,
-                        System.IO.Path.Combine(".", "Effects", "HLSL", "Character.fx"),
+                        "./Effects/HLSL/Character.fx",
                         (bc, ef) => new Effects.CharacterEffect(_Engine.Device, bc, ef));
+                case "hair.shpk":
+                    return GetEffect(
+                        name,
+                        "./Effects/HLSL/Hair.fx",
+                        (bc, ef) => new Effects.HairEffect(_Engine.Device, bc, ef));
+                case "skin.shpk":
+                    return GetEffect(
+                        name,
+                        "./Effects/HLSL/Skin.fx",
+                        (bc, ef) => new Effects.SkinEffect(_Engine.Device, bc, ef));
+                case "bg.shpk":
+                    return GetEffect(
+                        name,
+                        "./Effects/HLSL/Bg.fx",
+                        (bc, ef) => new Effects.BgEffect(_Engine.Device, bc, ef));
                 default:
                     throw new NotSupportedException();
             }

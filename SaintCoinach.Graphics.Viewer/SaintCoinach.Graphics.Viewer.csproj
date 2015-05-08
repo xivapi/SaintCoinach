@@ -69,20 +69,27 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ComponentContainer.cs" />
+    <Compile Include="Content\BgMaterial.cs" />
     <Compile Include="Content\CharacterMaterial.cs" />
+    <Compile Include="Content\Cube.cs" />
+    <Compile Include="Content\HairMaterial.cs" />
     <Compile Include="Content\MaterialBase.cs" />
     <Compile Include="Content\ContentMesh.cs" />
     <Compile Include="Content\ContentMeshPart.cs" />
     <Compile Include="Content\ContentModel.cs" />
     <Compile Include="Content\PrimitiveMesh.cs" />
     <Compile Include="Content\PrimitiveModel.cs" />
+    <Compile Include="Content\SkinMaterial.cs" />
     <Compile Include="Drawable3DComponent.cs" />
     <Compile Include="EffectFactory.cs" />
+    <Compile Include="Effects\BgEffect.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
     <Compile Include="Effects\EffectBase.cs" />
     <Compile Include="Effects\EffectDirectionalLightVariable.cs" />
     <Compile Include="Effects\DirectionalLight.cs" />
     <Compile Include="Effects\EffectTextureVariable.cs" />
+    <Compile Include="Effects\HairEffect.cs" />
+    <Compile Include="Effects\SkinEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
     <Compile Include="IComponent.cs" />
@@ -99,10 +106,22 @@
     <Compile Include="VertexConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Effects\HLSL\BasicEffect.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\Bg.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Effects\HLSL\Common.fxh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Effects\HLSL\Hair.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Effects\HLSL\Lighting.fxh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\Skin.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Structures.fxh">

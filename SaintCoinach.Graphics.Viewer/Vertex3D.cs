@@ -38,6 +38,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         public Vertex3D(Vertex src) {
             this.Position = src.Position.ToDx(Vector4.Zero);
+            this.Position.W = 1;
             this.Normal = src.Normal.ToDx(Vector3.Zero);
             this.UV = src.UV.ToDx(Vector4.Zero);
             this.BlendWeights = src.BlendWeights.ToDx(Vector4.Zero);

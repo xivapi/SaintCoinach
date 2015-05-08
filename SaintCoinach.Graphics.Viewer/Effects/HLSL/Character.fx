@@ -92,6 +92,8 @@ float ApplyTable(float2 uv, inout float4 diffuse, inout float4 specular, bool bl
 float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular)
 {
     float4 texNormal = g_Normal.Sample(g_NormalSampler, pin.UV.xy);
+    float a = texNormal.b;
+    clip(a <= 0.5 ? -1 : 1);
     float3 bump = (texNormal.xyz - 0.5) * 2.0;
 
     float3 binorm = cross(pin.NormalWS.xyz, pin.Tangent1WS.xyz);
@@ -101,7 +103,7 @@ float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular)
     float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
     Lighting light = GetLight(m_EyePosition, eyeVector, bumpNormal);
      
-    float4 color = float4(diffuse.rgb, texNormal.b);
+    float4 color = float4(diffuse.rgb, a);
 
     color.rgb *= light.Diffuse.rgb;
     color.rgb += light.Specular.rgb * specular.rgb * color.a;
@@ -120,7 +122,7 @@ float4 PSDiffuseSpecular(VSOutput pin) : SV_Target0
     float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.UV.xy);
     float4 texSpecular = g_Specular.Sample(g_SpecularSampler, pin.UV.xy);
 
-    return ComputeCommon(pin, texDiffuse, texSpecular);
+    return ComputeCommon(pin, texDiffuse, float4(texSpecular.ggg, 1));
 };
 float4 PSDiffuseSpecularTable(VSOutput pin) : SV_Target0
 {
@@ -144,6 +146,15 @@ float4 PSMaskTable(VSOutput pin) : SV_Target0
     float specPow = ApplyTable(pin.UV.xy, diffuse, specular, true);
 
     diffuse.rgb *= texMask.b;
+
+    return ComputeCommon(pin, diffuse, specular);
+};
+float4 PSMask(VSOutput pin) : SV_Target0
+{
+    float4 texMask = g_Mask.Sample(g_MaskSampler, pin.UV.xy);
+
+    float4 diffuse = texMask;
+    float4 specular = (1).xxxx;
 
     return ComputeCommon(pin, diffuse, specular);
 };
@@ -178,5 +189,13 @@ technique11 MaskTable
         SetGeometryShader(0);
         SetVertexShader(CompileShader(vs_4_0, VSCommon()));
         SetPixelShader(CompileShader(ps_4_0, PSMaskTable()));
+    }
+}
+technique11 Mask
+{
+    pass P0 {
+        SetGeometryShader(0);
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSMask()));
     }
 }
