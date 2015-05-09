@@ -57,8 +57,12 @@ namespace SaintCoinach.Graphics.Viewer {
             _CurrentState.RelativePosition = new Vector2(_CurrentState.AbsolutePosition.X / (float)_Engine.Form.ClientSize.Width, _CurrentState.AbsolutePosition.Y / (float)_Engine.Form.ClientSize.Height);
             _CurrentState.MouseWheel = 0;
 
+            Point newMovement = Point.Zero;
+
             foreach (var e in q) {
-                _CurrentState.MouseWheel = e.WheelDelta;
+                _CurrentState.MouseWheel += e.WheelDelta;
+                newMovement.X += e.X;
+                newMovement.Y += e.Y;
                 
                 switch (e.ButtonFlags) {
                     case MouseButtonFlags.LeftButtonDown:
@@ -81,6 +85,7 @@ namespace SaintCoinach.Graphics.Viewer {
                         break;
                 }
             }
+            _CurrentState.MouseMovement = newMovement;
         }
 
         #endregion

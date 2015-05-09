@@ -21,7 +21,8 @@ namespace SaintCoinach.Graphics.Viewer {
 
         const float RotationSpeed = (float)(Math.PI / 2f);
         const float MoveSpeed = 20.0f;
-        const float MouseRotationSpeed = RotationSpeed;
+        const float MouseRotationSpeedYaw = RotationSpeed / 500f;
+        const float MouseRotationSpeedPitch = RotationSpeed / 750f;
 
         private Engine _Engine;
 
@@ -136,10 +137,8 @@ namespace SaintCoinach.Graphics.Viewer {
                     _Pitch -= RotationSpeed * amount * 2;
 
                 if (_CurrentMouseState.LeftButton) {
-                    var d = _CurrentMouseState.RelativePosition - _PreviousMouseState.RelativePosition;
-                    d *= MouseRotationSpeed;
-                    _Yaw -= d.X;
-                    _Pitch -= d.Y;
+                    _Yaw -= _CurrentMouseState.MouseMovement.X * MouseRotationSpeedYaw;
+                    _Pitch -= _CurrentMouseState.MouseMovement.Y * MouseRotationSpeedPitch;
                 }
 
                 AddToCameraPosition(moveVector * amount);

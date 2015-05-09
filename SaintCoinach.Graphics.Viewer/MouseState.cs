@@ -16,5 +16,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         public Point AbsolutePosition { get; internal set; }
         public Vector2 RelativePosition { get; internal set; }
+
+        public Point MouseMovement { get; internal set; }
     }
 }
