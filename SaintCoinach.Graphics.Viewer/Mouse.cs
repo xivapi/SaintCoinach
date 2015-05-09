@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
     using SharpDX.Multimedia;
-    using SharpDX.RawInput;
 
     public class Mouse : IUpdateableComponent {
         #region Fields

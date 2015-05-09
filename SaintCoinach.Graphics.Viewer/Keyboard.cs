@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SharpDX.Multimedia;
-using SharpDX.RawInput;
 
 using Keys = System.Windows.Forms.Keys;
 
