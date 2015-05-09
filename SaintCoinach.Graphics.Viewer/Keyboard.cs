@@ -12,8 +12,6 @@ using Keys = System.Windows.Forms.Keys;
 namespace SaintCoinach.Graphics.Viewer {
     public class Keyboard : IUpdateableComponent {
         #region Fields
-        private List<KeyboardInputEventArgs> _EventQueue = new List<KeyboardInputEventArgs>();
-
         private List<Keys> _ReleasedKeys = new List<Keys>();
         private List<Keys> _PressedKeys = new List<Keys>();
         private List<Keys> _DownKeys = new List<Keys>();
@@ -24,12 +22,6 @@ namespace SaintCoinach.Graphics.Viewer {
         #region Constructor
         public Keyboard(Engine engine) {
             _Engine = engine;
-            Device.KeyboardInput += Device_KeyboardInput;
-        }
-
-        void Device_KeyboardInput(object sender, KeyboardInputEventArgs e) {
-            lock (_EventQueue)
-                _EventQueue.Add(e);
         }
         #endregion
 
@@ -53,12 +45,6 @@ namespace SaintCoinach.Graphics.Viewer {
         public bool IsEnabled { get { return _IsEnabled; } set { _IsEnabled = value; } }
 
         public void Update(EngineTime time) {
-            KeyboardInputEventArgs[] events;
-            lock (_EventQueue) {
-                events = _EventQueue.ToArray();
-                _EventQueue.Clear();
-            }
-
             _ReleasedKeys.Clear();
             _PressedKeys.Clear();
 
@@ -69,33 +55,6 @@ namespace SaintCoinach.Graphics.Viewer {
             _DownKeys.AddRange(_PressedKeys);
             foreach (var k in _ReleasedKeys)
                 _DownKeys.Remove(k);
-        }
-
-        private void Process(KeyboardInputEventArgs e) {
-            switch (e.State) {
-                case KeyState.KeyDown:
-                case KeyState.ImeKeyDown:
-                case KeyState.SystemKeyDown:
-                    OnKeyDown(e.Key);
-                    break;
-                case KeyState.KeyUp:
-                case KeyState.ImeKeyUp:
-                case KeyState.SystemKeyUp:
-                    OnKeyUp(e.Key);
-                    break;
-            }
-        }
-        private void OnKeyDown(Keys key) {
-            var wasDown = _DownKeys.Contains(key);
-            if (!wasDown) {
-                _PressedKeys.Add(key);
-                _DownKeys.Add(key);
-            }
-        }
-        private void OnKeyUp(Keys key) {
-            var wasDown = _DownKeys.Remove(key);
-            if (wasDown)
-                _ReleasedKeys.Add(key);
         }
         #endregion
     }

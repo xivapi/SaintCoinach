@@ -126,6 +126,9 @@ namespace Godbert {
         private void Run() {
             try {
                 Engine.Run();
+            } catch (Exception e) {
+                System.Diagnostics.Debug.WriteLine(string.Format("Engine failure: {0}", e));
+                System.Diagnostics.Debugger.Break();
             } finally {
                 var h = Stopped;
                 if (h != null)

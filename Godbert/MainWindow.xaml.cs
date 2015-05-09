@@ -21,5 +21,11 @@ namespace Godbert {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void MonsterTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            var vm = (ViewModels.MonstersViewModel)((FrameworkElement)sender).DataContext;
+            vm.SelectedEntry = MonsterTreeView.SelectedItem;
+        }
     }
+
 }

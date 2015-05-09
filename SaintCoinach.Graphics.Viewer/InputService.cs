@@ -15,6 +15,7 @@ namespace SaintCoinach.Graphics.Viewer {
         #region Fields
         private List<Keys> _DownKeys = new List<Keys>();
         private Point _MousePosition;
+        private List<MouseButtons> _DownMouseButtons = new List<MouseButtons>();
         #endregion
 
         public Point MousePosition { get { return _MousePosition; } }
@@ -24,6 +25,8 @@ namespace SaintCoinach.Graphics.Viewer {
             form.KeyDown += Form_KeyDown;
             form.KeyUp += Form_KeyUp;
             form.MouseMove += Form_MouseMove;
+            form.MouseDown += Form_MouseDown;
+            form.MouseUp += Form_MouseUp;
         }
 
         #endregion
@@ -35,9 +38,27 @@ namespace SaintCoinach.Graphics.Viewer {
                 keys = _DownKeys.ToArray();
             return keys;
         }
+        public IEnumerable<MouseButtons> GetDownMouseButtons() {
+            MouseButtons[] buttons;
+            lock (_DownMouseButtons)
+                buttons = _DownMouseButtons.ToArray();
+            return buttons;
+        }
         #endregion
 
         #region Form events
+        void Form_MouseUp(object sender, MouseEventArgs e) {
+            lock (_DownMouseButtons)
+                _DownMouseButtons.Remove(e.Button);
+        }
+
+        void Form_MouseDown(object sender, MouseEventArgs e) {
+            lock (_DownMouseButtons) {
+                if (!_DownMouseButtons.Contains(e.Button))
+                    _DownMouseButtons.Add(e.Button);
+            }
+        }
+
         void Form_MouseMove(object sender, MouseEventArgs e) {
             _MousePosition = new Point(e.X, e.Y);
         }

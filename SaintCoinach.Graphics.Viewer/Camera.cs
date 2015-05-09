@@ -137,8 +137,9 @@ namespace SaintCoinach.Graphics.Viewer {
                     _Pitch -= RotationSpeed * amount * 2;
 
                 if (_CurrentMouseState.LeftButton) {
-                    _Yaw -= _CurrentMouseState.MouseMovement.X * MouseRotationSpeedYaw;
-                    _Pitch -= _CurrentMouseState.MouseMovement.Y * MouseRotationSpeedPitch;
+                    var mouseMove = _CurrentMouseState.AbsolutePosition - _PreviousMouseState.AbsolutePosition;
+                    _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
+                    _Pitch -= mouseMove.Y * MouseRotationSpeedPitch;
                 }
 
                 AddToCameraPosition(moveVector * amount);

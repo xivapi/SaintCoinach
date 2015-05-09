@@ -6,6 +6,11 @@
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <HierarchicalDataTemplate x:Key="MonsterTreeTemplate" ItemsSource="{Binding}">
+            <TextBlock Text="{Binding Path=Display}" />
+        </HierarchicalDataTemplate>
+    </Window.Resources>
     <TabControl>
         <TabItem Header="Equipment" DataContext="{Binding Equipment}">
             <Grid>
@@ -47,7 +52,36 @@
             </Grid>
         </TabItem>
         <TabItem Header="Monsters" DataContext="{Binding Monsters}">
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TreeView x:Name="MonsterTreeView" x:FieldModifier="private"
+                          Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                          ItemsSource="{Binding Path=Entries}"
+                          ItemTemplate="{StaticResource MonsterTreeTemplate}"
+                          SelectedItemChanged="MonsterTreeView_SelectedItemChanged" />
+
+                <Button Content="Add" Command="{Binding Path=AddCommand}"
+                        Grid.Row="1" Grid.Column="0"
+                        IsEnabled="{Binding Path=IsValidSelection}"
+                        Margin="2" />
+                <Button Content="Replace" Command="{Binding Path=ReplaceCommand}"
+                        Grid.Row="1" Grid.Column="1"
+                        IsEnabled="{Binding Path=IsValidSelection}"
+                        Margin="2" />
+                <Button Content="New" Command="{Binding Path=NewCommand}"
+                        Grid.Row="1" Grid.Column="2"
+                        IsEnabled="{Binding Path=IsValidSelection}"
+                        Margin="2" />
+            </Grid>
         </TabItem>
         <TabItem Header="Territories" DataContext="{Binding Territories}">
             

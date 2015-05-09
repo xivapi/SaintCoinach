@@ -18,6 +18,7 @@ namespace Godbert.ViewModels {
         public ARealmReversed Realm { get; private set; }
         public EngineHelper EngineHelper { get; private set; }
         public EquipmentViewModel Equipment { get; private set; }
+        public MonstersViewModel Monsters { get; private set; }
         #endregion
 
         #region Constructor
@@ -25,6 +26,7 @@ namespace Godbert.ViewModels {
             Realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
             EngineHelper = new EngineHelper();
             Equipment = new EquipmentViewModel(this);
+            Monsters = new MonstersViewModel(this);
         }
         #endregion
 
