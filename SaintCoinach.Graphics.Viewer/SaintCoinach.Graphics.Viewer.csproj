@@ -107,6 +107,7 @@
     <Compile Include="VertexConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Viewer.ico" />
     <Content Include="Effects\HLSL\BasicEffect.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

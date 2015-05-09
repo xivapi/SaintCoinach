@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.IO;
+using System.Reflection;
 
 namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
@@ -83,6 +85,10 @@ namespace SaintCoinach.Graphics.Viewer {
         #region Run
         public void Run() {
             using (_Form = new RenderForm(_Title)) {
+                var assembly = Assembly.GetExecutingAssembly();
+                using (var iconStream = assembly.GetManifestResourceStream("SaintCoinach.Graphics.Viewer.Viewer.ico"))
+                    _Form.Icon = new System.Drawing.Icon(iconStream);
+
                 CreateDevice();
                 Form.ClientSizeChanged += Form_ClientSizeChanged;
 
