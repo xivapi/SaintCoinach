@@ -46,7 +46,7 @@
                 <Button Content="Replace" Command="{Binding Path=ReplaceCommand}"
                         Grid.Row="3" Grid.Column="1"
                         Margin="2" />
-                <Button Content="New" Command="{Binding Path=NewCommand}"
+                <Button Content="New window" Command="{Binding Path=NewCommand}"
                         Grid.Row="3" Grid.Column="2"
                         Margin="2" />
             </Grid>
@@ -77,14 +77,28 @@
                         Grid.Row="1" Grid.Column="1"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
-                <Button Content="New" Command="{Binding Path=NewCommand}"
+                <Button Content="New window" Command="{Binding Path=NewCommand}"
                         Grid.Row="1" Grid.Column="2"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
             </Grid>
         </TabItem>
-        <TabItem Header="Territories" DataContext="{Binding Territories}">
-            
+        <TabItem Header="Territories" DataContext="{Binding Maps}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ListBox Grid.Column="0" Grid.Row="0"
+                         ItemsSource="{Binding Path=Maps}"
+                         SelectedItem="{Binding Path=SelectedMap, Mode=TwoWay}"
+                         DisplayMemberPath="PlaceName" />
+
+                <Button Content="Open" Command="{Binding Path=OpenCommand}"
+                        Grid.Row="1" Grid.Column="0"
+                        Margin="2" />
+            </Grid>
         </TabItem>
     </TabControl>
 </Window>

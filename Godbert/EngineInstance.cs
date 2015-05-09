@@ -127,9 +127,13 @@ namespace Godbert {
             try {
                 Engine.Run();
             } catch (Exception e) {
+                System.Windows.MessageBox.Show(e.ToString(), "Engine failure", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 System.Diagnostics.Debug.WriteLine(string.Format("Engine failure: {0}", e));
                 System.Diagnostics.Debugger.Break();
             } finally {
+                Engine = null;
+                _Injector = null;
+                GC.Collect();
                 var h = Stopped;
                 if (h != null)
                     h(this, EventArgs.Empty);

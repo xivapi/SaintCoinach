@@ -95,17 +95,38 @@ namespace Godbert.ViewModels {
                 Parent.EngineHelper.OpenInNew(SelectedEquipment.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
         }
 
+        private static int[] RaceCharacterTypes = new int[] {
+            0,
+            101,    // Hyur (Midlander)
+            501,    // Elezen
+            1101,   // Lalafell
+            701,    // Miqo'te
+            901,    // Roegadyn
+            1301    // Au Ra
+        };
+
         private bool TryGetModel(out ModelDefinition model, out ModelVariantIdentifier variant) {
             model = null;
             variant = default(ModelVariantIdentifier);
             if (SelectedEquipment == null)
                 return false;
+            
+            var charType = RaceCharacterTypes[SelectedEquipment.RacesEquippableBy.First().Key];
+            if (!SelectedEquipment.EquippableByMale)
+                charType += 100;
+            try {
+                model = SelectedEquipment.GetModel(charType, out variant.ImcVariant);
+                if (SelectedEquipment.IsDyeable && SelectedStain != null)
+                    variant.StainKey = SelectedStain.Key;
 
-            model = SelectedEquipment.GetModel(101, out variant.ImcVariant);
-            if (SelectedEquipment.IsDyeable && SelectedStain != null)
-                variant.StainKey = SelectedStain.Key;
-
-            return (model != null);
+                var result = (model != null);
+                if (!result)
+                    System.Windows.MessageBox.Show(string.Format("Unable to find model for {0} (c{1:D4}).", SelectedEquipment.Name, charType), "Model not found", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return result;
+            } catch (Exception e) {
+                System.Windows.MessageBox.Show(string.Format("Failed to load model for {0} (c{1:D4}):{2}{3}", SelectedEquipment.Name, charType, Environment.NewLine, e), "Read failure", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return false;
+            }
         }
         #endregion
     }

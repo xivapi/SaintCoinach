@@ -155,18 +155,21 @@ namespace Godbert.ViewModels {
 
             SaintCoinach.IO.File imcFileBase;
             SaintCoinach.IO.File mdlFileBase;
-            if (!Parent.Realm.Packs.TryGetFile(imcPath, out imcFileBase))
+            if (!Parent.Realm.Packs.TryGetFile(imcPath, out imcFileBase) || !Parent.Realm.Packs.TryGetFile(mdlPath, out mdlFileBase) || !(mdlFileBase is ModelFile)) {
+                System.Windows.MessageBox.Show(string.Format("Unable to find files for {0}.", asVariant), "File not found", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return false;
-            if (!Parent.Realm.Packs.TryGetFile(mdlPath, out mdlFileBase) || !(mdlFileBase is ModelFile))
-                return false;
+            }
 
-            var imcFile = new ImcFile(imcFileBase);
-            if (v > imcFile.Count)
-                return false;
-            model = ((ModelFile)mdlFileBase).GetModelDefinition();
-            variant = imcFile.GetVariant(v);
+            try {
+                var imcFile = new ImcFile(imcFileBase);
+                model = ((ModelFile)mdlFileBase).GetModelDefinition();
+                variant = imcFile.GetVariant(v);
 
-            return true;
+                return true;
+            } catch (Exception e) {
+                System.Windows.MessageBox.Show(string.Format("Unable to load model for {0}:{1}{2}", asVariant, Environment.NewLine, e), "Failure to load", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return false;
+            }
         }
         #endregion
     }

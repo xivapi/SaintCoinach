@@ -75,9 +75,10 @@ float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular, float3 bump,
 
     float4 color = diffuse;
 
-    //color.rgb *= light.Diffuse.rgb;
-    //color.rgb += light.Specular.rgb * specular.rgb * color.a;
-
+        //color.rgb *= light.Diffuse.rgb;
+        //color.rgb += light.Specular.rgb * specular.rgb * color.a;
+    clip(color.a <= 0.5 ? -1 : 1);
+    color.a = clamp(color.a + 0.05, 0, 1);
     return color;
 };
 

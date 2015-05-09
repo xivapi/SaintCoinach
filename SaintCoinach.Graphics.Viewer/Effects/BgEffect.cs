@@ -45,8 +45,6 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         public BgEffect(Device device, byte[] byteCode, EffectFlags flags)
             : base(device, byteCode, flags) {
             Init();
-
-            SpecularColor = Vector3.One * 0.25f;
         }
         #endregion
 
