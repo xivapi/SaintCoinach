@@ -11,7 +11,7 @@ namespace Godbert {
         #region Helper class
         class ComponentInjector : IUpdateableComponent, IDrawable3DComponent, IContentComponent {
             internal List<IComponent> AddQueue = new List<IComponent>();
-            internal IComponent Replacement;
+            internal IEnumerable<IComponent> Replacement;
             internal string SetTitle;
 
             private Engine _Engine;
@@ -36,7 +36,8 @@ namespace Godbert {
                     lock (AddQueue)
                         AddQueue.Clear();
                     _InnerContainer.Clear();
-                    _InnerContainer.Add(Replacement);
+                    foreach (var c in Replacement)
+                        _InnerContainer.Add(c);
                     Replacement = null;
                 }
                 IComponent[] toAdd;
@@ -114,7 +115,10 @@ namespace Godbert {
                 _Injector.AddQueue.Add(component);
         }
         public void ReplaceComponents(IComponent newComponent) {
-            _Injector.Replacement = newComponent;
+            _Injector.Replacement = new IComponent[] { newComponent };
+        }
+        public void ReplaceComponents(IEnumerable<IComponent> newComponents) {
+            _Injector.Replacement = newComponents;
         }
         public void RunAsync() {
             var t = new Thread(this.Run);

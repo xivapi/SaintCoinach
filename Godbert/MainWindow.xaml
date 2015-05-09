@@ -100,5 +100,67 @@
                         Margin="2" />
             </Grid>
         </TabItem>
+        <TabItem Header="Demi-humans" DataContext="{Binding Demihuman}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <ListBox Grid.Column="0" Grid.Row="0"
+                         Grid.ColumnSpan="5"
+                         ItemsSource="{Binding Path=Items}"
+                         SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"/>
+                
+                <CheckBox Grid.Column="0" Grid.Row="1"
+                          IsChecked="{Binding Path=ShowPart0, Mode=TwoWay}"
+                          Content="met"
+                          Margin="2" />
+                <CheckBox Grid.Column="1" Grid.Row="1"
+                          IsChecked="{Binding Path=ShowPart1, Mode=TwoWay}"
+                          Content="top"
+                          Margin="2" />
+                <CheckBox Grid.Column="2" Grid.Row="1"
+                          IsChecked="{Binding Path=ShowPart2, Mode=TwoWay}"
+                          Content="glv"
+                          Margin="2" />
+                <CheckBox Grid.Column="3" Grid.Row="1"
+                          IsChecked="{Binding Path=ShowPart3, Mode=TwoWay}"
+                          Content="dwn"
+                          Margin="2" />
+                <CheckBox Grid.Column="4" Grid.Row="1"
+                          IsChecked="{Binding Path=ShowPart4, Mode=TwoWay}"
+                          Content="sho"
+                          Margin="2" />
+                
+                
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Add" Command="{Binding Path=AddCommand}"
+                            Grid.Row="0" Grid.Column="0"
+                            Margin="2" />
+                    <Button Content="Replace" Command="{Binding Path=ReplaceCommand}"
+                            Grid.Row="0" Grid.Column="1"
+                            Margin="2" />
+                    <Button Content="New window" Command="{Binding Path=NewCommand}"
+                            Grid.Row="0" Grid.Column="2"
+                            Margin="2" />
+                </Grid>
+            </Grid>
+        </TabItem>
     </TabControl>
 </Window>

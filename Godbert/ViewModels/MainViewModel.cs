@@ -20,6 +20,7 @@ namespace Godbert.ViewModels {
         public EquipmentViewModel Equipment { get; private set; }
         public MonstersViewModel Monsters { get; private set; }
         public MapsViewModel Maps { get; private set; }
+        public DemihumanViewModel Demihuman { get; private set; }
         #endregion
 
         #region Constructor
@@ -29,6 +30,7 @@ namespace Godbert.ViewModels {
             Equipment = new EquipmentViewModel(this);
             Monsters = new MonstersViewModel(this);
             Maps = new MapsViewModel(this);
+            Demihuman = new DemihumanViewModel(this);
         }
         #endregion
 

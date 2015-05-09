@@ -11,6 +11,35 @@ namespace GraphicsTest {
             //var arr = new SaintCoinach.ARealmReversed(@"C:\XIVVersions\HW-Bench", SaintCoinach.Ex.Language.English);
             var packs = arr.Packs;
 
+            var mcs = arr.GameData.GetSheet<SaintCoinach.Xiv.ModelChara>();
+            foreach (var mc in mcs.Where(_ => _.Type == 2)) {
+                Console.WriteLine();
+                Console.Write("{0:D4} / {1:D4} / {2:D4}: ", mc.ModelKey, mc.BaseKey, mc.Variant);
+                var imcPath = string.Format("chara/demihuman/d{0:D4}/obj/equipment/e{1:D4}/e{1:D4}.imc", mc.ModelKey, mc.BaseKey);
+                var mdlPath = string.Format("chara/demihuman/d{0:D4}/obj/equipment/e{1:D4}/model/d{0:D4}e{1:D4}_top.mdl", mc.ModelKey, mc.BaseKey);
+
+                /*Console.WriteLine("    {0}", imcPath);
+                Console.WriteLine("    {0}", mdlPath);*/
+
+                SaintCoinach.IO.File imcBase, mdlBase;
+                if (!packs.TryGetFile(imcPath, out imcBase)) {
+                    //Console.WriteLine("    IMC not found.");
+                    continue;
+                }/*
+                if (!packs.TryGetFile(mdlPath, out mdlBase)) {
+                    //Console.WriteLine("    MDL not found.");
+                    continue;
+                }*/
+                var imc = new SaintCoinach.Graphics.ImcFile(imcBase);
+                Console.WriteLine("{0:X4}", imc.PartsMask);
+                if (imc.Count < mc.Variant) {
+                    Console.WriteLine("    Variant {0} not present.", mc.Variant);
+                    continue;
+                }
+            }
+            Console.ReadLine();
+
+            return;
             {
                 
                 var eng = new SaintCoinach.Graphics.Viewer.Engine("Test");

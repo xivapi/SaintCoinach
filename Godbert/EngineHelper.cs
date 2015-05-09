@@ -9,13 +9,15 @@ namespace Godbert {
     using SaintCoinach.Graphics.Viewer;
     public class EngineHelper {
         public delegate IComponent ComponentFunction(Engine engine);
+        public delegate IComponent[] MultiComponentFunction(Engine engine);
 
         #region Fields
         private List<EngineInstance> _Instances = new List<EngineInstance>();
         #endregion
 
         #region Things
-        public EngineInstance AddToLast(string title, ComponentFunction func) {
+        public EngineInstance AddToLast(string title, ComponentFunction func) { return AddToLast(title, (e) => new IComponent[] { func(e) }); }
+        public EngineInstance AddToLast(string title, MultiComponentFunction func) {
             EngineInstance target = null;
             lock (_Instances) {
                 if (_Instances.Count > 0)
@@ -24,12 +26,14 @@ namespace Godbert {
             if (target == null)
                 return OpenInNew(title, func);
 
-            var component = func(target.Engine);
-            target.AddComponent(component);
+            var components = func(target.Engine);
+            foreach (var component in components)
+                target.AddComponent(component);
             target.SetTitle(target.Engine.Form.Text + ", " + title);
             return target;
         }
-        public EngineInstance ReplaceInLast(string title, ComponentFunction func) {
+        public EngineInstance ReplaceInLast(string title, ComponentFunction func) { return ReplaceInLast(title, (e) => new IComponent[] { func(e) }); }
+        public EngineInstance ReplaceInLast(string title, MultiComponentFunction func) {
             EngineInstance target = null;
             lock (_Instances) {
                 if (_Instances.Count > 0)
@@ -38,19 +42,21 @@ namespace Godbert {
             if (target == null)
                 return OpenInNew(title, func);
             
-            var component = func(target.Engine);
-            target.ReplaceComponents(component);
+            var components = func(target.Engine);
+            target.ReplaceComponents(components);
             target.SetTitle(title);
             return target;
         }
-        public EngineInstance OpenInNew(string title, ComponentFunction func) {
+        public EngineInstance OpenInNew(string title, ComponentFunction func) { return OpenInNew(title, (e) => new IComponent[] { func(e) }); }
+        public EngineInstance OpenInNew(string title, MultiComponentFunction func) {
             var instance = new EngineInstance(title);
             lock (_Instances)
                 _Instances.Add(instance);
             instance.Stopped += OnInstanceStopped;
 
-            var component = func(instance.Engine);
-            instance.AddComponent(component);
+            var components = func(instance.Engine);
+            foreach (var component in components)
+                instance.AddComponent(component);
             instance.RunAsync();
 
             return instance;
