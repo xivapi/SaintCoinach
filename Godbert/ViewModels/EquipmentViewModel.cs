@@ -62,6 +62,8 @@ namespace Godbert.ViewModels {
             // Ignore waist and soul crystals
             _AllEquipment = Parent.Realm.GameData.GetSheet<Item>().OfType<Equipment>().Where(e => !e.EquipSlotCategory.PossibleSlots.Any(s => s.Key == 5 || s.Key == 13)).ToArray();
             Stains = Parent.Realm.GameData.GetSheet<Stain>();
+
+            _FilteredEquipment = _AllEquipment;
         }
         #endregion
 

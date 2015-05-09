@@ -21,7 +21,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250}"
+                <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                          Margin="2" />
                 

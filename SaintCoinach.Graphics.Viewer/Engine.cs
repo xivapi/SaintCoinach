@@ -26,6 +26,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         private InputService _InputService;
         private Keyboard _Keyboard;
+        private Mouse _Mouse;
         private Camera _Camera;
 
         private Texture2D _RenderTarget;
@@ -56,6 +57,7 @@ namespace SaintCoinach.Graphics.Viewer {
         public Device Device { get { return _Device; } }
         public InputService InputService { get { return _InputService; } }
         public Keyboard Keyboard { get { return _Keyboard; } }
+        public Mouse Mouse { get { return _Mouse; } }
         public Camera Camera { get { return _Camera; } }
 
         public Content.Cube Cube { get { return _Cube; } }
@@ -190,6 +192,7 @@ namespace SaintCoinach.Graphics.Viewer {
         protected virtual void Initialize() {
             _InputService = new InputService(Form);
             CoreComponents.Add(_Keyboard = new Keyboard(this));
+            CoreComponents.Add(_Mouse = new Mouse(this));
             CoreComponents.Add(_Camera = new Camera(this));
 
             _ModelFactory = new ModelFactory(this);

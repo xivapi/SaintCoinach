@@ -21,8 +21,12 @@ namespace SaintCoinach.Graphics.Viewer {
 
         const float RotationSpeed = (float)(Math.PI / 2f);
         const float MoveSpeed = 20.0f;
+        const float MouseRotationSpeed = RotationSpeed;
 
         private Engine _Engine;
+
+        private MouseState _PreviousMouseState;
+        private MouseState _CurrentMouseState;
         #endregion
 
         #region Properties
@@ -41,7 +45,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         #region Control
         public void Reset() {
-            _CameraPosition = Vector3.Zero;// +1.8f * Vector3.BackwardLH + 1.2f * Vector3.Up;
+            _CameraPosition = Vector3.Zero + 2f * Vector3.BackwardRH + 1f * Vector3.Up;
             _Yaw = 0;
             _Pitch = 0;
 
@@ -90,6 +94,9 @@ namespace SaintCoinach.Graphics.Viewer {
         public bool IsEnabled { get { return _IsEnabled; } set { _IsEnabled = value; } }
 
         public void Update(EngineTime time) {
+            _PreviousMouseState = _CurrentMouseState;
+            _CurrentMouseState = _Engine.Mouse.GetState();
+
             var amount = (float)(time.ElapsedTime.TotalMilliseconds / 2000f);
             Vector3 moveVector = new Vector3(0, 0, 0);
             var aspectRatio = (float)(_Engine.Form.ClientSize.Width / (float)_Engine.Form.ClientSize.Height);
@@ -127,6 +134,13 @@ namespace SaintCoinach.Graphics.Viewer {
                     _Pitch += RotationSpeed * amount * 2;
                 if (_Engine.Keyboard.IsKeyDown(Keys.Down))
                     _Pitch -= RotationSpeed * amount * 2;
+
+                if (_CurrentMouseState.LeftButton) {
+                    var d = _CurrentMouseState.RelativePosition - _PreviousMouseState.RelativePosition;
+                    d *= MouseRotationSpeed;
+                    _Yaw -= d.X;
+                    _Pitch -= d.Y;
+                }
 
                 AddToCameraPosition(moveVector * amount);
             }
