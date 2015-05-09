@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics {
     [StructLayout(LayoutKind.Sequential)]
     public struct ImcVariant {
-        public short Variant;   // TODO: Only lower 10 bits are for v####, upper 6 bits unknown
+        public short Variant;   // TODO: Only lower 8 bits are for v####, upper 8 bits unknown
         public ushort PartVisibilityMask;
         public byte Unknown3;
         public byte Unknown4;

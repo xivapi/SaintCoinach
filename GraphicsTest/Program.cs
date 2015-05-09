@@ -12,13 +12,38 @@ namespace GraphicsTest {
             var packs = arr.Packs;
 
             {
+                
                 var eng = new SaintCoinach.Graphics.Viewer.Engine("Test");
-                if (true) {
-                    var terr = new SaintCoinach.Graphics.Territory(packs, "w1b1", "ffxiv/wil_w1/bah/w1b1/level/w1b1");
+                if (false) {
+                    var exTerrains = new string[] {
+                        "ex1/01_roc_r2/dun/r2d1/level/r2d1",    // Yes
+                        "ex1/01_roc_r2/dun/r2d2/level/r2d2",
+                        "ex1/01_roc_r2/evt/r2e1/level/r2e1",
+                        "ex1/01_roc_r2/evt/r2e3/level/r2e3",
+                        "ex1/01_roc_r2/evt/r2e4/level/r2e4",
+                        "ex1/01_roc_r2/fld/r2f1/level/r2f1",
+                        "ex1/01_roc_r2/twn/r2t1/level/r2t1",
+                        "ex1/01_roc_r2/twn/r2t2/level/r2t2",
+                        "ex1/01_roc_r2/twn/r2ti/level/r2ti",
+                        "ex1/02_dra_d2/dun/d2d2/level/d2d2",    // Yes
+                        "ex1/02_dra_d2/dun/d2d3/level/d2d3",
+                        "ex1/02_dra_d2/fld/d2f1/level/d2f1",
+                        "ex1/02_dra_d2/fld/d2f2/level/d2f2",    // Yes
+                        "ex1/02_dra_d2/fld/d2f3/level/d2f3",    // Yes
+                        "ex1/02_dra_d2/fld/d2fa/level/d2fa",
+                        "ex1/03_abr_a2/dun/a2d2/level/a2d2",
+                        "ex1/03_abr_a2/dun/a2d3/level/a2d3",
+                        "ex1/03_abr_a2/fld/a2f1/level/a2f1",    // Yes
+                        "ex1/03_abr_a2/fld/a2f2/level/a2f2",
+                        "ex1/04_sea_s2/pvp/s2p1/level/s2p1",
+                    };
+                    var terr = new SaintCoinach.Graphics.Territory(packs, "LaLa", exTerrains[18]);
+                    if (terr.Terrain == null && terr.LgbFiles.Count() == 0)
+                        throw new KeyNotFoundException();
                     var engTerr = new SaintCoinach.Graphics.Viewer.Content.ContentTerritory(eng, terr);
                     eng.Components.Add(engTerr);
                 }
-                if (false) {
+                if (true) {
                     // 95   Garuda
                     // 96   Ifrit
                     // 97   Levi
@@ -64,15 +89,15 @@ namespace GraphicsTest {
                     var mdlDef = mdlFile.GetModelDefinition();
                     var imcVar = imc.GetVariant(1, 2);
                      */
-                    /*
-                    var eq = (SaintCoinach.Xiv.Items.Equipment)arr.GameData.GetSheet<SaintCoinach.Xiv.Item>().First(i => i.Name == "Lionliege Cuirass");
+                    
+                    var eq = (SaintCoinach.Xiv.Items.Equipment)arr.GameData.GetSheet<SaintCoinach.Xiv.Item>().First(i => i.Name == "Lionsmane Cuirass");
                     SaintCoinach.Graphics.ImcVariant imcVar;
                     var mdlDef = eq.GetModel(101, out imcVar);
                     var mdlVar = new SaintCoinach.Graphics.ModelVariantIdentifier {
                         ImcVariant = imcVar,
                         StainKey = 14
 
-                    };*/
+                    };
 
                     /*
                     var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile(@"chara/human/c0201/obj/hair/h0004/model/c0201h0004_hir.mdl");
@@ -84,10 +109,6 @@ namespace GraphicsTest {
                     var mdlDef = mdlFile.GetModelDefinition();
                     var mdlVar = SaintCoinach.Graphics.ImcVariant.Default;
                      */
-
-                    var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile(@"bg/ffxiv/sea_s1/fld/s1f1/bgplate/0088.mdl");
-                    var mdlDef = mdlFile.GetModelDefinition();
-                    var mdlVar = SaintCoinach.Graphics.ImcVariant.Default;
 
                     var engMdl = new SaintCoinach.Graphics.Viewer.Content.ContentModel(eng, mdlVar, mdlDef, SaintCoinach.Graphics.ModelQuality.High);
                     eng.Components.Add(engMdl);

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics {
     [System.Diagnostics.DebuggerDisplay("{File.Path}")]
     public class Material {
+        // TODO: One of the Unknowns most likely specifies what parts of /other/ models should be hidden
+        //       Example: Gauntlets hiding rings or boots hiding the bottom of pants.
         private const string DummyTextureInMaterial = "dummy.tex";
         private const string DummyTexturePath = "common/graphics/texture/dummy.tex";
 

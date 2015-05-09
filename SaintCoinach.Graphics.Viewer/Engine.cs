@@ -151,7 +151,7 @@ namespace SaintCoinach.Graphics.Viewer {
             Device.ImmediateContext.OutputMerger.SetBlendState(_BlendState);
 
             Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, new RasterizerStateDescription {
-                CullMode = CullMode.None,
+                CullMode = CullMode.Front,
                 FillMode = FillMode.Solid,
                 IsMultisampleEnabled = true,
             });

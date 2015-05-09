@@ -45,7 +45,7 @@ namespace SaintCoinach.Xiv {
             {  // Main hand
                 0,
                 new ModelHelper(
-                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}.imc",
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc",
                    0,
                    "chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl",
                    2)
@@ -53,7 +53,7 @@ namespace SaintCoinach.Xiv {
             {  // Off hand
                 1,
                 new ModelHelper(
-                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}.imc",
+                   "chara/weapon/w{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc",
                    0,
                    "chara/weapon/w{0:D4}/obj/body/b{1:D4}/model/w{0:D4}b{1:D4}.mdl",
                    2)

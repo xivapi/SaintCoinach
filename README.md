@@ -95,12 +95,3 @@ The following commands are currently supported:
 * `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
-* `3d`: Displays 3D objects. Very experimental, further information is going to be omitted here.
-
-
-
-### SaintCoinach.Graphics.ViewerEngine
-
-The viewer engine is in its first stages, and I didn't really know much 3D-graphics before starting it, so while it can be used expect strange or completely wrong results. It should also really be updated to use flat shading because different material properties are not available and the lighting makes things look weird.
-
-If that does not scare you away see `SaintCoinach.Cmd` for examples on how to use it, and make sure to copy the project's `Effects/HLSL` directory as well as the `sharpdx_direct3d11_effects_*.dll` libraries to the application directory. The files should get copied automatically if the library project is included in the solution, though.

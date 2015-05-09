@@ -173,14 +173,14 @@ namespace SaintCoinach.Graphics {
         public Material Get(ImcVariant variant) {
             var path = _DefaultPath;
             if (VariantsAvailable)
-                path = string.Format(_PathFormat, variant.Variant & 0x03FF);
+                path = string.Format(_PathFormat, variant.Variant & 0xFF);
             return Create(path, variant);
         }
         public Material Get(ImcVariant variant, int stainKey) {
             if (!StainsAvailable)
                 throw new NotSupportedException();
 
-            var path = string.Format(_StainedPathFormat, variant.Variant & 0x03FF, stainKey);
+            var path = string.Format(_StainedPathFormat, variant.Variant & 0xFF, stainKey);
             return Create(path, variant);
         }
 

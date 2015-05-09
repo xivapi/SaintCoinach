@@ -75,15 +75,16 @@ float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular, float3 bump,
 
     float4 color = diffuse;
 
-    color.rgb *= light.Diffuse.rgb;
-    color.rgb += light.Specular.rgb * specular.rgb * color.a;
+    //color.rgb *= light.Diffuse.rgb;
+    //color.rgb += light.Specular.rgb * specular.rgb * color.a;
 
     return color;
 };
 
-bool IsOne(float4 value)
+bool IsDummy(float4 value)
 {
-    if (value.x == 1 && value.y == 1 && value.z == 1 && value.w == 1)
+    // TODO: Actually figure out what's wrong here.
+    if (value.x == value.y && value.y == value.z && value.z == value.w && value.w == 1)
     {
         return true;
     }
@@ -114,11 +115,11 @@ float4 PSDual(VSOutput pin) : SV_Target0
     float4 texDiffuse1 = g_Diffuse1.Sample(g_Diffuse1Sampler, pin.UV.zw);
     float4 texNormal1 = g_Normal1.Sample(g_Normal1Sampler, pin.UV.zw);
 
-    if (IsOne(texDiffuse1))
+    if (IsDummy(texDiffuse1))
     {
         texDiffuse1 = texDiffuse0;
     }
-    if (IsOne(texNormal1))
+    if (IsDummy(texNormal1))
     {
         texNormal1 = texNormal0;
     }
@@ -141,15 +142,15 @@ float4 PSDualSpecular(VSOutput pin) : SV_Target0
     float4 texNormal1 = g_Normal1.Sample(g_Normal1Sampler, pin.UV.zw);
     float4 texSpecular1 = g_Specular1.Sample(g_Specular1Sampler, pin.UV.zw);
 
-    if (IsOne(texDiffuse1))
+    if (IsDummy(texDiffuse1))
     {
         texDiffuse1 = texDiffuse0;
     }
-    if (IsOne(texNormal1))
+    if (IsDummy(texNormal1))
     {
         texNormal1 = texNormal0;
     }
-    if (IsOne(texSpecular1))
+    if (IsDummy(texSpecular1))
     {
         texSpecular1 = texSpecular0;
     }
