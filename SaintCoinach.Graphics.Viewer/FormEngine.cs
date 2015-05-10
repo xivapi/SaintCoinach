@@ -19,7 +19,11 @@ namespace SaintCoinach.Graphics.Viewer {
     using Device = SharpDX.Direct3D11.Device;
 
     public class FormEngine : Engine {
+        const long ResizeDelay = 250;
+
         #region Fields
+        private bool _IsResizePending;
+        private Stopwatch _ResizeTimer = new Stopwatch();
         private SwapChain _SwapChain;
 
         private IInputService _InputService;
@@ -65,7 +69,8 @@ namespace SaintCoinach.Graphics.Viewer {
             }
         }
         void Form_ClientSizeChanged(object sender, EventArgs e) {
-            Resize(Form.ClientSize.Width, Form.ClientSize.Height);
+            _IsResizePending = true;
+            _ResizeTimer.Restart();
         }
         #endregion
 
@@ -113,6 +118,18 @@ namespace SaintCoinach.Graphics.Viewer {
                     _Form.Dispose();
                 _Form = null;
             }
+        }
+
+        protected override void Update(EngineTime time) {
+            if (_IsResizePending) {
+                var elapsed = _ResizeTimer.ElapsedMilliseconds;
+                if (elapsed > ResizeDelay) {
+                    Resize(Form.ClientSize.Width, Form.ClientSize.Height);
+                    _ResizeTimer.Reset();
+                    _IsResizePending = false;
+                }
+            }
+            base.Update(time);
         }
     }
 }

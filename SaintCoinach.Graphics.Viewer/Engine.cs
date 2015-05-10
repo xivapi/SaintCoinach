@@ -83,9 +83,6 @@ namespace SaintCoinach.Graphics.Viewer {
         protected abstract Device CreateDevice(int width, int height);
         protected abstract Texture2D CreateRenderTarget(int width, int height);
         protected virtual void Resize(int newWidth, int newHeight) {
-            var newMode = new ModeDescription(
-                newWidth, newHeight,
-                new Rational(60, 1), Format.R8G8B8A8_UNorm);
             Device.ImmediateContext.OutputMerger.ResetTargets();
 
             _RenderTargetView.Dispose();
@@ -121,7 +118,7 @@ namespace SaintCoinach.Graphics.Viewer {
             Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, new RasterizerStateDescription {
                 CullMode = CullMode.Front,
                 FillMode = FillMode.Solid,
-                IsMultisampleEnabled = true,
+                IsMultisampleEnabled = RenderTarget.Description.SampleDescription.Count > 1,
             });
         }
 
