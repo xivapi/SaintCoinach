@@ -1,6 +1,6 @@
 # Saint Coinach
 
-A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV: A Realm Reborn**, now with support for including the Libra Eorzea database.
+A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV**, now with support for including the Libra Eorzea database.
 
 ## Functionality 
 ### Fully implemented
@@ -15,7 +15,7 @@ A .NET library written in C# for extracting game assets and reading game assets 
 ### Partially implemented
 
 * Decoding of the string format used by the game. Will return a good string for most queries, but more advanced things like conditional texts are not supported.
-* Parsing of model data works for *most* models but is far from complete.
+* Parsing of model data works for *most* models but is still incomplete.
 * Inclusion and parsing of data from the Libra Eorzea application.
 
 ### To-do
@@ -60,7 +60,8 @@ Specific collections can be retrieved using the `GetSheet<T>()` method.
 
 Special cases are exposed as properties:
 
-* `ENpcs`: This collections contains objects of type `ENpc` that include data of both `ENpcBase` and `ENpcResident`.
+* `BNpcs`: This collection contains objects of type `BNpc` that include data of both `BNpcBase` and `BNpcName`. *Note:* Only available when Libra Eorzea data is available.
+* `ENpcs`: This collection contains objects of type `ENpc` that include data of both `ENpcBase` and `ENpcResident`.
 * `EquipSlots`: There is no actual data for specific equipment slots in the game data, but having access to them makes things more convenient, so they're available here.
 * `Items`: This collection combines both `EventItem` and `Item`.
 * `Shops`: This collection contains all types of shops.
@@ -95,3 +96,19 @@ The following commands are currently supported:
 * `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
+
+# Godbert
+
+Godbert is a simple application to display game data and 3D models from **Final Fantasy XIV** using the above-mentioned library.
+
+## Functionality 
+### Fully implemented
+
+* Display of game data / text.
+* Rendering of equipment, including ability to dye (if the item supports it.)
+* Rendering of monsters.
+* Rendering of demi-humans (non-playable races with exchangable equipment.)
+
+### Partially implemented
+
+* Rendering of the game's areas. Only static and completely passive objects are displayed at the moment, anything that's more complex is not included.

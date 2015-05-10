@@ -11,9 +11,8 @@ namespace SaintCoinach.Graphics {
         public ModelDefinition Definition { get; private set; }
         public string Name { get; private set; }
         public int Index { get; private set; }
-        // TODO: This is, in fact, wrong. Unless it's relative to something.
-        public Vector4 Head { get; private set; }
-        public Vector4 Tail { get; private set; }
+        public Vector4 Unknown1 { get; private set; }
+        public Vector4 Unknown2 { get; private set; }
         #endregion
 
         #region Constructor
@@ -22,8 +21,8 @@ namespace SaintCoinach.Graphics {
             this.Index = index;
             this.Name = definition.BoneNames[index];
 
-            this.Head = buffer.ToStructure<Vector4>(ref offset);
-            this.Tail = buffer.ToStructure<Vector4>(ref offset);
+            this.Unknown1 = buffer.ToStructure<Vector4>(ref offset);
+            this.Unknown2 = buffer.ToStructure<Vector4>(ref offset);
         }
         #endregion
     }

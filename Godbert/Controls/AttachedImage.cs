@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Godbert {
+namespace Godbert.Controls {
     public static class AttachedImage {
         public static readonly DependencyProperty ImageProperty = DependencyProperty.RegisterAttached("Image",
             typeof(SaintCoinach.Imaging.ImageFile), typeof(AttachedImage), new PropertyMetadata(AttachedImageChanged));
