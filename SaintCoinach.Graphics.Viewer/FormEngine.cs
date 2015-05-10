@@ -20,6 +20,8 @@ namespace SaintCoinach.Graphics.Viewer {
 
     public class FormEngine : Engine {
         #region Fields
+        private SwapChain _SwapChain;
+
         private IInputService _InputService;
 
         private string _Title;
@@ -49,7 +51,7 @@ namespace SaintCoinach.Graphics.Viewer {
                 using (var iconStream = assembly.GetManifestResourceStream("SaintCoinach.Graphics.Viewer.Viewer.ico"))
                     _Form.Icon = new System.Drawing.Icon(iconStream);
 
-                CreateDevice(Form.Handle, Form.ClientSize.Width, Form.ClientSize.Height);
+                SetUp(Form.ClientSize.Width, Form.ClientSize.Height);
                 Form.ClientSizeChanged += Form_ClientSizeChanged;
 
                 _InputService = new FormInputService(Form);
@@ -67,10 +69,43 @@ namespace SaintCoinach.Graphics.Viewer {
         }
         #endregion
 
-        protected override void Dispose(bool includeManaged) {
-            base.Dispose(includeManaged);
+        protected override Device CreateDevice(int width, int height) {
+            var desc = new SwapChainDescription {
+                BufferCount = 1,
+                Flags = SwapChainFlags.None,
+                IsWindowed = true,
+                ModeDescription = new ModeDescription(
+                    width, height,
+                    new Rational(60, 1), Format.R8G8B8A8_UNorm),
+                OutputHandle = Form.Handle,
+                SampleDescription = new SampleDescription(8, 0), //new SampleDescription(8, Device.CheckMultisampleQualityLevels(Format.R8G8B8A8_UNorm, 8)),
+                SwapEffect = SwapEffect.Discard,
+                Usage = Usage.RenderTargetOutput | Usage.BackBuffer | Usage.Shared,
+            };
 
-            if (includeManaged) {
+            SharpDX.Direct3D11.Device device;
+            SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out device, out _SwapChain);
+            return device;
+        }
+        protected override void Resize(int newWidth, int newHeight) {
+            _SwapChain.ResizeBuffers(1, newWidth, newHeight, Format.Unknown, SwapChainFlags.None);
+
+            base.Resize(newWidth, newHeight);
+        }
+        protected override Texture2D CreateRenderTarget(int width, int height) {
+            return Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
+        }
+        protected override void Present() {
+            _SwapChain.Present(0, PresentFlags.None);
+        }
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+
+            if (disposing) {
+                if (_SwapChain != null)
+                    _SwapChain.Dispose();
+                _SwapChain = null;
+
                 if (_Form != null)
                     _Form.Dispose();
                 _Form = null;

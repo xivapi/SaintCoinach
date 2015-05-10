@@ -22,7 +22,6 @@ namespace SaintCoinach.Graphics.Viewer {
 
         #region Fields
         private Device _Device;
-        private SwapChain _SwapChain;
 
         private Keyboard _Keyboard;
         private Mouse _Mouse;
@@ -81,7 +80,9 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Shared
-        protected void Resize(int newWidth, int newHeight) {
+        protected abstract Device CreateDevice(int width, int height);
+        protected abstract Texture2D CreateRenderTarget(int width, int height);
+        protected virtual void Resize(int newWidth, int newHeight) {
             var newMode = new ModeDescription(
                 newWidth, newHeight,
                 new Rational(60, 1), Format.R8G8B8A8_UNorm);
@@ -93,34 +94,16 @@ namespace SaintCoinach.Graphics.Viewer {
             _DepthStencilView.Dispose();
             _DepthStencil.Dispose();
 
-            _SwapChain.ResizeBuffers(1, newWidth, newHeight, Format.Unknown, SwapChainFlags.None);
-
             CreateView(newWidth, newHeight);
         }
-        protected void CreateDevice(IntPtr handle, int width, int height) {
-            var desc = new SwapChainDescription {
-                BufferCount = 1,
-                Flags = SwapChainFlags.None,
-                IsWindowed = true,
-                ModeDescription = new ModeDescription(
-                    width, height,
-                    new Rational(60, 1), Format.R8G8B8A8_UNorm),
-                OutputHandle = handle,
-                SampleDescription = new SampleDescription(8, 0), //new SampleDescription(8, Device.CheckMultisampleQualityLevels(Format.R8G8B8A8_UNorm, 8)),
-                SwapEffect = SwapEffect.Discard,
-                Usage = Usage.RenderTargetOutput | Usage.BackBuffer,
-            };
-
-            SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out _Device, out _SwapChain);
-
-            var factory = _SwapChain.GetParent<Factory>();
-            //factory.MakeWindowAssociation(Form.Handle, WindowAssociationFlags.IgnoreAll); // No full-screen for you
+        protected void SetUp(int width, int height) {
+            _Device = CreateDevice(width, height);
 
             CreateView(width, height);
 
             var depthDesc = DepthStencilStateDescription.Default();
             _StencilState = new DepthStencilState(Device, depthDesc);
-            
+
             var blendDesc = new BlendStateDescription();
             blendDesc.RenderTarget[0].IsBlendEnabled = true;
             blendDesc.RenderTarget[0].SourceBlend = BlendOption.SourceAlpha;
@@ -141,9 +124,10 @@ namespace SaintCoinach.Graphics.Viewer {
                 IsMultisampleEnabled = true,
             });
         }
-        private void CreateView(int width, int height) {
+
+        protected void CreateView(int width, int height) {
             ViewportSize = new Size2(width, height);
-            _RenderTarget = Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
+            _RenderTarget = CreateRenderTarget(width, height);
             _RenderTargetView = new RenderTargetView(Device, _RenderTarget);
 
             var dsTexDesc = new Texture2DDescription {
@@ -152,7 +136,7 @@ namespace SaintCoinach.Graphics.Viewer {
                 MipLevels = 1,
                 Width = _RenderTarget.Description.Width,
                 Height = _RenderTarget.Description.Height,
-                SampleDescription = _SwapChain.Description.SampleDescription,
+                SampleDescription = _RenderTarget.Description.SampleDescription,
                 Usage = ResourceUsage.Default,
                 BindFlags = BindFlags.DepthStencil,
                 CpuAccessFlags = CpuAccessFlags.None,
@@ -165,9 +149,9 @@ namespace SaintCoinach.Graphics.Viewer {
                 Format = dsTexDesc.Format
             });
 
-            
+
             Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
-            
+
             Device.ImmediateContext.Rasterizer.SetViewport(new Viewport(0, 0, width, height));
         }
         #endregion
@@ -232,8 +216,10 @@ namespace SaintCoinach.Graphics.Viewer {
             Update(time);
             Draw(time);
 
-            _SwapChain.Present(0, PresentFlags.None);
+            Present();
         }
+
+        protected abstract void Present();
 
         protected virtual void Update(EngineTime time) {
             CoreComponents.Update(time);
@@ -243,7 +229,6 @@ namespace SaintCoinach.Graphics.Viewer {
             var world = Matrix.Identity;
             var view = Camera.View;
             var proj = Camera.Projection;
-
 
             Device.ImmediateContext.ClearRenderTargetView(_RenderTargetView, Color.CornflowerBlue);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
@@ -263,9 +248,9 @@ namespace SaintCoinach.Graphics.Viewer {
             Dispose(true);
         }
 
-        protected virtual void Dispose(bool includeManaged) {
+        protected virtual void Dispose(bool disposing) {
             Unload();
-            if (includeManaged) {
+            if (disposing) {
                 if (_BlendState != null)
                     _BlendState.Dispose();
                 _BlendState = null;
@@ -293,10 +278,6 @@ namespace SaintCoinach.Graphics.Viewer {
                 if (_StencilState != null)
                     _StencilState = null;
                 _StencilState = null;
-
-                if (_SwapChain != null)
-                    _SwapChain.Dispose();
-                _SwapChain = null;
 
                 if (_Device != null)
                     _Device.Dispose();
