@@ -137,6 +137,8 @@ namespace SaintCoinach.Graphics.Viewer {
                     _Pitch -= RotationSpeed * amount * 2;
 
                 if (_CurrentMouseState.LeftButton) {
+                    if (_CurrentMouseState.RightButton)
+                        moveVector += new Vector3(0, 0, -1);
                     var mouseMove = _CurrentMouseState.AbsolutePosition - _PreviousMouseState.AbsolutePosition;
                     _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
                     _Pitch -= mouseMove.Y * MouseRotationSpeedPitch;

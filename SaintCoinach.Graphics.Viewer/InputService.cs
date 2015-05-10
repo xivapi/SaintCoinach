@@ -26,8 +26,8 @@ namespace SaintCoinach.Graphics.Viewer {
             form.MouseMove += Form_MouseMove;
             form.MouseDown += Form_MouseDown;
             form.MouseUp += Form_MouseUp;
+            form.LostFocus += Form_LostFocus;
         }
-
         #endregion
 
         #region Get
@@ -46,6 +46,12 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Form events
+        void Form_LostFocus(object sender, EventArgs e) {
+            lock (_DownMouseButtons)
+                _DownMouseButtons.Clear();
+            lock (_DownKeys)
+                _DownKeys.Clear();
+        }
         void Form_MouseUp(object sender, MouseEventArgs e) {
             lock (_DownMouseButtons)
                 _DownMouseButtons.Remove(e.Button);
