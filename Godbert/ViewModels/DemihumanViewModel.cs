@@ -23,16 +23,10 @@ namespace Godbert.ViewModels {
             "chara/demihuman/d{0:D4}/obj/equipment/e{1:D4}/model/d{0:D4}e{1:D4}_sho.mdl",
         };
 
-        public class ModelCharaWrapper {
-            public ModelChara ModelChara;
-
-            public override string ToString() {
-                return string.Format("d{0:D4} / e{1:D4} / v{2:D4}", ModelChara.ModelKey, ModelChara.BaseKey, ModelChara.Variant); 
-            }
-        }
 
         #region Fields
-        private ModelCharaWrapper _SelectedItem;
+        private Models.ModelCharaHierarchy _Entries;
+        private object _SelectedEntry;
         private bool[] _SelectedParts = new bool[] {
             true,
             true,
@@ -44,14 +38,22 @@ namespace Godbert.ViewModels {
 
         #region Properties
         public MainViewModel Parent { get; private set; }
-        public IEnumerable<ModelCharaWrapper> Items { get; private set; }
-        public ModelCharaWrapper SelectedItem {
-            get { return _SelectedItem; }
-            set {
-                _SelectedItem = value;
-                OnPropertyChanged(() => SelectedItem);
+        public Models.ModelCharaHierarchy Entries {
+            get { return _Entries; }
+            private set {
+                _Entries = value;
+                OnPropertyChanged(() => Entries);
             }
         }
+        public object SelectedEntry {
+            get { return _SelectedEntry; }
+            set {
+                _SelectedEntry = value;
+                OnPropertyChanged(() => SelectedEntry);
+                OnPropertyChanged(() => IsValidSelection);
+            }
+        }
+        public bool IsValidSelection { get { return SelectedEntry is Models.ModelCharaVariant; } }
         public bool ShowPart0 {
             get { return _SelectedParts[0]; }
             set {
@@ -93,13 +95,12 @@ namespace Godbert.ViewModels {
         public DemihumanViewModel(MainViewModel parent) {
             this.Parent = parent;
 
-            List<ModelChara> items = new List<ModelChara>();
+            Entries = new Models.ModelCharaHierarchy("d{0:D4}", "e{0:D4}", "v{0:D4}");
             foreach (var mc in parent.Realm.GameData.GetSheet<ModelChara>().Where(mc => mc.Type == 2)) {
                 var imcPath = string.Format(ImcPathFormat, mc.ModelKey, mc.BaseKey);
                 if (parent.Realm.Packs.FileExists(imcPath))
-                    items.Add(mc);
+                    Entries.Add(mc);
             }
-            this.Items = items.OrderBy(mc => mc.Variant).OrderBy(mc => mc.BaseKey).OrderBy(mc => mc.ModelKey).Select(mc => new ModelCharaWrapper { ModelChara = mc }).ToArray();
         }
         #endregion
 
@@ -135,16 +136,15 @@ namespace Godbert.ViewModels {
             title = null;
             models = null;
 
-            if (SelectedItem == null)
+            var asVariant = SelectedEntry as Models.ModelCharaVariant;
+            if (asVariant == null)
                 return false;
 
-            var modelChara = SelectedItem.ModelChara;
+            title = asVariant.ToString();
 
-            title = string.Format("d{0:D4} / e{1:D4} / v{2:D4}", modelChara.ModelKey, modelChara.BaseKey, modelChara.Variant); 
-
-            int v = modelChara.Variant;
-            int e = modelChara.BaseKey;
-            var d = modelChara.ModelKey;
+            int v = asVariant.Value;
+            int e = asVariant.Parent.Value;
+            var d = asVariant.Parent.Parent.Value;
 
             var imcPath = string.Format(ImcPathFormat, d, e);
 
@@ -185,6 +185,77 @@ namespace Godbert.ViewModels {
                 System.Windows.MessageBox.Show(string.Format("Unable to load model for {0}:{1}{2}", title, Environment.NewLine, ex), "Failure to load", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return false;
             }
+        }
+        #endregion
+
+        #region Brute-force
+        private bool _IsBruteForceAvailable = true;
+        private ICommand _BruteForceCommand;
+
+        public bool IsBruteForceAvailable {
+            get { return _IsBruteForceAvailable; }
+            private set {
+                _IsBruteForceAvailable = value;
+                OnPropertyChanged(() => IsBruteForceAvailable);
+            }
+        }
+        public ICommand BruteForceCommand { get { return _BruteForceCommand ?? (_BruteForceCommand = new DelegateCommand(OnBruteForce)); } }
+
+        private void OnBruteForce() {
+            IsBruteForceAvailable = false;
+
+            var progDlg = new Ookii.Dialogs.Wpf.ProgressDialog();
+            progDlg.WindowTitle = "Brute-forcing";
+            progDlg.Text = "This is going to take a while...";
+            progDlg.DoWork += DoBruteForceWork;
+            progDlg.RunWorkerCompleted += OnBruteForceComplete;
+            progDlg.ShowDialog(System.Windows.Application.Current.MainWindow);
+            progDlg.ProgressBarStyle = Ookii.Dialogs.Wpf.ProgressBarStyle.ProgressBar;
+            progDlg.ShowTimeRemaining = true;
+        }
+
+        void OnBruteForceComplete(object sender, System.ComponentModel.RunWorkerCompletedEventArgs eventArgs) {
+            if (eventArgs.Cancelled)
+                IsBruteForceAvailable = true;
+        }
+
+        void DoBruteForceWork(object sender, System.ComponentModel.DoWorkEventArgs eventArgs) {
+            var dlg = (Ookii.Dialogs.Wpf.ProgressDialog)sender;
+
+            var newEntries = new Models.ModelCharaHierarchy(Entries.MainFormat, Entries.SubFormat, Entries.VariantFormat);
+            for (var d = 0; d < 10000; ++d) {
+                if (dlg.CancellationPending)
+                    return;
+                dlg.ReportProgress(d / 100, null, string.Format("Current progress: {0:P}", d / 10000.0));
+                for (var e = 0; e < 10000; ++e) {
+                    //dlg.ReportProgress(((d * 10000) + e) / (10000 * 100));
+
+                    var imcPath = string.Format(ImcPathFormat, d, e);
+                    SaintCoinach.IO.File imcBase;
+                    if (!Parent.Realm.Packs.TryGetFile(imcPath, out imcBase))
+                        continue;
+                    try {
+                        var imc = new SaintCoinach.Graphics.ImcFile(imcBase);
+                        for (var v = 1; v < imc.Count; ++v) {
+                            /*if (Entries.Contains(d, e, v))
+                                continue;*/
+
+                            var any = false;
+                            foreach (var p in imc.Parts) {
+                                if (p.Variants[v].Variant != 0) {
+                                    any = true;
+                                    break;
+                                }
+                            }
+                            if (any)
+                                newEntries.Add(d, e, v);
+                        }
+                    } catch (Exception ex) {
+                        Console.Error.WriteLine("Failed parsing imc file {0}:{1}{2}", imcPath, Environment.NewLine, ex);
+                    }
+                }
+            }
+            Entries = newEntries;
         }
         #endregion
     }

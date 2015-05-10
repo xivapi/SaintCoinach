@@ -26,6 +26,10 @@ namespace Godbert {
             var vm = (ViewModels.MonstersViewModel)((FrameworkElement)sender).DataContext;
             vm.SelectedEntry = MonsterTreeView.SelectedItem;
         }
+        private void DemihumanTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            var vm = (ViewModels.DemihumanViewModel)((FrameworkElement)sender).DataContext;
+            vm.SelectedEntry = DemihumanTreeView.SelectedItem;
+        }
     }
 
 }

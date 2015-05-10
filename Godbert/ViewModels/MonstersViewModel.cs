@@ -17,46 +17,19 @@ namespace Godbert.ViewModels {
         const string ImcPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc";
         const string ModelPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/model/m{0:D4}b{1:D4}.mdl";
 
-        public class MonsterVariant {
-            public MonsterBody Body;
-            public int Variant;
-
-            public string Display { get { return string.Format("v{0:D4}", Variant); } }
-
-            public override string ToString() {
-                return string.Format("{0} / v{1:D4}", Body, Variant);
-            }
-        }
-        public class MonsterBody : List<MonsterVariant> {
-            public MonsterModel Monster;
-            public int Body;
-
-            public string ImcPath;
-            public string ModelPath;
-
-            public string Display { get { return string.Format("b{0:D4}", Body); } }
-
-            public override string ToString() {
-                return string.Format("{0} / b{1:D4}", Monster, Body);
-            }
-        }
-        public class MonsterModel : List<MonsterBody> {
-            public int Monster;
-
-            public string Display { get { return string.Format("m{0:D4}", Monster); } }
-
-            public override string ToString() {
-                return string.Format("m{0:D4}", Monster);
-            }
-        }
-        
-
         #region Fields
+        private Models.ModelCharaHierarchy _Entries;
         private object _SelectedEntry;
         #endregion
 
         #region Properties
-        public IEnumerable<MonsterModel> Entries { get; private set; }
+        public Models.ModelCharaHierarchy Entries {
+            get { return _Entries; }
+            private set {
+                _Entries = value;
+                OnPropertyChanged(() => Entries);
+            }
+        }
         public object SelectedEntry {
             get { return _SelectedEntry; }
             set {
@@ -65,7 +38,7 @@ namespace Godbert.ViewModels {
                 OnPropertyChanged(() => IsValidSelection);
             }
         }
-        public bool IsValidSelection { get { return SelectedEntry is MonsterVariant; } }
+        public bool IsValidSelection { get { return SelectedEntry is Models.ModelCharaVariant; } }
         public MainViewModel Parent { get; private set; }
         #endregion
 
@@ -75,38 +48,15 @@ namespace Godbert.ViewModels {
 
             var modelCharaSheet = Parent.Realm.GameData.GetSheet<ModelChara>();
 
-            var allEntries = new List<MonsterModel>();
-            foreach(var mc in modelCharaSheet.Where(mc => mc.Type == 3).Select(mc => new {
-                        Model = mc.ModelKey,
-                        Body = mc.BaseKey,
-                        Variant = mc.Variant
-                    }).OrderBy(e => e.Variant).OrderBy(e => e.Body).OrderBy(e => e.Model)) {
-                var model = allEntries.FirstOrDefault(m => m.Monster == mc.Model);
-                if (model == null)
-                    allEntries.Add(model = new MonsterModel { Monster = mc.Model });
-                var body = model.FirstOrDefault(b => b.Body == mc.Body);
-                if (body == null)
-                    model.Add(body = new MonsterBody {
-                        Body = mc.Body,
-                        Monster = model,
-                        ImcPath = string.Format(ImcPathFormat, mc.Model, mc.Body),
-                        ModelPath = string.Format(ModelPathFormat, mc.Model, mc.Body)
-                    });
-                if (!body.Any(b => b.Variant == mc.Variant))
-                    body.Add(new MonsterVariant { Variant = mc.Variant, Body = body });
-            }
+            Entries = new Models.ModelCharaHierarchy("m{0:D4}", "b{0:D4}", "v{0:D4}");
+            foreach(var mc in modelCharaSheet.Where(mc => mc.Type == 3)) {
+                var imcPath = string.Format(ImcPathFormat, mc.ModelKey, mc.BaseKey);
+                var mdlPath = string.Format(ModelPathFormat, mc.ModelKey, mc.BaseKey);
+                if(!Parent.Realm.Packs.FileExists(imcPath) ||!Parent.Realm.Packs.FileExists(mdlPath))
+                    continue;
 
-            foreach (var m in allEntries.ToArray()) {
-                foreach (var b in m.ToArray()) {
-                    if (!Parent.Realm.Packs.FileExists(b.ImcPath) || !Parent.Realm.Packs.FileExists(b.ModelPath)) {
-                        System.Diagnostics.Trace.WriteLine(string.Format("File does not exist for monster model '{0}'.", b));
-                        m.Remove(b);
-                    }
-                }
-                if (m.Count == 0)
-                    allEntries.Remove(m);
+                Entries.Add(mc);
             }
-            Entries = allEntries;
         }
         #endregion
 
@@ -142,16 +92,16 @@ namespace Godbert.ViewModels {
             model = null;
             variant = ImcVariant.Default;
 
-            var asVariant = SelectedEntry as MonsterVariant;
+            var asVariant = SelectedEntry as Models.ModelCharaVariant;
             if (asVariant == null)
                 return false;
 
-            int v = asVariant.Variant;
-            int b = asVariant.Body.Body;
-            var m = asVariant.Body.Monster.Monster;
+            int v = asVariant.Value;
+            int b = asVariant.Parent.Value;
+            var m = asVariant.Parent.Parent.Value;
 
-            var imcPath = asVariant.Body.ImcPath;
-            var mdlPath = asVariant.Body.ModelPath;
+            var imcPath = string.Format(ImcPathFormat, m, b);
+            var mdlPath = string.Format(ModelPathFormat, m, b);
 
             SaintCoinach.IO.File imcFileBase;
             SaintCoinach.IO.File mdlFileBase;
@@ -170,6 +120,76 @@ namespace Godbert.ViewModels {
                 System.Windows.MessageBox.Show(string.Format("Unable to load model for {0}:{1}{2}", asVariant, Environment.NewLine, e), "Failure to load", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return false;
             }
+        }
+        #endregion
+
+        #region Brute-force
+        private bool _IsBruteForceAvailable = true;
+        private ICommand _BruteForceCommand;
+
+        public bool IsBruteForceAvailable {
+            get { return _IsBruteForceAvailable; }
+            private set {
+                _IsBruteForceAvailable = value;
+                OnPropertyChanged(() => IsBruteForceAvailable);
+            }
+        }
+        public ICommand BruteForceCommand { get { return _BruteForceCommand ?? (_BruteForceCommand = new DelegateCommand(OnBruteForce)); } }
+
+        private void OnBruteForce() {
+            IsBruteForceAvailable = false;
+
+            var progDlg = new Ookii.Dialogs.Wpf.ProgressDialog();
+            progDlg.WindowTitle = "Brute-forcing";
+            progDlg.Text = "This is going to take a while...";
+            progDlg.DoWork += DoBruteForceWork;
+            progDlg.RunWorkerCompleted += OnBruteForceComplete;
+            progDlg.ShowDialog(System.Windows.Application.Current.MainWindow);
+            progDlg.ProgressBarStyle = Ookii.Dialogs.Wpf.ProgressBarStyle.ProgressBar;
+            progDlg.ShowTimeRemaining = true;
+        }
+
+        void OnBruteForceComplete(object sender, System.ComponentModel.RunWorkerCompletedEventArgs eventArgs) {
+            if (eventArgs.Cancelled)
+                IsBruteForceAvailable = true;
+        }
+
+        void DoBruteForceWork(object sender, System.ComponentModel.DoWorkEventArgs eventArgs) {
+            var dlg = (Ookii.Dialogs.Wpf.ProgressDialog)sender;
+
+            var newEntries = new Models.ModelCharaHierarchy(Entries.MainFormat, Entries.SubFormat, Entries.VariantFormat);
+            for (var m = 0; m < 10000; ++m) {
+                if (dlg.CancellationPending)
+                    return;
+                dlg.ReportProgress(m / 100, null, string.Format("Current progress: {0:P}", m / 10000.0));
+                for (var b = 0; b < 10000; ++b) {
+
+                    var imcPath = string.Format(ImcPathFormat, m, b);
+                    SaintCoinach.IO.File imcBase;
+                    if (!Parent.Realm.Packs.TryGetFile(imcPath, out imcBase))
+                        continue;
+                    try {
+                        var imc = new SaintCoinach.Graphics.ImcFile(imcBase);
+                        for (var v = 1; v < imc.Count; ++v) {
+                            if (Entries.Contains(m, b, v))
+                                continue;
+
+                            var any = false;
+                            foreach (var p in imc.Parts) {
+                                if (p.Variants[v].Variant != 0) {
+                                    any = true;
+                                    break;
+                                }
+                            }
+                            if (any)
+                                newEntries.Add(m, b, v);
+                        }
+                    } catch (Exception ex) {
+                        Console.Error.WriteLine("Failed parsing imc file {0}:{1}{2}", imcPath, Environment.NewLine, ex);
+                    }
+                }
+            }
+            Entries = newEntries;
         }
         #endregion
     }

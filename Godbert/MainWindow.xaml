@@ -7,9 +7,10 @@
         <vm:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <HierarchicalDataTemplate x:Key="MonsterTreeTemplate" ItemsSource="{Binding}">
-            <TextBlock Text="{Binding Path=Display}" />
+        <HierarchicalDataTemplate x:Key="ModelCharaTree" ItemsSource="{Binding}">
+            <TextBlock Text="{Binding Path=DisplayName}" />
         </HierarchicalDataTemplate>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
     <TabControl>
         <TabItem Header="Equipment" DataContext="{Binding Equipment}">
@@ -54,6 +55,7 @@
         <TabItem Header="Monsters" DataContext="{Binding Monsters}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -63,22 +65,28 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                        Content="Brute-force"
+                        Command="{Binding Path=BruteForceCommand}"
+                        Visibility="{Binding Path=IsBruteForceAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Margin="2" />
+
                 <TreeView x:Name="MonsterTreeView" x:FieldModifier="private"
-                          Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                          Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
                           ItemsSource="{Binding Path=Entries}"
-                          ItemTemplate="{StaticResource MonsterTreeTemplate}"
+                          ItemTemplate="{StaticResource ModelCharaTree}"
                           SelectedItemChanged="MonsterTreeView_SelectedItemChanged" />
 
                 <Button Content="Add" Command="{Binding Path=AddCommand}"
-                        Grid.Row="1" Grid.Column="0"
+                        Grid.Row="2" Grid.Column="0"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
                 <Button Content="Replace" Command="{Binding Path=ReplaceCommand}"
-                        Grid.Row="1" Grid.Column="1"
+                        Grid.Row="2" Grid.Column="1"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
                 <Button Content="New window" Command="{Binding Path=NewCommand}"
-                        Grid.Row="1" Grid.Column="2"
+                        Grid.Row="2" Grid.Column="2"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
             </Grid>
@@ -103,6 +111,7 @@
         <TabItem Header="Demi-humans" DataContext="{Binding Demihuman}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -115,35 +124,41 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"
+                        Content="Brute-force"
+                        Command="{Binding Path=BruteForceCommand}"
+                        Visibility="{Binding Path=IsBruteForceAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Margin="2" />
+                
+                <TreeView x:Name="DemihumanTreeView" x:FieldModifier="private"
+                          Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5"
+                          ItemsSource="{Binding Path=Entries}"
+                          ItemTemplate="{StaticResource ModelCharaTree}"
+                          SelectedItemChanged="DemihumanTreeView_SelectedItemChanged" />
 
-                <ListBox Grid.Column="0" Grid.Row="0"
-                         Grid.ColumnSpan="5"
-                         ItemsSource="{Binding Path=Items}"
-                         SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"/>
-
-                <CheckBox Grid.Column="0" Grid.Row="1"
+                <CheckBox Grid.Column="0" Grid.Row="2"
                           IsChecked="{Binding Path=ShowPart0, Mode=TwoWay}"
                           Content="met"
                           Margin="2" />
-                <CheckBox Grid.Column="1" Grid.Row="1"
+                <CheckBox Grid.Column="1" Grid.Row="2"
                           IsChecked="{Binding Path=ShowPart1, Mode=TwoWay}"
                           Content="top"
                           Margin="2" />
-                <CheckBox Grid.Column="2" Grid.Row="1"
+                <CheckBox Grid.Column="2" Grid.Row="2"
                           IsChecked="{Binding Path=ShowPart2, Mode=TwoWay}"
                           Content="glv"
                           Margin="2" />
-                <CheckBox Grid.Column="3" Grid.Row="1"
+                <CheckBox Grid.Column="3" Grid.Row="2"
                           IsChecked="{Binding Path=ShowPart3, Mode=TwoWay}"
                           Content="dwn"
                           Margin="2" />
-                <CheckBox Grid.Column="4" Grid.Row="1"
+                <CheckBox Grid.Column="4" Grid.Row="2"
                           IsChecked="{Binding Path=ShowPart4, Mode=TwoWay}"
                           Content="sho"
                           Margin="2" />
 
 
-                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" IsEnabled="{Binding Path=IsValidSelection}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -183,6 +198,10 @@
                         <LineBreak />
                         <Run>• Have to select an item on the deepest level (v*) to display.</Run>
                         <LineBreak />
+                        <Run>• Click the </Run>
+                        <Italic>Brute-force</Italic>
+                        <Run> button to search for monster models not present in the game's internal list (unlikely to find anything new.)</Run>
+                        <LineBreak />
 
                         <Bold>Maps</Bold>
                         <LineBreak />
@@ -195,7 +214,10 @@
                         <LineBreak />
                         <Run>Allows for viewing of demi-human models (non-playable races with exchangable equipment, such as beast tribes.)</Run>
                         <LineBreak />
-                        <Run>• Currently only shows very few models.</Run>
+                        <Run>• Click the</Run>
+                        <Italic>Brute-force</Italic>
+                        <Run>button to search for all demi-human models. This is recommended since the starting list only includes very few.</Run>
+                        <LineBreak />
                     </Paragraph>
                     <Paragraph>
                         <Bold FontSize="16">Buttons</Bold>

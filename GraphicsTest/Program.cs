@@ -7,39 +7,10 @@ using System.Threading.Tasks;
 namespace GraphicsTest {
     class Program {
         static void Main(string[] args) {
-            var arr = new SaintCoinach.ARealmReversed(@"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn", SaintCoinach.Ex.Language.English);
-            //var arr = new SaintCoinach.ARealmReversed(@"C:\XIVVersions\HW-Bench", SaintCoinach.Ex.Language.English);
+            //var arr = new SaintCoinach.ARealmReversed(@"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn", SaintCoinach.Ex.Language.English);
+            var arr = new SaintCoinach.ARealmReversed(@"C:\XIVVersions\HW-Bench", SaintCoinach.Ex.Language.English);
             var packs = arr.Packs;
 
-            var mcs = arr.GameData.GetSheet<SaintCoinach.Xiv.ModelChara>();
-            foreach (var mc in mcs.Where(_ => _.Type == 2)) {
-                Console.WriteLine();
-                Console.Write("{0:D4} / {1:D4} / {2:D4}: ", mc.ModelKey, mc.BaseKey, mc.Variant);
-                var imcPath = string.Format("chara/demihuman/d{0:D4}/obj/equipment/e{1:D4}/e{1:D4}.imc", mc.ModelKey, mc.BaseKey);
-                var mdlPath = string.Format("chara/demihuman/d{0:D4}/obj/equipment/e{1:D4}/model/d{0:D4}e{1:D4}_top.mdl", mc.ModelKey, mc.BaseKey);
-
-                /*Console.WriteLine("    {0}", imcPath);
-                Console.WriteLine("    {0}", mdlPath);*/
-
-                SaintCoinach.IO.File imcBase, mdlBase;
-                if (!packs.TryGetFile(imcPath, out imcBase)) {
-                    //Console.WriteLine("    IMC not found.");
-                    continue;
-                }/*
-                if (!packs.TryGetFile(mdlPath, out mdlBase)) {
-                    //Console.WriteLine("    MDL not found.");
-                    continue;
-                }*/
-                var imc = new SaintCoinach.Graphics.ImcFile(imcBase);
-                Console.WriteLine("{0:X4}", imc.PartsMask);
-                if (imc.Count < mc.Variant) {
-                    Console.WriteLine("    Variant {0} not present.", mc.Variant);
-                    continue;
-                }
-            }
-            Console.ReadLine();
-
-            return;
             {
                 
                 var eng = new SaintCoinach.Graphics.Viewer.Engine("Test");
@@ -85,9 +56,9 @@ namespace GraphicsTest {
                     // 105  ADS
                     // 106  Rock (from Garuda)
                     // 107  Proto-Ultima arm unit
-                    /*
+                    
                     var __ = new object[] {
-                        96,
+                        177,
                         1
                     };
                     var imcPath = string.Format("chara/monster/m{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc", __);
@@ -98,7 +69,7 @@ namespace GraphicsTest {
                     Console.WriteLine(imc.Count);
                     var imcVar = imc.GetVariant(1);
                     var mdlVar = imcVar;
-                    */
+                    
                     /*
                     var imc = new SaintCoinach.Graphics.ImcFile(packs.GetFile("chara/equipment/e0124/e0124.imc"));
                     var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile("chara/equipment/e0124/model/c0201e0124_top.mdl");
@@ -118,7 +89,7 @@ namespace GraphicsTest {
                     var mdlDef = mdlFile.GetModelDefinition();
                     var imcVar = imc.GetVariant(1, 2);
                      */
-                    
+                    /*
                     var eq = (SaintCoinach.Xiv.Items.Equipment)arr.GameData.GetSheet<SaintCoinach.Xiv.Item>().First(i => i.Name == "Lionsmane Cuirass");
                     SaintCoinach.Graphics.ImcVariant imcVar;
                     var mdlDef = eq.GetModel(101, out imcVar);
@@ -126,7 +97,7 @@ namespace GraphicsTest {
                         ImcVariant = imcVar,
                         StainKey = 14
 
-                    };
+                    };*/
 
                     /*
                     var mdlFile = (SaintCoinach.Graphics.ModelFile)packs.GetFile(@"chara/human/c0201/obj/hair/h0004/model/c0201h0004_hir.mdl");

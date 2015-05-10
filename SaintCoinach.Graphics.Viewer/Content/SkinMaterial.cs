@@ -69,8 +69,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
 
             CurrentTechniqueName = "Skin";
 
-            SkinColor = new Vector4(145 / 255f, 95 / 255f, 109 / 255f, 1);
-            LipColor = new Vector4(0, 1, 0, .5f);
+            SkinColor = new Vector4(210 / 255f, 180 / 255f, 140 / 255f, 1);
+            LipColor = new Vector4(1, 0, 0, .25f);
         }
         #endregion
 

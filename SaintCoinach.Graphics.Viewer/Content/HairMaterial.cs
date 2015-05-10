@@ -63,8 +63,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
 
             CurrentTechniqueName = "Hair";
 
-            HairColor = new Vector3(1, 0, 0);
-            MeshColor = new Vector3(0, 1, 1);
+            HairColor = new Vector3(165 / 255f, 42 / 255f, 42 / 255f);
+            MeshColor = new Vector3(121 / 255f, 68 / 255f, 59 / 255f);
         }
         #endregion
 
