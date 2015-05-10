@@ -152,6 +152,7 @@ namespace SaintCoinach {
 
             def.Version = GameVersion;
             StoreDefinition(zip, def, string.Format("{0}/{1}", def.Version, DefinitionFile));
+            StoreDefinition(zip, def, DefinitionFile);
             StorePacks(zip);
             UpdateVersion(zip);
 
@@ -228,10 +229,12 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> to store the current packs in.</param>
         private void StorePacks(ZipFile zip) {
-            const string ExdPackPattern = "0a0000.*";
+            const string ExdPackPattern = "0a*.*";
 
-            foreach (var file in Packs.DataDirectory.EnumerateFiles(ExdPackPattern))
-                zip.UpdateFile(file.FullName, GameVersion);
+            foreach (var file in Packs.DataDirectory.EnumerateFiles(ExdPackPattern, SearchOption.AllDirectories)) {
+                string targetDir = GameVersion + "/" + file.Directory.Name;
+                zip.UpdateFile(file.FullName, targetDir);
+            }
         }
 
         /// <summary>
@@ -431,7 +434,8 @@ namespace SaintCoinach {
             File.Delete(tempPath);
             Directory.CreateDirectory(tempPath);
 
-            zip.ExtractSelectedEntries("type = F", previousVersion, tempPath);
+            foreach (var entry in zip.Entries.Where(e => e.FileName.StartsWith(previousVersion)))
+                    entry.Extract(tempPath);
 
             return tempPath;
         }
