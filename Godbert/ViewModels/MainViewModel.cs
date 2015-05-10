@@ -31,6 +31,8 @@ namespace Godbert.ViewModels {
 
         #region Constructor
         public MainViewModel() {
+            if (!App.IsValidGamePath(Properties.Settings.Default.GamePath))
+                return;
             Realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
             EngineHelper = new EngineHelper();
             Equipment = new EquipmentViewModel(this);
@@ -43,7 +45,10 @@ namespace Godbert.ViewModels {
 
         #region Commands
         private ICommand _LanguageCommand;
+        private ICommand _GameLocationCommand;
+
         public ICommand LanguageCommand { get { return _LanguageCommand ?? (_LanguageCommand = new Commands.DelegateCommand<SaintCoinach.Ex.Language>(OnLanguage)); } }
+        public ICommand GameLocationCommand { get { return _GameLocationCommand ?? (_GameLocationCommand = new Commands.DelegateCommand(OnGameLocation)); } }
 
         private void OnLanguage(SaintCoinach.Ex.Language newLanguage) {
             Realm.GameData.ActiveLanguage = newLanguage;
@@ -55,6 +60,20 @@ namespace Godbert.ViewModels {
 
             Equipment.Refresh();
             Maps.Refresh();
+        }
+
+        private void OnGameLocation() {
+            var res = System.Windows.MessageBox.Show("If you continue the application will restart and ask you for the game's installation directory, do you want to continue?", "Change game location", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Exclamation);
+            if (res == System.Windows.MessageBoxResult.Yes) {
+                Properties.Settings.Default.GamePath = null;
+                Properties.Settings.Default.Save();
+               
+                var current = System.Diagnostics.Process.GetCurrentProcess();
+                var startInfo = new System.Diagnostics.ProcessStartInfo(current.MainModule.FileName);
+                startInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+                System.Diagnostics.Process.Start(startInfo);
+                App.Current.Shutdown();
+            }
         }
         #endregion
     }

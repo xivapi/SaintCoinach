@@ -28,6 +28,10 @@
                           Command="{Binding Path=LanguageCommand}"
                           CommandParameter="{x:Static ex:Language.French}"  />
             </MenuItem>
+            <MenuItem Header="Various">
+                <MenuItem Header="Change game location"
+                          Command="{Binding Path=GameLocationCommand}" />
+            </MenuItem>
         </Menu>
         <TabControl>
             <TabItem Header="Data" DataContext="{Binding Path=Data}">

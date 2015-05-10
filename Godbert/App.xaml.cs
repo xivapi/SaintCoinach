@@ -16,6 +16,7 @@ namespace Godbert {
     public partial class App : Application {
         protected override void OnStartup(StartupEventArgs e) {
             if (!RequestGamePath()) {
+                MainWindow = null;
                 Shutdown(1);
                 return;
             }
@@ -26,7 +27,7 @@ namespace Godbert {
 
         #region Startup
 
-        private bool RequestGamePath() {
+        private static bool RequestGamePath() {
             string path = Godbert.Properties.Settings.Default.GamePath;
             if (!IsValidGamePath(path)) {
                 string programDir;
@@ -71,7 +72,7 @@ namespace Godbert {
             Godbert.Properties.Settings.Default.Save();
             return true;
         }
-        static bool IsValidGamePath(string path) {
+        public static bool IsValidGamePath(string path) {
             if (string.IsNullOrWhiteSpace(path))
                 return false;
 

@@ -112,3 +112,8 @@ Godbert is a simple application to display game data and 3D models from **Final 
 ### Partially implemented
 
 * Rendering of the game's areas. Only static and completely passive objects are displayed at the moment, anything that's more complex is not included.
+
+### To-Do
+
+* Add more things to show.
+* Store active language in config.
