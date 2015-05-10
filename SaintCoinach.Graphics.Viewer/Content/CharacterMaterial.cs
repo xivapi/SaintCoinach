@@ -25,6 +25,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             { CharacterParameter.Normal | CharacterParameter.Diffuse, "Diffuse" },
             { CharacterParameter.Normal | CharacterParameter.Diffuse | CharacterParameter.Specular, "DiffuseSpecular" },
             { CharacterParameter.Normal | CharacterParameter.Diffuse | CharacterParameter.Specular | CharacterParameter.Table, "DiffuseSpecularTable" },
+            { CharacterParameter.Normal | CharacterParameter.Diffuse | CharacterParameter.Table, "DiffuseTable" },
             { CharacterParameter.Normal | CharacterParameter.Mask | CharacterParameter.Table, "MaskTable" },
             { CharacterParameter.Normal | CharacterParameter.Mask, "Mask" },
         };
@@ -78,6 +79,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             Navin = CharacterParameter.None;
 
             foreach (var param in baseMaterial.TextureParameters) {
+                if (param.TextureIndex == byte.MaxValue)
+                    continue;   // TODO: See if this may actually refer to dummy texture (even though others just have a dummy.tex entry)
                 var tex = baseMaterial.TexturesFiles[param.TextureIndex];
                 CharacterParameter currentParam;
                 if (!CharacterParameterMap.TryGetValue(param.ParameterId, out currentParam)) {

@@ -132,7 +132,16 @@ float4 PSDiffuseSpecularTable(VSOutput pin) : SV_Target0
     float4 diffuse = texDiffuse;
     float4 specular = float4(texSpecular.ggg, 1);
     ApplyTable(pin.UV.xy, diffuse, specular, true);
-    TableSamples table = GetTableSamples(pin.UV.xy);
+
+    return ComputeCommon(pin, diffuse, specular);
+};
+float4 PSDiffuseTable(VSOutput pin) : SV_Target0
+{
+    float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.UV.xy);
+
+    float4 diffuse = texDiffuse;
+    float4 specular = (1).xxxx;
+    ApplyTable(pin.UV.xy, diffuse, specular, true);
 
     return ComputeCommon(pin, diffuse, specular);
 };
@@ -183,6 +192,14 @@ technique11 DiffuseSpecularTable
         SetGeometryShader(0);
         SetVertexShader(CompileShader(vs_4_0, VSCommon()));
         SetPixelShader(CompileShader(ps_4_0, PSDiffuseSpecularTable()));
+    }
+}
+technique11 DiffuseTable
+{
+    pass P0 {
+        SetGeometryShader(0);
+        SetVertexShader(CompileShader(vs_4_0, VSCommon()));
+        SetPixelShader(CompileShader(ps_4_0, PSDiffuseTable()));
     }
 }
 technique11 MaskTable
