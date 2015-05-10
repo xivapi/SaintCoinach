@@ -18,7 +18,7 @@ namespace SaintCoinach.Graphics.Viewer {
     using Buffer = SharpDX.Direct3D11.Buffer;
     using Device = SharpDX.Direct3D11.Device;
 
-    public abstract class Engine {
+    public abstract class Engine : IDisposable {
 
         #region Fields
         private Device _Device;
@@ -254,6 +254,54 @@ namespace SaintCoinach.Graphics.Viewer {
         private void Draw3D(EngineTime time, ref Matrix world, ref Matrix view, ref Matrix proj) {
             CoreComponents.Draw(time, ref world, ref view, ref proj);
             Components.Draw(time, ref world, ref view, ref proj);
+        }
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose() {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool includeManaged) {
+            Unload();
+            if (includeManaged) {
+                if (_BlendState != null)
+                    _BlendState.Dispose();
+                _BlendState = null;
+
+                if (_DepthStencilView != null)
+                    _DepthStencilView.Dispose();
+                _DepthStencilView = null;
+
+                if (_DepthStencil != null)
+                    _DepthStencil.Dispose();
+                _DepthStencil = null;
+
+                if (_RasterizerState != null)
+                    _RasterizerState.Dispose();
+                _RasterizerState = null;
+
+                if (_RenderTargetView != null)
+                    _RenderTargetView.Dispose();
+                _RenderTargetView = null;
+
+                if (_RenderTarget != null)
+                    _RenderTarget.Dispose();
+                _RenderTarget = null;
+
+                if (_StencilState != null)
+                    _StencilState = null;
+                _StencilState = null;
+
+                if (_SwapChain != null)
+                    _SwapChain.Dispose();
+                _SwapChain = null;
+
+                if (_Device != null)
+                    _Device.Dispose();
+                _Device = null;
+            }
         }
         #endregion
     }

@@ -66,5 +66,15 @@ namespace SaintCoinach.Graphics.Viewer {
             Resize(Form.ClientSize.Width, Form.ClientSize.Height);
         }
         #endregion
+
+        protected override void Dispose(bool includeManaged) {
+            base.Dispose(includeManaged);
+
+            if (includeManaged) {
+                if (_Form != null)
+                    _Form.Dispose();
+                _Form = null;
+            }
+        }
     }
 }
