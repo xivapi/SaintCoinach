@@ -46,9 +46,10 @@ namespace SaintCoinach.IO {
         #region Get
 
         public bool FileExists(string name) {
-            uint hash;
+            uint hash;/*
             if (!_FileNameMap.TryGetValue(name, out hash))
-                _FileNameMap.Add(name, hash = Hash.Compute(name));
+                _FileNameMap.Add(name, hash = Hash.Compute(name));*/
+            hash = Hash.Compute(name);
             return FileExists(hash);
         }
 
@@ -57,9 +58,10 @@ namespace SaintCoinach.IO {
         }
 
         public File GetFile(string name) {
-            uint hash;
+            uint hash;/*
             if (!_FileNameMap.TryGetValue(name, out hash))
-                _FileNameMap.Add(name, hash = Hash.Compute(name));
+                _FileNameMap.Add(name, hash = Hash.Compute(name));*/
+            hash = Hash.Compute(name);
 
             var file = GetFile(hash);
             file.Path = string.Format("{0}/{1}", this.Path, name);
@@ -82,9 +84,10 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetFile(string name, out File file) {
-            uint hash;
+            uint hash;/*
             if (!_FileNameMap.TryGetValue(name, out hash))
-                _FileNameMap.Add(name, hash = Hash.Compute(name));
+                _FileNameMap.Add(name, hash = Hash.Compute(name));*/
+            hash = Hash.Compute(name);
 
             var result = TryGetFile(hash, out file);
             if (result)

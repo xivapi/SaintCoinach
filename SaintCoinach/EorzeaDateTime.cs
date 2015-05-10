@@ -340,7 +340,8 @@ namespace SaintCoinach {
         /// <param name="time"><see cref="DateTime" /> to convert.</param>
         /// <returns>Returns self.</returns>
         public EorzeaDateTime SetRealTime(DateTime time) {
-            var fromZero = time - Zero;
+            var utc = time.ToUniversalTime();
+            var fromZero = utc - Zero;
             return SetUnixTime((long)fromZero.TotalSeconds);
         }
 

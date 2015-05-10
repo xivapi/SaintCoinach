@@ -20,7 +20,7 @@ namespace SaintCoinach.IO {
                 { "ui", 0x06 }, 
                 { "sound", 0x07 },
                 { "vfx", 0x08 }, 
-                { "ui_script", 0x09 },
+                /*{ "ui_script", 0x09 },*/
                 { "exd", 0x0a },
                 { "game_script", 0x0b },
                 { "music", 0x0c },

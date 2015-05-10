@@ -65,19 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AutoCommand.cs" />
     <Compile Include="Commands\BgmCommand.cs" />
     <Compile Include="Commands\ExdCommand.cs" />
-    <Compile Include="Commands\GraphicsCommand.cs" />
-    <Compile Include="Commands\Graphics\EquipmentCommand.cs" />
-    <Compile Include="Commands\Graphics\MapCommand.cs" />
-    <Compile Include="Commands\Graphics\MonsterCommand.cs" />
-    <Compile Include="Commands\Graphics\TerritoryCommand.cs" />
-    <Compile Include="Commands\Graphics\ModelCommand.cs" />
     <Compile Include="Commands\LanguageCommand.cs" />
     <Compile Include="Commands\ImageCommand.cs" />
     <Compile Include="Commands\RawExdCommand.cs" />
-    <Compile Include="GraphicsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -99,10 +91,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SaintCoinach.Graphics.ViewerEngine\SaintCoinach.Graphics.ViewerEngine.csproj">
-      <Project>{39675bac-1a1a-4a83-9835-b926bed04c9b}</Project>
-      <Name>SaintCoinach.Graphics.ViewerEngine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
       <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
       <Name>SaintCoinach</Name>

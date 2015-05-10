@@ -34,9 +34,10 @@ namespace SaintCoinach.IO {
         #region IPackSource Members
 
         public bool FileExists(string path) {
-            uint hash;
+            uint hash;/*
             if (!_FilePathMap.TryGetValue(path, out hash))
-                _FilePathMap.Add(path, hash = Hash.Compute(path));
+                _FilePathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
             return FileExists(hash);
         }
 
@@ -45,9 +46,10 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetFile(string path, out File value) {
-            uint hash;
+            uint hash;/*
             if (!_FilePathMap.TryGetValue(path, out hash))
-                _FilePathMap.Add(path, hash = Hash.Compute(path));
+                _FilePathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
             var result = TryGetFile(hash, out value);
             if (result)
                 value.Path = path;
@@ -74,9 +76,10 @@ namespace SaintCoinach.IO {
         }
 
         public File GetFile(string path) {
-            uint hash;
+            uint hash;/*
             if (!_FilePathMap.TryGetValue(path, out hash))
-                _FilePathMap.Add(path, hash = Hash.Compute(path));
+                _FilePathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
             var f = GetFile(hash);
             f.Path = path;
             return f;

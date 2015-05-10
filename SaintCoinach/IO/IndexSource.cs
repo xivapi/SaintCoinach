@@ -34,9 +34,10 @@ namespace SaintCoinach.IO {
         #region Get
 
         public bool DirectoryExists(string path) {
-            uint hash;
+            uint hash;/*
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
+                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
             return DirectoryExists(hash);
         }
 
@@ -45,9 +46,10 @@ namespace SaintCoinach.IO {
         }
 
         public Directory GetDirectory(string path) {
-            uint hash;
+            uint hash;/*
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
+                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
 
             var dir = GetDirectory(hash);
             dir.Path = path;
@@ -66,9 +68,10 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetDirectory(string path, out Directory directory) {
-            uint hash;
+            uint hash;/*
             if (!_DirectoryPathMap.TryGetValue(path, out hash))
-                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));
+                _DirectoryPathMap.Add(path, hash = Hash.Compute(path));*/
+            hash = Hash.Compute(path);
 
             var result = TryGetDirectory(hash, out directory);
             if (result)

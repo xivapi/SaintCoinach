@@ -60,6 +60,18 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
+        #region Graphics
+        public Graphics.Territory GetTerritory() {
+            if (TerritoryType == null || TerritoryType.Key == 0)
+                return null;
+
+            var t = new Graphics.Territory(this.TerritoryType);
+            if (t.Terrain == null && t.LgbFiles.Length == 0)
+                return null;
+            return t;
+        }
+        #endregion
+
         /// <summary>
         ///     Returns a string representation of the map.
         /// </summary>

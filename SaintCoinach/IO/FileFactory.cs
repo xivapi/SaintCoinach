@@ -1,6 +1,6 @@
 ﻿using System;
 
-using SaintCoinach.Graphics.Assets;
+using SaintCoinach.Graphics;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.IO {
