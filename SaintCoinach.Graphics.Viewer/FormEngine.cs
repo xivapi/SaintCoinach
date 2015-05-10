@@ -87,12 +87,15 @@ namespace SaintCoinach.Graphics.Viewer {
             SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out device, out _SwapChain);
             return device;
         }
+        private bool _IsResizing;
         protected override void Resize(int newWidth, int newHeight) {
-            _SwapChain.ResizeBuffers(1, newWidth, newHeight, Format.Unknown, SwapChainFlags.None);
-
+            _IsResizing = true;
             base.Resize(newWidth, newHeight);
         }
         protected override Texture2D CreateRenderTarget(int width, int height) {
+            if(_IsResizing)
+                _SwapChain.ResizeBuffers(1, width, height, Format.Unknown, SwapChainFlags.None);
+            _IsResizing = false;
             return Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
         }
         protected override void Present() {
