@@ -25,21 +25,21 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                          Margin="2" />
-                
+
                 <ListBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
                          ItemsSource="{Binding Path=FilteredEquipment}"
                          SelectedItem="{Binding Path=SelectedEquipment, Mode=TwoWay}" />
-                
+
                 <ComboBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
                           IsEnabled="{Binding Path=SelectedEquipment.IsDyeable}"
                           ItemsSource="{Binding Path=Stains}"
                           SelectedItem="{Binding Path=SelectedStain, Mode=TwoWay}"
                           Margin="2" />
-                
+
                 <Button Content="Add" Command="{Binding Path=AddCommand}"
                         Grid.Row="3" Grid.Column="0"
                         Margin="2" />
@@ -83,7 +83,7 @@
                         Margin="2" />
             </Grid>
         </TabItem>
-        <TabItem Header="Territories" DataContext="{Binding Maps}">
+        <TabItem Header="Maps" DataContext="{Binding Maps}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -120,7 +120,7 @@
                          Grid.ColumnSpan="5"
                          ItemsSource="{Binding Path=Items}"
                          SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"/>
-                
+
                 <CheckBox Grid.Column="0" Grid.Row="1"
                           IsChecked="{Binding Path=ShowPart0, Mode=TwoWay}"
                           Content="met"
@@ -141,8 +141,8 @@
                           IsChecked="{Binding Path=ShowPart4, Mode=TwoWay}"
                           Content="sho"
                           Margin="2" />
-                
-                
+
+
                 <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -161,6 +161,63 @@
                             Margin="2" />
                 </Grid>
             </Grid>
+        </TabItem>
+        <TabItem Header="Help">
+            <RichTextBox IsReadOnly="True" IsEnabled="False">
+                <FlowDocument>
+                    <Paragraph>
+                        <Bold FontSize="16">Tabs</Bold>
+                        <LineBreak />
+                        <Bold>Equipment</Bold>
+                        <LineBreak />
+                        <Run>Allows for viewing of equipment.</Run>
+                        <LineBreak />
+                        <Run>• Enter text in the box to filter displayed items.</Run>
+                        <LineBreak />
+                        <Run>• Dyes can be selected in the box below the list.</Run>
+                        <LineBreak />
+                        
+                        <Bold>Monsters</Bold>
+                        <LineBreak />
+                        <Run>Allows for viewing of monster models.</Run>
+                        <LineBreak />
+                        <Run>• Have to select an item on the deepest level (v*) to display.</Run>
+                        <LineBreak />
+
+                        <Bold>Maps</Bold>
+                        <LineBreak />
+                        <Run>Allows for viewing of maps.</Run>
+                        <LineBreak />
+                        <Run>• A lot will be missing.</Run>
+                        <LineBreak />
+
+                        <Bold>Demi-humans</Bold>
+                        <LineBreak />
+                        <Run>Allows for viewing of demi-human models (non-playable races with exchangable equipment, such as beast tribes.)</Run>
+                        <LineBreak />
+                        <Run>• Currently only shows very few models.</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold FontSize="16">Buttons</Bold>
+                        <LineBreak />
+                        <Bold>• Add:</Bold>
+                        <Run>Adds the selected object to the current viewer.</Run>
+                        <LineBreak />
+                        <Bold>• Replace:</Bold>
+                        <Run>Replaces the content of the current viewer with the selected object.</Run>
+                        <LineBreak />
+                        <Bold>• New window:</Bold>
+                        <Run>Opens the selected object in a new window.</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold FontSize="16">Controls</Bold>
+                        <LineBreak />
+                        <Run>• Move around using WASD-keys.</Run>
+                        <LineBreak />
+                        <Run>• Control camera using arrow-keys or moving the mouse while the left mouse button is pressed.</Run>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
         </TabItem>
     </TabControl>
 </Window>

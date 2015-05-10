@@ -22,7 +22,7 @@ namespace SaintCoinach.Graphics.Viewer {
         const float RotationSpeed = (float)(Math.PI / 2f);
         const float MoveSpeed = 20.0f;
         const float MouseRotationSpeedYaw = RotationSpeed / 500f;
-        const float MouseRotationSpeedPitch = RotationSpeed / 750f;
+        const float MouseRotationSpeedPitch = RotationSpeed / 300f;
 
         private Engine _Engine;
 
