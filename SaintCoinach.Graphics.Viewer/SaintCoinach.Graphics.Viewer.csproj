@@ -89,10 +89,12 @@
     <Compile Include="Effects\SkinEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
+    <Compile Include="FormEngine.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IContentComponent.cs" />
     <Compile Include="IDrawable3DComponent.cs" />
-    <Compile Include="InputService.cs" />
+    <Compile Include="IInputService.cs" />
+    <Compile Include="FormInputService.cs" />
     <Compile Include="IUpdateableComponent.cs" />
     <Compile Include="Keyboard.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>

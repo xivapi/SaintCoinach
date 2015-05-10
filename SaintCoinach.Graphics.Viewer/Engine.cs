@@ -18,15 +18,12 @@ namespace SaintCoinach.Graphics.Viewer {
     using Buffer = SharpDX.Direct3D11.Buffer;
     using Device = SharpDX.Direct3D11.Device;
 
-    public class Engine {
+    public abstract class Engine {
 
         #region Fields
-        private string _Title;
-        private RenderForm _Form;
         private Device _Device;
         private SwapChain _SwapChain;
 
-        private InputService _InputService;
         private Keyboard _Keyboard;
         private Mouse _Mouse;
         private Camera _Camera;
@@ -40,10 +37,10 @@ namespace SaintCoinach.Graphics.Viewer {
         private Texture2D _DepthStencil;
         private DepthStencilView _DepthStencilView;
 
+        private Content.Cube _Cube;
+
         private Stopwatch _RunTimer;
         private long _TotalElapsedTime;
-
-        private Content.Cube _Cube;
 
         private ComponentContainer _CoreComponents;
         private ComponentContainer _Components;
@@ -55,9 +52,9 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Properties
-        public RenderForm Form { get { return _Form; } }
+        protected Texture2D RenderTarget { get { return _RenderTarget; } }
+
         public Device Device { get { return _Device; } }
-        public InputService InputService { get { return _InputService; } }
         public Keyboard Keyboard { get { return _Keyboard; } }
         public Mouse Mouse { get { return _Mouse; } }
         public Camera Camera { get { return _Camera; } }
@@ -71,42 +68,22 @@ namespace SaintCoinach.Graphics.Viewer {
         public TextureFactory TextureFactory { get { return _TextureFactory; } }
         public EffectFactory EffectFactory { get { return _EffectFactory; } }
         public MaterialFactory MaterialFactory { get { return _MaterialFactory; } }
+        public abstract IInputService InputService { get; }
+        public Size2 ViewportSize { get; private set; }
+        public abstract bool IsActive { get; }
         #endregion
 
         #region Constructor
-        public Engine(string title) {
-            _Title = title;
-
+        protected Engine() {
             _CoreComponents = new ComponentContainer();
             _Components = new ComponentContainer();
         }
         #endregion
 
-        #region Run
-        public void Run() {
-            using (_Form = new RenderForm(_Title)) {
-                var assembly = Assembly.GetExecutingAssembly();
-                using (var iconStream = assembly.GetManifestResourceStream("SaintCoinach.Graphics.Viewer.Viewer.ico"))
-                    _Form.Icon = new System.Drawing.Icon(iconStream);
-
-                CreateDevice();
-                Form.ClientSizeChanged += Form_ClientSizeChanged;
-
-                Initialize();
-
-                Load();
-
-                _RunTimer = new Stopwatch();
-                _RunTimer.Start();
-
-                RenderLoop.Run(Form, EngineLoop);
-
-                Unload();
-            }
-        }
-        void Form_ClientSizeChanged(object sender, EventArgs e) {
+        #region Shared
+        protected void Resize(int newWidth, int newHeight) {
             var newMode = new ModeDescription(
-                Form.ClientSize.Width, Form.ClientSize.Height,
+                newWidth, newHeight,
                 new Rational(60, 1), Format.R8G8B8A8_UNorm);
             Device.ImmediateContext.OutputMerger.ResetTargets();
 
@@ -116,19 +93,19 @@ namespace SaintCoinach.Graphics.Viewer {
             _DepthStencilView.Dispose();
             _DepthStencil.Dispose();
 
-            _SwapChain.ResizeBuffers(1, Form.ClientSize.Width, Form.ClientSize.Height, Format.Unknown, SwapChainFlags.None);
+            _SwapChain.ResizeBuffers(1, newWidth, newHeight, Format.Unknown, SwapChainFlags.None);
 
-            CreateView();
+            CreateView(newWidth, newHeight);
         }
-        private void CreateDevice() {
+        protected void CreateDevice(IntPtr handle, int width, int height) {
             var desc = new SwapChainDescription {
                 BufferCount = 1,
                 Flags = SwapChainFlags.None,
                 IsWindowed = true,
                 ModeDescription = new ModeDescription(
-                    Form.ClientSize.Width, Form.ClientSize.Height,
+                    width, height,
                     new Rational(60, 1), Format.R8G8B8A8_UNorm),
-                OutputHandle = Form.Handle,
+                OutputHandle = handle,
                 SampleDescription = new SampleDescription(8, 0), //new SampleDescription(8, Device.CheckMultisampleQualityLevels(Format.R8G8B8A8_UNorm, 8)),
                 SwapEffect = SwapEffect.Discard,
                 Usage = Usage.RenderTargetOutput | Usage.BackBuffer,
@@ -137,9 +114,9 @@ namespace SaintCoinach.Graphics.Viewer {
             SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out _Device, out _SwapChain);
 
             var factory = _SwapChain.GetParent<Factory>();
-            factory.MakeWindowAssociation(Form.Handle, WindowAssociationFlags.IgnoreAll);
+            //factory.MakeWindowAssociation(Form.Handle, WindowAssociationFlags.IgnoreAll); // No full-screen for you
 
-            CreateView();
+            CreateView(width, height);
 
             var depthDesc = DepthStencilStateDescription.Default();
             _StencilState = new DepthStencilState(Device, depthDesc);
@@ -164,7 +141,8 @@ namespace SaintCoinach.Graphics.Viewer {
                 IsMultisampleEnabled = true,
             });
         }
-        private void CreateView() {
+        private void CreateView(int width, int height) {
+            ViewportSize = new Size2(width, height);
             _RenderTarget = Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
             _RenderTargetView = new RenderTargetView(Device, _RenderTarget);
 
@@ -190,13 +168,12 @@ namespace SaintCoinach.Graphics.Viewer {
             
             Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
             
-            Device.ImmediateContext.Rasterizer.SetViewport(new Viewport(0, 0, Form.ClientSize.Width, Form.ClientSize.Height));
+            Device.ImmediateContext.Rasterizer.SetViewport(new Viewport(0, 0, width, height));
         }
         #endregion
 
         #region Initialize
         protected virtual void Initialize() {
-            _InputService = new InputService(Form);
             CoreComponents.Add(_Keyboard = new Keyboard(this));
             CoreComponents.Add(_Mouse = new Mouse(this));
             CoreComponents.Add(_Camera = new Camera(this));
@@ -209,7 +186,7 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Content
-        private void Load() {
+        protected void Load() {
             CoreComponents.LoadContent();
             Components.LoadContent();
 
@@ -220,7 +197,7 @@ namespace SaintCoinach.Graphics.Viewer {
         }
         protected virtual void LoadContent() { }
 
-        private void Unload() {
+        protected void Unload() {
             Components.UnloadContent();
             CoreComponents.UnloadContent();
 
@@ -239,12 +216,19 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Loop
-        private void EngineLoop() {
+        protected void EngineLoop() {
+            if (_RunTimer == null) {
+                _RunTimer = new Stopwatch();
+                _RunTimer.Start();
+            }
             var elapsed = _RunTimer.Elapsed;
             _RunTimer.Restart();
             _TotalElapsedTime += elapsed.Ticks;
             var time = new EngineTime(TimeSpan.FromTicks(_TotalElapsedTime), elapsed);
 
+            EngineLoop(time);
+        }
+        protected void EngineLoop(EngineTime time) {
             Update(time);
             Draw(time);
 

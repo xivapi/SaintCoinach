@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
 
-    public class InputService {
+    public class FormInputService : IInputService {
         #region Fields
         private List<Keys> _DownKeys = new List<Keys>();
         private Point _MousePosition;
@@ -20,7 +20,7 @@ namespace SaintCoinach.Graphics.Viewer {
         public Point MousePosition { get { return _MousePosition; } }
 
         #region Constructor
-        public InputService(Form form) {
+        public FormInputService(Form form) {
             form.KeyDown += Form_KeyDown;
             form.KeyUp += Form_KeyUp;
             form.MouseMove += Form_MouseMove;

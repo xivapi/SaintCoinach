@@ -100,9 +100,9 @@ namespace SaintCoinach.Graphics.Viewer {
 
             var amount = (float)(time.ElapsedTime.TotalMilliseconds / 2000f);
             Vector3 moveVector = new Vector3(0, 0, 0);
-            var aspectRatio = (float)(_Engine.Form.ClientSize.Width / (float)_Engine.Form.ClientSize.Height);
+            var aspectRatio = (float)(_Engine.ViewportSize.Width / (float)_Engine.ViewportSize.Height);
 
-            if (_Engine.Form.Focused) {
+            if (_Engine.IsActive) {
                 var modFactor = 2f;
                 if (_Engine.Keyboard.IsKeyDown(Keys.Space))
                     modFactor *= 2f;

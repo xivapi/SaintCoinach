@@ -14,10 +14,10 @@ namespace Godbert {
             internal IEnumerable<IComponent> Replacement;
             internal string SetTitle;
 
-            private Engine _Engine;
+            private FormEngine _Engine;
             private ComponentContainer _InnerContainer = new ComponentContainer();
 
-            public ComponentInjector(Engine engine) {
+            public ComponentInjector(FormEngine engine) {
                 _Engine = engine;
             }
 
@@ -92,7 +92,7 @@ namespace Godbert {
         #endregion
 
         #region Properties
-        public Engine Engine { get; private set; }
+        public FormEngine Engine { get; private set; }
         #endregion
 
         #region Event
@@ -101,7 +101,7 @@ namespace Godbert {
 
         #region Constructor
         public EngineInstance(string title) {
-            Engine = new Engine(title);
+            Engine = new FormEngine(title);
             Engine.Components.Add(_Injector = new ComponentInjector(Engine));
         }
         #endregion
