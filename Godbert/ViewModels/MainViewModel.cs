@@ -21,6 +21,12 @@ namespace Godbert.ViewModels {
         public MonstersViewModel Monsters { get; private set; }
         public MapsViewModel Maps { get; private set; }
         public DemihumanViewModel Demihuman { get; private set; }
+        public DataViewModel Data { get; private set; }
+
+        public bool IsEnglish { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.English; } }
+        public bool IsJapanese { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.Japanese; } }
+        public bool IsFrench { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.French; } }
+        public bool IsGerman { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.German; } }
         #endregion
 
         #region Constructor
@@ -31,35 +37,24 @@ namespace Godbert.ViewModels {
             Monsters = new MonstersViewModel(this);
             Maps = new MapsViewModel(this);
             Demihuman = new DemihumanViewModel(this);
+            Data = new DataViewModel(Realm);
         }
         #endregion
 
         #region Commands
-        private ICommand _TestCommand;
-        public ICommand TestCommand { get { return _TestCommand ?? (_TestCommand = new DelegateCommand(OnTest)); } }
+        private ICommand _LanguageCommand;
+        public ICommand LanguageCommand { get { return _LanguageCommand ?? (_LanguageCommand = new Commands.DelegateCommand<SaintCoinach.Ex.Language>(OnLanguage)); } }
 
+        private void OnLanguage(SaintCoinach.Ex.Language newLanguage) {
+            Realm.GameData.ActiveLanguage = newLanguage;
 
-        static string[] TestItems = new string[] {
-            "Lionliege Breeches",
-            "Lionliege Cuirass",
-            "Lionliege Sabatons",
-            "Lionliege Armet",
-            "Lionliege Gauntlets",
-        };
-        int TestItemIndex = 0;
-        private void OnTest() {
-            if (TestItemIndex >= TestItems.Length)
-                return;
+            OnPropertyChanged(() => IsEnglish);
+            OnPropertyChanged(() => IsJapanese);
+            OnPropertyChanged(() => IsGerman);
+            OnPropertyChanged(() => IsFrench);
 
-            var eq = (SaintCoinach.Xiv.Items.Equipment)Realm.GameData.GetSheet<SaintCoinach.Xiv.Item>().First(i => i.Name == TestItems[TestItemIndex]);
-            TestItemIndex++;
-            SaintCoinach.Graphics.ImcVariant imcVar;
-            var mdlDef = eq.GetModel(101, out imcVar);
-            var mdlVar = new SaintCoinach.Graphics.ModelVariantIdentifier {
-                ImcVariant = imcVar,
-                StainKey = 14
-            };
-            EngineHelper.AddToLast("Lionsmane", (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, mdlVar, mdlDef, SaintCoinach.Graphics.ModelQuality.High));
+            Equipment.Refresh();
+            Maps.Refresh();
         }
         #endregion
     }

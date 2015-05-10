@@ -13,15 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Godbert {
+namespace Godbert.Views {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DemihumansView.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class DemihumansView : UserControl {
+        public DemihumansView() {
             InitializeComponent();
         }
 
+        private void DemihumanTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            var vm = (ViewModels.DemihumanViewModel)DataContext;
+            vm.SelectedEntry = DemihumanTreeView.SelectedItem;
+        }
     }
-
 }

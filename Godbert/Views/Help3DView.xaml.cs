@@ -13,15 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Godbert {
+namespace Godbert.Views {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Help3DView.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class Help3DView : UserControl {
+        public Help3DView() {
             InitializeComponent();
         }
-
     }
-
 }

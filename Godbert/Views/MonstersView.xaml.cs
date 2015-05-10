@@ -13,15 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Godbert {
+namespace Godbert.Views {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MonstersView.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class MonstersView : UserControl {
+        public MonstersView() {
             InitializeComponent();
         }
-
+        private void MonsterTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            var vm = (ViewModels.MonstersViewModel)DataContext;
+            vm.SelectedEntry = MonsterTreeView.SelectedItem;
+        }
     }
-
 }

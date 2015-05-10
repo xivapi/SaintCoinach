@@ -68,9 +68,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Controls\AttachedImage.cs" />
+    <Compile Include="Controls\ColumnFactory.cs" />
+    <Compile Include="Controls\IRawDataColumn.cs" />
+    <Compile Include="Controls\RawDataGrid.cs" />
+    <Compile Include="Controls\RawDataGridColorColumn.cs" />
+    <Compile Include="Controls\RawDataGridImageColumn.cs" />
+    <Compile Include="Controls\RawDataGridKeyColumn.cs" />
+    <Compile Include="Controls\RawDataGridTextColumn.cs" />
+    <Compile Include="Controls\RawDataItemsSource.cs" />
     <Compile Include="EngineHelper.cs" />
     <Compile Include="EngineInstance.cs" />
+    <Compile Include="NaturalComparer.cs" />
     <Compile Include="ObservableBase.cs" />
+    <Compile Include="ViewModels\DataViewModel.cs" />
     <Compile Include="ViewModels\DemihumanViewModel.cs" />
     <Compile Include="ViewModels\EquipmentViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -80,6 +91,24 @@
     <Compile Include="Models\ModelCharaSub.cs" />
     <Compile Include="Models\ModelCharaVariant.cs" />
     <Compile Include="ViewModels\MonstersViewModel.cs" />
+    <Compile Include="Views\DataView.xaml.cs">
+      <DependentUpon>DataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DemihumansView.xaml.cs">
+      <DependentUpon>DemihumansView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EquipmentView.xaml.cs">
+      <DependentUpon>EquipmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Help3DView.xaml.cs">
+      <DependentUpon>Help3DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapsView.xaml.cs">
+      <DependentUpon>MapsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonstersView.xaml.cs">
+      <DependentUpon>MonstersView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +121,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DemihumansView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Help3DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MapsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MonstersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -131,9 +184,7 @@
       <Name>SaintCoinach</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Godbert.ico" />
   </ItemGroup>

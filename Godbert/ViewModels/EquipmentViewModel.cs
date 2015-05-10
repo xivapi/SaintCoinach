@@ -129,5 +129,12 @@ namespace Godbert.ViewModels {
             }
         }
         #endregion
+
+        #region Refresh
+        public void Refresh() {
+            _FilteredEquipment = _FilteredEquipment.ToArray();
+            OnPropertyChanged(() => FilteredEquipment);
+        }
+        #endregion
     }
 }

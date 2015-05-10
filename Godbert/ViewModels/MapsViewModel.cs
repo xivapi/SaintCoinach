@@ -60,5 +60,12 @@ namespace Godbert.ViewModels {
             }
         }
         #endregion
+
+        #region Refresh
+        public void Refresh() {
+            _Maps = _Maps.ToArray();
+            OnPropertyChanged(() => Maps);
+        }
+        #endregion
     }
 }

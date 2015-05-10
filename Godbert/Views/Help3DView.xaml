@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Godbert.Views.Help3DView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <RichTextBox IsReadOnly="True" IsEnabled="False">
+            <FlowDocument>
+                <Paragraph>
+                    <Bold FontSize="16">Tabs</Bold>
+                    <LineBreak />
+                    <Bold>Equipment</Bold>
+                    <LineBreak />
+                    <Run>Allows for viewing of equipment.</Run>
+                    <LineBreak />
+                    <Run>• Enter text in the box to filter displayed items.</Run>
+                    <LineBreak />
+                    <Run>• Dyes can be selected in the box below the list.</Run>
+                    <LineBreak />
+
+                    <Bold>Monsters</Bold>
+                    <LineBreak />
+                    <Run>Allows for viewing of monster models.</Run>
+                    <LineBreak />
+                    <Run>• Have to select an item on the deepest level (v*) to display.</Run>
+                    <LineBreak />
+                    <Run>• Click the</Run>
+                    <Italic>Brute-force</Italic>
+                    <Run>button to search for monster models not present in the game's internal list (unlikely to find anything new.)</Run>
+                    <LineBreak />
+
+                    <Bold>Maps</Bold>
+                    <LineBreak />
+                    <Run>Allows for viewing of maps.</Run>
+                    <LineBreak />
+                    <Run>• A lot will be missing.</Run>
+                    <LineBreak />
+
+                    <Bold>Demi-humans</Bold>
+                    <LineBreak />
+                    <Run>Allows for viewing of demi-human models (non-playable races with exchangable equipment, such as beast tribes.)</Run>
+                    <LineBreak />
+                    <Run>• Click the</Run>
+                    <Italic>Brute-force</Italic>
+                    <Run>button to search for all demi-human models. This is recommended since the starting list only includes very few.</Run>
+                    <LineBreak />
+                </Paragraph>
+                <Paragraph>
+                    <Bold FontSize="16">Buttons</Bold>
+                    <LineBreak />
+                    <Bold>• Add:</Bold>
+                    <Run>Adds the selected object to the current viewer.</Run>
+                    <LineBreak />
+                    <Bold>• Replace:</Bold>
+                    <Run>Replaces the content of the current viewer with the selected object.</Run>
+                    <LineBreak />
+                    <Bold>• New window:</Bold>
+                    <Run>Opens the selected object in a new window.</Run>
+                </Paragraph>
+                <Paragraph>
+                    <Bold FontSize="16">Controls</Bold>
+                    <LineBreak />
+                    <Run>• Move around using WASD-keys.</Run>
+                    <LineBreak />
+                    <Run>• Control camera using arrow-keys or moving the mouse while the left mouse button is pressed.</Run>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
+</UserControl>
