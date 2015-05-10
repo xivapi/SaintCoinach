@@ -115,11 +115,10 @@ namespace SaintCoinach.Graphics.Viewer {
             Device.ImmediateContext.OutputMerger.SetDepthStencilState(_StencilState);
             Device.ImmediateContext.OutputMerger.SetBlendState(_BlendState);
 
-            Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, new RasterizerStateDescription {
-                CullMode = CullMode.Front,
-                FillMode = FillMode.Solid,
-                IsMultisampleEnabled = RenderTarget.Description.SampleDescription.Count > 1,
-            });
+            var raster = RasterizerStateDescription.Default();
+            raster.CullMode = CullMode.Front;
+            raster.IsMultisampleEnabled = RenderTarget.Description.SampleDescription.Count > 1;
+            Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, raster);
         }
 
         protected void CreateView(int width, int height) {
