@@ -52,20 +52,20 @@ return color;
 float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular)
 {
     float4 texNormal = g_Normal.Sample(g_NormalSampler, pin.UV.xy);
-        float a = texNormal.a;
+    float a = texNormal.b;
     clip(a <= 0.5 ? -1 : 1);
     float3 bump = (texNormal.xyz - 0.5) * 2.0;
 
-        float3 binorm = cross(pin.NormalWS.xyz, pin.Tangent1WS.xyz);
-        float3 bumpNormal = (bump.x * pin.Tangent1WS) + (bump.y * binorm) + (bump.z * pin.NormalWS);
-        bumpNormal = normalize(bumpNormal);
+    float3 binorm = cross(pin.NormalWS.xyz, pin.Tangent1WS.xyz);
+    float3 bumpNormal = (bump.x * pin.Tangent1WS) + (bump.y * binorm) + (bump.z * pin.NormalWS);
+    bumpNormal = normalize(bumpNormal);
 
     float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
-        Lighting light = GetLight(m_EyePosition, eyeVector, bumpNormal);
+    Lighting light = GetLight(m_EyePosition, eyeVector, bumpNormal);
 
     float4 color = float4(diffuse.rgb, a);
 
-        color.rgb *= light.Diffuse.rgb;
+    color.rgb *= light.Diffuse.rgb;
     color.rgb += light.Specular.rgb * specular.rgb * color.a;
 
     return color;
