@@ -70,6 +70,43 @@ namespace SaintCoinach.Graphics.Viewer {
         public abstract IInputService InputService { get; }
         public Size2 ViewportSize { get; private set; }
         public abstract bool IsActive { get; }
+
+        public DepthStencilState DepthStencilState {
+            get { return _StencilState; }
+            protected set {
+                if (value == _StencilState)
+                    return;
+                if (value == null)
+                    throw new ArgumentNullException();
+                if (_StencilState != null)
+                    _StencilState.Dispose();
+                _StencilState = value;
+            }
+        }
+        public BlendState BlendState {
+            get { return _BlendState; }
+            protected set {
+                if (value == _BlendState)
+                    return;
+                if (value == null)
+                    throw new ArgumentNullException();
+                if (_BlendState != null)
+                    _BlendState.Dispose();
+                _BlendState = value;
+            }
+        }
+        public RasterizerState RasterizerState {
+            get { return _RasterizerState; }
+            protected set {
+                if (value == _RasterizerState)
+                    return;
+                if (value == null)
+                    throw new ArgumentNullException();
+                if (_RasterizerState != null)
+                    _RasterizerState.Dispose();
+                _RasterizerState = value;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -101,7 +138,7 @@ namespace SaintCoinach.Graphics.Viewer {
             var depthDesc = DepthStencilStateDescription.Default();
             _StencilState = new DepthStencilState(Device, depthDesc);
 
-            var blendDesc = new BlendStateDescription();
+            var blendDesc = BlendStateDescription.Default();
             blendDesc.RenderTarget[0].IsBlendEnabled = true;
             blendDesc.RenderTarget[0].SourceBlend = BlendOption.SourceAlpha;
             blendDesc.RenderTarget[0].DestinationBlend = BlendOption.InverseSourceAlpha;
@@ -112,13 +149,11 @@ namespace SaintCoinach.Graphics.Viewer {
             blendDesc.RenderTarget[0].RenderTargetWriteMask = ColorWriteMaskFlags.All;
             _BlendState = new BlendState(Device, blendDesc);
 
-            Device.ImmediateContext.OutputMerger.SetDepthStencilState(_StencilState);
-            Device.ImmediateContext.OutputMerger.SetBlendState(_BlendState);
-
             var raster = RasterizerStateDescription.Default();
             raster.CullMode = CullMode.Front;
             raster.IsMultisampleEnabled = RenderTarget.Description.SampleDescription.Count > 1;
-            Device.ImmediateContext.Rasterizer.State = _RasterizerState = new RasterizerState(Device, raster);
+
+            _RasterizerState = new RasterizerState(Device, raster);
         }
 
         protected void CreateView(int width, int height) {
@@ -144,9 +179,6 @@ namespace SaintCoinach.Graphics.Viewer {
                 Dimension = DepthStencilViewDimension.Texture2DMultisampled,
                 Format = dsTexDesc.Format
             });
-
-
-            Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
 
             Device.ImmediateContext.Rasterizer.SetViewport(new Viewport(0, 0, width, height));
         }
@@ -225,6 +257,11 @@ namespace SaintCoinach.Graphics.Viewer {
             var world = Matrix.Identity;
             var view = Camera.View;
             var proj = Camera.Projection;
+
+            Device.ImmediateContext.OutputMerger.SetDepthStencilState(DepthStencilState);
+            Device.ImmediateContext.OutputMerger.SetBlendState(BlendState);
+            Device.ImmediateContext.Rasterizer.State = RasterizerState;
+            Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
 
             Device.ImmediateContext.ClearRenderTargetView(_RenderTargetView, Color.CornflowerBlue);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
