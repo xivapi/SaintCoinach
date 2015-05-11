@@ -82,7 +82,7 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Bone.cs" />
-    <Compile Include="Graphics\ByteArrayExtensions.cs" />
+    <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Graphics\ImcFile.cs" />
     <Compile Include="Graphics\ImcPart.cs" />
     <Compile Include="Graphics\ImcVariant.cs" />
@@ -440,6 +440,14 @@
     <Compile Include="IO\FileType.cs" />
     <Compile Include="IO\PackCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sound\ScdOggCryptType.cs" />
+    <Compile Include="Sound\ScdAdpcmEntry.cs" />
+    <Compile Include="Sound\ScdCodec.cs" />
+    <Compile Include="Sound\ScdEntry.cs" />
+    <Compile Include="Sound\ScdEntryHeader.cs" />
+    <Compile Include="Sound\ScdFile.cs" />
+    <Compile Include="Sound\ScdHeader.cs" />
+    <Compile Include="Sound\ScdOggEntry.cs" />
     <Compile Include="Xiv\ActionBase.cs" />
     <Compile Include="Xiv\ChocoboRace.cs" />
     <Compile Include="Xiv\ChocoboRaceAbility.cs" />
@@ -464,7 +472,6 @@
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
-    <Compile Include="Sound\ScdDecoder.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="UpdateReport.cs" />
     <Compile Include="Xiv\Achievement.cs" />

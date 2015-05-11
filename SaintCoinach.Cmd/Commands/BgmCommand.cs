@@ -31,22 +31,38 @@ namespace SaintCoinach.Cmd.Commands {
                         continue;
 
                     IO.File file;
-                    var fInfo = new System.IO.FileInfo(System.IO.Path.Combine(_Realm.GameVersion, filePath + ".ogg"));
+
                     if (_Realm.Packs.TryGetFile(filePath, out file)) {
 
-                        if (!fInfo.Directory.Exists)
-                            fInfo.Directory.Create();
+                        var scdFile = new Sound.ScdFile(file);
+                        for (var i = 0; i < scdFile.ScdHeader.EntryCount; ++i) {
+                            var e = scdFile.Entries[i];
+                            if (e == null)
+                                continue;
 
-                        var raw = file.GetData();
-                        var decoder = new Sound.ScdDecoder(raw);
-                        var decoded = decoder.GetData();
+                            var targetPath = System.IO.Path.Combine(_Realm.GameVersion, filePath + "-" + i.ToString());
 
-                        System.IO.File.WriteAllBytes(fInfo.FullName, decoded);
+                            switch (e.Header.Codec) {
+                                case Sound.ScdCodec.MSADPCM:
+                                    targetPath += ".wav";
+                                    break;
+                                case Sound.ScdCodec.OGG:
+                                    targetPath += ".ogg";
+                                    break;
+                                default:
+                                    throw new NotSupportedException();
+                            }
+
+                            var fInfo = new System.IO.FileInfo(targetPath);
+                            
+                            if (!fInfo.Directory.Exists)
+                                fInfo.Directory.Create();
+                            System.IO.File.WriteAllBytes(fInfo.FullName, e.GetDecoded());
+                        }
 
                         ++successCount;
                     } else {
                         OutputError("File {0} not found.", filePath);
-                        try { if (fInfo.Exists) { fInfo.Delete(); } } catch { }
                         ++failCount;
                     }
                 } catch(Exception e) {

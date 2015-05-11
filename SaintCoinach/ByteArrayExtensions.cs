@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics {
+namespace SaintCoinach {
     public static class ByteArrayExtensions {
         public static T ToStructure<T>(this byte[] bytes, int offset) where T : struct {
             return ToStructure<T>(bytes, ref offset);
