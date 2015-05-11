@@ -34,9 +34,6 @@
             </MenuItem>
         </Menu>
         <TabControl>
-            <TabItem Header="Data" DataContext="{Binding Path=Data}">
-                <views:DataView />
-            </TabItem>
             <TabItem Header="3D">
                 <TabControl>
                     <TabItem Header="Equipment" DataContext="{Binding Equipment}">
@@ -55,6 +52,9 @@
                         <views:Help3DView />
                     </TabItem>
                 </TabControl>
+            </TabItem>
+            <TabItem Header="Data" DataContext="{Binding Path=Data}">
+                <views:DataView />
             </TabItem>
         </TabControl>
     </DockPanel>
