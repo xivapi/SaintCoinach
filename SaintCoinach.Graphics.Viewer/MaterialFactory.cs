@@ -38,9 +38,11 @@ namespace SaintCoinach.Graphics.Viewer {
                 case "bg.shpk":
                     content = new Content.BgMaterial(_Engine, material);
                     break;
-                default:
-                    content = null;
+                case "iris.shpk":
+                    content = new Content.IrisMaterial(_Engine, material);
                     break;
+                default:
+                    throw new NotSupportedException(string.Format("Shader type {0} is not supported.", material.Shader));
             }
 
             _Materials.Add(key, content);

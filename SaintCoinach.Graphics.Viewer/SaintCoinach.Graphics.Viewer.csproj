@@ -70,6 +70,7 @@
     <Compile Include="Content\ContentTerritory.cs" />
     <Compile Include="Content\Cube.cs" />
     <Compile Include="Content\HairMaterial.cs" />
+    <Compile Include="Content\IrisMaterial.cs" />
     <Compile Include="Content\MaterialBase.cs" />
     <Compile Include="Content\ContentMesh.cs" />
     <Compile Include="Content\ContentMeshPart.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Effects\DirectionalLight.cs" />
     <Compile Include="Effects\EffectTextureVariable.cs" />
     <Compile Include="Effects\HairEffect.cs" />
+    <Compile Include="Effects\IrisEffect.cs" />
     <Compile Include="Effects\SkinEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
@@ -123,6 +125,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Lighting.fxh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\Iris.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Skin.fx">
