@@ -185,12 +185,12 @@ namespace SaintCoinach.Text {
         static void DecodeSheet(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeVariable(tagData, ref o, output);     // Sheet name
+            DecodeExpression(tagData, ref o, output);     // Sheet name
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Row
+            DecodeExpression(tagData, ref o, output);     // Row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Column
+                DecodeExpression(tagData, ref o, output);     // Column
             }
             output.Write(")/>");
         }
@@ -207,54 +207,54 @@ namespace SaintCoinach.Text {
         static void DecodeSheetEn(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeVariable(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output);     // Target sheet name
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output);     // Attributive row
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output);     // Attributive column?
             }
             output.Write(")/>");
         }
         static void DecodeSheetDe(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeVariable(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output);     // Target sheet name
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output);     // Attributive row
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output);     // Attributive column?
             }
             output.Write(")/>");
         }
         static void DecodeSheetFr(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeVariable(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output);     // Target sheet name
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output);     // Attributive row
             output.Write(',');
-            DecodeVariable(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeVariable(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output);     // Attributive column?
             }
             output.Write(")/>");
         }
@@ -267,18 +267,18 @@ namespace SaintCoinach.Text {
 
             // Condition
             output.Write("<{0}(", type);
-            DecodeVariable(tagData, ref offset, output);
+            DecodeExpression(tagData, ref offset, output);
             output.Write(")>");
 
             // If true
             //DecodeIfResult(tagData, output, ref offset);
-            DecodeVariable(tagData, ref offset, output);
+            DecodeExpression(tagData, ref offset, output);
 
             if (offset != tagData.Length) {
                 // Else
                 output.Write("<else/>");
                 //DecodeIfResult(tagData, output, ref offset);
-                DecodeVariable(tagData, ref offset, output);
+                DecodeExpression(tagData, ref offset, output);
             }
 
             // End
@@ -318,86 +318,71 @@ namespace SaintCoinach.Text {
         #endregion
 
         #region Shared
-        static void DecodeVariable(byte[] input, ref int offset, StreamWriter output) {
+        static void DecodeExpression(byte[] input, ref int offset, StreamWriter output) {
             var t = input[offset++];
             if (t < 0xE0) {
                 output.Write(t - 1);
                 return;
             }
 
-            var varType = (VariableType)t;
-            /*
-            if (t == 0xFF) {
-                ++offset;
-                int endOfLength;
-                var len = GetInteger(input, offset, out endOfLength);
-                var innerLen = len - endOfLength + offset;
-
-                DecodeBinary(input, endOfLength, len, output);
-
-                offset = endOfLength + len;
-            } else {
-                var v = GetInteger(input, offset, out offset);
-                output.Write(v);
-            }*/
-
+            var exprType = (ExpressionType)t;
             // These types don't need the type ID.
-            switch (varType) {
-                case VariableType.Decode: {
+            switch (exprType) {
+                case ExpressionType.Decode: {
                         var len = GetInteger(input, ref offset);
                         DecodeBinary(input, offset, len, output);
                         offset += len;
                     } return;
-                case VariableType.Byte:
+                case ExpressionType.Byte:
                     output.Write(GetInteger(input, IntegerType.Byte, ref offset));
                     return;
-                case VariableType.Int16_MinusOne:
+                case ExpressionType.Int16_MinusOne:
                     output.Write(GetInteger(input, IntegerType.Int16, ref offset) - 1);
                     return;
-                case VariableType.Int16_1:
-                case VariableType.Int16_2:
+                case ExpressionType.Int16_1:
+                case ExpressionType.Int16_2:
                     output.Write(GetInteger(input, IntegerType.Int16, ref offset));
                     return;
-                case VariableType.Int24_MinusOne:
+                case ExpressionType.Int24_MinusOne:
                     output.Write(GetInteger(input, IntegerType.Int24, ref offset) - 1);
                     return;
-                case VariableType.Int24:
+                case ExpressionType.Int24:
                     output.Write(GetInteger(input, IntegerType.Int24, ref offset));
                     return;
             }
 
-            output.Write("{0}(", varType);
-            switch (varType) {
-                case VariableType.LessThanOrEqualTo:
-                    DecodeVariable(input, ref offset, output);
+            output.Write("{0}(", exprType);
+            switch (exprType) {
+                case ExpressionType.LessThanOrEqualTo:
+                    DecodeExpression(input, ref offset, output);
                     output.Write(',');
-                    DecodeVariable(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.Value1:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.Value1:
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.GreaterThanOrEqualTo:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.GreaterThanOrEqualTo:
+                    DecodeExpression(input, ref offset, output);
                     output.Write(',');
-                    DecodeVariable(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.Invert:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.Invert:
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.Equal:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.Equal:
+                    DecodeExpression(input, ref offset, output);
                     output.Write(',');
-                    DecodeVariable(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.InputParameter:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.InputParameter:
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.PlayerParameter:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.PlayerParameter:
+                    DecodeExpression(input, ref offset, output);
                     break;
-                case VariableType.UnknownParameter1:
-                case VariableType.UnknownParameter2:
-                    DecodeVariable(input, ref offset, output);
+                case ExpressionType.UnknownParameter1:
+                case ExpressionType.UnknownParameter2:
+                    DecodeExpression(input, ref offset, output);
                     break;
                 default:
                     throw new NotSupportedException();

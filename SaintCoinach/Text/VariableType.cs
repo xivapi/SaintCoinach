@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
-    public enum VariableType : byte {
-        LessThanOrEqualTo = 0xE0,       // Followed by two variables
+    public enum ExpressionType : byte {
+        GreaterThanOrEqualTo = 0xE0,    // Followed by two variables
         Value1 = 0xE1,                  // Followed by one variable
-        GreaterThanOrEqualTo = 0xE2,    // Followed by two variables
+        LessThanOrEqualTo = 0xE2,       // Followed by two variables
         Invert = 0xE3,                  // Followed by one variable
         Equal = 0xE4,                   // Followed by two variables
         InputParameter = 0xE8,          // Followed by one variable
