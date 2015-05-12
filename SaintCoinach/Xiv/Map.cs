@@ -1,5 +1,7 @@
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
@@ -7,8 +9,8 @@ namespace SaintCoinach.Xiv {
     /// </summary>
     public class Map : XivRow {
         #region Fields
-        private ImageFile _MediumImage;
-        private ImageFile _SmallImage;
+        private Image _MediumImage;
+        private Image _SmallImage;
         #endregion
 
         #region Properties
@@ -54,17 +56,17 @@ namespace SaintCoinach.Xiv {
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
 
         /// <summary>
-        ///     Gets the medium <see cref="ImageFile" /> of the current map.
+        ///     Gets the masked medium <see cref="Image" /> of the current map.
         /// </summary>
-        public ImageFile MediumImage
+        public Image MediumImage
         {
             get { return _MediumImage ?? (_MediumImage = BuildImage("m")); }
         }
 
         /// <summary>
-        ///     Gets the small <see cref="ImageFile" /> of the current map.
+        ///     Gets the masked small <see cref="Image" /> of the current map.
         /// </summary>
-        public ImageFile SmallImage
+        public Image SmallImage
         {
             get { return _SmallImage ?? (_SmallImage = BuildImage("s")); }
         }
@@ -95,20 +97,72 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Build
-        private ImageFile BuildImage(string size) {
-            const string MapFileFormat = "ui/map/{0}/{1}_{2}.tex";
+        private Image BuildImage(string size) {
+            const string MapFileFormat = "ui/map/{0}/{1}{2}_{3}.tex";
 
             if (string.IsNullOrEmpty(Id))
                 return null;
 
             var fileName = Id.Replace("/", "");
-            var filePath = string.Format(MapFileFormat, Id, fileName, size);
+            var pack = Sheet.Collection.PackCollection;
 
+            var filePath = string.Format(MapFileFormat, Id, fileName, string.Empty, size);
             IO.File file;
-            if (Sheet.Collection.PackCollection.TryGetFile(filePath, out file))
-                return new ImageFile(file.Pack, file.CommonHeader);
+            if (!pack.TryGetFile(filePath, out file))
+                return null;
 
-            return null;
+            var imageFile = new ImageFile(file.Pack, file.CommonHeader);
+
+            var maskPath = string.Format(MapFileFormat, Id, fileName, "m", size);
+            IO.File mask;
+            if (pack.TryGetFile(maskPath, out mask))
+            {
+                // Multiply the mask against the file.
+                var maskFile = new ImageFile(mask.Pack, mask.CommonHeader);
+                return MultiplyBlend(imageFile, maskFile);
+            }
+
+            return imageFile.GetImage();
+        }
+
+        private static Image MultiplyBlend(ImageFile image, ImageFile mask)
+        {
+            // Some assumptions made about the number of bytes per pixel here.
+            const int BytesPerPixel = 4;
+
+            var aSrc = (Bitmap)image.GetImage();
+            var bSrc = (Bitmap)mask.GetImage();
+            var result = new Bitmap(aSrc.Width, aSrc.Height, aSrc.PixelFormat);
+            result.MakeTransparent();
+
+            var rect = new Rectangle(0, 0, aSrc.Width, aSrc.Height);
+            var aData = aSrc.LockBits(rect, ImageLockMode.ReadOnly, aSrc.PixelFormat);
+            var bData = bSrc.LockBits(rect, ImageLockMode.ReadOnly, bSrc.PixelFormat);
+            var rData = result.LockBits(rect, ImageLockMode.WriteOnly, result.PixelFormat);
+
+            unsafe
+            {
+                for (var y = 0; y < aSrc.Height; y++)
+                {
+                    var a = (byte*)aData.Scan0 + y * aData.Stride;
+                    var b = (byte*)bData.Scan0 + y * bData.Stride;
+                    var r = (byte*)rData.Scan0 + y * rData.Stride;
+
+                    for (var x = 0; x < bSrc.Width * BytesPerPixel; x += BytesPerPixel)
+                    {
+                        r[x] = (byte)((a[x] * b[x]) / 255); // Blue
+                        r[x + 1] = (byte)((a[x + 1] * b[x + 1]) / 255); // Green
+                        r[x + 2] = (byte)((a[x + 2] * b[x + 2]) / 255); // Red
+                        r[x + 3] = a[x + 3]; // Preserve alpha
+                    }
+                }
+            }
+
+            aSrc.UnlockBits(aData);
+            bSrc.UnlockBits(bData);
+            result.UnlockBits(rData);
+
+            return result;
         }
         #endregion
 
