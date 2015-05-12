@@ -1,10 +1,16 @@
 using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a map.
     /// </summary>
     public class Map : XivRow {
+        #region Fields
+        private ImageFile _MediumImage;
+        private ImageFile _SmallImage;
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -47,6 +53,22 @@ namespace SaintCoinach.Xiv {
         /// <value>The <see cref="TerritoryType" /> for the current map.</value>
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
 
+        /// <summary>
+        ///     Gets the medium <see cref="ImageFile" /> of the current map.
+        /// </summary>
+        public ImageFile MediumImage
+        {
+            get { return _MediumImage ?? (_MediumImage = BuildImage("m")); }
+        }
+
+        /// <summary>
+        ///     Gets the small <see cref="ImageFile" /> of the current map.
+        /// </summary>
+        public ImageFile SmallImage
+        {
+            get { return _SmallImage ?? (_SmallImage = BuildImage("s")); }
+        }
+
         #endregion
 
         #region Constructors
@@ -69,6 +91,24 @@ namespace SaintCoinach.Xiv {
             if (t.Terrain == null && t.LgbFiles.Length == 0)
                 return null;
             return t;
+        }
+        #endregion
+
+        #region Build
+        private ImageFile BuildImage(string size) {
+            const string MapFileFormat = "ui/map/{0}/{1}_{2}.tex";
+
+            if (string.IsNullOrEmpty(Id))
+                return null;
+
+            var fileName = Id.Replace("/", "");
+            var filePath = string.Format(MapFileFormat, Id, fileName, size);
+
+            IO.File file;
+            if (Sheet.Collection.PackCollection.TryGetFile(filePath, out file))
+                return new ImageFile(file.Pack, file.CommonHeader);
+
+            return null;
         }
         #endregion
 
