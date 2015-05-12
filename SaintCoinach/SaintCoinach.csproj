@@ -448,6 +448,10 @@
     <Compile Include="Sound\ScdFile.cs" />
     <Compile Include="Sound\ScdHeader.cs" />
     <Compile Include="Sound\ScdOggEntry.cs" />
+    <Compile Include="Text\IntegerType.cs" />
+    <Compile Include="Text\VariableType.cs" />
+    <Compile Include="Text\XivStringDecoder.cs" />
+    <Compile Include="Text\TagType.cs" />
     <Compile Include="Xiv\ActionBase.cs" />
     <Compile Include="Xiv\ChocoboRace.cs" />
     <Compile Include="Xiv\ChocoboRaceAbility.cs" />

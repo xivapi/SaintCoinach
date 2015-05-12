@@ -55,7 +55,8 @@ namespace SaintCoinach.Ex.DataReaders {
             var binaryString = new byte[len];
             Array.Copy(buffer, start, binaryString, 0, len);
 
-            return StringHelper.Decode(binaryString);
+            return Text.XivStringDecoder.Decode(binaryString);
+            //return StringHelper.Decode(binaryString);
         }
 
         #endregion

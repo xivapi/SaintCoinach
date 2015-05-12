@@ -84,6 +84,8 @@ namespace SaintCoinach.Cmd.Commands {
                             s.Write(",\"{0}\"", v.ToString().Replace("\"", "\"\""));
                     }
                     s.WriteLine();
+
+                    s.Flush();
                 }
             }
         }
