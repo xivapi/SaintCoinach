@@ -22,22 +22,28 @@ namespace SaintCoinach.Text {
             TagDecoders = new Dictionary<TagType, TagDecoder> {
                 { TagType.If, DecodeIf },
                 { TagType.Switch, DecodeSwitch },
+                { TagType.IfEquals, DecodeIfEquals },
                 { TagType.LineBreak, DecodeLineBreak },
-                { TagType.Wait, DecodeWait },
                 { TagType.Gui, DecodeGui },
                 { TagType.Color, DecodeColor },
+                { TagType.Emphasis2, DecodeEmphasis },
                 { TagType.Emphasis, DecodeEmphasis },
+                { TagType.CommandIcon, DecodeCommandIcon },
                 { TagType.Dash, DecodeDash },
                 { TagType.Value, DecodeValue },
                 { TagType.Format, DecodeFormat },
-                { TagType.Zero, DecodeZero },
-                { TagType.Time, DecodeTime },
+                { TagType.TwoDigitValue, DecodeTwoDigitValue },
                 { TagType.Sheet, DecodeSheet },
+                { TagType.Highlight, DecodeHighlight },
+                { TagType.Clickable, DecodeClickable },
+                { TagType.Split, DecodeSplit },
                 { TagType.Fixed, DecodeFixed },
                 { TagType.SheetJa, DecodeSheetJa },
                 { TagType.SheetEn, DecodeSheetEn },
                 { TagType.SheetDe, DecodeSheetDe },
                 { TagType.SheetFr, DecodeSheetFr },
+                { TagType.InstanceContent, DecodeInstanceContent },
+                { TagType.ZeroPaddedValue, DecodeZeroPaddedValue },
             };
         }
         #endregion
@@ -144,19 +150,66 @@ namespace SaintCoinach.Text {
         #endregion
 
         #region Tag decoders
-        static void DefaultTagDecoder(TagType type, byte[] tagData, StreamWriter output) {
-            if (tagData.Length == 0) {
-                output.Write("<{0} />", type);
-            } else {
-                output.Write("<{0}>", type);
-                for (var i = 0; i < tagData.Length; ++i)
-                    output.Write(tagData[i].ToString("X2"));
-                output.Write("</{0}>", type);
+        static void DecodeIf(TagType type, byte[] tagData, StreamWriter output) {
+            int offset = 0;
+
+            // Condition
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref offset, output, true);
+            output.Write(")>");
+
+            // If true
+            DecodeExpression(tagData, ref offset, output, false);
+
+            if (offset != tagData.Length) {
+                // Else
+                output.Write("<else/>");
+                DecodeExpression(tagData, ref offset, output, false);
             }
+
+            // End
+            output.Write("</{0}>", type);
+        }
+        #endregion
+
+        #region Switch
+        static void DecodeSwitch(TagType type, byte[] tagData, StreamWriter output) {
+            int offset = 0;
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref offset, output, true);
+            output.Write(")>");
+
+            int i = 1;
+            // Foreach case
+            while (offset != tagData.Length) {
+                output.Write("<case({0})>", i);
+
+                DecodeExpression(tagData, ref offset, output, false);
+                output.Write("</case>");
+
+                ++i;
+            }
+
+            output.Write("</{0}>", type);
+        }
+        static void DecodeIfEquals(TagType type, byte[] tagData, StreamWriter output) {
+            int offset = 0;
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref offset, output, true);
+            output.Write(',');
+            DecodeExpression(tagData, ref offset, output, true);
+            output.Write(")>");
+            DecodeExpression(tagData, ref offset, output, false);
+            if (offset != tagData.Length) {
+                output.Write("<else/>");
+                DecodeExpression(tagData, ref offset, output, false);
+            }
+            output.Write("</{0}>", type);
         }
         static void DecodeLineBreak(TagType type, byte[] tagData, StreamWriter output) { output.Write(Environment.NewLine); }
-        static void DecodeWait(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
-        static void DecodeGui(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
+        static void DecodeGui(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionArgument(type, tagData, output);
+        }
         static void DecodeColor(TagType type, byte[] tagData, StreamWriter output) {
             if (tagData.Length == 1 && tagData[0] == 0xEC) {
                 output.Write("</{0}>", type);
@@ -175,26 +228,58 @@ namespace SaintCoinach.Text {
             else
                 throw new InvalidDataException();
         }
+        static void DecodeCommandIcon(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionArgument(type, tagData, output);
+        }
         static void DecodeDash(TagType type, byte[] tagData, StreamWriter output) {
             output.Write("–");
         }
-        static void DecodeValue(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
-        static void DecodeFormat(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
-        static void DecodeZero(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
-        static void DecodeTime(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
-        static void DecodeSheet(TagType type, byte[] tagData, StreamWriter output) {
-            int o = 0;
+        static void DecodeValue(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionContent(type, tagData, output);
+        }
+        static void DecodeFormat(TagType type, byte[] tagData, StreamWriter output) {
+            int offset = 0;
             output.Write("<{0}(", type);
-            DecodeExpression(tagData, ref o, output);     // Sheet name
+            DecodeExpression(tagData, ref offset, output, true);
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Row
-            if (o < tagData.Length) {
-                output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Column
+            // TODO: Figure this out, not just copy the values as hex
+            //DecodeExpression(tagData, ref offset, output);
+            while (offset < tagData.Length) {
+                output.Write("{0:X2}", tagData[offset]);
+                ++offset;
             }
             output.Write(")/>");
         }
-        static void DecodeLangSheet(TagType type, byte[] tagData, StreamWriter output) {
+        static void DecodeTwoDigitValue(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionContent(type, tagData, output);
+        }
+        static void DecodeHighlight(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionContent(type, tagData, output);
+        }
+        static void DecodeClickable(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionContent(type, tagData, output);
+        }
+        static void DecodeSplit(TagType type, byte[] tagData, StreamWriter output) {
+            int offset = 0;
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref offset, output, true);  // Input
+            output.Write(',');
+            DecodeExpression(tagData, ref offset, output, true);  // Separator
+            output.Write(',');
+            DecodeExpression(tagData, ref offset, output, true);  // Used index
+            output.Write(")/>");
+        }
+        static void DecodeSheet(TagType type, byte[] tagData, StreamWriter output) {
+            int o = 0;
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref o, output, true);     // Sheet name
+            output.Write(',');
+            DecodeExpression(tagData, ref o, output, true);     // Row
+            if (o < tagData.Length) {
+                output.Write(',');
+                DecodeExpression(tagData, ref o, output, true);     // Column
+            }
+            output.Write(")/>");
         }
         static void DecodeFixed(TagType type, byte[] tagData, StreamWriter output) { DefaultTagDecoder(type, tagData, output); }
         static void DecodeSheetJa(TagType type, byte[] tagData, StreamWriter output) { DecodeSheet(type, tagData, output); }
@@ -207,121 +292,103 @@ namespace SaintCoinach.Text {
         static void DecodeSheetEn(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeExpression(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output, true);     // Target sheet name
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output, true);     // Attributive row
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output, true);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output, true);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output, true);     // Attributive column?
             }
             output.Write(")/>");
         }
         static void DecodeSheetDe(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeExpression(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output, true);     // Target sheet name
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output, true);     // Attributive row
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output, true);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output, true);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output, true);     // Attributive column?
             }
             output.Write(")/>");
         }
         static void DecodeSheetFr(TagType type, byte[] tagData, StreamWriter output) {
             int o = 0;
             output.Write("<{0}(", type);
-            DecodeExpression(tagData, ref o, output);     // Target sheet name
+            DecodeExpression(tagData, ref o, output, true);     // Target sheet name
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Attributive row
+            DecodeExpression(tagData, ref o, output, true);     // Attributive row
             output.Write(',');
-            DecodeExpression(tagData, ref o, output);     // Target row
+            DecodeExpression(tagData, ref o, output, true);     // Target row
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Target column
+                DecodeExpression(tagData, ref o, output, true);     // Target column
             }
             if (o < tagData.Length) {
                 output.Write(',');
-                DecodeExpression(tagData, ref o, output);     // Attributive column?
+                DecodeExpression(tagData, ref o, output, true);     // Attributive column?
             }
+            output.Write(")/>");
+        }
+        static void DecodeInstanceContent(TagType type, byte[] tagData, StreamWriter output) {
+            DecodeTagWithExpressionContent(type, tagData, output);
+        }
+        static void DecodeZeroPaddedValue(TagType type, byte[] tagData, StreamWriter output) {
+            int o = 0;
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, ref o, output, true);     // Value
+            output.Write(',');
+            DecodeExpression(tagData, ref o, output, true);     // Target length
             output.Write(")/>");
         }
         #endregion
 
-        #region If
-
-        static void DecodeIf(TagType type, byte[] tagData, StreamWriter output) {
-            int offset = 0;
-
-            // Condition
-            output.Write("<{0}(", type);
-            DecodeExpression(tagData, ref offset, output);
-            output.Write(")>");
-
-            // If true
-            //DecodeIfResult(tagData, output, ref offset);
-            DecodeExpression(tagData, ref offset, output);
-
-            if (offset != tagData.Length) {
-                // Else
-                output.Write("<else/>");
-                //DecodeIfResult(tagData, output, ref offset);
-                DecodeExpression(tagData, ref offset, output);
-            }
-
-            // End
-            output.Write("</{0}>", type);
-        }
-        static void DecodeIfResult(byte[] tagData, StreamWriter output, ref int offset) {
-        }
-        #endregion
-
-        #region Switch
-        static void DecodeSwitch(TagType type, byte[] tagData, StreamWriter output) {
-            DefaultTagDecoder(type, tagData, output);
-
-            return;
-
-            output.Write("<{0}(", type);
-
-            // Value
-
-            output.Write(")>");
-
-            // Foreach case
-            {
-                output.Write("<case(");
-
-                // Case condition
-
-                output.Write(")>");
-
-                // case result
-
-                output.Write("</case>");
-            }
-
-            output.Write("</{0}>", type);
-        }
-        #endregion
-
         #region Shared
-        static void DecodeExpression(byte[] input, ref int offset, StreamWriter output) {
+        static void DefaultTagDecoder(TagType type, byte[] tagData, StreamWriter output) {
+            if (tagData.Length == 0) {
+                output.Write("<{0}/>", type);
+            } else {
+                output.Write("<{0}>", type);
+                for (var i = 0; i < tagData.Length; ++i)
+                    output.Write(tagData[i].ToString("X2"));
+                output.Write("</{0}>", type);
+            }
+        }
+        static void DecodeTagWithExpressionArgument(TagType type, byte[] tagData, StreamWriter output) {
+            output.Write("<{0}(", type);
+            DecodeExpression(tagData, 0, output, true);
+            output.Write(")/>");
+        }
+        static void DecodeTagWithExpressionContent(TagType type, byte[] tagData, StreamWriter output) {
+            if (tagData.Length == 0) {
+                output.Write("<{0}/>", type);
+                return;
+            }
+            output.Write("<{0}>", type);
+            DecodeExpression(tagData, 0, output, false);
+            output.Write("</{0}>", type);
+        }
+        static void DecodeExpression(byte[] input, int offset, StreamWriter output, bool outputZero) {
+            DecodeExpression(input, ref offset, output, outputZero);
+        }
+        static void DecodeExpression(byte[] input, ref int offset, StreamWriter output, bool outputZero) {
             var t = input[offset++];
             if (t < 0xE0) {
-                output.Write(t - 1);
+                if (outputZero || t > 1)
+                    output.Write(t - 1);
                 return;
             }
 
@@ -354,35 +421,35 @@ namespace SaintCoinach.Text {
             output.Write("{0}(", exprType);
             switch (exprType) {
                 case ExpressionType.LessThanOrEqualTo:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     output.Write(',');
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.Value1:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.GreaterThanOrEqualTo:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     output.Write(',');
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.Invert:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.Equal:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     output.Write(',');
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.InputParameter:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.PlayerParameter:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 case ExpressionType.UnknownParameter1:
                 case ExpressionType.UnknownParameter2:
-                    DecodeExpression(input, ref offset, output);
+                    DecodeExpression(input, ref offset, output, true);
                     break;
                 default:
                     throw new NotSupportedException();

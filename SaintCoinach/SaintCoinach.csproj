@@ -135,6 +135,8 @@
     <Compile Include="Graphics\Vector4.cs" />
     <Compile Include="Graphics\VertexAttribute.cs" />
     <Compile Include="Graphics\VertexReader.cs" />
+    <Compile Include="Imaging\GftdEntry.cs" />
+    <Compile Include="Imaging\GraphicsFileTextureDefinition.cs" />
     <Compile Include="IO\EmptyFile.cs" />
     <Compile Include="IO\IIndexFile.cs" />
     <Compile Include="IO\Index2.cs" />

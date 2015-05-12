@@ -387,12 +387,18 @@ namespace SaintCoinach {
 
             var previousVersion = DefinitionVersion;
 
+            var exdPackId = new PackIdentifier("exd", PackIdentifier.DefaultExpansion, 0);
+            var exdPack = Packs.GetPack(exdPackId);
+            var exdOldKeepInMemory = exdPack.KeepInMemory;
+            exdPack.KeepInMemory = true;
+
             string tempPath = null;
             UpdateReport report;
             try {
                 using (var zip = new ZipFile(StateFile.FullName, ZipEncoding)) {
                     tempPath = ExtractPacks(zip, previousVersion);
                     var previousPack = new PackCollection(Path.Combine(tempPath, previousVersion));
+                    previousPack.GetPack(exdPackId).KeepInMemory = true;
                     var previousDefinition = ReadDefinition(zip);
 
                     var updater = new RelationUpdater(previousPack, previousDefinition, Packs, GameVersion, progress);
@@ -412,6 +418,8 @@ namespace SaintCoinach {
                     GameData.Definition.Compile();
                 }
             } finally {
+                if (exdPack != null)
+                    exdPack.KeepInMemory = exdOldKeepInMemory;
                 if (tempPath != null) {
                     try {
                         Directory.Delete(tempPath, true);

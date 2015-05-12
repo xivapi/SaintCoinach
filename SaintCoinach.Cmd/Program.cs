@@ -44,7 +44,11 @@ namespace SaintCoinach.Cmd {
                 Console.Write("Update is available, perform update (Y/n)? ");
                 var updateQuery = Console.ReadLine();
                 if (string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
+                    var stopWatch = new System.Diagnostics.Stopwatch();
+                    stopWatch.Start();
                     realm.Update(true, new ConsoleProgressReporter());
+                    stopWatch.Stop();
+                    Console.WriteLine(stopWatch.Elapsed);
                 } else
                     Console.WriteLine("Skipping update");
             }
