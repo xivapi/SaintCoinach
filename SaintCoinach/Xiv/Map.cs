@@ -1,3 +1,4 @@
+using System;
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 using System.Drawing;
@@ -9,8 +10,8 @@ namespace SaintCoinach.Xiv {
     /// </summary>
     public class Map : XivRow {
         #region Fields
-        private Image _MediumImage;
-        private Image _SmallImage;
+        private WeakReference<Image> _MediumImage;
+        private WeakReference<Image> _SmallImage;
         #endregion
 
         #region Properties
@@ -58,17 +59,35 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Gets the masked medium <see cref="Image" /> of the current map.
         /// </summary>
-        public Image MediumImage
-        {
-            get { return _MediumImage ?? (_MediumImage = BuildImage("m")); }
+        public Image MediumImage {
+            get {
+                Image image;
+                if (_MediumImage != null && _MediumImage.TryGetTarget(out image))
+                    return image;
+                image = BuildImage("m");
+                if (_MediumImage == null)
+                    _MediumImage = new WeakReference<Image>(image);
+                else
+                    _MediumImage.SetTarget(image);
+                return image;
+            }
         }
 
         /// <summary>
         ///     Gets the masked small <see cref="Image" /> of the current map.
         /// </summary>
-        public Image SmallImage
-        {
-            get { return _SmallImage ?? (_SmallImage = BuildImage("s")); }
+        public Image SmallImage {
+            get {
+                Image image;
+                if (_SmallImage != null && _SmallImage.TryGetTarget(out image))
+                    return image;
+                image = BuildImage("s");
+                if (_SmallImage == null)
+                    _SmallImage = new WeakReference<Image>(image);
+                else
+                    _SmallImage.SetTarget(image);
+                return image;
+            }
         }
 
         #endregion
@@ -125,44 +144,31 @@ namespace SaintCoinach.Xiv {
             return imageFile.GetImage();
         }
 
-        private static Image MultiplyBlend(ImageFile image, ImageFile mask)
-        {
-            // Some assumptions made about the number of bytes per pixel here.
+        private static Image MultiplyBlend(ImageFile image, ImageFile mask) {
+            if (image.Width != mask.Width || image.Height != mask.Height)
+                throw new ArgumentException();
+            // Using 32bit color
             const int BytesPerPixel = 4;
 
-            var aSrc = (Bitmap)image.GetImage();
-            var bSrc = (Bitmap)mask.GetImage();
-            var result = new Bitmap(aSrc.Width, aSrc.Height, aSrc.PixelFormat);
-            result.MakeTransparent();
+            var aArgb = Imaging.ImageConverter.GetA8R8G8B8(image);
+            var bArgb = Imaging.ImageConverter.GetA8R8G8B8(mask);
+            var result = new byte[aArgb.Length];
 
-            var rect = new Rectangle(0, 0, aSrc.Width, aSrc.Height);
-            var aData = aSrc.LockBits(rect, ImageLockMode.ReadOnly, aSrc.PixelFormat);
-            var bData = bSrc.LockBits(rect, ImageLockMode.ReadOnly, bSrc.PixelFormat);
-            var rData = result.LockBits(rect, ImageLockMode.WriteOnly, result.PixelFormat);
-
-            unsafe
-            {
-                for (var y = 0; y < aSrc.Height; y++)
-                {
-                    var a = (byte*)aData.Scan0 + y * aData.Stride;
-                    var b = (byte*)bData.Scan0 + y * bData.Stride;
-                    var r = (byte*)rData.Scan0 + y * rData.Stride;
-
-                    for (var x = 0; x < bSrc.Width * BytesPerPixel; x += BytesPerPixel)
-                    {
-                        r[x] = (byte)((a[x] * b[x]) / 255); // Blue
-                        r[x + 1] = (byte)((a[x + 1] * b[x + 1]) / 255); // Green
-                        r[x + 2] = (byte)((a[x + 2] * b[x + 2]) / 255); // Red
-                        r[x + 3] = a[x + 3]; // Preserve alpha
-                    }
-                }
+            for (var i = 0; i < aArgb.Length; i += BytesPerPixel) {
+                for (var j = 0; j < 3; ++j)     // Only blend RGB
+                    result[i + j] = (byte)((aArgb[i + j] * bArgb[i + j]) / 255);
+                result[i + 3] = aArgb[i + 3];  // Preserve alpha
             }
 
-            aSrc.UnlockBits(aData);
-            bSrc.UnlockBits(bData);
-            result.UnlockBits(rData);
-
-            return result;
+            Image output;
+            unsafe {
+                fixed (byte* p = result) {
+                    var ptr = (IntPtr)p;
+                    using (var tempImage = new Bitmap(image.Width, image.Height, image.Width * BytesPerPixel, PixelFormat.Format32bppArgb, ptr))
+                        output = new Bitmap(tempImage);
+                }
+            }
+            return output;
         }
         #endregion
 
