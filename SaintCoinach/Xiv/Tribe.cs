@@ -31,8 +31,8 @@ namespace SaintCoinach.Xiv {
         public short MaleModelTypeKey { get { return ModelKeys[this.Key].Item1; } }
         public short FemaleModelTypeKey { get { return ModelKeys[this.Key].Item2; } }
 
-        public string Masculine { get { return AsString("Masculine"); } }
-        public string Feminine { get { return AsString("Feminine"); } }
+        public Text.XivString Masculine { get { return AsString("Masculine"); } }
+        public Text.XivString Feminine { get { return AsString("Feminine"); } }
 
         public int StrengthBonus { get { return AsInt32("STR"); } }
         public int VitalityBonus { get { return AsInt32("VIT"); } }

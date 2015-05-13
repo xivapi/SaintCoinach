@@ -20,7 +20,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the identifier string of the current map.
         /// </summary>
         /// <value>The identifier string of the current map.</value>
-        public string Id { get { return AsString("Id"); } }
+        public Text.XivString Id { get { return AsString("Id"); } }
 
         /// <summary>
         ///     Gets the size of the current map.
@@ -122,7 +122,7 @@ namespace SaintCoinach.Xiv {
             if (string.IsNullOrEmpty(Id))
                 return null;
 
-            var fileName = Id.Replace("/", "");
+            var fileName = Id.ToString().Replace("/", "");
             var pack = Sheet.Collection.PackCollection;
 
             var filePath = string.Format(MapFileFormat, Id, fileName, string.Empty, size);

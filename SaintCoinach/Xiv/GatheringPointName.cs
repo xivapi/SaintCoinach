@@ -10,8 +10,8 @@ namespace SaintCoinach.Xiv {
     public class GatheringPointName : XivRow, IQuantifiableName {
         #region Properties
 
-        public string Singular { get { return AsString("Singular"); } }
-        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
+        public Text.XivString Singular { get { return AsString("Singular"); } }
+        public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
 
         #endregion
 
@@ -24,5 +24,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Singular;
         }
+
+        #region IQuantifiableName Members
+        string IQuantifiableName.Singular {
+            get { return Singular; }
+        }
+
+        string IQuantifiableName.Plural {
+            get { return Plural; }
+        }
+        #endregion
     }
 }

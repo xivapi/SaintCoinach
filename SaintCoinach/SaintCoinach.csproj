@@ -469,6 +469,9 @@
     <Compile Include="Text\Nodes\StaticString.cs" />
     <Compile Include="Text\Nodes\GenericElement.cs" />
     <Compile Include="Text\Nodes\SwitchElement.cs" />
+    <Compile Include="Text\Parameters\ParameterBase.cs" />
+    <Compile Include="Text\Parameters\PlayerParameters.cs" />
+    <Compile Include="Text\ProcessorParameters.cs" />
     <Compile Include="Text\StringTokens.cs" />
     <Compile Include="Text\ExpressionType.cs" />
     <Compile Include="Text\IStringNode.cs" />
@@ -477,6 +480,7 @@
     <Compile Include="Text\XivStringDecoder.cs" />
     <Compile Include="Text\TagType.cs" />
     <Compile Include="Text\NodeType.cs" />
+    <Compile Include="Text\XivStringProcessor.cs" />
     <Compile Include="Xiv\ActionBase.cs" />
     <Compile Include="Xiv\ChocoboRace.cs" />
     <Compile Include="Xiv\ChocoboRaceAbility.cs" />

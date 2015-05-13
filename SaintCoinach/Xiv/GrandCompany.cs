@@ -10,7 +10,7 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public Item SealItem { get { return Sheet.Collection.GetSheet<Item>()[Key + SealItemOffset]; } }
 
         #endregion

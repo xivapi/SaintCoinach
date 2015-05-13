@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     public class Addon : XivRow {
         #region Properties
 
-        public string Text { get { return AsString("Text"); } }
+        public Text.XivString Text { get { return AsString("Text"); } }
 
         #endregion
 

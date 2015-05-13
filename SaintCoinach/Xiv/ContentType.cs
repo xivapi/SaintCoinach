@@ -15,7 +15,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the name of the current content type.
         /// </summary>
         /// <value>The name of the current content type.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         /// Gets the icon for the current content type.

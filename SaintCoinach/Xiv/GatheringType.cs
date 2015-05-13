@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
     public class GatheringType : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public ImageFile MainIcon { get { return AsImage("Icon{Main}"); } }
         public ImageFile SubIcon { get { return AsImage("Icon{Off}"); } }
 

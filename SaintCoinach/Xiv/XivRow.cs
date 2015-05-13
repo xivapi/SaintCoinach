@@ -147,8 +147,8 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <param name="column">Name of the column from which to read.</param>
         /// <returns>The string value of the field in <c>column</c> of the current row.</returns>
-        public string AsString(string column) {
-            return (string)this[column];
+        public Text.XivString AsString(string column) {
+            return (Text.XivString)this[column];
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="column">Name of the column from which to read.</param>
         /// <param name="indices">Indices for the full column.</param>
         /// <returns>The string value of the field in <c>column</c> and <c>indices</c> of the current row.</returns>
-        public string AsString(string column, params int[] indices) {
+        public Text.XivString AsString(string column, params int[] indices) {
             return AsString(BuildColumnName(column, indices));
         }
 

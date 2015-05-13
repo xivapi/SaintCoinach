@@ -69,7 +69,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the description of the current content.
         /// </summary>
         /// <value>The description of the current content.</value>
-        public override string Description { get { return (string)Sheet.Collection.GetSheet("ContentDescription")[this.Key]["Description"]; } }
+        public override Text.XivString Description { get { return (Text.XivString)Sheet.Collection.GetSheet("ContentDescription")[this.Key]["Description"]; } }
 
         /// <summary>
         /// Gets the item level the current content gets synced to if it is higher.

@@ -10,7 +10,7 @@ namespace SaintCoinach.Xiv {
     public class ChocoboRaceRank : XivRow {
         #region Properties
 
-        public string Name { get { return As<GoldSaucerTextData>("Name").Text; } }
+        public Text.XivString Name { get { return As<GoldSaucerTextData>("Name").Text; } }
         public int MinimumRating { get { return AsInt32("Rating{Min}"); } }
         public int MaximumRating { get { return AsInt32("Rating{Max}"); } }
         public int Fee { get { return AsInt32("Fee"); } }

@@ -14,8 +14,8 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
 
         public TripleTriadCardResident TripleTriadCardResident {
             get { return _Resident ?? (_Resident = Sheet.Collection.GetSheet<TripleTriadCardResident>()[this.Key]); }

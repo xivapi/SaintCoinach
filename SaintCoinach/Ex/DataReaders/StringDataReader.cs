@@ -24,7 +24,7 @@ namespace SaintCoinach.Ex.DataReaders {
         ///     Gets the <see cref="Type" /> of the read values.
         /// </summary>
         /// <value>Value is always typeof(<see cref="string"/>).</value>
-        public override Type Type { get { return typeof(string); } }
+        public override Type Type { get { return typeof(Text.XivString); } }
 
         #endregion
 
@@ -50,12 +50,12 @@ namespace SaintCoinach.Ex.DataReaders {
             var len = end - start;
 
             if (len == 0)
-                return string.Empty;
+                return Text.XivString.Empty;
 
             var binaryString = new byte[len];
             Array.Copy(buffer, start, binaryString, 0, len);
 
-            return Text.XivStringDecoder.Default.Decode(binaryString).ToString();
+            return Text.XivStringDecoder.Default.Decode(binaryString);//.ToString();
         }
 
         #endregion

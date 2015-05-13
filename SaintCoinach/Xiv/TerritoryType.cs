@@ -56,13 +56,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the name of the current territory.
         /// </summary>
         /// <value>The name of the current territory.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         ///     Gets the identifier used for the current territory.
         /// </summary>
         /// <value>The identifier used for the current territory.</value>
-        public string Bg { get { return AsString("Bg"); } }
+        public Text.XivString Bg { get { return AsString("Bg"); } }
 
         /// <summary>
         ///     Gets the <see cref="Map" /> of the current territory.

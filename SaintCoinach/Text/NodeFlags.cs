@@ -13,5 +13,6 @@ namespace SaintCoinach.Text {
         CloseTag,
         IsExpression,
         IsConditional,
+        IsStatic,
     }
 }

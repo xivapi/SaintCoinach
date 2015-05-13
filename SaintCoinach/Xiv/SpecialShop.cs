@@ -47,7 +47,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the name of the current shop.
         /// </summary>
         /// <value>The name of the current shop.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         ///     Gets the <see cref="ENpc" />s offering the current shop.
@@ -113,6 +113,14 @@ namespace SaintCoinach.Xiv {
         /// <value>The <see cref="Item"/>s that can be obtained from the current object.</value>
         IEnumerable<Item> IItemSource.Items {
             get { return _ItemSourceItems ?? (_ItemSourceItems = Items.SelectMany(i => i.Rewards.Select(r => r.Item).OfType<Item>()).ToArray()); }
+        }
+
+        #endregion
+
+        #region IShop Members
+
+        string IShop.Name {
+            get { return Name; }
         }
 
         #endregion

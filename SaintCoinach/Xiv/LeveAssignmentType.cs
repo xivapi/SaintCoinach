@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
     public class LeveAssignmentType : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public bool IsFaction { get { return AsBoolean("IsFaction"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
 

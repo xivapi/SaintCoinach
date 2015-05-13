@@ -18,13 +18,13 @@ namespace SaintCoinach.Xiv {
         /// Gets the name of the current content.
         /// </summary>
         /// <value>The name of the current content.</value>
-        public virtual string Name { get { return AsString("Name"); } }
+        public virtual Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         /// Gets the description of the current content.
         /// </summary>
         /// <value>The description of the current content.</value>
-        public virtual string Description { get { return AsString("Description"); } }
+        public virtual Text.XivString Description { get { return AsString("Description"); } }
 
         /// <summary>
         /// Gets a value indicating whether the current content is shown in the duty finder.

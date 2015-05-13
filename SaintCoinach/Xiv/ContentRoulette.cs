@@ -18,7 +18,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the type of the current content.
         /// </summary>
         /// <value>The type of the current content.</value>
-        public string DutyType { get { return AsString("DutyType"); } }
+        public Text.XivString DutyType { get { return AsString("DutyType"); } }
 
         /// <summary>
         /// Gets a value indicating whether all duties in the current roulette have to be unlocked.

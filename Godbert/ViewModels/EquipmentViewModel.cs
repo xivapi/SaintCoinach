@@ -47,7 +47,7 @@ namespace Godbert.ViewModels {
                 if (string.IsNullOrWhiteSpace(value))
                     _FilteredEquipment = _AllEquipment;
                 else
-                    _FilteredEquipment = _AllEquipment.Where(e => e.Name.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
+                    _FilteredEquipment = _AllEquipment.Where(e => e.Name.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
 
                 OnPropertyChanged(() => FilterTerm);
                 OnPropertyChanged(() => FilteredEquipment);

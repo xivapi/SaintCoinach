@@ -16,13 +16,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the name of the current leve.
         /// </summary>
         /// <value>The name of the current leve.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         ///     Gets the name of the current leve.
         /// </summary>
         /// <value>The name of the current leve.</value>
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
 
         /// <summary>
         ///     Gets the <see cref="LeveClient" /> of the current leve.

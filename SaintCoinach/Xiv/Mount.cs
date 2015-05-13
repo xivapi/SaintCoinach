@@ -5,11 +5,11 @@ namespace SaintCoinach.Xiv {
     public class Mount : XivRow, IQuantifiableName {
         #region Properties
 
-        public string Singular { get { return AsString("Singular"); } }
-        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
-        public string Description { get { return AsString("Description"); } }
-        public string GuideDescription { get { return AsString("Description{Enhanced}"); } }
-        public string Tooltip { get { return AsString("Tooltip"); } }
+        public Text.XivString Singular { get { return AsString("Singular"); } }
+        public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
+        public Text.XivString GuideDescription { get { return AsString("Description{Enhanced}"); } }
+        public Text.XivString Tooltip { get { return AsString("Tooltip"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
 
         #endregion
@@ -27,5 +27,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Singular;
         }
+
+        #region IQuantifiableName Members
+        string IQuantifiableName.Singular {
+            get { return Singular; }
+        }
+
+        string IQuantifiableName.Plural {
+            get { return Plural; }
+        }
+        #endregion
     }
 }

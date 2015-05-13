@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
     public class ItemSearchCategory : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
         public int Category { get { return AsInt32("Category"); } }
         public int Order { get { return AsInt32("Order"); } }

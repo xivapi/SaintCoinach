@@ -5,8 +5,8 @@ namespace SaintCoinach.Xiv {
     public class BuddyAction : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
         public ImageFile StatusIcon { get { return AsImage("Icon{Status}"); } }
 

@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
     public class Emote : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public EmoteCategory EmoteCategory { get { return As<EmoteCategory>(); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
         public LogMessage TargetedLogMessage { get { return As<LogMessage>("LogMessage{Targeted}"); } }

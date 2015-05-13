@@ -5,8 +5,8 @@ namespace SaintCoinach.Xiv {
     public class BeastTribe : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string RelationName { get { return AsString("Name{Relation}"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString RelationName { get { return AsString("Name{Relation}"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
         public ImageFile ReputationIcon { get { return AsImage("Icon{Reputation}"); } }
 

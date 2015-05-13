@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     public class LogMessage : XivRow {
         #region Properties
 
-        public string Text { get { return AsString("Text"); } }
+        public Text.XivString Text { get { return AsString("Text"); } }
         public LogKind LogKind { get { return As<LogKind>(); } }
 
         #endregion

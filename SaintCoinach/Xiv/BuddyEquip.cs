@@ -5,9 +5,9 @@ namespace SaintCoinach.Xiv {
     public class BuddyEquip : XivRow, IQuantifiableName {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Singular { get { return AsString("Singular"); } }
-        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Singular { get { return AsString("Singular"); } }
+        public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public GrandCompany GrandCompany { get { return As<GrandCompany>(); } }
         public ImageFile HeadIcon { get { return AsImage("Icon{Head}"); } }
         public ImageFile BodyIcon { get { return AsImage("Icon{Body}"); } }
@@ -28,5 +28,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region IQuantifiableName Members
+        string IQuantifiableName.Singular {
+            get { return Singular; }
+        }
+
+        string IQuantifiableName.Plural {
+            get { return Plural; }
+        }
+        #endregion
     }
 }

@@ -10,8 +10,8 @@ namespace SaintCoinach.Xiv {
     public class Race : XivRow {
         #region Properties
 
-        public string Masculine { get { return AsString("Masculine"); } }
-        public string Feminine { get { return AsString("Feminine"); } }
+        public Text.XivString Masculine { get { return AsString("Masculine"); } }
+        public Text.XivString Feminine { get { return AsString("Feminine"); } }
 
         public IEnumerable<Item> MaleRse {
             get {

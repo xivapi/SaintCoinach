@@ -10,8 +10,8 @@ namespace SaintCoinach.Xiv {
     public abstract class ActionBase : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 
         #endregion

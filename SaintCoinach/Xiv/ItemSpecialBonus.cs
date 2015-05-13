@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     public class ItemSpecialBonus : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         #endregion
 

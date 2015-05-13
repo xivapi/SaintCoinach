@@ -5,12 +5,12 @@ namespace SaintCoinach.Xiv {
     public class Fate : XivRow, ILocatable {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
-        public string Objective { get { return AsString("Objective"); } }
-        public string StatusText0 { get { return AsString("StatusText", 0); } }
-        public string StatusText1 { get { return AsString("StatusText", 1); } }
-        public string StatusText2 { get { return AsString("StatusText", 2); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
+        public Text.XivString Objective { get { return AsString("Objective"); } }
+        public Text.XivString StatusText0 { get { return AsString("StatusText", 0); } }
+        public Text.XivString StatusText1 { get { return AsString("StatusText", 1); } }
+        public Text.XivString StatusText2 { get { return AsString("StatusText", 2); } }
         public Level Level { get { return As<Level>(); } }
         public int CharacterLevel { get { return AsInt32("CLevel"); } }
         public int MaximumCharacterLevel { get { return AsInt32("CLevel{Max}"); } }

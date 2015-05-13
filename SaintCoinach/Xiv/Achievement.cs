@@ -6,8 +6,8 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public AchievementCategory AchievementCategory { get { return As<AchievementCategory>(); } }
-        public string Name { get { return AsString("Name"); } }
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
         public int Points { get { return AsInt32("Points"); } }
         public Title Title { get { return As<Title>(); } }
         public Item Item { get { return As<Item>("Item"); } }

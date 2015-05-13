@@ -19,9 +19,9 @@ namespace SaintCoinach.Xiv {
         public ENpcCollection Collection { get; private set; }
         public ENpcResident Resident { get { return _Resident ?? (_Resident = Collection.ResidentSheet[Key]); } }
         public ENpcBase Base { get { return _Base ?? (_Base = Collection.BaseSheet[Key]); } }
-        public string Singular { get { return Resident.Singular; } }
-        public string Plural { get { return Collection.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : Resident.Plural; } }
-        public string Title { get { return Resident.Title; } }
+        public Text.XivString Singular { get { return Resident.Singular; } }
+        public Text.XivString Plural { get { return Collection.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : Resident.Plural; } }
+        public Text.XivString Title { get { return Resident.Title; } }
 
         public IEnumerable<ILocation> Locations { get { return _Locations ?? (_Locations = BuildLocations()); } }
 
@@ -72,5 +72,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Resident.Singular;
         }
+
+        #region IQuantifiableName Members
+        string IQuantifiableName.Singular {
+            get { return Singular; }
+        }
+
+        string IQuantifiableName.Plural {
+            get { return Plural; }
+        }
+        #endregion
     }
 }

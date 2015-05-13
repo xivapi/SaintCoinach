@@ -4,9 +4,9 @@ namespace SaintCoinach.Xiv {
     public class LogFilter : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public LogKind LogKind { get { return As<LogKind>(); } }
-        public string Example { get { return AsString("Example"); } }
+        public Text.XivString Example { get { return AsString("Example"); } }
 
         #endregion
 

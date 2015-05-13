@@ -14,22 +14,22 @@ namespace SaintCoinach.Xiv {
         /// Gets the name of the current item.
         /// </summary>
         /// <value>The name of the current item.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         /// <summary>
         /// Gets the description of the current item.
         /// </summary>
         /// <value>The description of the current item.</value>
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
         /// <summary>
         /// Gets the singular string of the current item.
         /// </summary>
         /// <value>The singular string of the current item.</value>
-        public string Singular { get { return AsString("Singular"); } }
+        public Text.XivString Singular { get { return AsString("Singular"); } }
         /// <summary>
         /// Gets the plural string of the current item.
         /// </summary>
         /// <value>The plural string of the current item.</value>
-        public string Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
+        public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         /// <summary>
         /// Gets the icon of the current item.
         /// </summary>
@@ -61,5 +61,15 @@ namespace SaintCoinach.Xiv {
         public override string ToString() {
             return Name;
         }
+
+        #region IQuantifiableName Members
+        string IQuantifiableName.Singular {
+            get { return Singular; }
+        }
+
+        string IQuantifiableName.Plural {
+            get { return Plural; }
+        }
+        #endregion
     }
 }

@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     public class BeastReputationRank : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public int RequiredReputation { get { return AsInt32("RequiredReputation"); } }
 
         #endregion

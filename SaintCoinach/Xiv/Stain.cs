@@ -13,7 +13,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the name of the current stain.
         /// </summary>
         /// <value>The name of the current stain.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         /// <summary>
         ///     Gets the <see cref="Item" /> used for the current stain.

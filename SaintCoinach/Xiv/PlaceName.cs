@@ -4,8 +4,8 @@ namespace SaintCoinach.Xiv {
     public class PlaceName : XivRow {
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
-        public string NameWithoutArticle { get { return AsString("Name{NoArticle}"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString NameWithoutArticle { get { return AsString("Name{NoArticle}"); } }
 
         #endregion
 

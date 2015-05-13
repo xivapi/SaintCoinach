@@ -4,9 +4,9 @@ namespace SaintCoinach.Xiv {
     public class LogKind : XivRow {
         #region Properties
 
-        public string Format { get { return AsString("Format"); } }
-        public string Name { get { return AsString("Name"); } }
-        public string Example { get { return AsString("Example"); } }
+        public Text.XivString Format { get { return AsString("Format"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
+        public Text.XivString Example { get { return AsString("Example"); } }
         public LogKindCategoryText LogKindCategoryText { get { return As<LogKindCategoryText>(); } }
 
         #endregion

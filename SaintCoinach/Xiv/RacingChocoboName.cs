@@ -14,7 +14,7 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         public RacingChocoboNameInfo Info {
             get { return _Info ?? (_Info = Sheet.Collection.GetSheet<RacingChocoboNameInfo>()[this.Key]); }

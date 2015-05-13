@@ -13,7 +13,7 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         public IEnumerable<ClassJob> ClassJobs { get { return _ClassJobs ?? (_ClassJobs = BuildClassJobs()); } }
 
         #endregion

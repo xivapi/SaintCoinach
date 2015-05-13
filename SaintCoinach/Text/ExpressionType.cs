@@ -11,10 +11,12 @@ namespace SaintCoinach.Text {
         LessThanOrEqualTo = 0xE2,       // Followed by two variables
         NotEqual = 0xE3,                // Followed by one variable
         Equal = 0xE4,                   // Followed by two variables
-        InputParameter = 0xE8,          // Followed by one variable
+
+        // TODO: I /think/ I got these right.
+        IntegerParameter = 0xE8,        // Followed by one variable
         PlayerParameter = 0xE9,         // Followed by one variable
-        UnknownParameterEA = 0xEA,      // Followed by one variable
-        UnknownParameterEB = 0xEB,      // Followed by one variable
+        StringParameter = 0xEA,         // Followed by one variable
+        ObjectParameter = 0xEB,         // Followed by one variable
         
         Byte = 0xF0,
         Int16_MinusOne = 0xF1,          // Followed by a Int16 that is one too high

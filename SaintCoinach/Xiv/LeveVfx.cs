@@ -10,7 +10,7 @@ namespace SaintCoinach.Xiv {
     public class LeveVfx : XivRow {
         #region Properties
 
-        public string Effect { get { return AsString("Effect"); } }
+        public Text.XivString Effect { get { return AsString("Effect"); } }
 
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 

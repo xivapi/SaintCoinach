@@ -12,13 +12,13 @@ namespace SaintCoinach.Xiv {
         /// Gets the name of the parameter.
         /// </summary>
         /// <value>The name of the parameter.</value>
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
         /// <summary>
         /// Gets the description of the parameter.
         /// </summary>
         /// <remarks>Not all parameters have a description.</remarks>
         /// <value>The description of the parameter.</value>
-        public string Description { get { return AsString("Description"); } }
+        public Text.XivString Description { get { return AsString("Description"); } }
 
         #endregion
 

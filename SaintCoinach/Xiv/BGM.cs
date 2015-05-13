@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
     public class BGM : XivRow {
         #region Properties
 
-        public string File { get { return AsString("File"); } }
+        public Text.XivString File { get { return AsString("File"); } }
 
         #endregion
 

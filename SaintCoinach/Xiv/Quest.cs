@@ -13,9 +13,9 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public string Name { get { return AsString("Name"); } }
+        public Text.XivString Name { get { return AsString("Name"); } }
 
-        public string Id { get { return AsString("Id"); } }
+        public Text.XivString Id { get { return AsString("Id"); } }
 
         public QuestRequirements Requirements { get { return _Requirements ?? (_Requirements = new QuestRequirements(this)); } }
 

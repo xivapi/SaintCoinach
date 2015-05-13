@@ -4,8 +4,8 @@ namespace SaintCoinach.Xiv {
     public class Title : XivRow {
         #region Properties
 
-        public string Masculine { get { return AsString("Masculine"); } }
-        public string Feminine { get { return AsString("Feminine"); } }
+        public Text.XivString Masculine { get { return AsString("Masculine"); } }
+        public Text.XivString Feminine { get { return AsString("Feminine"); } }
         public bool IsPrefix { get { return AsBoolean("IsPrefix"); } }
 
         #endregion

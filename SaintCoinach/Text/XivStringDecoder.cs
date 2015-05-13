@@ -188,10 +188,10 @@ namespace SaintCoinach.Text {
                         var right = DecodeExpression(input);
                         return new Nodes.Comparison(exprType, left, right);
                     }
-                case ExpressionType.InputParameter:
+                case ExpressionType.IntegerParameter:
                 case ExpressionType.PlayerParameter:
-                case ExpressionType.UnknownParameterEA:
-                case ExpressionType.UnknownParameterEB:
+                case ExpressionType.StringParameter:
+                case ExpressionType.ObjectParameter:
                     return new Nodes.Parameter(exprType, DecodeExpression(input));
                 default:
                     throw new NotSupportedException();

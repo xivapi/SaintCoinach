@@ -10,7 +10,7 @@ namespace SaintCoinach.Xiv {
     public class ChocoboRaceTerritory : XivRow {
         #region Properties
 
-        public string Name { get { return As<GoldSaucerTextData>("Name").Text; } }
+        public Text.XivString Name { get { return As<GoldSaucerTextData>("Name").Text; } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 
         #endregion
