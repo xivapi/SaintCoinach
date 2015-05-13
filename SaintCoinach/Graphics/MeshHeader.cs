@@ -14,11 +14,11 @@ namespace SaintCoinach.Graphics {
         public short PartOffset;
         public short PartCount;
         public short FileDataPart;
-        public int IndexDataOffset;
+        public int IndexBufferOffset;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-        public int[] VertexDataOffsets;
+        public int[] VertexOffsets;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-        public byte[] BytesPerVertexData;
-        public byte VertexDataPartCount;
+        public byte[] BytesPerVertexPerBuffer;
+        public byte VertexBufferCount;
     }
 }

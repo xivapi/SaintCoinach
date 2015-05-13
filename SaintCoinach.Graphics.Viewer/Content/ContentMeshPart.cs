@@ -32,7 +32,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             //var fromMask = (this.Mesh.Variant.ImcVariant.PartVisibilityMask & BasePart.Header.VisibilityMask) == BasePart.Header.VisibilityMask;
             var fromMask = (this.Mesh.Variant.ImcVariant.PartVisibilityMask & fullMask) == fullMask;
             if (VisibilityOverride.GetValueOrDefault(fromMask))
-                device.ImmediateContext.DrawIndexed(BasePart.IndexCount, BasePart.IndexOffset - Mesh.Primitive.BaseMesh.Header.IndexDataOffset, 0);
+                device.ImmediateContext.DrawIndexed(BasePart.IndexCount, BasePart.IndexOffset - Mesh.Primitive.BaseMesh.Header.IndexBufferOffset, 0);
         }
 
         #endregion

@@ -39,7 +39,7 @@ namespace SaintCoinach.Graphics {
 
         #region Build
         private void ReadIndices(byte[] buffer) {
-            var position = Header.IndexDataOffset * BytesPerIndex;
+            var position = Header.IndexBufferOffset * BytesPerIndex;
             this.Indices = new ushort[Header.IndexCount];
             for (var i = 0; i < Header.IndexCount; ++i) {
                 this.Indices[i] = BitConverter.ToUInt16(buffer, position);
@@ -50,16 +50,16 @@ namespace SaintCoinach.Graphics {
             var header = Header;
             var format = VertexFormat;
 
-            var offsets = new int[header.VertexDataPartCount];
+            var offsets = new int[header.VertexBufferCount];
             for (var oi = 0; oi < offsets.Length; ++oi)
-                offsets[oi] = header.VertexDataOffsets[oi];
+                offsets[oi] = header.VertexOffsets[oi];
 
             Vertices = new Vertex[Header.VertexCount];
             for (var i = 0; i < header.VertexCount; ++i) {
                 Vertices[i] = VertexReader.Read(buffer, format, offsets);
                 
                 for (var oi = 0; oi < offsets.Length; ++oi)
-                    offsets[oi] += header.BytesPerVertexData[oi];
+                    offsets[oi] += header.BytesPerVertexPerBuffer[oi];
             }
         }
         #endregion
