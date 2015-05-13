@@ -1,10 +1,19 @@
+using System;
 using SaintCoinach.Ex.Relational;
+using SaintCoinach.Imaging;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a map.
     /// </summary>
     public class Map : XivRow {
+        #region Fields
+        private WeakReference<Image> _MediumImage;
+        private WeakReference<Image> _SmallImage;
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -47,6 +56,40 @@ namespace SaintCoinach.Xiv {
         /// <value>The <see cref="TerritoryType" /> for the current map.</value>
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
 
+        /// <summary>
+        ///     Gets the masked medium <see cref="Image" /> of the current map.
+        /// </summary>
+        public Image MediumImage {
+            get {
+                Image image;
+                if (_MediumImage != null && _MediumImage.TryGetTarget(out image))
+                    return image;
+                image = BuildImage("m");
+                if (_MediumImage == null)
+                    _MediumImage = new WeakReference<Image>(image);
+                else
+                    _MediumImage.SetTarget(image);
+                return image;
+            }
+        }
+
+        /// <summary>
+        ///     Gets the masked small <see cref="Image" /> of the current map.
+        /// </summary>
+        public Image SmallImage {
+            get {
+                Image image;
+                if (_SmallImage != null && _SmallImage.TryGetTarget(out image))
+                    return image;
+                image = BuildImage("s");
+                if (_SmallImage == null)
+                    _SmallImage = new WeakReference<Image>(image);
+                else
+                    _SmallImage.SetTarget(image);
+                return image;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -69,6 +112,63 @@ namespace SaintCoinach.Xiv {
             if (t.Terrain == null && t.LgbFiles.Length == 0)
                 return null;
             return t;
+        }
+        #endregion
+
+        #region Build
+        private Image BuildImage(string size) {
+            const string MapFileFormat = "ui/map/{0}/{1}{2}_{3}.tex";
+
+            if (string.IsNullOrEmpty(Id))
+                return null;
+
+            var fileName = Id.Replace("/", "");
+            var pack = Sheet.Collection.PackCollection;
+
+            var filePath = string.Format(MapFileFormat, Id, fileName, string.Empty, size);
+            IO.File file;
+            if (!pack.TryGetFile(filePath, out file))
+                return null;
+
+            var imageFile = new ImageFile(file.Pack, file.CommonHeader);
+
+            var maskPath = string.Format(MapFileFormat, Id, fileName, "m", size);
+            IO.File mask;
+            if (pack.TryGetFile(maskPath, out mask))
+            {
+                // Multiply the mask against the file.
+                var maskFile = new ImageFile(mask.Pack, mask.CommonHeader);
+                return MultiplyBlend(imageFile, maskFile);
+            }
+
+            return imageFile.GetImage();
+        }
+
+        private static Image MultiplyBlend(ImageFile image, ImageFile mask) {
+            if (image.Width != mask.Width || image.Height != mask.Height)
+                throw new ArgumentException();
+            // Using 32bit color
+            const int BytesPerPixel = 4;
+
+            var aArgb = Imaging.ImageConverter.GetA8R8G8B8(image);
+            var bArgb = Imaging.ImageConverter.GetA8R8G8B8(mask);
+            var result = new byte[aArgb.Length];
+
+            for (var i = 0; i < aArgb.Length; i += BytesPerPixel) {
+                for (var j = 0; j < 3; ++j)     // Only blend RGB
+                    result[i + j] = (byte)((aArgb[i + j] * bArgb[i + j]) / 255);
+                result[i + 3] = aArgb[i + 3];  // Preserve alpha
+            }
+
+            Image output;
+            unsafe {
+                fixed (byte* p = result) {
+                    var ptr = (IntPtr)p;
+                    using (var tempImage = new Bitmap(image.Width, image.Height, image.Width * BytesPerPixel, PixelFormat.Format32bppArgb, ptr))
+                        output = new Bitmap(tempImage);
+                }
+            }
+            return output;
         }
         #endregion
 
