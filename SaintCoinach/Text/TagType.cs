@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
     public enum TagType : byte {
+        None            = 0x00,
+
         Time            = 0x07,     // TODO: Actually figure out how it works.
         If              = 0x08,
         Switch          = 0x09,
