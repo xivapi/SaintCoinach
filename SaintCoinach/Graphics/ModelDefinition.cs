@@ -38,7 +38,7 @@ namespace SaintCoinach.Graphics {
         public Unknowns.ModelStruct7[] UnknownStructs7 { get; private set; }
         public Unknowns.ModelStruct8 UnknownStruct8 { get; private set; }
         // Here's padding, but not keeping a variable amount of 0s
-        public Unknowns.ModelStruct9 UnknownStruct9 { get; private set; }
+        public ModelBoundingBoxes BoundingBoxes { get; private set; }
         public Bone[] Bones { get; private set; }
         #endregion
 
@@ -106,7 +106,7 @@ namespace SaintCoinach.Graphics {
 
             offset += buffer[offset] + 1;   // Just padding, first byte specifying how many 0-bytes follow.
 
-            this.UnknownStruct9 = buffer.ToStructure<Unknowns.ModelStruct9>(ref offset);
+            this.BoundingBoxes = buffer.ToStructure<ModelBoundingBoxes>(ref offset);
 
             this.Bones = new Bone[Header.BoneCount];
             for (var i = 0; i < Header.BoneCount; ++i)

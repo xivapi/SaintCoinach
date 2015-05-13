@@ -83,6 +83,7 @@
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Graphics\Bone.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
+    <Compile Include="Graphics\BoundingBox.cs" />
     <Compile Include="Graphics\ImcFile.cs" />
     <Compile Include="Graphics\ImcPart.cs" />
     <Compile Include="Graphics\ImcVariant.cs" />
@@ -131,7 +132,7 @@
     <Compile Include="Graphics\Unknowns\ModelStruct6.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct7.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct8.cs" />
-    <Compile Include="Graphics\Unknowns\ModelStruct9.cs" />
+    <Compile Include="Graphics\ModelBoundingBoxes.cs" />
     <Compile Include="Graphics\Vector4.cs" />
     <Compile Include="Graphics\VertexAttribute.cs" />
     <Compile Include="Graphics\VertexReader.cs" />

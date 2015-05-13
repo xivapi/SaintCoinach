@@ -62,10 +62,10 @@ TableSamples GetTableSamples(float2 uv)
     float tableY = (tableKey + 0.5) * 0.0625;
 
     float2 diffuseUV = float2(0.125, tableY);
-    float2 specularUV = float2(0.375, tableY);
-    float2 blendUV = float2(0.625, tableY);
+        float2 specularUV = float2(0.375, tableY);
+        float2 blendUV = float2(0.625, tableY);
 
-    TableSamples samples;
+        TableSamples samples;
 
     samples.Diffuse = g_Table.Sample(g_TableSampler, diffuseUV);
     samples.Specular = g_Table.Sample(g_TableSampler, specularUV);
@@ -78,12 +78,8 @@ float ApplyTable(float2 uv, inout float4 diffuse, inout float4 specular, float s
 {
     TableSamples table = GetTableSamples(uv);
 
-    float3 diff = table.Diffuse.rgb;
-    diff += table.Blend.xyz;
-    diff += table.Specular.rgb * specBlendFactor;
-    diff = min((1).xxx, diff);
-    diffuse.rgb *= diff;
-    specular.rgb = table.Specular.rgb * specular.r;
+    diffuse.rgb *= lerp(table.Diffuse.rgb, table.Specular.rgb * specBlendFactor, table.Blend.w);
+    specular.rgb *= lerp(table.Specular.rgb, specular.rgb, table.Blend.w);
 
     return table.Specular.w;
 };
@@ -91,20 +87,20 @@ float ApplyTable(float2 uv, inout float4 diffuse, inout float4 specular, float s
 float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular)
 {
     float4 texNormal = g_Normal.Sample(g_NormalSampler, pin.UV.xy);
-    float a = texNormal.b;
+        float a = texNormal.b;
     clip(a <= 0.5 ? -1 : 1);
     float3 bump = (texNormal.xyz - 0.5) * 2.0;
 
-    float3 binorm = cross(pin.NormalWS.xyz, pin.Tangent1WS.xyz);
-    float3 bumpNormal = (bump.x * pin.Tangent1WS) + (bump.y * binorm) + (bump.z * pin.NormalWS);
-    bumpNormal = normalize(bumpNormal);
+        float3 binorm = cross(pin.NormalWS.xyz, pin.Tangent1WS.xyz);
+        float3 bumpNormal = (bump.x * pin.Tangent1WS) + (bump.y * binorm) + (bump.z * pin.NormalWS);
+        bumpNormal = normalize(bumpNormal);
 
     float3 eyeVector = normalize(m_EyePosition - pin.PositionWS);
-    Lighting light = GetLight(m_EyePosition, eyeVector, bumpNormal);
+        Lighting light = GetLight(m_EyePosition, eyeVector, bumpNormal);
 
     float4 color = float4(diffuse.rgb, a);
 
-    color.rgb *= light.Diffuse.rgb;
+        color.rgb *= light.Diffuse.rgb;
     color.rgb += light.Specular.rgb * specular.rgb * color.a;
 
     return color;
@@ -128,11 +124,10 @@ float4 PSDiffuseSpecularTable(VSOutput pin) : SV_Target0
     float4 texDiffuse = g_Diffuse.Sample(g_DiffuseSampler, pin.UV.xy);
     float4 texSpecular = g_Specular.Sample(g_SpecularSampler, pin.UV.xy);
 
-    float4 diffuse = texDiffuse * texSpecular.b;
+    float4 diffuse = texDiffuse;
     diffuse.a = 1;
     float4 specular = float4(texSpecular.rrr, 1);
-    ApplyTable(pin.UV.xy, diffuse, specular, texSpecular.g);
-    
+        ApplyTable(pin.UV.xy, diffuse, specular, texSpecular.g);
 
     return ComputeCommon(pin, diffuse, specular);
 };
@@ -155,8 +150,8 @@ float4 PSMaskTable(VSOutput pin) : SV_Target0
 
     float specPow = ApplyTable(pin.UV.xy, diffuse, specular, texMask.g);
 
-    diffuse.rgb *= texMask.b;
-    specular.rgb *= texMask.r;
+    diffuse.rgb *= texMask.r;
+    specular.rgb *= texMask.b;
 
     return ComputeCommon(pin, diffuse, specular);
 };
@@ -166,6 +161,8 @@ float4 PSMask(VSOutput pin) : SV_Target0
 
     float4 diffuse = texMask;
     float4 specular = (1).xxxx;
+
+    float specPow = ApplyTable(pin.UV.xy, diffuse, specular, texMask.g);
 
     return ComputeCommon(pin, diffuse, specular);
 };

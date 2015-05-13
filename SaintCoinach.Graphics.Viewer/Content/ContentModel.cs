@@ -72,16 +72,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #region Draw
         public override void Draw(EngineTime time, ref SharpDX.Matrix world, ref SharpDX.Matrix view, ref SharpDX.Matrix projection) {
             var transformedWorld = Transformation * world;
-            /*
-            foreach (var bone in Primitive.BaseModel.Definition.Bones) {
-                var h = new Vector3(bone.Head.X, bone.Head.Y, bone.Head.Z);
-                var t = new Vector3(bone.Tail.X, bone.Tail.Y, bone.Tail.Z);
-                var headWorld = Matrix.Scaling(0.1f) * Matrix.Translation(h) * transformedWorld;
-                var tailWorld = Matrix.Scaling(0.05f) * Matrix.Translation(t) * transformedWorld;
-
-                Engine.Cube.Draw(time, ref headWorld, ref view, ref projection);
-                Engine.Cube.Draw(time, ref tailWorld, ref view, ref projection);
-            }*/
             _MeshContainer.Draw(time, ref transformedWorld, ref view, ref projection);
         }
         #endregion

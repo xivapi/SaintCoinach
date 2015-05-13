@@ -143,8 +143,8 @@ namespace SaintCoinach.Graphics.Viewer {
             blendDesc.RenderTarget[0].SourceBlend = BlendOption.SourceAlpha;
             blendDesc.RenderTarget[0].DestinationBlend = BlendOption.InverseSourceAlpha;
             blendDesc.RenderTarget[0].BlendOperation = BlendOperation.Add;
-            blendDesc.RenderTarget[0].SourceAlphaBlend = BlendOption.Zero;
-            blendDesc.RenderTarget[0].DestinationAlphaBlend = BlendOption.Zero;
+            blendDesc.RenderTarget[0].SourceAlphaBlend = BlendOption.One;
+            blendDesc.RenderTarget[0].DestinationAlphaBlend = BlendOption.One;
             blendDesc.RenderTarget[0].AlphaBlendOperation = BlendOperation.Add;
             blendDesc.RenderTarget[0].RenderTargetWriteMask = ColorWriteMaskFlags.All;
             _BlendState = new BlendState(Device, blendDesc);

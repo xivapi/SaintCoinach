@@ -108,7 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureFactory.cs" />
     <Compile Include="Vertex3D.cs" />
-    <Compile Include="VertexConverter.cs" />
+    <Compile Include="VectorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Viewer.ico" />
