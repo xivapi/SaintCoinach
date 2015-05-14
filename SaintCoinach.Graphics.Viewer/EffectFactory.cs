@@ -109,6 +109,11 @@ namespace SaintCoinach.Graphics.Viewer {
                         name,
                         "./Effects/HLSL/Iris.fx",
                         (bc, ef) => new Effects.IrisEffect(_Engine.Device, bc, ef));
+                case "bgcolorchange.shpk":
+                    return GetEffect(
+                        name,
+                        "./Effects/HLSL/BgColorChange.fx",
+                        (bc, ef) => new Effects.BgColorChangeEffect(_Engine.Device, bc, ef));
                 default:
                     throw new NotSupportedException();
             }

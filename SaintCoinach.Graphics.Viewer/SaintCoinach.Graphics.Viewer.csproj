@@ -65,6 +65,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ComponentContainer.cs" />
+    <Compile Include="Content\BgColorChangeMaterial.cs" />
     <Compile Include="Content\BgMaterial.cs" />
     <Compile Include="Content\CharacterMaterial.cs" />
     <Compile Include="Content\ContentTerritory.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Content\SkinMaterial.cs" />
     <Compile Include="Drawable3DComponent.cs" />
     <Compile Include="EffectFactory.cs" />
+    <Compile Include="Effects\BgColorChangeEffect.cs" />
     <Compile Include="Effects\BgEffect.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
     <Compile Include="Effects\EffectBase.cs" />
@@ -116,6 +118,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Viewer.ico" />
     <Content Include="Effects\HLSL\BasicEffect.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\BgColorChange.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Bg.fx">
