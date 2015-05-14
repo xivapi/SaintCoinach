@@ -11,6 +11,7 @@ namespace SaintCoinach.Graphics.Viewer {
         BoundingBox CurrentBoundingBox { get; }
         FileInfo CurrentTargetFile { get; }
         string CurrentName { get; }
+        bool RenderFromOppositeSide { get; }
 
         bool MoveNext();
         void Reset(Engine engine);

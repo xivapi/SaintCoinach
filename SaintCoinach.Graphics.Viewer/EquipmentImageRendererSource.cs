@@ -39,22 +39,14 @@ namespace SaintCoinach.Graphics.Viewer {
 
         #region IImageRendererSource Members
 
-        public string CurrentName { get; set; }
+        public string CurrentName { get; private set; }
 
-        public IComponent CurrentComponent {
-            get;
-            private set;
-        }
+        public IComponent CurrentComponent { get; private set; }
 
-        public BoundingBox CurrentBoundingBox {
-            get;
-            private set;
-        }
+        public BoundingBox CurrentBoundingBox { get; private set; }
 
-        public System.IO.FileInfo CurrentTargetFile {
-            get;
-            private set;
-        }
+        public System.IO.FileInfo CurrentTargetFile { get; private set; }
+        public bool RenderFromOppositeSide { get; private set; }
 
         public bool MoveNext() {
             if (MoveNextStain())
@@ -70,6 +62,7 @@ namespace SaintCoinach.Graphics.Viewer {
                 if (_CurrentModel == null)
                     continue;
 
+                RenderFromOppositeSide = eq.ItemUICategory.Key == 1 || eq.ItemUICategory.Key == 10;     // PGL/MNK and books
                 CurrentBoundingBox = _CurrentModel.BoundingBoxes.Value2;    // Not sure what the first one is for, but some are very strange.
 
                 if (_StainEnumerator == null)

@@ -62,7 +62,7 @@ namespace SaintCoinach.Graphics.Viewer {
                 }
                 try {
                     Components.Add(_Source.CurrentComponent);
-                    SetUpCamera(_Source.CurrentBoundingBox);
+                    SetUpCamera(_Source.CurrentBoundingBox, _Source.RenderFromOppositeSide);
                     EngineLoop(EngineTime.Zero);
                 } catch (Exception e) {
                     Console.Error.WriteLine("Failed to render '{0}': {1}", _Source.CurrentName, e.Message);
@@ -76,11 +76,11 @@ namespace SaintCoinach.Graphics.Viewer {
         #endregion
 
         #region Viewport
-        protected virtual void SetUpCamera(Graphics.BoundingBox bbox) {
+        protected virtual void SetUpCamera(Graphics.BoundingBox bbox, bool oppositeSide) {
             const float Yaw = MathUtil.PiOverFour / 2;    // -MathUtil.PiOverTwo;
             const float Pitch = -MathUtil.PiOverFour / 3;  // MathUtil.PiOverTwo;
 
-            Camera.Yaw = Yaw;
+            Camera.Yaw = oppositeSide ? (Yaw - MathUtil.Pi) : Yaw;
             Camera.Pitch = Pitch;
 
             var center = (bbox.PointA.ToDx3() + bbox.PointB.ToDx3()) / 2f;
