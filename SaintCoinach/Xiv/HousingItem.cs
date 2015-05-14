@@ -4,20 +4,21 @@ namespace SaintCoinach.Xiv {
     public abstract class HousingItem : XivRow {
         #region Properties
 
+        public int ModelKey { get { return AsInt32("ModelKey"); } }
         public HousingItemCategory HousingItemCategory { get { return As<HousingItemCategory>(); } }
         public Item Item { get { return As<Item>("Item"); } }
+        public HousingLayoutLimit HousingLayoutLimit { get { return As<HousingLayoutLimit>(); } }
+        public bool DestroyedOnRemoval { get { return AsBoolean("DestroyOnRemoval"); } }
 
         #endregion
 
         #region Constructors
 
-        #region Constructor
-
         protected HousingItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
 
-        #endregion
+        public abstract Graphics.ModelDefinition GetModel();
 
         public override string ToString() {
             return string.Format("{0}", Item);

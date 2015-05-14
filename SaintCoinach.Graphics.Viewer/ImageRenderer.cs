@@ -95,7 +95,7 @@ namespace SaintCoinach.Graphics.Viewer {
             var dy = Math.Abs(bbox.PointA.Y - bbox.PointB.Y);
             var dz = Math.Abs(bbox.PointA.Z - bbox.PointB.Z);
 
-            var maxAxis = Math.Max(dx, Math.Max(dy, dz)) + .1f; // Add a bit because I'm too lazy to adjust FoV for the angle
+            var maxAxis = Math.Max(dx, Math.Max(dy, dz)); // Add a bit because I'm too lazy to adjust FoV for the angle
 
             var backDirection = -Vector3.Transform(Vector3.BackwardRH, Camera.GetRotation());
             var d = -(maxAxis / 2) / Math.Sin(Camera.FoV / 2);

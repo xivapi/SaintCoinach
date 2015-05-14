@@ -63,7 +63,7 @@ namespace SaintCoinach.Graphics.Viewer {
                     continue;
 
                 RenderFromOppositeSide = eq.ItemUICategory.Key == 1 || eq.ItemUICategory.Key == 10;     // PGL/MNK and books
-                CurrentBoundingBox = _CurrentModel.BoundingBoxes.Value2;    // Not sure what the first one is for, but some are very strange.
+                CurrentBoundingBox = _CurrentModel.BoundingBoxes.Value2.Scale(1.35f);    // Not sure what the first one is for, but some are very strange.
 
                 if (_StainEnumerator == null)
                     _IsCurrentStained = false;
