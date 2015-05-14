@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class OpenTag : IStringNode {
+    public class OpenTag : INode, IExpressionNode {
         private readonly TagType _Tag;
         private readonly ArgumentCollection _Arguments;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType IStringNode.Type { get { return NodeType.OpenTag; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.CloseTag; } }
-        public IEnumerable<IStringNode> Arguments { get { return _Arguments; } }
+        NodeType INode.Type { get { return NodeType.OpenTag; } }
+        NodeFlags INode.Flags { get { return _Arguments.HasItems ? NodeFlags.IsExpression : NodeFlags.IsStatic; } }
+        public IEnumerable<INode> Arguments { get { return _Arguments; } }
 
-        public OpenTag(TagType tag, params IStringNode[] arguments) : this(tag, (IEnumerable<IStringNode>)arguments) { }
-        public OpenTag(TagType tag, IEnumerable<IStringNode> arguments) {
+        public OpenTag(TagType tag, params INode[] arguments) : this(tag, (IEnumerable<INode>)arguments) { }
+        public OpenTag(TagType tag, IEnumerable<INode> arguments) {
             _Tag = tag;
             _Arguments = new ArgumentCollection(arguments);
         }
@@ -33,5 +33,19 @@ namespace SaintCoinach.Text.Nodes {
 
             builder.Append(StringTokens.TagClose);
         }
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            if (!_Arguments.HasItems)
+                throw new InvalidOperationException();
+
+            return new Expressions.SurroundedExpression(
+                string.Format("{0}{1}{2}", StringTokens.TagOpen, Tag, StringTokens.ArgumentsOpen),
+                new Expressions.ExpressionCollection(Arguments.Select(_ => _.TryEvaluate(parameters))),
+                StringTokens.ArgumentsClose + StringTokens.TagClose);
+        }
+
+        #endregion
     }
 }

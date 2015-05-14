@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
-    public interface IStringNode {
+    public interface INode {
         TagType Tag { get; }
         NodeType Type { get; }
         NodeFlags Flags { get; }

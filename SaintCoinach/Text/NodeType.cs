@@ -16,6 +16,7 @@ namespace SaintCoinach.Text {
         XivString,
         Comparison,
         Switch,
-        Parameter
+        Parameter,
+        TopLevelParameter,
     }
 }

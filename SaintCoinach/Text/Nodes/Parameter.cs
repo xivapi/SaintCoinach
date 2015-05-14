@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class Parameter : IStringNode {
-        private readonly ExpressionType _ParameterType;
-        private readonly IStringNode _ParameterIndex;
+    public class Parameter : INode, IExpressionNode {
+        private readonly DecodeExpressionType _ParameterType;
+        private readonly INode _ParameterIndex;
 
-        TagType IStringNode.Tag { get { return TagType.None; } }
-        NodeType IStringNode.Type { get { return NodeType.Parameter; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.IsExpression; } }
-        public ExpressionType ParameterType { get { return _ParameterType; } }
-        public IStringNode ParameterIndex { get { return _ParameterIndex; } }
+        TagType INode.Tag { get { return TagType.None; } }
+        NodeType INode.Type { get { return NodeType.Parameter; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
+        public DecodeExpressionType ParameterType { get { return _ParameterType; } }
+        public INode ParameterIndex { get { return _ParameterIndex; } }
 
-        public Parameter(ExpressionType parameterType, IStringNode parameterIndex) {
+        public Parameter(DecodeExpressionType parameterType, INode parameterIndex) {
             if (parameterIndex == null)
                 throw new ArgumentNullException("parameterIndex");
             _ParameterType = parameterType;
@@ -33,5 +33,15 @@ namespace SaintCoinach.Text.Nodes {
             ParameterIndex.ToString(builder);
             builder.Append(StringTokens.ArgumentsClose);
         }
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            var evalIndex = ParameterIndex.TryEvaluate(parameters);
+            var index = parameters.FunctionProvider.ToInteger(evalIndex);
+            return new Expressions.GenericExpression(parameters[this.ParameterType, index]);
+        }
+
+        #endregion
     }
 }

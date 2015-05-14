@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class StaticString : IStringNode {
+    public class StaticString : IStaticNode {
         private readonly string _Value;
 
-        TagType IStringNode.Tag { get { return TagType.None; } }
-        NodeType IStringNode.Type { get { return NodeType.StaticValue; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.IsExpression; } }
+        TagType INode.Tag { get { return TagType.None; } }
+        NodeType INode.Type { get { return NodeType.StaticValue; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
         public string Value { get { return _Value; } }
 
         public StaticString(string value) {
@@ -23,5 +23,13 @@ namespace SaintCoinach.Text.Nodes {
         public void ToString(StringBuilder builder) {
             builder.Append(Value);
         }
+
+        #region IDecodeNodeStatic Members
+
+        object IStaticNode.Value {
+            get { return Value; }
+        }
+
+        #endregion
     }
 }

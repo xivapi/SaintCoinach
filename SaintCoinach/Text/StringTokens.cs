@@ -17,5 +17,7 @@ namespace SaintCoinach.Text {
         public const string CaseTagName = "Case";
 
         public const string InvertName = "Not";
+
+        public const string TopLevelParameterName = "TopLevelParameter";
     }
 }

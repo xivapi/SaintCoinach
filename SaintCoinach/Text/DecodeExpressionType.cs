@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
-    public enum ExpressionType : byte {
+    public enum DecodeExpressionType : byte {
         GreaterThanOrEqualTo = 0xE0,    // Followed by two variables
         UnknownComparisonE1 = 0xE1,     // Followed by one variable
         LessThanOrEqualTo = 0xE2,       // Followed by two variables
@@ -26,6 +26,7 @@ namespace SaintCoinach.Text {
         Int24 = 0xF6,                   // Followed by a Int24
 
         Int24_Color = 0xFA,             // Followed by a Int24, but converted to Int32 with upper 8 bits set to 1
+        Int24_Unknown = 0xFD,           // Followed by a Int24, only used by <Time>?
         Int32 = 0xFE,                   // Followed by a Int32
 
         Decode = 0xFF,                  // Followed by length (inlcuding length) and data

@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class StaticByteArray : IStringNode {
+    public class StaticByteArray : INode, IStaticNode {
         private readonly byte[] _Value;
 
-        TagType IStringNode.Tag { get { return TagType.None; } }
-        NodeType IStringNode.Type { get { return NodeType.StaticValue; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.IsExpression; } }
+        TagType INode.Tag { get { return TagType.None; } }
+        NodeType INode.Type { get { return NodeType.StaticValue; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
         public byte[] Value { get { return _Value; } }
 
         public StaticByteArray(byte[] value) {
@@ -26,5 +26,13 @@ namespace SaintCoinach.Text.Nodes {
             for (var i = 0; i < Value.Length; ++i)
                 builder.Append(Value[i].ToString("X2"));
         }
+
+        #region IDecodeNodeStatic Members
+
+        object IStaticNode.Value {
+            get { return ToString(); }
+        }
+
+        #endregion
     }
 }

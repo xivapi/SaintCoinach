@@ -6,25 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class SwitchElement : IStringNode {
+    public class SwitchElement : INode, IExpressionNode {
         private readonly TagType _Tag;
-        private readonly IStringNode _CaseSwitch;
-        private readonly ReadOnlyDictionary<int, IStringNode> _Cases;
+        private readonly INode _CaseSwitch;
+        private readonly ReadOnlyDictionary<int, INode> _Cases;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType IStringNode.Type { get { return NodeType.Switch; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.OpenTag | NodeFlags.CloseTag | NodeFlags.IsExpression; } }
-        public IStringNode CaseSwitch { get { return _CaseSwitch; } }
-        public IReadOnlyDictionary<int, IStringNode> Cases { get { return _Cases; } }
+        NodeType INode.Type { get { return NodeType.Switch; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
+        public INode CaseSwitch { get { return _CaseSwitch; } }
+        public IReadOnlyDictionary<int, INode> Cases { get { return _Cases; } }
 
-        public SwitchElement(TagType tag, IStringNode caseSwitch, IDictionary<int, IStringNode> cases) {
+        public SwitchElement(TagType tag, INode caseSwitch, IDictionary<int, INode> cases) {
             if (caseSwitch == null)
                 throw new ArgumentNullException("caseSwitch");
             if (cases == null)
                 throw new ArgumentNullException("cases");
             _Tag = tag;
             _CaseSwitch = caseSwitch;
-            _Cases = new ReadOnlyDictionary<int, IStringNode>(cases);
+            _Cases = new ReadOnlyDictionary<int, INode>(cases);
         }
 
         public override string ToString() {
@@ -61,5 +61,19 @@ namespace SaintCoinach.Text.Nodes {
             builder.Append(Tag);
             builder.Append(StringTokens.TagClose);
         }
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            var evalSwitch = CaseSwitch.TryEvaluate(parameters);
+            var asInt = parameters.FunctionProvider.ToInteger(evalSwitch);
+
+            INode caseNode;
+            if (!_Cases.TryGetValue(asInt, out caseNode))
+                throw new InvalidOperationException();
+            return caseNode.TryEvaluate(parameters);
+        }
+
+        #endregion
     }
 }

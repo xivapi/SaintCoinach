@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class IfElement : IStringNode, IConditionalNode {
+    public class IfElement : INode, IConditionalNode {
         private readonly TagType _Tag;
-        private readonly IStringNode _Condition;
-        private readonly IStringNode _TrueValue;
-        private readonly IStringNode _FalseValue;
+        private readonly INode _Condition;
+        private readonly INode _TrueValue;
+        private readonly INode _FalseValue;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType IStringNode.Type { get { return NodeType.IfElement; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.OpenTag | NodeFlags.CloseTag | NodeFlags.IsExpression | NodeFlags.IsConditional; } }
-        public IStringNode Condition { get { return _Condition; } }
-        public IStringNode TrueValue { get { return _TrueValue; } }
-        public IStringNode FalseValue { get { return _FalseValue; } }
+        NodeType INode.Type { get { return NodeType.IfElement; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsExpression | NodeFlags.IsConditional; } }
+        public INode Condition { get { return _Condition; } }
+        public INode TrueValue { get { return _TrueValue; } }
+        public INode FalseValue { get { return _FalseValue; } }
 
-        public IfElement(TagType tag, IStringNode condition, IStringNode trueValue, IStringNode falseValue) {
+        public IfElement(TagType tag, INode condition, INode trueValue, INode falseValue) {
             if (condition == null)
                 throw new ArgumentNullException("condition");
             _Tag = tag;
@@ -53,5 +53,16 @@ namespace SaintCoinach.Text.Nodes {
             builder.Append(Tag);
             builder.Append(StringTokens.TagClose);
         }
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            var evalCond = Condition.TryEvaluate(parameters);
+            if (parameters.FunctionProvider.ToBoolean(evalCond))
+                return TrueValue.TryEvaluate(parameters);
+            return FalseValue.TryEvaluate(parameters);
+        }
+
+        #endregion
     }
 }

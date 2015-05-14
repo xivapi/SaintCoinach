@@ -5,19 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
-    public class XivString : IStringNode, INodeWithChildren, IComparable, IComparable<XivString>, IComparable<string>, IEquatable<XivString>, IEquatable<string> {
-        public static readonly XivString Empty = new XivString(new IStringNode[0]);
+    using Nodes;
 
-        private IStringNode[] _Children;
+    public class XivString : INode, IExpressionNode, INodeWithChildren, IComparable, IComparable<XivString>, IComparable<string>, IEquatable<XivString>, IEquatable<string> {
+        public static readonly XivString Empty = new XivString(new INode[0]);
+
+        private INode[] _Children;
         private WeakReference<string> _StringCache;
 
-        TagType IStringNode.Tag { get { return TagType.None; } }
-        NodeType IStringNode.Type { get { return NodeType.XivString; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.HasChildren | NodeFlags.IsExpression; } }
-        public IEnumerable<IStringNode> Children { get { return _Children; } }
+        TagType INode.Tag { get { return TagType.None; } }
+        NodeType INode.Type { get { return NodeType.XivString; } }
+        NodeFlags INode.Flags { get { return NodeFlags.HasChildren | NodeFlags.IsExpression; } }
+        public IEnumerable<INode> Children { get { return _Children; } }
 
-        public XivString(params IStringNode[] children) : this((IEnumerable<IStringNode>)children) { }
-        public XivString(IEnumerable<IStringNode> children) {
+        public XivString(params INode[] children) : this((IEnumerable<INode>)children) { }
+        public XivString(IEnumerable<INode> children) {
             _Children = children.ToArray();
         }
 
@@ -114,6 +116,14 @@ namespace SaintCoinach.Text {
 
         public bool Equals(string other) {
             return string.Equals(this.ToString(), other);
+        }
+
+        #endregion
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            return new Expressions.ExpressionCollection(Children.Select(c => c.TryEvaluate(parameters)));
         }
 
         #endregion

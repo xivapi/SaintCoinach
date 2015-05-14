@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class CloseTag : IStringNode {
+    public class CloseTag : INode {
         private readonly TagType _Tag;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType IStringNode.Type { get { return NodeType.CloseTag; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.CloseTag; } }
+        NodeType INode.Type { get { return NodeType.CloseTag; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
 
         public CloseTag(TagType tag) {
             _Tag = tag;

@@ -8,7 +8,15 @@ namespace SaintCoinach.Text {
     public enum TagType : byte {
         None            = 0x00,
 
-        Time            = 0x07,     // TODO: Actually figure out how it works.
+        /* Appears to set values for an input time.
+         * - 222 / DEh  Year
+         * - 221 / DDh  Month
+         * - 220 / DCh  Day of week
+         * - 219 / DBh  Day of month
+         * - 218 / DAh  Hour
+         * - 217 / D9h  Minute
+         */
+        Time            = 0x07,     // TODO: It seems to set the time used further on.
         If              = 0x08,
         Switch          = 0x09,
         IfEquals        = 0x0C,

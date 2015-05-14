@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
+    using Nodes;
+
     public class XivStringDecoder {
-        public delegate IStringNode TagDecoder(BinaryReader input, TagType tag, int length);
+        public delegate INode TagDecoder(BinaryReader input, TagType tag, int length);
 
         static readonly Encoding UTF8NoBom = new UTF8Encoding(false);
         const byte TagStartMarker = 0x02;
@@ -73,11 +75,11 @@ namespace SaintCoinach.Text {
             SetDecoder(TagType.SheetJa, (i, t, l) => DecodeGenericElementWithVariableArguments(i, t, l, 3, int.MaxValue)); // Sheet name, Attributive row, Sheet row[, Sheet column[, Attributive index[, Parameters]+]
             SetDecoder(TagType.Split, (i, t, l) => DecodeGenericElement(i, t, l, 3, false));                    // Input expression, Seperator, Index to use
             SetDecoder(TagType.Switch, DecodeSwitch);
-            // Time
+            SetDecoder(TagType.Time, (i, t, l) => DecodeGenericElement(i, t, l, 1, false));
             SetDecoder(TagType.TwoDigitValue, (i, t, l) => DecodeGenericElement(i, t, l, 0, true));
             // Unknowns
             SetDecoder(TagType.Value, (i, t, l) => DecodeGenericElement(i, t, l, 0, true));
-            SetDecoder(TagType.ZeroPaddedValue, (i, t, l) => DecodeGenericElement(i, t, l, 1, true));
+            SetDecoder(TagType.ZeroPaddedValue, DecodeZeroPaddedValue);
         }
         #endregion
 
@@ -104,7 +106,7 @@ namespace SaintCoinach.Text {
             if (end > input.BaseStream.Length)
                 throw new ArgumentOutOfRangeException("length");
 
-            var parts = new List<IStringNode>();
+            var parts = new List<INode>();
             var pendingStatic = new List<byte>();
 
             while (input.BaseStream.Position < end) {
@@ -123,7 +125,7 @@ namespace SaintCoinach.Text {
             return new XivString(parts);
         }
 
-        private IStringNode DecodeTag(BinaryReader input) {
+        private INode DecodeTag(BinaryReader input) {
             var tag = (TagType)input.ReadByte();
             var length = GetInteger(input);
             var end = input.BaseStream.Position + length;
@@ -138,7 +140,7 @@ namespace SaintCoinach.Text {
             return result;
         }
 
-        private void AddStatic(List<byte> pending, List<IStringNode> targetParts) {
+        private void AddStatic(List<byte> pending, List<INode> targetParts) {
             if (pending.Count == 0)
                 return;
             targetParts.Add(new Nodes.StaticString(this.Encoding.GetString(pending.ToArray())));
@@ -147,79 +149,82 @@ namespace SaintCoinach.Text {
         #endregion
 
         #region Generic
-        protected IStringNode DecodeTagDefault(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeTagDefault(BinaryReader input, TagType tag, int length) {
             return new Nodes.DefaultElement(tag, input.ReadBytes(length));
         }
-        protected IStringNode DecodeExpression(BinaryReader input) {
+        protected INode DecodeExpression(BinaryReader input) {
             var t = input.ReadByte();
-            return DecodeExpression(input, (ExpressionType)t);
+            return DecodeExpression(input, (DecodeExpressionType)t);
         }
-        protected IStringNode DecodeExpression(BinaryReader input, ExpressionType exprType) {
+        protected INode DecodeExpression(BinaryReader input, DecodeExpressionType exprType) {
             var t = (byte)exprType;
-            if (t < 0xE0)
+            if (t < 0xD0)
                 return new Nodes.StaticInteger(t - 1);
+            if (t < 0xE0)
+                return new Nodes.TopLevelParameter(t - 1);
 
             switch (exprType) {
-                case ExpressionType.Decode: {
+                case DecodeExpressionType.Decode: {
                         var len = GetInteger(input);
                         return Decode(input, len);
                     }
-                case ExpressionType.Byte:
+                case DecodeExpressionType.Byte:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Byte));
-                case ExpressionType.Int16_MinusOne:
+                case DecodeExpressionType.Int16_MinusOne:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int16) - 1);
-                case ExpressionType.Int16_1:
-                case ExpressionType.Int16_2:
+                case DecodeExpressionType.Int16_1:
+                case DecodeExpressionType.Int16_2:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int16));
-                case ExpressionType.Int24_MinusOne:
+                case DecodeExpressionType.Int24_MinusOne:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24) - 1);
-                case ExpressionType.Int24:
+                case DecodeExpressionType.Int24:
+                case DecodeExpressionType.Int24_Unknown:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24));
-                case ExpressionType.Int24_Color:
+                case DecodeExpressionType.Int24_Color:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24) | (0xFF << 24));
-                case ExpressionType.Int32:
+                case DecodeExpressionType.Int32:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int32));
-                case ExpressionType.GreaterThanOrEqualTo:
-                case ExpressionType.UnknownComparisonE1:
-                case ExpressionType.LessThanOrEqualTo:
-                case ExpressionType.NotEqual:
-                case ExpressionType.Equal: {
+                case DecodeExpressionType.GreaterThanOrEqualTo:
+                case DecodeExpressionType.UnknownComparisonE1:
+                case DecodeExpressionType.LessThanOrEqualTo:
+                case DecodeExpressionType.NotEqual:
+                case DecodeExpressionType.Equal: {
                         var left = DecodeExpression(input);
                         var right = DecodeExpression(input);
                         return new Nodes.Comparison(exprType, left, right);
                     }
-                case ExpressionType.IntegerParameter:
-                case ExpressionType.PlayerParameter:
-                case ExpressionType.StringParameter:
-                case ExpressionType.ObjectParameter:
+                case DecodeExpressionType.IntegerParameter:
+                case DecodeExpressionType.PlayerParameter:
+                case DecodeExpressionType.StringParameter:
+                case DecodeExpressionType.ObjectParameter:
                     return new Nodes.Parameter(exprType, DecodeExpression(input));
                 default:
                     throw new NotSupportedException();
             }
         }
-        protected IStringNode DecodeGenericElement(BinaryReader input, TagType tag, int length, int argCount, bool hasContent) {
+        protected INode DecodeGenericElement(BinaryReader input, TagType tag, int length, int argCount, bool hasContent) {
             if (length == 0) {
                 if (argCount > 0)
                     throw new ArgumentOutOfRangeException("argCount");
                 return new Nodes.EmptyElement(tag);
             }
-            var arguments = new IStringNode[argCount];
+            var arguments = new INode[argCount];
             for (var i = 0; i < argCount; ++i)
                 arguments[i] = DecodeExpression(input);
-            IStringNode content = null;
+            INode content = null;
             if (hasContent)
                 content = DecodeExpression(input);
 
             return new Nodes.GenericElement(tag, content, arguments);
         }
-        protected IStringNode DecodeGenericElementWithVariableArguments(BinaryReader input, TagType tag, int length, int minCount, int maxCount) {
+        protected INode DecodeGenericElementWithVariableArguments(BinaryReader input, TagType tag, int length, int minCount, int maxCount) {
             var end = input.BaseStream.Position + length;
-            var args = new List<IStringNode>();
+            var args = new List<INode>();
             for (var i = 0; i < maxCount && input.BaseStream.Position < end; ++i)
                 args.Add(DecodeExpression(input));
             return new Nodes.GenericElement(tag, null, args);
         }
-        protected IStringNode DecodeGenericSurroundingTag(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeGenericSurroundingTag(BinaryReader input, TagType tag, int length) {
             if (length != 1)
                 throw new ArgumentOutOfRangeException("length");
             var status = GetInteger(input);
@@ -232,48 +237,53 @@ namespace SaintCoinach.Text {
         #endregion
 
         #region Specific
-        protected IStringNode DecodeColor(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeZeroPaddedValue(BinaryReader input, TagType tag, int length) {
+            var val = DecodeExpression(input);
+            var arg = DecodeExpression(input);
+            return new GenericElement(tag, val, arg);
+        }
+        protected INode DecodeColor(BinaryReader input, TagType tag, int length) {
             var t = input.ReadByte();
             if (length == 1 && t == 0xEC)
                 return new Nodes.CloseTag(tag);
-            var color = DecodeExpression(input, (ExpressionType)t);
+            var color = DecodeExpression(input, (DecodeExpressionType)t);
             return new Nodes.OpenTag(tag, color);
         }
-        protected IStringNode DecodeFormat(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeFormat(BinaryReader input, TagType tag, int length) {
             var end = input.BaseStream.Position + length;
 
             var arg1 = DecodeExpression(input);
             var arg2 = new Nodes.StaticByteArray(input.ReadBytes((int)(end - input.BaseStream.Position)));
             return new Nodes.GenericElement(tag, null, arg1, arg2);
         }
-        protected IStringNode DecodeIf(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeIf(BinaryReader input, TagType tag, int length) {
             var end = input.BaseStream.Position + length;
 
             var condition = DecodeExpression(input);
             var trueValue = DecodeExpression(input);
-            IStringNode falseValue = null;
+            INode falseValue = null;
             if (input.BaseStream.Position != end)
                 falseValue = DecodeExpression(input);
 
             return new Nodes.IfElement(tag, condition, trueValue, falseValue);
         }
-        protected IStringNode DecodeIfEquals(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeIfEquals(BinaryReader input, TagType tag, int length) {
             var end = input.BaseStream.Position + length;
 
             var left = DecodeExpression(input);
             var right = DecodeExpression(input);
             var trueValue = DecodeExpression(input);
-            IStringNode falseValue = null;
+            INode falseValue = null;
             if (input.BaseStream.Position != end)
                 falseValue = DecodeExpression(input);
 
             return new Nodes.IfEqualsElement(tag, left, right, trueValue, falseValue);
         }
-        protected IStringNode DecodeSwitch(BinaryReader input, TagType tag, int length) {
+        protected INode DecodeSwitch(BinaryReader input, TagType tag, int length) {
             var end = input.BaseStream.Position + length;
             var caseSwitch = DecodeExpression(input);
 
-            var cases = new Dictionary<int, IStringNode>();
+            var cases = new Dictionary<int, INode>();
             var i = 1;
             while (input.BaseStream.Position < end)
                 cases.Add(i++, DecodeExpression(input));

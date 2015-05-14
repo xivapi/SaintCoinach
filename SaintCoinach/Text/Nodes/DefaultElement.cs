@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class DefaultElement : IStringNode, INodeWithChildren {
+    public class DefaultElement : INode {
         private readonly TagType _Tag;
         private readonly StaticByteArray _Data;
 
         public TagType Tag { get { return _Tag; } }
-        public IStringNode Data { get { return _Data; } }
-        NodeType IStringNode.Type { get { return NodeType.DefaultElement; } }
-        NodeFlags IStringNode.Flags { get { return NodeFlags.OpenTag | NodeFlags.HasChildren | NodeFlags.CloseTag | NodeFlags.IsExpression; } }
+        public INode Data { get { return _Data; } }
+        NodeType INode.Type { get { return NodeType.DefaultElement; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
 
         public DefaultElement(TagType tag, byte[] innerBuffer) {
             _Tag = tag;
@@ -41,13 +41,5 @@ namespace SaintCoinach.Text.Nodes {
                 builder.Append(StringTokens.TagClose);
             }
         }
-
-        #region INodeWithChildren Members
-
-        IEnumerable<IStringNode> INodeWithChildren.Children {
-            get { yield return Data; }
-        }
-
-        #endregion
     }
 }

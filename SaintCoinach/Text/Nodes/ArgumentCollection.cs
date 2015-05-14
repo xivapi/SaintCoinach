@@ -5,15 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class ArgumentCollection : IEnumerable<IStringNode> {
-        private readonly IStringNode[] _Items;
+    public class ArgumentCollection : IEnumerable<INode> {
+        private readonly INode[] _Items;
 
         public bool HasItems { get { return _Items != null && _Items.Length > 0; } }
-        public IEnumerable<IStringNode> Items { get { return _Items; } }
+        public IEnumerable<INode> Items { get { return _Items; } }
 
-        public ArgumentCollection(IEnumerable<IStringNode> items) {
+        public ArgumentCollection(IEnumerable<INode> items) {
             if (items != null)
                 _Items = items.ToArray();
+            else
+                _Items = new INode[0];
         }
 
         public override string ToString() {
@@ -35,7 +37,7 @@ namespace SaintCoinach.Text.Nodes {
 
         #region IEnumerable<IXivStringPart> Members
 
-        public IEnumerator<IStringNode> GetEnumerator() {
+        public IEnumerator<INode> GetEnumerator() {
             return Items.GetEnumerator();
         }
 

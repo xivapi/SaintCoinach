@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class GenericElement : IStringNode, INodeWithChildren, INodeWithArguments {
+    public class GenericElement : INode, INodeWithChildren, INodeWithArguments, IExpressionNode {
         private TagType _Tag;
         private ArgumentCollection _Arguments;
-        private IStringNode _Content;
+        private INode _Content;
 
         public TagType Tag { get { return _Tag; } }
-        public IEnumerable<IStringNode> Arguments { get { return _Arguments; } }
-        public IStringNode Content { get { return _Content; } }
-        NodeType IStringNode.Type { get { return NodeType.GenericElement; } }
-        NodeFlags IStringNode.Flags {
+        public IEnumerable<INode> Arguments { get { return _Arguments; } }
+        public INode Content { get { return _Content; } }
+        NodeType INode.Type { get { return NodeType.GenericElement; } }
+        NodeFlags INode.Flags {
             get {
-                var f = NodeFlags.OpenTag | NodeFlags.CloseTag | NodeFlags.IsExpression;
+                var f = NodeFlags.IsExpression;
                 if (_Arguments.HasItems)
                     f |= NodeFlags.HasArguments;
                 if (Content != null)
@@ -25,8 +25,8 @@ namespace SaintCoinach.Text.Nodes {
             }
         }
 
-        public GenericElement(TagType tag, IStringNode content, params IStringNode[] arguments) : this(tag, content, (IEnumerable<IStringNode>)arguments) { }
-        public GenericElement(TagType tag, IStringNode content, IEnumerable<IStringNode> arguments) {
+        public GenericElement(TagType tag, INode content, params INode[] arguments) : this(tag, content, (IEnumerable<INode>)arguments) { }
+        public GenericElement(TagType tag, INode content, IEnumerable<INode> arguments) {
             _Tag = tag;
             _Arguments = new ArgumentCollection(arguments);
             _Content = content;
@@ -60,8 +60,16 @@ namespace SaintCoinach.Text.Nodes {
 
         #region INodeWithChildren Members
 
-        IEnumerable<IStringNode> INodeWithChildren.Children {
+        IEnumerable<INode> INodeWithChildren.Children {
             get { yield return Content; }
+        }
+
+        #endregion
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            return parameters.FunctionProvider.EvaluateGenericElement(parameters, this);
         }
 
         #endregion

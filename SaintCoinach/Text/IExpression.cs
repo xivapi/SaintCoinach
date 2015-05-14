@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text {
-    public interface INodeWithChildren : IStringNode {
-        IEnumerable<IStringNode> Children { get; }
+    public interface IExpression {
+        void ToString(StringBuilder output);
     }
 }
