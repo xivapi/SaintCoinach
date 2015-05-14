@@ -133,17 +133,17 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             Light0 = new DirectionalLight {
                 Direction = new Vector3(0.5f, 0.25f, 1),
                 Diffuse = Vector4.One,
-                Specular = Vector4.One * 0.75f,
+                Specular = Vector4.One,
             };
             Light1 = new DirectionalLight {
                 Direction = new Vector3(0, -1, 0),
                 Diffuse = Vector4.One,
-                Specular = Vector4.One * 0.75f,
+                Specular = Vector4.One,
             };
             Light2 = new DirectionalLight {
                 Direction = new Vector3(-0.5f, 0.25f, -1),
                 Diffuse = Vector4.One,
-                Specular = Vector4.One * 0.75f,
+                Specular = Vector4.One,
             };
             /*
             Light0 = new DirectionalLight {

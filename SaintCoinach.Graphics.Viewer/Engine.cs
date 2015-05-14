@@ -52,6 +52,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         #region Properties
         protected Texture2D RenderTarget { get { return _RenderTarget; } }
+        protected RenderTargetView RenderTargetView { get { return _RenderTargetView; } }
 
         public Device Device { get { return _Device; } }
         public Keyboard Keyboard { get { return _Keyboard; } }
@@ -137,7 +138,6 @@ namespace SaintCoinach.Graphics.Viewer {
 
             var depthDesc = DepthStencilStateDescription.Default();
             _StencilState = new DepthStencilState(Device, depthDesc);
-
             var blendDesc = BlendStateDescription.Default();
             blendDesc.RenderTarget[0].IsBlendEnabled = true;
             blendDesc.RenderTarget[0].SourceBlend = BlendOption.SourceAlpha;
@@ -262,8 +262,6 @@ namespace SaintCoinach.Graphics.Viewer {
             Device.ImmediateContext.OutputMerger.SetBlendState(BlendState);
             Device.ImmediateContext.Rasterizer.State = RasterizerState;
             Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
-
-            Device.ImmediateContext.ClearRenderTargetView(_RenderTargetView, Color.CornflowerBlue);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
 
             Draw3D(time, ref world, ref view, ref proj);

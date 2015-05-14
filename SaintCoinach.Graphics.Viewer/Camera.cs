@@ -18,6 +18,7 @@ namespace SaintCoinach.Graphics.Viewer {
         private float _Pitch = 0;
         private Matrix _Projection;
         private Matrix _View;
+        private float _FoV = 0.9f;
 
         const float RotationSpeed = (float)(Math.PI / 2f);
         const float MoveSpeed = 20.0f;
@@ -33,7 +34,22 @@ namespace SaintCoinach.Graphics.Viewer {
         #region Properties
         public Matrix Projection { get { return _Projection; } }
         public Matrix View { get { return _View; } }
-        public Vector3 CameraPosition { get { return _CameraPosition; } }
+        public Vector3 CameraPosition {
+            get { return _CameraPosition; }
+            set { _CameraPosition = value; }
+        }
+        public float Yaw {
+            get { return _Yaw; }
+            set { _Yaw = value; }
+        }
+        public float Pitch {
+            get { return _Pitch; }
+            set { _Pitch = value; }
+        }
+        public float FoV {
+            get { return _FoV; }
+            set { _FoV = value; }
+        }
         #endregion
 
         #region Constructor
@@ -67,6 +83,12 @@ namespace SaintCoinach.Graphics.Viewer {
 
             _View = Matrix.LookAtRH(_CameraPosition, cameraFinalTarget, cameraRotatedUpVector);
         }
+        public void AddToCameraPosition(Vector3 vectorToAdd) {
+            var rotation = GetRotation();
+
+            Vector3 rotatedVector = (Vector3)Vector3.Transform(vectorToAdd, rotation);
+            _CameraPosition += MoveSpeed * rotatedVector;
+        }
         #endregion
 
         #region Visibility test
@@ -82,12 +104,6 @@ namespace SaintCoinach.Graphics.Viewer {
         }
         public bool IsVisible(Vector4 point) {
             return IsVisible(new Vector3(point.X, point.Y, point.Z));
-        }
-        private void AddToCameraPosition(Vector3 vectorToAdd) {
-            var rotation = GetRotation();
-
-            Vector3 rotatedVector = (Vector3)Vector3.Transform(vectorToAdd, rotation);
-            _CameraPosition += MoveSpeed * rotatedVector;
         }
         #endregion
 
@@ -149,7 +165,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
             UpdateViewMatrix();
 
-            _Projection = Matrix.PerspectiveFovRH(0.9f, aspectRatio, 0.1f, 10000.0f);
+            _Projection = Matrix.PerspectiveFovRH(FoV, aspectRatio, 0.1f, 10000.0f);
         }
     }
 }

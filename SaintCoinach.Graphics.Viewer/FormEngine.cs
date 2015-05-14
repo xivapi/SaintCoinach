@@ -103,6 +103,11 @@ namespace SaintCoinach.Graphics.Viewer {
             _IsResizing = false;
             return Texture2D.FromSwapChain<Texture2D>(_SwapChain, 0);
         }
+        protected override void Draw(EngineTime time) {
+            Device.ImmediateContext.ClearRenderTargetView(RenderTargetView, Color.CornflowerBlue);
+
+            base.Draw(time);
+        }
         protected override void Present() {
             _SwapChain.Present(0, PresentFlags.None);
         }

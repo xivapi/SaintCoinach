@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Viewer {
     public struct EngineTime {
+        public static readonly EngineTime Zero = new EngineTime(TimeSpan.Zero, TimeSpan.Zero);
+
         public readonly TimeSpan TotalTime;
         public readonly TimeSpan ElapsedTime;
 
