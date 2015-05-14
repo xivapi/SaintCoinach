@@ -112,7 +112,6 @@ namespace SaintCoinach.Graphics.Viewer {
             var fileName = string.Format("{0} - {1}", item.Key, item.Name);
             if (stain != null)
                 fileName += string.Format(" (s{0:D4} {1})", stain.Key, stain.Name);
-            fileName += ".png";
             return new System.IO.FileInfo(System.IO.Path.Combine("Renders", (item.Key - item.Key % DirectorySeperationInterval).ToString(), fileName));
         }
         protected string GetName(Xiv.Items.Equipment item) {
