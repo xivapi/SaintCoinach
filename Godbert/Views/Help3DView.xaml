@@ -19,6 +19,15 @@
                     <LineBreak />
                     <Run>• Dyes can be selected in the box below the list.</Run>
                     <LineBreak />
+                    
+                    <Bold>Furniture</Bold>
+                    <LineBreak />
+                    <Run>Allows for viewing of furniture.</Run>
+                    <LineBreak />
+                    <Run>• Enter text in the box to filter displayed items.</Run>
+                    <LineBreak />
+                    <Run>• Dyes can be selected in the box below the list.</Run>
+                    <LineBreak />
 
                     <Bold>Monsters</Bold>
                     <LineBreak />
