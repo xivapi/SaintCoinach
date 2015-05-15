@@ -9,6 +9,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
     using SharpDX.Direct3D11;
 
     public class BgColorChangeMaterial : MaterialBase {
+        public const string ColorParameterKey = "BgColorChangeColor";
+        public static Vector4 DefaultColor = new Vector4(228 / 255f, 223 / 255f, 208 / 208f, 1f);
 
         #region Param map
         [Flags]
@@ -45,7 +47,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public ShaderResourceView ColorMap0 { get; private set; }
         public ShaderResourceView SpecularMap0 { get; private set; }
         public ShaderResourceView NormalMap0 { get; private set; }
-        public Vector4 Color { get; set; }
 
         public BgColorChangeParameter Navin { get; private set; }
 
@@ -80,19 +81,16 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                 }
             }
 
-            Color = new Vector4(228 / 255f, 223 / 255f, 208 / 208f, 1f);
-            Color = new Vector4(100 / 255f, 66 / 255f, 22 / 255f, 1f);
-
             CurrentTechniqueName = "BgColorChange"; // TechniqueNames[Navin];
         }
         #endregion
 
         #region Apply
-        public override void Apply() {
+        public override void Apply(Data.ParametersBase parameters) {
             Effect.ColorMap0 = this.ColorMap0;
             Effect.SpecularMap0 = this.SpecularMap0;
             Effect.NormalMap0 = this.NormalMap0;
-            Effect.Color = this.Color;
+            Effect.Color = parameters.GetValueOrDefault(ColorParameterKey, DefaultColor);
         }
         #endregion
     }

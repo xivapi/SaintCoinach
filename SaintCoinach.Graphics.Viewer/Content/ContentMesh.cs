@@ -57,7 +57,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             EffectTechnique tech = Material.CurrentTechnique;
 
             Material.Effect.Apply(ref world, ref view, ref projection);
-            Material.Apply();
+            Material.Apply(Model.Parameters);
 
             ia.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.TriangleList;
             ia.SetVertexBuffers(0, Primitive.VertexBufferBinding);

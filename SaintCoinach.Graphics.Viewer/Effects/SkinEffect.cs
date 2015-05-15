@@ -14,8 +14,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         private EffectShaderResourceVariable _DiffuseVar;
         private EffectShaderResourceVariable _NormalVar;
         private EffectShaderResourceVariable _MaskVar;
-        private EffectVectorVariable _SkinColorVar;
-        private EffectVectorVariable _LipColorVar;
+        private CustomizeParameterEffectVariable _CustomizeParameterVar;
         #endregion
 
         #region Properties
@@ -28,11 +27,8 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         public ShaderResourceView Mask {
             set { _MaskVar.SetResource(value); }
         }
-        public Vector4 SkinColor {
-            set { _SkinColorVar.Set(value); }
-        }
-        public Vector4 LipColor {
-            set { _LipColorVar.Set(value); }
+        public Data.CustomizeParameters CustomizeParameters {
+            set { _CustomizeParameterVar.Set(value); }
         }
         #endregion
 
@@ -50,8 +46,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             _NormalVar = GetVariableByName("g_Normal").AsShaderResource();
             _MaskVar = GetVariableByName("g_Mask").AsShaderResource();
 
-            _SkinColorVar = GetVariableByName("m_SkinColor").AsVector();
-            _LipColorVar = GetVariableByName("m_LipColor").AsVector();
+            _CustomizeParameterVar = new CustomizeParameterEffectVariable(this);
         }
         #endregion
     }

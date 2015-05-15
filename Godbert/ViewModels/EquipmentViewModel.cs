@@ -37,7 +37,10 @@ namespace Godbert.ViewModels {
         public IEnumerable<Stain> Stains { get; private set; }
         public Stain SelectedStain {
             get { return _SelectedStain; }
-            set { _SelectedStain = value; }
+            set {
+                _SelectedStain = value;
+                OnPropertyChanged(() => SelectedStain);
+            }
         }
         public string FilterTerm {
             get { return _FilterTerm; }

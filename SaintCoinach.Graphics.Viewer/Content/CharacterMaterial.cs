@@ -113,7 +113,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #endregion
 
         #region Apply
-        public override void Apply() {
+        public override void Apply(Data.ParametersBase parameters) {
             Effect.Diffuse = this.Diffuse;
             Effect.Specular = this.Specular;
             Effect.Normal = this.Normal;

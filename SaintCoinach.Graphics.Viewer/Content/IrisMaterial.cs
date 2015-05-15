@@ -35,9 +35,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public ShaderResourceView Normal { get; private set; }
         public ShaderResourceView Mask { get; private set; }
 
-        public Vector3 LeftColor { get; set; }
-        public Vector3 RightColor { get; set; }
-
         public IrisParameter Navin { get; private set; }
 
         public new Effects.IrisEffect Effect { get { return (Effects.IrisEffect)base.Effect; } }
@@ -69,19 +66,15 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             }
 
             CurrentTechniqueName = "Iris";
-
-            LeftColor = new Vector3(165 / 255f, 42 / 255f, 42 / 255f);
-            RightColor = new Vector3(121 / 255f, 68 / 255f, 59 / 255f);
         }
         #endregion
 
         #region Apply
-        public override void Apply() {
+        public override void Apply(Data.ParametersBase parameters) {
             Effect.Normal = this.Normal;
             Effect.Mask = this.Mask;
 
-            Effect.LeftColor = this.LeftColor;
-            Effect.RightColor = this.RightColor;
+            Effect.CustomizeParameters = parameters.GetValueOrDefault(Data.CustomizeParameters.CustomizeParametersKey, Data.CustomizeParameters.Default);
         }
         #endregion
     }

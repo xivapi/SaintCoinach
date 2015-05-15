@@ -42,7 +42,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #endregion
 
         #region Apply
-        public abstract void Apply();
+        public abstract void Apply(Data.ParametersBase parameters);
         #endregion
     }
 }

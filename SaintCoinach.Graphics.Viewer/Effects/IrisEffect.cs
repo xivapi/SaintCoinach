@@ -13,8 +13,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         #region Fields
         private EffectShaderResourceVariable _NormalVar;
         private EffectShaderResourceVariable _MaskVar;
-        private EffectVectorVariable _LeftColorVar;
-        private EffectVectorVariable _RightColorVar;
+        private CustomizeParameterEffectVariable _CustomizeParameterVar;
         #endregion
 
         #region Properties
@@ -24,11 +23,8 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         public ShaderResourceView Mask {
             set { _MaskVar.SetResource(value); }
         }
-        public Vector3 LeftColor {
-            set { _LeftColorVar.Set(value); }
-        }
-        public Vector3 RightColor {
-            set { _RightColorVar.Set(value); }
+        public Data.CustomizeParameters CustomizeParameters {
+            set { _CustomizeParameterVar.Set(value); }
         }
         #endregion
 
@@ -45,8 +41,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             _NormalVar = GetVariableByName("g_Normal").AsShaderResource();
             _MaskVar = GetVariableByName("g_Mask").AsShaderResource();
 
-            _LeftColorVar = GetVariableByName("m_LeftColor").AsVector();
-            _RightColorVar = GetVariableByName("m_RightColor").AsVector();
+            _CustomizeParameterVar = new CustomizeParameterEffectVariable(this);
         }
         #endregion
     }

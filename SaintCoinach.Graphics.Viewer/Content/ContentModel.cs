@@ -19,6 +19,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public ContentMesh[] Meshes { get; private set; }
         public Matrix Transformation { get; set; }
         public PrimitiveModel Primitive { get; private set; }
+        public Data.ParametersBase Parameters { get; set; }
         #endregion
 
         #region Constructor
@@ -34,6 +35,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         }
         public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel) : this(engine, transformedModel, ModelQuality.High) { }
         public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel, ModelQuality quality) : base(engine) {
+            this.Parameters = new Data.ParametersBase();
             this.Definition = transformedModel.Model;
             this.Quality = Quality;
             this.Variant = new ModelVariantIdentifier {

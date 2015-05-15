@@ -25,12 +25,8 @@ sampler g_MaskSampler           : register(s2)
 
 #include "Common.fxh"
 #include "Lighting.fxh"
+#include "CustomizeParameter.fxh"
 
-cbuffer g_CustomizeParameters : register(b2)
-{
-    float4 m_SkinColor      : packoffset(c0);
-    float4 m_LipColor       : packoffset(c1);
-};
 /*
 float4 ComputeCommon(VSOutputCommon pin, float4 diffuse, float4 specular)
 {

@@ -79,11 +79,14 @@
     <Compile Include="Content\PrimitiveMesh.cs" />
     <Compile Include="Content\PrimitiveModel.cs" />
     <Compile Include="Content\SkinMaterial.cs" />
+    <Compile Include="Data\CustomizeParameters.cs" />
+    <Compile Include="Data\ParametersBase.cs" />
     <Compile Include="Drawable3DComponent.cs" />
     <Compile Include="EffectFactory.cs" />
     <Compile Include="Effects\BgColorChangeEffect.cs" />
     <Compile Include="Effects\BgEffect.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
+    <Compile Include="Effects\CustomizeParameterEffectVariable.cs" />
     <Compile Include="Effects\EffectBase.cs" />
     <Compile Include="Effects\EffectDirectionalLightVariable.cs" />
     <Compile Include="Effects\DirectionalLight.cs" />
@@ -142,6 +145,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Structures.fxh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\CustomizeParameter.fxh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

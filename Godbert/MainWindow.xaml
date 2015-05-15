@@ -39,6 +39,9 @@
                     <TabItem Header="Equipment" DataContext="{Binding Equipment}">
                         <views:EquipmentView />
                     </TabItem>
+                    <TabItem Header="Furniture" DataContext="{Binding Furniture}">
+                        <views:FurnitureView />
+                    </TabItem>
                     <TabItem Header="Monsters" DataContext="{Binding Monsters}">
                         <views:MonstersView />
                     </TabItem>

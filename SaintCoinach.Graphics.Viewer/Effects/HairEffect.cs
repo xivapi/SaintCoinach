@@ -13,8 +13,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         #region Fields
         private EffectShaderResourceVariable _NormalVar;
         private EffectShaderResourceVariable _MaskVar;
-        private EffectVectorVariable _HairColorVar;
-        private EffectVectorVariable _MeshColorVar;
+        private CustomizeParameterEffectVariable _CustomizeParameterVar;
         #endregion
 
         #region Properties
@@ -24,11 +23,8 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
         public ShaderResourceView Mask {
             set { _MaskVar.SetResource(value); }
         }
-        public Vector3 HairColor {
-            set { _HairColorVar.Set(value); }
-        }
-        public Vector3 MeshColor {
-            set { _MeshColorVar.Set(value); }
+        public Data.CustomizeParameters CustomizeParameters {
+            set { _CustomizeParameterVar.Set(value); }
         }
         #endregion
 
@@ -45,8 +41,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
             _NormalVar = GetVariableByName("g_Normal").AsShaderResource();
             _MaskVar = GetVariableByName("g_Mask").AsShaderResource();
 
-            _HairColorVar = GetVariableByName("m_HairColor").AsVector();
-            _MeshColorVar = GetVariableByName("m_MeshColor").AsVector();
+            _CustomizeParameterVar = new CustomizeParameterEffectVariable(this);
         }
         #endregion
     }

@@ -28,9 +28,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public ShaderResourceView Normal { get; private set; }
         public ShaderResourceView Mask { get; private set; }
 
-        public Vector3 HairColor { get; set; }
-        public Vector3 MeshColor { get; set; }
-
         public HairParameter Navin { get; private set; }
 
         public new Effects.HairEffect Effect { get { return (Effects.HairEffect)base.Effect; } }
@@ -62,19 +59,15 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             }
 
             CurrentTechniqueName = "Hair";
-
-            HairColor = new Vector3(165 / 255f, 42 / 255f, 42 / 255f);
-            MeshColor = new Vector3(121 / 255f, 68 / 255f, 59 / 255f);
         }
         #endregion
 
         #region Apply
-        public override void Apply() {
+        public override void Apply(Data.ParametersBase parameters) {
             Effect.Normal = this.Normal;
             Effect.Mask = this.Mask;
 
-            Effect.HairColor = this.HairColor;
-            Effect.MeshColor = this.MeshColor;
+            Effect.CustomizeParameters = parameters.GetValueOrDefault(Data.CustomizeParameters.CustomizeParametersKey, Data.CustomizeParameters.Default);
         }
         #endregion
     }

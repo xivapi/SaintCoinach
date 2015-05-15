@@ -31,9 +31,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public ShaderResourceView Normal { get; private set; }
         public ShaderResourceView Mask { get; private set; }
 
-        public Vector4 SkinColor { get; set; }
-        public Vector4 LipColor { get; set; }
-
         public SkinParameter Navin { get; private set; }
 
         public new Effects.SkinEffect Effect { get { return (Effects.SkinEffect)base.Effect; } }
@@ -68,19 +65,15 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             }
 
             CurrentTechniqueName = "Skin";
-
-            SkinColor = new Vector4(210 / 255f, 180 / 255f, 140 / 255f, 1);
-            LipColor = new Vector4(1, 0, 0, .25f);
         }
         #endregion
 
         #region Apply
-        public override void Apply() {
+        public override void Apply(Data.ParametersBase parameters) {
             Effect.Normal = this.Normal;
             Effect.Mask = this.Mask;
 
-            Effect.SkinColor = this.SkinColor;
-            Effect.LipColor = this.LipColor;
+            Effect.CustomizeParameters = parameters.GetValueOrDefault(Data.CustomizeParameters.CustomizeParametersKey, Data.CustomizeParameters.Default);
         }
         #endregion
     }

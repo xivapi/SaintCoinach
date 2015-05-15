@@ -18,6 +18,7 @@ namespace Godbert.ViewModels {
         public ARealmReversed Realm { get; private set; }
         public EngineHelper EngineHelper { get; private set; }
         public EquipmentViewModel Equipment { get; private set; }
+        public FurnitureViewModel Furniture { get; private set; }
         public MonstersViewModel Monsters { get; private set; }
         public MapsViewModel Maps { get; private set; }
         public DemihumanViewModel Demihuman { get; private set; }
@@ -36,6 +37,7 @@ namespace Godbert.ViewModels {
             Realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
             EngineHelper = new EngineHelper();
             Equipment = new EquipmentViewModel(this);
+            Furniture = new FurnitureViewModel(this);
             Monsters = new MonstersViewModel(this);
             Maps = new MapsViewModel(this);
             Demihuman = new DemihumanViewModel(this);
