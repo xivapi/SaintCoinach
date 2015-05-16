@@ -12,7 +12,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly INode _FalseValue;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType INode.Type { get { return NodeType.IfElement; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression | NodeFlags.IsConditional; } }
         public INode Condition { get { return _Condition; } }
         public INode TrueValue { get { return _TrueValue; } }

@@ -10,8 +10,23 @@ namespace SaintCoinach.Text {
     using Xiv;
 
     public class DefaultEvaluationFunctionProvider : IEvaluationFunctionProvider {
+        public delegate IExpression GenericTagEvaluator(EvaluationParameters parameters, Nodes.GenericElement element);
+
+        #region Fields
+        private Dictionary<TagType, GenericTagEvaluator> _GenericTagEvaluators = new Dictionary<TagType, GenericTagEvaluator>();
+        private GenericTagEvaluator _DefaultGenericTagEvaluator;
+        #endregion
+
         #region Properties
         public XivCollection Data { get; private set; }
+        public GenericTagEvaluator DefaultGenericTagEvaluator {
+            get { return _DefaultGenericTagEvaluator; }
+            set {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                _DefaultGenericTagEvaluator = value;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -19,49 +34,60 @@ namespace SaintCoinach.Text {
             if (data == null)
                 throw new ArgumentNullException("data");
             this.Data = data;
+
+            this.DefaultGenericTagEvaluator = EvaluateDefaultGenericElement;
+
+            SetEvaluator(TagType.Time, EvaluateTime);
+            SetEvaluator(TagType.Sheet, EvaluateSheet);
+            SetEvaluator(TagType.SheetDe, EvaluateSheetWithAttributive);
+            SetEvaluator(TagType.SheetEn, EvaluateSheetWithAttributive);
+            SetEvaluator(TagType.SheetFr, EvaluateSheetWithAttributive);
+            SetEvaluator(TagType.SheetJa, EvaluateSheetWithAttributive);
+            SetEvaluator(TagType.Value, (p, e) => e.Content.TryEvaluate(p));
+            SetEvaluator(TagType.TwoDigitValue, EvaluateTwoDigitValue);
+            SetEvaluator(TagType.ZeroPaddedValue, EvaluateZeroPaddedValue);
+        }
+        #endregion
+
+        #region Evals
+        public void SetEvaluator(TagType tag, GenericTagEvaluator evaluator) {
+            if (_GenericTagEvaluators.ContainsKey(tag))
+                _GenericTagEvaluators[tag] = evaluator;
+            else
+                _GenericTagEvaluators.Add(tag, evaluator);
         }
         #endregion
 
         #region Generic
 
         public IExpression EvaluateGenericElement(EvaluationParameters parameters, Nodes.GenericElement element) {
-            switch (element.Tag) {
-                case TagType.Time:
-                    return EvaluateTime(parameters, element);
-                case TagType.Sheet:
-                    return EvaulateSheetElement(parameters, element);
-                case TagType.SheetDe:
-                case TagType.SheetEn:
-                case TagType.SheetFr:
-                case TagType.SheetJa:
-                    return EvaulateSheetElementWithAttributive(parameters, element);
-                case TagType.Value:
-                    return element.Content.TryEvaluate(parameters);
-                case TagType.TwoDigitValue:
-                    return EvaluteTwoDigitValue(parameters, element);
-                case TagType.ZeroPaddedValue:
-                    return EvaluteZeroPaddedValue(parameters, element);
-            }
-
+            GenericTagEvaluator eval;
+            _GenericTagEvaluators.TryGetValue(element.Tag, out eval);
+            return (eval ?? DefaultGenericTagEvaluator)(parameters, element);
+        }
+        protected virtual IExpression EvaluateDefaultGenericElement(EvaluationParameters parameters, GenericElement element) {
             var items = new List<IExpression>();
-            items.Add(new GenericExpression(StringTokens.TagOpen + element.Tag.ToString() + StringTokens.ArgumentsOpen));
-            items.AddRange(element.Arguments.Select(_ => _.TryEvaluate(parameters)));
+            var hasArgs = element.Arguments.Any();
+            items.Add(new GenericExpression(StringTokens.TagOpen + element.Tag.ToString()));
+            if (hasArgs)
+                items.Add(new SurroundedExpression(StringTokens.ArgumentsOpen, new ExpressionCollection(element.Arguments.Select(_ => _.TryEvaluate(parameters))) { Separator = StringTokens.ArgumentsSeperator }, StringTokens.ArgumentsClose));
+
             if (element.Content == null) {
-                items.Add(new GenericExpression(StringTokens.ArgumentsClose + StringTokens.ElementClose + StringTokens.TagClose));
+                items.Add(new GenericExpression(StringTokens.ElementClose + StringTokens.TagClose));
             } else {
-                items.Add(new GenericExpression(StringTokens.ArgumentsClose + StringTokens.TagClose));
+                items.Add(new GenericExpression(StringTokens.TagClose));
                 items.Add(element.Content.TryEvaluate(parameters));
-                items.Add(new GenericExpression(StringTokens.TagOpen + StringTokens.ElementClose + element.Tag.ToString() + StringTokens.ArgumentsOpen));
+                items.Add(new GenericExpression(StringTokens.TagOpen + StringTokens.ElementClose + element.Tag.ToString() + StringTokens.TagClose));
             }
 
             return new ExpressionCollection(items);
         }
-        protected virtual IExpression EvaluteTwoDigitValue(EvaluationParameters parameters, Nodes.GenericElement element) {
+        protected virtual IExpression EvaluateTwoDigitValue(EvaluationParameters parameters, Nodes.GenericElement element) {
             var eval = element.Content.TryEvaluate(parameters);
             var intVal = ToInteger(eval);
             return new GenericExpression(intVal.ToString("D2"));
         }
-        protected virtual IExpression EvaluteZeroPaddedValue(EvaluationParameters parameters, Nodes.GenericElement element) {
+        protected virtual IExpression EvaluateZeroPaddedValue(EvaluationParameters parameters, Nodes.GenericElement element) {
             var lenEval = element.Arguments.First().TryEvaluate(parameters);
             var len = ToInteger(lenEval);
             var eval = element.Content.TryEvaluate(parameters);
@@ -95,7 +121,7 @@ namespace SaintCoinach.Text {
             return GenericExpression.Empty;
         }
 
-        protected virtual IExpression EvaulateSheetElement(EvaluationParameters parameters, Nodes.GenericElement element) {
+        protected virtual IExpression EvaluateSheet(EvaluationParameters parameters, Nodes.GenericElement element) {
             var evalArgs = element.Arguments.Select(_ => _.TryEvaluate(parameters)).ToArray();
             if (evalArgs.Length < 2)
                 throw new InvalidOperationException();
@@ -133,7 +159,7 @@ namespace SaintCoinach.Text {
             { TagType.SheetDe, Ex.Language.German },
             { TagType.SheetFr, Ex.Language.French },
         };
-        protected virtual IExpression EvaulateSheetElementWithAttributive(EvaluationParameters parameters, Nodes.GenericElement element) {
+        protected virtual IExpression EvaluateSheetWithAttributive(EvaluationParameters parameters, Nodes.GenericElement element) {
             var evalArgs = element.Arguments.Select(_ => _.TryEvaluate(parameters)).ToArray();
             if (evalArgs.Length < 3)
                 throw new InvalidOperationException();

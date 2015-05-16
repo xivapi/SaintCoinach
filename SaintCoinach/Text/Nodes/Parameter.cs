@@ -10,7 +10,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly INode _ParameterIndex;
 
         TagType INode.Tag { get { return TagType.None; } }
-        NodeType INode.Type { get { return NodeType.Parameter; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public DecodeExpressionType ParameterType { get { return _ParameterType; } }
         public INode ParameterIndex { get { return _ParameterIndex; } }

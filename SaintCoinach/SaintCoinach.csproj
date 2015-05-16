@@ -453,10 +453,12 @@
     <Compile Include="Sound\ScdOggEntry.cs" />
     <Compile Include="Text\DefaultEvaluationFunctionProvider.cs" />
     <Compile Include="Text\EvaluationHelper.cs" />
+    <Compile Include="Text\Expressions\CloseTag.cs" />
     <Compile Include="Text\Expressions\ExpressionCollection.cs" />
     <Compile Include="Text\Expressions\GenericExpression.cs" />
     <Compile Include="Text\Expressions\IValueExpression.cs" />
     <Compile Include="Text\Expressions\ObjectWithDisplay.cs" />
+    <Compile Include="Text\Expressions\OpenTag.cs" />
     <Compile Include="Text\Expressions\SurroundedExpression.cs" />
     <Compile Include="Text\IExpression.cs" />
     <Compile Include="Text\IEvaluationFunctionProvider.cs" />
@@ -496,7 +498,6 @@
     <Compile Include="Text\XivString.cs" />
     <Compile Include="Text\XivStringDecoder.cs" />
     <Compile Include="Text\TagType.cs" />
-    <Compile Include="Text\NodeType.cs" />
     <Compile Include="Xiv\ActionBase.cs" />
     <Compile Include="Xiv\ChocoboRace.cs" />
     <Compile Include="Xiv\ChocoboRaceAbility.cs" />

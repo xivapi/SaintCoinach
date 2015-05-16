@@ -11,7 +11,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly INode _Right;
 
         TagType INode.Tag { get { return TagType.None; } }
-        NodeType INode.Type { get { return NodeType.Comparison; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public INode Left { get { return _Left; } }
         public DecodeExpressionType ComparisonType { get { return _ComparisonType; } }

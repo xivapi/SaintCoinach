@@ -10,8 +10,7 @@ namespace SaintCoinach.Text.Nodes {
         private readonly ArgumentCollection _Arguments;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType INode.Type { get { return NodeType.OpenTag; } }
-        NodeFlags INode.Flags { get { return _Arguments.HasItems ? NodeFlags.IsExpression : NodeFlags.IsStatic; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public IEnumerable<INode> Arguments { get { return _Arguments; } }
 
         public OpenTag(TagType tag, params INode[] arguments) : this(tag, (IEnumerable<INode>)arguments) { }
@@ -37,13 +36,7 @@ namespace SaintCoinach.Text.Nodes {
         #region IExpressionNode Members
 
         public IExpression Evaluate(EvaluationParameters parameters) {
-            if (!_Arguments.HasItems)
-                throw new InvalidOperationException();
-
-            return new Expressions.SurroundedExpression(
-                string.Format("{0}{1}{2}", StringTokens.TagOpen, Tag, StringTokens.ArgumentsOpen),
-                new Expressions.ExpressionCollection(Arguments.Select(_ => _.TryEvaluate(parameters))),
-                StringTokens.ArgumentsClose + StringTokens.TagClose);
+            return new Expressions.OpenTag(Tag, Arguments.Select(_ => _.TryEvaluate(parameters)));
         }
 
         #endregion

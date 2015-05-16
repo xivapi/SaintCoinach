@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
-    public class CloseTag : INode {
+    public class CloseTag : IExpressionNode {
         private readonly TagType _Tag;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType INode.Type { get { return NodeType.CloseTag; } }
-        NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
+        NodeFlags INode.Flags { get { return NodeFlags.IsExpression | NodeFlags.IsStatic; } }
 
         public CloseTag(TagType tag) {
             _Tag = tag;
@@ -27,5 +26,13 @@ namespace SaintCoinach.Text.Nodes {
             builder.Append(Tag);
             builder.Append(StringTokens.TagClose);
         }
+
+        #region IExpressionNode Members
+
+        public IExpression Evaluate(EvaluationParameters parameters) {
+            return new Expressions.CloseTag(Tag);
+        }
+
+        #endregion
     }
 }

@@ -12,7 +12,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly ReadOnlyDictionary<int, INode> _Cases;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType INode.Type { get { return NodeType.Switch; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public INode CaseSwitch { get { return _CaseSwitch; } }
         public IReadOnlyDictionary<int, INode> Cases { get { return _Cases; } }

@@ -26,7 +26,6 @@ namespace SaintCoinach.Text.Nodes {
 
 
         TagType INode.Tag { get { return TagType.None; } }
-        NodeType INode.Type { get { return NodeType.TopLevelParameter; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
 
         public override string ToString() {

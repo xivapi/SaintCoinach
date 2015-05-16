@@ -13,7 +13,6 @@ namespace SaintCoinach.Text.Nodes {
         public TagType Tag { get { return _Tag; } }
         public IEnumerable<INode> Arguments { get { return _Arguments; } }
         public INode Content { get { return _Content; } }
-        NodeType INode.Type { get { return NodeType.GenericElement; } }
         NodeFlags INode.Flags {
             get {
                 var f = NodeFlags.IsExpression;

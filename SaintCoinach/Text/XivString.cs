@@ -10,11 +10,10 @@ namespace SaintCoinach.Text {
     public class XivString : INode, IExpressionNode, INodeWithChildren, IComparable, IComparable<XivString>, IComparable<string>, IEquatable<XivString>, IEquatable<string> {
         public static readonly XivString Empty = new XivString(new INode[0]);
 
-        private INode[] _Children;
+        private readonly INode[] _Children;
         private WeakReference<string> _StringCache;
 
         TagType INode.Tag { get { return TagType.None; } }
-        NodeType INode.Type { get { return NodeType.XivString; } }
         NodeFlags INode.Flags { get { return NodeFlags.HasChildren | NodeFlags.IsExpression; } }
         public IEnumerable<INode> Children { get { return _Children; } }
 

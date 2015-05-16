@@ -11,7 +11,6 @@ namespace SaintCoinach.Text.Nodes {
 
         public TagType Tag { get { return _Tag; } }
         public INode Data { get { return _Data; } }
-        NodeType INode.Type { get { return NodeType.DefaultElement; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
 
         public DefaultElement(TagType tag, byte[] innerBuffer) {

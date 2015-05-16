@@ -9,7 +9,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly byte[] _Value;
 
         TagType INode.Tag { get { return TagType.None; } }
-        NodeType INode.Type { get { return NodeType.StaticValue; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
         public byte[] Value { get { return _Value; } }
 

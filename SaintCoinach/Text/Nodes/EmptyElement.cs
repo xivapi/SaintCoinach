@@ -9,7 +9,6 @@ namespace SaintCoinach.Text.Nodes {
         private readonly TagType _Tag;
 
         public TagType Tag { get { return _Tag; } }
-        NodeType INode.Type { get { return NodeType.EmptyElement; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
 
         public EmptyElement(TagType tag) {
