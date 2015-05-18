@@ -5,14 +5,15 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.TerritoryParts {
-    public class LgbModelEntry {
+namespace SaintCoinach.Graphics.Sgb {
+
+    public class SgbModelEntry : ISgbGroupEntry {
         #region Struct
         [StructLayout(LayoutKind.Sequential)]
         public struct HeaderData {
-            public uint Type;
+            public SgbGroupEntryType Type;
             public uint Unknown2;
-            public uint Unknown3;
+            public int NameOffset;
             public Vector3 Translation;
             public Vector3 Rotation;
             public Vector3 Scale;
@@ -22,13 +23,16 @@ namespace SaintCoinach.Graphics.TerritoryParts {
         #endregion
 
         #region Properties
+        SgbGroupEntryType ISgbGroupEntry.Type { get { return Header.Type; } }
         public HeaderData Header { get; private set; }
+        public string Name { get; private set; }
         public TransformedModel Model { get; private set; }
         #endregion
 
         #region Constructor
-        public LgbModelEntry(IO.PackCollection packs, byte[] buffer, int offset) {
+        public SgbModelEntry(IO.PackCollection packs, byte[] buffer, int offset) {
             this.Header = buffer.ToStructure<HeaderData>(offset);
+            this.Name = buffer.ReadString(offset + Header.NameOffset);
 
             var mdlFilePath = buffer.ReadString(offset + Header.ModelFileOffset);
             if (!string.IsNullOrWhiteSpace(mdlFilePath)) {

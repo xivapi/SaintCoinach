@@ -36,6 +36,7 @@ namespace SaintCoinach.Graphics.Viewer {
                     content = new Content.SkinMaterial(_Engine, material);
                     break;
                 case "bg.shpk":
+                case "bguvscroll.shpk": // TODO: Actually make it UV-scroll
                     content = new Content.BgMaterial(_Engine, material);
                     break;
                 case "iris.shpk":

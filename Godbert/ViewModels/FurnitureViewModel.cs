@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using SaintCoinach.Graphics;
+using SaintCoinach.Graphics.Sgb;
 using SaintCoinach.Graphics.Viewer;
 using SaintCoinach.Xiv;
 
@@ -85,28 +86,28 @@ namespace Godbert.ViewModels {
         public ICommand NewCommand { get { return _NewCommand ?? (_NewCommand = new DelegateCommand(OnNew)); } }
 
         private void OnAdd() {
-            ModelDefinition model;
-            if (TryGetModel(out model))
-                Parent.EngineHelper.AddToLast(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, ImcVariant.Default, model, ModelQuality.High) { Parameters = (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone() });
+            SgbFile scene;
+            if (TryGetModel(out scene))
+                Parent.EngineHelper.AddToLast(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentSgb(e, scene, (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone()));
         }
         private void OnReplace() {
-            ModelDefinition model;
-            if (TryGetModel(out model))
-                Parent.EngineHelper.ReplaceInLast(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, ImcVariant.Default, model, ModelQuality.High) { Parameters = (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone() });
+            SgbFile scene;
+            if (TryGetModel(out scene))
+                Parent.EngineHelper.ReplaceInLast(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentSgb(e, scene, (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone()));
         }
         private void OnNew() {
-            ModelDefinition model;
-            if (TryGetModel(out model))
-                Parent.EngineHelper.OpenInNew(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, ImcVariant.Default, model, ModelQuality.High) { Parameters = (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone() });
+            SgbFile scene;
+            if (TryGetModel(out scene))
+                Parent.EngineHelper.OpenInNew(SelectedFurniture.Item.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentSgb(e, scene, (SaintCoinach.Graphics.Viewer.Data.ParametersBase)_Parameters.Clone()));
         }
-
-        private bool TryGetModel(out ModelDefinition model) {
+        
+        private bool TryGetModel(out SgbFile model) {
             model = null;
             if (SelectedFurniture == null)
                 return false;
 
             try {
-                model = SelectedFurniture.GetModel();
+                model = SelectedFurniture.GetScene();
 
                 var result = (model != null);
                 if (!result)

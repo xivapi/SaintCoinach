@@ -33,8 +33,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             this.Variant = variant;
             this.Transformation = Matrix.Identity;
         }
-        public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel) : this(engine, transformedModel, ModelQuality.High) { }
-        public ContentModel(Engine engine, TerritoryParts.TransformedModel transformedModel, ModelQuality quality) : base(engine) {
+        public ContentModel(Engine engine, TransformedModel transformedModel) : this(engine, transformedModel, ModelQuality.High) { }
+        public ContentModel(Engine engine, TransformedModel transformedModel, ModelQuality quality) : base(engine) {
             this.Parameters = new Data.ParametersBase();
             this.Definition = transformedModel.Model;
             this.Quality = Quality;
@@ -53,15 +53,20 @@ namespace SaintCoinach.Graphics.Viewer.Content {
 
         #region Content
         public override void LoadContent() {
-            Primitive = Engine.ModelFactory.Get(Definition, Quality);
-            Meshes = new ContentMesh[Primitive.Meshes.Length];
-            for (var i = 0; i < Primitive.Meshes.Length; ++i) {
-                Meshes[i] = new ContentMesh(this, Primitive.Meshes[i], Variant);
-                _MeshContainer.Add(Meshes[i]);
+            try {
+                Primitive = Engine.ModelFactory.Get(Definition, Quality);
+                Meshes = new ContentMesh[Primitive.Meshes.Length];
+                for (var i = 0; i < Primitive.Meshes.Length; ++i) {
+                    Meshes[i] = new ContentMesh(this, Primitive.Meshes[i], Variant);
+                    _MeshContainer.Add(Meshes[i]);
+                }
+
+                _MeshContainer.LoadContent();
+                base.LoadContent();
+            }catch(Exception e) {
+                System.Diagnostics.Trace.WriteLine(string.Format("Failed to load model '{0}': {1}", Definition.File.Path, e));
+                IsLoaded = false;
             }
-           
-            _MeshContainer.LoadContent();
-            base.LoadContent();
         }
         public override void UnloadContent() {
             base.UnloadContent();
@@ -73,6 +78,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
 
         #region Draw
         public override void Draw(EngineTime time, ref SharpDX.Matrix world, ref SharpDX.Matrix view, ref SharpDX.Matrix projection) {
+            if (!IsLoaded)
+                return;
             var transformedWorld = Transformation * world;
             _MeshContainer.Draw(time, ref transformedWorld, ref view, ref projection);
         }

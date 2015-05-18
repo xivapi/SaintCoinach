@@ -18,7 +18,7 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        public abstract Graphics.ModelDefinition GetModel();
+        public abstract Graphics.Sgb.SgbFile GetScene();
 
         public override string ToString() {
             return string.Format("{0}", Item);

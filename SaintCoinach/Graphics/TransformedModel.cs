@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.TerritoryParts {
+namespace SaintCoinach.Graphics {
     public class TransformedModel {
         #region Properties
         public Vector3 Translation { get; private set; }

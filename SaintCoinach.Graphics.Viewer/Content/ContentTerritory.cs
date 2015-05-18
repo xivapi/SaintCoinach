@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Viewer.Content {
+    using SharpDX;
+
     public class ContentTerritory : Drawable3DComponent {
         #region Fields
         private ComponentContainer _TerrainContainer = new ComponentContainer();
@@ -18,15 +20,29 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #region Constructor
         public ContentTerritory(Engine engine, Territory territory) : base(engine) {
             this.Territory = territory;
-
+            
             if (territory.Terrain != null) {
                 foreach (var part in territory.Terrain.Parts)
                     _TerrainContainer.Add(new ContentModel(engine, part));
             }
             foreach (var lgb in territory.LgbFiles) {
-                foreach (var part in lgb.Parts.OfType<TerritoryParts.LgbModelEntry>()) {
-                    if (part.Model != null)
-                        _TerrainContainer.Add(new ContentModel(engine, part.Model));
+                foreach(var group in lgb.Groups) {
+                    foreach(var part in group.Entries) {
+                        var asMdl = part as Lgb.LgbModelEntry;
+                        var asGim = part as Lgb.LgbGimmickEntry;
+                        
+                        if (asMdl != null && asMdl.Model != null)
+                            _LgbPartsContainer.Add(new ContentModel(engine, asMdl.Model));
+                        if (asGim != null && asGim.Gimmick != null)
+                            _LgbPartsContainer.Add(new ContentSgb(engine, asGim.Gimmick) {
+                                Transformation =
+                                    Matrix.Scaling(asGim.Header.Scale.ToDx())
+                                    * Matrix.RotationX(asGim.Header.Rotation.X)
+                                    * Matrix.RotationY(asGim.Header.Rotation.Y)
+                                    * Matrix.RotationZ(asGim.Header.Rotation.Z)
+                                    * Matrix.Translation(asGim.Header.Translation.ToDx())
+                            });
+                    }
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace SaintCoinach.Graphics {
         public TerritoryParts.Terrain Terrain { get; private set; }
         public string BasePath { get; private set; }
         public string Name { get; private set; }
-        public TerritoryParts.LgbFile[] LgbFiles { get; private set; }
+        public Lgb.LgbFile[] LgbFiles { get; private set; }
         #endregion
 
         #region Constructor
@@ -35,16 +35,16 @@ namespace SaintCoinach.Graphics {
             if (Packs.TryGetFile(terrainPath, out terrainFile))
                 this.Terrain = new TerritoryParts.Terrain(terrainFile);
 
-            var lgbFiles = new List<TerritoryParts.LgbFile>();
+            var lgbFiles = new List<Lgb.LgbFile>();
             lgbFiles.Add(TryGetLgb("level/bg.lgb"));
 
             this.LgbFiles = lgbFiles.Where(l => l != null).ToArray();
         }
-        private TerritoryParts.LgbFile TryGetLgb(string name) {
+        private Lgb.LgbFile TryGetLgb(string name) {
             var path = BasePath + name;
             IO.File file;
             if (Packs.TryGetFile(path, out file))
-                return new TerritoryParts.LgbFile(file);
+                return new Lgb.LgbFile(file);
             return null;
         }
         #endregion

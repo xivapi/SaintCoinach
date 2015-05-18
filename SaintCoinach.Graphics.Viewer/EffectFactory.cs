@@ -100,6 +100,7 @@ namespace SaintCoinach.Graphics.Viewer {
                         "./Effects/HLSL/Skin.fx",
                         (bc, ef) => new Effects.SkinEffect(_Engine.Device, bc, ef));
                 case "bg.shpk":
+                case "bguvscroll.shpk":     // TODO: Actually make it UV-scroll.
                     return GetEffect(
                         name,
                         "./Effects/HLSL/Bg.fx",

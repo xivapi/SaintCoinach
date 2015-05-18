@@ -68,6 +68,7 @@
     <Compile Include="Content\BgColorChangeMaterial.cs" />
     <Compile Include="Content\BgMaterial.cs" />
     <Compile Include="Content\CharacterMaterial.cs" />
+    <Compile Include="Content\ContentSgb.cs" />
     <Compile Include="Content\ContentTerritory.cs" />
     <Compile Include="Content\CrystalMaterial.cs" />
     <Compile Include="Content\Cube.cs" />
@@ -123,6 +124,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Viewer.ico" />
     <Content Include="Effects\HLSL\BasicEffect.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\BgUvScroll.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\Crystal.fx">

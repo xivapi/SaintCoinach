@@ -2,7 +2,7 @@ using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class HousingYardObject : HousingItem {
-        public const string ModelPathFormat = "bgcommon/hou/outdoor/general/{0:D4}/bgparts/gar_b0_m{0:D4}.mdl";
+        public const string SgbPathFormat = "bgcommon/hou/outdoor/general/{0:D4}/asset/gar_b0_m{0:D4}.sgb";
 
         #region Constructors
 
@@ -10,14 +10,14 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        public override Graphics.ModelDefinition GetModel() {
-            var mdlPath = string.Format(ModelPathFormat, ModelKey);
+        public override Graphics.Sgb.SgbFile GetScene() {
+            var sgbPath = string.Format(SgbPathFormat, ModelKey);
 
             IO.File baseFile;
-            if (!Sheet.Collection.PackCollection.TryGetFile(mdlPath, out baseFile) || !(baseFile is Graphics.ModelFile))
+            if (!Sheet.Collection.PackCollection.TryGetFile(sgbPath, out baseFile))
                 return null;
 
-            return ((Graphics.ModelFile)baseFile).GetModelDefinition();
+            return new Graphics.Sgb.SgbFile(baseFile);
         }
     }
 }
