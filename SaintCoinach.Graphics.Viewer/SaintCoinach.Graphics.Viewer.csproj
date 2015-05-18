@@ -69,6 +69,7 @@
     <Compile Include="Content\BgMaterial.cs" />
     <Compile Include="Content\CharacterMaterial.cs" />
     <Compile Include="Content\ContentTerritory.cs" />
+    <Compile Include="Content\CrystalMaterial.cs" />
     <Compile Include="Content\Cube.cs" />
     <Compile Include="Content\HairMaterial.cs" />
     <Compile Include="Content\IrisMaterial.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Effects\BgColorChangeEffect.cs" />
     <Compile Include="Effects\BgEffect.cs" />
     <Compile Include="Effects\CharacterEffect.cs" />
+    <Compile Include="Effects\CrystalEffect.cs" />
     <Compile Include="Effects\CustomizeParameterEffectVariable.cs" />
     <Compile Include="Effects\EffectBase.cs" />
     <Compile Include="Effects\EffectDirectionalLightVariable.cs" />
@@ -121,6 +123,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Viewer.ico" />
     <Content Include="Effects\HLSL\BasicEffect.fx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Effects\HLSL\Crystal.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Effects\HLSL\BgColorChange.fx">

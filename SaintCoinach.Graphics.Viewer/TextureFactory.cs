@@ -65,13 +65,17 @@ namespace SaintCoinach.Graphics.Viewer {
                     buffer[i + 2] = r;
                 }
                 desc.Format = SharpDX.DXGI.Format.R8G8B8A8_UNorm;
+                if (source.Format == Imaging.ImageFormat.A8R8G8B8_Cube)
+                    desc.ArraySize = 6;
             }
 
             fixed (byte* p = buffer) {
                 var ptr = (IntPtr)p;
                 var pitch = SharpDX.DXGI.FormatHelper.SizeOfInBytes(desc.Format) * source.Width;
-                var dataRect = new DataRectangle(ptr, pitch);
-                tex = new Texture2D(_Engine.Device, desc, dataRect);
+                var dataRects = new DataRectangle[desc.ArraySize];
+                for (var i = 0; i < desc.ArraySize; ++i)
+                    dataRects[i] = new DataRectangle(ptr + i * pitch * source.Height, pitch);
+                tex = new Texture2D(_Engine.Device, desc, dataRects);
             }
 
             _Textures.Add(key, tex);

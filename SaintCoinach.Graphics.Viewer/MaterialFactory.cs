@@ -44,6 +44,9 @@ namespace SaintCoinach.Graphics.Viewer {
                 case "bgcolorchange.shpk":
                     content = new Content.BgColorChangeMaterial(_Engine, material);
                     break;
+                case "crystal.shpk":
+                    content = new Content.CrystalMaterial(_Engine, material);
+                    break;
                 default:
                     throw new NotSupportedException(string.Format("Shader type {0} is not supported.", material.Shader));
             }

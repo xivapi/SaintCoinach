@@ -33,7 +33,7 @@ namespace SaintCoinach.Imaging {
                 }, {
                     ImageFormat.A8R8G8B8_2, ProcessA8R8G8B8
                 }, {
-                    ImageFormat.A8R8G8B8_3, ProcessA8R8G8B8
+                    ImageFormat.A8R8G8B8_Cube, ProcessA8R8G8B8
                 }, {
                     ImageFormat.A8R8G8B8_4, ProcessA8R8G8B8
                 }, {

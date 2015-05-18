@@ -114,6 +114,11 @@ namespace SaintCoinach.Graphics.Viewer {
                         name,
                         "./Effects/HLSL/BgColorChange.fx",
                         (bc, ef) => new Effects.BgColorChangeEffect(_Engine.Device, bc, ef));
+                case "crystal.shpk":
+                    return GetEffect(
+                        name,
+                        "./Effects/HLSL/Crystal.fx",
+                        (bc, ef) => new Effects.CrystalEffect(_Engine.Device, bc, ef));
                 default:
                     throw new NotSupportedException();
             }
