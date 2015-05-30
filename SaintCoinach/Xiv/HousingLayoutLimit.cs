@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public abstract class HousingLayoutLimit : XivRow {
+    public class HousingLayoutLimit : XivRow {
         #region Properties
 
         public int PersonalChamber { get { return AsInt32("PersonalChamber"); } }
