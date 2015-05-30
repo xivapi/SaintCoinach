@@ -12,6 +12,7 @@ namespace SaintCoinach.Xiv {
             #region Properties
             public Item Item { get; private set; }
             public bool HasRateCondition { get; private set; }
+            public Quest RequiredQuest { get; private set; }
             #endregion
 
             #region Constructor
@@ -19,6 +20,7 @@ namespace SaintCoinach.Xiv {
                 if (reader.TokenType != JsonToken.StartObject) throw new InvalidOperationException();
 
                 var allItems = collection.GetSheet<Item>();
+                var allQuests = collection.GetSheet<Quest>();
                 while (reader.Read() && reader.TokenType != JsonToken.EndObject) {
                     if (reader.TokenType != JsonToken.PropertyName) throw new InvalidOperationException();
 
@@ -28,6 +30,9 @@ namespace SaintCoinach.Xiv {
                             break;
                         case "Item":
                             ReadItem(reader, allItems);
+                            break;
+                        case "Quest":
+                            ReadRequiredQuest(reader, allQuests);
                             break;
                         default:
                             Console.Error.WriteLine("Unknown 'InstanceContent.RewardItem' data key: {0}", reader.Value);
@@ -48,6 +53,12 @@ namespace SaintCoinach.Xiv {
 
                 var key = Convert.ToInt32(reader.Value);
                 this.Item = allItems[key];
+            }
+            private void ReadRequiredQuest(JsonReader reader, IXivSheet<Quest> allQuests) {
+                if (!reader.Read()) throw new InvalidOperationException();
+
+                var key = Convert.ToInt32(reader.Value);
+                this.RequiredQuest = allQuests[key];
             }
             #endregion
         }
