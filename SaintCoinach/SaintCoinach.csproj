@@ -96,6 +96,8 @@
     <Compile Include="Graphics\MeshPart.cs" />
     <Compile Include="Graphics\ModelAttribute.cs" />
     <Compile Include="Graphics\ModelVariantIdentifier.cs" />
+    <Compile Include="Graphics\PapAnimation.cs" />
+    <Compile Include="Graphics\PapFile.cs" />
     <Compile Include="Graphics\Sgb\ISgbData.cs" />
     <Compile Include="Graphics\Sgb\ISgbGroupEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbGroup.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Graphics\Sgb\SgbFile.cs" />
     <Compile Include="Graphics\Sgb\SgbGroupEntryType.cs" />
     <Compile Include="Graphics\Sgb\SgbModelEntry.cs" />
+    <Compile Include="Graphics\SklbFile.cs" />
     <Compile Include="Graphics\Territory.cs" />
     <Compile Include="Graphics\Lgb\ILgbEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbEntryType.cs" />
@@ -138,11 +141,11 @@
     <Compile Include="Graphics\Unknowns\ModelStruct1.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct2.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct3.cs" />
-    <Compile Include="Graphics\Unknowns\ModelStruct4.cs" />
+    <Compile Include="Graphics\Unknowns\BoneList.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct5.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct6.cs" />
     <Compile Include="Graphics\Unknowns\ModelStruct7.cs" />
-    <Compile Include="Graphics\Unknowns\ModelStruct8.cs" />
+    <Compile Include="Graphics\Unknowns\BoneIndices.cs" />
     <Compile Include="Graphics\ModelBoundingBoxes.cs" />
     <Compile Include="Graphics\Vector4.cs" />
     <Compile Include="Graphics\VertexAttribute.cs" />

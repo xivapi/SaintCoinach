@@ -44,15 +44,6 @@ namespace SaintCoinach.Graphics.Viewer.Data {
             value = (T)asObj;
             return true;
         }
-        public T GetValueOrDefault<T>(string key) {
-            return GetValueOrDefault(key, default(T));
-        }
-        public T GetValueOrDefault<T>(string key, T defaultValue) {
-            T ret;
-            if (TryGetValue(key, out ret))
-                return ret;
-            return defaultValue;
-        }
         #endregion
 
         #region Clone

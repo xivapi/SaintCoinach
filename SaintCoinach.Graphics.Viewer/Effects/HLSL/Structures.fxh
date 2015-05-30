@@ -17,7 +17,7 @@ struct VSInput
     float3 Normal       : NORMAL;
     float4 UV           : TEXCOORD0;
     float4 BlendWeight  : BLENDWEIGHT;
-    uint BlendIndices   : BLENDINDICES;
+    int4   BlendIndices : BLENDINDICES;
     float4 Color        : COLOR;
     float4 Tangent1     : TANGENT0;
     float4 Tangent2     : TANGENT1;
@@ -31,7 +31,7 @@ struct VSOutput
 
     float4 UV           : TEXCOORD0;
     float4 BlendWeight  : BLENDWEIGHT;
-    uint BlendIndices   : BLENDINDICES;
+    int4   BlendIndices : BLENDINDICES;
     float4 Color        : COLOR;
     float4 Tangent1WS   : TEXCOORD5;
     float4 Tangent2WS   : TEXCOORD6;

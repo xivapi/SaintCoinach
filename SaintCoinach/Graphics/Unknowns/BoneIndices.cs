@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Unknowns {
-    public struct ModelStruct8 {  // 8 in hsl, provides references to bones for MeshPartHeader
+    public struct BoneIndices {  // 8 in hsl, provides references to bones for MeshPartHeader
         public readonly int DataSize;
         public readonly ushort[] Bones;
 
         public int Size { get { return DataSize + 4; } }
 
-        public ModelStruct8(byte[] buffer, ref int offset) {
+        public BoneIndices(byte[] buffer, ref int offset) {
             DataSize = BitConverter.ToInt32(buffer, offset);
             offset += 4;
             Bones = new ushort[DataSize / 2];

@@ -13,7 +13,7 @@ namespace SaintCoinach.Graphics {
         public short MaterialIndex;
         public short PartOffset;
         public short PartCount;
-        public short FileDataPart;
+        public short BoneListIndex;
         public int IndexBufferOffset;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
         public int[] VertexOffsets;

@@ -9,7 +9,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
     using SharpDX.D3DCompiler;
     using SharpDX.Direct3D11;
 
-    public class HairEffect : EffectBase {
+    public class HairEffect : SkinnedEffect {
         #region Fields
         private EffectShaderResourceVariable _NormalVar;
         private EffectShaderResourceVariable _MaskVar;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Unknowns {
     [StructLayout(LayoutKind.Sequential)]
-    public struct ModelStruct4 {  // 3 in hsl, something to do with bones (hierarchy? though it looks nothing like a hierarchy)
+    public struct BoneList {  // 3 in hsl, something to do with bones (hierarchy? though it looks nothing like a hierarchy)
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x40)]
         public ushort[] Bones;
 

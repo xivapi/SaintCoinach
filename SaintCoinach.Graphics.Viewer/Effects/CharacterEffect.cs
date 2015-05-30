@@ -9,7 +9,7 @@ namespace SaintCoinach.Graphics.Viewer.Effects {
     using SharpDX.D3DCompiler;
     using SharpDX.Direct3D11;
 
-    public class CharacterEffect : EffectBase {
+    public class CharacterEffect : SkinnedEffect {
         #region Fields
         private EffectShaderResourceVariable _DiffuseVar;
         private EffectShaderResourceVariable _SpecularVar;

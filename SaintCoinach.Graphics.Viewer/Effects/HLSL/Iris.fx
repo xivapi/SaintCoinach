@@ -16,7 +16,7 @@ sampler g_MaskSampler           : register(s2)
     Filter = MIN_MAG_MIP_LINEAR;
 };
 
-#include "Common.fxh"
+#include "Common.Skinned.fxh"
 #include "Lighting.fxh"
 #include "CustomizeParameter.fxh"
 

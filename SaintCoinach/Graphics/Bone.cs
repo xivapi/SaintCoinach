@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics {
-    [System.Diagnostics.DebuggerDisplay("{Name} ( {Head.X}, {Head.Y}, {Head.Z}, {Head.W} ) -> ( {Tail.X}, {Tail.Y}, {Tail.Z}, {Tail.W} )")]
+    [System.Diagnostics.DebuggerDisplay("{Name} ( {Unknown1.X}, {Unknown1.Y}, {Unknown1.Z}, {Unknown1.W} ) -> ( {Unknown2.X}, {Unknown2.Y}, {Unknown2.Z}, {Unknown2.W} )")]
     public class Bone {
         #region Properties
         public ModelDefinition Definition { get; private set; }

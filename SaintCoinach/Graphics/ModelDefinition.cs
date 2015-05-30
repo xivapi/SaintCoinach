@@ -32,11 +32,11 @@ namespace SaintCoinach.Graphics {
         public Unknowns.ModelStruct3[] UnknownStructs3 { get; private set; }
         public MaterialDefinition[] Materials { get; private set; }
         public string[] BoneNames { get; private set; }
-        public Unknowns.ModelStruct4[] UnknownStructs4 { get; private set; }
+        public Unknowns.BoneList[] BoneLists { get; private set; }
         public Unknowns.ModelStruct5[] UnknownStructs5 { get; private set; }
         public Unknowns.ModelStruct6[] UnknownStructs6 { get; private set; }
         public Unknowns.ModelStruct7[] UnknownStructs7 { get; private set; }
-        public Unknowns.ModelStruct8 UnknownStruct8 { get; private set; }
+        public Unknowns.BoneIndices BoneIndices { get; private set; }
         // Here's padding, but not keeping a variable amount of 0s
         public ModelBoundingBoxes BoundingBoxes { get; private set; }
         public Bone[] Bones { get; private set; }
@@ -98,11 +98,11 @@ namespace SaintCoinach.Graphics {
 
 
             this.BoneNames = ReadStrings(buffer, Header.BoneCount, ref offset);
-            this.UnknownStructs4 = buffer.ToStructures<Unknowns.ModelStruct4>(Header.UnknownStruct4Count, ref offset);
+            this.BoneLists = buffer.ToStructures<Unknowns.BoneList>(Header.UnknownStruct4Count, ref offset);
             this.UnknownStructs5 = buffer.ToStructures<Unknowns.ModelStruct5>(Header.UnknownStruct5Count, ref offset);
             this.UnknownStructs6 = buffer.ToStructures<Unknowns.ModelStruct6>(Header.UnknownStruct6Count, ref offset);
             this.UnknownStructs7 = buffer.ToStructures<Unknowns.ModelStruct7>(Header.UnknownStruct7Count, ref offset);
-            this.UnknownStruct8 = new Unknowns.ModelStruct8(buffer, ref offset);
+            this.BoneIndices = new Unknowns.BoneIndices(buffer, ref offset);
 
             offset += buffer[offset] + 1;   // Just padding, first byte specifying how many 0-bytes follow.
 

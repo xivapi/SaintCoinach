@@ -28,27 +28,27 @@ namespace SaintCoinach.Graphics.Viewer.Data {
         public static Vector3 DefaultRightEyeColor = new Vector3(121 / 255f, 68 / 255f, 59 / 255f);
 
         public Vector4 SkinColor {
-            get { return GetValueOrDefault(SkinColorKey, DefaultSkinColor); }
+            get { return this.GetValueOrDefault(SkinColorKey, DefaultSkinColor); }
             set { Set(SkinColorKey, value); }
         }
         public Vector4 LipColor {
-            get { return GetValueOrDefault(LipColorKey, DefaultLipColor); }
+            get { return this.GetValueOrDefault(LipColorKey, DefaultLipColor); }
             set { Set(LipColorKey, value); }
         }
         public Vector3 HairColor {
-            get { return GetValueOrDefault(HairColorKey, DefaultHairColor); }
+            get { return this.GetValueOrDefault(HairColorKey, DefaultHairColor); }
             set { Set(HairColorKey, value); }
         }
         public Vector3 MeshColor {
-            get { return GetValueOrDefault(MeshColorKey, DefaultMeshColor); }
+            get { return this.GetValueOrDefault(MeshColorKey, DefaultMeshColor); }
             set { Set(MeshColorKey, value); }
         }
         public Vector3 LeftEyeColor {
-            get { return GetValueOrDefault(LeftEyeColorKey, DefaultLeftEyeColor); }
+            get { return this.GetValueOrDefault(LeftEyeColorKey, DefaultLeftEyeColor); }
             set { Set(LeftEyeColorKey, value); }
         }
         public Vector3 RightEyeColor {
-            get { return GetValueOrDefault(RightEyeColorKey, DefaultRightEyeColor); }
+            get { return this.GetValueOrDefault(RightEyeColorKey, DefaultRightEyeColor); }
             set { Set(RightEyeColorKey, value); }
         }
 

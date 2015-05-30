@@ -20,6 +20,7 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         public Matrix Transformation { get; set; }
         public PrimitiveModel Primitive { get; private set; }
         public Data.ParametersBase Parameters { get; set; }
+        public Matrix[] JointMatrixArray { get; private set; }
         #endregion
 
         #region Constructor
@@ -32,6 +33,8 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             this.Quality = quality;
             this.Variant = variant;
             this.Transformation = Matrix.Identity;
+
+            Init();
         }
         public ContentModel(Engine engine, TransformedModel transformedModel) : this(engine, transformedModel, ModelQuality.High) { }
         public ContentModel(Engine engine, TransformedModel transformedModel, ModelQuality quality) : base(engine) {
@@ -48,6 +51,16 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                 * Matrix.RotationY(transformedModel.Rotation.Y)
                 * Matrix.RotationZ(transformedModel.Rotation.Z)
                 * Matrix.Translation(transformedModel.Translation.ToDx());
+
+            Init();
+        }
+
+        private void Init() {
+            JointMatrixArray = new Matrix[Definition.Bones.Length];
+            for(var i = 0; i < JointMatrixArray.Length; ++i) {
+                var b = Definition.Bones[i];
+                JointMatrixArray[i] = Matrix.Identity;
+            }
         }
         #endregion
 

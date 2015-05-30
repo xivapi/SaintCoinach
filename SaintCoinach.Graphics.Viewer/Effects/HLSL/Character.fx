@@ -43,7 +43,7 @@ sampler g_TableSampler          : register(s5)
     Filter = MIN_MAG_MIP_LINEAR;
 };
 
-#include "Common.fxh"
+#include "Common.Skinned.fxh"
 #include "Lighting.fxh"
 
 struct TableSamples
@@ -102,7 +102,6 @@ float4 ComputeCommon(VSOutput pin, float4 diffuse, float4 specular)
 
         color.rgb *= light.Diffuse.rgb;
     color.rgb += light.Specular.rgb * specular.rgb * color.a;
-
     return color;
 };
 

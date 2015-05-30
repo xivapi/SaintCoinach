@@ -58,6 +58,16 @@ namespace SaintCoinach.Graphics.Viewer.Content {
 
             Material.Effect.Apply(ref world, ref view, ref projection);
             Material.Apply(Model.Parameters);
+            
+            var skinnedEffect = Material.Effect as Effects.SkinnedEffect;
+            if (skinnedEffect != null) {
+                var boneList = Model.Definition.BoneLists[Primitive.BaseMesh.Header.BoneListIndex];
+                Matrix[] jointMatrix = new Matrix[boneList.ActualCount];
+                for (var i = 0; i < boneList.ActualCount; ++i)
+                    jointMatrix[i] = Model.JointMatrixArray[boneList.Bones[i]];
+
+                skinnedEffect.JointMatrixArray = jointMatrix;
+            }
 
             ia.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.TriangleList;
             ia.SetVertexBuffers(0, Primitive.VertexBufferBinding);
