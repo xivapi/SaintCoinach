@@ -72,33 +72,71 @@ namespace Godbert.ViewModels {
         private void OnAdd() {
             ModelDefinition model;
             ImcVariant variant;
-            if (TryGetModel(out model, out variant))
-                Parent.EngineHelper.AddToLast(SelectedEntry.ToString(), (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
+            int m, b;
+            if (TryGetModel(out model, out variant, out m, out b))
+                Parent.EngineHelper.AddToLast(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
         }
         private void OnReplace() {
             ModelDefinition model;
             ImcVariant variant;
-            if (TryGetModel(out model, out variant))
-                Parent.EngineHelper.ReplaceInLast(SelectedEntry.ToString(), (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
+            int m, b;
+            if (TryGetModel(out model, out variant, out m, out b))
+                Parent.EngineHelper.ReplaceInLast(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
         }
         private void OnNew() {
             ModelDefinition model;
             ImcVariant variant;
-            if (TryGetModel(out model, out variant))
-                Parent.EngineHelper.OpenInNew(SelectedEntry.ToString(), (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
+            int m, b;
+            if (TryGetModel(out model, out variant, out m, out b))
+                Parent.EngineHelper.OpenInNew(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
         }
 
-        private bool TryGetModel(out ModelDefinition model, out ImcVariant variant) {
+        static string[] DefaultAnimationNames = new string[] { "cbnm_id0", "cbbm_id0" };
+
+        private SaintCoinach.Graphics.Viewer.IComponent CreateModel(SaintCoinach.Graphics.Viewer.Engine engine, ModelDefinition model, ImcVariant variant, int m, int b) {
+            const string PapPathFormat = "chara/monster/m{0:D4}/animation/a0001/bt_common/resident/monster.pap";
+            const string SkeletonPathFormat = "chara/monster/m{0:D4}/skeleton/base/b{1:D4}/skl_m{0:D4}b{1:D4}.sklb";
+
+            var component = new SaintCoinach.Graphics.Animation.AnimatedModel(engine, variant, model, ModelQuality.High) {
+                
+            };
+
+            var papPath = string.Format(PapPathFormat, m, b);
+            var sklPath = string.Format(SkeletonPathFormat, m, 1);// b);
+
+            SaintCoinach.IO.File papFileBase;
+            SaintCoinach.IO.File sklFileBase;
+            if (Parent.Realm.Packs.TryGetFile(papPath, out papFileBase) && Parent.Realm.Packs.TryGetFile(sklPath, out sklFileBase)) {
+                var anim = new SaintCoinach.Graphics.Animation.AnimationContainer(new SklbFile(sklFileBase), new PapFile(papFileBase));
+
+                var hasAnim = false;
+                for(var i = 0; i < DefaultAnimationNames.Length && !hasAnim; ++i) {
+                    var n = DefaultAnimationNames[i];
+                    if (anim.AnimationNames.Contains(n)) {
+                        component.CurrentAnimation = anim.Get(n);
+                        hasAnim = true;
+                    }
+                }
+                
+                if (!hasAnim)
+                    component.CurrentAnimation = anim.Get(0);
+            }
+            return component;
+        }
+
+        private bool TryGetModel(out ModelDefinition model, out ImcVariant variant, out int m, out int b) {
             model = null;
             variant = ImcVariant.Default;
+            m = 0;
+            b = 0;
 
             var asVariant = SelectedEntry as Models.ModelCharaVariant;
             if (asVariant == null)
                 return false;
 
             int v = asVariant.Value;
-            int b = asVariant.Parent.Value;
-            var m = asVariant.Parent.Parent.Value;
+            b = asVariant.Parent.Value;
+            m = asVariant.Parent.Parent.Value;
 
             var imcPath = string.Format(ImcPathFormat, m, b);
             var mdlPath = string.Format(ModelPathFormat, m, b);

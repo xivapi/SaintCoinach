@@ -26,9 +26,7 @@ namespace Godbert {
             if (target == null)
                 return OpenInNew(title, func);
 
-            var components = func(target.Engine);
-            foreach (var component in components)
-                target.AddComponent(component);
+            target.AddComponent(func);
             target.SetTitle(target.Engine.Form.Text + ", " + title);
             return target;
         }
@@ -42,8 +40,7 @@ namespace Godbert {
             if (target == null)
                 return OpenInNew(title, func);
             
-            var components = func(target.Engine);
-            target.ReplaceComponents(components);
+            target.ReplaceComponents(func);
             target.SetTitle(title);
             return target;
         }
@@ -53,10 +50,8 @@ namespace Godbert {
             lock (_Instances)
                 _Instances.Add(instance);
             instance.Stopped += OnInstanceStopped;
-
-            var components = func(instance.Engine);
-            foreach (var component in components)
-                instance.AddComponent(component);
+            
+            instance.AddComponent(func);
             instance.RunAsync();
 
             return instance;

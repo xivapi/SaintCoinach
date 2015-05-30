@@ -10,9 +10,7 @@ namespace SaintCoinach.Graphics {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct HeaderData {
             public uint Magic;
-            public int Unknown1;
-            public short Unknown2;
-            public short HavokDataOffset;
+            public uint Format;
         }
 
         #region Properties
@@ -40,8 +38,20 @@ namespace SaintCoinach.Graphics {
             if (Header.Magic != 0x736B6C62)
                 throw new System.IO.InvalidDataException();
 
-            HavokData = new byte[buffer.Length - Header.HavokDataOffset];
-            Array.Copy(buffer, Header.HavokDataOffset, HavokData, 0, HavokData.Length);
+
+            int havokOffset;
+            switch (Header.Format) {
+                case 0x31323030:    // 0021
+                    havokOffset = BitConverter.ToInt16(buffer, 0x0A);
+                    break;
+                case 0x31333030:    // 0031
+                    havokOffset = BitConverter.ToInt16(buffer, 0x0C);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            HavokData = new byte[buffer.Length - havokOffset];
+            Array.Copy(buffer, havokOffset, HavokData, 0, HavokData.Length);
         }
         #endregion
     }

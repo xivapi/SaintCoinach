@@ -10,8 +10,8 @@ namespace Godbert {
     public class EngineInstance {
         #region Helper class
         class ComponentInjector : IUpdateableComponent, IDrawable3DComponent, IContentComponent {
-            internal List<IComponent> AddQueue = new List<IComponent>();
-            internal IEnumerable<IComponent> Replacement;
+            internal List<EngineHelper.MultiComponentFunction> AddQueue = new List<EngineHelper.MultiComponentFunction>();
+            internal EngineHelper.MultiComponentFunction Replacement;
             internal string SetTitle;
 
             private FormEngine _Engine;
@@ -36,17 +36,21 @@ namespace Godbert {
                     lock (AddQueue)
                         AddQueue.Clear();
                     _InnerContainer.Clear();
-                    foreach (var c in Replacement)
+                    var l = Replacement(_Engine);
+                    foreach (var c in l)
                         _InnerContainer.Add(c);
                     Replacement = null;
                 }
-                IComponent[] toAdd;
+                EngineHelper.MultiComponentFunction[] toAdd;
                 lock (AddQueue) {
                     toAdd = AddQueue.ToArray();
                     AddQueue.Clear();
                 }
-                foreach (var c in toAdd)
-                    _InnerContainer.Add(c);
+                foreach (var f in toAdd) {
+                    var l = f(_Engine);
+                    foreach (var c in l)
+                        _InnerContainer.Add(c);
+                }
                 
 
                 _InnerContainer.Update(engineTime);
@@ -110,14 +114,11 @@ namespace Godbert {
         public void SetTitle(string newTitle) {
             _Injector.SetTitle = newTitle;
         }
-        public void AddComponent(IComponent component) {
+        public void AddComponent(EngineHelper.MultiComponentFunction component) {
             lock (_Injector.AddQueue)
                 _Injector.AddQueue.Add(component);
         }
-        public void ReplaceComponents(IComponent newComponent) {
-            _Injector.Replacement = new IComponent[] { newComponent };
-        }
-        public void ReplaceComponents(IEnumerable<IComponent> newComponents) {
+        public void ReplaceComponents(EngineHelper.MultiComponentFunction newComponents) {
             _Injector.Replacement = newComponents;
         }
         public void RunAsync() {
