@@ -13,17 +13,16 @@ namespace SaintCoinach.Graphics.Animation {
         #region Interop
         static class Interop {
             [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int getNumBones(IntPtr ptr);
+            public static extern IntPtr loadAnimationContainer(IntPtr skeleton, byte[] animationData, int animationSize);
+
+            [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void unloadAnimationContainer(IntPtr ptr);
+
             [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern int getNumAnimations(IntPtr ptr);
+
             [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern IntPtr getAnimation(IntPtr ptr, int index);
-            [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int getBoneNames(IntPtr ptr, [In, Out] string[] output);
-            [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int getReferencePose(IntPtr ptr, [In, Out] InteropTransform[] output);
-            [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int getParentIndices(IntPtr ptr, [In, Out] int[] output);
         }
         #endregion
 
@@ -34,48 +33,23 @@ namespace SaintCoinach.Graphics.Animation {
         #endregion
 
         #region Properties
-        public SklbFile Skeleton { get; private set; }
-        public PapFile Pap { get; private set; }
+        public Skeleton Skeleton { get; private set; }
+        public PapFile File { get; private set; }
         public IEnumerable<string> AnimationNames { get { return _AnimationNameMap.Keys; } }
-        public int AnimationCount { get { return Pap.Header.AnimationCount; } }
-        public int SkeletonBoneCount { get; private set; }
-        public int[] ParentBoneIndices { get; private set; }
-        public Matrix[] ReferencePose { get; private set; }
-        public string[] SkeletonBoneNames { get; private set; }
+        public int AnimationCount { get { return File.Header.AnimationCount; } }
         #endregion
 
         #region Constructor
-        public AnimationContainer(SklbFile skeleton, PapFile pap) {
+        public AnimationContainer(Skeleton skeleton, PapFile file) {
             Skeleton = skeleton;
-            Pap = pap;
+            File = file;
 
-            _AnimationNameMap = pap.Animations.ToDictionary(_ => _.Name, _ => _.Index);
-            _UnmanagedPtr = HavokInterop.Execute(() => HavokInterop.loadAnimationContainer(skeleton.HavokData, skeleton.HavokData.Length, pap.HavokData, pap.HavokData.Length));
+            _AnimationNameMap = file.Animations.ToDictionary(_ => _.Name, _ => _.Index);
+            _UnmanagedPtr = HavokInterop.Execute(() => Interop.loadAnimationContainer(skeleton._UnmanagedPtr, file.HavokData, file.HavokData.Length));
 
             var numAnim = HavokInterop.Execute(() => Interop.getNumAnimations(_UnmanagedPtr));
             if (AnimationCount != numAnim)
                 throw new System.IO.InvalidDataException();
-
-            SkeletonBoneCount = HavokInterop.Execute(() => Interop.getNumBones(_UnmanagedPtr));
-
-            SkeletonBoneNames = new string[SkeletonBoneCount];
-            HavokInterop.Execute(() => Interop.getBoneNames(_UnmanagedPtr, SkeletonBoneNames));
-
-            ParentBoneIndices = new int[SkeletonBoneCount];
-            HavokInterop.Execute(() => Interop.getParentIndices(_UnmanagedPtr, ParentBoneIndices));
-
-            ReferencePose = new Matrix[SkeletonBoneCount];
-            var referencePoseLocal = new InteropTransform[SkeletonBoneCount];
-            HavokInterop.Execute(() => Interop.getReferencePose(_UnmanagedPtr, referencePoseLocal));
-            for (var target = 0; target < SkeletonBoneCount; ++target) {
-                var current = target;
-                ReferencePose[target] = Matrix.Identity;
-                while (current >= 0) {
-                    ReferencePose[target] = ReferencePose[target] * referencePoseLocal[current].ToTransformationMatrix();
-
-                    current = ParentBoneIndices[current];
-                }
-            }
         }
         #endregion
 
@@ -86,7 +60,7 @@ namespace SaintCoinach.Graphics.Animation {
         public Animation Get(int index) {
             Animation anim;
             if (!_Animations.TryGetValue(index, out anim))
-                _Animations.Add(index, anim = new Animation(this, HavokInterop.Execute(() => Interop.getAnimation(_UnmanagedPtr, index))));
+                _Animations.Add(index, anim = new Animation(this, HavokInterop.Execute(() => Interop.getAnimation(_UnmanagedPtr, index)), _AnimationNameMap.Where(_ => _.Value == index).Select(_ => _.Key).FirstOrDefault()));
             return anim;
         }
         #endregion
@@ -97,7 +71,7 @@ namespace SaintCoinach.Graphics.Animation {
         protected virtual void Dispose(bool disposing) {
             if (!_IsDisposed) {
                 if (_UnmanagedPtr != IntPtr.Zero)
-                    HavokInterop.Execute(() => HavokInterop.unloadAnimationContainer(_UnmanagedPtr));
+                    HavokInterop.Execute(() => Interop.unloadAnimationContainer(_UnmanagedPtr));
                 _UnmanagedPtr = IntPtr.Zero;
 
                 _IsDisposed = true;

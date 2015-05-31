@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics.Animation.Interop {
     public static class HavokInterop {
         static object _Lock = new object();
-        
+
+        static bool _Initialized;
+
+        static bool _IsThreaded;
         static bool _IsLive;
 
         static bool _IsAwaiting = false;
@@ -16,18 +19,39 @@ namespace SaintCoinach.Graphics.Animation.Interop {
         static object _CurrentResult;
 
         static HavokInterop() {
-            _IsLive = true;
+        }
 
+        public static void InitializeSTA() {
+            if (_Initialized)
+                throw new InvalidOperationException();
+            initHkInterop();
+
+            _IsThreaded = false;
+            _Initialized = true;
+        }
+        public static void InitializeMTA() {
+            if (_Initialized)
+                throw new InvalidOperationException();
             var t = new System.Threading.Thread(HavokLoop);
             t.Name = "Havok thread";
             t.IsBackground = true;
             t.Start();
+
+            _IsThreaded = true;
+            _IsLive = true;
+            _Initialized = true;
         }
 
         internal static void Execute(Action action) {
             Execute<object>(() => { action(); return null; });
         }
         internal static T Execute<T>(Func<T> func) {
+            if (!_Initialized)
+                throw new InvalidOperationException();
+
+            if (!_IsThreaded)
+                return func();
+
             T result;
             lock (_Lock) {
                 _CurrentAction = () => (object)func();
@@ -62,10 +86,5 @@ namespace SaintCoinach.Graphics.Animation.Interop {
         internal static extern void initHkInterop();
         [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
         internal static extern void quitHkInterop();
-        
-        [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr loadAnimationContainer(byte[] rigData, int rigSize, byte[] animationData, int animationSize);
-        [DllImport("hkAnimationInterop.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void unloadAnimationContainer(IntPtr ptr);
     }
 }

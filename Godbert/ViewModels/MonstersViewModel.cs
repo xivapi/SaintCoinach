@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using SaintCoinach.Graphics;
+using SaintCoinach.Graphics.Animation;
 using SaintCoinach.Graphics.Viewer;
 using SaintCoinach.Graphics.Viewer.Content;
 using SaintCoinach.Xiv;
@@ -16,6 +17,7 @@ namespace Godbert.ViewModels {
     public class MonstersViewModel : ObservableBase {
         const string ImcPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc";
         const string ModelPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/model/m{0:D4}b{1:D4}.mdl";
+        const string SkeletonPathFormat = "chara/monster/m{0:D4}/skeleton/base/b{1:D4}/skl_m{0:D4}b{1:D4}.sklb";
 
         #region Fields
         private Models.ModelCharaHierarchy _Entries;
@@ -70,62 +72,65 @@ namespace Godbert.ViewModels {
         public ICommand NewCommand { get { return _NewCommand ?? (_NewCommand = new DelegateCommand(OnNew)); } }
 
         private void OnAdd() {
+            Skeleton skele;
             ModelDefinition model;
             ImcVariant variant;
             int m, b;
-            if (TryGetModel(out model, out variant, out m, out b))
-                Parent.EngineHelper.AddToLast(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
+            if (TryGetModel(out skele, out model, out variant, out m, out b))
+                Parent.EngineHelper.AddToLast(SelectedEntry.ToString(), (e) => CreateModel(e, skele, model, variant, m, b));
         }
         private void OnReplace() {
+            Skeleton skele;
             ModelDefinition model;
             ImcVariant variant;
             int m, b;
-            if (TryGetModel(out model, out variant, out m, out b))
-                Parent.EngineHelper.ReplaceInLast(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
+            if (TryGetModel(out skele, out model, out variant, out m, out b))
+                Parent.EngineHelper.ReplaceInLast(SelectedEntry.ToString(), (e) => CreateModel(e, skele, model, variant, m, b));
         }
         private void OnNew() {
+            Skeleton skele;
             ModelDefinition model;
             ImcVariant variant;
             int m, b;
-            if (TryGetModel(out model, out variant, out m, out b))
-                Parent.EngineHelper.OpenInNew(SelectedEntry.ToString(), (e) => CreateModel(e, model, variant, m, b));
+            if (TryGetModel(out skele, out model, out variant, out m, out b))
+                Parent.EngineHelper.OpenInNew(SelectedEntry.ToString(), (e) => CreateModel(e, skele, model, variant, m, b));
         }
 
         static string[] DefaultAnimationNames = new string[] { "cbnm_id0", "cbbm_id0" };
 
-        private SaintCoinach.Graphics.Viewer.IComponent CreateModel(SaintCoinach.Graphics.Viewer.Engine engine, ModelDefinition model, ImcVariant variant, int m, int b) {
+        private IComponent CreateModel(Engine engine, Skeleton skeleton, ModelDefinition model, ImcVariant variant, int m, int b) {
             const string PapPathFormat = "chara/monster/m{0:D4}/animation/a0001/bt_common/resident/monster.pap";
-            const string SkeletonPathFormat = "chara/monster/m{0:D4}/skeleton/base/b{1:D4}/skl_m{0:D4}b{1:D4}.sklb";
 
-            var component = new SaintCoinach.Graphics.Animation.AnimatedModel(engine, variant, model, ModelQuality.High) {
+            
+            var component = new AnimatedModel(engine, skeleton, variant, model, ModelQuality.High) {
                 
             };
 
+
             var papPath = string.Format(PapPathFormat, m, b);
-            var sklPath = string.Format(SkeletonPathFormat, m, 1);// b);
 
             SaintCoinach.IO.File papFileBase;
-            SaintCoinach.IO.File sklFileBase;
-            if (Parent.Realm.Packs.TryGetFile(papPath, out papFileBase) && Parent.Realm.Packs.TryGetFile(sklPath, out sklFileBase)) {
-                var anim = new SaintCoinach.Graphics.Animation.AnimationContainer(new SklbFile(sklFileBase), new PapFile(papFileBase));
+            if (Parent.Realm.Packs.TryGetFile(papPath, out papFileBase)) {
+                var anim = new AnimationContainer(skeleton, new PapFile(papFileBase));
 
                 var hasAnim = false;
                 for(var i = 0; i < DefaultAnimationNames.Length && !hasAnim; ++i) {
                     var n = DefaultAnimationNames[i];
                     if (anim.AnimationNames.Contains(n)) {
-                        component.CurrentAnimation = anim.Get(n);
+                        component.AnimationPlayer.Animation = anim.Get(n);
                         hasAnim = true;
                     }
                 }
                 
                 if (!hasAnim)
-                    component.CurrentAnimation = anim.Get(0);
+                    component.AnimationPlayer.Animation = anim.Get(0);
             }
             return component;
         }
 
-        private bool TryGetModel(out ModelDefinition model, out ImcVariant variant, out int m, out int b) {
+        private bool TryGetModel(out Skeleton skeleton, out ModelDefinition model, out ImcVariant variant, out int m, out int b) {
             model = null;
+            skeleton = null;
             variant = ImcVariant.Default;
             m = 0;
             b = 0;
@@ -140,6 +145,7 @@ namespace Godbert.ViewModels {
 
             var imcPath = string.Format(ImcPathFormat, m, b);
             var mdlPath = string.Format(ModelPathFormat, m, b);
+            var sklPath = string.Format(SkeletonPathFormat, m, 1);// b);
 
             SaintCoinach.IO.File imcFileBase;
             SaintCoinach.IO.File mdlFileBase;
@@ -147,6 +153,14 @@ namespace Godbert.ViewModels {
                 System.Windows.MessageBox.Show(string.Format("Unable to find files for {0}.", asVariant), "File not found", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 return false;
             }
+
+            SaintCoinach.IO.File sklFileBase;
+            if(!Parent.Realm.Packs.TryGetFile(sklPath, out sklFileBase)) {
+                System.Windows.MessageBox.Show(string.Format("Unable to find skeleton for {0}.", asVariant), "File not found", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return false;
+            }
+
+            skeleton = new Skeleton(new SklbFile(sklFileBase));
 
             try {
                 var imcFile = new ImcFile(imcFileBase);

@@ -42,12 +42,12 @@ namespace SaintCoinach.Graphics.Animation {
         #endregion
 
         #region Update
-        public Matrix[] GetBoneTransformationMatrices() {
+        public Matrix[] GetPose() {
             if (Animation == null)
                 return new Matrix[0];
 
             if (_IsDirty) {
-                _BoneTransformationMatrices = Animation.GetTransformationMatrices((float)CurrentPlaybackPosition);
+                _BoneTransformationMatrices = Animation.GetPose((float)CurrentPlaybackPosition);
                 _IsDirty = false;
             }
 
@@ -61,15 +61,17 @@ namespace SaintCoinach.Graphics.Animation {
         public bool IsEnabled { get { return _IsEnabled; } set { _IsEnabled = value; } }
 
         public void Update(EngineTime engineTime) {
-            if (!IsEnabled || !IsAnimating || Animation == null)
+            if (!IsEnabled || !IsAnimating || Animation == null || Math.Abs(PlaybackSpeed) <= float.Epsilon)
                 return;
 
             _IsDirty = true;
             _CurrentPlaybackPosition += engineTime.ElapsedTime.TotalSeconds * PlaybackSpeed;
             if (IsLooping) {
+                while (_CurrentPlaybackPosition < 0)
+                    _CurrentPlaybackPosition += Animation.Duration;
                 while (_CurrentPlaybackPosition > Animation.Duration)
                     _CurrentPlaybackPosition -= Animation.Duration;
-            } else if (_CurrentPlaybackPosition > Animation.Duration)
+            } else if (_CurrentPlaybackPosition <= 0 || _CurrentPlaybackPosition > Animation.Duration)
                 _IsAnimating = false;
         }
         #endregion

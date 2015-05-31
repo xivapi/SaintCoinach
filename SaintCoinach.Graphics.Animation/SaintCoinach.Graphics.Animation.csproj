@@ -56,6 +56,7 @@
     <Compile Include="Interop\InteropTransform.cs" />
     <Compile Include="Interop\InteropVector4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skeleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaintCoinach.Graphics.Viewer\SaintCoinach.Graphics.Viewer.csproj">

@@ -10,7 +10,6 @@ namespace SaintCoinach.Graphics.Animation {
 
     public class AnimatedModel : Viewer.Content.ContentModel {
         #region Fields
-        private AnimationContainer _CurrentAnimationContainer;
         private AnimationPlayer _AnimationPlayer;
         private int[] _BoneMap;
         private Matrix[] _InvertedReferencePose;
@@ -18,49 +17,35 @@ namespace SaintCoinach.Graphics.Animation {
         #endregion
 
         #region Properties
+        public Skeleton Skeleton { get; private set; }
         public bool DisplayReferenceJoints { get; set; }
         public bool DisplayAnimationJoints { get; set; }
-        public double PlaybackSpeed { get { return _AnimationPlayer.PlaybackSpeed; } set { _AnimationPlayer.PlaybackSpeed = value; } }
-        public bool IsLooping { get { return _AnimationPlayer.IsLooping; } set { _AnimationPlayer.IsLooping = value; } }
-        public Animation CurrentAnimation {
-            get { return _AnimationPlayer.Animation; }
-            set {
-                _AnimationPlayer.Animation = value;
-                SetUpForAnimationContainer(value == null ? null : value.Container);
-            }
-        }
+        public AnimationPlayer AnimationPlayer { get { return _AnimationPlayer; } }
         #endregion
 
         #region Constructor
-        public AnimatedModel(Engine engine, ModelVariantIdentifier variant, ModelFile file) : this(engine, variant, file.GetModelDefinition(), ModelQuality.High) { }
-        public AnimatedModel(Engine engine, ModelVariantIdentifier variant, ModelFile file, ModelQuality quality) : this(engine, variant, file.GetModelDefinition(), quality) { }
-        public AnimatedModel(Engine engine, ModelVariantIdentifier variant, ModelDefinition definition) : this(engine, variant, definition, ModelQuality.High) { }
-        public AnimatedModel(Engine engine, ModelVariantIdentifier variant, ModelDefinition definition, ModelQuality quality)
+        public AnimatedModel(Engine engine, Skeleton skeleton, ModelVariantIdentifier variant, ModelFile file) : this(engine, skeleton, variant, file.GetModelDefinition(), ModelQuality.High) { }
+        public AnimatedModel(Engine engine, Skeleton skeleton, ModelVariantIdentifier variant, ModelFile file, ModelQuality quality) : this(engine, skeleton, variant, file.GetModelDefinition(), quality) { }
+        public AnimatedModel(Engine engine, Skeleton skeleton, ModelVariantIdentifier variant, ModelDefinition definition) : this(engine, skeleton, variant, definition, ModelQuality.High) { }
+        public AnimatedModel(Engine engine, Skeleton skeleton, ModelVariantIdentifier variant, ModelDefinition definition, ModelQuality quality)
             : base(engine, variant, definition, quality) {
 
+            Skeleton = skeleton;
             _AnimationPlayer = new AnimationPlayer();
-        }
-        #endregion
-
-        #region Set up
-        private void SetUpForAnimationContainer(AnimationContainer container) {
-            _CurrentAnimationContainer = container;
-            if (container == null)
-                return;
 
             var nameMap = new Dictionary<string, int>();
-            for (var i = 0; i < container.SkeletonBoneNames.Length; ++i)
-                nameMap.Add(container.SkeletonBoneNames[i], i);
+            for (var i = 0; i < Skeleton.BoneNames.Length; ++i)
+                nameMap.Add(Skeleton.BoneNames[i], i);
             _BoneMap = Definition.BoneNames.Select(n => nameMap[n]).ToArray();
-            _InvertedReferencePose = container.ReferencePose.Select(_ => Matrix.Invert(_)).ToArray();
+            _InvertedReferencePose = Skeleton.ReferencePose.Select(_ => Matrix.Invert(_)).ToArray();
         }
         #endregion
 
         public override void Update(EngineTime engineTime) {
-            if (_CurrentAnimationContainer != null) {
-                _AnimationPlayer.Update(engineTime);
+            if (AnimationPlayer.Animation != null) {
+                AnimationPlayer.Update(engineTime);
 
-                _AnimationPose = _AnimationPlayer.GetBoneTransformationMatrices();
+                _AnimationPose = _AnimationPlayer.GetPose();
 
                 for(var i = 0; i < JointMatrixArray.Length; ++i) {
                     var skeletonBoneIndex = _BoneMap[i];
@@ -81,7 +66,7 @@ namespace SaintCoinach.Graphics.Animation {
         public override void Draw(EngineTime time, ref Matrix world, ref Matrix view, ref Matrix projection) {
             base.Draw(time, ref world, ref view, ref projection);
 
-            if (_CurrentAnimationContainer != null) {
+            if (AnimationPlayer.Animation != null) {
                 if (DisplayAnimationJoints) {
                     foreach (var i in _BoneMap) {
                         var m = _AnimationPose[i];
@@ -89,12 +74,12 @@ namespace SaintCoinach.Graphics.Animation {
                         Engine.Cube.Draw(time, ref w, ref view, ref projection);
                     }
                 }
-                if (DisplayReferenceJoints) {
-                    foreach (var i in _BoneMap) {
-                        var m = _CurrentAnimationContainer.ReferencePose[i];
-                        var w = Matrix.Scaling(0.025f) * m * world;
-                        Engine.Cube.Draw(time, ref w, ref view, ref projection);
-                    }
+            }
+            if (DisplayReferenceJoints) {
+                foreach (var i in _BoneMap) {
+                    var m = Skeleton.ReferencePose[i];
+                    var w = Matrix.Scaling(0.025f) * m * world;
+                    Engine.Cube.Draw(time, ref w, ref view, ref projection);
                 }
             }
         }

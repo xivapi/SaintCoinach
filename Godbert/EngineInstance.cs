@@ -37,8 +37,10 @@ namespace Godbert {
                         AddQueue.Clear();
                     _InnerContainer.Clear();
                     var l = Replacement(_Engine);
-                    foreach (var c in l)
-                        _InnerContainer.Add(c);
+                    foreach (var c in l) {
+                        if (c != null)
+                            _InnerContainer.Add(c);
+                    }
                     Replacement = null;
                 }
                 EngineHelper.MultiComponentFunction[] toAdd;
@@ -48,8 +50,10 @@ namespace Godbert {
                 }
                 foreach (var f in toAdd) {
                     var l = f(_Engine);
-                    foreach (var c in l)
-                        _InnerContainer.Add(c);
+                    foreach (var c in l) {
+                        if (c != null)
+                            _InnerContainer.Add(c);
+                    }
                 }
                 
 
