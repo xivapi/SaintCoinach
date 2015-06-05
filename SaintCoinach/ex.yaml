@@ -3169,4 +3169,24 @@
       Name: Quantity{3}
     Index: 3
   Name: RetainerTaskNormal
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: X
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 7
+  Name: MapMarker
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+    Index: 0
+  Name: MapSymbol
 Version: 2015.05.20.0000.0000
