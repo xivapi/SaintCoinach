@@ -48,6 +48,8 @@ namespace SaintCoinach.Graphics.Viewer {
         private TextureFactory _TextureFactory;
         private EffectFactory _EffectFactory;
         private MaterialFactory _MaterialFactory;
+
+        private Size2 _ViewportSize;
         #endregion
 
         #region Properties
@@ -69,7 +71,7 @@ namespace SaintCoinach.Graphics.Viewer {
         public EffectFactory EffectFactory { get { return _EffectFactory; } }
         public MaterialFactory MaterialFactory { get { return _MaterialFactory; } }
         public abstract IInputService InputService { get; }
-        public Size2 ViewportSize { get; private set; }
+        public virtual Size2 ViewportSize { get { return _ViewportSize; } }
         public abstract bool IsActive { get; }
 
         public DepthStencilState DepthStencilState {
@@ -157,7 +159,7 @@ namespace SaintCoinach.Graphics.Viewer {
         }
 
         protected void CreateView(int width, int height) {
-            ViewportSize = new Size2(width, height);
+            _ViewportSize = new Size2(width, height);
             _RenderTarget = CreateRenderTarget(width, height);
             _RenderTargetView = new RenderTargetView(Device, _RenderTarget);
 
@@ -242,7 +244,10 @@ namespace SaintCoinach.Graphics.Viewer {
         }
         protected void EngineLoop(EngineTime time) {
             Update(time);
+
+            BeforeDraw(time);
             Draw(time);
+            AfterDraw(time);
 
             Present();
         }
@@ -253,18 +258,22 @@ namespace SaintCoinach.Graphics.Viewer {
             CoreComponents.Update(time);
             Components.Update(time);
         }
-        protected virtual void Draw(EngineTime time) {
-            var world = Matrix.Identity;
-            var view = Camera.View;
-            var proj = Camera.Projection;
-
+        protected virtual void BeforeDraw(EngineTime time) {
             Device.ImmediateContext.OutputMerger.SetDepthStencilState(DepthStencilState);
             Device.ImmediateContext.OutputMerger.SetBlendState(BlendState);
             Device.ImmediateContext.Rasterizer.State = RasterizerState;
             Device.ImmediateContext.OutputMerger.SetTargets(_DepthStencilView, _RenderTargetView);
             Device.ImmediateContext.ClearDepthStencilView(_DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
+        }
+        protected virtual void Draw(EngineTime time) {
+            var world = Matrix.Identity;
+            var view = Camera.View;
+            var proj = Camera.Projection;
 
             Draw3D(time, ref world, ref view, ref proj);
+        }
+        protected virtual void AfterDraw(EngineTime time) {
+
         }
 
         private void Draw3D(EngineTime time, ref Matrix world, ref Matrix view, ref Matrix proj) {
