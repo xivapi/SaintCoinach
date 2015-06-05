@@ -773,6 +773,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LibraModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="ex.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Libra\LibraModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LibraModel.edmx</DependentUpon>
@@ -787,9 +790,6 @@
       <LastGenOutput>LibraModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="SaintCoinach.History.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Compile Include="Xiv\InstanceContentData.Treasure.cs" />
     <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
     <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />

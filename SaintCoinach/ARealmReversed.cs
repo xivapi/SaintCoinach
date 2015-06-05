@@ -145,10 +145,26 @@ namespace SaintCoinach {
         /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
         /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
         private RelationDefinition Setup(ZipFile zip) {
-            var def = ReadDefinition(zip);
+            RelationDefinition fsDef = null, zipDef = null;
+            DateTime fsMod = DateTime.MinValue, zipMod = DateTime.MinValue;
+
+            if (!TryGetDefinitionFromFileSystem(out fsDef, out fsMod))
+                fsDef = null;
+            
+            if (zip.ContainsEntry(DefinitionFile))
+                zipDef = ReadDefinition(zip, DefinitionFile, out zipMod);
+
+            if (fsDef == null && zipDef == null)
+                throw new InvalidOperationException();
+
+            RelationDefinition def;
+            if (fsMod > zipMod)
+                def = fsDef;
+            else
+                def = zipDef;
+
             if (def.Version != GameVersion)
-                System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})",
-                    def.Version, GameVersion));
+                System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
             def.Version = GameVersion;
             StoreDefinition(zip, def, string.Format("{0}/{1}", def.Version, DefinitionFile));
@@ -208,11 +224,19 @@ namespace SaintCoinach {
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
                 if (zipFile.ContainsEntry(VersionFile)) {
-                    RelationDefinition def;
-                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out def))
-                        def = ReadDefinition(zipFile);
+                    RelationDefinition fsDef = null, zipDef = null;
+                    DateTime fsMod = DateTime.MinValue, zipMod = DateTime.MinValue;
+                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out zipDef, out zipMod))
+                        zipDef = ReadDefinition(zipFile, DefinitionFile,  out zipMod);
+                    if (!TryGetDefinitionFromFileSystem(out fsDef, out fsMod))
+                        fsDef = null;
 
-                    _GameData.Definition = def;
+                    if (fsDef != null && fsMod > zipMod) {
+                        fsDef.Version = GameVersion;
+                        _GameData.Definition = fsDef;
+                        StoreDefinition(zipFile, fsDef, DefinitionFile);
+                    } else
+                        _GameData.Definition = zipDef;
                 } else
                     _GameData.Definition = Setup(zipFile);
             }
@@ -223,6 +247,21 @@ namespace SaintCoinach {
         #endregion
 
         #region Shared
+        private bool TryGetDefinitionFromFileSystem(out RelationDefinition definition, out DateTime lastWrite) {
+            var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, DefinitionFile));
+            return TryGetDefinitionFromFileSystem(file, out definition, out lastWrite);
+        }
+        private bool TryGetDefinitionFromFileSystem(FileInfo file, out RelationDefinition definition, out DateTime lastWrite) {
+            if (file.Exists) {
+                lastWrite = file.LastWriteTimeUtc;
+                definition = RelationDefinition.Deserialize(file.FullName);
+                return true;
+            }
+
+            lastWrite = DateTime.MinValue;
+            definition = null;
+            return false;
+        }
 
         /// <summary>
         ///     Store the current pack files in storage.
@@ -272,9 +311,15 @@ namespace SaintCoinach {
         /// <param name="entry">File name of the definition to read.</param>
         /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
         private static RelationDefinition ReadDefinition(ZipFile zip, string entry = DefinitionFile) {
+            DateTime mod;
+            return ReadDefinition(zip, entry, out mod);
+        }
+
+        private static RelationDefinition ReadDefinition(ZipFile zip, string entry, out DateTime lastModified) {
             RelationDefinition def;
 
             var zipEntry = zip[entry];
+            lastModified = zipEntry.LastModified.ToUniversalTime();
             using (var s = zipEntry.OpenReader()) {
                 using (var r = new StreamReader(s, ZipEncoding))
                     def = RelationDefinition.Deserialize(r);
@@ -348,6 +393,10 @@ namespace SaintCoinach {
         /// </param>
         /// <returns><c>true</c> if the definition for the specified version was present; <c>false</c> otherwise.</returns>
         private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition) {
+            DateTime mod;
+            return TryGetDefinitionVersion(zip, version, out definition, out mod);
+        }
+        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition, out DateTime lastMod) {
             var storedVersionEntry = zip[VersionFile];
             string storedVersion;
             using (var s = storedVersionEntry.OpenReader()) {
@@ -362,15 +411,16 @@ namespace SaintCoinach {
                     UpdateVersion(zip);
                     zip.Save();
 
-                    definition = ReadDefinition(zip);
+                    definition = ReadDefinition(zip, DefinitionFile, out lastMod);
                     return true;
                 }
 
                 definition = null;
+                lastMod = DateTime.MinValue;
                 return false;
             }
 
-            definition = ReadDefinition(zip);
+            definition = ReadDefinition(zip, DefinitionFile, out lastMod);
             return true;
         }
 
