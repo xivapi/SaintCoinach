@@ -109,7 +109,7 @@
       Name: Cost
     Index: 29
   - InnerDefinition: !!single_def
-      Name: atus{Required}
+      Name: Status{Required}
       Converter: !!link_conv
         TargetSheet: Status
     Index: 31
