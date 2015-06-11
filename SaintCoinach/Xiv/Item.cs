@@ -182,6 +182,14 @@ namespace SaintCoinach.Xiv {
         public bool CanBeHq {
             get { return AsBoolean("CanBeHq"); }
         }
+
+        public GrandCompany GrandCompany {
+            get { return As<GrandCompany>(); }
+        }
+
+        public bool IsDesynthesizable {
+            get { return AsInt32("Desynthesize") > 0; }
+        }
         #endregion
 
         #region Constructors

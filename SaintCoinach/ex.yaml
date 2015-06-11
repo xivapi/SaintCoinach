@@ -1260,6 +1260,11 @@
         TargetSheet: ClassJobCategory
     Index: 85
   - InnerDefinition: !!single_def
+      Name: GrandCompany
+      Converter: !!link_conv
+        TargetSheet: GrandCompany
+    Index: 87
+  - InnerDefinition: !!single_def
       Name: GCTurnIn
     Index: 88
   - InnerDefinition: !!single_def
@@ -1278,6 +1283,9 @@
       Converter: !!link_conv
         TargetSheet: Item
     Index: 92
+  - InnerDefinition: !!single_def
+      Name: Desynthesize
+    Index: 93
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
