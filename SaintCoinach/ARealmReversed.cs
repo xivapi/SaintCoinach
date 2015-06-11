@@ -235,6 +235,7 @@ namespace SaintCoinach {
                         fsDef.Version = GameVersion;
                         _GameData.Definition = fsDef;
                         StoreDefinition(zipFile, fsDef, DefinitionFile);
+                        zipFile.Save();
                     } else
                         _GameData.Definition = zipDef;
                 } else
