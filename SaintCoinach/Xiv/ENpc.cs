@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using SaintCoinach.Xiv.Collections;
@@ -43,15 +44,18 @@ namespace SaintCoinach.Xiv {
         }
 
         private ILocation[] BuildLocations() {
+            var levelLocations = BuildLevels();
+
             var coll = Collection.Collection;
             if (!coll.IsLibraAvailable)
-                return BuildLevels().Cast<ILocation>().ToArray();
+                return levelLocations.Cast<ILocation>().ToArray();
 
             var libraENpc = coll.Libra.ENpcResidents.FirstOrDefault(i => i.Key == this.Key);
             if (libraENpc == null)
-                return BuildLevels().Cast<ILocation>().ToArray();
+                return levelLocations.ToArray();
 
             var locations = new List<ILocation>();
+            locations.AddRange(levelLocations.Cast<ILocation>());
 
             var placeNames = coll.GetSheet<PlaceName>();
             var maps = coll.GetSheet<Map>();
@@ -60,8 +64,11 @@ namespace SaintCoinach.Xiv {
                 foreach (var coord in libraENpc.Coordinates) {
                     var placeName = placeNames.First(i => i.Key == coord.Item1);
 
-                    foreach (var c in coord.Item2)
-                        locations.Add(new GenericLocation(placeName, c.X, c.Y));
+                    foreach (var c in coord.Item2) {
+                        // Only add if no Level exists in the same area.
+                        if (!levelLocations.Any(l => Math.Abs(l.MapX - c.X) < 1 && Math.Abs(l.MapY - c.Y) < 1 && (l.Map.LocationPlaceName == placeName || l.Map.PlaceName == placeName || l.Map.RegionPlaceName == placeName)))
+                            locations.Add(new GenericLocation(placeName, c.X, c.Y));
+                    }
                 }
             }
 
