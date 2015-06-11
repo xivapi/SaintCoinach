@@ -39,6 +39,10 @@ namespace SaintCoinach.Xiv.Items {
             get { return AsBoolean("EquippableByGender{F}"); }
         }
 
+        public bool IsCrestWorthy {
+            get { return AsBoolean("IsCrestWorthy"); }
+        }
+
         /// <summary>
         ///     Gets the primary <see cref="Parameter" />s of the current item.
         /// </summary>
