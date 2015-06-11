@@ -8,6 +8,9 @@ using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class TripleTriadCard : XivRow {
+        public const int PlateIconOffset = 82100;
+        public const int IconOffset = 82300;
+
         #region Fields
         private TripleTriadCardResident _Resident;
         #endregion
@@ -16,6 +19,9 @@ namespace SaintCoinach.Xiv {
 
         public Text.XivString Name { get { return AsString("Name"); } }
         public Text.XivString Description { get { return AsString("Description"); } }
+
+        public Imaging.ImageFile Icon { get { return Imaging.IconHelper.GetIcon(Sheet.Collection.PackCollection, Sheet.Collection.ActiveLanguage, IconOffset + Key); } }
+        public Imaging.ImageFile PlateIcon { get { return Imaging.IconHelper.GetIcon(Sheet.Collection.PackCollection, Sheet.Collection.ActiveLanguage, PlateIconOffset + Key); } }
 
         public TripleTriadCardResident TripleTriadCardResident {
             get { return _Resident ?? (_Resident = Sheet.Collection.GetSheet<TripleTriadCardResident>()[this.Key]); }
