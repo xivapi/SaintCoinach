@@ -18,8 +18,17 @@ namespace SaintCoinach.Ex.Relational.Update {
                 return d1 == d2;
             }
 
-            var s1 = v1 as string;
-            var s2 = v2 as string;
+            string s1 = null, s2 = null;
+
+            if (v1 is Text.XivString)
+                s1 = ((Text.XivString)v1).ToString();
+            else if (v1 is string)
+                s1 = (string)v1;
+
+            if (v2 is Text.XivString)
+                s2 = ((Text.XivString)v2).ToString();
+            else if (v2 is string)
+                s2 = (string)v2;
 
             if (s1 == null || s2 == null) return false;
 
