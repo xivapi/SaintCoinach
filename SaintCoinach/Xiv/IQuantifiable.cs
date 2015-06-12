@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public interface IQuantifiableName {
+    public interface IQuantifiable {
         string Singular { get; }
         string Plural { get; }
     }

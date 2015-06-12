@@ -2,7 +2,7 @@ using SaintCoinach.Ex.Relational;
 using SaintCoinach.Imaging;
 
 namespace SaintCoinach.Xiv {
-    public class BuddyEquip : XivRow, IQuantifiableName {
+    public class BuddyEquip : XivRow, IQuantifiableXivString {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
@@ -30,11 +30,11 @@ namespace SaintCoinach.Xiv {
         }
 
         #region IQuantifiableName Members
-        string IQuantifiableName.Singular {
+        string IQuantifiable.Singular {
             get { return Singular; }
         }
 
-        string IQuantifiableName.Plural {
+        string IQuantifiable.Plural {
             get { return Plural; }
         }
         #endregion

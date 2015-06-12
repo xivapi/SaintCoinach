@@ -5,7 +5,7 @@ using System.Linq;
 using SaintCoinach.Xiv.Collections;
 
 namespace SaintCoinach.Xiv {
-    public class ENpc : ILocatable, IQuantifiableName {
+    public class ENpc : ILocatable, IQuantifiableXivString {
         #region Fields
 
         private ENpcBase _Base;
@@ -81,11 +81,11 @@ namespace SaintCoinach.Xiv {
         }
 
         #region IQuantifiableName Members
-        string IQuantifiableName.Singular {
+        string IQuantifiable.Singular {
             get { return Singular; }
         }
 
-        string IQuantifiableName.Plural {
+        string IQuantifiable.Plural {
             get { return Plural; }
         }
         #endregion

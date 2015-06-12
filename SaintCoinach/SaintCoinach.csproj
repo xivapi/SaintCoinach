@@ -532,7 +532,8 @@
     <Compile Include="Xiv\GeneralAction.cs" />
     <Compile Include="Xiv\GoldSaucerTextData.cs" />
     <Compile Include="Xiv\HousingLayoutLimit.cs" />
-    <Compile Include="Xiv\IQuantifiableName.cs" />
+    <Compile Include="Xiv\IQuantifiable.cs" />
+    <Compile Include="Xiv\IQuantifiableXivString.cs" />
     <Compile Include="Xiv\ItemComparer.cs" />
     <Compile Include="Xiv\LeveVfx.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />

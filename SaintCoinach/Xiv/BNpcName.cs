@@ -4,7 +4,7 @@ using System.Linq;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class BNpcName : XivRow, ILocatable, IItemSource, IQuantifiableName {
+    public class BNpcName : XivRow, ILocatable, IItemSource, IQuantifiableXivString {
 
         #region Fields
         private ILocation[] _Locations;
@@ -41,11 +41,11 @@ namespace SaintCoinach.Xiv {
         }
 
         #region IQuantifiableName Members
-        string IQuantifiableName.Singular {
+        string IQuantifiable.Singular {
             get { return Singular; }
         }
 
-        string IQuantifiableName.Plural {
+        string IQuantifiable.Plural {
             get { return Plural; }
         }
         #endregion

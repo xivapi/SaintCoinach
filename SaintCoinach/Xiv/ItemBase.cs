@@ -8,7 +8,7 @@ namespace SaintCoinach.Xiv {
     /// <remarks>
     /// Inherited by <see cref="EventItem"/> and <see cref="Item"/>.
     /// </remarks>
-    public abstract class ItemBase : XivRow, IQuantifiableName {
+    public abstract class ItemBase : XivRow, IQuantifiableXivString {
         #region Properties
         /// <summary>
         /// Gets the name of the current item.
@@ -63,11 +63,11 @@ namespace SaintCoinach.Xiv {
         }
 
         #region IQuantifiableName Members
-        string IQuantifiableName.Singular {
+        string IQuantifiable.Singular {
             get { return Singular; }
         }
 
-        string IQuantifiableName.Plural {
+        string IQuantifiable.Plural {
             get { return Plural; }
         }
         #endregion
