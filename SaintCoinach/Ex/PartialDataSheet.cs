@@ -36,7 +36,7 @@ namespace SaintCoinach.Ex {
         #endregion
 
         public Language Language { get { return SourceSheet.Language; } }
-        public int Count { get { return _Rows.Count; } }
+        public int Count { get { return _RowOffsets.Count; } }
 
         #region IEnumerable<T> Members
 

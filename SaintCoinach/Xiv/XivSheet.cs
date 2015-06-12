@@ -14,7 +14,6 @@ namespace SaintCoinach.Xiv {
         private readonly Dictionary<int, T> _Rows = new Dictionary<int, T>();
         private readonly IRelationalSheet _Source;
         private ConstructorInfo _RowConstructor;
-        private bool _RowsFilled;
 
         #endregion
 
