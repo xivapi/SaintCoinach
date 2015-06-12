@@ -17,6 +17,15 @@ namespace SaintCoinach.Text {
         NodeFlags INode.Flags { get { return NodeFlags.HasChildren | NodeFlags.IsExpression; } }
         public IEnumerable<INode> Children { get { return _Children; } }
 
+        public bool IsEmpty {
+            get {
+                if (_Children.Length == 0)
+                    return true;
+                // TODO: This can be made more efficient (as in, without the need to convert to a string), but that's going to take lots of work.
+                return string.IsNullOrWhiteSpace(ToString());
+            }
+        }
+
         public XivString(params INode[] children) : this((IEnumerable<INode>)children) { }
         public XivString(IEnumerable<INode> children) {
             _Children = children.ToArray();
