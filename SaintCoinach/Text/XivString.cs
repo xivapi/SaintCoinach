@@ -40,7 +40,7 @@ namespace SaintCoinach.Text {
                 part.ToString(builder);
         }
 
-        public static implicit operator string(XivString xivString) {
+        public static implicit operator string (XivString xivString) {
             return xivString.ToString();
         }
 
@@ -57,22 +57,40 @@ namespace SaintCoinach.Text {
         public static bool operator ==(XivString left, XivString right) {
             var lNull = object.ReferenceEquals(null, left);
             var rNull = object.ReferenceEquals(null, right);
-            if(lNull && rNull)
+            if (lNull && rNull)
                 return true;
             if (lNull != rNull)
                 return false;
             return (left.ToString() == right.ToString());
         }
         public static bool operator !=(XivString left, XivString right) {
+            var lNull = object.ReferenceEquals(null, left);
+            var rNull = object.ReferenceEquals(null, right);
+            if (lNull && rNull)
+                return false;
+            if (lNull != rNull)
+                return true;
             return (left.ToString() != right.ToString());
         }
         public static bool operator ==(XivString left, string right) {
+            var lNull = object.ReferenceEquals(null, left);
+            var rNull = object.ReferenceEquals(null, right);
+            if (lNull && rNull)
+                return true;
+            if (lNull != rNull)
+                return false;
             return (left.ToString() == right);
         }
         public static bool operator !=(XivString left, string right) {
+            var lNull = object.ReferenceEquals(null, left);
+            var rNull = object.ReferenceEquals(null, right);
+            if (lNull && rNull)
+                return false;
+            if (lNull != rNull)
+                return true;
             return (left.ToString() != right);
         }
-        
+
         #region IComparable Members
 
         public int CompareTo(object obj) {
