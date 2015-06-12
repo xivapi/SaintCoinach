@@ -539,7 +539,6 @@
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />
-    <Compile Include="StringHelper.cs" />
     <Compile Include="UpdateReport.cs" />
     <Compile Include="Xiv\Achievement.cs" />
     <Compile Include="Xiv\AchievementCategory.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace SaintCoinach.Ex.Relational.Definition {
-    public class SheetDefinition : ICloneable {
+    public class SheetDefinition {
         #region Fields
 
         private Dictionary<int, PositionedDataDefintion> _ColumnDefinitionMap;
@@ -26,14 +26,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public string Name { get; set; }
         public string DefaultColumn { get; set; }
-
-        #endregion
-
-        #region ICloneable Members
-
-        object ICloneable.Clone() {
-            throw new NotImplementedException();
-        }
 
         #endregion
 

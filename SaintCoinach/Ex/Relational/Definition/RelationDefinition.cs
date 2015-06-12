@@ -10,7 +10,7 @@ using SaintCoinach.Ex.Relational.ValueConverters;
 using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
-    public class RelationDefinition : ICloneable {
+    public class RelationDefinition {
         #region Fields
 
         private bool _IsCompiled;
@@ -27,14 +27,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public string Version { get; set; }
-
-        #endregion
-
-        #region ICloneable Members
-
-        object ICloneable.Clone() {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
