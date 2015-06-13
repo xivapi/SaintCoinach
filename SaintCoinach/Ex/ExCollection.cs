@@ -17,7 +17,7 @@ namespace SaintCoinach.Ex {
         private readonly Dictionary<string, WeakReference<ISheet>> _Sheets =
             new Dictionary<string, WeakReference<ISheet>>();
 
-        private string[] _AvailableSheets;
+        private List<string> _AvailableSheets;
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace SaintCoinach.Ex {
                 }
             }
 
-            _AvailableSheets = available.ToArray();
+            _AvailableSheets = available.ToList();
         }
 
         #endregion

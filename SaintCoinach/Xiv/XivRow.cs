@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational;
@@ -79,8 +80,14 @@ namespace SaintCoinach.Xiv {
         /// <param name="indices">Indices for the full name.</param>
         /// <returns>The full column name built using <c>column</c> and <c>indices</c>.</returns>
         private static string BuildColumnName(string column, params int[] indices) {
-            return string.Format("{0}{1}", column,
-                string.Join(string.Empty, indices.Select(_ => string.Format("[{0}]", _))));
+            var sb = new StringBuilder();
+            sb.Append(column);
+            foreach (var i in indices) {
+                sb.Append('[');
+                sb.Append(i);
+                sb.Append(']');
+            }
+            return sb.ToString();
         }
 
         /// <summary>

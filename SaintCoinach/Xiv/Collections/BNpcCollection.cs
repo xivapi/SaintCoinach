@@ -8,6 +8,7 @@ namespace SaintCoinach.Xiv.Collections {
     public class BNpcCollection : IEnumerable<BNpc> {
         #region Fields
         private Dictionary<long, BNpc> _InnerDictionary = new Dictionary<long, BNpc>();
+        private IEnumerable<Libra.BNpcName> _LibraEntries;
         #endregion
 
         #region Properties
@@ -63,7 +64,9 @@ namespace SaintCoinach.Xiv.Collections {
             #region Constructor
             public Enumerator(BNpcCollection collection) {
                 _Collection = collection;
-                _LibraEnumerator = ((IEnumerable<Libra.BNpcName>)collection.Collection.Libra.BNpcNames).GetEnumerator();
+                if (collection._LibraEntries == null)
+                    collection._LibraEntries = collection.Collection.Libra.BNpcNames.ToArray();
+                _LibraEnumerator = collection._LibraEntries.GetEnumerator();
             }
             #endregion
 
