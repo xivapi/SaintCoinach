@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class ChocobRaceItem : ActionBase {
+    public class ChocoboRaceItem : ActionBase {
         #region Constructors
 
-        public ChocobRaceItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public ChocoboRaceItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
     }
