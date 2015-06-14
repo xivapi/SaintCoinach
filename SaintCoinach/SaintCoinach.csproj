@@ -536,6 +536,7 @@
     <Compile Include="Xiv\IQuantifiableXivString.cs" />
     <Compile Include="Xiv\ItemComparer.cs" />
     <Compile Include="Xiv\LeveVfx.cs" />
+    <Compile Include="Xiv\ParamGrow.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="ARealmReversed.cs" />

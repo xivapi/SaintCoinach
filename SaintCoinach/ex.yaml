@@ -3197,4 +3197,21 @@
       Converter: !!icon_conv {}
     Index: 0
   Name: MapSymbol
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ExpToNext
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: AdditionalActions
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: AttributeBonus{Class}
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: AttributeBonus{Job}
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: MpCostFactor<%>
+    Index: 5
+  Name: ParamGrow
 Version: 2015.05.20.0000.0000
