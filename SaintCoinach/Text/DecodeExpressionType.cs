@@ -25,7 +25,7 @@ namespace SaintCoinach.Text {
         Int24_MinusOne = 0xF5,          // Followed by a Int24 that is one too high
         Int24 = 0xF6,                   // Followed by a Int24
 
-        Int24_Color = 0xFA,             // Followed by a Int24, but converted to Int32 with upper 8 bits set to 1
+        Int24_SafeZero = 0xFA,          // Followed by a Int24, but 0xFF bytes set to 0 instead.
         Int24_Unknown = 0xFD,           // Followed by a Int24, only used by <Time>?
         Int32 = 0xFE,                   // Followed by a Int32
 

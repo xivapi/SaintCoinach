@@ -180,8 +180,21 @@ namespace SaintCoinach.Text {
                 case DecodeExpressionType.Int24:
                 case DecodeExpressionType.Int24_Unknown:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24));
-                case DecodeExpressionType.Int24_Color:
-                    return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24) | (0xFF << 24));
+                case DecodeExpressionType.Int24_SafeZero: {
+                        var v16 = input.ReadByte();
+                        var v8 = input.ReadByte();
+                        var v0 = input.ReadByte();
+
+                        int v = 0;
+                        if (v16 != byte.MaxValue)
+                            v |= v16 << 16;
+                        if (v8 != byte.MaxValue)
+                            v |= v8 << 8;
+                        if (v0 != byte.MaxValue)
+                            v |= v0;
+
+                        return new Nodes.StaticInteger(v);
+                    }
                 case DecodeExpressionType.Int32:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int32));
                 case DecodeExpressionType.GreaterThanOrEqualTo:
