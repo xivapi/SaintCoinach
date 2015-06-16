@@ -30,6 +30,11 @@ namespace SaintCoinach.Xiv {
         private BNpcCollection _BNpcs;
 
         /// <summary>
+        ///     Collection of <see cref="ClassJobActionBase"/> (containing both <see cref="Action" /> and <see cref="CraftAction" />).
+        /// </summary>
+        private ClassJobActionCollection _ClassJobActions;
+
+        /// <summary>
         ///     Collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />).
         /// </summary>
         private ENpcCollection _ENpcs;
@@ -75,6 +80,12 @@ namespace SaintCoinach.Xiv {
                 return _BNpcs;
             }
         }
+
+        /// <summary>
+        ///     Gets the collection of <see cref="ClassJobActionBase"/> (containing both <see cref="Action" /> and <see cref="CraftAction" />).
+        /// </summary>
+        /// <value>The collection of <see cref="ClassJobActionBase"/> (containing both <see cref="Action" /> and <see cref="CraftAction" />).</value>
+        public ClassJobActionCollection ClassJobActions { get { return _ClassJobActions ?? (_ClassJobActions = new ClassJobActionCollection(this)); } }
 
         /// <summary>
         ///     Gets the collection of ENpc objects (containg data of both <see cref="ENpcBase" /> and <see cref="ENpcResident" />

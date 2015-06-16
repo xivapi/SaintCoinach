@@ -521,6 +521,7 @@
     <Compile Include="Xiv\ChocoboRaceStatus.cs" />
     <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
     <Compile Include="Xiv\ChocoboRaceItem.cs" />
+    <Compile Include="Xiv\Collections\ClassJobActionCollection.cs" />
     <Compile Include="Xiv\GatheringCondition.cs" />
     <Compile Include="Xiv\GatheringExp.cs" />
     <Compile Include="Xiv\GatheringNotebookList.cs" />
