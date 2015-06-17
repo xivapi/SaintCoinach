@@ -23,7 +23,7 @@ namespace SaintCoinach.Cmd.Commands {
             var successCount = 0;
             var failCount = 0;
             foreach (Xiv.IXivRow bgm in bgms) {
-                var filePath = (string)bgm["File"];
+                var filePath = bgm["File"].ToString();
 
                 try {
 

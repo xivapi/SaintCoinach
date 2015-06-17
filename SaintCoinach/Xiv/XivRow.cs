@@ -20,6 +20,12 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
+        #region Properties
+
+        IRelationalRow IXivRow.SourceRow { get { return _SourceRow; } }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>

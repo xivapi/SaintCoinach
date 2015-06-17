@@ -217,8 +217,8 @@ namespace SaintCoinach.Text {
         }
         protected INode DecodeGenericElement(BinaryReader input, TagType tag, int length, int argCount, bool hasContent) {
             if (length == 0) {
-                if (argCount > 0)
-                    throw new ArgumentOutOfRangeException("argCount");
+                /*if (argCount > 0)
+                    throw new ArgumentOutOfRangeException("argCount");*/
                 return new Nodes.EmptyElement(tag);
             }
             var arguments = new INode[argCount];
