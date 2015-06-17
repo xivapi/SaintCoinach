@@ -11,6 +11,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public InstanceContent InstanceContent { get; private set; }
+        public IEnumerable<Fight> AllBosses { get; private set; }
         public Fight Boss { get; private set; }
         public IEnumerable<Fight> MidBosses { get; private set; }
         public IEnumerable<Treasure> MapTreasures { get; private set; }
@@ -61,6 +62,12 @@ namespace SaintCoinach.Xiv {
                     }
                 }
             }
+            var allBosses = new List<Fight>();
+            if (MidBosses != null)
+                allBosses.AddRange(MidBosses);
+            if (Boss != null)
+                allBosses.Add(Boss);
+            this.AllBosses = allBosses;
         }
 
         private void ReadBoss(JsonReader reader) {
