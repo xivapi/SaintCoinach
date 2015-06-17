@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using SaintCoinach.Ex.Relational;
@@ -6,7 +7,7 @@ namespace SaintCoinach.Xiv {
     /// <summary>
     ///     Class representing a fishing spot from the game data.
     /// </summary>
-    public class FishingSpot : XivRow, IItemSource {
+    public class FishingSpot : XivRow, IItemSource, ILocatable, ILocation {
         #region Fields
 
         /// <summary>
@@ -119,6 +120,25 @@ namespace SaintCoinach.Xiv {
             return items.ToArray();
         }
 
+        #endregion
+
+        #region Location
+        public double MapX { get { return ToMapCoordinate(X); } }
+
+        public double MapY { get { return ToMapCoordinate(Z); } }
+
+        IEnumerable<ILocation> ILocatable.Locations {
+            get {
+                yield return this;
+            }
+        }
+
+        private double ToMapCoordinate(double val) {
+            var c = TerritoryType.Map.Size;
+
+            val *= c;
+            return ((40.0 / c) * ((val) / 2048.0)) + 1;
+        }
         #endregion
 
         /// <summary>
