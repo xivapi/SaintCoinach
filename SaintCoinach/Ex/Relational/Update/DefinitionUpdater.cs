@@ -17,13 +17,11 @@ namespace SaintCoinach.Ex.Relational.Update {
         #region Properties
 
         public PositionedDataDefintion DataDefinition { get; private set; }
-
+        
         #endregion
 
         #region Constructors
-
-        #region Constructor
-
+        
         public DefinitionUpdater(SheetDefinition sheetDefinition, PositionedDataDefintion dataDefinition) {
             _SheetDefinition = sheetDefinition;
             DataDefinition = dataDefinition;
@@ -31,9 +29,11 @@ namespace SaintCoinach.Ex.Relational.Update {
 
         #endregion
 
-        #endregion
-
         #region Match
+
+        public IDictionary<int, double>  GetMatches() {
+            return _IndexMatchConfidence.ToDictionary(_ => _.Key, _ => _.Value.Sum() / _RowMatchCount);
+        }
 
         public void MatchRow(object[] previousRowData, object[] updatedRowData) {
             for (var updatedI = 0; updatedI <= updatedRowData.Length - DataDefinition.Length; ++updatedI) {
@@ -61,6 +61,12 @@ namespace SaintCoinach.Ex.Relational.Update {
             ++_RowMatchCount;
         }
 
+        public PositionedDataDefintion GetDefinition(int index) {
+            var newDef = DataDefinition.Clone();
+            newDef.Index = index;
+            return newDef;
+        }
+        /*
         public PositionedDataDefintion GetBestMatch(out double confidence) {
             var index = GetBestMatchIndex(out confidence);
             if (index < 0)
@@ -96,7 +102,7 @@ namespace SaintCoinach.Ex.Relational.Update {
                        ? DataDefinition.Index
                        : bestMatch.OrderBy(_ => Math.Abs(DataDefinition.Index - _.Index)).Select(_ => _.Index).First();
         }
-
+        */
         #endregion
     }
 }

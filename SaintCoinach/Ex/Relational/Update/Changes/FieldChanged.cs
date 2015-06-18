@@ -25,8 +25,16 @@ namespace SaintCoinach.Ex.Relational.Update.Changes {
             ColumnName = columnName;
             Row = row;
             Language = language;
-            PreviousValue = previousVal;
-            UpdatedValue = updatedValue;
+
+            if (previousVal is Text.XivString)
+                PreviousValue = previousVal.ToString();
+            else
+                PreviousValue = previousVal;
+
+            if (updatedValue is Text.XivString)
+                UpdatedValue = updatedValue.ToString();
+            else
+                UpdatedValue = updatedValue;
         }
 
         #endregion

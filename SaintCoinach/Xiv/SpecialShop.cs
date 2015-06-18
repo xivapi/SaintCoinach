@@ -88,7 +88,7 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <returns>An array of the <see cref="SpecialShopListing" />s of the current shop.</returns>
         private SpecialShopListing[] BuildShopItems() {
-            const int Count = 160;
+            const int Count = 60;
 
             var items = new List<SpecialShopListing>();
             for (var i = 0; i < Count; ++i) {
