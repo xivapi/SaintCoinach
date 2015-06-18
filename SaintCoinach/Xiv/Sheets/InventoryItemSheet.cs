@@ -15,29 +15,35 @@ namespace SaintCoinach.Xiv.Sheets {
         private static readonly Dictionary<int, Type> ItemTypes = new Dictionary<int, Type> {
             // 
             {
-                1, typeof(PhysicalWeapon)
+                1, typeof(PhysicalWeapon)   // PGL
             }, {
-                2, typeof(PhysicalWeapon)
+                2, typeof(PhysicalWeapon)   // GLD
             }, {
-                3, typeof(PhysicalWeapon)
+                3, typeof(PhysicalWeapon)   // MRD
             }, {
-                4, typeof(PhysicalWeapon)
+                4, typeof(PhysicalWeapon)   // ARC
             }, {
-                5, typeof(PhysicalWeapon)
+                5, typeof(PhysicalWeapon)   // LNC
             }, {
-                84, typeof(PhysicalWeapon)
+                84, typeof(PhysicalWeapon)  // ROG
+            }, {
+                87, typeof(PhysicalWeapon)  // DRK
+            }, {
+                88, typeof(PhysicalWeapon)  // MCH
             },
             // 
             {
-                6, typeof(MagicWeapon)
+                6, typeof(MagicWeapon)      // THM (one-handed)
             }, {
-                7, typeof(MagicWeapon)
+                7, typeof(MagicWeapon)      // THM (two-handed)
             }, {
-                8, typeof(MagicWeapon)
+                8, typeof(MagicWeapon)      // CNJ (one-handed)
             }, {
-                9, typeof(MagicWeapon)
+                9, typeof(MagicWeapon)      // CNJ (two-handed)
             }, {
-                10, typeof(MagicWeapon)
+                10, typeof(MagicWeapon)     // ACN
+            }, {
+                88, typeof(PhysicalWeapon)  // AST
             },
             // 
             {
@@ -45,129 +51,129 @@ namespace SaintCoinach.Xiv.Sheets {
             },
             // 
             {
-                12, typeof(CraftingTool)
+                12, typeof(CraftingTool)    // CRP (main)
             }, {
-                13, typeof(CraftingTool)
+                13, typeof(CraftingTool)    // CRP (off)
             }, {
-                14, typeof(CraftingTool)
+                14, typeof(CraftingTool)    // BSM
             }, {
-                15, typeof(CraftingTool)
+                15, typeof(CraftingTool)    // BSM
             }, {
-                16, typeof(CraftingTool)
+                16, typeof(CraftingTool)    // ARM
             }, {
-                17, typeof(CraftingTool)
+                17, typeof(CraftingTool)    // ARM
             }, {
-                18, typeof(CraftingTool)
+                18, typeof(CraftingTool)    // GSM
             }, {
-                19, typeof(CraftingTool)
+                19, typeof(CraftingTool)    // GSM
             }, {
-                20, typeof(CraftingTool)
+                20, typeof(CraftingTool)    // LTW
             }, {
-                21, typeof(CraftingTool)
+                21, typeof(CraftingTool)    // LTW
             }, {
-                22, typeof(CraftingTool)
+                22, typeof(CraftingTool)    // WVR
             }, {
-                23, typeof(CraftingTool)
+                23, typeof(CraftingTool)    // WVR
             }, {
-                24, typeof(CraftingTool)
+                24, typeof(CraftingTool)    // ALC
             }, {
-                25, typeof(CraftingTool)
+                25, typeof(CraftingTool)    // ALC
             }, {
-                26, typeof(CraftingTool)
+                26, typeof(CraftingTool)    // CUL
             }, {
-                27, typeof(CraftingTool)
+                27, typeof(CraftingTool)    // CUL
             },
             // 
             {
-                28, typeof(GatheringTool)
+                28, typeof(GatheringTool)   // MIN (main)
             }, {
-                29, typeof(GatheringTool)
+                29, typeof(GatheringTool)   // MIN (sub)
             }, {
-                30, typeof(GatheringTool)
+                30, typeof(GatheringTool)   // BTN
             }, {
-                31, typeof(GatheringTool)
+                31, typeof(GatheringTool)   // BTN
             }, {
-                32, typeof(GatheringTool)
+                32, typeof(GatheringTool)   // FSH
             },
             // 
             {
-                34, typeof(Armour)
+                34, typeof(Armour)          // Head
             }, {
-                35, typeof(Armour)
+                35, typeof(Armour)          // Body
             }, {
-                36, typeof(Armour)
+                36, typeof(Armour)          // Legs
             }, {
-                37, typeof(Armour)
+                37, typeof(Armour)          // Hands
             }, {
-                38, typeof(Armour)
+                38, typeof(Armour)          // Feet
             }, {
-                39, typeof(Armour)
+                39, typeof(Armour)          // Waist
             },
             // 
             {
-                40, typeof(Accessory)
+                40, typeof(Accessory)       // Neck
             }, {
-                41, typeof(Accessory)
+                41, typeof(Accessory)       // Ears
             }, {
-                42, typeof(Accessory)
+                42, typeof(Accessory)       // Wrists
             }, {
-                43, typeof(Accessory)
+                43, typeof(Accessory)       // Fingers
             },
             // 
             {
-                44, typeof(Usable)
+                44, typeof(Usable)          // Medicine
             }, {
-                45, typeof(Usable)
+                45, typeof(Usable)          // Ingredient
             }, {
-                46, typeof(Usable)
+                46, typeof(Usable)          // Meal
             },
             //
             {
-                57, typeof(Housing)
+                57, typeof(Housing)         // Furnishing
             },
             // 
             {
-                58, typeof(MateriaItem)
+                58, typeof(MateriaItem)     // Materia
             },
             // 
             {
-                62, typeof(SoulCrystal)
+                62, typeof(SoulCrystal)     // Soul Crystal
             },
             //
             {
-                64, typeof(Housing)
+                64, typeof(Housing)         // Construction Permit
             }, {
-                65, typeof(Housing)
+                65, typeof(Housing)         // Root
             }, {
-                66, typeof(Housing)
+                66, typeof(Housing)         // Exterior Wall
             }, {
-                67, typeof(Housing)
+                67, typeof(Housing)         // Window
             }, {
-                68, typeof(Housing)
+                68, typeof(Housing)         // Door
             }, {
-                69, typeof(Housing)
+                69, typeof(Housing)         // Roof Decoration
             }, {
-                70, typeof(Housing)
+                70, typeof(Housing)         // Exterior Wall Decoration
             }, {
-                71, typeof(Housing)
+                71, typeof(Housing)         // Placard
             }, {
-                72, typeof(Housing)
+                72, typeof(Housing)         // Fence
             }, {
-                73, typeof(Housing)
+                73, typeof(Housing)         // Interior Wall
             }, {
-                74, typeof(Housing)
+                74, typeof(Housing)         // Flooring
             }, {
-                75, typeof(Housing)
+                75, typeof(Housing)         // Ceiling Light
             }, {
-                76, typeof(Housing)
+                76, typeof(Housing)         // Outdoor Furnishing
             }, {
-                77, typeof(Housing)
+                77, typeof(Housing)         // Table
             }, {
-                78, typeof(Housing)
+                78, typeof(Housing)         // Tabletop
             }, {
-                79, typeof(Housing)
+                79, typeof(Housing)         // Wall-mounted
             }, {
-                80, typeof(Housing)
+                80, typeof(Housing)         // Rug
             }
         };
 

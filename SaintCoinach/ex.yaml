@@ -441,6 +441,15 @@
       Name: NIN
     Index: 31
   - InnerDefinition: !!single_def
+      Name: MCH
+    Index: 32
+  - InnerDefinition: !!single_def
+      Name: DRK
+    Index: 33
+  - InnerDefinition: !!single_def
+      Name: AST
+    Index: 34
+  - InnerDefinition: !!single_def
       Name: Name
   Name: ClassJobCategory
   DefaultColumn: Name

@@ -161,8 +161,6 @@ float4 PSMask(VSOutput pin) : SV_Target0
     float4 diffuse = texMask;
     float4 specular = (1).xxxx;
 
-    float specPow = ApplyTable(pin.UV.xy, diffuse, specular, texMask.g);
-
     return ComputeCommon(pin, diffuse, specular);
 };
 
