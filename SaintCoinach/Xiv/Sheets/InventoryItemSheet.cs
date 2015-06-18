@@ -43,7 +43,7 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 10, typeof(MagicWeapon)     // ACN
             }, {
-                88, typeof(PhysicalWeapon)  // AST
+                89, typeof(PhysicalWeapon)  // AST
             },
             // 
             {
