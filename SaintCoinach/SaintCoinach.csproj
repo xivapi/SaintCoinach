@@ -522,6 +522,11 @@
     <Compile Include="Xiv\ChocoboRaceTerritory.cs" />
     <Compile Include="Xiv\ChocoboRaceItem.cs" />
     <Compile Include="Xiv\Collections\ClassJobActionCollection.cs" />
+    <Compile Include="Xiv\CompanyCraftDraft.cs" />
+    <Compile Include="Xiv\CompanyCraftDraftCategory.cs" />
+    <Compile Include="Xiv\CompanyCraftDraftCategoryTxt.cs" />
+    <Compile Include="Xiv\CompanyCraftManufactoryState.cs" />
+    <Compile Include="Xiv\CompanyCraftType.cs" />
     <Compile Include="Xiv\FccShop.cs" />
     <Compile Include="Xiv\GatheringCondition.cs" />
     <Compile Include="Xiv\GatheringExp.cs" />

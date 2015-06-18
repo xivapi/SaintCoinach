@@ -3265,4 +3265,57 @@
     Index: 21
   Name: FccShop
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftDraftCategory
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftDraftCategory
+    Index: 1
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 3
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: RequiredItem
+          Converter: !!link_conv
+            TargetSheet: Item
+        - !!single_def
+          Name: RequiredItemCount
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: Order
+    Index: 8
+  Name: CompanyCraftDraft
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: CompanyCraftType
+          Converter: !!link_conv
+            TargetSheet: CompanyCraftType
+    Index: 1
+  Name: CompanyCraftDraftCategory
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: CompanyCraftDraftCategoryTxt
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: CompanyCraftManufactoryState
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: CompanyCraftType
+  DefaultColumn: Name
 Version: 2015.06.17.0000.0000
