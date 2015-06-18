@@ -870,6 +870,12 @@
       Converter: !!link_conv
         TargetSheet: Item
     Index: 1
+  - InnerDefinition: !!single_def
+      Name: Level
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: IsFish
+    Index: 5
   Name: FishParameter
   DefaultColumn: Item
 - DataDefinitions:
