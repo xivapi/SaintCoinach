@@ -1251,6 +1251,9 @@
       Name: EquippableByRace[5]
     Index: 82
   - InnerDefinition: !!single_def
+      Name: EquippableByRace[6]
+    Index: 83
+  - InnerDefinition: !!single_def
       Name: EquippableByGender{M}
     Index: 84
   - InnerDefinition: !!single_def
