@@ -8,6 +8,8 @@ namespace SaintCoinach.Xiv {
     public class RecipeLevelTable : XivRow {
         #region Properties
 
+        public int CharacterLevel { get { return AsInt32("CharacterLevel"); } }
+
         /// <summary>
         ///     Gets the base difficulty for the current level.
         /// </summary>
