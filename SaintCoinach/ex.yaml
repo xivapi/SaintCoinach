@@ -2747,11 +2747,18 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
-      RepeatCount: 10
+      RepeatCount: 5
       RepeatedDefinition: !!single_def
-        Name: TripleTriadCard
+        Name: TripleTriadCard{Fixed}
         Converter: !!link_conv
           TargetSheet: TripleTriadCard
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 5
+      RepeatedDefinition: !!single_def
+        Name: TripleTriadCard{Variable}
+        Converter: !!link_conv
+          TargetSheet: TripleTriadCard
+    Index: 5
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!single_def
@@ -3317,5 +3324,46 @@
   - InnerDefinition: !!single_def
       Name: Name
   Name: CompanyCraftType
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Quest
+      Converter: !!link_conv
+        TargetSheet: Quest
+  Name: AetherCurrent
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ExpToNext
+    Index: 1
+  Name: AirshipExplorationLevel
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: Name{Short}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: RequiredLevel
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: RequiredFuel
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Duration<min>
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: ExpReward
+    Index: 12
+  Name: AirshipExplorationLevel
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Text
+  Name: AirshipExplorationLog
+  DefaultColumn: Text
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: AirshipExplorationParamType
   DefaultColumn: Name
 Version: 2015.06.17.0000.0000

@@ -514,6 +514,12 @@
     <Compile Include="Text\XivStringDecoder.cs" />
     <Compile Include="Text\TagType.cs" />
     <Compile Include="Xiv\ActionBase.cs" />
+    <Compile Include="Xiv\Adventure.cs" />
+    <Compile Include="Xiv\AetherCurrent.cs" />
+    <Compile Include="Xiv\AirshipExplorationLevel.cs" />
+    <Compile Include="Xiv\AirshipExplorationLog.cs" />
+    <Compile Include="Xiv\AirshipExplorationParamType.cs" />
+    <Compile Include="Xiv\AirshipExplorationPoint.cs" />
     <Compile Include="Xiv\ChocoboRace.cs" />
     <Compile Include="Xiv\ChocoboRaceAbility.cs" />
     <Compile Include="Xiv\ChocoboRaceAbilityType.cs" />

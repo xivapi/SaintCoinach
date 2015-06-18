@@ -10,7 +10,8 @@ namespace SaintCoinach.Xiv {
     public class TripleTriad : XivRow, ILocatable {
         #region Fields
         private ENpc[] _ENpcs;
-        private TripleTriadCard[] _Cards;
+        private TripleTriadCard[] _FixedCards;
+        private TripleTriadCard[] _VariableCards;
         private TripleTriadRule[] _FixedRules;
         private PrerequisiteQuestsRequirement _QuestRequirement;
         #endregion
@@ -18,7 +19,9 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public IEnumerable<ENpc> ENpcs { get { return _ENpcs ?? (_ENpcs = BuildENpcs()); } }
-        public IEnumerable<TripleTriadCard> Cards { get { return _Cards ?? (_Cards = BuildCards()); } }
+        public IEnumerable<TripleTriadCard> AllCards { get { return FixedCards.Concat(VariableCards); } }
+        public IEnumerable<TripleTriadCard> FixedCards { get { return _FixedCards ?? (_FixedCards = BuildFixedCards()); } }
+        public IEnumerable<TripleTriadCard> VariableCards { get { return _VariableCards ?? (_VariableCards = BuildVariableCards()); } }
         public IEnumerable<TripleTriadRule> FixedRules { get { return _FixedRules ?? (_FixedRules = BuildRules()); } }
         public bool UsesRegionalRules { get { return AsBoolean("UsesRegionalRules"); } }
         public int Fee { get { return AsInt32("Fee"); } }
@@ -41,12 +44,24 @@ namespace SaintCoinach.Xiv {
         private ENpc[] BuildENpcs() {
             return Sheet.Collection.ENpcs.FindWithData(this.Key).ToArray();
         }
-        private TripleTriadCard[] BuildCards() {
-            const int Count = 10;
+        private TripleTriadCard[] BuildFixedCards() {
+            const int Count = 5;
 
             var cards = new List<TripleTriadCard>();
             for (var i = 0; i < Count; ++i) {
-                var card = As<TripleTriadCard>("TripleTriadCard", i);
+                var card = As<TripleTriadCard>("TripleTriadCard{Fixed}", i);
+                if (card.Key != 0)
+                    cards.Add(card);
+            }
+
+            return cards.ToArray();
+        }
+        private TripleTriadCard[] BuildVariableCards() {
+            const int Count = 5;
+
+            var cards = new List<TripleTriadCard>();
+            for (var i = 0; i < Count; ++i) {
+                var card = As<TripleTriadCard>("TripleTriadCard{Variable}", i);
                 if (card.Key != 0)
                     cards.Add(card);
             }
