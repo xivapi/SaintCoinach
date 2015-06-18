@@ -46,6 +46,7 @@ namespace SaintCoinach.Xiv.Collections {
             private readonly IEnumerator<GCShop> _GCShopEnumerator;
             private readonly IEnumerator<Shop> _ShopEnumerator;
             private readonly IEnumerator<SpecialShop> _SpecialShopEnumerator;
+            private readonly IEnumerator<FccShop> _FccShopEnumerator;
             private int _State;
 
             #endregion
@@ -58,6 +59,7 @@ namespace SaintCoinach.Xiv.Collections {
                 _ShopEnumerator = collection.GetSheet<Shop>().GetEnumerator();
                 _GCShopEnumerator = collection.GetSheet<GCShop>().GetEnumerator();
                 _SpecialShopEnumerator = collection.GetSheet<SpecialShop>().GetEnumerator();
+                _FccShopEnumerator = collection.GetSheet<FccShop>().GetEnumerator();
             }
 
             #endregion
@@ -107,6 +109,14 @@ namespace SaintCoinach.Xiv.Collections {
                     result = _SpecialShopEnumerator.MoveNext();
                     if (result)
                         Current = _SpecialShopEnumerator.Current;
+                    else
+                        ++_State;
+                }
+
+                if(_State == 3) {
+                    result = _FccShopEnumerator.MoveNext();
+                    if (result)
+                        Current = _FccShopEnumerator.Current;
                     else
                         ++_State;
                 }

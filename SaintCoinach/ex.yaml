@@ -3237,4 +3237,32 @@
   - InnerDefinition: !!single_def
       Name: ExpToNext
   Name: ParamGrow
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Item
+          Converter: !!link_conv
+            TargetSheet: Item
+    Index: 1
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Cost
+    Index: 11
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: ItemCount
+    Index: 21
+  Name: FccShop
+  DefaultColumn: Name
 Version: 2015.06.17.0000.0000
