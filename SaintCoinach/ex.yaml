@@ -3354,7 +3354,7 @@
   - InnerDefinition: !!single_def
       Name: ExpReward
     Index: 12
-  Name: AirshipExplorationLevel
+  Name: AirshipExplorationPoint
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
