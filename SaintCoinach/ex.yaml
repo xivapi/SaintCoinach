@@ -818,9 +818,9 @@
       Converter: !!icon_conv {}
     Index: 2
   - InnerDefinition: !!single_def
-      Name: FCReputation
+      Name: FCRank
       Converter: !!link_conv
-        TargetSheet: FCReputation
+        TargetSheet: FCRank
     Index: 3
   Name: FCRights
   DefaultColumn: Name
@@ -3268,7 +3268,9 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: ItemCount
+          Name: FCRank{Required}
+          Converter: !!link_conv
+            TargetSheet: FCRank
     Index: 21
   Name: FccShop
   DefaultColumn: Name

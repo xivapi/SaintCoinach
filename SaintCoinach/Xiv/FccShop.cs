@@ -60,13 +60,13 @@ namespace SaintCoinach.Xiv {
             var listings = new List<IShopListing>();
             for(var i = 0; i < ItemCount; ++i) {
                 var item = As<Item>("Item", i);
-                var count = AsInt32("ItemCount", i);
-                if (item == null || item.Key == 0 || count == 0)
+                if (item == null || item.Key == 0)
                     continue;
 
                 var cost = AsInt32("Cost", i);
+                var requiredRank = As<FCRank>("FCRank{Required}", i);
 
-                listings.Add(new Listing(this, item, count, costItem, cost));
+                listings.Add(new Listing(this, item, costItem, cost, requiredRank));
             }
             return listings.ToArray();
         }
@@ -90,10 +90,10 @@ namespace SaintCoinach.Xiv {
             IShop _Shop;
             #endregion
 
-            public Listing(FccShop shop, Item rewardItem, int rewardCount, Item costItem, int costCount) {
+            public Listing(FccShop shop, Item rewardItem, Item costItem, int costCount, FCRank requiredFcRank) {
                 _Shop = shop;
                 _Cost = new ShopListingItem(this, costItem, costCount, false);
-                _Reward = new ShopListingItem(this, rewardItem, rewardCount, false);
+                _Reward = new ShopListingItem(this, rewardItem, 1, false);
             }
 
             public IEnumerable<IShopListingItem> Costs {
