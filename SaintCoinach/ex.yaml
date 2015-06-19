@@ -124,7 +124,7 @@
     Index: 3
   - InnerDefinition: !!single_def
       Name: EffectRange
-    Index: 24
+    Index: 25
   - InnerDefinition: !!single_def
       Name: ClassJob
       Converter: !!link_conv
