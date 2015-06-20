@@ -124,7 +124,7 @@
     Index: 3
   - InnerDefinition: !!single_def
       Name: EffectRange
-    Index: 24
+    Index: 25
   - InnerDefinition: !!single_def
       Name: ClassJob
       Converter: !!link_conv
@@ -3368,4 +3368,56 @@
       Name: Name
   Name: AirshipExplorationParamType
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 0
+  Name: CompanyCraftSupplyItem
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ResultItem
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 0
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+          Name: CompanyCraftPart
+          Converter: !!link_conv
+            TargetSheet: CompanyCraftPart
+    Index: 5
+  Name: CompanyCraftSequence
+  DefaultColumn: ResultItem
+- DataDefinitions:
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 12
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: SupplyItem
+            Converter: !!link_conv
+              TargetSheet: CompanyCraftSupplyItem
+          - !!single_def
+            Name: SetQuantity
+          - !!single_def
+            Name: SetsRequired
+      Index: 0
+  Name: CompanyCraftProcess
+- DataDefinitions:
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 3
+        RepeatedDefinition: !!single_def
+          Name: CompanyCraftProcess
+          Converter: !!link_conv
+            TargetSheet: CompanyCraftProcess
+      Index: 2
+    - InnerDefinition: !!single_def
+        Name: CompanyCraftType
+        Converter: !!link_conv
+          TargetSheet: CompanyCraftType
+      Index: 1
+  Name: CompanyCraftPart
 Version: 2015.06.17.0000.0000
