@@ -533,6 +533,7 @@
     <Compile Include="Xiv\CompanyCraftDraftCategoryTxt.cs" />
     <Compile Include="Xiv\CompanyCraftManufactoryState.cs" />
     <Compile Include="Xiv\CompanyCraftType.cs" />
+    <Compile Include="Xiv\EObj.cs" />
     <Compile Include="Xiv\FccShop.cs" />
     <Compile Include="Xiv\GatheringCondition.cs" />
     <Compile Include="Xiv\GatheringExp.cs" />

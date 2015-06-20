@@ -628,6 +628,9 @@
   - InnerDefinition: !!single_def
       Name: Plural
     Index: 2
+  - InnerDefinition: !!single_def
+      Name: Data
+    Index: 9
   Name: EObj
   DefaultColumn: Singular
 - DataDefinitions:
