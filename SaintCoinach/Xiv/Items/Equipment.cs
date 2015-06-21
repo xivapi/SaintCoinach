@@ -143,7 +143,19 @@ namespace SaintCoinach.Xiv.Items {
         /// </summary>
         /// <value>The model identifier used for the current item's secondary model.</value>
         public long SecondaryModelKey { get { return AsInt64("Model{Sub}"); } }
-
+        
+        /// <summary>
+        ///     Gets the number of Grand Company seals rewarded for expert delivery of the item.
+        /// </summary>
+        /// <value>The number of Grand Company seals.</value>
+        public int ExpertDeliverySeals {
+            get {
+                if (Rarity > 1 && As<byte>("GCTurnIn") > 0)
+                    return (int)Math.Round(5.75 * ItemLevel.Key, MidpointRounding.AwayFromZero);
+                else
+                    return 0;
+            }
+        }
         #endregion
 
         #region Constructors
