@@ -26,6 +26,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public string Name { get; set; }
         public string DefaultColumn { get; set; }
+        public bool IsGenericReferenceTarget { get; set; }
 
         #endregion
 

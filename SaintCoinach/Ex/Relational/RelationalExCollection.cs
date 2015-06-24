@@ -61,5 +61,24 @@ namespace SaintCoinach.Ex.Relational {
         }
 
         #endregion
+
+
+        #region Find
+
+        public IRelationalRow FindReference(int key) {
+            foreach (var sheetDef in Definition.SheetDefinitions.Where(d => d.IsGenericReferenceTarget)) {
+                var sheet = GetSheet(sheetDef.Name);
+                if (!sheet.Header.DataFileRanges.Any(r => r.Contains(key)))
+                    continue;
+
+                if (!sheet.ContainsRow(key))
+                    continue;
+
+                return sheet[key];
+            }
+            return null;
+        }
+
+        #endregion
     }
 }

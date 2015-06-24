@@ -85,7 +85,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="column">Base name of the column.</param>
         /// <param name="indices">Indices for the full name.</param>
         /// <returns>The full column name built using <c>column</c> and <c>indices</c>.</returns>
-        private static string BuildColumnName(string column, params int[] indices) {
+        public static string BuildColumnName(string column, params int[] indices) {
             var sb = new StringBuilder();
             sb.Append(column);
             foreach (var i in indices) {

@@ -81,6 +81,7 @@
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />
     <Compile Include="Graphics\Bone.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Graphics\BoundingBox.cs" />
@@ -533,6 +534,7 @@
     <Compile Include="Xiv\CompanyCraftDraftCategoryTxt.cs" />
     <Compile Include="Xiv\CompanyCraftManufactoryState.cs" />
     <Compile Include="Xiv\CompanyCraftType.cs" />
+    <Compile Include="Xiv\CustomTalk.cs" />
     <Compile Include="Xiv\EObj.cs" />
     <Compile Include="Xiv\FccShop.cs" />
     <Compile Include="Xiv\GatheringCondition.cs" />

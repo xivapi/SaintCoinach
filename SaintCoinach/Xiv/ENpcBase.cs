@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
@@ -8,18 +10,43 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
+        #region Fields
+
+        private IRelationalRow[] _AssignedData;
+
+        #endregion
+
+        #region Properties
+
+        public IEnumerable<IRelationalRow> AssignedData { get { return _AssignedData ?? (_AssignedData = BuildAssignedData()); } }
+
+        #endregion
+
         #region Constructors
 
-        #region Constructor
-
         public ENpcBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
-
+        
         #endregion
 
-        #endregion
+        public IRelationalRow GetData(int index) {
+            return As<IRelationalRow>("ENpcData", index);
+        }
+        public int GetRawData(int index) {
+            var fulCol = BuildColumnName("ENpcData", index);
+            var raw = ((IRelationalRow)this).GetRaw(fulCol);
+            return Convert.ToInt32(raw);
+        }
 
-        public int GetData(int index) {
-            return AsInt32("ENpcData", index);
+        private IRelationalRow[] BuildAssignedData() {
+            var data = new List<IRelationalRow>();
+
+            for (var i = 0; i < ENpcBase.DataCount; ++i) {
+                var val = GetData(i);
+                if (val != null)
+                    data.Add(val);
+            }
+
+            return data.ToArray();
         }
     }
 }

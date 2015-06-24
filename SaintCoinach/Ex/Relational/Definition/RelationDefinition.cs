@@ -87,6 +87,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         public static RelationDefinition Deserialize(TextReader reader) {
             var deserializer = new Deserializer();
 
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:ref_conv", typeof(GenericReferenceConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ColorConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(IconConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:link_conv", typeof(SheetLinkConverter));
