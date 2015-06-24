@@ -36,6 +36,10 @@ namespace SaintCoinach.Xiv {
                 136, 0x22
             }, {
                 137, 0x21
+            }, {
+                138, 0x30
+            }, {
+                139, 0x2F
             }
         };
 

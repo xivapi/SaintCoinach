@@ -3423,4 +3423,20 @@
           TargetSheet: CompanyCraftType
       Index: 1
   Name: CompanyCraftPart
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Name
+      Index: 1
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 30
+        RepeatedDefinition: !!single_def
+          Name: Script{Instruction}
+      Index: 2
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 30
+        RepeatedDefinition: !!single_def
+          Name: Script{Arg}
+      Index: 32
+  Name: CustomTalk
+  DefaultColumn: Name
 Version: 2015.06.17.0000.0000
