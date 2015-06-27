@@ -3108,7 +3108,7 @@
   Name: GatheringNotebookList
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: FolkoreBook
+      Name: FolkloreBook
     Index: 4
   Name: GatheringSubCategory
   DefaultColumn: FolkloreBook
