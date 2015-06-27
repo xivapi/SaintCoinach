@@ -3027,6 +3027,9 @@
         Converter: !!link_conv
           TargetSheet: GatheringItem
     Index: 3
+  - InnerDefinition: !!single_def
+      Name: IsLimited
+    Index: 11
   Name: GatheringPointBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3056,6 +3059,11 @@
         TargetSheet: GatheringPointBase
     Index: 1
   - InnerDefinition: !!single_def
+      Name: GatheringPointBonus
+      Converter: !!link_conv
+        TargetSheet: GatheringPointBonus
+    Index: 3
+  - InnerDefinition: !!single_def
       Name: TerritoryType
       Converter: !!link_conv
         TargetSheet: TerritoryType
@@ -3066,12 +3074,29 @@
         TargetSheet: PlaceName
     Index: 5
   - InnerDefinition: !!single_def
-      Name: GatheringConditionValue
+      Name: GatheringSubCategory
+      Converter: !!link_conv
+        TargetSheet: GatheringSubCategory
     Index: 6
-  - InnerDefinition: !!single_def
-      Name: GatheringPointBonus
-    Index: 3
   Name: GatheringPoint
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Condition
+      Converter: !!link_conv
+        TargetSheet: GatheringCondition
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: ConditionValue
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: BonusType
+      Converter: !!link_conv
+        TargetSheet: GatheringPointBonusType
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: BonusValue
+    Index: 4
+  Name: GatheringPointBonus
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 100
@@ -3081,6 +3106,12 @@
           TargetSheet: GatheringItem
     Index: 1
   Name: GatheringNotebookList
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: FolkoreBook
+    Index: 4
+  Name: GatheringSubCategory
+  DefaultColumn: FolkloreBook
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Effect
