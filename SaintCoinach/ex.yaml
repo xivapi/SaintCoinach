@@ -60,6 +60,16 @@
       Name: SpellGroup
     Index: 5
   - InnerDefinition: !!single_def
+      Name: ActionTimeline{Use}
+      Converter: !!link_conv
+        TargetSheet: ActionTimeline
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: ActionTimeline{Hit}
+      Converter: !!link_conv
+        TargetSheet: ActionTimeline
+    Index: 7
+  - InnerDefinition: !!single_def
       Name: Level
     Index: 10
   - InnerDefinition: !!single_def
@@ -103,10 +113,19 @@
       Name: Recast<100ms>
     Index: 35
   - InnerDefinition: !!single_def
+      Name: ActionProcStatus
+      Converter: !!link_conv
+        TargetSheet: ActionProcStatus
+    Index: 39
+  - InnerDefinition: !!single_def
       Name: Status{GainSelf}
       Converter: !!link_conv
         TargetSheet: Status
     Index: 40
+  - InnerDefinition: !!single_def
+      Name: ActionData
+      Converter: !!ref_conv { }
+    Index: 41
   - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
@@ -141,6 +160,14 @@
       Name: Name
   Name: ActionCategory
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Status
+      Converter: !!link_conv
+        TargetSheet: Status
+    Index: 0
+  Name: ActionProcStatus
+  DefaultColumn: Status
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Key
@@ -3410,6 +3437,32 @@
       Name: Name
   Name: AirshipExplorationParamType
   DefaultColumn: Name
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Rank
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: Components
+      Index: 2
+    - InnerDefinition: !!single_def
+        Name: Surveillance
+      Index: 3
+    - InnerDefinition: !!single_def
+        Name: Retrieval
+      Index: 4
+    - InnerDefinition: !!single_def
+        Name: Speed
+      Index: 5
+    - InnerDefinition: !!single_def
+        Name: Range
+      Index: 6
+    - InnerDefinition: !!single_def
+        Name: Favor
+      Index: 7
+    - InnerDefinition: !!single_def
+        Name: RepairMaterials
+      Index: 9
+  Name: AirshipExplorationPart
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
