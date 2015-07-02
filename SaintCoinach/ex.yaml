@@ -1864,6 +1864,9 @@
   - InnerDefinition: !!single_def
       Name: CharacterLevel
   - InnerDefinition: !!single_def
+      Name: Stars
+    Index: 1
+  - InnerDefinition: !!single_def
       Name: Difficulty
     Index: 2
   - InnerDefinition: !!single_def
