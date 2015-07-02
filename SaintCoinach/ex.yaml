@@ -1640,6 +1640,9 @@
       Name: Id
     Index: 5
   - InnerDefinition: !!single_def
+      Name: SizeFactor
+    Index: 6
+  - InnerDefinition: !!single_def
       Name: PlaceName{Region}
       Converter: !!link_conv
         TargetSheet: PlaceName
@@ -1655,7 +1658,7 @@
         TargetSheet: TerritoryType
     Index: 14
   - InnerDefinition: !!single_def
-      Name: Size
+      Name: Hierarchy
     Index: 3
   - InnerDefinition: !!single_def
       Name: PlaceName
