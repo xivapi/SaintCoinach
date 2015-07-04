@@ -1337,6 +1337,9 @@
   - InnerDefinition: !!single_def
       Name: Desynthesize
     Index: 94
+  - InnerDefinition: !!single_def
+      Name: IsCollectable
+    Index: 95
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
@@ -3570,4 +3573,69 @@
       Index: 19
   Name: DefaultTalk
   IsGenericReferenceTarget: True
+- DataDefinitions:
+    - InnerDefinition:  !!repeat_def
+        RepeatCount: 8
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: Item
+            Converter: !!link_conv
+              TargetSheet: Item
+          - !!single_def
+            Name: Quantity
+          - !!single_def
+            Name: RecipeLevel
+      Index: 0
+  Name: DailySupplyItem
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Quest
+        Converter: !!link_conv
+          TargetSheet: Quest
+      Index: 0
+  DefaultColumn: Quest
+  Name: DeliveryQuest
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: ClassJob
+        Converter: !!link_conv
+          TargetSheet: ClassJob
+      Index: 0
+    - InnerDefinition: !!single_def
+        Name: ItemLevel
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: RewardItem
+        Converter: !!link_conv
+          TargetSheet: Item
+      Index: 2
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 8
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: RequiredItem
+            Converter: !!link_conv
+              TargetSheet: Item
+          - !!single_def
+            Name: Quantity
+          - !!single_def
+            Name: UnknownBool
+          - !!single_def
+            Name: Collectability{HighBonus}
+          - !!single_def
+            Name: Collectability{Bonus}
+          - !!single_def
+            Name: Collectability{Base}
+          - !!single_def
+            Name: Reward{Factor}
+          - !!single_def
+            Name: Reward{Base}
+          - !!single_def
+            Name: Reward{Bonus}
+          - !!single_def
+            Name: Stars
+      Index: 3
+  Name: MasterpieceSupplyDuty
 Version: 2015.06.17.0000.0000
