@@ -81,6 +81,12 @@ namespace SaintCoinach.Xiv {
         public bool IsDyeable { get { return AsBoolean("IsDyeable"); } }
 
         /// <summary>
+        /// Gets a value indicating whether the current item is collectable.
+        /// </summary>
+        /// <value>A value indicaating whether the current item is collectable.</value>
+        public bool IsCollectable { get { return AsBoolean("IsCollectable"); } }
+
+        /// <summary>
         ///     Gets the <see cref="Stain" /> associated with the current item.
         /// </summary>
         /// <value>The <see cref="Stain" /> associated with the current item.</value>

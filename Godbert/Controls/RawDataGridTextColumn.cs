@@ -81,6 +81,12 @@ namespace Godbert.Controls {
 
                 var vx = rx[Column.Index];
                 var vy = ry[Column.Index];
+                if (vx == vy)
+                    return 0;
+                if (vx == null)
+                    return -1;
+                if (vy == null)
+                    return 1;
 
                 var sx = vx.ToString();
                 var sy = vy.ToString();

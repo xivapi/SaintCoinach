@@ -23,14 +23,20 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Id { get { return AsString("Id"); } }
 
         /// <summary>
-        ///     Gets the size of the current map.
+        ///     Gets the hierarchy level of the current map.
+        /// </summary>
+        /// <value>The hierarchy level of the current map.</value>
+        public int Hierarchy { get { return AsInt32("Hierarchy"); } }
+
+        /// <summary>
+        ///     Gets the size factor of the current map.
         /// </summary>
         /// <remarks>
-        ///     Base map size 40 units, the value of <c>Size</c> indicates by how much to divide this to get the size of the
+        ///     Base map size 41 units, the value of <c>SizeFactor</c> indicates by how much to divide this to get the size of the
         ///     current map.
         /// </remarks>
         /// <value>The size of the current map.</value>
-        public int Size { get { return AsInt32("Size"); } }
+        public int SizeFactor { get { return AsInt32("SizeFactor"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the region the current map is in.

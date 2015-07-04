@@ -28,6 +28,12 @@ namespace SaintCoinach.Xiv {
         /// <value>The base durability for the current level.</value>
         public int Durability { get { return AsInt32("Durability"); } }
 
+        /// <summary>
+        ///     Gets the base star difficulty for the current level.
+        /// </summary>
+        /// <value>The base star difficulty for the current level.</value>
+        public int Stars { get { return AsInt32("Stars"); } }
+
         #endregion
 
         #region Constructors

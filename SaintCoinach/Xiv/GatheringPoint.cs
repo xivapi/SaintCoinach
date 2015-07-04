@@ -11,13 +11,10 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public GatheringPointBase Base { get { return As<GatheringPointBase>(); } }
-        public GatheringCondition Condition { get { return As<GatheringCondition>(); } }
-        public int ConditionValue { get { return AsInt32("GatheringConditionValue"); } }
-        public GatheringPointBonusType BonusType { get { return As<GatheringPointBonusType>(); } }
-        public int BonusValue { get { return AsInt32("GatheringPointBonus"); } }
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
-
+        public GatheringPointBonus GatheringPointBonus { get { return As<GatheringPointBonus>(); } }
+        
         #endregion
 
         #region Constructors

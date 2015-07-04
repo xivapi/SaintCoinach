@@ -60,6 +60,16 @@
       Name: SpellGroup
     Index: 5
   - InnerDefinition: !!single_def
+      Name: ActionTimeline{Use}
+      Converter: !!link_conv
+        TargetSheet: ActionTimeline
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: ActionTimeline{Hit}
+      Converter: !!link_conv
+        TargetSheet: ActionTimeline
+    Index: 7
+  - InnerDefinition: !!single_def
       Name: Level
     Index: 10
   - InnerDefinition: !!single_def
@@ -103,10 +113,19 @@
       Name: Recast<100ms>
     Index: 35
   - InnerDefinition: !!single_def
+      Name: ActionProcStatus
+      Converter: !!link_conv
+        TargetSheet: ActionProcStatus
+    Index: 39
+  - InnerDefinition: !!single_def
       Name: Status{GainSelf}
       Converter: !!link_conv
         TargetSheet: Status
     Index: 40
+  - InnerDefinition: !!single_def
+      Name: ActionData
+      Converter: !!ref_conv { }
+    Index: 41
   - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
@@ -141,6 +160,14 @@
       Name: Name
   Name: ActionCategory
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Status
+      Converter: !!link_conv
+        TargetSheet: Status
+    Index: 0
+  Name: ActionProcStatus
+  DefaultColumn: Status
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Key
@@ -1310,6 +1337,9 @@
   - InnerDefinition: !!single_def
       Name: Desynthesize
     Index: 94
+  - InnerDefinition: !!single_def
+      Name: IsCollectable
+    Index: 95
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
@@ -1613,6 +1643,9 @@
       Name: Id
     Index: 5
   - InnerDefinition: !!single_def
+      Name: SizeFactor
+    Index: 6
+  - InnerDefinition: !!single_def
       Name: PlaceName{Region}
       Converter: !!link_conv
         TargetSheet: PlaceName
@@ -1628,7 +1661,7 @@
         TargetSheet: TerritoryType
     Index: 14
   - InnerDefinition: !!single_def
-      Name: Size
+      Name: Hierarchy
     Index: 3
   - InnerDefinition: !!single_def
       Name: PlaceName
@@ -1836,6 +1869,9 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: CharacterLevel
+  - InnerDefinition: !!single_def
+      Name: Stars
+    Index: 1
   - InnerDefinition: !!single_def
       Name: Difficulty
     Index: 2
@@ -3027,6 +3063,9 @@
         Converter: !!link_conv
           TargetSheet: GatheringItem
     Index: 3
+  - InnerDefinition: !!single_def
+      Name: IsLimited
+    Index: 11
   Name: GatheringPointBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3056,6 +3095,11 @@
         TargetSheet: GatheringPointBase
     Index: 1
   - InnerDefinition: !!single_def
+      Name: GatheringPointBonus
+      Converter: !!link_conv
+        TargetSheet: GatheringPointBonus
+    Index: 3
+  - InnerDefinition: !!single_def
       Name: TerritoryType
       Converter: !!link_conv
         TargetSheet: TerritoryType
@@ -3066,12 +3110,29 @@
         TargetSheet: PlaceName
     Index: 5
   - InnerDefinition: !!single_def
-      Name: GatheringConditionValue
+      Name: GatheringSubCategory
+      Converter: !!link_conv
+        TargetSheet: GatheringSubCategory
     Index: 6
-  - InnerDefinition: !!single_def
-      Name: GatheringPointBonus
-    Index: 3
   Name: GatheringPoint
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Condition
+      Converter: !!link_conv
+        TargetSheet: GatheringCondition
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: ConditionValue
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: BonusType
+      Converter: !!link_conv
+        TargetSheet: GatheringPointBonusType
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: BonusValue
+    Index: 4
+  Name: GatheringPointBonus
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 100
@@ -3081,6 +3142,12 @@
           TargetSheet: GatheringItem
     Index: 1
   Name: GatheringNotebookList
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: FolkloreBook
+    Index: 4
+  Name: GatheringSubCategory
+  DefaultColumn: FolkloreBook
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Effect
@@ -3380,6 +3447,32 @@
   Name: AirshipExplorationParamType
   DefaultColumn: Name
 - DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Rank
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: Components
+      Index: 2
+    - InnerDefinition: !!single_def
+        Name: Surveillance
+      Index: 3
+    - InnerDefinition: !!single_def
+        Name: Retrieval
+      Index: 4
+    - InnerDefinition: !!single_def
+        Name: Speed
+      Index: 5
+    - InnerDefinition: !!single_def
+        Name: Range
+      Index: 6
+    - InnerDefinition: !!single_def
+        Name: Favor
+      Index: 7
+    - InnerDefinition: !!single_def
+        Name: RepairMaterials
+      Index: 9
+  Name: AirshipExplorationPart
+- DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
@@ -3480,4 +3573,69 @@
       Index: 19
   Name: DefaultTalk
   IsGenericReferenceTarget: True
+- DataDefinitions:
+    - InnerDefinition:  !!repeat_def
+        RepeatCount: 8
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: Item
+            Converter: !!link_conv
+              TargetSheet: Item
+          - !!single_def
+            Name: Quantity
+          - !!single_def
+            Name: RecipeLevel
+      Index: 0
+  Name: DailySupplyItem
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Quest
+        Converter: !!link_conv
+          TargetSheet: Quest
+      Index: 0
+  DefaultColumn: Quest
+  Name: DeliveryQuest
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: ClassJob
+        Converter: !!link_conv
+          TargetSheet: ClassJob
+      Index: 0
+    - InnerDefinition: !!single_def
+        Name: ItemLevel
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: RewardItem
+        Converter: !!link_conv
+          TargetSheet: Item
+      Index: 2
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 8
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: RequiredItem
+            Converter: !!link_conv
+              TargetSheet: Item
+          - !!single_def
+            Name: Quantity
+          - !!single_def
+            Name: UnknownBool
+          - !!single_def
+            Name: Collectability{HighBonus}
+          - !!single_def
+            Name: Collectability{Bonus}
+          - !!single_def
+            Name: Collectability{Base}
+          - !!single_def
+            Name: Reward{Factor}
+          - !!single_def
+            Name: Reward{Base}
+          - !!single_def
+            Name: Reward{Bonus}
+          - !!single_def
+            Name: Stars
+      Index: 3
+  Name: MasterpieceSupplyDuty
 Version: 2015.06.17.0000.0000
