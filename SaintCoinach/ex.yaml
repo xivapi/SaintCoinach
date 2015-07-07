@@ -3260,6 +3260,9 @@
   Name: HousingLayoutLimit
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: IsRandom
+    Index: 0
+  - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
@@ -3276,6 +3279,12 @@
   - InnerDefinition: !!single_def
       Name: Experience
     Index: 5
+  - InnerDefinition: !!single_def
+      Name: RequiredItemLevel
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: RequiredGathering
+    Index: 9
   - InnerDefinition: !!single_def
       Name: Task
       Converter: !!multiref_conv
@@ -3491,7 +3500,7 @@
     - InnerDefinition: !!single_def
         Name: RepairMaterials
       Index: 9
-  Name: AirshipExplorationPart
+  Name: AirshipExplorationPart 
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
@@ -3506,6 +3515,21 @@
       Converter: !!link_conv
         TargetSheet: Item
     Index: 0
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftDraftCategory
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftDraftCategory
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftType
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftType
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftDraft
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftDraft
+    Index: 4
   - InnerDefinition: !!repeat_def
       RepeatCount: 8
       RepeatedDefinition: !!single_def

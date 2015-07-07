@@ -749,6 +749,10 @@
     <Compile Include="Xiv\RelicNote.cs" />
     <Compile Include="Xiv\RelicNoteCategory.cs" />
     <Compile Include="Xiv\RelicNoteCategoryText.cs" />
+    <Compile Include="Xiv\RetainerTask.cs" />
+    <Compile Include="Xiv\RetainerTaskBase.cs" />
+    <Compile Include="Xiv\RetainerTaskNormal.cs" />
+    <Compile Include="Xiv\RetainerTaskRandom.cs" />
     <Compile Include="Xiv\Sheets\InventoryItemSheet.cs" />
     <Compile Include="Xiv\Sheets\ItemActionSheet.cs" />
     <Compile Include="Xiv\Shop.cs" />

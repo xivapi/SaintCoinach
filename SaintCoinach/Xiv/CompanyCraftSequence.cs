@@ -13,7 +13,9 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Item ResultItem { get { return As<Item>("ResultItem"); } }
-
+        public CompanyCraftDraftCategory CompanyCraftDraftCategory { get { return As<CompanyCraftDraftCategory>(); } }
+        public CompanyCraftType CompanyCraftType { get { return As<CompanyCraftType>(); } }
+        public CompanyCraftDraft CompanyCraftDraft { get { return As<CompanyCraftDraft>(); } }
         public IEnumerable<CompanyCraftPart> CompanyCraftParts { get { return _CompanyCraftParts ?? (_CompanyCraftParts = BuildCraftParts()); } }
 
         #endregion
