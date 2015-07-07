@@ -288,6 +288,7 @@ namespace SaintCoinach.Xiv {
             var shops = Sheet.Collection.Shops;
             var leves = Sheet.Collection.GetSheet<Leve>();
             var fishingSpots = Sheet.Collection.GetSheet<FishingSpot>();
+            var retainerTasks = Sheet.Collection.GetSheet<RetainerTask>();
 
             if (libraRow != null) {
                 var bnpcColl = Sheet.Collection.BNpcs;
@@ -311,6 +312,7 @@ namespace SaintCoinach.Xiv {
             // Not using Libra for this because it doesn't even have information about it
             sources.AddRange(leves.Where(i => i.Items.Contains(this)));
             sources.AddRange(fishingSpots.Where(i => i.Items.Contains(this)));
+            sources.AddRange(retainerTasks.Where(i => i.Items.Contains(this)));
 
             return sources.ToArray();
         }
