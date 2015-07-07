@@ -3467,7 +3467,7 @@
   Name: AirshipExplorationParamType
   DefaultColumn: Name
 - DataDefinitions:
-  - InnerDefinition: !!single_def
+    - InnerDefinition: !!single_def
         Name: Rank
       Index: 1
     - InnerDefinition: !!single_def
