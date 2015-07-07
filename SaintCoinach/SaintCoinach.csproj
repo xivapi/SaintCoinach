@@ -553,6 +553,7 @@
     <Compile Include="Xiv\IQuantifiableXivString.cs" />
     <Compile Include="Xiv\ItemComparer.cs" />
     <Compile Include="Xiv\LeveVfx.cs" />
+    <Compile Include="Xiv\MasterpieceSupplyDuty.cs" />
     <Compile Include="Xiv\ParamGrow.cs" />
     <Compile Include="Xiv\QuestRepeatInterval.cs" />
     <Compile Include="Range.cs" />
@@ -813,6 +814,7 @@
     <Compile Include="Xiv\QuestRequirements.ClassJobRequirement.cs" />
     <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
     <Compile Include="Xiv\QuestRequirements.PreviousQuestRequirement.cs" />
+    <Compile Include="Xiv\MasterpieceSupplyDuty.CollectableItem.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

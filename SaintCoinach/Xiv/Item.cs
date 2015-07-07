@@ -196,6 +196,10 @@ namespace SaintCoinach.Xiv {
         public bool IsDesynthesizable {
             get { return AsInt32("Desynthesize") > 0; }
         }
+
+        public bool IsAetherialReducible {
+            get { return AsInt32("AetherialReduce") > 0; }
+        }
         #endregion
 
         #region Constructors

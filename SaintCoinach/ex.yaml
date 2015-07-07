@@ -1340,6 +1340,9 @@
   - InnerDefinition: !!single_def
       Name: IsCollectable
     Index: 95
+  - InnerDefinition: !!single_def
+      Name: AetherialReduce
+    Index: 96
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
