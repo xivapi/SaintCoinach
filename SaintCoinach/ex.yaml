@@ -3066,11 +3066,10 @@
         TargetSheet: PlaceName
     Index: 5
   - InnerDefinition: !!single_def
-      Name: GatheringConditionValue
+      Name: GatheringSubCategory
+      Converter: !!link_conv
+        TargetSheet: GatheringSubCategory
     Index: 6
-  - InnerDefinition: !!single_def
-      Name: GatheringPointBonus
-    Index: 3
   Name: GatheringPoint
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
@@ -3203,6 +3202,14 @@
   - InnerDefinition: !!single_def
       Name: MaxTime{min}
     Index: 4
+  - InnerDefinition: !!single_def
+      Name: Experience
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Task
+      Converter: !!multiref_conv
+        Targets: [ RetainerTaskNormal, RetainerTaskRandom ]
+    Index: 11
   Name: RetainerTask
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3210,15 +3217,24 @@
       Converter: !!link_conv
         TargetSheet: Item
   - InnerDefinition: !!single_def
-      Name: Quantity{1}
+      Name: Quantity[0]
     Index: 1
   - InnerDefinition: !!single_def
-      Name: Quantity{2}
+      Name: Quantity[1]
     Index: 2
   - InnerDefinition: !!single_def
-      Name: Quantity{3}
+      Name: Quantity[2]
     Index: 3
   Name: RetainerTaskNormal
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: Requirement
+    Index: 1
+  Name: RetainerTaskRandom
+  DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: X
@@ -3480,4 +3496,56 @@
       Index: 19
   Name: DefaultTalk
   IsGenericReferenceTarget: True
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ClassJob
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+  - InnerDefinition: !!single_def
+      Name: Level
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: RewardItem
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 2
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: RequestItem
+          Converter: !!link_conv
+            TargetSheet: Item
+        - !!single_def
+          Name: RequestItemCount
+        - !!single_def
+          Name: RequestHq
+        - !!single_def
+          Name: RequestCollectability[0]
+        - !!single_def
+          Name: RequestCollectability[1]
+        - !!single_def
+          Name: RequestCollectability[2]
+        - !!single_def
+          Name: Unknown
+        - !!single_def
+          Name: RewardItemCount
+        - !!single_def
+          Name: RequestLevel
+        - !!single_def
+          Name: RequestStars
+    Index: 3
+  Name: MasterpieceSupplyDuty
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ClassJob
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 4
+  Name: GatheringSubCategory
+  DefaultColumn: Name
 Version: 2015.06.17.0000.0000

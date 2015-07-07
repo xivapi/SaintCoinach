@@ -82,6 +82,7 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\MultiReferenceConverter.cs" />
     <Compile Include="Graphics\Bone.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Graphics\BoundingBox.cs" />

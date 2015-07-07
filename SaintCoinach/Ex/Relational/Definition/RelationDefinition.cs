@@ -33,6 +33,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #region Compile
 
         public void Compile() {
+            var g = _SheetDefinitions.GroupBy(_ => _.Name).Where(_ => _.Count() > 1).ToArray();
             _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _);
 
             foreach (var sheet in SheetDefinitions)
@@ -87,6 +88,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         public static RelationDefinition Deserialize(TextReader reader) {
             var deserializer = new Deserializer();
 
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:multiref_conv", typeof(MultiReferenceConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:ref_conv", typeof(GenericReferenceConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ColorConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(IconConverter));
