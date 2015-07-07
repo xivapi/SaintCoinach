@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
-    public class CompanyCraftSequence : XivRow {
+    public class CompanyCraftSequence : XivRow, IItemSource {
         #region Fields
         private CompanyCraftPart[] _CompanyCraftParts;
         #endregion
@@ -17,6 +17,8 @@ namespace SaintCoinach.Xiv {
         public CompanyCraftType CompanyCraftType { get { return As<CompanyCraftType>(); } }
         public CompanyCraftDraft CompanyCraftDraft { get { return As<CompanyCraftDraft>(); } }
         public IEnumerable<CompanyCraftPart> CompanyCraftParts { get { return _CompanyCraftParts ?? (_CompanyCraftParts = BuildCraftParts()); } }
+
+        IEnumerable<Item> IItemSource.Items { get { yield return ResultItem; } }
 
         #endregion
 

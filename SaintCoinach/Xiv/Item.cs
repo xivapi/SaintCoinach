@@ -289,6 +289,7 @@ namespace SaintCoinach.Xiv {
             var leves = Sheet.Collection.GetSheet<Leve>();
             var fishingSpots = Sheet.Collection.GetSheet<FishingSpot>();
             var retainerTasks = Sheet.Collection.GetSheet<RetainerTask>();
+            var companyCraft = Sheet.Collection.GetSheet<CompanyCraftSequence>();
 
             if (libraRow != null) {
                 var bnpcColl = Sheet.Collection.BNpcs;
@@ -313,6 +314,7 @@ namespace SaintCoinach.Xiv {
             sources.AddRange(leves.Where(i => i.Items.Contains(this)));
             sources.AddRange(fishingSpots.Where(i => i.Items.Contains(this)));
             sources.AddRange(retainerTasks.Where(i => i.Items.Contains(this)));
+            sources.AddRange(companyCraft.Where(i => i.ResultItem == this));
 
             return sources.ToArray();
         }
