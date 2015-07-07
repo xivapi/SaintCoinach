@@ -534,6 +534,11 @@
     <Compile Include="Xiv\CompanyCraftDraftCategory.cs" />
     <Compile Include="Xiv\CompanyCraftDraftCategoryTxt.cs" />
     <Compile Include="Xiv\CompanyCraftManufactoryState.cs" />
+    <Compile Include="Xiv\CompanyCraftPart.cs" />
+    <Compile Include="Xiv\CompanyCraftProcess.cs" />
+    <Compile Include="Xiv\CompanyCraftProcess.Request.cs" />
+    <Compile Include="Xiv\CompanyCraftSequence.cs" />
+    <Compile Include="Xiv\CompanyCraftSupplyItem.cs" />
     <Compile Include="Xiv\CompanyCraftType.cs" />
     <Compile Include="Xiv\CustomTalk.cs" />
     <Compile Include="Xiv\EObj.cs" />
