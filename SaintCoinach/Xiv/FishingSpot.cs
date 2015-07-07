@@ -134,10 +134,9 @@ namespace SaintCoinach.Xiv {
         }
 
         private double ToMapCoordinate(double val) {
-            var c = TerritoryType.Map.Size;
+            var c = TerritoryType.Map.SizeFactor / 100.0;
 
-            val *= c;
-            return ((40.0 / c) * ((val) / 2048.0)) + 1;
+            return (41.0 / c) * ((val) / 2048.0);
         }
         #endregion
 
