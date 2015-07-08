@@ -3275,6 +3275,9 @@
   Name: HousingLayoutLimit
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: IsRandom
+    Index: 0
+  - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
@@ -3288,6 +3291,20 @@
   - InnerDefinition: !!single_def
       Name: MaxTime{min}
     Index: 4
+  - InnerDefinition: !!single_def
+      Name: Experience
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: RequiredItemLevel
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: RequiredGathering
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Task
+      Converter: !!multiref_conv
+        Targets: [ RetainerTaskNormal, RetainerTaskRandom ]
+    Index: 11
   Name: RetainerTask
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3295,15 +3312,24 @@
       Converter: !!link_conv
         TargetSheet: Item
   - InnerDefinition: !!single_def
-      Name: Quantity{1}
+      Name: Quantity[0]
     Index: 1
   - InnerDefinition: !!single_def
-      Name: Quantity{2}
+      Name: Quantity[1]
     Index: 2
   - InnerDefinition: !!single_def
-      Name: Quantity{3}
+      Name: Quantity[2]
     Index: 3
   Name: RetainerTaskNormal
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: Requirement
+    Index: 1
+  Name: RetainerTaskRandom
+  DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: X
@@ -3489,7 +3515,7 @@
     - InnerDefinition: !!single_def
         Name: RepairMaterials
       Index: 9
-  Name: AirshipExplorationPart
+  Name: AirshipExplorationPart 
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
@@ -3504,6 +3530,21 @@
       Converter: !!link_conv
         TargetSheet: Item
     Index: 0
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftDraftCategory
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftDraftCategory
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftType
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftType
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: CompanyCraftDraft
+      Converter: !!link_conv
+        TargetSheet: CompanyCraftDraft
+    Index: 4
   - InnerDefinition: !!repeat_def
       RepeatCount: 8
       RepeatedDefinition: !!single_def
@@ -3639,7 +3680,7 @@
           - !!single_def
             Name: Quantity
           - !!single_def
-            Name: UnknownBool
+            Name: RequestHq
           - !!single_def
             Name: Collectability{HighBonus}
           - !!single_def

@@ -82,6 +82,7 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\MultiReferenceConverter.cs" />
     <Compile Include="Graphics\Bone.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Graphics\BoundingBox.cs" />
@@ -533,6 +534,11 @@
     <Compile Include="Xiv\CompanyCraftDraftCategory.cs" />
     <Compile Include="Xiv\CompanyCraftDraftCategoryTxt.cs" />
     <Compile Include="Xiv\CompanyCraftManufactoryState.cs" />
+    <Compile Include="Xiv\CompanyCraftPart.cs" />
+    <Compile Include="Xiv\CompanyCraftProcess.cs" />
+    <Compile Include="Xiv\CompanyCraftProcess.Request.cs" />
+    <Compile Include="Xiv\CompanyCraftSequence.cs" />
+    <Compile Include="Xiv\CompanyCraftSupplyItem.cs" />
     <Compile Include="Xiv\CompanyCraftType.cs" />
     <Compile Include="Xiv\CustomTalk.cs" />
     <Compile Include="Xiv\EObj.cs" />
@@ -743,6 +749,10 @@
     <Compile Include="Xiv\RelicNote.cs" />
     <Compile Include="Xiv\RelicNoteCategory.cs" />
     <Compile Include="Xiv\RelicNoteCategoryText.cs" />
+    <Compile Include="Xiv\RetainerTask.cs" />
+    <Compile Include="Xiv\RetainerTaskBase.cs" />
+    <Compile Include="Xiv\RetainerTaskNormal.cs" />
+    <Compile Include="Xiv\RetainerTaskRandom.cs" />
     <Compile Include="Xiv\Sheets\InventoryItemSheet.cs" />
     <Compile Include="Xiv\Sheets\ItemActionSheet.cs" />
     <Compile Include="Xiv\Shop.cs" />
