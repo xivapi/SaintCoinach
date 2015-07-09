@@ -95,7 +95,7 @@ namespace SaintCoinach.Xiv {
             var c = Map.SizeFactor / 100.0;
 
             val *= c;
-            return ((40.0 / c) * ((val + 1024.0) / 2048.0)) + 1;
+            return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1;
         }
     }
 }
