@@ -9,6 +9,7 @@ namespace SaintCoinach.Xiv {
         #region Fields
 
         private RequiredItem[] _RequiredItems;
+        private CompanyCraftSequence[] _UnlockedSequences;
 
         #endregion
 
@@ -21,6 +22,8 @@ namespace SaintCoinach.Xiv {
         public IEnumerable<RequiredItem> RequiredItems { get { return _RequiredItems ?? (_RequiredItems = BuildRequiredItems()); } }
 
         public int Order { get { return AsInt32("Order"); } }
+
+        public IEnumerable<CompanyCraftSequence> UnlockedSequences { get { return _UnlockedSequences ?? (_UnlockedSequences = GetUnlockedSequences()); } }
 
         #endregion
 
@@ -42,6 +45,10 @@ namespace SaintCoinach.Xiv {
                 items.Add(new RequiredItem(item, count));
             }
             return items.ToArray();
+        }
+
+        CompanyCraftSequence[] GetUnlockedSequences() {
+            return Sheet.Collection.GetSheet<CompanyCraftSequence>().Where(s => s.CompanyCraftDraft == this).ToArray();
         }
 
         public override string ToString() {
