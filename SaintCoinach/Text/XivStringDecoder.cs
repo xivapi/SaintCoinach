@@ -321,8 +321,8 @@ namespace SaintCoinach.Text {
             switch (type) {
                 case IntegerType.Byte:
                     return (input.ReadByte());
-                case IntegerType.BytePlus255:
-                    return (input.ReadByte() + 255);
+                case IntegerType.ByteTimes256:
+                    return (input.ReadByte() * 256);
                 case IntegerType.Int16: {
                         int v = 0;
                         v |= input.ReadByte() << 8;
