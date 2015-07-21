@@ -2168,6 +2168,21 @@
       Name: Bg
     Index: 1
   - InnerDefinition: !!single_def
+      Name: PlaceName{Region}
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: PlaceName{Zone}
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 5
+  - InnerDefinition: !!single_def
       Name: Map
       Converter: !!link_conv
         TargetSheet: Map
