@@ -6,7 +6,7 @@ namespace SaintCoinach.Xiv {
 
         public Item Item { get { return As<Item>("Item"); } }
         public int ItemLevel { get { return AsInt32("ItemLevel"); } }
-        public bool IsRare { get { return AsBoolean("IsRare"); } }
+        public bool IsHidden { get { return AsBoolean("IsHidden"); } }
 
         #endregion
 

@@ -3048,7 +3048,7 @@
   Name: GatheringExp
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: IsRare
+      Name: IsHidden
     Index: 2
   - InnerDefinition: !!single_def
       Name: Item
