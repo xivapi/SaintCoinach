@@ -17,7 +17,7 @@ namespace SaintCoinach.Ex {
         private readonly Dictionary<string, WeakReference<ISheet>> _Sheets =
             new Dictionary<string, WeakReference<ISheet>>();
 
-        private List<string> _AvailableSheets;
+        private HashSet<string> _AvailableSheets;
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace SaintCoinach.Ex {
                 }
             }
 
-            _AvailableSheets = available.ToList();
+            _AvailableSheets = new HashSet<string>(available);
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace SaintCoinach.Ex {
 
         public bool SheetExists(string name) {
             //name = FixName(name);
-            return AvailableSheets.Contains(name);
+            return _AvailableSheets.Contains(name);
         }
 
         public ISheet<T> GetSheet<T>(int id) where T : IRow {
@@ -106,7 +106,7 @@ namespace SaintCoinach.Ex {
             const string ExHPathFormat = "exd/{0}.exh";
 
             //name = FixName(name);
-            if (!AvailableSheets.Contains(name))
+            if (!_AvailableSheets.Contains(name))
                 throw new KeyNotFoundException();
 
             ISheet sheet;
