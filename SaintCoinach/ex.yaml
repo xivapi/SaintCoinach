@@ -3692,7 +3692,7 @@
           - !!single_def
             Name: Reward{Base}
           - !!single_def
-            Name: Reward{Bonus}
+            Name: RecipeLevel
           - !!single_def
             Name: Stars
       Index: 3
