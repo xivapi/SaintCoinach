@@ -14,7 +14,7 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Factor to convert between from an item's <see cref="Ask" /> to its <see cref="Bid" />.
         /// </summary>
-        private const double BidFactor = 0.05;
+        private const double BidFactor = 0.0153;
 
         #endregion
 
@@ -115,7 +115,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the price in Gil of the current item in shops.
         /// </summary>
         /// <value>The price in Gil of the current item in shops.</value>
-        public int Bid { get { return (int)Math.Max(1, Math.Round(Ask * BidFactor)); } }
+        public int Bid { get { return (int)Math.Max(1, Math.Round(Ask * BidFactor, MidpointRounding.AwayFromZero)); } }
 
         /// <summary>
         ///     Gets the price NPCs offer when selling the current item.
