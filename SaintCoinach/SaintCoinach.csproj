@@ -480,6 +480,7 @@
     <Compile Include="Text\IExpression.cs" />
     <Compile Include="Text\IEvaluationFunctionProvider.cs" />
     <Compile Include="Text\Nodes\IExpressionNode.cs" />
+    <Compile Include="Text\Nodes\INodeVisitor.cs" />
     <Compile Include="Text\Nodes\IStaticNode.cs" />
     <Compile Include="Text\Nodes\IConditionalNode.cs" />
     <Compile Include="Text\Nodes\INodeWithArguments.cs" />

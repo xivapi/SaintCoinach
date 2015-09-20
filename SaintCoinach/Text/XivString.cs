@@ -153,5 +153,9 @@ namespace SaintCoinach.Text {
         }
 
         #endregion
+
+        public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
     }
 }

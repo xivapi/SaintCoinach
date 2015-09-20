@@ -26,5 +26,9 @@ namespace SaintCoinach.Text.Nodes {
             builder.Append(StringTokens.ElementClose);
             builder.Append(StringTokens.TagClose);
         }
+
+        public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
     }
 }

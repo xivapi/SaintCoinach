@@ -57,6 +57,10 @@ namespace SaintCoinach.Text.Nodes {
             }
         }
 
+        public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
+
         #region INodeWithChildren Members
 
         IEnumerable<INode> INodeWithChildren.Children {
