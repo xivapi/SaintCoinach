@@ -17,6 +17,7 @@ namespace SaintCoinach.Xiv {
 
             public int CurrencyA { get; private set; }
             public int CurrencyB { get; private set; }
+            public int CurrencyC { get; private set; }
             #endregion
 
             #region Constructor
@@ -47,6 +48,9 @@ namespace SaintCoinach.Xiv {
                         case "BNpcNames":
                             ReadPrimaryBNpcs(reader, bnpcs);
                             break;
+                        case "ClearC":
+                            ReadCurrencyC(reader);
+                            break;
                         default:
                             Console.Error.WriteLine("Unknown 'InstanceContent.Fight' data key: {0}", reader.Value);
                             throw new NotSupportedException();
@@ -72,6 +76,10 @@ namespace SaintCoinach.Xiv {
             private void ReadCurrencyB(JsonReader reader) {
                 if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
                 this.CurrencyB = Convert.ToInt32(reader.Value);
+            }
+            private void ReadCurrencyC(JsonReader reader) {
+                if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
+                this.CurrencyC = Convert.ToInt32(reader.Value);
             }
             private void ReadSecondaryBNpcs(JsonReader reader, Collections.BNpcCollection bnpcs) {
                 if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
