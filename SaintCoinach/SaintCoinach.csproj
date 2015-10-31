@@ -80,6 +80,7 @@
     <Compile Include="Ex\DataSheet.Enumerator.cs" />
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
+    <Compile Include="Xiv\Quad.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\MultiReferenceConverter.cs" />

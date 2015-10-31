@@ -136,13 +136,13 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the model identifier used for the current item's primary model.
         /// </summary>
         /// <value>The model identifier used for the current item's primary model.</value>
-        public long PrimaryModelKey { get { return AsInt64("Model{Main}"); } }
+        public Quad PrimaryModelKey { get { return AsQuad("Model{Main}"); } }
 
         /// <summary>
         ///     Gets the model identifier used for the current item's secondary model.
         /// </summary>
         /// <value>The model identifier used for the current item's secondary model.</value>
-        public long SecondaryModelKey { get { return AsInt64("Model{Sub}"); } }
+        public Quad SecondaryModelKey { get { return AsQuad("Model{Sub}"); } }
         
         /// <summary>
         ///     Gets the number of Grand Company seals rewarded for expert delivery of the item.
