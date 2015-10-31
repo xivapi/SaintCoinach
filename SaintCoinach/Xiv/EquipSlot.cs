@@ -273,6 +273,25 @@ namespace SaintCoinach.Xiv {
             return asModel.GetModelDefinition();
         }
 
+
+        public string GetModelKey(long baseKey, int characterType)
+        {
+            ModelHelper helper;
+            if (!ModelHelpers.TryGetValue(Key, out helper))
+                return null;
+            if (helper == null)
+                return null;
+
+            var packs = Collection.Collection.PackCollection;
+
+            var a = baseKey & 0xFFFF;
+            var b = (baseKey >> 16) & 0xFFFF;
+            var c = (baseKey >> 32) & 0xFFFF;
+            var d = (baseKey >> 48) & 0xFFFF;
+            var variantIndex = (int)((baseKey >> (helper.VariantIndexWord * 16)) & 0xFFFF);
+
+            return string.Format(helper.ModelFileFormat, a, b, c, d, characterType);
+        }
         #endregion
     }
 }
