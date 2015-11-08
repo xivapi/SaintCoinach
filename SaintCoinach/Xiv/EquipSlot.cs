@@ -239,7 +239,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="characterType">Character type to get the model for.</param>
         /// <param name="materialVersion">When this method returns, contains the variant contained within <c>key</c>.</param>
         /// <returns>Returns the <see cref="Model" /> for the specified <c>key</c> and <c>characterType</c>.</returns>
-        public ModelDefinition GetModel(long key, int characterType, out Graphics.ImcVariant variant) {
+        public ModelDefinition GetModel(Quad key, int characterType, out Graphics.ImcVariant variant) {
             variant = Graphics.ImcVariant.Default;
 
             ModelHelper helper;
@@ -250,13 +250,9 @@ namespace SaintCoinach.Xiv {
 
             var packs = Collection.Collection.PackCollection;
 
-            var a = key & 0xFFFF;
-            var b = (key >> 16) & 0xFFFF;
-            var c = (key >> 32) & 0xFFFF;
-            var d = (key >> 48) & 0xFFFF;
-            var variantIndex = (int)((key >> (helper.VariantIndexWord * 16)) & 0xFFFF);
+            var variantIndex = (int)((key.ToInt64() >> (helper.VariantIndexWord * 16)) & 0xFFFF);
 
-            var imcPath = string.Format(helper.ImcFileFormat, a, b, c, d, characterType);
+            var imcPath = string.Format(helper.ImcFileFormat, key.Value1, key.Value2, key.Value3, key.Value4, characterType);
             IO.File imcBase;
             if (!packs.TryGetFile(imcPath, out imcBase))
                 return null;
@@ -265,7 +261,7 @@ namespace SaintCoinach.Xiv {
             variant = imc.GetVariant(helper.ImcPartKey, variantIndex);
 
             IO.File modelBase = null;
-            while (!packs.TryGetFile(string.Format(helper.ModelFileFormat, a, b, c, d, characterType), out modelBase) && CharacterTypeFallback.TryGetValue(characterType, out characterType)) { }
+            while (!packs.TryGetFile(string.Format(helper.ModelFileFormat, key.Value1, key.Value2, key.Value3, key.Value4, characterType), out modelBase) && CharacterTypeFallback.TryGetValue(characterType, out characterType)) { }
 
             var asModel = modelBase as Graphics.ModelFile;
             if (asModel == null)
@@ -273,6 +269,16 @@ namespace SaintCoinach.Xiv {
             return asModel.GetModelDefinition();
         }
 
+
+        public string GetModelKey(Quad key, int characterType) {
+            ModelHelper helper;
+            if (!ModelHelpers.TryGetValue(Key, out helper))
+                return null;
+            if (helper == null)
+                return null;
+
+            return string.Format(helper.ModelFileFormat, key.Value1, key.Value2, key.Value3, key.Value4, characterType);
+        }
         #endregion
     }
 }

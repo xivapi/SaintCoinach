@@ -23,6 +23,10 @@ namespace SaintCoinach.Text.Nodes {
             builder.Append(Value);
         }
 
+        public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {
+            return visitor.Visit(this);
+        }
+
         #region IDecodeNodeStatic Members
 
         object IStaticNode.Value {

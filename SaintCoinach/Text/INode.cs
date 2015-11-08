@@ -9,5 +9,6 @@ namespace SaintCoinach.Text {
         TagType Tag { get; }
         NodeFlags Flags { get; }
         void ToString(StringBuilder builder);
+        T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor);
     }
 }

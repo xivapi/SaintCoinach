@@ -288,6 +288,24 @@ namespace SaintCoinach.Xiv {
             return AsDouble(BuildColumnName(column, indices));
         }
 
+        /// <summary>
+        ///     Gets the value of a field from a specific column as a Quad value.
+        /// </summary>
+        /// <param name="column">Name of the column from which to read.</param>
+        /// <returns>The quad value of the field in <c>column</c> of the current row.</returns>
+        public Quad AsQuad(string column) {
+            return (Quad)this[column];
+        }
+
+        /// <summary>
+        ///     Gets the value of a field from a specific column and indices as a Quad value.
+        /// </summary>
+        /// <param name="column">Name of the column from which to read.</param>
+        /// <param name="indices">Indices for the full column.</param>
+        /// <returns>The quad value of the field in <c>column</c> and <c>indices</c> of the current row.</returns>
+        public Quad AsQuad(string column, params int[] indices) {
+            return AsQuad(BuildColumnName(column, indices));
+        }
         #endregion
     }
 }

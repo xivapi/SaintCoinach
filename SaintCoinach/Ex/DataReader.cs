@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using SaintCoinach.Ex.DataReaders;
+using SaintCoinach.Xiv;
 
 namespace SaintCoinach.Ex {
     /// <summary>
@@ -79,7 +80,7 @@ namespace SaintCoinach.Ex {
                         (d, o) => OrderedBitConverter.ToSingle(d, o, true))
                 }, {
                     0x000B,
-                    new DelegateDataReader("int64", 8, typeof(Double), (d, o) => OrderedBitConverter.ToInt64(d, o, true))
+                    new DelegateDataReader("int64", 8, typeof(Quad), (d, o) => Quad.Read(d, o, true))
                 }
             };
 

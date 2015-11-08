@@ -80,6 +80,7 @@
     <Compile Include="Ex\DataSheet.Enumerator.cs" />
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
+    <Compile Include="Xiv\Quad.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\MultiReferenceConverter.cs" />
@@ -480,6 +481,7 @@
     <Compile Include="Text\IExpression.cs" />
     <Compile Include="Text\IEvaluationFunctionProvider.cs" />
     <Compile Include="Text\Nodes\IExpressionNode.cs" />
+    <Compile Include="Text\Nodes\INodeVisitor.cs" />
     <Compile Include="Text\Nodes\IStaticNode.cs" />
     <Compile Include="Text\Nodes\IConditionalNode.cs" />
     <Compile Include="Text\Nodes\INodeWithArguments.cs" />

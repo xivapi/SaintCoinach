@@ -35,7 +35,7 @@ namespace SaintCoinach.Xiv {
         }
         IEnumerable<Item> IItemSource.Items {
             get {
-                return _Items ?? (_Items ?? BuildItems());
+                return _Items ?? (_Items = BuildItems());
             }
         }
 

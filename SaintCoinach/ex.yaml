@@ -2454,6 +2454,9 @@
   - InnerDefinition: !!single_def
       Name: Reward{TomeB}
     Index: 15
+  - InnerDefinition: !!single_def
+      Name: Reward{TomeC}
+    Index: 16
   Name: ContentRoulette
   DefaultColumn: Name
 - DataDefinitions:
@@ -3692,7 +3695,7 @@
           - !!single_def
             Name: Reward{Base}
           - !!single_def
-            Name: Reward{Bonus}
+            Name: RecipeLevel
           - !!single_def
             Name: Stars
       Index: 3
