@@ -200,6 +200,10 @@ namespace SaintCoinach.Xiv {
         public bool IsAetherialReducible {
             get { return AsInt32("AetherialReduce") > 0; }
         }
+
+        public bool IsConvertable {
+            get { return As<byte>("MaterializeType") > 0; }
+        }
         #endregion
 
         #region Constructors

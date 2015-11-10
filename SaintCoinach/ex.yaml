@@ -1094,18 +1094,16 @@
       Name: Event
     Index: 5
   - InnerDefinition: !!single_def
+      Name: DestroyOnRemoval
+    Index: 7
+  - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
         TargetSheet: Item
     Index: 6
-  - InnerDefinition: !!single_def
-      Name: DestroyOnRemoval
-    Index: 7
   Name: HousingYardObject
   DefaultColumn: Item
 - DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: Singular
   - InnerDefinition: !!single_def
       Name: Plural
     Index: 2
@@ -1116,40 +1114,23 @@
       Name: Description
     Index: 8
   - InnerDefinition: !!single_def
-      Name: Name
-    Index: 9
-  - InnerDefinition: !!single_def
       Name: Level{Item}
       Converter: !!link_conv
         TargetSheet: ItemLevel
     Index: 11
   - InnerDefinition: !!single_def
-      Name: Level{Equip}
-    Index: 12
-  - InnerDefinition: !!single_def
       Name: PvPRank
     Index: 13
-  - InnerDefinition: !!single_def
-      Name: StackSize
-    Index: 14
   - InnerDefinition: !!single_def
       Name: Stain
       Converter: !!link_conv
         TargetSheet: Stain
     Index: 16
   - InnerDefinition: !!single_def
-      Name: ItemUICategory
-      Converter: !!link_conv
-        TargetSheet: ItemUICategory
-    Index: 17
-  - InnerDefinition: !!single_def
       Name: ItemSearchCategory
       Converter: !!link_conv
         TargetSheet: ItemSearchCategory
     Index: 18
-  - InnerDefinition: !!single_def
-      Name: Rarity
-    Index: 19
   - InnerDefinition: !!single_def
       Name: CanBeHq
     Index: 20
@@ -1159,6 +1140,9 @@
   - InnerDefinition: !!single_def
       Name: IsCrestWorthy
     Index: 23
+  - InnerDefinition: !!single_def
+      Name: MaterializeType
+    Index: 24
   - InnerDefinition: !!single_def
       Name: MateriaSlotCount
     Index: 25
@@ -1254,15 +1238,6 @@
       Name: IsUntradable
     Index: 73
   - InnerDefinition: !!single_def
-      Name: Price{Low}
-    Index: 75
-  - InnerDefinition: !!single_def
-      Name: Price{Mid}
-    Index: 76
-  - InnerDefinition: !!single_def
-      Name: Price{High}
-    Index: 77
-  - InnerDefinition: !!single_def
       Name: EquippableByRace[1]
     Index: 78
   - InnerDefinition: !!single_def
@@ -1308,10 +1283,6 @@
       Name: IsPvP
     Index: 92
   - InnerDefinition: !!single_def
-      Name: Icon
-      Converter: !!icon_conv {}
-    Index: 10
-  - InnerDefinition: !!single_def
       Name: GCTurnIn
     Index: 89
   - InnerDefinition: !!single_def
@@ -1328,6 +1299,38 @@
   - InnerDefinition: !!single_def
       Name: AetherialReduce
     Index: 96
+  - InnerDefinition: !!single_def
+      Name: Singular
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Price{High}
+    Index: 77
+  - InnerDefinition: !!single_def
+      Name: Price{Mid}
+    Index: 76
+  - InnerDefinition: !!single_def
+      Name: Level{Equip}
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: StackSize
+    Index: 14
+  - InnerDefinition: !!single_def
+      Name: ItemUICategory
+      Converter: !!link_conv
+        TargetSheet: ItemUICategory
+    Index: 17
+  - InnerDefinition: !!single_def
+      Name: Rarity
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: Price{Low}
+    Index: 75
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
