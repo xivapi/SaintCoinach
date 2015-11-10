@@ -9,26 +9,12 @@ namespace SaintCoinach.Xiv {
     ///     Class representing a Grand Company shop from the game data.
     /// </summary>
     public class GCShop : XivRow, IShop, ILocatable, IItemSource {
-        #region Static
-
-        /// <summary>
-        ///     The offset between the key of a <see cref="GrandCompany" /> and their <see cref="GCShop" />.
-        /// </summary>
-        private const int GrandCompanyKeyOffset = 1441792;
-
-        #endregion
-
         #region Fields
 
         /// <summary>
         ///     <see cref="ENpcs" /> offering the current <see cref="GCShop" />.
         /// </summary>
         private ENpc[] _ENpcs;
-
-        /// <summary>
-        ///     <see cref="GrandCompany" /> of the current <see cref="GCShop" />.
-        /// </summary>
-        private GrandCompany _GrandCompany;
 
         /// <summary>
         ///     Items offered by the current <see cref="GCShop" />.
@@ -55,12 +41,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="GrandCompany" /> of the current <see cref="GCShop" />.
         /// </summary>
         /// <value>The <see cref="GrandCompany" /> of the current <see cref="GCShop" />.</value>
-        public GrandCompany GrandCompany {
-            get {
-                return _GrandCompany
-                       ?? (_GrandCompany = Sheet.Collection.GetSheet<GrandCompany>()[Key - GrandCompanyKeyOffset]);
-            }
-        }
+        public GrandCompany GrandCompany { get { return As<GrandCompany>(); } }
 
         /// <summary>
         ///     Gets the items offered by the current <see cref="GCShop" />.

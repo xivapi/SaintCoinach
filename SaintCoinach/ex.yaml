@@ -921,6 +921,11 @@
   - InnerDefinition: !!single_def
       Name: Max
     Index: 1
+  - InnerDefinition: !!single_def
+      Name: GrandCompany
+      Converter: !!link_conv
+        TargetSheet: GrandCompany
+    Index: 2
   Name: GCShop
   IsGenericReferenceTarget: True
 - DataDefinitions:
