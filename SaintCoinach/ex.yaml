@@ -1764,6 +1764,7 @@
       Name: CraftType
       Converter: !!link_conv
         TargetSheet: CraftType
+    Index: 1
   - InnerDefinition: !!single_def
       Name: RecipeLevelTable
       Converter: !!link_conv
@@ -2207,6 +2208,11 @@
     Index: 8
   Name: Trait
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  Name: TraitTransient
+  DefaultColumn: Description
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Icon
