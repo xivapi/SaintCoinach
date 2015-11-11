@@ -109,6 +109,18 @@ namespace SaintCoinach.Xiv {
         public int RequiredControl { get { return AsInt32("RequiredControl"); } }
 
         /// <summary>
+        ///     Gets the required craftsmanship value to quick synth the current recipe.
+        /// </summary>
+        /// <value>The required craftsmanship value to quick synth the current recipe.</value>
+        public int QuickSynthCraftsmanship { get { return AsInt32("QuickSynthCraftsmanship"); } }
+
+        /// <summary>
+        ///     Gets the required control value to quick synth the current recipe.
+        /// </summary>
+        /// <value>The required control value to quick synth the current recipe.</value>
+        public int QuickSynthControl { get { return AsInt32("QuickSynthControl"); } }
+
+        /// <summary>
         ///     Gets the required <see cref="Status" /> to attempt the current recipe.
         /// </summary>
         /// <value>The required <see cref="Status" /> to attempt the current recipe.</value>
@@ -172,6 +184,11 @@ namespace SaintCoinach.Xiv {
             }
         }
 
+        /// <summary>
+        ///     Gets a value indicating whether the current recipe requires a specialization soul.
+        /// </summary>
+        /// <value>A value indicating whether the current recipe requires a specialization soul.</value>
+        public bool IsSpecializationRequired {  get { return AsBoolean("IsSpecializationRequired"); } }
         #endregion
 
         #region Constructors

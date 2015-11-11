@@ -1824,6 +1824,12 @@
       Name: RequiredControl
     Index: 33
   - InnerDefinition: !!single_def
+      Name: QuickSynthCraftsmanship
+    Index: 34
+  - InnerDefinition: !!single_def
+      Name: QuickSynthControl
+    Index: 35
+  - InnerDefinition: !!single_def
       Name: UnlockKey
     Index: 36
   - InnerDefinition: !!single_def
@@ -1847,6 +1853,9 @@
   - InnerDefinition: !!single_def
       Name: CanQuickSynth
     Index: 37
+  - InnerDefinition: !!single_def
+      Name: IsSpecializationRequired
+    Index: 41
   Name: Recipe
   DefaultColumn: Item{Result}
 - DataDefinitions:
