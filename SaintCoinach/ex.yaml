@@ -3410,6 +3410,12 @@
       Name: MpCostFactor<%>
     Index: 5
   - InnerDefinition: !!single_def
+      Name: QuestExpModifier
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: HuntingLogExpReward
+    Index: 10
+  - InnerDefinition: !!single_def
       Name: ExpToNext
   Name: ParamGrow
 - DataDefinitions:
