@@ -80,6 +80,9 @@
     <Compile Include="Ex\DataSheet.Enumerator.cs" />
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
+    <Compile Include="Xiv\CompanionTransient.cs" />
+    <Compile Include="Xiv\MinionRace.cs" />
+    <Compile Include="Xiv\MinionSkillType.cs" />
     <Compile Include="Xiv\Quad.cs" />
     <Compile Include="Ex\Relational\Update\UpdateProgress.cs" />
     <Compile Include="Ex\Relational\ValueConverters\GenericReferenceConverter.cs" />

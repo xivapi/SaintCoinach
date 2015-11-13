@@ -486,11 +486,91 @@
   - InnerDefinition: !!single_def
       Name: Singular
   - InnerDefinition: !!single_def
+      Name: Behavior
+      Converter: !!link_conv
+        TargetSheet: CompanionMove
+    Index: 14
+  - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
     Index: 26
+  - InnerDefinition: !!single_def
+      Name: Cost
+    Index: 30
+  - InnerDefinition: !!single_def
+      Name: HP
+    Index: 31
+  - InnerDefinition: !!single_def
+      Name: Skill{Cost}
+    Index: 34
+  - InnerDefinition: !!single_def
+      Name: MinionRace
+      Converter: !!link_conv
+        TargetSheet: MinionRace
+    Index: 37
   Name: Companion
   DefaultColumn: Singular
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  - InnerDefinition: !!single_def
+      Name: Description{Enhanced}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Tooltip
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: SpecialAction{Name}
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: SpecialAction{Description}
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Attack
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Defense
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: Speed
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: HasAreaAttack
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: Strength{Gate}
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Strength{Eye}
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: Strength{Shield}
+    Index: 11
+  - InnerDefinition: !!single_def
+      Name: Strength{Arcana}
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: MinionSkillType
+      Converter: !!link_conv
+        TargetSheet: MinionSkillType
+    Index: 13
+  Name: CompanionTransient
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: CompanionMove
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: MinionRace
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: MinionSkillType
+  DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
