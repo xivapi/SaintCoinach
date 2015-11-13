@@ -34,6 +34,7 @@ namespace SaintCoinach.Text {
         Gui             = 0x12,
         Color           = 0x13,
         Unknown14       = 0x14,     // TODO
+        Unknown16       = 0x16,     // TODO
         Unknown17       = 0x17,     // TODO: Used exclusively in Japanese and at start of new lines.
         Emphasis2       = 0x19,     // TODO: See if this is bold, only used very little. 0x1A emphasis is italic.
         Emphasis        = 0x1A,
