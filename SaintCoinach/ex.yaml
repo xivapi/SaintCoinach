@@ -501,6 +501,9 @@
       Name: HP
     Index: 31
   - InnerDefinition: !!single_def
+      Name: Skill{Angle}
+    Index: 33
+  - InnerDefinition: !!single_def
       Name: Skill{Cost}
     Index: 34
   - InnerDefinition: !!single_def

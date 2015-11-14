@@ -28,6 +28,7 @@ namespace SaintCoinach.Xiv {
         public bool StrongVsArcana { get { return CompanionTransient.StrongVsArcana; } }
         public MinionSkillType SkillType { get { return CompanionTransient.SkillType; } }
         public byte SpecialActionCost { get { return As<byte>("Skill{Cost}"); } }
+        public UInt16 SpecialActionAngle {  get { return As<UInt16>("Skill{Angle}"); } }
         public MinionRace Race {  get { return As<MinionRace>(); } }
 
         public CompanionTransient CompanionTransient { get { return _CompanionTransient ?? (_CompanionTransient = BuildTransient()); } }
