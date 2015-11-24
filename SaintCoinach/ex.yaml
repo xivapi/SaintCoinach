@@ -20,7 +20,7 @@
       Name: Type
     Index: 7
   - InnerDefinition: !!repeat_def
-      RepeatCount: 8
+      RepeatCount: 9
       RepeatedDefinition: !!single_def
         Name: Data
     Index: 8
@@ -3423,6 +3423,12 @@
   - InnerDefinition: !!single_def
       Name: MpCostFactor<%>
     Index: 5
+  - InnerDefinition: !!single_def
+      Name: QuestExpModifier
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: HuntingLogExpReward
+    Index: 10
   - InnerDefinition: !!single_def
       Name: ExpToNext
   Name: ParamGrow
