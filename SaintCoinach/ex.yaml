@@ -2794,12 +2794,23 @@
         TargetSheet: PlaceName
     Index: 1474
   - InnerDefinition: !!single_def
+      Name: Other{Reward}
+      Converter: !!link_conv
+        TargetSheet: QuestRewardOther
+    Index: 1467
+  - InnerDefinition: !!single_def
       Name: JournalGenre
       Converter: !!link_conv
         TargetSheet: JournalGenre
     Index: 1475
   Name: Quest
   IsGenericReferenceTarget: True
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 1
+  Name: QuestRewardOther
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def

@@ -23,6 +23,7 @@ namespace SaintCoinach.Xiv {
         public GeneralAction GeneralAction { get { return Quest.As<GeneralAction>("GeneralAction{Reward}"); } }
         public InstanceContent InstanceContent { get { return Quest.As<InstanceContent>("InstanceContent{Unlock}"); } }
         public int Reputation { get { return Quest.AsInt32("ReputationReward"); } }
+        public QuestRewardOther QuestRewardOther { get { return Quest.As<QuestRewardOther>("Other{Reward}"); } }
         #endregion
 
         #region Constructors

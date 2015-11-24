@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
+    [Obsolete("Replaced by QuestRewardOther.")]
     public class AetherCurrent : XivRow, ILocatable {
         #region Fields
 

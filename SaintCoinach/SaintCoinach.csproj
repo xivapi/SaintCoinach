@@ -736,6 +736,7 @@
     <Compile Include="Xiv\QuestRewardGroupType.cs" />
     <Compile Include="Xiv\QuestRewardItem.cs" />
     <Compile Include="Xiv\QuestRewardItemGroup.cs" />
+    <Compile Include="Xiv\QuestRewardOther.cs" />
     <Compile Include="Xiv\QuestRewards.cs" />
     <Compile Include="Xiv\Race.cs" />
     <Compile Include="Xiv\RacingChocoboItem.cs" />
