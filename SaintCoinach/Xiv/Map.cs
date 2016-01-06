@@ -161,8 +161,18 @@ namespace SaintCoinach.Xiv {
             var result = new byte[aArgb.Length];
 
             for (var i = 0; i < aArgb.Length; i += BytesPerPixel) {
-                for (var j = 0; j < 3; ++j)     // Only blend RGB
-                    result[i + j] = (byte)((aArgb[i + j] * bArgb[i + j]) / 255);
+                // There are other algorithms that can do this with any alpha,
+                // but I haven't the time to research them now.
+                var bAlpha = bArgb[i + 3];
+                if (bAlpha == 0) {
+                    // Mask pixel is transparent, do not blend.
+                    result[i] = aArgb[i];
+                    result[i + 1] = aArgb[i + 1];
+                    result[i + 2] = aArgb[i + 2];
+                } else { 
+                    for (var j = 0; j < 3; ++j)     // Only blend RGB
+                        result[i + j] = (byte)((aArgb[i + j] * bArgb[i + j]) / 255);
+                }
                 result[i + 3] = aArgb[i + 3];  // Preserve alpha
             }
 
