@@ -2160,8 +2160,6 @@
           RepeatedDefinition: !!single_def
             Name: Unknown
     Index: 1261
-  - InnerDefinition: !!single_def
-      Name: Name
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!group_def
@@ -2192,6 +2190,8 @@
       Converter: !!link_conv
         TargetSheet: Quest
     Index: 1742
+  - InnerDefinition: !!single_def
+      Name: Name
   Name: SpecialShop
   IsGenericReferenceTarget: True
   DefaultColumn: Name
@@ -3440,15 +3440,6 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: Item
-          Converter: !!link_conv
-            TargetSheet: Item
-    Index: 1
-  - InnerDefinition: !!repeat_def
-      RepeatCount: 10
-      RepeatedDefinition: !!group_def
-        Members:
-        - !!single_def
           Name: Cost
     Index: 11
   - InnerDefinition: !!repeat_def
@@ -3460,6 +3451,15 @@
           Converter: !!link_conv
             TargetSheet: FCRank
     Index: 21
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Item
+          Converter: !!link_conv
+            TargetSheet: Item
+    Index: 1
   Name: FccShop
   IsGenericReferenceTarget: True
   DefaultColumn: Name
@@ -3717,7 +3717,6 @@
       Name: ClassJob
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 0
   - InnerDefinition: !!single_def
       Name: ItemLevel
     Index: 1
@@ -3754,4 +3753,4 @@
         TargetSheet: Item
     Index: 2
   Name: MasterpieceSupplyDuty
-Version: 2015.11.07.0000.0000
+Version: 2015.12.12.0000.0000
