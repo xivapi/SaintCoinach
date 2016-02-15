@@ -134,7 +134,12 @@ namespace SaintCoinach.Text {
             _TagDecoders.TryGetValue(tag, out decoder);
             var result = (decoder ?? DefaultTagDecoder)(input, tag, length);
             if (input.BaseStream.Position != end)
-                throw new InvalidOperationException();
+            {
+                // Triggered by two entries in LogMessage as of 3.15.
+                // Looks like a tag has some extra bits, as the end length is a proper TagEndMarker.
+                System.Diagnostics.Debug.WriteLine(string.Format("Position mismatch in XivStringDecoder.DecodeTag.  Position {0} != predicted {1}.", input.BaseStream.Position, end));
+                input.BaseStream.Position = end;
+            }
             if (input.ReadByte() != TagEndMarker)
                 throw new InvalidDataException();
             return result;
