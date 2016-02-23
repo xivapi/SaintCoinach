@@ -88,6 +88,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\AttachedImage.cs" />
     <Compile Include="Controls\ColumnFactory.cs" />
+    <Compile Include="Controls\INavigatable.cs" />
     <Compile Include="Controls\IRawDataColumn.cs" />
     <Compile Include="Controls\RawDataGrid.cs" />
     <Compile Include="Controls\RawDataGridColorColumn.cs" />

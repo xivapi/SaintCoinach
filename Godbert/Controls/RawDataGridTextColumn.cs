@@ -10,7 +10,7 @@ using System.ComponentModel;
 using SaintCoinach.Ex.Relational;
 
 namespace Godbert.Controls {
-    public class RawDataGridTextColumn : DataGridTextColumn, IRawDataColumn {
+    public class RawDataGridTextColumn : DataGridTextColumn, IRawDataColumn, INavigatable {
         private RelationalColumn _Column;
         private ContextMenu _ContextMenu;
 
@@ -40,6 +40,18 @@ namespace Godbert.Controls {
             System.Windows.Clipboard.SetDataObject(val.ToString());
         }
 
+        public IRelationalRow OnNavigate(object sender, RoutedEventArgs e) {
+            var fe = sender as FrameworkElement;
+            if (fe == null)
+                return null;
+
+            var ctx = fe.DataContext as IRelationalRow;
+            if (ctx == null)
+                return null;
+
+            return ctx[_Column.Index] as IRelationalRow;
+        }
+ 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem) {
             var ele = base.GenerateElement(cell, dataItem);
             ele.ContextMenu = _ContextMenu;

@@ -8,7 +8,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 
 using System.ComponentModel;
+using System.Windows.Input;
 using SaintCoinach.Ex.Relational;
+using Godbert.ViewModels;
 
 namespace Godbert.Controls {
     public class RawDataGrid : DataGrid {
@@ -52,6 +54,50 @@ namespace Godbert.Controls {
 
             var cmp = col.GetComparer(nextDir);
             src.Comparer = cmp;
+        }
+
+        protected override void OnMouseDoubleClick(MouseButtonEventArgs e) {
+            var source = e.OriginalSource as FrameworkElement;
+            if (source == null)
+                return;
+
+            var cell = FindParent<DataGridCell>(source);
+            if (cell == null)
+                return;
+
+            var navigatable = cell.Column as INavigatable;
+            if (navigatable == null)
+                return;
+
+            var mainWindow = FindParent<MainWindow>(cell);
+            if (mainWindow == null)
+                return;
+
+            var mainViewModel = mainWindow.DataContext as MainViewModel;
+            if (mainViewModel == null)
+                return;
+
+            var row = navigatable.OnNavigate(cell, e);
+            if (row == null)
+                return;
+
+            mainViewModel.Data.SelectedSheetName = row.Sheet.Name;
+
+            this.SelectedItem = row;
+            this.UpdateLayout();
+            this.ScrollIntoView(this.SelectedItem);
+        }
+
+        private static T FindParent<T>(DependencyObject child) where T : class {
+            var parent = System.Windows.Media.VisualTreeHelper.GetParent(child);
+            if (parent == null)
+                return null;
+
+            var parentAsType = parent as T;
+            if (parentAsType != null)
+                return parentAsType;
+
+            return FindParent<T>(parent);
         }
     }
 }
