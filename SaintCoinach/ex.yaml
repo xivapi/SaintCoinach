@@ -3637,20 +3637,20 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 3
+    Index: 2
   - InnerDefinition: !!repeat_def
       RepeatCount: 30
       RepeatedDefinition: !!single_def
         Name: Script{Instruction}
-    Index: 4
+    Index: 3
   - InnerDefinition: !!repeat_def
       RepeatCount: 30
       RepeatedDefinition: !!single_def
         Name: Script{Arg}
-    Index: 34
+    Index: 33
   - InnerDefinition: !!single_def
       Name: Text
-    Index: 67
+    Index: 66
   Name: CustomTalk
   IsGenericReferenceTarget: True
   DefaultColumn: Name
