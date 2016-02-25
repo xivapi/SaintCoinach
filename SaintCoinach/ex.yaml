@@ -3530,6 +3530,9 @@
       Name: Duration<min>
     Index: 7
   - InnerDefinition: !!single_def
+      Name: RequiredSurveillance
+    Index: 10
+  - InnerDefinition: !!single_def
       Name: ExpReward
     Index: 13
   Name: AirshipExplorationPoint
@@ -3745,4 +3748,19 @@
         TargetSheet: Item
     Index: 2
   Name: MasterpieceSupplyDuty
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 10
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: SpecialShop
+          Converter: !!link_conv
+            TargetSheet: SpecialShop
+    Index: 1
+  Name: TopicSelect
+  DefaultColumn: Name
+  IsGenericReferenceTarget: True
 Version: 2015.02.19.0000.0000
