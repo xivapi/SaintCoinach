@@ -92,8 +92,8 @@ namespace SaintCoinach.Xiv {
 
             public Listing(FccShop shop, Item rewardItem, Item costItem, int costCount, FCRank requiredFcRank) {
                 _Shop = shop;
-                _Cost = new ShopListingItem(this, costItem, costCount, false);
-                _Reward = new ShopListingItem(this, rewardItem, 1, false);
+                _Cost = new ShopListingItem(this, costItem, costCount, false, 0);
+                _Reward = new ShopListingItem(this, rewardItem, 1, false, 0);
             }
 
             public IEnumerable<IShopListingItem> Costs {

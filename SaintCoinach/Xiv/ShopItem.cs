@@ -62,7 +62,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
         public ShopItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) {
             _Cost = new ShopListingItem(this, Sheet.Collection.GetSheet<Item>()[GilItemKey],
-                (PriceFactor * Item.Ask) / 100, false);
+                (PriceFactor * Item.Ask) / 100, false, 0);
         }
 
         #endregion
@@ -133,6 +133,14 @@ namespace SaintCoinach.Xiv {
         ///     <c>false</c>
         /// </value>
         bool IShopListingItem.IsHq { get { return false; } }
+
+        /// <summary>
+        ///     Gets the collectability rating for the item.
+        /// </summary>
+        /// <value>
+        ///     <c>false</c>
+        /// </value>
+        int IShopListingItem.CollectabilityRating { get { return 0; } }
 
         /// <summary>
         ///     Gets the <see cref="IShopListing" /> the current entry is for.

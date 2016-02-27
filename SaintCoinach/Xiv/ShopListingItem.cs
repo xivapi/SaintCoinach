@@ -14,11 +14,13 @@ namespace SaintCoinach.Xiv {
         /// <param name="item">The item of the entry.</param>
         /// <param name="count">The count for the entry.</param>
         /// <param name="isHq">A value indicating whether the <c>item</c> is high-quality.</param>
-        public ShopListingItem(IShopListing shopItem, ItemBase item, int count, bool isHq) {
+        /// <param name="collectabilityRating">The collectability rating of the entry.</param>
+        public ShopListingItem(IShopListing shopItem, ItemBase item, int count, bool isHq, int collectabilityRating) {
             ShopItem = shopItem;
             Item = item;
             Count = count;
             IsHq = isHq;
+            CollectabilityRating = collectabilityRating;
         }
 
         #endregion
@@ -46,6 +48,12 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <value>A value indicating whether the item is high-quality.</value>
         public bool IsHq { get; private set; }
+
+        /// <summary>
+        ///     Gets the collectability rating for the item.
+        /// </summary>
+        /// <value>The collectability rating of the item.</value>
+        public int CollectabilityRating { get; private set; }
 
         /// <summary>
         ///     Returns a string that represents the current <see cref="ShopListingItem" />.

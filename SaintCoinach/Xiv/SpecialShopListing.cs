@@ -58,7 +58,7 @@ namespace SaintCoinach.Xiv {
 
                 var hq = shop.AsBoolean("HQ{Receive}", index, i);
 
-                rewards.Add(new ShopListingItem(this, item, count, hq));
+                rewards.Add(new ShopListingItem(this, item, count, hq, 0));
             }
             _Rewards = rewards.ToArray();
             Quest = shop.As<Quest>("Quest{Item}", index);
@@ -75,8 +75,9 @@ namespace SaintCoinach.Xiv {
                     continue;
 
                 var hq = shop.AsBoolean("HQ{Cost}", index, i);
+                var collectabilityRating = shop.AsInt16("CollectabilityRating{Cost}", index, i);
 
-                costs.Add(new ShopListingItem(this, item, count, hq));
+                costs.Add(new ShopListingItem(this, item, count, hq, collectabilityRating));
             }
             _Costs = costs.ToArray();
         }

@@ -26,7 +26,7 @@ namespace SaintCoinach.Xiv {
             if (GCShop == null) return;
 
             var sealItem = GCShop.GrandCompany.SealItem;
-            Cost = new ShopListingItem(this, sealItem, AsInt32("Cost"), false);
+            Cost = new ShopListingItem(this, sealItem, AsInt32("Cost"), false, 0);
         }
 
         #endregion
@@ -57,6 +57,8 @@ namespace SaintCoinach.Xiv {
         bool IShopListingItem.IsHq { get { return false; } }
 
         IShopListing IShopListingItem.ShopItem { get { return this; } }
+
+        int IShopListingItem.CollectabilityRating { get { return 0; } }
 
         #endregion
     }

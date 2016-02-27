@@ -2134,7 +2134,7 @@
         - !!repeat_def
           RepeatCount: 60
           RepeatedDefinition: !!single_def
-            Name: Unknown{Cost}
+            Name: CollectabilityRating{Cost}
     Index: 481
   - InnerDefinition: !!repeat_def
       RepeatCount: 60

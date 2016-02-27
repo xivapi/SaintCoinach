@@ -24,6 +24,11 @@
         bool IsHq { get; }
 
         /// <summary>
+        ///     Gets the collectability rating for the item.
+        /// </summary>
+        int CollectabilityRating { get; }
+
+        /// <summary>
         ///     Gets the <see cref="IShopListing" /> the current entry is for.
         /// </summary>
         /// <value>The <see cref="IShopListing" /> the current entry is for.</value>
