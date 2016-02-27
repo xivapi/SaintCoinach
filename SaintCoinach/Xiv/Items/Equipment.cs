@@ -133,6 +133,12 @@ namespace SaintCoinach.Xiv.Items {
         public int RequiredPvPRank { get { return AsInt32("PvPRank"); } }
 
         /// <summary>
+        ///     Gets the PvP indicator of the item.
+        /// </summary>
+        /// <value>True if the item is PvP equipment, false otherwise.</value>
+        public bool IsPvP { get { return AsBoolean("IsPvP"); } }
+
+        /// <summary>
         ///     Gets the model identifier used for the current item's primary model.
         /// </summary>
         /// <value>The model identifier used for the current item's primary model.</value>
@@ -155,6 +161,18 @@ namespace SaintCoinach.Xiv.Items {
                 else
                     return 0;
             }
+        }
+
+
+        /// <summary>
+        ///     Gets an indicator on whether advanced melding is allowed.
+        /// </summary>
+        /// <value>Whether advanced melding is allowed on the item.</value>
+        public bool IsAdvancedMeldingAllowed {
+            // There's no specific flag to my knowledge, but this appears to
+            // follow the rule that tradeable equipment with free slots is
+            // marked forbidden.
+            get { return FreeMateriaSlots > 0 && !IsUntradable; }
         }
         #endregion
 
