@@ -170,9 +170,9 @@ namespace SaintCoinach.Xiv.Items {
         /// <value>Whether advanced melding is allowed on the item.</value>
         public bool IsAdvancedMeldingAllowed {
             // There's no specific flag to my knowledge, but this appears to
-            // follow the rule that tradeable equipment with free slots is
-            // marked forbidden.
-            get { return FreeMateriaSlots > 0 && !IsUntradable; }
+            // follow the rule that non-pvp tradeable equipment with free slots
+            // is marked forbidden.
+            get { return FreeMateriaSlots > 0 && (IsPvP || !IsUntradable); }
         }
         #endregion
 
