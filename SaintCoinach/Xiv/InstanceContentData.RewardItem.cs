@@ -13,6 +13,7 @@ namespace SaintCoinach.Xiv {
             public Item Item { get; private set; }
             public bool HasRateCondition { get; private set; }
             public Quest RequiredQuest { get; private set; }
+            public bool HasWeekRestriction { get; private set; }
             #endregion
 
             #region Constructor
@@ -26,13 +27,16 @@ namespace SaintCoinach.Xiv {
 
                     switch (reader.Value.ToString()) {
                         case "has_rate_condition":
-                            ReadRateCondition(reader);
+                            this.HasRateCondition = ReadCondition(reader);
                             break;
                         case "Item":
                             ReadItem(reader, allItems);
                             break;
                         case "Quest":
                             ReadRequiredQuest(reader, allQuests);
+                            break;
+                        case "is_week_restriction_one":
+                            this.HasWeekRestriction = ReadCondition(reader);
                             break;
                         default:
                             Console.Error.WriteLine("Unknown 'InstanceContent.RewardItem' data key: {0}", reader.Value);
@@ -43,10 +47,10 @@ namespace SaintCoinach.Xiv {
             #endregion
 
             #region Read
-            private void ReadRateCondition(JsonReader reader) {
+            private bool ReadCondition(JsonReader reader) {
                 if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
                 var r = Convert.ToInt32(reader.Value);
-                this.HasRateCondition = (r != 0);
+                return r != 0;
             }
             private void ReadItem(JsonReader reader, IXivSheet<Item> allItems) {
                 if (!reader.Read()) throw new InvalidOperationException();

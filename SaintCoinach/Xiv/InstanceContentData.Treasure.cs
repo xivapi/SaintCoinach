@@ -12,7 +12,7 @@ namespace SaintCoinach.Xiv {
             #region Properties
             public IEnumerable<Item> Items { get; private set; }
             public bool HasWeeklyRestriction { get; private set; }
-            public System.Drawing.Point? Coordinates { get; private set; }
+            public System.Drawing.PointF? Coordinates { get; private set; }
             #endregion
 
             #region Constructor
@@ -70,15 +70,15 @@ namespace SaintCoinach.Xiv {
             private void ReadCoordinates(JsonReader reader) {
                 if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
 
-                if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-                var x = Convert.ToInt32(reader.Value);
-                if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-                var y = Convert.ToInt32(reader.Value);
+                if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
+                var x = float.Parse((string)reader.Value);
+                if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
+                var y = float.Parse((string)reader.Value);
 
                 if (x == 0 && y == 0)
                     this.Coordinates = null;
                 else
-                    this.Coordinates = new System.Drawing.Point(x, y);
+                    this.Coordinates = new System.Drawing.PointF(x, y);
 
                 if (!reader.Read() || reader.TokenType != JsonToken.EndArray) throw new InvalidOperationException();
             }

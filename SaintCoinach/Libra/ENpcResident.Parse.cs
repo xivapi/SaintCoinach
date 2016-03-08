@@ -11,7 +11,7 @@ namespace SaintCoinach.Libra {
     partial class ENpcResident {
         #region Fields
         private int[] _AsQuestClient;
-        private Tuple<int, System.Drawing.Point[]>[] _Coordinates;
+        private Tuple<int, System.Drawing.PointF[]>[] _Coordinates;
         private int[] _Quests;
         private Tuple<int, int[]>[] _Shops;
 
@@ -20,7 +20,7 @@ namespace SaintCoinach.Libra {
 
         #region Properties
         public IEnumerable<int> AsQuestClient { get { Parse(); return _AsQuestClient; } }
-        public IEnumerable<Tuple<int, System.Drawing.Point[]>> Coordinates { get { Parse(); return _Coordinates; } }
+        public IEnumerable<Tuple<int, System.Drawing.PointF[]>> Coordinates { get { Parse(); return _Coordinates; } }
         public IEnumerable<int> Quests { get { Parse(); return _Quests; } }
         public IEnumerable<Tuple<int, int[]>> Shops { get { Parse(); return _Shops; } }
         #endregion
@@ -64,7 +64,7 @@ namespace SaintCoinach.Libra {
             if (!reader.Read() || reader.TokenType != JsonToken.StartObject)
                 throw new InvalidOperationException();
 
-            var allCoord = new List<Tuple<int, System.Drawing.Point[]>>();
+            var allCoord = new List<Tuple<int, System.Drawing.PointF[]>>();
             while (reader.Read() && reader.TokenType != JsonToken.EndObject) {
                 if (reader.TokenType != JsonToken.PropertyName) throw new InvalidOperationException();
 
@@ -72,19 +72,19 @@ namespace SaintCoinach.Libra {
 
                 if (!reader.Read() || reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
 
-                var coordinates = new List<System.Drawing.Point>();
+                var coordinates = new List<System.Drawing.PointF>();
                 while (reader.Read() && reader.TokenType != JsonToken.EndArray) {
                     if (reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
 
-                    if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-                    var x = Convert.ToInt32(reader.Value);
+                    if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
+                    var x = float.Parse((string)reader.Value);
 
-                    if (!reader.Read() || reader.TokenType != JsonToken.Integer) throw new InvalidOperationException();
-                    var y = Convert.ToInt32(reader.Value);
+                    if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
+                    var y = float.Parse((string)reader.Value);
 
                     if (!reader.Read() || reader.TokenType != JsonToken.EndArray) throw new InvalidOperationException();
 
-                    coordinates.Add(new System.Drawing.Point(x, y));
+                    coordinates.Add(new System.Drawing.PointF(x, y));
                 }
 
                 allCoord.Add(Tuple.Create(key, coordinates.ToArray()));
