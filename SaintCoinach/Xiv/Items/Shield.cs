@@ -60,8 +60,8 @@ namespace SaintCoinach.Xiv.Items {
             var param = new ParameterCollection();
 
             // XXX: Here be magic numbers
-            const int BlockStrengthKey = 17;
-            const int BlockRateKey = 18;
+            const int BlockStrengthKey = 18;
+            const int BlockRateKey = 17;
 
             var paramSheet = Sheet.Collection.GetSheet<BaseParam>();
             if (BlockStrength != 0)
