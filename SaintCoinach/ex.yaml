@@ -654,8 +654,8 @@
           Name: HQ
     Index: 3
   Name: CraftLeve
-  IsGenericReferenceTarget: True
   DefaultColumn: Leve
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: CraftCrystalType{Primary}
@@ -1010,7 +1010,7 @@
         TargetSheet: GrandCompany
     Index: 2
   Name: GCShop
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -2084,8 +2084,8 @@
       Name: Name
     Index: 47
   Name: Shop
-  IsGenericReferenceTarget: True
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
@@ -2185,8 +2185,8 @@
   - InnerDefinition: !!single_def
       Name: Name
   Name: SpecialShop
-  IsGenericReferenceTarget: True
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -2796,8 +2796,8 @@
         TargetSheet: JournalGenre
     Index: 1477
   Name: Quest
-  IsGenericReferenceTarget: True
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -2948,7 +2948,7 @@
         TargetSheet: DefaultTalk
     Index: 24
   Name: TripleTriad
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -3453,8 +3453,8 @@
             TargetSheet: Item
     Index: 1
   Name: FccShop
-  IsGenericReferenceTarget: True
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: CompanyCraftDraftCategory
@@ -3655,29 +3655,29 @@
       Name: Text
     Index: 66
   Name: CustomTalk
-  IsGenericReferenceTarget: True
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: GuildleveAssignment
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: Warp
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: SwitchTalk
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: Story
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: ChocoboTaxiStand
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: GuildOrderGuide
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions: []
   Name: GuildOrderOfficer
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
@@ -3685,7 +3685,7 @@
         Name: Text
     Index: 20
   Name: DefaultTalk
-  IsGenericReferenceTarget: True
+  IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 8

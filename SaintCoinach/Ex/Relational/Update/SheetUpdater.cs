@@ -68,6 +68,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             _ChangeLog = new List<IChange>();
 
             _UpdatedDefinition.DefaultColumn = _PreviousDefinition.DefaultColumn;
+            _UpdatedDefinition.IsGenericReferenceTarget = _PreviousDefinition.IsGenericReferenceTarget;
 
             _Updaters = MatchRows().ToDictionary(_ => _, _ => _.GetMatches());
             _UsedColumns = new List<int>();
