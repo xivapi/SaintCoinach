@@ -3160,26 +3160,28 @@
   Name: GatheringType
   DefaultColumn: Name
 - DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: GatheringPointBonus
-      Converter: !!link_conv
-        TargetSheet: GatheringPointBonus
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!single_def
+        Name: GatheringPointBonus
+        Converter: !!link_conv
+          TargetSheet: GatheringPointBonus
     Index: 3
   - InnerDefinition: !!single_def
       Name: TerritoryType
       Converter: !!link_conv
         TargetSheet: TerritoryType
-    Index: 4
+    Index: 5
   - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 5
+    Index: 6
   - InnerDefinition: !!single_def
       Name: GatheringSubCategory
       Converter: !!link_conv
         TargetSheet: GatheringSubCategory
-    Index: 6
+    Index: 7
   - InnerDefinition: !!single_def
       Name: GatheringPointBase
       Converter: !!link_conv
@@ -3762,5 +3764,5 @@
     Index: 1
   Name: TopicSelect
   DefaultColumn: Name
-  IsGenericReferenceTarget: True
-Version: 2015.02.19.0000.0000
+  IsGenericReferenceTarget: true
+Version: 2016.03.09.0000.0000
