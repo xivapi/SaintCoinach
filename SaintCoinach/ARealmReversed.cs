@@ -232,7 +232,6 @@ namespace SaintCoinach {
                         fsDef = null;
 
                     if (fsDef != null && fsMod > zipMod) {
-                        fsDef.Version = GameVersion;
                         _GameData.Definition = fsDef;
                         StoreDefinition(zipFile, fsDef, DefinitionFile);
                         zipFile.Save();
