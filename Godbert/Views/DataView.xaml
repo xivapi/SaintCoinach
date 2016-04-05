@@ -46,6 +46,7 @@
         <ctrl:RawDataGrid Grid.Column="2"  Sheet="{Binding SelectedSheet}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True"
-                          CanUserSortColumns="True" />
+                          CanUserSortColumns="True"
+                          EnableColumnVirtualization="True" />
     </Grid>
 </UserControl>
