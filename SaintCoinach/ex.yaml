@@ -370,6 +370,11 @@
   - InnerDefinition: !!single_def
       Name: Name
     Index: 24
+  - InnerDefinition: !!single_def
+      Name: Item{SoulCrystal}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 38
   Name: ClassJob
   DefaultColumn: Name
 - DataDefinitions:
@@ -3765,4 +3770,4 @@
   Name: TopicSelect
   DefaultColumn: Name
   IsGenericReferenceTarget: true
-Version: 2016.03.25.0000.0000
+Version: 2016.04.11.0000.0000
