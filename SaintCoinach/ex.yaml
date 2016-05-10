@@ -3289,33 +3289,21 @@
     Index: 1
   - InnerDefinition: !!single_def
       Name: STR
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 4
   - InnerDefinition: !!single_def
       Name: DEX
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 5
   - InnerDefinition: !!single_def
       Name: VIT
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 6
   - InnerDefinition: !!single_def
       Name: INT
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 7
   - InnerDefinition: !!single_def
       Name: MND
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 8
   - InnerDefinition: !!single_def
       Name: PIE
-      Converter: !!link_conv
-        TargetSheet: Item
     Index: 9
   Name: Tribe
   DefaultColumn: Feminine
