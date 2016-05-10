@@ -3658,7 +3658,21 @@
 - DataDefinitions: []
   Name: Warp
   IsGenericReferenceTarget: true
-- DataDefinitions: []
+- DataDefinitions:
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 15
+      RepeatedDefinition: !!single_def
+        Name: Quest
+        Converter: !!link_conv
+          TargetSheet: Quest
+    Index: 2
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 16
+      RepeatedDefinition: !!single_def
+        Name: DefaultTalk
+        Converter: !!link_conv
+          TargetSheet: DefaultTalk
+    Index: 17
   Name: SwitchTalk
   IsGenericReferenceTarget: true
 - DataDefinitions: []
