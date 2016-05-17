@@ -3772,4 +3772,25 @@
   Name: TopicSelect
   DefaultColumn: Name
   IsGenericReferenceTarget: true
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: Map
+      Converter: !!link_conv
+        TargetSheet: Map
+    Index: 18
+  Name: Aetheryte
+  DefaultColumn: PlaceName
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 1
+  Name: Aethernet
+  DefaultColumn: PlaceName
 Version: 2016.04.11.0000.0000
