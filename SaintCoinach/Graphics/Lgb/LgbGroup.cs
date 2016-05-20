@@ -43,21 +43,26 @@ namespace SaintCoinach.Graphics.Lgb {
             Entries = new ILgbEntry[Header.EntryCount];
             for(var i = 0; i < Header.EntryCount; ++i) {
                 var entryOffset = entriesOffset + BitConverter.ToInt32(buffer, entriesOffset + i * 4);
-                
-                var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
-                switch (type) {
-                    case LgbEntryType.Model:
-                        Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
-                        break;
-                    case LgbEntryType.Gimmick:
-                        Entries[i] = new LgbGimmickEntry(Parent.File.Pack.Collection, buffer, entryOffset);
-                        break;
-                    default:
-                        //System.Diagnostics.Trace.WriteLine(string.Format("{0}: Type {1} at 0x{2:X} in {3}", Parent.File.Path, type, entryOffset, Name));
-                        break;
-                        // TODO: Work out other parts.
+
+                try {
+                    var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
+                    switch (type) {
+                        case LgbEntryType.Model:
+                            Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
+                        case LgbEntryType.Gimmick:
+                            Entries[i] = new LgbGimmickEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
+                        default:
+                            //System.Diagnostics.Trace.WriteLine(string.Format("{0}: Type {1} at 0x{2:X} in {3}", Parent.File.Path, type, entryOffset, Name));
+                            break;
+                            // TODO: Work out other parts.
+                    }
+                } catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
                 }
             }
+
         }
         #endregion
     }
