@@ -20,7 +20,7 @@ namespace Godbert.ViewModels {
         public EquipmentViewModel Equipment { get; private set; }
         public FurnitureViewModel Furniture { get; private set; }
         public MonstersViewModel Monsters { get; private set; }
-        public MapsViewModel Maps { get; private set; }
+        public TerritoryViewModel Territories { get; private set; }
         public DemihumanViewModel Demihuman { get; private set; }
         public DataViewModel Data { get; private set; }
 
@@ -39,7 +39,7 @@ namespace Godbert.ViewModels {
             Equipment = new EquipmentViewModel(this);
             Furniture = new FurnitureViewModel(this);
             Monsters = new MonstersViewModel(this);
-            Maps = new MapsViewModel(this);
+            Territories = new TerritoryViewModel(this);
             Demihuman = new DemihumanViewModel(this);
             Data = new DataViewModel(Realm);
         }
@@ -61,7 +61,7 @@ namespace Godbert.ViewModels {
             OnPropertyChanged(() => IsFrench);
 
             Equipment.Refresh();
-            Maps.Refresh();
+            Territories.Refresh();
         }
 
         private void OnGameLocation() {

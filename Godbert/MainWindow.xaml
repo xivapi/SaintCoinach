@@ -45,8 +45,8 @@
                     <TabItem Header="Monsters" DataContext="{Binding Monsters}">
                         <views:MonstersView />
                     </TabItem>
-                    <TabItem Header="Maps" DataContext="{Binding Maps}">
-                        <views:MapsView />
+                    <TabItem Header="Territories" DataContext="{Binding Territories}">
+                        <views:TerritoryView />
                     </TabItem>
                     <TabItem Header="Demi-humans" DataContext="{Binding Demihuman}">
                         <views:DemihumansView />

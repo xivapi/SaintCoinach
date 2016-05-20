@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\EquipmentViewModel.cs" />
     <Compile Include="ViewModels\FurnitureViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TerritoryViewModel.cs" />
     <Compile Include="ViewModels\MapsViewModel.cs" />
     <Compile Include="Models\ModelCharaHierarchy.cs" />
     <Compile Include="Models\ModelCharaMain.cs" />
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="Views\MonstersView.xaml.cs">
       <DependentUpon>MonstersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TerritoryView.xaml.cs">
+      <DependentUpon>TerritoryView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MonstersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TerritoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

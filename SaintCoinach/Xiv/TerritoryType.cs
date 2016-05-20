@@ -81,6 +81,18 @@ namespace SaintCoinach.Xiv {
         public PlaceName PlaceName { get { return As<PlaceName>("PlaceName"); } }
 
         /// <summary>
+        ///     Gets the <see cref="PlaceName" /> of the region the current map is in.
+        /// </summary>
+        /// <value>The <see cref="PlaceName" /> of the region the current map is in.</value>
+        public PlaceName RegionPlaceName { get { return As<PlaceName>("PlaceName{Region}"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="PlaceName" /> of the zone the current territory is in.
+        /// </summary>
+        /// <value>The <see cref="PlaceName" /> of the zone the current territory is in.</value>
+        public PlaceName ZonePlaceName { get { return As<PlaceName>("PlaceName{Zone}"); } }
+
+        /// <summary>
         ///     Gets the <see cref="WeatherRate" /> of the current territory.
         /// </summary>
         /// <value>The <see cref="WeatherRate" /> of the current territory.</value>
