@@ -77,7 +77,9 @@ namespace SaintCoinach.Xiv.Sheets {
                 3240, typeof(IA.EternalBondInvitation)
             }, {
                 3292, typeof(IA.ChocoboLevelCapIncrease)
-            }
+            }, {
+                3357, typeof(IA.TripleTriadCardUnlock)
+            } 
         };
 
         #endregion

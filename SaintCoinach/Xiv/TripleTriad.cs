@@ -86,7 +86,7 @@ namespace SaintCoinach.Xiv {
             var quests = new List<Quest>();
             for (var i = 0; i < Count; ++i) {
                 var q = As<Quest>("PreviousQuest", i);
-                if (q.Key != 0)
+                if (q != null && q.Key != 0)
                     quests.Add(q);
             }
 
