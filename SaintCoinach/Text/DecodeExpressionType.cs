@@ -11,6 +11,7 @@ namespace SaintCoinach.Text {
         LessThanOrEqualTo = 0xE2,       // Followed by two variables
         NotEqual = 0xE3,                // Followed by one variable
         Equal = 0xE4,                   // Followed by two variables
+        UnknownComparisonE5 = 0xE5,     // Followed by two variables
 
         // TODO: I /think/ I got these right.
         IntegerParameter = 0xE8,        // Followed by one variable

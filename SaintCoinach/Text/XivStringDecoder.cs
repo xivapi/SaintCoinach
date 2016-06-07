@@ -204,6 +204,7 @@ namespace SaintCoinach.Text {
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int32));
                 case DecodeExpressionType.GreaterThanOrEqualTo:
                 case DecodeExpressionType.UnknownComparisonE1:
+                case DecodeExpressionType.UnknownComparisonE5:
                 case DecodeExpressionType.LessThanOrEqualTo:
                 case DecodeExpressionType.NotEqual:
                 case DecodeExpressionType.Equal: {
