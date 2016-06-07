@@ -33,56 +33,6 @@ namespace SaintCoinach.Xiv {
         public virtual bool IsInDutyFinder { get { return AsBoolean("IsInDutyFinder"); } }
 
         /// <summary>
-        /// Gets the item level required to enter the current content.
-        /// </summary>
-        /// <value>The item level required to enter the current content.</value>
-        public virtual int RequiredItemLevel { get { return AsInt32("ItemLevel{Required}"); } }
-
-        /// <summary>
-        /// Gets the maximum number of players allowed per party to register for the current content.
-        /// </summary>
-        /// <value>The maximum number of players allowed per party to register for the current content.</value>
-        public virtual int PlayersPerParty { get { return AsInt32("PlayersPerParty"); } }
-
-        /// <summary>
-        /// Gets the number of tanks per party.
-        /// </summary>
-        /// <value>The number of tanks per party.</value>
-        /// <remarks>
-        /// This value is only relevant when registering without a complete preformed party, or for specific content (i.e. Wolves' Den).
-        /// </remarks>
-        public virtual int TanksPerParty { get { return AsInt32("TanksPerParty"); } }
-
-        /// <summary>
-        /// Gets the number of healers per party.
-        /// </summary>
-        /// <value>The number of healers per party.</value>
-        /// <remarks>
-        /// This value is only relevant when registering without a complete preformed party, or for specific content (i.e. Wolves' Den).
-        /// </remarks>
-        public virtual int HealersPerParty { get { return AsInt32("HealersPerParty"); } }
-
-        /// <summary>
-        /// Gets the number of melee DDs per party.
-        /// </summary>
-        /// <value>The number of melee DDs per party.</value>
-        /// <remarks>
-        /// This value is only relevant when registering without a complete preformed party, or for specific content (i.e. Wolves' Den).
-        /// For most content this and the value of <see cref="RangedPerParty"/> are counted as one total for DDs of any type.
-        /// </remarks>
-        public virtual int MeleesPerParty { get { return AsInt32("MeleesPerParty"); } }
-
-        /// <summary>
-        /// Gets the number of ranged DDs per party.
-        /// </summary>
-        /// <value>The number of ranged DDs per party.</value>
-        /// <remarks>
-        /// This value is only relevant when registering without a complete preformed party, or for specific content (i.e. Wolves' Den).
-        /// For most content this and the value of <see cref="MeleesPerParty"/> are counted as one total for DDs of any type.
-        /// </remarks>
-        public virtual int RangedPerParty { get { return AsInt32("RangedPerParty"); } }
-
-        /// <summary>
         /// Gets the icon for the current content.
         /// </summary>
         /// <value>The icon for the current content.</value>

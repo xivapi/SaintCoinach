@@ -25,22 +25,10 @@ namespace SaintCoinach.Xiv {
         public InstanceContentType InstanceContentType { get { return As<InstanceContentType>(); } }
 
         /// <summary>
-        /// Gets the <see cref="ContentRoulette"/> the current content is in.
-        /// </summary>
-        /// <value>The <see cref="ContentRoulette"/> the current content is in.</value>
-        public ContentRoulette ContentRoulette { get { return As<ContentRoulette>(); } }
-
-        /// <summary>
         /// Gets the time limit to complete the current content.
         /// </summary>
         /// <value>The time limit to complete the current content.</value>
         public TimeSpan TimeLimit { get { return TimeSpan.FromMinutes(AsInt32("TimeLimit{min}")); } }
-
-        /// <summary>
-        /// Gets the minimum level required for the current content.
-        /// </summary>
-        /// <value>The minimum level required for the current content.</value>
-        public int Level { get { return AsInt32("Level"); } }
 
         /// <summary>
         /// Gets the maximum level for the current content.

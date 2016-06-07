@@ -81,6 +81,8 @@
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Xiv\CompanionTransient.cs" />
+    <Compile Include="Xiv\ContentFinderCondition.cs" />
+    <Compile Include="Xiv\ContentMemberType.cs" />
     <Compile Include="Xiv\ItemActions\TripleTriadCardUnlock.cs" />
     <Compile Include="Xiv\MinionRace.cs" />
     <Compile Include="Xiv\MinionSkillType.cs" />

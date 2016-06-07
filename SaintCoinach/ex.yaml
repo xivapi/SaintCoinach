@@ -2370,6 +2370,47 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: LegacyIndicator
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: InstanceContent
+      Converter: !!link_conv
+        TargetSheet: InstanceContent
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: ContentRoulette
+      Converter: !!link_conv
+        TargetSheet: ContentRoulette
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: ContentMemberType
+      Converter: !!link_conv
+        TargetSheet: ContentMemberType
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Level
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: ItemLevel{Required}
+    Index: 9
+  Name: ContentFinderCondition
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: TanksPerParty
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: HealersPerParty
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: MeleesPerParty
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: RangedPerParty
+    Index: 9
+  Name: ContentMemberType
+  DefaultColumn: InstanceContent
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Description
   Name: ContentDescription
 - DataDefinitions:
@@ -2430,11 +2471,10 @@
       Name: ItemLevel{Required}
     Index: 7
   - InnerDefinition: !!single_def
-      Name: PlayersPerParty
+      Name: ContentMemberType
+      Converter: !!link_conv
+        TargetSheet: ContentMemberType
     Index: 15
-  - InnerDefinition: !!single_def
-      Name: TanksPerParty
-    Index: 3
   Name: ContentRoulette
   DefaultColumn: Name
 - DataDefinitions:

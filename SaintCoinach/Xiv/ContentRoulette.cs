@@ -32,6 +32,8 @@ namespace SaintCoinach.Xiv {
         /// <value>The numeric order of the current roulette.</value>
         public int SortKey { get { return AsInt32("SortKey"); } }
 
+        public virtual ContentMemberType ContentMemberType { get { return As<ContentMemberType>(); } }
+
         /// <summary>
         /// Gets the rewards received upon completing the current content.
         /// </summary>
