@@ -97,6 +97,12 @@ namespace SaintCoinach.Xiv.Items {
         public int FreeMateriaSlots { get { return AsInt32("MateriaSlotCount"); } }
 
         /// <summary>
+        ///     Gets a value indicating whether the current item can have materia melded with advanced melding.
+        /// </summary>
+        /// <value>A value indicating whether the current item can have materia melded with advanced melding.</value>
+        public bool IsAdvancedMeldingPermitted { get { return AsBoolean("IsAdvancedMeldingPermitted"); } }
+
+        /// <summary>
         ///     Gets the <see cref="ClassJob" /> required to repair the current item.
         /// </summary>
         /// <value>The <see cref="ClassJob" /> required to repair the current item.</value>
@@ -163,17 +169,6 @@ namespace SaintCoinach.Xiv.Items {
             }
         }
 
-
-        /// <summary>
-        ///     Gets an indicator on whether advanced melding is allowed.
-        /// </summary>
-        /// <value>Whether advanced melding is allowed on the item.</value>
-        public bool IsAdvancedMeldingAllowed {
-            // There's no specific flag to my knowledge, but this appears to
-            // follow the rule that non-pvp tradeable equipment with free slots
-            // is marked forbidden.
-            get { return FreeMateriaSlots > 0 && (IsPvP || !IsUntradable); }
-        }
         #endregion
 
         #region Constructors

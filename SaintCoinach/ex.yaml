@@ -1212,6 +1212,9 @@
       Name: MateriaSlotCount
     Index: 25
   - InnerDefinition: !!single_def
+      Name: IsAdvancedMeldingPermitted
+    Index: 26
+  - InnerDefinition: !!single_def
       Name: EquipSlotCategory
       Converter: !!link_conv
         TargetSheet: EquipSlotCategory
