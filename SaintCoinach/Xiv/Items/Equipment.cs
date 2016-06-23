@@ -162,10 +162,11 @@ namespace SaintCoinach.Xiv.Items {
         /// <value>The number of Grand Company seals.</value>
         public int ExpertDeliverySeals {
             get {
-                if (Rarity > 1 && As<byte>("GCTurnIn") > 0)
-                    return (int)Math.Round(5.75 * ItemLevel.Key, MidpointRounding.AwayFromZero);
-                else
+                if (Rarity <= 1 || As<byte>("GCTurnIn") <= 0)
                     return 0;
+
+                var multiplier = ItemLevel.Key < 210 ? 5.75m : 5.49m;
+                return (int)Math.Round(multiplier * ItemLevel.Key, MidpointRounding.AwayFromZero);
             }
         }
 
