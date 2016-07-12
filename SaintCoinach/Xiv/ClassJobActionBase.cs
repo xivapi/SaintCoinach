@@ -26,7 +26,7 @@ namespace SaintCoinach.Xiv {
                 return 0;
             var paramGrow = paramGrowSheet[level];
 
-            return (int)Math.Round(paramGrow.MpCostFactor * Cost, MidpointRounding.AwayFromZero);
+            return (int)(paramGrow.MpCostFactor * Cost);
         }
         #endregion
     }
