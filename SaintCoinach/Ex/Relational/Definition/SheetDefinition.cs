@@ -38,6 +38,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
             _ColumnIndexToNameMap = new Dictionary<int, string>();
             _ColumnValueTypeNames = new Dictionary<int, string>();
             _ColumnValueTypes = new Dictionary<int, Type>();
+            DataDefinitions = DataDefinitions.OrderBy(d => d.Index).ToList();
             foreach (var def in DataDefinitions) {
                 for (var i = 0; i < def.Length; ++i) {
                     var offset = def.Index + i;
