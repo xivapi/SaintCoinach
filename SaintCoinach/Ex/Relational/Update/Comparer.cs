@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaintCoinach.Xiv;
+using System;
 
 namespace SaintCoinach.Ex.Relational.Update {
     static partial class Comparer {
@@ -17,6 +18,9 @@ namespace SaintCoinach.Ex.Relational.Update {
 
                 return d1 == d2;
             }
+
+            if (v1 is Quad && v2 is Quad)
+                return Equals(v1, v2);
 
             string s1 = null, s2 = null;
 
