@@ -3649,6 +3649,13 @@
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
+        Name: ActionTimeline{Pose}
+        Converter: !!link_conv
+          TargetSheet: ActionTimeline
+    Index: 5
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 3
+      RepeatedDefinition: !!single_def
         Name: Text
     Index: 20
   Name: DefaultTalk
