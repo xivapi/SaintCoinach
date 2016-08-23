@@ -3744,6 +3744,22 @@
         TargetSheet: PlaceName
     Index: 8
   - InnerDefinition: !!single_def
+      Name: AethernetName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Territory
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 11
+  - InnerDefinition: !!single_def
+      Name: IsAetheryte
+    Index: 16
+  - InnerDefinition: !!single_def
+      Name: AethernetGroup
+    Index: 17	
+  - InnerDefinition: !!single_def
       Name: Map
       Converter: !!link_conv
         TargetSheet: Map
