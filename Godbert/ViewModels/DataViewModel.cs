@@ -16,13 +16,16 @@ namespace Godbert.ViewModels {
         private string _SelectedSheetName;
         private IRelationalSheet _SelectedSheet;
         private DelegateCommand _ExportCsvCommand;
+        private string _FilterTerm;
+        private IEnumerable<string> _FilteredSheets;
         #endregion
 
         #region Properties
         public ICommand ExportCsvCommand { get { return _ExportCsvCommand ?? (_ExportCsvCommand = new DelegateCommand(OnExportCsv)); } }
         public SaintCoinach.ARealmReversed Realm { get; private set; }
 
-        public IEnumerable<string> AvailableSheetNames { get { return Realm.GameData.AvailableSheets; } }
+        public IEnumerable<string> FilteredSheetNames { get { return _FilteredSheets; } }
+
         public string SelectedSheetName {
             get { return _SelectedSheetName; }
             set {
@@ -41,11 +44,29 @@ namespace Godbert.ViewModels {
                 return _SelectedSheet;
             }
         }
+        public string FilterTerm
+        {
+            get { return _FilterTerm; }
+            set
+            {
+                _FilterTerm = value;
+
+                if (string.IsNullOrWhiteSpace(value))
+                    _FilteredSheets = Realm.GameData.AvailableSheets;
+                else
+                    _FilteredSheets = Realm.GameData.AvailableSheets.Where(s => s.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
+
+                OnPropertyChanged(() => FilterTerm);
+                OnPropertyChanged(() => FilteredSheetNames);
+            }
+        }
         #endregion
 
         #region Constructor
         public DataViewModel(SaintCoinach.ARealmReversed realm) {
             this.Realm = realm;
+
+            _FilteredSheets = Realm.GameData.AvailableSheets;
         }
         #endregion
 

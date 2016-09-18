@@ -32,10 +32,14 @@
                   Grid.Column="0"
                   ExpandDirection="Right"
                   IsExpanded="True">
-            <ListBox ItemsSource="{Binding AvailableSheetNames}"
-                     SelectedItem="{Binding SelectedSheetName, Mode=TwoWay}"
-                     HorizontalAlignment="Stretch"
-                     ContextMenu="{StaticResource SheetListContextMenu}"/>
+            <DockPanel LastChildFill="True">
+                <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
+                    DockPanel.Dock="Top" Margin="0,0,0,2"></TextBox>
+                <ListBox ItemsSource="{Binding FilteredSheetNames}"
+                         SelectedItem="{Binding SelectedSheetName, Mode=TwoWay}"
+                         HorizontalAlignment="Stretch"
+                         ContextMenu="{StaticResource SheetListContextMenu}"/>
+            </DockPanel>
         </Expander>
 
         <GridSplitter Width="4" Grid.Column="1"
