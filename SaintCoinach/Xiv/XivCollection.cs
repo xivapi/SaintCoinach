@@ -290,7 +290,9 @@ namespace SaintCoinach.Xiv {
 
             var search = "Xiv." + sheetName.Replace('/', '.');
             var targetType = typeof(IXivRow);
-            return allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+            match = allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
+            _SheetNameToTypeMap[sheetName] = match; // Record failed matches too.
+            return match;
         }
 
         private void BuildSheetToTypeMap() {
