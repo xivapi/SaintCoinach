@@ -9,17 +9,24 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #region Fields
 
         private ICollection<IDataDefinition> _Members = new List<IDataDefinition>();
+        private int _Length;
 
         #endregion
 
         #region Properties
 
-        public ICollection<IDataDefinition> Members { get { return _Members; } internal set { _Members = value; } }
+        public ICollection<IDataDefinition> Members {
+            get { return _Members; }
+            internal set {
+                _Members = value;
+                _Length = _Members.Sum(_ => _.Length);
+            }
+        }
 
         #endregion
 
         [YamlIgnore]
-        public int Length { get { return _Members.Sum(_ => _.Length); } }
+        public int Length { get { return _Length; } }
 
         public IDataDefinition Clone() {
             var clone = new GroupDataDefinition();
