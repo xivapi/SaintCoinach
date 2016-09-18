@@ -14,8 +14,7 @@ namespace SaintCoinach.Ex {
 
         private readonly Dictionary<int, string> _SheetIdentifiers = new Dictionary<int, string>();
 
-        private readonly Dictionary<string, WeakReference<ISheet>> _Sheets =
-            new Dictionary<string, WeakReference<ISheet>>();
+        private readonly Dictionary<string, ISheet> _Sheets = new Dictionary<string, ISheet>();
 
         private HashSet<string> _AvailableSheets;
 
@@ -110,8 +109,7 @@ namespace SaintCoinach.Ex {
                 throw new KeyNotFoundException();
 
             ISheet sheet;
-            WeakReference<ISheet> sheetRef;
-            if (_Sheets.TryGetValue(name, out sheetRef) && sheetRef.TryGetTarget(out sheet)) return sheet;
+            if (_Sheets.TryGetValue(name, out sheet)) return sheet;
 
             var exhPath = string.Format(ExHPathFormat, name);
             var exh = PackCollection.GetFile(exhPath);
@@ -119,10 +117,7 @@ namespace SaintCoinach.Ex {
             var header = CreateHeader(name, exh);
             sheet = CreateSheet(header);
 
-            if (_Sheets.ContainsKey(name))
-                _Sheets[name].SetTarget(sheet);
-            else
-                _Sheets.Add(name, new WeakReference<ISheet>(sheet));
+            _Sheets[name] = sheet;
             return sheet;
         }
 
