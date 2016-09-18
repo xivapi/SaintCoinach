@@ -33,8 +33,9 @@
                   ExpandDirection="Right"
                   IsExpanded="True">
             <DockPanel LastChildFill="True">
-                <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
-                    DockPanel.Dock="Top" Margin="0,0,0,2"></TextBox>
+                <TextBox Text="{Binding Path=FilterSheetTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
+                         DockPanel.Dock="Top"
+                         Margin="0,0,0,2"></TextBox>
                 <ListBox ItemsSource="{Binding FilteredSheetNames}"
                          SelectedItem="{Binding SelectedSheetName, Mode=TwoWay}"
                          HorizontalAlignment="Stretch"
@@ -47,10 +48,17 @@
                       HorizontalAlignment="Center" VerticalAlignment="Stretch"
                       ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" />
 
-        <ctrl:RawDataGrid Grid.Column="2"  Sheet="{Binding SelectedSheet}"
-                          AutoGenerateColumns="False"
-                          IsReadOnly="True"
-                          CanUserSortColumns="True"
-                          EnableColumnVirtualization="True" />
+        <DockPanel Grid.Column="2" LastChildFill="True">
+            <TextBox Text="{Binding Path=FilterDataTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
+                         DockPanel.Dock="Top"
+                         Margin="0,0,0,2"></TextBox>
+
+            <ctrl:RawDataGrid Sheet="{Binding SelectedSheet}"
+                              Filter="{Binding FilterDataTerm}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserSortColumns="True"
+                              EnableColumnVirtualization="True" />
+        </DockPanel>
     </Grid>
 </UserControl>

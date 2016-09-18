@@ -16,8 +16,9 @@ namespace Godbert.ViewModels {
         private string _SelectedSheetName;
         private IRelationalSheet _SelectedSheet;
         private DelegateCommand _ExportCsvCommand;
-        private string _FilterTerm;
+        private string _FilterSheetTerm;
         private IEnumerable<string> _FilteredSheets;
+        private string _FilterDataTerm;
         #endregion
 
         #region Properties
@@ -44,20 +45,31 @@ namespace Godbert.ViewModels {
                 return _SelectedSheet;
             }
         }
-        public string FilterTerm
+        public string FilterSheetTerm
         {
-            get { return _FilterTerm; }
+            get { return _FilterSheetTerm; }
             set
             {
-                _FilterTerm = value;
+                _FilterSheetTerm = value;
 
                 if (string.IsNullOrWhiteSpace(value))
                     _FilteredSheets = Realm.GameData.AvailableSheets;
                 else
                     _FilteredSheets = Realm.GameData.AvailableSheets.Where(s => s.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
 
-                OnPropertyChanged(() => FilterTerm);
+                OnPropertyChanged(() => FilterSheetTerm);
                 OnPropertyChanged(() => FilteredSheetNames);
+            }
+        }
+
+        public string FilterDataTerm
+        {
+            get { return _FilterDataTerm; }
+            set
+            {
+                _FilterDataTerm = value;
+
+                OnPropertyChanged(() => FilterDataTerm);
             }
         }
         #endregion

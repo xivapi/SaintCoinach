@@ -15,6 +15,7 @@ namespace Godbert.Controls {
         private IRelationalSheet _Sheet;
         private IComparer<object> _Comparer;
         private object[] _Items;
+        private Func<object, bool> _Filter;
         #endregion
 
         #region Properties
@@ -23,17 +24,32 @@ namespace Godbert.Controls {
             set {
                 _Comparer = value;
                 _Items = null;
-                var h = CollectionChanged;
-                if (h != null)
-                    h(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
+        }
+        public Func<object, bool> Filter {
+            get { return _Filter; }
+            set {
+                _Filter = value;
+                _Items = null;
+                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
         public IEnumerable Items {
             get {
-                if (Comparer == null)
+                if (_Comparer == null && _Filter == null)
                     return _Sheet;
-                if (_Items == null)
-                    _Items = _Sheet.Cast<object>().OrderBy(o => o, Comparer).ToArray();
+
+                if (_Items == null) {
+                    IEnumerable<object> results = _Sheet.Cast<object>();
+
+                    if (_Filter != null)
+                        results = results.Where(_Filter);
+                    if (_Comparer != null)
+                        results = results.OrderBy(o => o, Comparer);
+
+                    _Items = results.ToArray();
+                }
                 return _Items;
             }
         }

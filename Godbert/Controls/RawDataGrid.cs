@@ -11,15 +11,23 @@ using System.ComponentModel;
 using System.Windows.Input;
 using SaintCoinach.Ex.Relational;
 using Godbert.ViewModels;
+using SaintCoinach.Xiv;
+using System.Collections;
 
 namespace Godbert.Controls {
     public class RawDataGrid : DataGrid {
         #region DependencyProperties
         public static readonly DependencyProperty SheetProperty = DependencyProperty.Register("Sheet", typeof(IRelationalSheet), typeof(RawDataGrid), new PropertyMetadata(OnSheetChanged));
+        public static readonly DependencyProperty FilterProperty = DependencyProperty.Register("Filter", typeof(string), typeof(RawDataGrid), new PropertyMetadata(OnFilterChanged));
 
         public IRelationalSheet Sheet {
             get { return (IRelationalSheet)GetValue(SheetProperty); }
             set { SetValue(SheetProperty, value); }
+        }
+
+        public string Filter {
+            get { return (string)GetValue(FilterProperty); }
+            set { SetValue(FilterProperty, value); }
         }
 
         private static void OnSheetChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
@@ -36,11 +44,48 @@ namespace Godbert.Controls {
                 foreach (var col in newValue.Header.Columns)
                     Columns.Add(ColumnFactory.Create(col));
 
-                this.ItemsSource = new RawDataItemsSource(newValue);
+                var source = new RawDataItemsSource(newValue);
+                if (Filter != null)
+                    source.Filter = o => FilterMatch(o, Filter);
+                this.ItemsSource = source;
             }
             else
                 this.ItemsSource = null;
+        }
 
+        private static void OnFilterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
+            ((RawDataGrid)o).OnFilterChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual void OnFilterChanged(string oldValue, string newValue) {
+            var src = this.ItemsSource as RawDataItemsSource;
+            if (src == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(newValue))
+                src.Filter = null;
+            else
+                src.Filter = o => FilterMatch(o, newValue);
+        }
+
+        private static bool FilterMatch(object rowObj, string value) {
+            var row = rowObj as IXivRow;
+            if (row == null)
+                return false;
+
+            if (row.Key.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0)
+                return true;
+
+            foreach (var col in row.Sheet.Header.Columns) {
+                var cellObj = row[col.Index];
+                if (cellObj == null)
+                    continue;
+
+                if (cellObj.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+            }
+
+            return false;
         }
         #endregion
 
