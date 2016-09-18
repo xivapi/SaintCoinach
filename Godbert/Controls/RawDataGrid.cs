@@ -29,14 +29,18 @@ namespace Godbert.Controls {
         protected virtual void OnSheetChanged(IRelationalSheet oldValue, IRelationalSheet newValue) {
             this.Columns.Clear();
 
-            if (newValue != null) {
+            if (newValue != null)
+            {
                 Columns.Add(new RawDataGridKeyColumn() { CanUserSort = true });
 
                 foreach (var col in newValue.Header.Columns)
                     Columns.Add(ColumnFactory.Create(col));
-            }
 
-            this.ItemsSource = new RawDataItemsSource(newValue);
+                this.ItemsSource = new RawDataItemsSource(newValue);
+            }
+            else
+                this.ItemsSource = null;
+
         }
         #endregion
 

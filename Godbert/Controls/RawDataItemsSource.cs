@@ -54,10 +54,7 @@ namespace Godbert.Controls {
         #region IEnumerable Members
 
         public IEnumerator GetEnumerator() {
-            var items = Items;
-            if (items == null)
-                return (new object[0]).GetEnumerator();
-            return items.GetEnumerator();
+            return Items.GetEnumerator();
         }
 
         #endregion
