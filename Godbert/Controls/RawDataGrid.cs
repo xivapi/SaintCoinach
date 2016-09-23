@@ -134,7 +134,9 @@ namespace Godbert.Controls {
 
             this.SelectedItem = row;
             this.UpdateLayout();
-            this.ScrollIntoView(this.SelectedItem);
+
+            if (this.SelectedItem != null)
+                this.ScrollIntoView(this.SelectedItem);
         }
 
         private static T FindParent<T>(DependencyObject child) where T : class {
