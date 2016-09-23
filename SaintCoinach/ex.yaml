@@ -1032,6 +1032,19 @@
   Name: GCSupplyDuty
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Reward{Experience}
+  - InnerDefinition: !!single_def
+      Name: StarReward{Experience}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Reward{Seals}
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: StarReward{Seals}
+    Index: 4
+  Name: GCSupplyDutyReward
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Name
   - InnerDefinition: !!single_def
       Name: Description
