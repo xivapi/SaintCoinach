@@ -14,8 +14,9 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        public Text.XivString Singular { get { return AsString("Singular"); } }
-        public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
+        // fixme: moved to EObjName, keys shared.
+        //public Text.XivString Singular { get { return AsString("Singular"); } }
+        //public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
 
         public int Data { get { return AsInt32("Data"); } }
 

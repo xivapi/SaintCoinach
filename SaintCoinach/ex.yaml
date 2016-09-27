@@ -59,9 +59,6 @@
   - InnerDefinition: !!single_def
       Name: Name
   - InnerDefinition: !!single_def
-      Name: Description
-    Index: 1
-  - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
     Index: 2
@@ -155,6 +152,11 @@
     Index: 42
   Name: Action
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  Name: ActionTransient
+  DefaultColumn: Description
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -732,11 +734,6 @@
   DefaultColumn: Singular
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: Singular
-  - InnerDefinition: !!single_def
-      Name: Plural
-    Index: 2
-  - InnerDefinition: !!single_def
       Name: Data
     Index: 9
   Name: EObj
@@ -816,9 +813,6 @@
   - InnerDefinition: !!single_def
       Name: Rarity
     Index: 5
-  - InnerDefinition: !!single_def
-      Name: Description
-    Index: 8
   - InnerDefinition: !!single_def
       Name: Name
     Index: 9
@@ -1292,131 +1286,131 @@
             TargetSheet: BaseParam
         - !!single_def
           Name: BaseParamValue{Special}
-    Index: 44
+    Index: 45
   - InnerDefinition: !!single_def
       Name: ClassJob{Repair}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 56
+    Index: 57
   - InnerDefinition: !!single_def
       Name: Item{Repair}
       Converter: !!link_conv
         TargetSheet: Item
-    Index: 57
+    Index: 58
   - InnerDefinition: !!single_def
       Name: ClassJob{Use}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 58
+    Index: 59
   - InnerDefinition: !!single_def
       Name: Damage{Phys}
-    Index: 60
-  - InnerDefinition: !!single_def
-      Name: Damage{Mag}
     Index: 61
   - InnerDefinition: !!single_def
-      Name: Delay<ms>
+      Name: Damage{Mag}
     Index: 62
   - InnerDefinition: !!single_def
-      Name: BlockRate
-    Index: 64
+      Name: Delay<ms>
+    Index: 63
   - InnerDefinition: !!single_def
-      Name: Block
+      Name: BlockRate
     Index: 65
   - InnerDefinition: !!single_def
-      Name: Defense{Phys}
+      Name: Block
     Index: 66
   - InnerDefinition: !!single_def
-      Name: Defense{Mag}
+      Name: Defense{Phys}
     Index: 67
   - InnerDefinition: !!single_def
+      Name: Defense{Mag}
+    Index: 68
+  - InnerDefinition: !!single_def
       Name: Cooldown<s>
-    Index: 69
+    Index: 70
   - InnerDefinition: !!single_def
       Name: ItemAction
       Converter: !!link_conv
         TargetSheet: ItemAction
-    Index: 70
-  - InnerDefinition: !!single_def
-      Name: IsIndisposable
     Index: 71
   - InnerDefinition: !!single_def
-      Name: IsUnique
+      Name: IsIndisposable
     Index: 72
   - InnerDefinition: !!single_def
-      Name: IsUntradable
+      Name: IsUnique
     Index: 73
   - InnerDefinition: !!single_def
-      Name: Price{Low}
+      Name: IsUntradable
     Index: 74
   - InnerDefinition: !!single_def
-      Name: Price{Mid}
+      Name: Price{Low}
     Index: 75
   - InnerDefinition: !!single_def
-      Name: Price{High}
+      Name: Price{Mid}
     Index: 76
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[1]
+      Name: Price{High}
     Index: 77
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[2]
+      Name: EquippableByRace[1]
     Index: 78
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[3]
+      Name: EquippableByRace[2]
     Index: 79
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[4]
+      Name: EquippableByRace[3]
     Index: 80
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[5]
+      Name: EquippableByRace[4]
     Index: 81
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[6]
+      Name: EquippableByRace[5]
     Index: 82
   - InnerDefinition: !!single_def
-      Name: EquippableByGender{M}
+      Name: EquippableByRace[6]
     Index: 83
   - InnerDefinition: !!single_def
-      Name: EquippableByGender{F}
+      Name: EquippableByGender{M}
     Index: 84
+  - InnerDefinition: !!single_def
+      Name: EquippableByGender{F}
+    Index: 85
   - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
-    Index: 85
-  - InnerDefinition: !!single_def
-      Name: GrandCompany
-      Converter: !!link_conv
-        TargetSheet: GrandCompany
-    Index: 87
-  - InnerDefinition: !!single_def
-      Name: GCTurnIn
-    Index: 88
+    Index: 86
   - InnerDefinition: !!single_def
       Name: ItemSeries
       Converter: !!link_conv
         TargetSheet: ItemSeries
+    Index: 88
+  - InnerDefinition: !!single_def
+      Name: GCTurnIn
     Index: 89
   - InnerDefinition: !!single_def
-      Name: BaseParamModifier
+      Name: GrandCompany
+      Converter: !!link_conv
+        TargetSheet: GrandCompany
     Index: 90
   - InnerDefinition: !!single_def
-      Name: IsPvP
+      Name: BaseParamModifier
     Index: 91
+  - InnerDefinition: !!single_def
+      Name: IsPvP
+    Index: 92
   - InnerDefinition: !!single_def
       Name: Item{Glamour}
       Converter: !!link_conv
         TargetSheet: Item
-    Index: 92
-  - InnerDefinition: !!single_def
-      Name: Desynthesize
     Index: 93
   - InnerDefinition: !!single_def
-      Name: IsCollectable
+      Name: Desynthesize
     Index: 94
   - InnerDefinition: !!single_def
-      Name: AetherialReduce
+      Name: IsCollectable
     Index: 95
+  - InnerDefinition: !!single_def
+      Name: AetherialReduce
+    Index: 96
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
@@ -2176,7 +2170,7 @@
       Name: Quest{Shop}
       Converter: !!link_conv
         TargetSheet: Quest
-    Index: 1742
+    Index: 1802
   Name: SpecialShop
   DefaultColumn: Name
   IsGenericReferenceTarget: true
@@ -2348,30 +2342,30 @@
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 12
-  - InnerDefinition: !!single_def
-      Name: InstanceContentTextData{Boss}{Start}
     Index: 13
   - InnerDefinition: !!single_def
+      Name: InstanceContentTextData{Boss}{Start}
+    Index: 15
+  - InnerDefinition: !!single_def
       Name: InstanceContentTextData{Boss}{End}
-    Index: 14
+    Index: 16
   - InnerDefinition: !!single_def
       Name: BNpcBase{Boss}
       Converter: !!link_conv
         TargetSheet: BNpcBase
-    Index: 15
-  - InnerDefinition: !!single_def
-      Name: InstanceContentTextData{Objective}{Start}
-    Index: 16
-  - InnerDefinition: !!single_def
-      Name: InstanceContentTextData{Objective}{End}
     Index: 17
   - InnerDefinition: !!single_def
-      Name: SortKey
+      Name: InstanceContentTextData{Objective}{Start}
     Index: 18
   - InnerDefinition: !!single_def
+      Name: InstanceContentTextData{Objective}{End}
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: SortKey
+    Index: 20
+  - InnerDefinition: !!single_def
       Name: NewPlayerBonus
-    Index: 21
+    Index: 23
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!group_def
@@ -2380,13 +2374,10 @@
           Name: BossCurrencyA
         - !!single_def
           Name: BossCurrencyB
-    Index: 32
-  - InnerDefinition: !!single_def
-      Name: ItemLevel{Required}
-    Index: 42
+    Index: 34
   - InnerDefinition: !!single_def
       Name: PartyCondition
-    Index: 55
+    Index: 57
   Name: InstanceContent
   DefaultColumn: Name
 - DataDefinitions:
@@ -2406,27 +2397,27 @@
       Name: ContentMemberType
       Converter: !!link_conv
         TargetSheet: ContentMemberType
-    Index: 5
+    Index: 6
   - InnerDefinition: !!single_def
       Name: Level
-    Index: 8
+    Index: 9
   - InnerDefinition: !!single_def
       Name: ItemLevel{Required}
-    Index: 9
+    Index: 10
   Name: ContentFinderCondition
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: TanksPerParty
-    Index: 6
-  - InnerDefinition: !!single_def
-      Name: HealersPerParty
-    Index: 7
-  - InnerDefinition: !!single_def
-      Name: MeleesPerParty
     Index: 8
   - InnerDefinition: !!single_def
-      Name: RangedPerParty
+      Name: HealersPerParty
     Index: 9
+  - InnerDefinition: !!single_def
+      Name: MeleesPerParty
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: RangedPerParty
+    Index: 11
   Name: ContentMemberType
   DefaultColumn: InstanceContent
 - DataDefinitions:
@@ -2558,224 +2549,232 @@
   - InnerDefinition: !!single_def
       Name: PreviousQuestJoin
     Index: 9
-  - InnerDefinition: !!repeat_def
-      RepeatCount: 3
-      RepeatedDefinition: !!single_def
-        Name: PreviousQuest
-        Converter: !!link_conv
-          TargetSheet: Quest
+  - InnerDefinition: !!single_def
+      Name: PreviousQuest[0]
+      Converter: !!link_conv
+        TargetSheet: Quest
     Index: 10
   - InnerDefinition: !!single_def
-      Name: QuestLockJoin
+      Name: PreviousQuest[1]
+      Converter: !!link_conv
+        TargetSheet: Quest
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: PreviousQuest[2]
+      Converter: !!link_conv
+        TargetSheet: Quest
     Index: 13
+  - InnerDefinition: !!single_def
+      Name: QuestLockJoin
+    Index: 14
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: QuestLock
         Converter: !!link_conv
           TargetSheet: Quest
-    Index: 14
+    Index: 15
   - InnerDefinition: !!single_def
       Name: ClassJob{Unlock}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 19
+    Index: 20
   - InnerDefinition: !!single_def
       Name: GrandCompany
       Converter: !!link_conv
         TargetSheet: GrandCompany
-    Index: 20
+    Index: 21
   - InnerDefinition: !!single_def
       Name: GrandCompanyRank
       Converter: !!link_conv
         TargetSheet: GrandCompanyRank
-    Index: 21
+    Index: 22
   - InnerDefinition: !!single_def
       Name: InstanceContentJoin
-    Index: 22
+    Index: 23
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: InstanceContent
         Converter: !!link_conv
           TargetSheet: InstanceContent
-    Index: 23
+    Index: 24
   - InnerDefinition: !!single_def
       Name: Bell{Start}
-    Index: 29
+    Index: 30
   - InnerDefinition: !!single_def
       Name: Bell{End}
-    Index: 30
+    Index: 31
   - InnerDefinition: !!single_def
       Name: BeastTribe
       Converter: !!link_conv
         TargetSheet: BeastTribe
-    Index: 31
+    Index: 32
   - InnerDefinition: !!single_def
       Name: BeastReputationRank
       Converter: !!link_conv
         TargetSheet: BeastReputationRank
-    Index: 32
+    Index: 33
   - InnerDefinition: !!single_def
       Name: Mount{Required}
       Converter: !!link_conv
         TargetSheet: Mount
-    Index: 34
+    Index: 35
   - InnerDefinition: !!single_def
       Name: IsHouseRequired
-    Index: 35
+    Index: 36
   - InnerDefinition: !!single_def
       Name: ENpcResident{Start}
       Converter: !!link_conv
         TargetSheet: ENpcResident
-    Index: 37
+    Index: 38
   - InnerDefinition: !!single_def
       Name: ENpcResident{End}
       Converter: !!link_conv
         TargetSheet: ENpcResident
-    Index: 39
-  - InnerDefinition: !!single_def
-      Name: IsRepeatable
     Index: 40
   - InnerDefinition: !!single_def
-      Name: RepeatIntervalType
+      Name: IsRepeatable
     Index: 41
+  - InnerDefinition: !!single_def
+      Name: RepeatIntervalType
+    Index: 42
   - InnerDefinition: !!repeat_def
       RepeatCount: 50
       RepeatedDefinition: !!single_def
         Name: Script{Instruction}
-    Index: 46
+    Index: 47
   - InnerDefinition: !!repeat_def
       RepeatCount: 50
       RepeatedDefinition: !!single_def
         Name: Script{Arg}
-    Index: 96
+    Index: 97
   - InnerDefinition: !!single_def
       Name: ClassJob{Required}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 1410
-  - InnerDefinition: !!single_def
-      Name: ExpFactor
     Index: 1411
   - InnerDefinition: !!single_def
-      Name: GilReward
+      Name: ExpFactor
     Index: 1412
   - InnerDefinition: !!single_def
+      Name: GilReward
+    Index: 1413
+  - InnerDefinition: !!single_def
       Name: GCSeals
-    Index: 1414
+    Index: 1415
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: Item{Catalyst}
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1415
+    Index: 1416
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: ItemCount{Catalyst}
-    Index: 1418
+    Index: 1419
   - InnerDefinition: !!single_def
       Name: ItemRewardType
-    Index: 1421
+    Index: 1422
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: Item{Reward}[0]
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1422
+    Index: 1423
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: ItemCount{Reward}[0]
-    Index: 1429
+    Index: 1430
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: Stain{Reward}[0]
         Converter: !!link_conv
           TargetSheet: Stain
-    Index: 1436
+    Index: 1437
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: Item{Reward}[1]
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1443
+    Index: 1444
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: ItemCount{Reward}[1]
-    Index: 1448
+    Index: 1449
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: Stain{Reward}[1]
         Converter: !!link_conv
           TargetSheet: Stain
-    Index: 1458
+    Index: 1459
   - InnerDefinition: !!single_def
       Name: Emote{Reward}
       Converter: !!link_conv
         TargetSheet: Emote
-    Index: 1463
+    Index: 1464
   - InnerDefinition: !!single_def
       Name: Action{Reward}
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 1464
+    Index: 1465
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!single_def
         Name: GeneralAction{Reward}
         Converter: !!link_conv
           TargetSheet: GeneralAction
-    Index: 1465
+    Index: 1466
   - InnerDefinition: !!single_def
       Name: Other{Reward}
       Converter: !!link_conv
         TargetSheet: QuestRewardOther
-    Index: 1468
+    Index: 1469
   - InnerDefinition: !!single_def
       Name: InstanceContent{Unlock}
       Converter: !!link_conv
         TargetSheet: InstanceContent
-    Index: 1471
+    Index: 1472
   - InnerDefinition: !!single_def
       Name: Tomestone{Reward}
       Converter: !!link_conv
         TargetSheet: Tomestones
-    Index: 1473
-  - InnerDefinition: !!single_def
-      Name: TomestoneCount{Reward}
     Index: 1474
   - InnerDefinition: !!single_def
-      Name: ReputationReward
+      Name: TomestoneCount{Reward}
     Index: 1475
+  - InnerDefinition: !!single_def
+      Name: ReputationReward
+    Index: 1476
   - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 1476
+    Index: 1477
   - InnerDefinition: !!single_def
       Name: JournalGenre
       Converter: !!link_conv
         TargetSheet: JournalGenre
-    Index: 1477
+    Index: 1478
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 1478
+    Index: 1479
   - InnerDefinition: !!single_def
       Name: Icon{Special}
       Converter: !!icon_conv {}
-    Index: 1479
+    Index: 1480
   - InnerDefinition: !!single_def
       Name: SortKey
-    Index: 1484
+    Index: 1485
   Name: Quest
   DefaultColumn: Name
   IsGenericReferenceTarget: true
@@ -3309,26 +3308,26 @@
     Index: 2
   - InnerDefinition: !!single_def
       Name: VentureCost
-    Index: 4
-  - InnerDefinition: !!single_def
-      Name: MaxTime{min}
     Index: 5
   - InnerDefinition: !!single_def
-      Name: Experience
+      Name: MaxTime{min}
     Index: 6
   - InnerDefinition: !!single_def
-      Name: RequiredItemLevel
+      Name: Experience
     Index: 7
   - InnerDefinition: !!single_def
+      Name: RequiredItemLevel
+    Index: 8
+  - InnerDefinition: !!single_def
       Name: RequiredGathering
-    Index: 10
+    Index: 11
   - InnerDefinition: !!single_def
       Name: Task
       Converter: !!multiref_conv
         Targets:
         - RetainerTaskNormal
         - RetainerTaskRandom
-    Index: 12
+    Index: 13
   Name: RetainerTask
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3789,7 +3788,7 @@
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 1
+    Index: 2
   Name: Aethernet
   DefaultColumn: PlaceName
 - DataDefinitions:
@@ -3799,4 +3798,4 @@
         TargetSheet: ActionTimeline
   Name: HouseRetainerPose
   DefaultColumn: ActionTimeline
-Version: 2016.08.08.0000.0000
+Version: 2016.09.21.0000.0000
