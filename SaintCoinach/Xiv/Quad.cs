@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SaintCoinach.Xiv {
+    [Serializable]
     public struct Quad {
         public short Value1;
         public short Value2;
