@@ -2404,6 +2404,10 @@
   - InnerDefinition: !!single_def
       Name: ItemLevel{Required}
     Index: 10
+  - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+    Index: 37
   Name: ContentFinderCondition
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3798,4 +3802,24 @@
         TargetSheet: ActionTimeline
   Name: HouseRetainerPose
   DefaultColumn: ActionTimeline
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Data
+    Index: 1
+  Name: WeeklyBingoOrderData
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Reward{Type}
+  - InnerDefinition: !!single_def
+      Name: Reward
+      Converter: !!multiref_conv
+        Targets:
+        - Tomestones
+        - Item
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Reward{Quantity}
+    Index: 3
+  Name: WeeklyBingoRewardData
+  DefaultColumn: Reward{Item}
 Version: 2016.09.21.0000.0000

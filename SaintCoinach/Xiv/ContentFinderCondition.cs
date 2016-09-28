@@ -33,6 +33,12 @@ namespace SaintCoinach.Xiv {
         /// <value>The item level required to enter the current content.</value>
         public virtual int RequiredItemLevel { get { return AsInt32("ItemLevel{Required}"); } }
 
+        /// <summary>
+        /// Gets the icon for the current finder content.
+        /// </summary>
+        /// <value>The icon for the current finder content.</value>
+        public virtual Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+
         #endregion
 
         #region Constructors
