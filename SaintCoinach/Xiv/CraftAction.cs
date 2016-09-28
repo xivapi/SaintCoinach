@@ -12,6 +12,6 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        public new Text.XivString Description { get { return AsString("Description"); } }
+        public override Text.XivString Description { get { return AsString("Description"); } }
     }
 }

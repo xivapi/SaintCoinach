@@ -15,7 +15,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
-        public Text.XivString Description { get { return ActionTransient.Description;  } }
+        public virtual Text.XivString Description { get { return ActionTransient.Description;  } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 
 
