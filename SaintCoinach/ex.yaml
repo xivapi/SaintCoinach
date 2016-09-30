@@ -3806,6 +3806,15 @@
   - InnerDefinition: !!single_def
       Name: Data
     Index: 1
+  - InnerDefinition: !!single_def
+      Name: Text
+      Converter: !!link_conv
+        TargetSheet: WeeklyBingoText
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+    Index: 4
   Name: WeeklyBingoOrderData
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3818,8 +3827,72 @@
         - Item
     Index: 1
   - InnerDefinition: !!single_def
+      Name: NeedsThreeLines
+    Index: 2
+  - InnerDefinition: !!single_def
       Name: Reward{Quantity}
     Index: 3
+  - InnerDefinition: !!single_def
+      Name: Reward{Option}
+      Converter: !!link_conv
+        TargetSheet: WeeklyBingoRewardData
+    Index: 4
   Name: WeeklyBingoRewardData
-  DefaultColumn: Reward{Item}
+  DefaultColumn: Reward
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  Name: WeeklyBingoText
+  DefaultColumn: Description
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: RequiredLevel
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: GcArmyExpeditionType
+      Converter: !!link_conv
+        TargetSheet: GcArmyExpeditionType
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: Description
+    Index: 9
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Item
+          Converter: !!link_conv
+            TargetSheet: Item
+    Index: 10
+  Name: GcArmyExpedition
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: GcArmyExpeditionType
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: PhysicalBonus
+  - InnerDefinition: !!single_def
+      Name: MentalBonus
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: TacticalBonus
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: Experience
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Description
+    Index: 5
+  Name: GcArmyTraining
+  DefaultColumn: Name
 Version: 2016.09.21.0000.0000
