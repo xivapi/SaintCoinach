@@ -82,6 +82,10 @@
             return ReadRaw(buffer, row);
         }
 
+        public virtual object Read(byte[] buffer, IDataRow row, int offset) {
+            return ReadRaw(buffer, row, offset);
+        }
+
         /// <summary>
         ///     Read the raw column's value in a row.
         /// </summary>
@@ -91,6 +95,11 @@
         public object ReadRaw(byte[] buffer, IDataRow row) {
             return Reader.Read(buffer, this, row);
         }
+
+        public object ReadRaw(byte[] buffer, IDataRow row, int offset) {
+            return Reader.Read(buffer, offset);
+        }
+
         #endregion
     }
 }

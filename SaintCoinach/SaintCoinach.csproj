@@ -80,6 +80,12 @@
     <Compile Include="Ex\DataSheet.Enumerator.cs" />
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
+    <Compile Include="Ex\Variant1\DataRow.cs" />
+    <Compile Include="Ex\Variant1\RelationalDataRow.cs" />
+    <Compile Include="Ex\Variant2\ColumnValues.cs" />
+    <Compile Include="Ex\Variant2\DataRow.cs" />
+    <Compile Include="Ex\Variant2\RelationalDataRow.cs" />
+    <Compile Include="Ex\Variant2\SubRow.cs" />
     <Compile Include="Xiv\ActionTransient.cs" />
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
@@ -421,9 +427,8 @@
     <Compile Include="Ex\Relational\RelationalMultiRow.cs" />
     <Compile Include="Ex\Relational\RelationalMultiSheet.cs" />
     <Compile Include="Ex\Relational\RelationalPartialDataSheet.cs" />
-    <Compile Include="Ex\Relational\RelationalDataRow.cs" />
     <Compile Include="Ex\Relational\RelationalDataSheet.cs" />
-    <Compile Include="Ex\DataRow.cs" />
+    <Compile Include="Ex\DataRowBase.cs" />
     <Compile Include="Ex\DataSheet.cs" />
     <Compile Include="Ex\Relational\Serialization\ExRelationEventEmitter.cs" />
     <Compile Include="Ex\Relational\Serialization\ExRelationSerializer.cs" />

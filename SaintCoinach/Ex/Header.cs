@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -43,6 +44,7 @@ namespace SaintCoinach.Ex {
         public ExCollection Collection { get; private set; }
         public File File { get; private set; }
         public string Name { get; private set; }
+        public int Variant { get; private set; }
         public IEnumerable<Column> Columns { get { return _Columns; } }
         public IEnumerable<Range> DataFileRanges { get { return _DataFileRanges; } }
         public IEnumerable<Language> AvailableLanguages { get { return _AvailableLanguages; } }
@@ -84,6 +86,7 @@ namespace SaintCoinach.Ex {
             const uint Magic = 0x46485845; // EXHF
             const int MinimumLength = 0x2E;
             const int FixedSizeDataLengthOffset = 0x06;
+            const int VariantOffset = 0x10;
             const int DataOffset = 0x20;
 
             var buffer = File.GetData();
@@ -93,7 +96,11 @@ namespace SaintCoinach.Ex {
             if (OrderedBitConverter.ToUInt32(buffer, 0, false) != Magic)
                 throw new InvalidDataException("File not a EX header");
 
+
             FixedSizeDataLength = OrderedBitConverter.ToUInt16(buffer, FixedSizeDataLengthOffset, true);
+            Variant = OrderedBitConverter.ToUInt16(buffer, VariantOffset, true);
+            if (Variant != 1 && Variant != 2)
+                throw new NotSupportedException();
 
             var currentPosition = DataOffset;
             ReadColumns(buffer, ref currentPosition);

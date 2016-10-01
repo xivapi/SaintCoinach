@@ -130,6 +130,8 @@ namespace Godbert.ViewModels {
 
                         if (v == null)
                             s.Write(",");
+                        else if (v is IDictionary<int, object>)
+                            WriteDict(s, v as IDictionary<int, object>);
                         else if (IsUnescaped(v))
                             s.Write(",{0}", v);
                         else
@@ -138,6 +140,21 @@ namespace Godbert.ViewModels {
                     s.WriteLine();
                 }
             }
+        }
+        static void WriteDict(StreamWriter s, IDictionary<int, object> v) {
+            s.Write(",\"");
+            var isFirst = true;
+            foreach (var kvp in v) {
+                if (isFirst)
+                    isFirst = false;
+                else
+                    s.Write(",");
+                s.Write("[{0},", kvp.Key);
+                if (kvp.Value != null)
+                    s.Write(kvp.Value.ToString().Replace("\"", "\"\""));
+                s.Write("]");
+            }
+            s.Write("\"");
         }
         static bool IsUnescaped(object self) {
             return (self is Boolean

@@ -22,19 +22,21 @@ namespace Godbert.Controls {
             var header = BuildHeader(column);
             var binding = CreateCellBinding(column);
 
-            DataGridColumn target;
-            if (typeof(SaintCoinach.Imaging.ImageFile).IsAssignableFrom(targetType))
-                target = new RawDataGridImageColumn(column) {
-                    Binding = binding,
-                };
-            else if (typeof(System.Drawing.Color).IsAssignableFrom(targetType))
-                target = new RawDataGridColorColumn(column) {
-                    Binding = binding
-                };
-            else
-                target = new RawDataGridTextColumn(column) {
-                    Binding = binding
-                };
+            DataGridColumn target = null;
+            if (column.Header.Variant == 1) {
+                if (typeof(SaintCoinach.Imaging.ImageFile).IsAssignableFrom(targetType))
+                    target = new RawDataGridImageColumn(column) {
+                        Binding = binding,
+                    };
+                else if (typeof(System.Drawing.Color).IsAssignableFrom(targetType))
+                    target = new RawDataGridColorColumn(column) {
+                        Binding = binding
+                    };
+            }
+
+            target = target ?? new RawDataGridTextColumn(column) {
+                Binding = binding
+            };
 
             target.Header = header;
             target.IsReadOnly = true;
@@ -76,7 +78,21 @@ namespace Godbert.Controls {
                     return null;
 
                 var i = System.Convert.ToInt32(parameter);
-                return row[i];
+                var v = row[i];
+                var d = v as IDictionary<int, object>;
+                if (d != null) {
+                    var sb = new StringBuilder();
+                    var isFirst = true;
+                    foreach (var kvp in d) {
+                        if (isFirst)
+                            isFirst = false;
+                        else
+                            sb.AppendLine();
+                        sb.AppendFormat("[{0},{1}]", kvp.Key, kvp.Value);
+                    }
+                    return sb.ToString();
+                }
+                return v;
             }
 
             public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {

@@ -65,6 +65,10 @@ namespace SaintCoinach.Ex.DataReaders {
             return (buffer[offset] & _Mask) != 0;
         }
 
+        public override object Read(byte[] buffer, int offset) {
+            return (buffer[offset] & _Mask) != 0;
+        }
+
         #endregion
     }
 }

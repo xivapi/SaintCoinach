@@ -81,6 +81,9 @@ namespace Godbert.Controls {
                 if (cellObj == null)
                     continue;
 
+                var dictObj = cellObj as IDictionary<int, object>;
+                if (dictObj != null && dictObj.Values.Any(v => v.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0))
+                    return true;
                 if (cellObj.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0)
                     return true;
             }

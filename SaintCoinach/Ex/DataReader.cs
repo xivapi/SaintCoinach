@@ -113,6 +113,8 @@ namespace SaintCoinach.Ex {
         /// <returns>Returns the value read from the given <c>row</c> and <c>column</c>.</returns>
         public abstract object Read(byte[] buffer, Column col, IDataRow row);
 
+        public abstract object Read(byte[] buffer, int offset);
+
         /// <summary>
         ///     Get the absolute offset in the EX data file of a column for a given row.
         /// </summary>

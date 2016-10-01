@@ -71,36 +71,8 @@ namespace SaintCoinach.Cmd.Commands {
                 s.WriteLine(nameLine);
                 s.WriteLine(typeLine);
 
-                foreach (var row in sheet.Cast<Ex.IRow>().OrderBy(_ => _.Key)) {
-                    s.Write(row.Key);
-                    foreach (var col in colIndices) {
-                        var v = row[col];
-
-                        if (v == null)
-                            s.Write(",");
-                        else if (IsUnescaped(v))
-                            s.Write(",{0}", v);
-                        else
-                            s.Write(",\"{0}\"", v.ToString().Replace("\"", "\"\""));
-                    }
-                    s.WriteLine();
-
-                    s.Flush();
-                }
+                ExdHelper.WriteRows(s, sheet, Ex.Language.None, colIndices);
             }
-        }
-        private static bool IsUnescaped(object self) {
-            return (self is Boolean
-                || self is Byte
-                || self is SByte
-                || self is Int16
-                || self is Int32
-                || self is Int64
-                || self is UInt16
-                || self is UInt32
-                || self is UInt64
-                || self is Single
-                || self is Double);
         }
     }
 }
