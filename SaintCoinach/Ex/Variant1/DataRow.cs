@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SaintCoinach.Ex {
-    public class DataRow : IDataRow {
+namespace SaintCoinach.Ex.Variant1 {
+    public class DataRow : DataRowBase {
+        const int MetadataLength = 0x06;
+
         #region Fields
-
+        
         private readonly Dictionary<int, WeakReference<object>> _ValueReferences =
             new Dictionary<int, WeakReference<object>>();
 
         #endregion
 
+        public int Length { get; private set; }
+
         #region Constructors
 
-        #region Constructor
+        public DataRow(IDataSheet sheet, int key, int offset) : base(sheet, key, offset + MetadataLength) {
+            var b = sheet.GetBuffer();
+            if (b.Length < offset + MetadataLength) throw new IndexOutOfRangeException();
 
-        public DataRow(IDataSheet sheet, int key, int offset) {
-            const int HeaderLength = 0x06;
-
-            Sheet = sheet;
-            Key = key;
-            Offset = offset + HeaderLength;
+            Length = OrderedBitConverter.ToInt32(b, offset, true);
+            var c = OrderedBitConverter.ToInt16(b, offset + 4, true);
+            if (c != 1) throw new InvalidDataException();
         }
 
         #endregion
 
-        #endregion
-
-        public IDataSheet Sheet { get; private set; }
-        ISheet IRow.Sheet { get { return Sheet; } }
-        public int Key { get; private set; }
-        public int Offset { get; private set; }
-
         #region IRow Members
 
-        public object this[int columnIndex] {
+        public override object this[int columnIndex] {
             get {
                 object value;
 
@@ -52,11 +52,11 @@ namespace SaintCoinach.Ex {
             }
         }
 
-        object IRow.GetRaw(int columnIndex) {
+        public override object GetRaw(int columnIndex) {
             var column = Sheet.Header.GetColumn(columnIndex);
             return column.ReadRaw(Sheet.GetBuffer(), this);
         }
-
+        
         #endregion
     }
 }

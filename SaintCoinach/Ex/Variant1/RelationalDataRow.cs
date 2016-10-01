@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SaintCoinach.Ex.Relational {
+namespace SaintCoinach.Ex.Variant1 {
+    using Relational;
+
     public class RelationalDataRow : DataRow, IRelationalDataRow {
         #region Fields
         private Dictionary<string, WeakReference<object>> _ValueReferences = new Dictionary<string, WeakReference<object>>();
-        #endregion
-
-        #region Constructors
-
-        public RelationalDataRow(IRelationalDataSheet sheet, int key, int offset) : base(sheet, key, offset) { }
-
         #endregion
 
         public new IRelationalDataSheet Sheet { get { return (IRelationalDataSheet)base.Sheet; } }
@@ -21,6 +20,12 @@ namespace SaintCoinach.Ex.Relational {
                        ? string.Format("{0}#{1}", Sheet.Header.Name, Key)
                        : string.Format("{0}", this[defCol.Index]);
         }
+
+        #region Constructors
+
+        public RelationalDataRow(IDataSheet sheet, int key, int offset) : base(sheet, key, offset) { }
+
+        #endregion
 
         #region IRelationalRow Members
 

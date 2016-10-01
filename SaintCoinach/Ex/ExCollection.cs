@@ -136,9 +136,15 @@ namespace SaintCoinach.Ex {
         }
 
         protected virtual ISheet CreateSheet(Header header) {
+            if (header.Variant == 2)
+                return CreateSheet<Variant1.DataRow>(header);
+            return CreateSheet<Variant2.DataRow>(header);
+        }
+
+        private ISheet CreateSheet<T>(Header header) where T : IDataRow {
             if (header.AvailableLanguages.Count() > 1)
-                return new MultiSheet<MultiRow, DataRow>(this, header);
-            return new DataSheet<DataRow>(this, header, header.AvailableLanguages.First());
+                return new MultiSheet<MultiRow, T>(this, header);
+            return new DataSheet<T>(this, header, header.AvailableLanguages.First());
         }
 
         #endregion

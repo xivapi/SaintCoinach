@@ -58,6 +58,10 @@ namespace SaintCoinach.Ex.DataReaders {
             return Text.XivStringDecoder.Default.Decode(binaryString);//.ToString();
         }
 
+        public override object Read(byte[] buffer, int offset) {
+            throw new NotSupportedException();
+        }
+
         #endregion
     }
 }

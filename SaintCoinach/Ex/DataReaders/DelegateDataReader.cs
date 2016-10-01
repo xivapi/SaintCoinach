@@ -83,5 +83,9 @@ namespace SaintCoinach.Ex.DataReaders {
             var offset = GetFieldOffset(col, row);
             return _Func(buffer, offset);
         }
+
+        public override object Read(byte[] buffer, int offset) {
+            return _Func(buffer, offset);
+        }
     }
 }

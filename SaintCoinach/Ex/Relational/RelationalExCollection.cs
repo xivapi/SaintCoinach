@@ -35,9 +35,15 @@ namespace SaintCoinach.Ex.Relational {
 
         protected override ISheet CreateSheet(Header header) {
             var relHeader = (RelationalHeader)header;
+            if (relHeader.Variant == 2)
+                return CreateSheet<Variant2.RelationalDataRow>(relHeader);
+            return CreateSheet<Variant1.RelationalDataRow>(relHeader);
+        }
+
+        private ISheet CreateSheet<T>(RelationalHeader header) where T : IRelationalDataRow {
             if (header.AvailableLanguages.Count() > 1)
-                return new RelationalMultiSheet<RelationalMultiRow, RelationalDataRow>(this, relHeader);
-            return new RelationalDataSheet<RelationalDataRow>(this, relHeader, header.AvailableLanguages.First());
+                return new RelationalMultiSheet<RelationalMultiRow, T>(this, header);
+            return new RelationalDataSheet<T>(this, header, header.AvailableLanguages.First());
         }
 
         #endregion

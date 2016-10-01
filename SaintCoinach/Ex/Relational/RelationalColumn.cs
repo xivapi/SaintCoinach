@@ -43,6 +43,13 @@
             return def != null ? def.Convert(row, baseVal, Index) : baseVal;
         }
 
+        public override object Read(byte[] buffer, IDataRow row, int offset) {
+            var baseVal = base.Read(buffer, row, offset);
+
+            var def = Header.SheetDefinition;
+            return def != null ? def.Convert(row, baseVal, Index) : baseVal;
+        }
+
         #endregion
 
         public override string ToString() {
