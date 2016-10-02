@@ -3895,4 +3895,15 @@
     Index: 5
   Name: GcArmyTraining
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: ClassJob
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+  - InnerDefinition: !!single_def
+      Name: ClassBook
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 1
+  Name: GcArmyMemberGrow
 Version: 2016.09.21.0000.0000
