@@ -100,7 +100,12 @@ namespace SaintCoinach.IO {
 
             var blockSize = isCompressed ? sourceSize : rawSize;
 
-            if ((blockSize + HeaderLength) % BlockPadding != 0)
+            // An uncompressed block in an ScdOggFile was corrupted due to this
+            // extra padding injecting extra 0s into the output stream.  I'm
+            // not certain padding is only applied to compressed blocks.  The
+            // padding algorithm may require more work if additional problems
+            // are found.
+            if (isCompressed && (blockSize + HeaderLength) % BlockPadding != 0)
                 blockSize += BlockPadding - ((blockSize + HeaderLength) % BlockPadding); // Add padding if necessary
 
             var buffer = new byte[blockSize];
