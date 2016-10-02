@@ -2332,6 +2332,11 @@
       Name: Name
     Index: 4
   - InnerDefinition: !!single_def
+      Name: BGM
+      Converter: !!link_conv
+        TargetSheet: BGM
+    Index: 6
+  - InnerDefinition: !!single_def
       Name: ItemLevel{Sync}
     Index: 9
   - InnerDefinition: !!single_def
