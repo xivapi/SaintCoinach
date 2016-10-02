@@ -21,5 +21,17 @@ namespace Godbert.Views {
         public DataView() {
             InitializeComponent();
         }
+
+        public void RowSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var row = sender as DataGridRow;
+            if (row == null)
+                return;
+
+            // Ensure row heights do not fluctuate as virtualized columns are
+            // loaded/unloaded.
+            if (row.MinHeight < e.NewSize.Height)
+                row.MinHeight = e.NewSize.Height;
+        }
     }
 }

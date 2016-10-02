@@ -58,7 +58,13 @@
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
                               CanUserSortColumns="True"
-                              EnableColumnVirtualization="True" />
+                              EnableColumnVirtualization="True">
+                <ctrl:RawDataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="SizeChanged" Handler="RowSizeChanged"/>
+                    </Style>
+                </ctrl:RawDataGrid.RowStyle>
+            </ctrl:RawDataGrid>
         </DockPanel>
     </Grid>
 </UserControl>
