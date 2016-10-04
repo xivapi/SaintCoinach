@@ -28,20 +28,15 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Expander x:Name="SelectionExpander"
-                  Grid.Column="0"
-                  ExpandDirection="Right"
-                  IsExpanded="True">
-            <DockPanel LastChildFill="True">
-                <TextBox Text="{Binding Path=FilterSheetTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
-                         DockPanel.Dock="Top"
-                         Margin="0,0,0,2"></TextBox>
-                <ListBox ItemsSource="{Binding FilteredSheetNames}"
-                         SelectedItem="{Binding SelectedSheetName, Mode=TwoWay}"
-                         HorizontalAlignment="Stretch"
-                         ContextMenu="{StaticResource SheetListContextMenu}"/>
-            </DockPanel>
-        </Expander>
+        <DockPanel LastChildFill="True" Grid.Column="0">
+            <TextBox Text="{Binding Path=FilterSheetTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
+                        DockPanel.Dock="Top"
+                        Margin="0,0,0,2"></TextBox>
+            <ListBox ItemsSource="{Binding FilteredSheetNames}"
+                        SelectedItem="{Binding SelectedSheetName, Mode=TwoWay}"
+                        HorizontalAlignment="Stretch"
+                        ContextMenu="{StaticResource SheetListContextMenu}"/>
+        </DockPanel>
 
         <GridSplitter Width="4" Grid.Column="1"
                       IsEnabled="{Binding ElementName=SelectionExpander, Path=IsExpanded}"
@@ -58,7 +53,9 @@
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
                               CanUserSortColumns="True"
-                              EnableColumnVirtualization="True">
+                              EnableColumnVirtualization="True"
+                              HorizontalGridLinesBrush="#dadada"
+                              VerticalGridLinesBrush="#dadada">
                 <ctrl:RawDataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
                         <EventSetter Event="SizeChanged" Handler="RowSizeChanged"/>
