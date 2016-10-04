@@ -183,8 +183,9 @@ namespace SaintCoinach.Text {
                 case DecodeExpressionType.Int24_MinusOne:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24) - 1);
                 case DecodeExpressionType.Int24:
-                case DecodeExpressionType.Int24_Unknown:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24));
+                case DecodeExpressionType.Int24_Lsh8:
+                    return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int24) << 8);
                 case DecodeExpressionType.Int24_SafeZero: {
                         var v16 = input.ReadByte();
                         var v8 = input.ReadByte();
@@ -203,9 +204,9 @@ namespace SaintCoinach.Text {
                 case DecodeExpressionType.Int32:
                     return new Nodes.StaticInteger(GetInteger(input, IntegerType.Int32));
                 case DecodeExpressionType.GreaterThanOrEqualTo:
-                case DecodeExpressionType.UnknownComparisonE1:
-                case DecodeExpressionType.UnknownComparisonE5:
+                case DecodeExpressionType.GreaterThan:
                 case DecodeExpressionType.LessThanOrEqualTo:
+                case DecodeExpressionType.LessThan:
                 case DecodeExpressionType.NotEqual:
                 case DecodeExpressionType.Equal: {
                         var left = DecodeExpression(input);
@@ -279,10 +280,13 @@ namespace SaintCoinach.Text {
             var end = input.BaseStream.Position + length;
 
             var condition = DecodeExpression(input);
-            var trueValue = DecodeExpression(input);
+            /*var trueValue = DecodeExpression(input);
             INode falseValue = null;
             if (input.BaseStream.Position != end)
                 falseValue = DecodeExpression(input);
+            */
+            INode trueValue, falseValue;
+            DecodeConditionalOutputs(input, (int)end, out trueValue, out falseValue);
 
             return new Nodes.IfElement(tag, condition, trueValue, falseValue);
         }
@@ -291,12 +295,35 @@ namespace SaintCoinach.Text {
 
             var left = DecodeExpression(input);
             var right = DecodeExpression(input);
+            /*
             var trueValue = DecodeExpression(input);
             INode falseValue = null;
             if (input.BaseStream.Position != end)
-                falseValue = DecodeExpression(input);
+                falseValue = DecodeExpression(input);*/
+
+            INode trueValue, falseValue;
+            DecodeConditionalOutputs(input, (int)end, out trueValue, out falseValue);
 
             return new Nodes.IfEqualsElement(tag, left, right, trueValue, falseValue);
+        }
+        protected void DecodeConditionalOutputs(BinaryReader input, int end, out INode trueValue, out INode falseValue) {
+            var exprs = new List<INode>();
+            while (input.BaseStream.Position != end) {
+                var expr = DecodeExpression(input);
+                exprs.Add(expr);
+            }
+
+            // Only one instance with more than two expressions (LogMessage.en[1115][4])
+            // TODO: Not sure how it should be handled, discarding all but first and second for now.
+            if (exprs.Count > 0)
+                trueValue = exprs[0];
+            else
+                trueValue = null;
+
+            if (exprs.Count > 1)
+                falseValue = exprs[1];
+            else
+                falseValue = null;
         }
         protected INode DecodeSwitch(BinaryReader input, TagType tag, int length) {
             var end = input.BaseStream.Position + length;
