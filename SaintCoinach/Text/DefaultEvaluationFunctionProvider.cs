@@ -218,10 +218,20 @@ namespace SaintCoinach.Text {
                         var iRight = ToInteger(evalRight);
                         return iLeft >= iRight;
                     }
+                case DecodeExpressionType.GreaterThan: {
+                        var iLeft = ToInteger(evalLeft);
+                        var iRight = ToInteger(evalRight);
+                        return iLeft > iRight;
+                    }
                 case DecodeExpressionType.LessThanOrEqualTo: {
                         var iLeft = ToInteger(evalLeft);
                         var iRight = ToInteger(evalRight);
                         return iLeft <= iRight;
+                    }
+                case DecodeExpressionType.LessThan: {
+                        var iLeft = ToInteger(evalLeft);
+                        var iRight = ToInteger(evalRight);
+                        return iLeft < iRight;
                     }
                 case DecodeExpressionType.Equal:
                     return ExpressionsEqual(evalLeft, evalRight);
