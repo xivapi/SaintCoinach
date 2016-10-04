@@ -3911,4 +3911,15 @@
         TargetSheet: Item
     Index: 1
   Name: GcArmyMemberGrow
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Race
+      Converter: !!link_conv
+        TargetSheet: Race
+  - InnerDefinition: !!single_def
+      Name: ClassJob
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+    Index: 1
+  Name: GcArmyExpeditionMemberBonus
 Version: 2016.09.21.0000.0000
