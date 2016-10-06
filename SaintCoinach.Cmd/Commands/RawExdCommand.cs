@@ -19,7 +19,7 @@ namespace SaintCoinach.Cmd.Commands {
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
-            const string CsvFileFormat = "exd/{0}.csv";
+            const string CsvFileFormat = "rawexd/{0}.csv";
 
             IEnumerable<string> filesToExport;
 
