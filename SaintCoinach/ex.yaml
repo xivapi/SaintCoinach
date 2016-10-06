@@ -3784,7 +3784,7 @@
     Index: 16
   - InnerDefinition: !!single_def
       Name: AethernetGroup
-    Index: 17	
+    Index: 17
   - InnerDefinition: !!single_def
       Name: Map
       Converter: !!link_conv
@@ -3922,4 +3922,4 @@
         TargetSheet: ClassJob
     Index: 1
   Name: GcArmyExpeditionMemberBonus
-Version: 2016.09.21.0000.0000
+Version: 2016.10.03.0000.0000
