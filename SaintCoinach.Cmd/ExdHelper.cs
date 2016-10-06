@@ -10,7 +10,7 @@ namespace SaintCoinach.Cmd {
     using Xiv;
 
     static class ExdHelper {
-        public static void WriteRows(StreamWriter s, ISheet sheet, Language language, IEnumerable<int> colIndices) {
+        public static void WriteRows(StreamWriter s, ISheet sheet, Language language, IEnumerable<int> colIndices, bool writeRaw) {
             foreach (var row in sheet.Cast<Ex.IRow>().OrderBy(_ => _.Key)) {
                 var useRow = row;
 
@@ -23,9 +23,9 @@ namespace SaintCoinach.Cmd {
                     object v;
 
                     if (language == Language.None || multiRow == null)
-                        v = useRow[col];
+                        v = writeRaw ? useRow.GetRaw(col) : useRow[col];
                     else
-                        v = multiRow[col, language];
+                        v = writeRaw ? multiRow.GetRaw(col, language) : multiRow[col, language];
 
                     if (v == null)
                         s.Write(",");

@@ -81,7 +81,7 @@ namespace SaintCoinach.Cmd.Commands {
                 s.WriteLine(nameLine);
                 s.WriteLine(typeLine);
 
-                ExdHelper.WriteRows(s, sheet, language, colIndices);
+                ExdHelper.WriteRows(s, sheet, language, colIndices, false);
             }
         }
     }
