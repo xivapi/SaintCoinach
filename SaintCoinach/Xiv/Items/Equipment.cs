@@ -165,8 +165,9 @@ namespace SaintCoinach.Xiv.Items {
                 if (Rarity <= 1 || As<byte>("GCTurnIn") <= 0)
                     return 0;
 
-                var multiplier = ItemLevel.Key < 210 ? 5.75m : 5.49m;
-                return (int)Math.Round(multiplier * ItemLevel.Key, MidpointRounding.AwayFromZero);
+                // For every item level 200 and below, you receive 5.75 seals.
+                // For every item level after 200, you receive 2 seals.
+                return (int)Math.Ceiling(Math.Max(ItemLevel.Key - 200, 0) * 2 + Math.Min(200, ItemLevel.Key) * 5.75);
             }
         }
 
