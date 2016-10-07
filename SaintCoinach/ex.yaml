@@ -3927,4 +3927,15 @@
         TargetSheet: ClassJob
     Index: 1
   Name: GcArmyExpeditionMemberBonus
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: Description
+    Index: 1
+  Name: Orchestrion
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: File
+  Name: OrchestrionPath
 Version: 2016.10.03.0000.0000
