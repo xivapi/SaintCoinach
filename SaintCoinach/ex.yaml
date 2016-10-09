@@ -832,6 +832,11 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Description
+  Name: EventItemHelp
+  DefaultColumn: Description
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: CLevel
     Index: 2
   - InnerDefinition: !!single_def
