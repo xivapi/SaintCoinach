@@ -87,6 +87,12 @@ namespace SaintCoinach.Xiv {
         public bool IsCollectable { get { return AsBoolean("IsCollectable"); } }
 
         /// <summary>
+        ///     Gets a value indicating whether the current item can have materia melded with advanced melding.
+        /// </summary>
+        /// <value>A value indicating whether the current item can have materia melded with advanced melding.</value>
+        public bool IsAdvancedMeldingPermitted { get { return AsBoolean("IsAdvancedMeldingPermitted"); } }
+
+        /// <summary>
         ///     Gets the <see cref="Stain" /> associated with the current item.
         /// </summary>
         /// <value>The <see cref="Stain" /> associated with the current item.</value>
