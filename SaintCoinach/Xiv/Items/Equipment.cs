@@ -97,12 +97,6 @@ namespace SaintCoinach.Xiv.Items {
         public int FreeMateriaSlots { get { return AsInt32("MateriaSlotCount"); } }
 
         /// <summary>
-        ///     Gets a value indicating whether the current item can have materia melded with advanced melding.
-        /// </summary>
-        /// <value>A value indicating whether the current item can have materia melded with advanced melding.</value>
-        public bool IsAdvancedMeldingPermitted { get { return AsBoolean("IsAdvancedMeldingPermitted"); } }
-
-        /// <summary>
         ///     Gets the <see cref="ClassJob" /> required to repair the current item.
         /// </summary>
         /// <value>The <see cref="ClassJob" /> required to repair the current item.</value>
@@ -165,9 +159,14 @@ namespace SaintCoinach.Xiv.Items {
                 if (Rarity <= 1 || As<byte>("GCTurnIn") <= 0)
                     return 0;
 
+                // Formula used for GCSupplyDutyReward seals:
                 // For every item level 200 and below, you receive 5.75 seals.
                 // For every item level after 200, you receive 2 seals.
-                return (int)Math.Ceiling(Math.Max(ItemLevel.Key - 200, 0) * 2 + Math.Min(200, ItemLevel.Key) * 5.75);
+
+                var rewards = Sheet.Collection.GetSheet("GCSupplyDutyReward");
+                if (rewards.ContainsRow(ItemLevel.Key))
+                    return (int)(uint)rewards[ItemLevel.Key]["Seals{ExpertDelivery}"];
+                return 0;
             }
         }
 
