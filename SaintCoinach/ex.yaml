@@ -1031,15 +1031,18 @@
   Name: GCSupplyDuty
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: Reward{Experience}
+      Name: Experience{Supply}
   - InnerDefinition: !!single_def
-      Name: StarReward{Experience}
+      Name: Experience{Provisioning}
     Index: 1
   - InnerDefinition: !!single_def
-      Name: Reward{Seals}
+      Name: Seals{ExpertDelivery}
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: Seals{Supply}
     Index: 3
   - InnerDefinition: !!single_def
-      Name: StarReward{Seals}
+      Name: Seals{Provisioning}
     Index: 4
   Name: GCSupplyDutyReward
 - DataDefinitions:
