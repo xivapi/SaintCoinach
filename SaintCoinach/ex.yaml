@@ -3864,8 +3864,22 @@
   DefaultColumn: Description
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: RequiredLevel
+      Name: Required{Flag}
+  - InnerDefinition: !!single_def
+      Name: Unlock{Flag}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Required{Level}
     Index: 2
+  - InnerDefinition: !!single_def
+      Name: Required{Seals}
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Reward{Experience}
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Percent{Base}
+    Index: 5
   - InnerDefinition: !!single_def
       Name: GcArmyExpeditionType
       Converter: !!link_conv
@@ -3882,10 +3896,66 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: Item
+          Name: Reward{Item}
           Converter: !!link_conv
             TargetSheet: Item
     Index: 10
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Reward{Quantity}
+    Index: 16
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Required{Physical}
+    Index: 22
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Percent{PhysicalMet}
+    Index: 28
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Required{Mental}
+    Index: 34
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Percent{MentalMet}
+    Index: 40
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Required{Tactical}
+    Index: 46
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Percent{TacticalMet}
+    Index: 52
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 6
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Percent{AllMet}
+    Index: 58
   Name: GcArmyExpedition
   DefaultColumn: Name
 - DataDefinitions:
