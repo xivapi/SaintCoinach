@@ -715,6 +715,90 @@
         Name: ENpcData
         Converter: !!ref_conv {}
     Index: 2
+  - InnerDefinition: !!single_def
+      Name: Race
+      Converter: !!link_conv
+        TargetSheet: Race
+    Index: 36
+  - InnerDefinition: !!single_def
+      Name: Gender
+    Index: 37
+  - InnerDefinition: !!single_def
+      Name: Height
+    Index: 39
+  - InnerDefinition: !!single_def
+      Name: Tribe
+      Converter: !!link_conv
+        TargetSheet: Tribe
+    Index: 40
+  - InnerDefinition: !!single_def
+      Name: Face
+    Index: 41
+  - InnerDefinition: !!single_def
+      Name: HairStyle
+    Index: 42
+  - InnerDefinition: !!single_def
+      Name: HairHighlight
+    Index: 43
+  - InnerDefinition: !!single_def
+      Name: SkinColor
+    Index: 44
+  - InnerDefinition: !!single_def
+      Name: EyeHeterochromia
+    Index: 45
+  - InnerDefinition: !!single_def
+      Name: HairColor
+    Index: 46
+  - InnerDefinition: !!single_def
+      Name: HairHighlightColor
+    Index: 47
+  - InnerDefinition: !!single_def
+      Name: FacialFeature
+    Index: 48
+  - InnerDefinition: !!single_def
+      Name: FacialFeatureColor
+    Index: 49
+  - InnerDefinition: !!single_def
+      Name: Eyebrows
+    Index: 50
+  - InnerDefinition: !!single_def
+      Name: EyeColor
+    Index: 51
+  - InnerDefinition: !!single_def
+      Name: EyeShape
+    Index: 52
+  - InnerDefinition: !!single_def
+      Name: Nose
+    Index: 53
+  - InnerDefinition: !!single_def
+      Name: Jaw
+    Index: 54
+  - InnerDefinition: !!single_def
+      Name: Mouth
+    Index: 55
+  - InnerDefinition: !!single_def
+      Name: LipColor
+    Index: 56
+  - InnerDefinition: !!single_def
+      Name: BustOrTone1
+    Index: 57
+  - InnerDefinition: !!single_def
+      Name: ExtraFeature1
+    Index: 58
+  - InnerDefinition: !!single_def
+      Name: ExtraFeature2OrBust
+    Index: 59
+  - InnerDefinition: !!single_def
+      Name: FacePaint
+    Index: 60
+  - InnerDefinition: !!single_def
+      Name: FacePaintColor
+    Index: 61
+  - InnerDefinition: !!single_def
+      Name: Behavior
+      Converter: !!link_conv
+        TargetSheet: Behavior
+    Index: 64
   Name: ENpcBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
