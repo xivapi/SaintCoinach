@@ -883,7 +883,7 @@
   Name: EventIconPriority
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
-      RepeatCount: 3
+      RepeatCount: 4
       RepeatedDefinition: !!single_def
         Name: Icon
         Converter: !!icon_conv {}
