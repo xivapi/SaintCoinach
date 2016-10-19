@@ -110,13 +110,15 @@ namespace DotSquish {
             var bestEnd = zero;
             var bestError = this._BestError;
             var bestIndices = new byte[16];
-            var bestIteration = 0;
-            int besti = 0, bestj = 0;
+            //var bestIteration = 0;
+            //int besti = 0, bestj = 0;
 
-            // Loop over iterations (we avoid the case that all points in first or last cluster)
-            for (int iterationIndex = 0; ; ) {
-                throw new NotImplementedException();
-            }
+            //// Loop over iterations (we avoid the case that all points in first or last cluster)
+            //for (int iterationIndex = 0; ; ) {
+            //    throw new NotImplementedException();
+            //}
+
+            throw new NotImplementedException();
         }
         protected override void Compress4(byte[] block) {
             throw new NotImplementedException();
