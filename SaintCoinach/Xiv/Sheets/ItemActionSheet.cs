@@ -70,6 +70,8 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 2634, typeof(IA.ChocoboActionReset)
             }, {
+                2645, typeof(IA.RealmRebornRed)
+            }, {
                 2894, typeof(IA.EternityRing)
             }, {
                 3237, typeof(IA.DesynthSkillReset)
@@ -79,7 +81,15 @@ namespace SaintCoinach.Xiv.Sheets {
                 3292, typeof(IA.ChocoboLevelCapIncrease)
             }, {
                 3357, typeof(IA.TripleTriadCardUnlock)
-            } 
+            }, {
+                3800, typeof(IA.MgpCard)
+            }, {
+                4107, typeof(IA.FolkloreBook)
+            }, {
+                5136, typeof(IA.Heavenscracker)
+            }, {
+                5845, typeof(IA.OrchestrionRollUnlock)
+            }
         };
 
         #endregion
