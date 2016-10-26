@@ -1701,6 +1701,11 @@
       Converter: !!link_conv
         TargetSheet: Map
     Index: 7
+  - InnerDefinition: !!single_def
+      Name: Territory
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 9
   Name: Level
   DefaultColumn: Map
 - DataDefinitions:
@@ -3736,7 +3741,31 @@
 - DataDefinitions: []
   Name: GuildleveAssignment
   IsGenericReferenceTarget: true
-- DataDefinitions: []
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: LevelId
+      Converter: !!link_conv
+        TargetSheet: Level
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: DefaultTalk1
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: DefaultTalk2
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: DefaultTalk3
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: WarpCondition
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: WarpLogic
+    Index: 6
   Name: Warp
   IsGenericReferenceTarget: true
 - DataDefinitions:
