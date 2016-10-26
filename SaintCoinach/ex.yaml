@@ -3482,6 +3482,12 @@
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 1
   Name: MapSymbol
 - DataDefinitions:
   - InnerDefinition: !!single_def
