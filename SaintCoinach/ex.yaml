@@ -3467,13 +3467,23 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: X
+  - InnerDefinition: !!single_def
+      Name: Y
     Index: 1
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
     Index: 2
   - InnerDefinition: !!single_def
-      Name: PlaceName
+      Name: PlaceName{Subtext}
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: SubtextOrientation
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: PlaceName{Tooltip}
       Converter: !!link_conv
         TargetSheet: PlaceName
     Index: 7
