@@ -41,16 +41,16 @@ namespace Godbert.Controls {
             System.Windows.Clipboard.SetDataObject(val.ToString());
         }
 
-        public IRelationalRow OnNavigate(object sender, RoutedEventArgs e) {
+        public IRow OnNavigate(object sender, RoutedEventArgs e) {
             var fe = sender as FrameworkElement;
             if (fe == null)
                 return null;
 
-            var ctx = fe.DataContext as IRelationalRow;
+            var ctx = fe.DataContext as IRow;
             if (ctx == null)
                 return null;
 
-            return ctx[_Column.Index] as IRelationalRow;
+            return ctx[_Column.Index] as IRow;
         }
  
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem) {

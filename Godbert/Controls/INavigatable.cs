@@ -1,4 +1,5 @@
-﻿using SaintCoinach.Ex.Relational;
+﻿using SaintCoinach.Ex;
+using SaintCoinach.Ex.Relational;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Godbert.Controls
 {
     public interface INavigatable
     {
-        IRelationalRow OnNavigate(object sender, RoutedEventArgs e);
+        IRow OnNavigate(object sender, RoutedEventArgs e);
     }
 }
