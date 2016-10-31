@@ -46,6 +46,7 @@ namespace SaintCoinach.Ex {
         public string Name { get; private set; }
         public int Variant { get; private set; }
         public IEnumerable<Column> Columns { get { return _Columns; } }
+        public int ColumnCount {  get { return _Columns.Length; } }
         public IEnumerable<Range> DataFileRanges { get { return _DataFileRanges; } }
         public IEnumerable<Language> AvailableLanguages { get { return _AvailableLanguages; } }
         public int FixedSizeDataLength { get; private set; }

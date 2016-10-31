@@ -58,21 +58,18 @@ namespace SaintCoinach.Ex.Variant2 {
             var o = Offset;
             for(var i = 0; i < SubRowCount; ++i) {
                 var key = OrderedBitConverter.ToInt16(b, o, true);
+                o += 2;
 
-                var r = new SubRow(this, key);
+                var r = new SubRow(this, key, o);
                 _SubRows.Add(key, r);
-
-                foreach(var c in _ColumnCache.Values) {
-                    var value = c.Column.Read(b, this, o + 2 + c.Column.Offset);
-                    r.Values.Add(c.Column.Index, value);
-                    c.Values.Add(key, value);
-
-                    var rawValue = c.Column.ReadRaw(b, this, o + 2 + c.Column.Offset);
-                    r.RawValues.Add(c.Column.Index, rawValue);
-                    c.RawValues.Add(key, rawValue);
+                
+                foreach (var c in _ColumnCache.Values)
+                {
+                    c.Values.Add(key, r[c.Column.Index]);
+                    c.RawValues.Add(key, r.GetRaw(c.Column.Index));
                 }
 
-                o += 2 + h.FixedSizeDataLength;
+                o += h.FixedSizeDataLength;
             }
 
             _IsRead = true;
@@ -80,15 +77,13 @@ namespace SaintCoinach.Ex.Variant2 {
         
         public override object this[int column] {
             get {
-                if (!_IsRead)
-                    Read();
+                if (!_IsRead) Read();
                 return _ColumnCache[column].Values;
             }
         }
 
         public override object GetRaw(int column) {
-            if (!_IsRead)
-                Read();
+            if (!_IsRead) Read();
             return _ColumnCache[column].RawValues;
         }
     }
