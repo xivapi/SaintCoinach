@@ -3471,7 +3471,7 @@
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 3
+    Index: 2
   - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
