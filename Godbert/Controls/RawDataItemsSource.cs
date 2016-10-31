@@ -37,22 +37,43 @@ namespace Godbert.Controls {
         }
         public IEnumerable Items {
             get {
-                if (_Comparer == null && _Filter == null)
-                    return _Sheet;
+                if (_Items != null)
+                    return Items;
 
-                if (_Items == null) {
-                    IEnumerable<object> results = _Sheet.Cast<object>();
-
-                    if (_Filter != null)
-                        results = results.Where(_Filter);
-                    if (_Comparer != null)
-                        results = results.OrderBy(o => o, Comparer);
-
-                    _Items = results.ToArray();
-                }
-                return _Items;
+                if (_Sheet.Header.Variant == 1)
+                    return GetVariant1Items();
+                else
+                    return GetVariant2Items();
             }
         }
+
+        private IEnumerable GetVariant1Items()
+        {
+            if (_Comparer == null && _Filter == null)
+                return _Sheet;
+
+            _Items = FilterAndCompare(_Sheet.Cast<object>()).ToArray();
+            return _Items;
+        }
+
+        private IEnumerable GetVariant2Items()
+        {
+            var rows = _Sheet.Cast<SaintCoinach.Xiv.XivRow>()
+                .Select(r => (SaintCoinach.Ex.Variant2.DataRow)r.SourceRow)
+                .SelectMany(r => r.SubRows);
+            _Items = FilterAndCompare(rows).ToArray();
+            return _Items;
+        }
+
+        private IEnumerable<object> FilterAndCompare(IEnumerable<object> results)
+        {
+            if (_Filter != null)
+                results = results.Where(_Filter);
+            if (_Comparer != null)
+                results = results.OrderBy(o => o, Comparer);
+            return results;
+        }
+
         #endregion
 
         #region Constructor

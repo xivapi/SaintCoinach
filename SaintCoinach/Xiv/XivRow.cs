@@ -22,7 +22,7 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
-        IRelationalRow IXivRow.SourceRow { get { return _SourceRow; } }
+        public IRelationalRow SourceRow { get { return _SourceRow; } }
 
         #endregion
 

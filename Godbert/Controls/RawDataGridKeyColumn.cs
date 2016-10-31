@@ -12,11 +12,11 @@ using SaintCoinach.Ex.Relational;
 
 namespace Godbert.Controls {
     public class RawDataGridKeyColumn : DataGridTextColumn, IRawDataColumn {
-        public RawDataGridKeyColumn() {
+        public RawDataGridKeyColumn(string keyPath) {
 
             this.Header = "Key";
             this.IsReadOnly = true;
-            this.Binding = new Binding("Key") { Mode = BindingMode.OneWay };
+            this.Binding = new Binding(keyPath) { Mode = BindingMode.OneWay };
         }
 
         #region IRawDataColumn Members

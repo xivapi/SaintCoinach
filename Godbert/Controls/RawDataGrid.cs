@@ -13,6 +13,7 @@ using SaintCoinach.Ex.Relational;
 using Godbert.ViewModels;
 using SaintCoinach.Xiv;
 using System.Collections;
+using SaintCoinach.Ex;
 
 namespace Godbert.Controls {
     public class RawDataGrid : DataGrid {
@@ -39,7 +40,8 @@ namespace Godbert.Controls {
 
             if (newValue != null)
             {
-                Columns.Add(new RawDataGridKeyColumn() { CanUserSort = true });
+                var keyPath = newValue.Header.Variant == 1 ? "Key" : "FullKey";
+                Columns.Add(new RawDataGridKeyColumn(keyPath) { CanUserSort = true });
 
                 foreach (var col in newValue.Header.Columns)
                     Columns.Add(ColumnFactory.Create(col));
@@ -69,7 +71,7 @@ namespace Godbert.Controls {
         }
 
         private static bool FilterMatch(object rowObj, string value) {
-            var row = rowObj as IXivRow;
+            var row = rowObj as IRow;
             if (row == null)
                 return false;
 

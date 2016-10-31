@@ -8,6 +8,7 @@ using System.Windows.Controls;
 
 using System.ComponentModel;
 using SaintCoinach.Ex.Relational;
+using SaintCoinach.Ex;
 
 namespace Godbert.Controls {
     public class RawDataGridTextColumn : DataGridTextColumn, IRawDataColumn, INavigatable {
@@ -82,8 +83,8 @@ namespace Godbert.Controls {
             }
 
             private int InnerCompare(object x, object y) {
-                var rx = x as IRelationalRow;
-                var ry = y as IRelationalRow;
+                var rx = x as IRow;
+                var ry = y as IRow;
                 if (rx == ry)
                     return 0;
                 if (rx == null)

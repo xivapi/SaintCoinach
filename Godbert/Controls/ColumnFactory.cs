@@ -9,6 +9,7 @@ using System.Windows.Data;
 
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.Ex;
 
 namespace Godbert.Controls {
     static class ColumnFactory {
@@ -23,16 +24,14 @@ namespace Godbert.Controls {
             var binding = CreateCellBinding(column);
 
             DataGridColumn target = null;
-            if (column.Header.Variant == 1) {
-                if (typeof(SaintCoinach.Imaging.ImageFile).IsAssignableFrom(targetType))
-                    target = new RawDataGridImageColumn(column) {
-                        Binding = binding,
-                    };
-                else if (typeof(System.Drawing.Color).IsAssignableFrom(targetType))
-                    target = new RawDataGridColorColumn(column) {
-                        Binding = binding
-                    };
-            }
+            if (typeof(SaintCoinach.Imaging.ImageFile).IsAssignableFrom(targetType))
+                target = new RawDataGridImageColumn(column) {
+                    Binding = binding,
+                };
+            else if (typeof(System.Drawing.Color).IsAssignableFrom(targetType))
+                target = new RawDataGridColorColumn(column) {
+                    Binding = binding
+                };
 
             target = target ?? new RawDataGridTextColumn(column) {
                 Binding = binding
@@ -73,7 +72,7 @@ namespace Godbert.Controls {
             #region IValueConverter Members
 
             public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-                var row = value as IRelationalRow;
+                var row = value as IRow;
                 if (row == null)
                     return null;
 
