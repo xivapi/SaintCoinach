@@ -3492,7 +3492,6 @@
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 0
   - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
@@ -4145,4 +4144,4 @@
   - InnerDefinition: !!single_def
       Name: File
   Name: OrchestrionPath
-Version: 2016.10.11.0000.0000
+Version: 2016.10.26.0000.0000
