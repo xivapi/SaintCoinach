@@ -5,7 +5,7 @@ namespace SaintCoinach.Ex {
     public abstract class DataRowBase : IDataRow {
         #region Fields
 
-        private WeakReference<object>[] _ValueReferences;
+        private Dictionary<int, WeakReference<object>> _ValueReferences;
 
         #endregion
 
@@ -15,7 +15,7 @@ namespace SaintCoinach.Ex {
             Sheet = sheet;
             Key = key;
             Offset = offset;
-            _ValueReferences = new WeakReference<object>[Sheet.Header.ColumnCount];
+            _ValueReferences = new Dictionary<int, WeakReference<object>>();
         }
 
         #endregion
@@ -30,18 +30,18 @@ namespace SaintCoinach.Ex {
         public virtual object this[int columnIndex] {
             get {
                 object value;
-
-                if (_ValueReferences[columnIndex] != null && _ValueReferences[columnIndex].TryGetTarget(out value))
+  
+                if (_ValueReferences.ContainsKey(columnIndex) && _ValueReferences[columnIndex].TryGetTarget(out value))
                     return value;
-
+  
                 var column = Sheet.Header.GetColumn(columnIndex);
                 value = column.Read(Sheet.GetBuffer(), this);
-
-                if (_ValueReferences[columnIndex] != null)
+  
+                if (_ValueReferences.ContainsKey(columnIndex))
                     _ValueReferences[columnIndex].SetTarget(value);
                 else
-                    _ValueReferences[columnIndex] = new WeakReference<object>(value);
-
+                    _ValueReferences.Add(columnIndex, new WeakReference<object>(value));
+  
                 return value;
             }
         }
