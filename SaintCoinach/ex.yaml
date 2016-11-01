@@ -2483,10 +2483,22 @@
           Name: BossCurrencyB
     Index: 34
   - InnerDefinition: !!single_def
+      Name: InstanceContentBuff
+      Converter: !!link_conv
+        TargetSheet: InstanceContentBuff
+    Index: 54
+  - InnerDefinition: !!single_def
       Name: PartyCondition
     Index: 57
   Name: InstanceContent
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Echo{Start}
+  - InnerDefinition: !!single_def
+      Name: Echo{Death}
+    Index: 1
+  Name: InstanceContentBuff
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: LegacyIndicator
