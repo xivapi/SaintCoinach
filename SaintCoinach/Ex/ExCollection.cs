@@ -136,7 +136,7 @@ namespace SaintCoinach.Ex {
         }
 
         protected virtual ISheet CreateSheet(Header header) {
-            if (header.Variant == 2)
+            if (header.Variant == 1)
                 return CreateSheet<Variant1.DataRow>(header);
             return CreateSheet<Variant2.DataRow>(header);
         }
