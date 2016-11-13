@@ -9,15 +9,6 @@ namespace SaintCoinach.Xiv {
     ///     Class representing items that are in the default inventory.
     /// </summary>
     public class Item : ItemBase {
-        #region Static
-
-        /// <summary>
-        ///     Factor to convert between from an item's <see cref="Ask" /> to its <see cref="Bid" />.
-        /// </summary>
-        private const double BidFactor = 0.0153;
-
-        #endregion
-
         #region Fields
 
         /// <summary>
@@ -118,15 +109,24 @@ namespace SaintCoinach.Xiv {
         public ItemAction ItemAction { get { return As<ItemAction>(); } }
 
         /// <summary>
-        ///     Gets the price in Gil of the current item in shops.
-        /// </summary>
-        /// <value>The price in Gil of the current item in shops.</value>
-        public int Bid { get { return (int)Math.Max(1, Math.Round(Ask * BidFactor, MidpointRounding.AwayFromZero)); } }
-
-        /// <summary>
         ///     Gets the price NPCs offer when selling the current item.
         /// </summary>
         /// <value>The price NPCs offer when selling the current item.</value>
+        public int Bid {
+            get {
+                var bidFactor = AsInt32("BidFactor");
+                if (bidFactor == 0)
+                    return 0;
+
+                var bidModifier = 100m / bidFactor;
+                return (int)Math.Ceiling(AsInt32("Price{Low}") / bidModifier);
+            }
+        }
+
+        /// <summary>
+        ///     Gets the price in Gil of the current item in shops.
+        /// </summary>
+        /// <value>The price in Gil of the current item in shops.</value>
         public int Ask { get { return AsInt32("Price{Mid}"); } }
 
         /// <summary>

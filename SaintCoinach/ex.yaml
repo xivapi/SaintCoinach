@@ -1476,7 +1476,7 @@
         TargetSheet: ItemSeries
     Index: 88
   - InnerDefinition: !!single_def
-      Name: GCTurnIn
+      Name: BidFactor
     Index: 89
   - InnerDefinition: !!single_def
       Name: GrandCompany

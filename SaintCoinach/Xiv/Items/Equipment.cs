@@ -156,7 +156,7 @@ namespace SaintCoinach.Xiv.Items {
         /// <value>The number of Grand Company seals.</value>
         public int ExpertDeliverySeals {
             get {
-                if (Rarity <= 1 || As<byte>("GCTurnIn") <= 0)
+                if (Rarity <= 1 || As<byte>("BidFactor") <= 0)
                     return 0;
 
                 // Formula used for GCSupplyDutyReward seals:
