@@ -1817,6 +1817,12 @@
       Name: SizeFactor
     Index: 6
   - InnerDefinition: !!single_def
+      Name: Offset{X}
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: Offset{Y}
+    Index: 8
+  - InnerDefinition: !!single_def
       Name: PlaceName{Region}
       Converter: !!link_conv
         TargetSheet: PlaceName

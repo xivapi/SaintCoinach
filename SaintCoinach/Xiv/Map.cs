@@ -39,6 +39,16 @@ namespace SaintCoinach.Xiv {
         public int SizeFactor { get { return AsInt32("SizeFactor"); } }
 
         /// <summary>
+        ///     Gets the X value offset of the current map.
+        /// </summary>
+        public int OffsetX { get { return AsInt32("Offset{X}"); } }
+
+        /// <summary>
+        ///     Gets the Y value offset of the current map.
+        /// </summary>
+        public int OffsetY { get { return AsInt32("Offset{Y}"); } }
+
+        /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the region the current map is in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the region the current map is in.</value>

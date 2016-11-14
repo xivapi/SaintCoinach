@@ -29,13 +29,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the X-coordinate on the 2D-map.
         /// </summary>
         /// <value>The X-coordinate on the 2D-map.</value>
-        public double MapX { get { return ToMapCoordinate(X); } }
+        public double MapX { get { return ToMapCoordinate(X, Map.OffsetX); } }
 
         /// <summary>
         ///     Gets the Y-coordinate on the 2D-map.
         /// </summary>
         /// <value>The Y-coordinate on the 2D-map.</value>
-        public double MapY { get { return ToMapCoordinate(Z); } }
+        public double MapY { get { return ToMapCoordinate(Z, Map.OffsetY); } }
 
         /// <summary>
         ///     Gets the yaw of the current location.
@@ -90,11 +90,12 @@ namespace SaintCoinach.Xiv {
         ///     Convert a X- or Z-coordinate from world-space into its 2D-coordinate.
         /// </summary>
         /// <param name="val">The coordinate in world-space to convert.</param>
+        /// <param name="offset">The coordinate offset in world-space.</param>
         /// <returns><c>val</c> converted into 2D-space.</returns>
-        private double ToMapCoordinate(double val) {
+        private double ToMapCoordinate(double val, int offset) {
             var c = Map.SizeFactor / 100.0;
 
-            val *= c;
+            val = (val + offset) * c;
             return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1;
         }
     }
