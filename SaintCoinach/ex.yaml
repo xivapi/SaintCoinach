@@ -3223,6 +3223,13 @@
   DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: GatheringPoint
+      Converter: !!link_conv
+        TargetSheet: GatheringPoint
+  DefaultColumn: GatheringPoint
+  Name: GatheringItemPoint
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
