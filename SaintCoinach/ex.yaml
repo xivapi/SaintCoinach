@@ -1094,6 +1094,19 @@
   DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+  - InnerDefinition: !!single_def
+      Name: Required{Rank}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Cost{GCSeals}
+    Index: 2
+  Name: GCScripShopItem
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: GrandCompany
       Converter: !!link_conv
         TargetSheet: GrandCompany
