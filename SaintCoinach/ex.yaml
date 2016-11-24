@@ -4182,4 +4182,28 @@
   - InnerDefinition: !!single_def
       Name: File
   Name: OrchestrionPath
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 1
+  Name: Pet
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  - InnerDefinition: !!single_def
+      Name: Description
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Action
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Pet
+      Converter: !!link_conv
+        TargetSheet: Pet
+    Index: 4
+  Name: PetAction
+  DefaultColumn: Name
 Version: 2016.11.11.0000.0000
