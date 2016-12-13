@@ -4,6 +4,7 @@ using System.Linq;
 
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex.Relational.Update.Changes;
+using System.Collections;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class SheetUpdater {
@@ -195,10 +196,10 @@ namespace SaintCoinach.Ex.Relational.Update {
                 _PreviousDefinition.DataDefinitions.Select(_ => new DefinitionUpdater(_PreviousDefinition, _)).ToArray();
 
             foreach (IRow prevRow in _PreviousSheet) {
-                var prevRowFields =
-                    _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
                 if (!_UpdatedSheet.ContainsRow(prevRow.Key)) continue;
 
+                var prevRowFields =
+                    _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
                 var updatedRow = _UpdatedSheet[prevRow.Key];
                 var updatedRowFields =
                     _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
