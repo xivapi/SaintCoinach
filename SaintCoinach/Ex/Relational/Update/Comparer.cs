@@ -1,5 +1,6 @@
 ﻿using SaintCoinach.Xiv;
 using System;
+using System.Collections;
 
 namespace SaintCoinach.Ex.Relational.Update {
     static partial class Comparer {
@@ -34,11 +35,26 @@ namespace SaintCoinach.Ex.Relational.Update {
             else if (v2 is string)
                 s2 = (string)v2;
 
+            if (v1 is IDictionary && v2 is IDictionary)
+                return IsMatch((IDictionary)v1, (IDictionary)v2);
+
             if (s1 == null || s2 == null) return false;
 
             var maxDistance = Math.Ceiling(RelativeLevenshteinDistance * (s1.Length + s2.Length) / 2.0);
             var d = Levenshtein.Compute(s1, s2);
             return (d <= maxDistance);
+        }
+
+        public static bool IsMatch(IDictionary v1, IDictionary v2) {
+            foreach (var key in v1.Keys) {
+                if (!v2.Contains(key))
+                    continue;
+
+                if (!IsMatch(v1[key], v2[key]))
+                    return false;
+            }
+
+            return true;
         }
 
         private static bool IsPrimitive(object o) {
