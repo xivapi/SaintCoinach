@@ -2490,17 +2490,41 @@
       Name: SortKey
     Index: 20
   - InnerDefinition: !!single_def
-      Name: NewPlayerBonus
+      Name: NewPlayerBonusA
     Index: 23
+  - InnerDefinition: !!single_def
+      Name: NewPlayerBonusB
+    Index: 24
+  - InnerDefinition: !!single_def
+      Name: FinalBossCurrencyA
+    Index: 26
+  - InnerDefinition: !!single_def
+      Name: FinalBossCurrencyB
+    Index: 27
+  - InnerDefinition: !!single_def
+      Name: FinalBossCurrencyC
+    Index: 28
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
           Name: BossCurrencyA
+    Index: 34
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 5
+      RepeatedDefinition: !!group_def
+        Members:
         - !!single_def
           Name: BossCurrencyB
-    Index: 34
+    Index: 39
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 5
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: BossCurrencyC
+    Index: 44
   - InnerDefinition: !!single_def
       Name: InstanceContentBuff
       Converter: !!link_conv
