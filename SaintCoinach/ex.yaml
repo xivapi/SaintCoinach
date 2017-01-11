@@ -110,8 +110,14 @@
       Name: CanTargetDead
     Index: 22
   - InnerDefinition: !!single_def
+      Name: CastType
+    Index: 24
+  - InnerDefinition: !!single_def
       Name: EffectRange
     Index: 25
+  - InnerDefinition: !!single_def
+      Name: XAxisModifier
+    Index: 26
   - InnerDefinition: !!single_def
       Name: Cost
     Index: 29
@@ -150,6 +156,11 @@
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
     Index: 42
+  - InnerDefinition: !!single_def
+      Name: Omen
+      Converter: !!link_conv
+        TargetSheet: Omen
+    Index: 46
   Name: Action
   DefaultColumn: Name
 - DataDefinitions:
@@ -4202,6 +4213,12 @@
       Name: Description
     Index: 1
   Name: Orchestrion
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: FileName
+    Index: 0
+  Name: Omen
+  DefaultColumn: FileName
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: File
