@@ -1305,61 +1305,167 @@
         TargetSheet: ItemLevel
     Index: 11
   - InnerDefinition: !!single_def
-      Name: Level{Equip}
+      Name: Rarity
     Index: 12
-  - InnerDefinition: !!single_def
-      Name: PvPRank
-    Index: 13
-  - InnerDefinition: !!single_def
-      Name: StackSize
-    Index: 14
   - InnerDefinition: !!single_def
       Name: Stain
       Converter: !!link_conv
         TargetSheet: Stain
-    Index: 16
+    Index: 14
   - InnerDefinition: !!single_def
       Name: ItemUICategory
       Converter: !!link_conv
         TargetSheet: ItemUICategory
-    Index: 17
+    Index: 15
   - InnerDefinition: !!single_def
       Name: ItemSearchCategory
       Converter: !!link_conv
         TargetSheet: ItemSearchCategory
-    Index: 18
-  - InnerDefinition: !!single_def
-      Name: Rarity
-    Index: 19
-  - InnerDefinition: !!single_def
-      Name: CanBeHq
-    Index: 20
-  - InnerDefinition: !!single_def
-      Name: IsDyeable
-    Index: 22
-  - InnerDefinition: !!single_def
-      Name: IsCrestWorthy
-    Index: 23
-  - InnerDefinition: !!single_def
-      Name: MaterializeType
-    Index: 24
-  - InnerDefinition: !!single_def
-      Name: MateriaSlotCount
-    Index: 25
-  - InnerDefinition: !!single_def
-      Name: IsAdvancedMeldingPermitted
-    Index: 26
+    Index: 16
   - InnerDefinition: !!single_def
       Name: EquipSlotCategory
       Converter: !!link_conv
         TargetSheet: EquipSlotCategory
+    Index: 17
+  - InnerDefinition: !!single_def
+      Name: StackSize
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: IsUnique
+    Index: 20
+  - InnerDefinition: !!single_def
+      Name: IsUntradable
+    Index: 21
+  - InnerDefinition: !!single_def
+      Name: IsIndisposable
+    Index: 22
+  - InnerDefinition: !!single_def
+      Name: Price{Mid}
+    Index: 24
+  - InnerDefinition: !!single_def
+      Name: Price{Low}
+    Index: 25
+  - InnerDefinition: !!single_def
+      Name: CanBeHq
+    Index: 26
+  - InnerDefinition: !!single_def
+      Name: IsDyeable
     Index: 27
   - InnerDefinition: !!single_def
-      Name: Model{Main}
+      Name: IsCrestWorthy
     Index: 28
   - InnerDefinition: !!single_def
-      Name: Model{Sub}
+      Name: ItemAction
+      Converter: !!link_conv
+        TargetSheet: ItemAction
     Index: 29
+  - InnerDefinition: !!single_def
+      Name: Cooldown<s>
+    Index: 31
+  - InnerDefinition: !!single_def
+      Name: ClassJob{Repair}
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+    Index: 32
+  - InnerDefinition: !!single_def
+      Name: Item{Repair}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 33
+  - InnerDefinition: !!single_def
+      Name: Item{Glamour}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 34
+  - InnerDefinition: !!single_def
+      Name: Desynthesize
+    Index: 35
+  - InnerDefinition: !!single_def
+      Name: IsCollectable
+    Index: 36
+  - InnerDefinition: !!single_def
+      Name: AetherialReduce
+    Index: 37
+  - InnerDefinition: !!single_def
+      Name: Level{Equip}
+    Index: 38
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[1]
+    Index: 41
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[2]
+    Index: 42
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[3]
+    Index: 43
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[4]
+    Index: 44
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[5]
+    Index: 45
+  - InnerDefinition: !!single_def
+      Name: EquippableByRace[6]
+    Index: 46
+  - InnerDefinition: !!single_def
+      Name: EquippableByGender{M}
+    Index: 47
+  - InnerDefinition: !!single_def
+      Name: EquippableByGender{F}
+    Index: 48
+  - InnerDefinition: !!single_def
+      Name: ClassJobCategory
+      Converter: !!link_conv
+        TargetSheet: ClassJobCategory
+    Index: 49
+  - InnerDefinition: !!single_def
+      Name: GrandCompany
+      Converter: !!link_conv
+        TargetSheet: GrandCompany
+    Index: 50
+  - InnerDefinition: !!single_def
+      Name: ItemSeries
+      Converter: !!link_conv
+        TargetSheet: ItemSeries
+    Index: 51
+  - InnerDefinition: !!single_def
+      Name: BaseParamModifier
+    Index: 52
+  - InnerDefinition: !!single_def
+      Name: Model{Main}
+    Index: 53
+  - InnerDefinition: !!single_def
+      Name: Model{Sub}
+    Index: 54
+  - InnerDefinition: !!single_def
+      Name: ClassJob{Use}
+      Converter: !!link_conv
+        TargetSheet: ClassJob
+    Index: 55
+  - InnerDefinition: !!single_def
+      Name: Damage{Phys}
+    Index: 57
+  - InnerDefinition: !!single_def
+      Name: Damage{Mag}
+    Index: 58
+  - InnerDefinition: !!single_def
+      Name: Delay<ms>
+    Index: 59
+  - InnerDefinition: !!single_def
+      Name: BidFactor
+    Index: 60
+  - InnerDefinition: !!single_def
+      Name: BlockRate
+    Index: 61
+  - InnerDefinition: !!single_def
+      Name: Block
+    Index: 62
+  - InnerDefinition: !!single_def
+      Name: Defense{Phys}
+    Index: 63
+  - InnerDefinition: !!single_def
+      Name: Defense{Mag}
+    Index: 64
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!group_def
@@ -1370,12 +1476,12 @@
             TargetSheet: BaseParam
         - !!single_def
           Name: BaseParamValue
-    Index: 31
+    Index: 65
   - InnerDefinition: !!single_def
       Name: ItemSpecialBonus
       Converter: !!link_conv
         TargetSheet: ItemSpecialBonus
-    Index: 43
+    Index: 77
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!group_def
@@ -1386,131 +1492,19 @@
             TargetSheet: BaseParam
         - !!single_def
           Name: BaseParamValue{Special}
-    Index: 45
-  - InnerDefinition: !!single_def
-      Name: ClassJob{Repair}
-      Converter: !!link_conv
-        TargetSheet: ClassJob
-    Index: 57
-  - InnerDefinition: !!single_def
-      Name: Item{Repair}
-      Converter: !!link_conv
-        TargetSheet: Item
-    Index: 58
-  - InnerDefinition: !!single_def
-      Name: ClassJob{Use}
-      Converter: !!link_conv
-        TargetSheet: ClassJob
-    Index: 59
-  - InnerDefinition: !!single_def
-      Name: Damage{Phys}
-    Index: 61
-  - InnerDefinition: !!single_def
-      Name: Damage{Mag}
-    Index: 62
-  - InnerDefinition: !!single_def
-      Name: Delay<ms>
-    Index: 63
-  - InnerDefinition: !!single_def
-      Name: BlockRate
-    Index: 65
-  - InnerDefinition: !!single_def
-      Name: Block
-    Index: 66
-  - InnerDefinition: !!single_def
-      Name: Defense{Phys}
-    Index: 67
-  - InnerDefinition: !!single_def
-      Name: Defense{Mag}
-    Index: 68
-  - InnerDefinition: !!single_def
-      Name: Cooldown<s>
-    Index: 70
-  - InnerDefinition: !!single_def
-      Name: ItemAction
-      Converter: !!link_conv
-        TargetSheet: ItemAction
-    Index: 71
-  - InnerDefinition: !!single_def
-      Name: IsIndisposable
-    Index: 72
-  - InnerDefinition: !!single_def
-      Name: IsUnique
-    Index: 73
-  - InnerDefinition: !!single_def
-      Name: IsUntradable
-    Index: 74
-  - InnerDefinition: !!single_def
-      Name: Price{Low}
-    Index: 75
-  - InnerDefinition: !!single_def
-      Name: Price{Mid}
-    Index: 76
-  - InnerDefinition: !!single_def
-      Name: Price{High}
-    Index: 77
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[1]
-    Index: 78
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[2]
     Index: 79
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[3]
-    Index: 80
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[4]
-    Index: 81
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[5]
-    Index: 82
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[6]
-    Index: 83
-  - InnerDefinition: !!single_def
-      Name: EquippableByGender{M}
-    Index: 84
-  - InnerDefinition: !!single_def
-      Name: EquippableByGender{F}
-    Index: 85
-  - InnerDefinition: !!single_def
-      Name: ClassJobCategory
-      Converter: !!link_conv
-        TargetSheet: ClassJobCategory
-    Index: 86
-  - InnerDefinition: !!single_def
-      Name: ItemSeries
-      Converter: !!link_conv
-        TargetSheet: ItemSeries
-    Index: 88
-  - InnerDefinition: !!single_def
-      Name: BidFactor
-    Index: 89
-  - InnerDefinition: !!single_def
-      Name: GrandCompany
-      Converter: !!link_conv
-        TargetSheet: GrandCompany
-    Index: 90
-  - InnerDefinition: !!single_def
-      Name: BaseParamModifier
+      Name: MaterializeType
     Index: 91
   - InnerDefinition: !!single_def
-      Name: IsPvP
+      Name: MateriaSlotCount
     Index: 92
   - InnerDefinition: !!single_def
-      Name: Item{Glamour}
-      Converter: !!link_conv
-        TargetSheet: Item
+      Name: IsAdvancedMeldingPermitted
     Index: 93
   - InnerDefinition: !!single_def
-      Name: Desynthesize
+      Name: IsPvP
     Index: 94
-  - InnerDefinition: !!single_def
-      Name: IsCollectable
-    Index: 95
-  - InnerDefinition: !!single_def
-      Name: AetherialReduce
-    Index: 96
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
@@ -2539,7 +2533,7 @@
   Name: InstanceContentBuff
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: LegacyIndicator
+      Name: ContentIndicator
   - InnerDefinition: !!single_def
       Name: InstanceContent
       Converter: !!link_conv
@@ -4217,4 +4211,4 @@
     Index: 4
   Name: PetAction
   DefaultColumn: Name
-Version: 2016.12.08.0000.0000
+Version: 2017.01.11.0000.0000

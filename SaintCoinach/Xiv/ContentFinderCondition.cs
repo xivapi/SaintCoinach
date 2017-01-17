@@ -11,15 +11,15 @@ namespace SaintCoinach.Xiv {
 
         public InstanceContent InstanceContent { get { return As<InstanceContent>(); } }
 
-        /// <summary>
-        /// Gets the <see cref="ContentRoulette"/> the current content is in.
-        /// </summary>
-        /// <value>The <see cref="ContentRoulette"/> the current content is in.</value>
-        public ContentRoulette ContentRoulette { get { return As<ContentRoulette>(); } }
-
         public ContentMemberType ContentMemberType { get { return As<ContentMemberType>(); } }
 
-        public int LegacyIndicator { get { return AsInt32("LegacyIndicator"); } }
+        public int ContentIndicator { get { return AsInt32("ContentIndicator"); } }
+
+        /// <summary>
+        /// Gets the description of the current content.
+        /// </summary>
+        /// <value>The description of the current content.</value>
+        public Text.XivString Description { get { return (Text.XivString)Sheet.Collection.GetSheet("ContentFinderConditionTransient")[this.Key]["Description"]; } }
 
         /// <summary>
         /// Gets the minimum level required for the current content.

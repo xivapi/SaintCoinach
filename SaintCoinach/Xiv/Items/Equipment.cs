@@ -127,12 +127,6 @@ namespace SaintCoinach.Xiv.Items {
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
 
         /// <summary>
-        ///     Gets the PvP-rank required to equip the current item.
-        /// </summary>
-        /// <value>The PvP-rank required to equip the current item.</value>
-        public int RequiredPvPRank { get { return AsInt32("PvPRank"); } }
-
-        /// <summary>
         ///     Gets the PvP indicator of the item.
         /// </summary>
         /// <value>True if the item is PvP equipment, false otherwise.</value>
