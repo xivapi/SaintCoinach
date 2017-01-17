@@ -266,10 +266,10 @@
     Index: 3
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 8
+    Index: 9
   - InnerDefinition: !!single_def
       Name: Name{Relation}
-    Index: 16
+    Index: 17
   Name: BeastTribe
   DefaultColumn: Name
 - DataDefinitions:
@@ -646,13 +646,6 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: Item
-      Converter: !!link_conv
-        TargetSheet: Item
-  Name: CraftCrystalType
-  DefaultColumn: Item
-- DataDefinitions:
-  - InnerDefinition: !!single_def
       Name: Leve
       Converter: !!link_conv
         TargetSheet: Leve
@@ -676,15 +669,6 @@
   DefaultColumn: Leve
   IsGenericReferenceTarget: true
 - DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: CraftCrystalType{Primary}
-      Converter: !!link_conv
-        TargetSheet: CraftCrystalType
-  - InnerDefinition: !!single_def
-      Name: CraftCrystalType{Secondary}
-      Converter: !!link_conv
-        TargetSheet: CraftCrystalType
-    Index: 1
   - InnerDefinition: !!single_def
       Name: Name
     Index: 2
@@ -2181,27 +2165,27 @@
       Name: BeastTribe
       Converter: !!link_conv
         TargetSheet: BeastTribe
-    Index: 2
+    Index: 3
   - InnerDefinition: !!single_def
       Name: BeastReputationRank
       Converter: !!link_conv
         TargetSheet: BeastReputationRank
-    Index: 3
+    Index: 4
   - InnerDefinition: !!single_def
       Name: Quest
       Converter: !!link_conv
         TargetSheet: Quest
-    Index: 4
+    Index: 5
   - InnerDefinition: !!repeat_def
       RepeatCount: 40
       RepeatedDefinition: !!single_def
         Name: ShopItem
         Converter: !!link_conv
           TargetSheet: ShopItem
-    Index: 7
+    Index: 8
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 47
+    Index: 48
   Name: Shop
   DefaultColumn: Name
   IsGenericReferenceTarget: true
@@ -2302,7 +2286,7 @@
       Name: Quest{Shop}
       Converter: !!link_conv
         TargetSheet: Quest
-    Index: 1802
+    Index: 1803
   Name: SpecialShop
   DefaultColumn: Name
   IsGenericReferenceTarget: true
@@ -2540,10 +2524,10 @@
       Name: InstanceContentBuff
       Converter: !!link_conv
         TargetSheet: InstanceContentBuff
-    Index: 54
+    Index: 53
   - InnerDefinition: !!single_def
       Name: PartyCondition
-    Index: 57
+    Index: 56
   Name: InstanceContent
   DefaultColumn: Name
 - DataDefinitions:
@@ -2562,11 +2546,6 @@
         TargetSheet: InstanceContent
     Index: 1
   - InnerDefinition: !!single_def
-      Name: ContentRoulette
-      Converter: !!link_conv
-        TargetSheet: ContentRoulette
-    Index: 4
-  - InnerDefinition: !!single_def
       Name: ContentMemberType
       Converter: !!link_conv
         TargetSheet: ContentMemberType
@@ -2580,8 +2559,12 @@
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 37
+    Index: 28
   Name: ContentFinderCondition
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  Name: ContentFinderConditionTransient
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: TanksPerParty
@@ -2597,10 +2580,6 @@
     Index: 11
   Name: ContentMemberType
   DefaultColumn: InstanceContent
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: Description
-  Name: ContentDescription
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: SortKey
@@ -2629,40 +2608,40 @@
       Name: Name
   - InnerDefinition: !!single_def
       Name: Description
-    Index: 1
-  - InnerDefinition: !!single_def
-      Name: DutyType
     Index: 2
   - InnerDefinition: !!single_def
-      Name: IsInDutyFinder
-    Index: 4
+      Name: DutyType
+    Index: 3
   - InnerDefinition: !!single_def
-      Name: RequireAllDuties
+      Name: IsInDutyFinder
     Index: 5
   - InnerDefinition: !!single_def
+      Name: RequireAllDuties
+    Index: 6
+  - InnerDefinition: !!single_def
       Name: ItemLevel{Required}
-    Index: 7
+    Index: 9
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 8
-  - InnerDefinition: !!single_def
-      Name: Reward{TomeA}
-    Index: 9
-  - InnerDefinition: !!single_def
-      Name: Reward{TomeB}
-    Index: 10
-  - InnerDefinition: !!single_def
-      Name: Reward{TomeC}
     Index: 11
   - InnerDefinition: !!single_def
-      Name: SortKey
+      Name: Reward{TomeA}
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: Reward{TomeB}
+    Index: 13
+  - InnerDefinition: !!single_def
+      Name: Reward{TomeC}
     Index: 14
+  - InnerDefinition: !!single_def
+      Name: SortKey
+    Index: 17
   - InnerDefinition: !!single_def
       Name: ContentMemberType
       Converter: !!link_conv
         TargetSheet: ContentMemberType
-    Index: 15
+    Index: 19
   Name: ContentRoulette
   DefaultColumn: Name
 - DataDefinitions:
@@ -3276,13 +3255,6 @@
         TargetSheet: GatheringPoint
   Name: GatheringItemPoint
   DefaultColumn: GatheringPoint
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: PlaceName
-      Converter: !!link_conv
-        TargetSheet: PlaceName
-  Name: GatheringNotebookRegion
-  DefaultColumn: PlaceName
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: GatheringType
@@ -4216,7 +4188,6 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: FileName
-    Index: 0
   Name: Omen
   DefaultColumn: FileName
 - DataDefinitions:
@@ -4226,7 +4197,6 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 1
   Name: Pet
   DefaultColumn: Name
 - DataDefinitions:
