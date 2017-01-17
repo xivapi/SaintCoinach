@@ -616,7 +616,6 @@
     <Compile Include="Xiv\ContentReward.cs" />
     <Compile Include="Xiv\ContentRoulette.cs" />
     <Compile Include="Xiv\CraftAction.cs" />
-    <Compile Include="Xiv\CraftCrystalType.cs" />
     <Compile Include="Xiv\CraftLeve.cs" />
     <Compile Include="Xiv\CraftLeveItem.cs" />
     <Compile Include="Xiv\CraftType.cs" />

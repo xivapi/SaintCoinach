@@ -209,32 +209,22 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <returns>An array of <see cref="RecipeIngredient" />s used in the current recipe.</returns>
         private RecipeIngredient[] BuildIngredients() {
-            const int MaterialCount = 8;
-            const int CrystalCount = 2;
+            const int MaterialCount = 10;
+            const int CrystalCategory = 59;
 
             var ingredients = new List<RecipeIngredient>();
 
             for (var i = 0; i < MaterialCount; ++i) {
                 var item = As<Item>("Item{Ingredient}", i);
-                if (item.Key == 0)
+                if (item == null || item.Key == 0)
                     continue;
 
                 var count = AsInt32("Amount{Ingredient}", i);
                 if (count == 0)
                     continue;
 
-                ingredients.Add(new RecipeIngredient(RecipeIngredientType.Material, item, count));
-            }
-            for (var i = 0; i < CrystalCount; ++i) {
-                var craftCrystal = As<CraftCrystalType>("CraftCrystalType", i);
-                if (craftCrystal == null)
-                    continue;
-
-                var count = AsInt32("Amount{Crystal}", i);
-                if (count == 0)
-                    continue;
-
-                ingredients.Add(new RecipeIngredient(RecipeIngredientType.Crystal, craftCrystal.Item, count));
+                var type = item.ItemUICategory.Key == CrystalCategory ? RecipeIngredientType.Crystal : RecipeIngredientType.Material;
+                ingredients.Add(new RecipeIngredient(type, item, count));
             }
             var itemLevelSum =
                 ingredients.Where(_ => _.Type == RecipeIngredientType.Material)

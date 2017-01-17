@@ -1452,9 +1452,6 @@
       Name: Delay<ms>
     Index: 59
   - InnerDefinition: !!single_def
-      Name: BidFactor
-    Index: 60
-  - InnerDefinition: !!single_def
       Name: BlockRate
     Index: 61
   - InnerDefinition: !!single_def
@@ -1964,7 +1961,7 @@
       Name: Amount{Result}
     Index: 4
   - InnerDefinition: !!repeat_def
-      RepeatCount: 8
+      RepeatCount: 10
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
@@ -1974,17 +1971,6 @@
         - !!single_def
           Name: Amount{Ingredient}
     Index: 5
-  - InnerDefinition: !!repeat_def
-      RepeatCount: 2
-      RepeatedDefinition: !!group_def
-        Members:
-        - !!single_def
-          Name: CraftCrystalType
-          Converter: !!link_conv
-            TargetSheet: CraftCrystalType
-        - !!single_def
-          Name: Amount{Crystal}
-    Index: 21
   - InnerDefinition: !!single_def
       Name: RecipeElement
       Converter: !!link_conv

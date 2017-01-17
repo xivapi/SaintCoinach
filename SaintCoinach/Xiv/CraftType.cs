@@ -13,14 +13,6 @@ namespace SaintCoinach.Xiv {
 
         public Text.XivString Name { get { return AsString("Name"); } }
 
-        public CraftCrystalType PrimaryCraftCrystal {
-            get { return As<CraftCrystalType>("CraftCrystalType{Primary}"); }
-        }
-
-        public CraftCrystalType SecondaryCraftCrystal {
-            get { return As<CraftCrystalType>("CraftCrystalType{Secondary}"); }
-        }
-
         public ClassJob ClassJob { get { return Sheet.Collection.GetSheet<ClassJob>()[ClassJobOffset + Key]; } }
 
         #endregion

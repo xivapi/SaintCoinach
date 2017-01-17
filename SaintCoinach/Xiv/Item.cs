@@ -112,16 +112,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the price NPCs offer when selling the current item.
         /// </summary>
         /// <value>The price NPCs offer when selling the current item.</value>
-        public int Bid {
-            get {
-                var bidFactor = AsInt32("BidFactor");
-                if (bidFactor == 0)
-                    return 0;
-
-                var bidModifier = 100m / bidFactor;
-                return (int)Math.Ceiling(AsInt32("Price{Low}") / bidModifier);
-            }
-        }
+        public int Bid { get { return AsInt32("Price{Low}"); } }
 
         /// <summary>
         ///     Gets the price in Gil of the current item in shops.
