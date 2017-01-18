@@ -141,7 +141,7 @@ namespace SaintCoinach.Ex {
 
         IRow ISheet.this[int row] { get { return this[row]; } }
 
-        public object this[int row, int column] { get { return this[row][column]; } }
+        public object this[int row, int column] { get { return this[row]?[column]; } }
 
         #endregion
     }

@@ -111,8 +111,11 @@ namespace SaintCoinach.Ex {
                 if (_Rows.TryGetValue(key, out row))
                     return row;
 
-                var offset = _RowOffsets[key];
-                _Rows.Add(key, row = CreateRow(key, offset));
+                int offset;
+                if (_RowOffsets.TryGetValue(key, out offset))
+                    _Rows.Add(key, row = CreateRow(key, offset));
+                else
+                    _Rows.Add(key, row = default(T));
 
                 return row;
             }
