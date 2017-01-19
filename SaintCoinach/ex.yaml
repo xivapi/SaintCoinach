@@ -2952,6 +2952,12 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Stars
+    Index: 0
+  Name: TripleTriadCardRarity
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Top
     Index: 1
   - InnerDefinition: !!single_def
