@@ -2002,6 +2002,8 @@
     Index: 35
   - InnerDefinition: !!single_def
       Name: UnlockKey
+      Converter: !!link_conv
+        TargetSheet: SecretRecipeBook
     Index: 36
   - InnerDefinition: !!single_def
       Name: CanQuickSynth
@@ -2045,6 +2047,15 @@
       Name: Durability
     Index: 4
   Name: RecipeLevelTable
+- DataDefinitions:
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 160
+      RepeatedDefinition: !!single_def
+        Name: Recipe
+        Converter: !!link_conv
+          TargetSheet: Recipe
+    Index: 0
+  Name: RecipeNotebookList
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item{Atma}
@@ -2193,6 +2204,17 @@
     Index: 1
   Name: RelicNoteCategory
   DefaultColumn: Text
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 0
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 1
+  Name: SecretRecipeBook
+  DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Icon
