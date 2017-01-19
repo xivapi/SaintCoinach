@@ -2087,6 +2087,63 @@
   DefaultColumn: Item{Novus}
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Gladiator{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Pugilist{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: Marauder{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Lancer{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Archer{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Conjurer{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: Thaumaturge{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: Arcanist(SMN){Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: Arcanist(SCH){Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Shield{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: Rogue{Item}
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 11
+  Name: RelicItem
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: EventItem
       Converter: !!link_conv
         TargetSheet: EventItem
