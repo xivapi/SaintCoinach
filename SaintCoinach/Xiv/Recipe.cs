@@ -159,25 +159,15 @@ namespace SaintCoinach.Xiv {
         public int DurabilityFactor { get { return AsInt32("DurabilityFactor"); } }
 
         /// <summary>
-        ///     Gets the key required to unlock the current recipe.
-        /// </summary>
-        /// <remarks>
-        ///     This is the same key as used in <see cref="ItemActions.RecipeBookUnlock" />.
-        /// </remarks>
-        /// <value>The key required to unlock the current recipe.</value>
-        public int UnlockKey { get { return AsInt32("UnlockKey"); } }
-
-        /// <summary>
         ///     Gets the <see cref="Item"/> required to unlock the current recipe.
         /// </summary>
         /// <value>The <see cref="Item"/> required to unlock the current recipe.</value>
         public Item UnlockItem {
             get {
                 if (!_UnlockItemFetched) {
-                    if (UnlockKey != 0) {
-                        var itemAction = Sheet.Collection.GetSheet<ItemAction>().OfType<ItemActions.RecipeBookUnlock>().FirstOrDefault(i => i.RecipeBook == this.UnlockKey);
-                        _UnlockItem = Sheet.Collection.GetSheet<Item>().FirstOrDefault(i => i.ItemAction == itemAction);
-                    }
+                    var secretRecipeBook = (IXivRow)this["UnlockKey"];
+                    if (secretRecipeBook != null && secretRecipeBook.Key != 0)
+                        _UnlockItem = (Item)secretRecipeBook["Item"];
                     _UnlockItemFetched = true;
                 }
                 return _UnlockItem;

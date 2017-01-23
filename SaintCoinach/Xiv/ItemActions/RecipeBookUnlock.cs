@@ -25,7 +25,7 @@ namespace SaintCoinach.Xiv.ItemActions {
             get {
                 return _Recipes
                        ?? (_Recipes =
-                           Sheet.Collection.GetSheet<Recipe>().Where(_ => _.UnlockKey == RecipeBook).ToArray());
+                           Sheet.Collection.GetSheet<Recipe>().Where(_ => _.UnlockItem != null && _.UnlockItem.Key == RecipeBook).ToArray());
             }
         }
 
