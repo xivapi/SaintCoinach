@@ -2054,7 +2054,6 @@
         Name: Recipe
         Converter: !!link_conv
           TargetSheet: Recipe
-    Index: 0
   Name: RecipeNotebookList
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -2209,7 +2208,6 @@
       Name: Item
       Converter: !!link_conv
         TargetSheet: Item
-    Index: 0
   - InnerDefinition: !!single_def
       Name: Name
     Index: 1
@@ -3032,7 +3030,6 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Stars
-    Index: 0
   Name: TripleTriadCardRarity
   DefaultColumn: Name
 - DataDefinitions:
@@ -4282,4 +4279,4 @@
     Index: 4
   Name: PetAction
   DefaultColumn: Name
-Version: 2017.01.11.0000.0000
+Version: 2017.01.24.0000.0000
