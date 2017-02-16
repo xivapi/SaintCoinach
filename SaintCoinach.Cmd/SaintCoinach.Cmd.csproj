@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AllExdCommand.cs" />
+    <Compile Include="Commands\AllExdRawCommand.cs" />
     <Compile Include="Commands\BgmCommand.cs" />
     <Compile Include="Commands\ExdCommand.cs" />
     <Compile Include="Commands\LanguageCommand.cs" />

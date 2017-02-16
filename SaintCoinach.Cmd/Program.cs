@@ -70,6 +70,7 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new Commands.ExdCommand(realm));
             rootCmd.RegisterCommand(new Commands.AllExdCommand(realm));
             rootCmd.RegisterCommand(new Commands.RawExdCommand(realm));
+            rootCmd.RegisterCommand(new Commands.AllExdRawCommand(realm));
             rootCmd.RegisterCommand(new Commands.BgmCommand(realm));
         }
 
