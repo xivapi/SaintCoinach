@@ -4279,4 +4279,84 @@
     Index: 4
   Name: PetAction
   DefaultColumn: Name
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Npc
+        Converter: !!link_conv
+          TargetSheet: ENpcResident
+    - InnerDefinition: !!single_def
+        Name: Quest{Required}
+        Converter: !!link_conv
+          TargetSheet: Quest
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: DeliveriesPerWeek
+      Index: 2
+    - InnerDefinition: !!single_def
+        Name: Icon
+        Converter: !!icon_conv {}
+      Index: 69
+  Name: SatisfactionNpc
+  DefaultColumn: Npc
+- DataDefinitions:
+    - InnerDefinition: !!single_def
+        Name: Slot
+    - InnerDefinition: !!single_def
+        Name: Quantity
+      Index: 1
+    - InnerDefinition: !!single_def
+        Name: Item
+        Converter: !!link_conv
+          TargetSheet: Item
+      Index: 2
+    - InnerDefinition: !!single_def
+        Name: Collectability{Low}
+      Index: 3
+    - InnerDefinition: !!single_def
+        Name: Collectability{Mid}
+      Index: 4
+    - InnerDefinition: !!single_def
+        Name: Collectability{High}
+      Index: 5
+    - InnerDefinition: !!single_def
+        Name: Reward
+        Converter: !!link_conv
+          TargetSheet: SatisfactionSupplyReward
+      Index: 6
+  Name: SatisfactionSupply
+  DefaultColumn: Item
+- DataDefinitions:
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 2
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!single_def
+            Name: RewardItem
+            Converter: !!link_conv
+              TargetSheet: Item
+          - !!single_def
+            Name: Quantity{Low}
+          - !!single_def
+            Name: Quantity{Mid}
+          - !!single_def
+            Name: Quantity{High}
+    - InnerDefinition: !!single_def
+        Name: Satisfaction{Low}
+      Index: 8
+    - InnerDefinition: !!single_def
+        Name: Satisfaction{Mid}
+      Index: 9
+    - InnerDefinition: !!single_def
+        Name: Satisfaction{High}
+      Index: 10
+    - InnerDefinition: !!single_def
+        Name: Gil{Low}
+      Index: 11
+    - InnerDefinition: !!single_def
+        Name: Gil{Mid}
+      Index: 12
+    - InnerDefinition: !!single_def
+        Name: Gil{High}
+      Index: 13
+  Name: SatisfactionSupplyReward
 Version: 2017.02.22.0001.0000
