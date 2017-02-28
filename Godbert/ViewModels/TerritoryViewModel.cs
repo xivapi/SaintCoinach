@@ -37,7 +37,7 @@ namespace Godbert.ViewModels {
             var allTerritoryTypes = parent.Realm.GameData.GetSheet<TerritoryType>();
 
             _Territories = allTerritoryTypes
-                //.Where(t => t.Key > 1)
+                .Where(t => !string.IsNullOrEmpty(t.Bg.ToString()))
                 .Select(t => new TerritoryView(t))
                 .OrderBy(m => m.PlaceNames)
                 .ThenBy(m => m.TerritoryType.Key)
