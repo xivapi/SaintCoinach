@@ -7,17 +7,22 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Column="0" Grid.Row="0"
-                         ItemsSource="{Binding Path=Territories}"
+        <TextBox Text="{Binding Path=FilterTerm, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="0" Grid.Row="0"
+                         Margin="2" />
+
+        <ListBox Grid.Column="0" Grid.Row="1"
+                         ItemsSource="{Binding Path=FilteredTerritories}"
                          SelectedItem="{Binding Path=SelectedTerritory, Mode=TwoWay}"
                          DisplayMemberPath="Name" />
 
         <Button Content="Open" Command="{Binding Path=OpenCommand}"
-                        Grid.Row="1" Grid.Column="0"
+                        Grid.Row="2" Grid.Column="0"
                         Margin="2" />
     </Grid>
 </UserControl>

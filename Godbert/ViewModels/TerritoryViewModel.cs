@@ -14,18 +14,35 @@ namespace Godbert.ViewModels {
 
     public class TerritoryViewModel : ObservableBase {
         #region Fields
-        private TerritoryView[] _Territories;
+        private TerritoryView[] _AllTerritories;
+        private TerritoryView[] _FilteredTerritories;
         private TerritoryView _SelectedTerritory;
+        private string _FilterTerm;
         #endregion
 
         #region Properties
         public MainViewModel Parent { get; private set; }
-        public IEnumerable<TerritoryView> Territories { get { return _Territories; } }
+        public IEnumerable<TerritoryView> AllTerritories { get { return _AllTerritories; } }
+        public IEnumerable<TerritoryView> FilteredTerritories { get { return _FilteredTerritories; } }
         public TerritoryView SelectedTerritory {
             get { return _SelectedTerritory; }
             set {
                 _SelectedTerritory = value;
                 OnPropertyChanged(() => SelectedTerritory);
+            }
+        }
+        public string FilterTerm {
+            get { return _FilterTerm; }
+            set {
+                _FilterTerm = value;
+
+                if (string.IsNullOrWhiteSpace(value))
+                    _FilteredTerritories = _AllTerritories;
+                else
+                    _FilteredTerritories = _AllTerritories.Where(e => e.Name.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0).ToArray();
+
+                OnPropertyChanged(() => FilterTerm);
+                OnPropertyChanged(() => FilteredTerritories);
             }
         }
         #endregion
@@ -36,12 +53,14 @@ namespace Godbert.ViewModels {
 
             var allTerritoryTypes = parent.Realm.GameData.GetSheet<TerritoryType>();
 
-            _Territories = allTerritoryTypes
+            _AllTerritories = allTerritoryTypes
                 .Where(t => !string.IsNullOrEmpty(t.Bg.ToString()))
                 .Select(t => new TerritoryView(t))
                 .OrderBy(m => m.PlaceNames)
                 .ThenBy(m => m.TerritoryType.Key)
                 .ToArray();
+
+            _FilteredTerritories = _AllTerritories;
         }
         #endregion
 
@@ -69,8 +88,8 @@ namespace Godbert.ViewModels {
 
         #region Refresh
         public void Refresh() {
-            _Territories = _Territories.ToArray();
-            OnPropertyChanged(() => Territories);
+            _FilteredTerritories = _FilteredTerritories.ToArray();
+            OnPropertyChanged(() => FilteredTerritories);
         }
         #endregion
     }
