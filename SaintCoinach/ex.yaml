@@ -4292,6 +4292,35 @@
     - InnerDefinition: !!single_def
         Name: DeliveriesPerWeek
       Index: 2
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 6
+        RepeatedDefinition: !!single_def
+          Name: Rank
+      Index: 3
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 6
+        RepeatedDefinition: !!single_def
+          Name: Satisfaction{Required}
+      Index: 9
+    - InnerDefinition: !!repeat_def
+        RepeatCount: 3
+        RepeatedDefinition: !!group_def
+          Members:
+          - !!repeat_def
+            RepeatCount: 6
+            RepeatedDefinition: !!single_def
+              Name: Item
+              Converter: !!link_conv
+                TargetSheet: Item
+          - !!repeat_def
+            RepeatCount: 6
+            RepeatedDefinition: !!single_def
+              Name: ItemCount
+          - !!repeat_def
+            RepeatCount: 6
+            RepeatedDefinition: !!single_def
+              Name: IsHQ
+      Index: 15
     - InnerDefinition: !!single_def
         Name: Icon
         Converter: !!icon_conv {}
