@@ -4295,7 +4295,7 @@
     - InnerDefinition: !!repeat_def
         RepeatCount: 6
         RepeatedDefinition: !!single_def
-          Name: Rank
+          Name: SupplyIndex
       Index: 3
     - InnerDefinition: !!repeat_def
         RepeatCount: 6
@@ -4331,7 +4331,7 @@
     - InnerDefinition: !!single_def
         Name: Slot
     - InnerDefinition: !!single_def
-        Name: Quantity
+        Name: Probability<%>
       Index: 1
     - InnerDefinition: !!single_def
         Name: Item
