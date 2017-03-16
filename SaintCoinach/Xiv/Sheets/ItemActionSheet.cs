@@ -66,7 +66,7 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 2483, typeof(IA.ChocoboFeed)
             }, {
-                2633, typeof(IA.RealmRebornRed)
+                2633, typeof(IA.CustomizeUnlock)
             }, {
                 2634, typeof(IA.ChocoboActionReset)
             }, {
