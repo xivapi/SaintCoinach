@@ -365,7 +365,6 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 0
   - InnerDefinition: !!single_def
       Name: Abbreviation
     Index: 1
@@ -380,7 +379,7 @@
         TargetSheet: ClassJob
     Index: 23
   - InnerDefinition: !!single_def
-      Name: Name(English)
+      Name: Name{English}
     Index: 24
   - InnerDefinition: !!single_def
       Name: Item{StartingWeapon}
