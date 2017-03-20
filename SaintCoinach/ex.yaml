@@ -391,6 +391,9 @@
       Converter: !!link_conv
         TargetSheet: Item
     Index: 37
+  - InnerDefinition: !!single_def
+      Name: StartingLevel
+    Index: 41
   Name: ClassJob
   DefaultColumn: Name
 - DataDefinitions:
