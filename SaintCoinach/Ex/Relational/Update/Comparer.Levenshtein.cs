@@ -7,6 +7,11 @@ namespace SaintCoinach.Ex.Relational.Update {
             ///     Compute the distance between two strings.
             /// </summary>
             public static int Compute(string s, string t) {
+                if (s == t) {
+                    // Optimization: Quick test of identical strings. 
+                    return 0;
+                }
+
                 var n = s.Length;
                 var m = t.Length;
                 var d = new int[n + 1, m + 1];

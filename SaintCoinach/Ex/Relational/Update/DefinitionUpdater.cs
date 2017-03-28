@@ -36,10 +36,11 @@ namespace SaintCoinach.Ex.Relational.Update {
         }
 
         public void MatchRow(object[] previousRowData, object[] updatedRowData) {
-            for (var updatedI = 0; updatedI <= updatedRowData.Length - DataDefinition.Length; ++updatedI) {
+            var defLength = DataDefinition.Length;
+            for (var updatedI = 0; updatedI <= updatedRowData.Length - defLength; ++updatedI) {
                 var matches = 0;
 
-                for (var i = 0; i < DataDefinition.Length; ++i) {
+                for (var i = 0; i < defLength; ++i) {
                     var prevColumn = i + DataDefinition.Index;
                     var upColumn = updatedI + i;
 
@@ -52,7 +53,7 @@ namespace SaintCoinach.Ex.Relational.Update {
 
                 if (matches <= 0) continue;
 
-                var c = matches / (double)DataDefinition.Length;
+                var c = matches / (double)defLength;
                 if (!_IndexMatchConfidence.ContainsKey(updatedI))
                     _IndexMatchConfidence.Add(updatedI, new List<double>());
                 _IndexMatchConfidence[updatedI].Add(c);

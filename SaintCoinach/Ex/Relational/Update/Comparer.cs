@@ -58,17 +58,23 @@ namespace SaintCoinach.Ex.Relational.Update {
         }
 
         private static bool IsPrimitive(object o) {
-            return (o is Boolean
-                    || o is Byte
-                    || o is SByte
-                    || o is Int16
-                    || o is Int32
-                    || o is Int64
-                    || o is UInt16
-                    || o is UInt32
-                    || o is UInt64
-                    || o is Single
-                    || o is Double);
+            // The ordering of these checks is optimized based on type
+            // occurrence statistics.
+            if (o is UInt32) return true;
+            if (o is byte) return true;
+            if (o is bool) return true;
+            if (o is Int32) return true;
+            if (o is UInt16) return true;
+            // XivString
+            if (o is SByte) return true;
+            if (o is Int16) return true;
+            // Quad
+            if (o is Single) return true;
+            // Int64, UInt64, double have no occurrences.
+            if (o is Int64) return true;
+            if (o is UInt64) return true;
+            if (o is double) return true;
+            return false;
         }
 
         private static Decimal ToDecimal(object o) {
