@@ -195,6 +195,12 @@ namespace SaintCoinach.Ex.Relational.Update {
             var defUpdaters =
                 _PreviousDefinition.DataDefinitions.Select(_ => new DefinitionUpdater(_PreviousDefinition, _)).ToArray();
 
+            // Record a list of compatible indexes by previous sheet column.
+            // These are the only columns to be tested.
+            var comparers = _PreviousSheet.Header.Columns
+                .Select(c => ColumnComparer.Create(c, _UpdatedSheet.Header.Columns))
+                .ToArray();
+
             foreach (IRow prevRow in _PreviousSheet) {
                 if (!_UpdatedSheet.ContainsRow(prevRow.Key)) continue;
 
@@ -205,7 +211,7 @@ namespace SaintCoinach.Ex.Relational.Update {
                     _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
 
                 foreach (var def in defUpdaters)
-                    def.MatchRow(prevRowFields, updatedRowFields);
+                    def.MatchRow(prevRowFields, updatedRowFields, comparers);
             }
 
             return defUpdaters;

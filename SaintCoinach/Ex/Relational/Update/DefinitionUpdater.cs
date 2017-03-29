@@ -35,7 +35,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             return _IndexMatchConfidence.ToDictionary(_ => _.Key, _ => _.Value.Sum() / _RowMatchCount);
         }
 
-        public void MatchRow(object[] previousRowData, object[] updatedRowData) {
+        public void MatchRow(object[] previousRowData, object[] updatedRowData, ColumnComparer[] comparers) {
             var defLength = DataDefinition.Length;
             for (var updatedI = 0; updatedI <= updatedRowData.Length - defLength; ++updatedI) {
                 var matches = 0;
@@ -44,10 +44,14 @@ namespace SaintCoinach.Ex.Relational.Update {
                     var prevColumn = i + DataDefinition.Index;
                     var upColumn = updatedI + i;
 
+                    var comparer = comparers[prevColumn];
+                    if (comparer == null || !comparer.IsCompatibleIndex(upColumn))
+                        continue; // Not compatible.
+
                     var prevVal = previousRowData[prevColumn];
                     var upVal = updatedRowData[upColumn];
 
-                    if (Comparer.IsMatch(prevVal, upVal))
+                    if (comparer.Compare(prevVal, upVal))
                         ++matches;
                 }
 
@@ -61,6 +65,33 @@ namespace SaintCoinach.Ex.Relational.Update {
 
             ++_RowMatchCount;
         }
+
+        //public void MatchRow(object[] previousRowData, object[] updatedRowData) {
+        //    var defLength = DataDefinition.Length;
+        //    for (var updatedI = 0; updatedI <= updatedRowData.Length - defLength; ++updatedI) {
+        //        var matches = 0;
+
+        //        for (var i = 0; i < defLength; ++i) {
+        //            var prevColumn = i + DataDefinition.Index;
+        //            var upColumn = updatedI + i;
+
+        //            var prevVal = previousRowData[prevColumn];
+        //            var upVal = updatedRowData[upColumn];
+
+        //            if (Comparer.IsMatch(prevVal, upVal))
+        //                ++matches;
+        //        }
+
+        //        if (matches <= 0) continue;
+
+        //        var c = matches / (double)defLength;
+        //        if (!_IndexMatchConfidence.ContainsKey(updatedI))
+        //            _IndexMatchConfidence.Add(updatedI, new List<double>());
+        //        _IndexMatchConfidence[updatedI].Add(c);
+        //    }
+
+        //    ++_RowMatchCount;
+        //}
 
         public PositionedDataDefintion GetDefinition(int index) {
             var newDef = DataDefinition.Clone();

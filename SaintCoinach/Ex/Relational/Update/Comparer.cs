@@ -1,16 +1,16 @@
-﻿using SaintCoinach.Xiv;
+﻿using SaintCoinach.Ex.Relational.Definition;
+using SaintCoinach.Xiv;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SaintCoinach.Ex.Relational.Update {
-    static partial class Comparer {
-        #region Static
-
-        private const double RelativeLevenshteinDistance = 0.05;
-
-        #endregion
-
+    static class Comparer {
         public static bool IsMatch(object v1, object v2) {
+            // This function is only used by variant 2 rows with subrows.
+            // When the updater handles those this will go away and the rest
+            // of its functions merged into the ColumnComparer family.
             if (IsPrimitive(v1) && IsPrimitive(v2)) {
                 if (v1.GetType() != v2.GetType()) return false;
 
@@ -35,13 +35,11 @@ namespace SaintCoinach.Ex.Relational.Update {
             else if (v2 is string)
                 s2 = (string)v2;
 
-            if (v1 is IDictionary && v2 is IDictionary)
-                return IsMatch((IDictionary)v1, (IDictionary)v2);
-
             if (s1 == null || s2 == null) return false;
 
-            var maxDistance = Math.Ceiling(RelativeLevenshteinDistance * (s1.Length + s2.Length) / 2.0);
-            var d = Levenshtein.Compute(s1, s2);
+
+            var maxDistance = Math.Ceiling(StringColumnComparer.RelativeLevenshteinDistance * (s1.Length + s2.Length) / 2.0);
+            var d = StringColumnComparer.ComputeLevenshtein(s1, s2);
             return (d <= maxDistance);
         }
 
@@ -75,6 +73,23 @@ namespace SaintCoinach.Ex.Relational.Update {
             if (o is UInt64) return true;
             if (o is double) return true;
             return false;
+        }
+
+        public static bool IsPrimitiveType(Type t) {
+            // The ordering of these checks is optimized based on type
+            // occurrence statistics.
+            return
+                t == typeof(UInt32) ||
+                t == typeof(byte) ||
+                t == typeof(bool) ||
+                t == typeof(Int32) ||
+                t == typeof(UInt16) ||
+                t == typeof(SByte) ||
+                t == typeof(Int16) ||
+                t == typeof(Single) ||
+                t == typeof(Int64) ||
+                t == typeof(UInt64) ||
+                t == typeof(double);
         }
 
         private static Decimal ToDecimal(object o) {
