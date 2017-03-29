@@ -51,7 +51,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 return _SheetMap.TryGetValue(name, out def);
 
             var res =
-                SheetDefinitions.Where(_ => string.Equals(_.Name, name)).ToArray();
+                _SheetDefinitions.Where(_ => string.Equals(_.Name, name)).ToArray();
             def = res.Any() ? res.First() : null;
 
             return (def != null);
@@ -60,7 +60,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         public SheetDefinition GetOrCreateSheet(string name) {
             SheetDefinition def;
             if (!TryGetSheet(name, out def))
-                SheetDefinitions.Add(def = new SheetDefinition {
+                _SheetDefinitions.Add(def = new SheetDefinition {
                     Name = name
                 });
             return def;
@@ -76,6 +76,9 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public void Serialize(TextWriter writer) {
+            // Sort definitions before serializing.
+            _SheetDefinitions = _SheetDefinitions.OrderBy(s => s.Name).ToList();
+
             var serializer = new ExRelationSerializer();
             serializer.Serialize(writer, this);
         }

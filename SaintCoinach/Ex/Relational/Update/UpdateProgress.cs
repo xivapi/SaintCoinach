@@ -1,16 +1,24 @@
 ﻿using System.Text;
+using System.Threading;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public struct UpdateProgress {
+        private int _CurrentStep;
+
         #region Properties
 
-        public int CurrentStep { get; set; }
+        public int CurrentStep { get { return _CurrentStep; } }
         public int TotalSteps { get; set; }
-        public double Percentage { get { return CurrentStep / (double)TotalSteps; } }
+        public double Percentage { get { return _CurrentStep / (double)TotalSteps; } }
         public string CurrentFile { get; set; }
         public string CurrentOperation { get; set; }
 
         #endregion
+
+        public void IncrementStep()
+        {
+            Interlocked.Increment(ref _CurrentStep);
+        }
 
         public override string ToString() {
             var sb = new StringBuilder();

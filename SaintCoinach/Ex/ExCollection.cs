@@ -7,6 +7,7 @@ using System.Text;
 using SaintCoinach.IO;
 
 using File = SaintCoinach.IO.File;
+using System.Collections.Concurrent;
 
 namespace SaintCoinach.Ex {
     public class ExCollection {
@@ -14,8 +15,8 @@ namespace SaintCoinach.Ex {
 
         private readonly Dictionary<int, string> _SheetIdentifiers = new Dictionary<int, string>();
 
-        private readonly Dictionary<string, WeakReference<ISheet>> _Sheets =
-            new Dictionary<string, WeakReference<ISheet>>();
+        private readonly ConcurrentDictionary<string, WeakReference<ISheet>> _Sheets =
+            new ConcurrentDictionary<string, WeakReference<ISheet>>();
 
         private HashSet<string> _AvailableSheets;
 
@@ -119,10 +120,7 @@ namespace SaintCoinach.Ex {
             var header = CreateHeader(name, exh);
             sheet = CreateSheet(header);
 
-            if (_Sheets.ContainsKey(name))
-                _Sheets[name].SetTarget(sheet);
-            else
-                _Sheets.Add(name, new WeakReference<ISheet>(sheet));
+            _Sheets.GetOrAdd(name, n => new WeakReference<ISheet>(sheet)).SetTarget(sheet);
             return sheet;
         }
 

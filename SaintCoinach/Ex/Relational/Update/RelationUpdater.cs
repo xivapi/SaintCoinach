@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex.Relational.Update.Changes;
 using SaintCoinach.IO;
+
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class RelationUpdater {
@@ -54,64 +58,76 @@ namespace SaintCoinach.Ex.Relational.Update {
         #region Update
 
         public IEnumerable<IChange> Update(bool detectDataChanges) {
-            var changes = new List<IChange>();
+            var changes = new ConcurrentBag<IChange>();
 
             var progress = new UpdateProgress {
                 CurrentOperation = "Structure",
-                CurrentStep = 0,
                 TotalSteps = (detectDataChanges ? 2 : 1) * Previous.SheetDefinitions.Count
             };
+
+            var sheetLock = new object();
+
+            Parallel.ForEach(Previous.SheetDefinitions, prevSheetDef =>
             {
-                foreach (var prevSheetDef in Previous.SheetDefinitions) {
-                    progress.CurrentFile = prevSheetDef.Name;
-                    _Progress.Report(progress);
+                progress.CurrentFile = prevSheetDef.Name;
+                _Progress.Report(progress);
 
-                    if (!_Updated.SheetExists(prevSheetDef.Name)) {
-                        changes.Add(new SheetRemoved(prevSheetDef.Name));
-                        continue;
-                    }
-
-                    var prevSheet = _Previous.GetSheet(prevSheetDef.Name);
-
-                    var updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
-                    var updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
-
-                    var sheetUpdater = new SheetUpdater(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                    changes.AddRange(sheetUpdater.Update());
-
-                    GC.Collect();
-
-                    ++progress.CurrentStep;
+                if (!_Updated.SheetExists(prevSheetDef.Name))
+                {
+                    changes.Add(new SheetRemoved(prevSheetDef.Name));
+                    return;
                 }
 
-                Updated.Compile();
-            }
+                IRelationalSheet prevSheet, updatedSheet;
+                SheetDefinition updatedSheetDef;
+                lock (sheetLock)
+                {
+                    prevSheet = _Previous.GetSheet(prevSheetDef.Name);
+                    updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
+                    updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
+                }
+
+                var sheetUpdater = new SheetUpdater(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
+                foreach (var update in sheetUpdater.Update())
+                    changes.Add(update);
+
+                //GC.Collect();
+
+                progress.IncrementStep();
+            });
+
+            Updated.Compile();
 
             if (detectDataChanges) {
                 progress.CurrentOperation = "Data";
 
-                foreach (var prevSheetDef in Previous.SheetDefinitions) {
+                Parallel.ForEach(Previous.SheetDefinitions, prevSheetDef =>
+                {
                     progress.CurrentFile = prevSheetDef.Name;
                     _Progress.Report(progress);
 
                     if (!_Updated.SheetExists(prevSheetDef.Name))
-                        continue;
+                        return;
 
-                    var prevSheet = _Previous.GetSheet(prevSheetDef.Name);
-
-                    var updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
-                    var updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
+                    IRelationalSheet prevSheet, updatedSheet;
+                    SheetDefinition updatedSheetDef;
+                    lock (sheetLock)
+                    {
+                        prevSheet = _Previous.GetSheet(prevSheetDef.Name);
+                        updatedSheet = _Updated.GetSheet(prevSheetDef.Name);
+                        updatedSheetDef = Updated.GetOrCreateSheet(prevSheetDef.Name);
+                    }
 
                     var sheetComparer = new SheetComparer(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                    changes.AddRange(sheetComparer.Compare());
+                    foreach (var change in sheetComparer.Compare())
+                        changes.Add(change);
 
-                    GC.Collect();
+                    //GC.Collect();
 
-                    ++progress.CurrentStep;
-                }
+                    progress.IncrementStep();
+                });
             }
 
-            progress.CurrentStep = progress.TotalSteps;
             progress.CurrentOperation = "Finished";
             progress.CurrentFile = null;
             _Progress.Report(progress);
