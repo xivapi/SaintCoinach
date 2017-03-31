@@ -16,6 +16,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         private bool _IsCompiled;
         private ICollection<SheetDefinition> _SheetDefinitions = new List<SheetDefinition>();
         private Dictionary<string, SheetDefinition> _SheetMap;
+        private Dictionary<string, SheetDefinition> _SheetDefinitionMap = new Dictionary<string, SheetDefinition>();
 
         #endregion
 
@@ -33,7 +34,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #region Compile
 
         public void Compile() {
-            var g = _SheetDefinitions.GroupBy(_ => _.Name).Where(_ => _.Count() > 1).ToArray();
             _SheetMap = _SheetDefinitions.ToDictionary(_ => _.Name, _ => _);
 
             foreach (var sheet in SheetDefinitions)
@@ -50,19 +50,16 @@ namespace SaintCoinach.Ex.Relational.Definition {
             if (_IsCompiled)
                 return _SheetMap.TryGetValue(name, out def);
 
-            var res =
-                _SheetDefinitions.Where(_ => string.Equals(_.Name, name)).ToArray();
-            def = res.Any() ? res.First() : null;
-
-            return (def != null);
+            return _SheetDefinitionMap.TryGetValue(name, out def);
         }
 
         public SheetDefinition GetOrCreateSheet(string name) {
             SheetDefinition def;
-            if (!TryGetSheet(name, out def))
-                _SheetDefinitions.Add(def = new SheetDefinition {
-                    Name = name
-                });
+            if (!TryGetSheet(name, out def)) {
+                def = new SheetDefinition { Name = name };
+                _SheetDefinitions.Add(def);
+                _SheetDefinitionMap[name] = def;
+            }
             return def;
         }
 
