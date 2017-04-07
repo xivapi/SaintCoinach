@@ -30,7 +30,7 @@
         }
 
         object IMultiRow.GetRaw(int columnIndex, Language language) {
-            return Sheet.GetLocalisedSheet(language)[Key].GetRaw(columnIndex);
+            return Sheet.GetLocalisedSheet(language)[Key]?.GetRaw(columnIndex);
         }
 
         #endregion
