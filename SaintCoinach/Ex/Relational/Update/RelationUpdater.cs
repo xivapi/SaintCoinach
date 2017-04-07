@@ -88,10 +88,9 @@ namespace SaintCoinach.Ex.Relational.Update {
                 }
 
                 var sheetUpdater = new SheetUpdater(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                foreach (var update in sheetUpdater.Update())
-                    changes.Add(update);
-
-                //GC.Collect();
+                var sheetUpdates = MemoryGuard(() => sheetUpdater.Update().ToArray());
+                foreach (var change in sheetUpdates)
+                    changes.Add(change);
 
                 progress.IncrementStep();
             });
@@ -119,10 +118,9 @@ namespace SaintCoinach.Ex.Relational.Update {
                     }
 
                     var sheetComparer = new SheetComparer(prevSheet, prevSheetDef, updatedSheet, updatedSheetDef);
-                    foreach (var change in sheetComparer.Compare())
+                    var sheetChanges = MemoryGuard(() => sheetComparer.Compare().ToArray());
+                    foreach (var change in sheetChanges)
                         changes.Add(change);
-
-                    //GC.Collect();
 
                     progress.IncrementStep();
                 });
@@ -133,6 +131,21 @@ namespace SaintCoinach.Ex.Relational.Update {
             _Progress.Report(progress);
 
             return changes;
+        }
+
+        private static T MemoryGuard<T>(Func<T> func) {
+            for (var i = 0; i < 5; i++) {
+                try {
+                    return func();
+                }
+                catch (OutOfMemoryException) {
+                    // Give another task time to progress and free memory.
+                    System.Threading.Thread.Sleep(300);
+                    GC.Collect();
+                }
+            }
+
+            throw new OutOfMemoryException("Could not execute function after 5 attempts.");
         }
 
         #endregion
