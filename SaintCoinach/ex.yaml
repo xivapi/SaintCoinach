@@ -2440,6 +2440,9 @@
       Converter: !!link_conv
         TargetSheet: ItemSpecialBonus
     Index: 77
+  - InnerDefinition: !!single_def
+      Name: ItemSpecialBonus{Param}
+    Index: 78
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!group_def

@@ -115,6 +115,12 @@ namespace SaintCoinach.Xiv.Items {
         public ItemSpecialBonus ItemSpecialBonus { get { return As<ItemSpecialBonus>(); } }
 
         /// <summary>
+        ///     Gets the parameter used for some <see cref="ItemSpecialBonus"/> required to grant additional bonuses of the current item. 
+        /// </summary>
+        /// <value>The parameter used for some <see cref="ItemSpecialBonus"/> required to grant additional bonuses of the current item. </value>
+        public byte ItemSpecialBonusParam {  get { return As<byte>("ItemSpecialBonus{Param}"); } }
+
+        /// <summary>
         ///     Gets the <see cref="ItemSeries" /> of the current item.
         /// </summary>
         /// <value>The <see cref="ItemSeries" /> of the current item.</value>
