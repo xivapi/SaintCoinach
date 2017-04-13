@@ -331,6 +331,9 @@ namespace SaintCoinach.Xiv.Items {
                 case 4:
                     type = ParameterType.Sanction;
                     break;
+                case 6:
+                    type = ParameterType.SetBonusCapped;
+                    break;
                 default:
                     type = ParameterType.Hq;
                     break;

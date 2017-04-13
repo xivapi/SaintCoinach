@@ -31,6 +31,11 @@
         /// <summary>
         ///     Value indicating the bonus is variable and can differ between instance.
         /// </summary>
-        Variable
+        Variable,
+
+        /// <summary>
+        ///     Value indicating the bonus is only valid when set and level conditions are fulfilled.
+        /// </summary>
+        SetBonusCapped
     }
 }
