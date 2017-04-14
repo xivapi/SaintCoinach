@@ -58,19 +58,19 @@ namespace SaintCoinach.Xiv {
 
                     parameters.AddParameterValue(param,
                         max == 0
-                            ? new ParameterValueRelative(ParameterType.Base, val / 100.0)
-                            : new ParameterValueRelativeLimited(ParameterType.Base, val / 100.0, max));
+                            ? new ParameterValueRelative(ParameterType.Base, val / 100.0, i)
+                            : new ParameterValueRelativeLimited(ParameterType.Base, val / 100.0, max, i));
 
                     if (maxHq == max && valHq == val) continue;
 
                     parameters.AddParameterValue(param,
                         maxHq == 0
-                            ? new ParameterValueRelative(ParameterType.Hq, valHq / 100.0)
-                            : new ParameterValueRelativeLimited(ParameterType.Hq, valHq / 100.0, maxHq));
+                            ? new ParameterValueRelative(ParameterType.Hq, valHq / 100.0, i)
+                            : new ParameterValueRelativeLimited(ParameterType.Hq, valHq / 100.0, maxHq, i));
                 } else {
-                    parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Base, val));
+                    parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Base, val, i));
                     if (val != valHq)
-                        parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Hq, valHq));
+                        parameters.AddParameterValue(param, new ParameterValueFixed(ParameterType.Hq, valHq, i));
                 }
             }
             return parameters;

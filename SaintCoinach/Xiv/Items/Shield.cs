@@ -66,10 +66,10 @@ namespace SaintCoinach.Xiv.Items {
             var paramSheet = Sheet.Collection.GetSheet<BaseParam>();
             if (BlockStrength != 0)
                 param.AddParameterValue(paramSheet[BlockStrengthKey],
-                    new ParameterValueFixed(ParameterType.Primary, BlockStrength));
+                    new ParameterValueFixed(ParameterType.Primary, BlockStrength, 0));
             if (BlockRate != 0)
                 param.AddParameterValue(paramSheet[BlockRateKey],
-                    new ParameterValueFixed(ParameterType.Primary, BlockRate));
+                    new ParameterValueFixed(ParameterType.Primary, BlockRate, 0));
 
             return param;
         }

@@ -312,7 +312,7 @@ namespace SaintCoinach.Xiv.Items {
                 var baseParam = As<BaseParam>("BaseParam", i);
                 var value = AsInt32("BaseParamValue", i);
 
-                AddParameter(parameters, ParameterType.Base, baseParam, value);
+                AddParameter(parameters, ParameterType.Base, baseParam, value, i);
             }
         }
 
@@ -343,7 +343,7 @@ namespace SaintCoinach.Xiv.Items {
                 var baseParam = As<BaseParam>("BaseParam{Special}", i);
                 var value = AsInt32("BaseParamValue{Special}", i);
 
-                AddParameter(parameters, type, baseParam, value);
+                AddParameter(parameters, type, baseParam, value, i);
             }
         }
 
@@ -354,14 +354,16 @@ namespace SaintCoinach.Xiv.Items {
         /// <param name="type"><see cref="ParameterType" /> of the parameter to be added.</param>
         /// <param name="baseParam"><see cref="BaseParam" /> for which a parameter should be added.</param>
         /// <param name="value">Value of the parameter to be added.</param>
+        /// <param name="index">Index of the parameter to be added.</param>
         private static void AddParameter(ParameterCollection parameters,
                                          ParameterType type,
                                          BaseParam baseParam,
-                                         int value) {
+                                         int value,
+                                         int index) {
             if (baseParam.Key == 0)
                 return;
 
-            parameters.AddParameterValue(baseParam, new ParameterValueFixed(type, value));
+            parameters.AddParameterValue(baseParam, new ParameterValueFixed(type, value, index));
         }
 
         #endregion

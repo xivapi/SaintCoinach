@@ -67,10 +67,10 @@ namespace SaintCoinach.Xiv.Items {
             var paramSheet = Sheet.Collection.GetSheet<BaseParam>();
             if (PhysicalDefense != 0)
                 param.AddParameterValue(paramSheet[PhysicalDefenseKey],
-                    new ParameterValueFixed(ParameterType.Primary, PhysicalDefense));
+                    new ParameterValueFixed(ParameterType.Primary, PhysicalDefense, 0));
             if (MagicDefense != 0)
                 param.AddParameterValue(paramSheet[MagicDefenseKey],
-                    new ParameterValueFixed(ParameterType.Primary, MagicDefense));
+                    new ParameterValueFixed(ParameterType.Primary, MagicDefense, 0));
 
             return param;
         }

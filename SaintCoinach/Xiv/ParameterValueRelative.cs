@@ -22,8 +22,9 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <param name="type"><see cref="ParameterType" /> of the bonus.</param>
         /// <param name="amount">Relative bonus.</param>
-        public ParameterValueRelative(ParameterType type, double amount)
-            : base(type) {
+        /// <param name="index">Index of the bonus.</param>
+        public ParameterValueRelative(ParameterType type, double amount, int index)
+            : base(type, index) {
             Amount = amount;
         }
 

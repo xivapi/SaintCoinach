@@ -35,10 +35,10 @@ namespace SaintCoinach.Xiv.ItemActions {
             var parameters = new ParameterCollection();
 
             var bpSheet = Sheet.Collection.GetSheet<BaseParam>();
-            parameters.AddParameterValue(bpSheet[GpBaseParamKey], new ParameterValueFixed(ParameterType.Base, Amount));
+            parameters.AddParameterValue(bpSheet[GpBaseParamKey], new ParameterValueFixed(ParameterType.Base, Amount, 0));
             if (AmountHq != Amount)
                 parameters.AddParameterValue(bpSheet[GpBaseParamKey],
-                    new ParameterValueFixed(ParameterType.Hq, AmountHq));
+                    new ParameterValueFixed(ParameterType.Hq, AmountHq, 0));
 
             return parameters;
         }

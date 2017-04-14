@@ -75,12 +75,12 @@ namespace SaintCoinach.Xiv.Items {
             var paramSheet = Sheet.Collection.GetSheet<BaseParam>();
             if (PhysicalDamage != 0)
                 param.AddParameterValue(paramSheet[PhysicalDamageKey],
-                    new ParameterValueFixed(ParameterType.Primary, PhysicalDamage));
+                    new ParameterValueFixed(ParameterType.Primary, PhysicalDamage, 0));
             if (MagicDamage != 0)
                 param.AddParameterValue(paramSheet[MagicDamageKey],
-                    new ParameterValueFixed(ParameterType.Primary, MagicDamage));
+                    new ParameterValueFixed(ParameterType.Primary, MagicDamage, 0));
             param.AddParameterValue(paramSheet[DelayKey],
-                new ParameterValueFixed(ParameterType.Primary, Delay.TotalSeconds));
+                new ParameterValueFixed(ParameterType.Primary, Delay.TotalSeconds, 0));
 
             return param;
         }

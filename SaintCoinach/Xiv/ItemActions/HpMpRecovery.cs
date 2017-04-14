@@ -48,35 +48,35 @@ namespace SaintCoinach.Xiv.ItemActions {
 
             if (HpMaximum > 0)
                 parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                    new ParameterValueRelativeLimited(ParameterType.Base, HpAmount / 100.0, HpMaximum));
+                    new ParameterValueRelativeLimited(ParameterType.Base, HpAmount / 100.0, HpMaximum, 0));
             else
                 parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                    new ParameterValueFixed(ParameterType.Base, HpAmount));
+                    new ParameterValueFixed(ParameterType.Base, HpAmount, 0));
 
             if (HpMaximumHq != HpMaximum && HpAmountHq != HpAmount) {
                 if (HpMaximumHq > 0)
                     parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                        new ParameterValueRelativeLimited(ParameterType.Hq, HpAmountHq / 100.0, HpMaximumHq));
+                        new ParameterValueRelativeLimited(ParameterType.Hq, HpAmountHq / 100.0, HpMaximumHq, 0));
                 else
                     parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                        new ParameterValueFixed(ParameterType.Hq, HpAmountHq));
+                        new ParameterValueFixed(ParameterType.Hq, HpAmountHq, 0));
             }
 
             if (MpMaximum > 0)
                 parameters.AddParameterValue(bpSheet[MpBaseParamKey],
-                    new ParameterValueRelativeLimited(ParameterType.Base, MpAmount / 100.0, MpMaximum));
+                    new ParameterValueRelativeLimited(ParameterType.Base, MpAmount / 100.0, MpMaximum, 0));
             else
                 parameters.AddParameterValue(bpSheet[MpBaseParamKey],
-                    new ParameterValueFixed(ParameterType.Base, MpAmount));
+                    new ParameterValueFixed(ParameterType.Base, MpAmount, 0));
 
             // ReSharper disable once InvertIf
             if (MpMaximumHq != MpMaximum && MpAmountHq != MpAmount) {
                 if (MpMaximumHq > 0)
                     parameters.AddParameterValue(bpSheet[MpBaseParamKey],
-                        new ParameterValueRelativeLimited(ParameterType.Hq, MpAmountHq / 100.0, MpMaximumHq));
+                        new ParameterValueRelativeLimited(ParameterType.Hq, MpAmountHq / 100.0, MpMaximumHq, 0));
                 else
                     parameters.AddParameterValue(bpSheet[MpBaseParamKey],
-                        new ParameterValueFixed(ParameterType.Hq, MpAmountHq));
+                        new ParameterValueFixed(ParameterType.Hq, MpAmountHq, 0));
             }
 
             return parameters;

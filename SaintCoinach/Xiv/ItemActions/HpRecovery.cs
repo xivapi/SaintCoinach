@@ -41,19 +41,19 @@ namespace SaintCoinach.Xiv.ItemActions {
 
             if (Maximum > 0)
                 parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                    new ParameterValueRelativeLimited(ParameterType.Base, Amount / 100.0, Maximum));
+                    new ParameterValueRelativeLimited(ParameterType.Base, Amount / 100.0, Maximum, 0));
             else
                 parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                    new ParameterValueFixed(ParameterType.Base, Amount));
+                    new ParameterValueFixed(ParameterType.Base, Amount, 0));
 
             // ReSharper disable once InvertIf
             if (MaximumHq != Maximum && AmountHq != Amount) {
                 if (MaximumHq > 0)
                     parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                        new ParameterValueRelativeLimited(ParameterType.Hq, AmountHq / 100.0, MaximumHq));
+                        new ParameterValueRelativeLimited(ParameterType.Hq, AmountHq / 100.0, MaximumHq, 0));
                 else
                     parameters.AddParameterValue(bpSheet[HpBaseParamKey],
-                        new ParameterValueFixed(ParameterType.Hq, AmountHq));
+                        new ParameterValueFixed(ParameterType.Hq, AmountHq, 0));
             }
 
             return parameters;

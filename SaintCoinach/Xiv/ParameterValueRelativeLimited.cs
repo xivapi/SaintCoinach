@@ -21,8 +21,9 @@
         /// <param name="type"><see cref="ParameterType" /> of the bonus.</param>
         /// <param name="amount">Relative bonus.</param>
         /// <param name="maximum">Maximum bonus granted.</param>
-        public ParameterValueRelativeLimited(ParameterType type, double amount, int maximum)
-            : base(type, amount) {
+        /// <param name="index">Index of the bonus.</param>
+        public ParameterValueRelativeLimited(ParameterType type, double amount, int maximum, int index)
+            : base(type, amount, index) {
             Maximum = maximum;
         }
 
