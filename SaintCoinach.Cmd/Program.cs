@@ -25,7 +25,7 @@ namespace SaintCoinach.Cmd {
 
             if (args.Length > 0) {
                 dataPath = args[0];
-                args = new string[0];
+                args = args.Skip(1).ToArray();
             }
             if (string.IsNullOrWhiteSpace(dataPath))
                 dataPath = SearchForDataPath();
