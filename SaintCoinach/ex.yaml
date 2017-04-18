@@ -500,6 +500,26 @@
   Name: CharaMakeCustomize
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Race
+      Converter: !!link_conv
+        TargetSheet: Race
+  - InnerDefinition: !!single_def
+      Name: Tribe
+      Converter: !!link_conv
+        TargetSheet: Tribe
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Gender
+    Index: 2
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 42
+      RepeatedDefinition: !!single_def
+        Name: FacialFeatureIcon
+        Converter: !!icon_conv {}
+    Index: 2283
+  Name: CharaMakeType
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: ChocoboRaceRank
       Converter: !!link_conv
         TargetSheet: ChocoboRaceRank
