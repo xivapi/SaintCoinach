@@ -4209,6 +4209,21 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Trait
+      Converter: !!link_conv
+        TargetSheet: Trait
+  - InnerDefinition: !!single_def
+      Name: Action
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Time<ds>
+    Index: 2
+  Name: TraitRecast
+  DefaultColumn: Trait
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Description
   Name: TraitTransient
   DefaultColumn: Description
