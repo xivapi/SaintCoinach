@@ -631,6 +631,26 @@
         TargetSheet: Item
     Index: 25
   - InnerDefinition: !!single_def
+      Name: LimitBreak1
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 30
+  - InnerDefinition: !!single_def
+      Name: LimitBreak2
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 31
+  - InnerDefinition: !!single_def
+      Name: LimitBreak3
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 32
+  - InnerDefinition: !!single_def
+      Name: LimitBreak{PvP}
+      Converter: !!link_conv
+        TargetSheet: Action
+    Index: 33
+  - InnerDefinition: !!single_def
       Name: Item{SoulCrystal}
       Converter: !!link_conv
         TargetSheet: Item
