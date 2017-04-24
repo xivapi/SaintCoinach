@@ -13,6 +13,8 @@ using SaintCoinach;
 using SaintCoinach.Ex;
 using SaintCoinach.Xiv;
 
+#pragma warning disable CS1998
+
 namespace SaintCoinach.Cmd.Commands {
     public class AllExdCommand : ActionCommandBase {
         private ARealmReversed _Realm;

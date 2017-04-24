@@ -9,6 +9,8 @@ using Tharga.Toolkit.Console.Command.Base;
 
 using SaintCoinach.Ex;
 
+#pragma warning disable CS1998
+
 namespace SaintCoinach.Cmd.Commands
 {
     public class AllExdRawCommand : ActionCommandBase

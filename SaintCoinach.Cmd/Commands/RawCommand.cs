@@ -9,6 +9,8 @@ using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
 using Tharga.Toolkit.Console.Command.Base;
 
+#pragma warning disable CS1998
+
 namespace SaintCoinach.Cmd.Commands {
     public class RawCommand : ActionCommandBase {
         private ARealmReversed _Realm;
