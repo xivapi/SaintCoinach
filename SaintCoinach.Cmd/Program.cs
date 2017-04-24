@@ -28,7 +28,7 @@ namespace SaintCoinach.Cmd {
                 args = args.Skip(1).ToArray();
             }
             if (string.IsNullOrWhiteSpace(dataPath))
-                dataPath = SearchForDataPath();
+                dataPath = SearchForDataPaths().FirstOrDefault(p => System.IO.Directory.Exists(p));
             if (string.IsNullOrWhiteSpace(dataPath) || !System.IO.Directory.Exists(dataPath)) {
                 Console.WriteLine("Need data!");
                 return;
@@ -74,14 +74,19 @@ namespace SaintCoinach.Cmd {
             rootCmd.RegisterCommand(new Commands.BgmCommand(realm));
         }
 
-        static string SearchForDataPath() {
+        static string[] SearchForDataPaths() {
+            const string gameFolder = "FINAL FANTASY XIV - A Realm Reborn";
+
             string programDir;
             if (Environment.Is64BitProcess)
                 programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
             else
                 programDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 
-            return System.IO.Path.Combine(programDir, "SquareEnix", "FINAL FANTASY XIV - A Realm Reborn");
+            return new string[] {
+                System.IO.Path.Combine(programDir, "SquareEnix", gameFolder),
+                System.IO.Path.Combine(@"D:\Games\SteamApps\common", gameFolder)
+            };
         }
     }
 }
