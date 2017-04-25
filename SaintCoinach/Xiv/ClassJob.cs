@@ -25,8 +25,7 @@ namespace SaintCoinach.Xiv {
             get {
                 var nr = IconOffset + Key;
                 var path = string.Format(IconFormat, nr / 1000, nr);
-                File file;
-                if (Sheet.Collection.PackCollection.TryGetFile(path, out file))
+                if (Sheet.Collection.PackCollection.TryGetFile(path, out var file))
                     return file as ImageFile;
                 return null;
             }

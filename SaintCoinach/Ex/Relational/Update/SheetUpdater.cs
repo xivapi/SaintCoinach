@@ -139,8 +139,7 @@ namespace SaintCoinach.Ex.Relational.Update {
 
                 // Populate column matches
                 foreach(var match in updater.Value) {
-                    IDictionary<DefinitionUpdater, double> d;
-                    if (!_ColumnMatches.TryGetValue(match.Key, out d))
+                    if (!_ColumnMatches.TryGetValue(match.Key, out var d))
                         _ColumnMatches.Add(match.Key, d = new Dictionary<DefinitionUpdater, double>());
                     d.Add(updater.Key, match.Value);
                 }

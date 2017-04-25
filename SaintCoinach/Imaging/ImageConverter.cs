@@ -72,8 +72,7 @@ namespace SaintCoinach.Imaging {
         }
 
         public static byte[] GetA8R8G8B8(byte[] src, ImageFormat format, int width, int height) {
-            Preprocessor proc;
-            if (!Preprocessors.TryGetValue(format, out proc))
+            if (!Preprocessors.TryGetValue(format, out var proc))
                 throw new NotSupportedException(string.Format("Unsupported image format {0}", format));
 
             var argb = new byte[width * height * 4];

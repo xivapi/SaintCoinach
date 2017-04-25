@@ -74,9 +74,7 @@ namespace SaintCoinach.Cmd.Commands {
         }
 
         private bool ExportFile(string filePath, string suffix) {
-            IO.File file;
-
-            if (!_Realm.Packs.TryGetFile(filePath, out file))
+            if (!_Realm.Packs.TryGetFile(filePath, out var file))
                 return false;
 
             var scdFile = new Sound.ScdFile(file);

@@ -41,8 +41,7 @@ namespace SaintCoinach.IO {
                 if (value == _KeepInMemory)
                     return;
 
-                Stream t;
-                if (_DataStreams.Any(i => i.Value.TryGetTarget(out t)))
+                if (_DataStreams.Any(i => i.Value.TryGetTarget(out var t)))
                     throw new InvalidOperationException();
                 _DataStreams.Clear();
 
@@ -61,11 +60,10 @@ namespace SaintCoinach.IO {
 
             var key = Tuple.Create(thread, datFile);
             WeakReference<Stream> streamRef;
-            Stream stream;
             lock (_DataStreams)
                 _DataStreams.TryGetValue(key, out streamRef);
 
-            if (streamRef == null || !streamRef.TryGetTarget(out stream))
+            if (streamRef == null || !streamRef.TryGetTarget(out var stream))
                 stream = null;
 
             if (stream != null) return stream;

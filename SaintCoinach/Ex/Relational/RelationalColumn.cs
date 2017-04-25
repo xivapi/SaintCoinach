@@ -6,8 +6,7 @@
 
         public string Name {
             get {
-                var def = Header.SheetDefinition;
-                return def != null ? def.GetColumnName(Index) : null;
+                return Header.SheetDefinition?.GetColumnName(Index);
             }
         }
 

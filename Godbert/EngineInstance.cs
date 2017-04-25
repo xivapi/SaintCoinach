@@ -142,9 +142,7 @@ namespace Godbert {
                 Engine = null;
                 _Injector = null;
                 GC.Collect();
-                var h = Stopped;
-                if (h != null)
-                    h(this, EventArgs.Empty);
+                Stopped?.Invoke(this, EventArgs.Empty);
             }
         }
         #endregion

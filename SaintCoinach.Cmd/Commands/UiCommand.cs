@@ -38,8 +38,7 @@ namespace SaintCoinach.Cmd.Commands {
                 var splitParam = paramList.Split(' ');
 
                 if (splitParam.Length == 1) {
-                    int parsed;
-                    if (int.TryParse(splitParam[0], out parsed))
+                    if (int.TryParse(splitParam[0], out var parsed))
                         min = max = parsed;
                     else {
                         OutputError("Failed to parse parameters.");
@@ -85,10 +84,8 @@ namespace SaintCoinach.Cmd.Commands {
         private bool Process(int i, string version) {
             var filePath = string.Format(UiImagePathFormat, i / 1000, version, i);
 
-            IO.File file;
-            if (_Realm.Packs.TryGetFile(filePath, out file)) {
-                var imgFile = file as Imaging.ImageFile;
-                if (imgFile != null) {
+            if (_Realm.Packs.TryGetFile(filePath, out var file)) {
+                if (file is Imaging.ImageFile imgFile) {
                     var img = imgFile.GetImage();
 
                     var target = new FileInfo(Path.Combine(_Realm.GameVersion, file.Path));

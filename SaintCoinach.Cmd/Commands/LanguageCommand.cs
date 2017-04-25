@@ -27,8 +27,7 @@ namespace SaintCoinach.Cmd.Commands {
                 return true;
             }
             paramList = paramList.Trim();
-            Language newLang;
-            if (!Enum.TryParse<Language>(paramList, out newLang)) {
+            if (!Enum.TryParse<Language>(paramList, out var newLang)) {
                 newLang = LanguageExtensions.GetFromCode(paramList);
                 if (newLang == Language.Unsupported) {
                     OutputError("Unknown language.");

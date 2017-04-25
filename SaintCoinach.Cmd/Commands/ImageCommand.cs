@@ -22,10 +22,8 @@ namespace SaintCoinach.Cmd.Commands {
 
         public override async Task<bool> InvokeAsync(string paramList) {
             try {
-                IO.File file;
-                if (_Realm.Packs.TryGetFile(paramList.Trim(), out file)) {
-                    var imgFile = file as Imaging.ImageFile;
-                    if (imgFile != null) {
+                if (_Realm.Packs.TryGetFile(paramList.Trim(), out var file)) {
+                    if (file is Imaging.ImageFile imgFile) {
                         var img = imgFile.GetImage();
 
                         var target = new FileInfo(Path.Combine(_Realm.GameVersion, file.Path));

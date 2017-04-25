@@ -30,20 +30,16 @@ namespace SaintCoinach.Graphics {
 
         #region Build
         private void Build() {
-            IO.File terrainFile;
             var terrainPath = BasePath + "bgplate/terrain.tera";
-            if (Packs.TryGetFile(terrainPath, out terrainFile))
+            if (Packs.TryGetFile(terrainPath, out var terrainFile))
                 this.Terrain = new TerritoryParts.Terrain(terrainFile);
 
-            var lgbFiles = new List<Lgb.LgbFile>();
-            lgbFiles.Add(TryGetLgb("level/bg.lgb"));
-
+            var lgbFiles = new List<Lgb.LgbFile>() { TryGetLgb("level/bg.lgb") };
             this.LgbFiles = lgbFiles.Where(l => l != null).ToArray();
         }
         private Lgb.LgbFile TryGetLgb(string name) {
             var path = BasePath + name;
-            IO.File file;
-            if (Packs.TryGetFile(path, out file))
+            if (Packs.TryGetFile(path, out var file))
                 return new Lgb.LgbFile(file);
             return null;
         }

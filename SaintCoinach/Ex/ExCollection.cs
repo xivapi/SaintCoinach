@@ -110,9 +110,7 @@ namespace SaintCoinach.Ex {
             if (!_AvailableSheets.Contains(name))
                 throw new KeyNotFoundException();
 
-            ISheet sheet;
-            WeakReference<ISheet> sheetRef;
-            if (_Sheets.TryGetValue(name, out sheetRef) && sheetRef.TryGetTarget(out sheet)) return sheet;
+            if (_Sheets.TryGetValue(name, out var sheetRef) && sheetRef.TryGetTarget(out var sheet)) return sheet;
 
             var exhPath = string.Format(ExHPathFormat, name);
             var exh = PackCollection.GetFile(exhPath);

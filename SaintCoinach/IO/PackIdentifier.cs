@@ -80,8 +80,7 @@ namespace SaintCoinach.IO {
         }
 
         public static PackIdentifier Get(string fullPath) {
-            PackIdentifier id;
-            if (!TryGet(fullPath, out id))
+            if (!TryGet(fullPath, out var id))
                 throw new ArgumentException();
             return id;
         }

@@ -21,9 +21,7 @@ namespace SaintCoinach.Sound {
 
         #region Constructor
         public ScdFile(IO.File sourceFile) {
-            if (sourceFile == null)
-                throw new ArgumentNullException("sourceFile");
-            this.SourceFile = sourceFile;
+            this.SourceFile = sourceFile ?? throw new ArgumentNullException("sourceFile");
 
             Decode();
         }

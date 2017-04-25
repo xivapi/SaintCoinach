@@ -24,8 +24,7 @@ namespace SaintCoinach.Cmd.Commands {
             if (paramList == null)
                 return false;
             try {
-                IO.File file;
-                if (_Realm.Packs.TryGetFile(paramList.Trim(), out file)) {
+                if (_Realm.Packs.TryGetFile(paramList.Trim(), out var file)) {
                     var target = new FileInfo(Path.Combine(_Realm.GameVersion, file.Path));
                     if (!target.Directory.Exists)
                         target.Directory.Create();
