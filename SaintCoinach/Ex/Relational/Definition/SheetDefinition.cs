@@ -53,8 +53,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
             }
 
             if (!string.IsNullOrWhiteSpace(DefaultColumn)) {
-                int defCol;
-                if (_ColumnNameToIndexMap.TryGetValue(DefaultColumn, out defCol))
+                if (_ColumnNameToIndexMap.TryGetValue(DefaultColumn, out var defCol))
                     _DefaultColumnIndex = defCol;
                 else
                     _DefaultColumnIndex = null;
@@ -119,29 +118,25 @@ namespace SaintCoinach.Ex.Relational.Definition {
             if (_IsCompiled)
                 return _ColumnIndexToNameMap.ContainsKey(index) ? _ColumnIndexToNameMap[index] : null;
 
-            PositionedDataDefintion def;
-            return TryGetDefinition(index, out def) ? def.GetName(index) : null;
+            return TryGetDefinition(index, out var def) ? def.GetName(index) : null;
         }
 
         public string GetValueTypeName(int index) {
             if (_IsCompiled)
                 return _ColumnValueTypeNames.ContainsKey(index) ? _ColumnValueTypeNames[index] : null;
 
-            PositionedDataDefintion def;
-            return TryGetDefinition(index, out def) ? def.GetValueTypeName(index) : null;
+            return TryGetDefinition(index, out var def) ? def.GetValueTypeName(index) : null;
         }
 
         public Type GetValueType(int index) {
             if (_IsCompiled)
                 return _ColumnValueTypes.ContainsKey(index) ? _ColumnValueTypes[index] : null;
 
-            PositionedDataDefintion def;
-            return TryGetDefinition(index, out def) ? def.GetValueType(index) : null;
+            return TryGetDefinition(index, out var def) ? def.GetValueType(index) : null;
         }
 
         public object Convert(IDataRow row, object value, int index) {
-            PositionedDataDefintion def;
-            return TryGetDefinition(index, out def) ? def.Convert(row, value, index) : value;
+            return TryGetDefinition(index, out var def) ? def.Convert(row, value, index) : value;
         }
 
         #endregion
