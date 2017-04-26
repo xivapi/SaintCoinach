@@ -384,6 +384,13 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Balloon
+      Converter: !!link_conv
+        TargetSheet: Balloon
+    Index: 6
+  Name: Behavior
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: File
   Name: BGM
   DefaultColumn: File
@@ -407,6 +414,86 @@
         TargetSheet: NpcEquip
     Index: 7
   Name: BNpcBase
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Race
+      Converter: !!link_conv
+        TargetSheet: Race
+  - InnerDefinition: !!single_def
+      Name: Gender
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Height
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Tribe
+      Converter: !!link_conv
+        TargetSheet: Tribe
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Face
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: HairStyle
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: HairHighlight
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: SkinColor
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: EyeHeterochromia
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: HairColor
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: HairHighlightColor
+    Index: 11
+  - InnerDefinition: !!single_def
+      Name: FacialFeature
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: FacialFeatureColor
+    Index: 13
+  - InnerDefinition: !!single_def
+      Name: Eyebrows
+    Index: 14
+  - InnerDefinition: !!single_def
+      Name: EyeColor
+    Index: 15
+  - InnerDefinition: !!single_def
+      Name: EyeShape
+    Index: 16
+  - InnerDefinition: !!single_def
+      Name: Nose
+    Index: 17
+  - InnerDefinition: !!single_def
+      Name: Jaw
+    Index: 18
+  - InnerDefinition: !!single_def
+      Name: Mouth
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: LipColor
+    Index: 20
+  - InnerDefinition: !!single_def
+      Name: BustOrTone1
+    Index: 21
+  - InnerDefinition: !!single_def
+      Name: ExtraFeature1
+    Index: 22
+  - InnerDefinition: !!single_def
+      Name: ExtraFeature2OrBust
+    Index: 23
+  - InnerDefinition: !!single_def
+      Name: FacePaint
+    Index: 24
+  - InnerDefinition: !!single_def
+      Name: FacePaintColor
+    Index: 25
+  Name: BNpcCustomize
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Singular
@@ -1341,6 +1428,11 @@
       Converter: !!link_conv
         TargetSheet: Behavior
     Index: 64
+  - InnerDefinition: !!single_def
+      Name: Balloon
+      Converter: !!link_conv
+        TargetSheet: Balloon
+    Index: 91
   Name: ENpcBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
