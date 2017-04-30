@@ -145,10 +145,10 @@ namespace SaintCoinach {
         /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
         /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
         private RelationDefinition Setup(ZipFile zip) {
-            RelationDefinition fsDef = null, zipDef = null;
-            DateTime fsMod = DateTime.MinValue, zipMod = DateTime.MinValue;
+            RelationDefinition zipDef = null;
+            DateTime zipMod = DateTime.MinValue;
 
-            if (!TryGetDefinitionFromFileSystem(out fsDef, out fsMod))
+            if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
                 fsDef = null;
             
             if (zip.ContainsEntry(DefinitionFile))
@@ -224,11 +224,9 @@ namespace SaintCoinach {
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
                 if (zipFile.ContainsEntry(VersionFile)) {
-                    RelationDefinition fsDef = null, zipDef = null;
-                    DateTime fsMod = DateTime.MinValue, zipMod = DateTime.MinValue;
-                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out zipDef, out zipMod))
+                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out var zipDef, out var zipMod))
                         zipDef = ReadDefinition(zipFile, DefinitionFile,  out zipMod);
-                    if (!TryGetDefinitionFromFileSystem(out fsDef, out fsMod))
+                    if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
                         fsDef = null;
 
                     if (fsDef != null && fsMod > zipMod) {
@@ -311,8 +309,7 @@ namespace SaintCoinach {
         /// <param name="entry">File name of the definition to read.</param>
         /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
         private static RelationDefinition ReadDefinition(ZipFile zip, string entry = DefinitionFile) {
-            DateTime mod;
-            return ReadDefinition(zip, entry, out mod);
+            return ReadDefinition(zip, entry, out var mod);
         }
 
         private static RelationDefinition ReadDefinition(ZipFile zip, string entry, out DateTime lastModified) {
@@ -393,8 +390,7 @@ namespace SaintCoinach {
         /// </param>
         /// <returns><c>true</c> if the definition for the specified version was present; <c>false</c> otherwise.</returns>
         private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition) {
-            DateTime mod;
-            return TryGetDefinitionVersion(zip, version, out definition, out mod);
+            return TryGetDefinitionVersion(zip, version, out definition, out var mod);
         }
         private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition, out DateTime lastMod) {
             var storedVersionEntry = zip[VersionFile];

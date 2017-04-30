@@ -350,6 +350,27 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: AquariumWater
+      Converter: !!link_conv
+        TargetSheet: AquariumWater
+  - InnerDefinition: !!single_def
+      Name: Size
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 2
+  Name: AquariumFish
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+    Index: 1
+  Name: AquariumWater
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Name
     Index: 1
   - InnerDefinition: !!single_def
