@@ -122,7 +122,9 @@ namespace SaintCoinach.Imaging {
         }
 
         private static void ProcessA8R8G8B8(byte[] src, byte[] dst, int width, int height) {
-            Array.Copy(src, dst, dst.Length);
+            // Some transparent images have larger dst lengths than their src.
+            var length = Math.Min(src.Length, dst.Length);
+            Array.Copy(src, dst, length);
         }
 
         private static void ProcessDxt1(byte[] src, byte[] dst, int width, int height) {
