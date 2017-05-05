@@ -94,9 +94,8 @@ namespace SaintCoinach.Ex {
             if (!res.Any())
                 throw new ArgumentOutOfRangeException();
 
-            ISheet<T> partial;
             var range = res.First();
-            if (!_PartialSheets.TryGetValue(range, out partial)) {
+            if (!_PartialSheets.TryGetValue(range, out var partial)) {
                 partial = CreatePartialSheet(range);
             }
             return partial;

@@ -57,12 +57,10 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetFile(uint hash, out File value) {
-            WeakReference<File> fileRef;
-            if (_Files.TryGetValue(hash, out fileRef) && fileRef.TryGetTarget(out value))
+            if (_Files.TryGetValue(hash, out var fileRef) && fileRef.TryGetTarget(out value))
                 return true;
 
-            Index2File index;
-            if (Index.Files.TryGetValue(hash, out index)) {
+            if (Index.Files.TryGetValue(hash, out var index)) {
                 value = FileFactory.Get(this.Pack, index);
                 if (_Files.ContainsKey(hash))
                     _Files[hash].SetTarget(value);
@@ -86,9 +84,7 @@ namespace SaintCoinach.IO {
         }
 
         public File GetFile(uint hash) {
-            WeakReference<File> fileRef;
-            File file;
-            if (_Files.TryGetValue(hash, out fileRef) && fileRef.TryGetTarget(out file))
+            if (_Files.TryGetValue(hash, out var fileRef) && fileRef.TryGetTarget(out var file))
                 return file;
 
             var index = Index.Files[hash];

@@ -14,6 +14,8 @@ namespace SaintCoinach.IO {
 
         public DirectoryInfo DataDirectory { get; private set; }
 
+        public IEnumerable<Pack> Packs { get { return _Packs.Values; } }
+
         #endregion
 
         #region Constructor
@@ -34,8 +36,7 @@ namespace SaintCoinach.IO {
         #region Get
 
         public bool FileExists(string path) {
-            Pack pack;
-            return TryGetPack(path, out pack) && pack.FileExists(path);
+            return TryGetPack(path, out var pack) && pack.FileExists(path);
         }
 
         public File GetFile(string path) {
@@ -44,8 +45,7 @@ namespace SaintCoinach.IO {
         }
 
         public Pack GetPack(PackIdentifier id) {
-            Pack pack;
-            if (_Packs.TryGetValue(id, out pack)) return pack;
+            if (_Packs.TryGetValue(id, out var pack)) return pack;
 
             pack = new Pack(this, DataDirectory, id);
             _Packs.Add(id, pack);
@@ -54,8 +54,7 @@ namespace SaintCoinach.IO {
 
         public Pack GetPack(string path) {
             var id = PackIdentifier.Get(path);
-            Pack pack;
-            if (_Packs.TryGetValue(id, out pack)) return pack;
+            if (_Packs.TryGetValue(id, out var pack)) return pack;
 
             pack = new Pack(this, DataDirectory, id);
             _Packs.Add(id, pack);
@@ -63,8 +62,7 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetFile(string path, out File file) {
-            Pack pack;
-            if (TryGetPack(path, out pack))
+            if (TryGetPack(path, out var pack))
                 return pack.TryGetFile(path, out file);
 
             file = null;
@@ -74,8 +72,7 @@ namespace SaintCoinach.IO {
         public bool TryGetPack(string path, out Pack pack) {
             pack = null;
 
-            PackIdentifier id;
-            if (!PackIdentifier.TryGet(path, out id))
+            if (!PackIdentifier.TryGet(path, out var id))
                 return false;
 
             if (_Packs.TryGetValue(id, out pack)) return true;

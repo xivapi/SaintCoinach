@@ -38,9 +38,7 @@ namespace SaintCoinach.Ex {
         #region Get
 
         public ISheet<TData> GetLocalisedSheet(Language language) {
-            ISheet<TData> sheet;
-
-            if (_LocalisedSheets.TryGetValue(language, out sheet)) return sheet;
+            if (_LocalisedSheets.TryGetValue(language, out var sheet)) return sheet;
 
             if (!Header.AvailableLanguages.Contains(language))
                 throw new NotSupportedException();
@@ -85,8 +83,7 @@ namespace SaintCoinach.Ex {
 
         public TMulti this[int key] {
             get {
-                TMulti row;
-                if (_Rows.TryGetValue(key, out row))
+                if (_Rows.TryGetValue(key, out var row))
                     return row;
 
                 _Rows.Add(key, row = CreateMultiRow(key));

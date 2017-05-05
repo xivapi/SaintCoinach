@@ -91,8 +91,7 @@ namespace SaintCoinach.Xiv {
 
         public T this[int key] {
             get {
-                T row;
-                if (_Rows.TryGetValue(key, out row)) return row;
+                if (_Rows.TryGetValue(key, out var row)) return row;
 
                 if (!_Source.ContainsRow(key))
                     throw new KeyNotFoundException();

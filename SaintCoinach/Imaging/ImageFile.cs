@@ -43,9 +43,7 @@ namespace SaintCoinach.Imaging {
         #region Read
 
         public Image GetImage() {
-            Image image;
-
-            if (_ImageCache != null && _ImageCache.TryGetTarget(out image)) return image;
+            if (_ImageCache != null && _ImageCache.TryGetTarget(out var image)) return image;
 
             image = ImageConverter.Convert(this);
 
@@ -58,9 +56,7 @@ namespace SaintCoinach.Imaging {
         }
 
         public override byte[] GetData() {
-            byte[] buffer;
-
-            if (_BufferCache != null && _BufferCache.TryGetTarget(out buffer)) return buffer;
+            if (_BufferCache != null && _BufferCache.TryGetTarget(out var buffer)) return buffer;
 
             buffer = Read();
 
