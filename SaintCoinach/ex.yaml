@@ -119,6 +119,9 @@
       Name: XAxisModifier
     Index: 26
   - InnerDefinition: !!single_def
+      Name: Cost{Type}
+    Index: 28
+  - InnerDefinition: !!single_def
       Name: Cost
     Index: 29
   - InnerDefinition: !!single_def

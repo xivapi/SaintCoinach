@@ -26,8 +26,7 @@ namespace SaintCoinach.Imaging {
 
             var filePath = string.Format(IconFileFormat, nr / 1000, type, nr);
 
-            File file;
-            if (!pack.TryGetFile(filePath, out file) && type.Length > 0) {
+            if (!pack.TryGetFile(filePath, out var file) && type.Length > 0) {
                 // Couldn't get specific type, try for generic version.
                 filePath = string.Format(IconFileFormat, nr / 1000, string.Empty, nr);
                 if (!pack.TryGetFile(filePath, out file)) {
