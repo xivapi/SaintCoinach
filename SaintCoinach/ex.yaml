@@ -3012,6 +3012,12 @@
       Name: SubtextOrientation
     Index: 4
   - InnerDefinition: !!single_def
+      Name: Type
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: SubType
+    Index: 6
+  - InnerDefinition: !!single_def
       Name: PlaceName{Tooltip}
       Converter: !!link_conv
         TargetSheet: PlaceName

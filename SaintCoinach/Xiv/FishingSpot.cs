@@ -123,20 +123,14 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Location
-        public double MapX { get { return ToMapCoordinate(X); } }
+        public double MapX { get { return TerritoryType.Map.ToMapCoordinate2d(X, TerritoryType.Map.OffsetX); } }
 
-        public double MapY { get { return ToMapCoordinate(Z); } }
+        public double MapY { get { return TerritoryType.Map.ToMapCoordinate2d(Z, TerritoryType.Map.OffsetY); } }
 
         IEnumerable<ILocation> ILocatable.Locations {
             get {
                 yield return this;
             }
-        }
-
-        private double ToMapCoordinate(double val) {
-            var c = TerritoryType.Map.SizeFactor / 100.0;
-
-            return (41.0 / c) * ((val) / 2048.0) + 1;
         }
         #endregion
 

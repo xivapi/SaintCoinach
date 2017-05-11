@@ -29,6 +29,12 @@ namespace SaintCoinach.Xiv {
         public int Hierarchy { get { return AsInt32("Hierarchy"); } }
 
         /// <summary>
+        ///     Gets the MapMarker parent key range of the current map.
+        /// </summary>
+        /// <value>The MapMarker parent key range of the current map.</value>
+        public int MapMarkerRange {  get { return AsInt32("MapMarkerRange"); } }
+
+        /// <summary>
         ///     Gets the size factor of the current map.
         /// </summary>
         /// <remarks>
@@ -77,8 +83,7 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         public Image MediumImage {
             get {
-                Image image;
-                if (_MediumImage != null && _MediumImage.TryGetTarget(out image))
+                if (_MediumImage != null && _MediumImage.TryGetTarget(out var image))
                     return image;
                 image = BuildImage("m");
                 if (_MediumImage == null)
@@ -94,8 +99,7 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         public Image SmallImage {
             get {
-                Image image;
-                if (_SmallImage != null && _SmallImage.TryGetTarget(out image))
+                if (_SmallImage != null && _SmallImage.TryGetTarget(out var image))
                     return image;
                 image = BuildImage("s");
                 if (_SmallImage == null)
@@ -142,15 +146,13 @@ namespace SaintCoinach.Xiv {
             var pack = Sheet.Collection.PackCollection;
 
             var filePath = string.Format(MapFileFormat, Id, fileName, string.Empty, size);
-            IO.File file;
-            if (!pack.TryGetFile(filePath, out file))
+            if (!pack.TryGetFile(filePath, out var file))
                 return null;
 
             var imageFile = new ImageFile(file.Pack, file.CommonHeader);
 
             var maskPath = string.Format(MapFileFormat, Id, fileName, "m", size);
-            IO.File mask;
-            if (pack.TryGetFile(maskPath, out mask))
+            if (pack.TryGetFile(maskPath, out var mask))
             {
                 // Multiply the mask against the file.
                 var maskFile = new ImageFile(mask.Pack, mask.CommonHeader);
@@ -195,6 +197,34 @@ namespace SaintCoinach.Xiv {
                 }
             }
             return output;
+        }
+        #endregion
+
+        #region Coordinates
+        /// <summary>
+        ///     Convert a X- or Y-coordinate into an offset, map-scaled 2D-coordinate.
+        /// </summary>
+        /// <param name="value">The coordinate to convert.</param>
+        /// <param name="offset">The coordinate offset from this map.</param>
+        /// <returns><c>value</c> converted and scaled to this map.</returns>
+        public double ToMapCoordinate2d(int value, int offset)
+        {
+            var c = SizeFactor / 100.0;
+            var offsetValue = value + offset;
+            return (41.0 / c) * (offsetValue / 2048.0) + 1;
+        }
+
+        /// <summary>
+        ///     Convert a X- or Z-coordinate from world-space into its 2D-coordinate.
+        /// </summary>
+        /// <param name="value">The coordinate in world-space to convert.</param>
+        /// <param name="offset">The coordinate offset from this map in world-space.</param>
+        /// <returns><c>value</c> converted into 2D-space.</returns>
+        public double ToMapCoordinate3d(double value, int offset)
+        {
+            var c = SizeFactor / 100.0;
+            var offsetValue = (value + offset) * c;
+            return ((41.0 / c) * ((offsetValue + 1024.0) / 2048.0)) + 1;
         }
         #endregion
 
