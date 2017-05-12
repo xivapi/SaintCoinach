@@ -285,6 +285,12 @@
       Converter: !!link_conv
         TargetSheet: Map
     Index: 18
+  - InnerDefinition: !!single_def
+      Name: Aetherstream{X}
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: Aetherstream{Y}
+    Index: 20
   Name: Aetheryte
   DefaultColumn: PlaceName
 - DataDefinitions:
@@ -4257,6 +4263,11 @@
   - InnerDefinition: !!single_def
       Name: WeatherRate
     Index: 10
+  - InnerDefinition: !!single_def
+      Name: Aetheryte
+      Converter: !!link_conv
+        TargetSheet: Aetheryte
+    Index: 20
   Name: TerritoryType
   DefaultColumn: Name
 - DataDefinitions:
