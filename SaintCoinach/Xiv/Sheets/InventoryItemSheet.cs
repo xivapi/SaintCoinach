@@ -31,6 +31,8 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 88, typeof(PhysicalWeapon)  // MCH
             },
+                                            // TODO: SAM
+
             // 
             {
                 6, typeof(MagicWeapon)      // THM (one-handed)
@@ -43,8 +45,10 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 10, typeof(MagicWeapon)     // ACN
             }, {
-                89, typeof(PhysicalWeapon)  // AST
+                89, typeof(MagicWeapon)     // AST
             },
+                                            // TODO: RDM
+
             // 
             {
                 11, typeof(Shield)
@@ -95,6 +99,7 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 32, typeof(GatheringTool)   // FSH
             },
+                                            // TODO: FSH (sub) spear
             // 
             {
                 34, typeof(Armour)          // Head

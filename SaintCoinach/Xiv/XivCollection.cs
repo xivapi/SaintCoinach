@@ -254,8 +254,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="sourceSheet"><see cref="IRelationalSheet"/> to access the source data.</param>
         /// <returns>Returns a <see cref="IXivSheet"/> if a matching one could be created; <c>null</c> otherwise.</returns>
         protected virtual IXivSheet TryCreateXivSheet(IRelationalSheet sourceSheet) {
-            XivSheetCreator specialCreator;
-            if (SpecialSheetTypes.TryGetValue(sourceSheet.Name, out specialCreator))
+            if (SpecialSheetTypes.TryGetValue(sourceSheet.Name, out var specialCreator))
                 return specialCreator(this, sourceSheet);
 
             var match = GetXivRowType(sourceSheet.Name);
@@ -282,8 +281,7 @@ namespace SaintCoinach.Xiv {
             if (_SheetNameToTypeMap == null)
                 BuildSheetToTypeMap();
 
-            Type match;
-            if (_SheetNameToTypeMap.TryGetValue(sheetName, out match))
+            if (_SheetNameToTypeMap.TryGetValue(sheetName, out var match))
                 return match;
 
             var allTypes = Assembly.GetExecutingAssembly().GetTypes();
