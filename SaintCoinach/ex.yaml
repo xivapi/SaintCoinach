@@ -141,6 +141,9 @@
       Name: Recast<100ms>
     Index: 35
   - InnerDefinition: !!single_def
+      Name: CooldownGroup
+    Index: 36
+  - InnerDefinition: !!single_def
       Name: Element
     Index: 38
   - InnerDefinition: !!single_def
@@ -3224,6 +3227,12 @@
   - InnerDefinition: !!single_def
       Name: MpCostFactor<%>
     Index: 5
+  - InnerDefinition: !!single_def
+      Name: BaseSpeed
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: LevelModifier
+    Index: 7
   - InnerDefinition: !!single_def
       Name: QuestExpModifier
     Index: 8
