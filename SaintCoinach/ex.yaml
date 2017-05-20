@@ -3249,7 +3249,7 @@
       Name: AttributeBonus{Job}
     Index: 3
   - InnerDefinition: !!single_def
-      Name: MpCostFactor<%>
+      Name: MpModifier
     Index: 5
   - InnerDefinition: !!single_def
       Name: BaseSpeed
@@ -3260,6 +3260,9 @@
   - InnerDefinition: !!single_def
       Name: QuestExpModifier
     Index: 8
+  - InnerDefinition: !!single_def
+      Name: HpModifier
+    Index: 9
   - InnerDefinition: !!single_def
       Name: HuntingLogExpReward
     Index: 10

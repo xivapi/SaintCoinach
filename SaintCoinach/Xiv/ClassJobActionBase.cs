@@ -50,7 +50,7 @@ namespace SaintCoinach.Xiv {
                 return 0;
             var paramGrow = paramGrowSheet[level];
 
-            return (int)(paramGrow.MpCostFactor * Cost);
+            return (int)(paramGrow.MpModifier * Cost);
         }
         #endregion
     }

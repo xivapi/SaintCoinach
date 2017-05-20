@@ -11,7 +11,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
         public int ExpToNext { get { return AsInt32("ExpToNext"); } }
         public int AdditionalActions { get { return AsInt32("AdditionalActions"); } }
-        public double MpCostFactor { get { return AsInt32("MpCostFactor<%>") / 100.0; } }
+        public double MpModifier { get { return AsInt32("MpModifier") / 100.0; } }
         #endregion
 
         #region Constructors
