@@ -741,6 +741,30 @@
         TargetSheet: ClassJobCategory
     Index: 3
   - InnerDefinition: !!single_def
+      Name: Modifier{HitPoints}
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Modifier{ClassPoints}
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: Modifier{Strength}
+    Index: 11
+  - InnerDefinition: !!single_def
+      Name: Modifier{Vitality}
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: Modifier{Dexterity}
+    Index: 13
+  - InnerDefinition: !!single_def
+      Name: Modifier{Intelligence}
+    Index: 14
+  - InnerDefinition: !!single_def
+      Name: Modifier{Mind}
+    Index: 15
+  - InnerDefinition: !!single_def
+      Name: Modifier{Piety}
+    Index: 16
+  - InnerDefinition: !!single_def
       Name: ClassJob{Parent}
       Converter: !!link_conv
         TargetSheet: ClassJob
