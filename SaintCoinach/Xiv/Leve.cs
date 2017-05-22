@@ -91,10 +91,16 @@ namespace SaintCoinach.Xiv {
         public int GilReward { get { return AsInt32("GilReward"); } }
 
         /// <summary>
-        ///     Gets the <see cref="Level" /> object for the location of the current leve.
+        ///     Gets the <see cref="Level" /> object for the levemete of the current leve.
         /// </summary>
-        /// <value>The <see cref="Level" /> object for the location of the current leve.</value>
-        public Level Level { get { return As<Level>(); } }
+        /// <value>The <see cref="Level" /> object for the levemete of the current leve.</value>
+        public Level LevemeteLevel { get { return As<Level>("Level{Levemete}"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="Level" /> object for the start of the current leve.
+        /// </summary>
+        /// <value>The <see cref="Level" /> object for the start of the current leve.</value>
+        public Level StartLevel { get { return As<Level>("Level{Start}"); } }
 
         /// <summary>
         ///     Gets the icon for the location of the current leve.
@@ -106,7 +112,13 @@ namespace SaintCoinach.Xiv {
         /// Gets the locations of the current object.
         /// </summary>
         /// <value>The locations of the current object.</value>
-        public IEnumerable<ILocation> Locations { get { yield return this.Level; } }
+        public IEnumerable<ILocation> Locations {
+            get {
+                yield return this.LevemeteLevel;
+                if (StartLevel != null && StartLevel.Key != 0)
+                    yield return this.StartLevel;
+            }
+        }
 
         /// <summary>
         /// Gets the <see cref="LeveVfx"/> used for the current leve.

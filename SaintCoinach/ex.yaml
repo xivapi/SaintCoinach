@@ -2822,7 +2822,7 @@
         TargetSheet: LeveVfx
     Index: 25
   - InnerDefinition: !!single_def
-      Name: Level
+      Name: Level{Levemete}
       Converter: !!link_conv
         TargetSheet: Level
     Index: 26
@@ -2830,6 +2830,11 @@
       Name: Icon{Issuer}
       Converter: !!icon_conv {}
     Index: 27
+  - InnerDefinition: !!single_def
+      Name: Level{Start}
+      Converter: !!link_conv
+        TargetSheet: Level
+    Index: 29
   Name: Leve
   DefaultColumn: Name
 - DataDefinitions:
