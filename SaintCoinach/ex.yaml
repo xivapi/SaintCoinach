@@ -446,6 +446,11 @@
       Converter: !!link_conv
         TargetSheet: NpcEquip
     Index: 7
+  - InnerDefinition: !!single_def
+      Name: ArrayEventHandler
+      Converter: !!link_conv
+        TargetSheet: ArrayEventHandler
+    Index: 10
   Name: BNpcBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
