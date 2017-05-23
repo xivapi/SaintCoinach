@@ -1296,6 +1296,13 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Icon{Actor}
+      Converter: !!icon_conv {}
+  - InnerDefinition: !!single_def
+      Name: Icon{Map}
+      Converter: !!icon_conv {}
+    Index: 1
+  - InnerDefinition: !!single_def
       Name: Name
     Index: 2
   - InnerDefinition: !!repeat_def
