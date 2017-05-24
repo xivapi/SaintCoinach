@@ -3309,6 +3309,20 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+  - InnerDefinition: !!single_def
+      Name: Image
+      Converter: !!icon_conv {}
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Signature
+    Index: 2
+  Name: Picture
+  DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Name
   - InnerDefinition: !!single_def
       Name: Name{NoArticle}
