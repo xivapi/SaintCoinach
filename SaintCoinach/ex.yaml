@@ -3567,6 +3567,11 @@
       Converter: !!icon_conv {}
     Index: 1480
   - InnerDefinition: !!single_def
+      Name: EventIconType
+      Converter: !!link_conv
+        TargetSheet: EventIconType
+    Index: 1483
+  - InnerDefinition: !!single_def
       Name: SortKey
     Index: 1485
   Name: Quest
