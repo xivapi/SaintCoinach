@@ -54,8 +54,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public SheetDefinition GetOrCreateSheet(string name) {
-            SheetDefinition def;
-            if (!TryGetSheet(name, out def)) {
+            if (!TryGetSheet(name, out var def)) {
                 def = new SheetDefinition { Name = name };
                 _SheetDefinitions.Add(def);
                 _SheetDefinitionMap[name] = def;

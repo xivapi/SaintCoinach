@@ -4618,6 +4618,14 @@
   IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: WeatherRate
+      Converter: !!link_conv
+        TargetSheet: WeatherRate
+    Index: 1
+  Name: WeatherGroup
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
   - InnerDefinition: !!single_def

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using SaintCoinach.Ex.Relational;
 
@@ -12,36 +13,7 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Mappings of special weather rates.
         /// </summary>
-        /// <remarks>
-        ///     Just guesswork on my part, but it's been working out so far.
-        /// </remarks>
-        private static readonly Dictionary<int, int> WeatherGroups = new Dictionary<int, int> {
-            {
-                128, 0x00
-            }, {
-                129, 0x01
-            }, {
-                130, 0x02
-            }, {
-                131, 0x0E
-            }, {
-                132, 0x0F
-            }, {
-                133, 0x07
-            }, {
-                134, 0x08
-            }, {
-                135, 0x20
-            }, {
-                136, 0x22
-            }, {
-                137, 0x21
-            }, {
-                138, 0x30
-            }, {
-                139, 0x2F
-            }
-        };
+        private static Dictionary<int, WeatherRate> WeatherGroups;
 
         #endregion
 
@@ -100,10 +72,12 @@ namespace SaintCoinach.Xiv {
             get {
                 if (_WeatherRate != null) return _WeatherRate;
 
+                if (WeatherGroups == null)
+                    WeatherGroups = BuildWeatherGroups();
+
                 var rateKey = AsInt32("WeatherRate");
-                if (WeatherGroups.ContainsKey(rateKey))
-                    rateKey = WeatherGroups[rateKey];
-                _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
+                if (!WeatherGroups.TryGetValue(rateKey, out _WeatherRate))
+                    _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
                 return _WeatherRate;
             }
         }
@@ -120,5 +94,22 @@ namespace SaintCoinach.Xiv {
         public TerritoryType(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
+
+        private Dictionary<int, WeatherRate> BuildWeatherGroups() {
+            var weatherGroups = Sheet.Collection.GetSheet("WeatherGroup")
+                .Cast<IXivRow>()
+                .Select(r => (Ex.Variant2.DataRow)r.SourceRow)
+                .SelectMany(r => r.SubRows);
+
+            var map = new Dictionary<int, WeatherRate>();
+            foreach (var weatherGroup in weatherGroups) {
+                // Not sure what the other rows are used for.
+                if (weatherGroup.Key != 0)
+                    continue;
+
+                map[weatherGroup.ParentRow.Key] = (WeatherRate)weatherGroup["WeatherRate"];
+            }
+            return map;
+        }
     }
 }
