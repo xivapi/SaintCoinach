@@ -56,7 +56,7 @@ namespace SaintCoinach.Xiv {
             return cjr.ToArray();
         }
         private Quest[] BuildQuestExclusion() {
-            const int Count = 3;
+            const int Count = 2;
 
             var quests = new List<Quest>();
             for (var i = 0; i < Count; ++i) {

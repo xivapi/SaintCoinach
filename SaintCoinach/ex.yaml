@@ -3376,7 +3376,7 @@
       Name: QuestLockJoin
     Index: 14
   - InnerDefinition: !!repeat_def
-      RepeatCount: 3
+      RepeatCount: 2
       RepeatedDefinition: !!single_def
         Name: QuestLock
         Converter: !!link_conv
