@@ -2555,6 +2555,9 @@
       Name: Level{Equip}
     Index: 38
   - InnerDefinition: !!single_def
+      Name: EquipRestriction
+    Index: 40
+  - InnerDefinition: !!single_def
       Name: EquippableByRace[1]
     Index: 41
   - InnerDefinition: !!single_def
