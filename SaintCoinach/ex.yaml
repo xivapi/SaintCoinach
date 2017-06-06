@@ -3220,6 +3220,12 @@
       Name: Plural
     Index: 2
   - InnerDefinition: !!single_def
+      Name: FlyingCondition
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: IsFlying
+    Index: 13
+  - InnerDefinition: !!single_def
       Name: RideBGM
       Converter: !!link_conv
         TargetSheet: BGM
