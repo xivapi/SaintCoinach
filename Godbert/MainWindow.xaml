@@ -4,7 +4,7 @@
         xmlns:vm="clr-namespace:Godbert.ViewModels"
         xmlns:views="clr-namespace:Godbert.Views"
         xmlns:ex="clr-namespace:SaintCoinach.Ex;assembly=SaintCoinach"
-        Title="MainWindow" Height="800" Width="1024" Icon="Godbert.ico">
+        Title="Godbert" Height="800" Width="1024" Icon="Godbert.ico">
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
@@ -34,6 +34,9 @@
             </MenuItem>
         </Menu>
         <TabControl>
+            <TabItem Header="Data" DataContext="{Binding Path=Data}">
+                <views:DataView />
+            </TabItem>
             <TabItem Header="3D">
                 <TabControl>
                     <TabItem Header="Equipment" DataContext="{Binding Equipment}">
@@ -55,9 +58,6 @@
                         <views:Help3DView />
                     </TabItem>
                 </TabControl>
-            </TabItem>
-            <TabItem Header="Data" DataContext="{Binding Path=Data}">
-                <views:DataView />
             </TabItem>
         </TabControl>
     </DockPanel>
