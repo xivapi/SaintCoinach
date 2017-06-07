@@ -29,6 +29,9 @@
                           CommandParameter="{x:Static ex:Language.French}"  />
             </MenuItem>
             <MenuItem Header="Various">
+                <MenuItem Header="New Window"
+                          Command="{Binding Path=NewWindowCommand}" />
+                <Separator />
                 <MenuItem Header="Change game location"
                           Command="{Binding Path=GameLocationCommand}" />
             </MenuItem>

@@ -34,7 +34,16 @@ namespace Godbert.ViewModels {
         public MainViewModel() {
             if (!App.IsValidGamePath(Properties.Settings.Default.GamePath))
                 return;
-            Realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
+            var realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
+            Initialize(realm);
+        }
+
+        public MainViewModel(ARealmReversed realm) {
+            Initialize(realm);
+        }
+
+        void Initialize(ARealmReversed realm) {
+            Realm = realm;
             EngineHelper = new EngineHelper();
             Equipment = new EquipmentViewModel(this);
             Furniture = new FurnitureViewModel(this);
@@ -48,9 +57,11 @@ namespace Godbert.ViewModels {
         #region Commands
         private ICommand _LanguageCommand;
         private ICommand _GameLocationCommand;
+        private ICommand _NewWindowCommand;
 
         public ICommand LanguageCommand { get { return _LanguageCommand ?? (_LanguageCommand = new Commands.DelegateCommand<SaintCoinach.Ex.Language>(OnLanguage)); } }
         public ICommand GameLocationCommand { get { return _GameLocationCommand ?? (_GameLocationCommand = new Commands.DelegateCommand(OnGameLocation)); } }
+        public ICommand NewWindowCommand { get { return _NewWindowCommand ?? (_NewWindowCommand = new Commands.DelegateCommand(OnNewWindowCommand)); } }
 
         private void OnLanguage(SaintCoinach.Ex.Language newLanguage) {
             Realm.GameData.ActiveLanguage = newLanguage;
@@ -75,6 +86,18 @@ namespace Godbert.ViewModels {
                 startInfo.WorkingDirectory = Directory.GetCurrentDirectory();
                 System.Diagnostics.Process.Start(startInfo);
                 App.Current.Shutdown();
+            }
+        }
+
+        private void OnNewWindowCommand() {
+            Mouse.OverrideCursor = Cursors.Wait;
+            try {
+                var viewModel = new MainViewModel(Realm);
+                var window = new MainWindow() { DataContext = viewModel };
+                window.Show();
+            }
+            finally {
+                Mouse.OverrideCursor = null;
             }
         }
         #endregion
