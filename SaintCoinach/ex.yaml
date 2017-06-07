@@ -1386,6 +1386,11 @@
         TargetSheet: EmoteCategory
     Index: 9
   - InnerDefinition: !!single_def
+      Name: TextCommand
+      Converter: !!link_conv
+        TargetSheet: TextCommand
+    Index: 16
+  - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
     Index: 17
@@ -4351,6 +4356,24 @@
     Index: 20
   Name: TerritoryType
   DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Command
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: ShortCommand
+    Index: 6
+  - InnerDefinition: !!single_def
+      Name: Description
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: Alias
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: ShortAlias
+    Index: 9
+  Name: TextCommand
+  DefaultColumn: Command
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Masculine
