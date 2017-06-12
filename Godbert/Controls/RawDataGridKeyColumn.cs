@@ -20,6 +20,7 @@ namespace Godbert.Controls {
         }
 
         #region IRawDataColumn Members
+        public RelationalColumn Column => null;
 
         public IComparer<object> GetComparer(System.ComponentModel.ListSortDirection direction) {
             return new Comparer {

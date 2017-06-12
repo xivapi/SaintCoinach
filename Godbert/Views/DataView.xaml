@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ctrl="clr-namespace:Godbert.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <ContextMenu x:Key="SheetListContextMenu">
             <MenuItem Header="Export as CSV" Command="{Binding ExportCsvCommand}">
@@ -26,6 +26,8 @@
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
 
         <DockPanel LastChildFill="True" Grid.Column="0">
@@ -48,7 +50,8 @@
                          DockPanel.Dock="Top"
                          Margin="0,0,0,2"></TextBox>
 
-            <ctrl:RawDataGrid Sheet="{Binding SelectedSheet}"
+            <ctrl:RawDataGrid x:Name="_DataGrid"
+                              Sheet="{Binding SelectedSheet}"
                               Filter="{Binding FilterDataTerm}"
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
@@ -63,5 +66,22 @@
                 </ctrl:RawDataGrid.RowStyle>
             </ctrl:RawDataGrid>
         </DockPanel>
+
+        <GridSplitter Width="4" Grid.Column="3"
+                      HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                      ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" />
+
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" FontWeight="Bold" BorderBrush="#dadada" BorderThickness="0 0 0 1">Bookmarks</Label>
+            <ListBox Grid.Row="1" x:Name="_BookmarksList"
+                     ItemsSource="{Binding Bookmarks}"
+                     SelectionChanged="_BookmarksList_SelectionChanged"
+                     HorizontalAlignment="Stretch" />
+        </Grid>
     </Grid>
 </UserControl>

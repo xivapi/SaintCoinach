@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Godbert.ViewModels {
         private string _FilterSheetTerm;
         private IEnumerable<string> _FilteredSheets;
         private string _FilterDataTerm;
+        private ObservableCollection<BookmarkViewModel> _Bookmarks = new ObservableCollection<BookmarkViewModel>();
         #endregion
 
         #region Properties
@@ -45,11 +47,9 @@ namespace Godbert.ViewModels {
                 return _SelectedSheet;
             }
         }
-        public string FilterSheetTerm
-        {
+        public string FilterSheetTerm {
             get { return _FilterSheetTerm; }
-            set
-            {
+            set {
                 _FilterSheetTerm = value;
 
                 if (string.IsNullOrWhiteSpace(value))
@@ -62,14 +62,21 @@ namespace Godbert.ViewModels {
             }
         }
 
-        public string FilterDataTerm
-        {
+        public string FilterDataTerm {
             get { return _FilterDataTerm; }
-            set
-            {
+            set {
                 _FilterDataTerm = value;
 
                 OnPropertyChanged(() => FilterDataTerm);
+            }
+        }
+
+        public ObservableCollection<BookmarkViewModel> Bookmarks {
+            get { return _Bookmarks; }
+            set {
+                _Bookmarks = value;
+
+                OnPropertyChanged(() => Bookmarks);
             }
         }
         #endregion

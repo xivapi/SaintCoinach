@@ -88,6 +88,7 @@ namespace Godbert.Controls {
         }
 
         #region IRawDataColumn Members
+        public RelationalColumn Column => _Column;
 
         public IComparer<object> GetComparer(ListSortDirection direction) {
             return new Comparer {

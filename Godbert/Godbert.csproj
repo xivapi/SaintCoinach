@@ -100,6 +100,7 @@
     <Compile Include="EngineInstance.cs" />
     <Compile Include="NaturalComparer.cs" />
     <Compile Include="ObservableBase.cs" />
+    <Compile Include="ViewModels\BookmarkViewModel.cs" />
     <Compile Include="ViewModels\DataViewModel.cs" />
     <Compile Include="ViewModels\DemihumanViewModel.cs" />
     <Compile Include="ViewModels\EquipmentViewModel.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Views\TerritoryView.xaml.cs">
       <DependentUpon>TerritoryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WpfHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

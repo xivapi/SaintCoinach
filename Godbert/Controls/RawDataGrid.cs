@@ -110,12 +110,49 @@ namespace Godbert.Controls {
             src.Comparer = cmp;
         }
 
-        protected override void OnMouseDoubleClick(MouseButtonEventArgs e) {
-            var source = e.OriginalSource as FrameworkElement;
-            if (source == null)
-                return;
+        protected override void OnMouseDown(MouseButtonEventArgs e) {
+            base.OnMouseDown(e);
 
-            var cell = FindParent<DataGridCell>(source);
+            if (e.MiddleButton == MouseButtonState.Pressed) {
+                var cell = GetClickedCell(e);
+                if (cell == null)
+                    return;
+
+                var dataView = WpfHelper.FindParent<Views.DataView>(cell);
+                if (dataView == null)
+                    return;
+
+                var dataViewModel = dataView.DataContext as DataViewModel;
+                if (dataViewModel == null)
+                    return;
+
+                var row = cell.DataContext as IRow;
+                if (row == null)
+                    return;
+
+                var dataColumn = cell.Column as IRawDataColumn;
+                if (dataColumn == null)
+                    return;
+
+                var bookmark = new BookmarkViewModel() {
+                    SheetName = dataViewModel.SelectedSheetName,
+                    Key = row.Key,
+                    RowDefault = row.ToString(),
+                    ColumnName = dataColumn.Column?.Name,
+                    ColumnIndex = dataColumn.Column?.Index
+                };
+
+                if (dataViewModel.Bookmarks.Contains(bookmark)) {
+                    dataViewModel.Bookmarks.Remove(bookmark);
+                    return;
+                }
+
+                dataViewModel.Bookmarks.Add(bookmark);
+            }
+        }
+
+        protected override void OnMouseDoubleClick(MouseButtonEventArgs e) {
+            var cell = GetClickedCell(e);
             if (cell == null)
                 return;
 
@@ -123,7 +160,7 @@ namespace Godbert.Controls {
             if (navigatable == null)
                 return;
 
-            var mainWindow = FindParent<MainWindow>(cell);
+            var mainWindow = WpfHelper.FindParent<MainWindow>(cell);
             if (mainWindow == null)
                 return;
 
@@ -137,23 +174,28 @@ namespace Godbert.Controls {
 
             mainViewModel.Data.SelectedSheetName = row.Sheet.Name;
 
+            SelectRow(row, null);
+        }
+
+        private static DataGridCell GetClickedCell(MouseButtonEventArgs e) {
+            if (e.OriginalSource is FrameworkElement source)
+                return WpfHelper.FindParent<DataGridCell>(source);
+
+            return null;
+        }
+
+        public void SelectRow(IRow row, int? columnIndex) {
             this.SelectedItem = row;
             this.UpdateLayout();
 
-            if (this.SelectedItem != null)
-                this.ScrollIntoView(this.SelectedItem);
-        }
+            if (this.SelectedItem == null)
+                return;
 
-        private static T FindParent<T>(DependencyObject child) where T : class {
-            var parent = System.Windows.Media.VisualTreeHelper.GetParent(child);
-            if (parent == null)
-                return null;
+            DataGridColumn selectedColumn = null;
+            if (columnIndex != null)
+                selectedColumn = (DataGridColumn)this.Columns.OfType<IRawDataColumn>().FirstOrDefault(c => c.Column?.Index == columnIndex);
 
-            var parentAsType = parent as T;
-            if (parentAsType != null)
-                return parentAsType;
-
-            return FindParent<T>(parent);
+            this.ScrollIntoView(this.SelectedItem, selectedColumn);
         }
     }
 }
