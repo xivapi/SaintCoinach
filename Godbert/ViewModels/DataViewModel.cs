@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
 
 using SaintCoinach.Ex.Relational;
 
@@ -73,11 +74,10 @@ namespace Godbert.ViewModels {
 
         public ObservableCollection<BookmarkViewModel> Bookmarks {
             get { return _Bookmarks; }
-            set {
-                _Bookmarks = value;
+        }
 
-                OnPropertyChanged(() => Bookmarks);
-            }
+        public Visibility BookmarksVisibility {
+            get { return _Bookmarks.Count > 0 ? Visibility.Visible : Visibility.Collapsed; }
         }
         #endregion
 
@@ -86,6 +86,7 @@ namespace Godbert.ViewModels {
             this.Realm = realm;
 
             _FilteredSheets = Realm.GameData.AvailableSheets;
+            _Bookmarks.CollectionChanged += _Bookmarks_CollectionChanged;
         }
         #endregion
 
@@ -177,5 +178,9 @@ namespace Godbert.ViewModels {
                 || self is Double);
         }
         #endregion
+
+        private void _Bookmarks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            OnPropertyChanged(() => BookmarksVisibility);
+        }
     }
 }
