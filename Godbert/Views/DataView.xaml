@@ -81,7 +81,16 @@
             <ListBox Grid.Row="1" x:Name="_BookmarksList"
                      ItemsSource="{Binding Bookmarks}"
                      SelectionChanged="_BookmarksList_SelectionChanged"
-                     HorizontalAlignment="Stretch" />
+                     HorizontalAlignment="Stretch"
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#dadada" BorderThickness="0 0 0 2" Padding="2" MouseDown="BookmarkListItem_MouseDown">
+                            <TextBlock Text="{Binding}" />
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </UserControl>

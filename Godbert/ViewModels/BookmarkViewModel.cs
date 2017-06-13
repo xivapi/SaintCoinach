@@ -13,15 +13,17 @@ namespace Godbert.ViewModels {
         public string ColumnName { get; set; }
 
         public override string ToString() {
+            var rowIdentifier = $"{SheetName}#{Key}";
+
             var sb = new StringBuilder();
-            sb.Append($"{SheetName}[{Key}]");
+            sb.Append(rowIdentifier);
 
             if (ColumnName != null)
-                sb.Append($"[{ColumnIndex} {ColumnName}]");
+                sb.Append($" [{ColumnIndex} {ColumnName}]");
             else if (ColumnIndex != null)
-                sb.Append($"[{ColumnIndex}]");
+                sb.Append($" [{ColumnIndex}]");
 
-            if (!string.IsNullOrWhiteSpace(RowDefault)) {
+            if (!string.IsNullOrWhiteSpace(RowDefault) && RowDefault != rowIdentifier) {
                 sb.AppendLine();
                 sb.Append(RowDefault);
             }
@@ -35,6 +37,10 @@ namespace Godbert.ViewModels {
                 return false;
 
             return b.SheetName == SheetName && b.Key == Key && b.ColumnIndex == ColumnIndex;
+        }
+
+        public override int GetHashCode() {
+            return SheetName.GetHashCode() ^ Key.GetHashCode() ^ (ColumnIndex ?? 0).GetHashCode();
         }
     }
 }

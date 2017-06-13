@@ -55,5 +55,21 @@ namespace Godbert.Views {
             // Remove selection.
             _BookmarksList.SelectedIndex = -1;
         }
+
+        private void BookmarkListItem_MouseDown(object sender, MouseButtonEventArgs e) {
+            if (e.MiddleButton == MouseButtonState.Pressed) {
+                var source = e.OriginalSource as FrameworkElement;
+                if (source == null)
+                    return;
+
+                var listItem = WpfHelper.FindParent<ListBoxItem>(source);
+                var bookmark = listItem?.DataContext as BookmarkViewModel;
+                if (bookmark == null)
+                    return;
+
+                var dataViewModel = (DataViewModel)DataContext;
+                dataViewModel.Bookmarks.Remove(bookmark);
+            }
+        }
     }
 }
