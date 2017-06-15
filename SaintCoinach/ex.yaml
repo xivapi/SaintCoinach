@@ -3068,6 +3068,8 @@
           Name: RecipeLevel
         - !!single_def
           Name: Stars
+        - !!single_def
+          Name: Unknown
     Index: 3
   Name: MasterpieceSupplyDuty
 - DataDefinitions:
@@ -4029,9 +4031,7 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: RewardItem
-          Converter: !!link_conv
-            TargetSheet: Item
+          Name: RewardIndex
         - !!single_def
           Name: Quantity{Low}
         - !!single_def
