@@ -1272,11 +1272,11 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: Name
+      Name: Item
       Converter: !!link_conv
         TargetSheet: Item
   Name: Currency
-  DefaultColumn: Name
+  DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Icon{Actor}
