@@ -2146,6 +2146,18 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Name
+  DefaultColumn: Name
+  Name: GilShop
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+  DefaultColumn: Item
+  Name: GilShopItem
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Text
   Name: GoldSaucerTextData
   DefaultColumn: Text
