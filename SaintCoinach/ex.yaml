@@ -3394,133 +3394,131 @@
       Name: ClassJob{Required}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 1411
+    Index: 1435
   - InnerDefinition: !!single_def
       Name: ExpFactor
-    Index: 1412
+    Index: 1437
   - InnerDefinition: !!single_def
       Name: GilReward
-    Index: 1413
+    Index: 1438
   - InnerDefinition: !!single_def
       Name: GCSeals
-    Index: 1415
+    Index: 1440
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: Item{Catalyst}
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1416
+    Index: 1441
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: ItemCount{Catalyst}
-    Index: 1419
+    Index: 1444
   - InnerDefinition: !!single_def
       Name: ItemRewardType
-    Index: 1422
+    Index: 1447
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: Item{Reward}[0]
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1423
+    Index: 1448
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: ItemCount{Reward}[0]
-    Index: 1430
+    Index: 1455
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!single_def
         Name: Stain{Reward}[0]
         Converter: !!link_conv
           TargetSheet: Stain
-    Index: 1437
+    Index: 1462
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: Item{Reward}[1]
         Converter: !!link_conv
           TargetSheet: Item
-    Index: 1444
+    Index: 1469
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: ItemCount{Reward}[1]
-    Index: 1449
+    Index: 1474
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
         Name: Stain{Reward}[1]
         Converter: !!link_conv
           TargetSheet: Stain
-    Index: 1459
+    Index: 1484
   - InnerDefinition: !!single_def
       Name: Emote{Reward}
       Converter: !!link_conv
         TargetSheet: Emote
-    Index: 1464
+    Index: 1489
   - InnerDefinition: !!single_def
       Name: Action{Reward}
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 1465
+    Index: 1490
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!single_def
         Name: GeneralAction{Reward}
         Converter: !!link_conv
           TargetSheet: GeneralAction
-    Index: 1466
+    Index: 1491
   - InnerDefinition: !!single_def
       Name: Other{Reward}
       Converter: !!link_conv
         TargetSheet: QuestRewardOther
-    Index: 1469
+    Index: 1494
   - InnerDefinition: !!single_def
       Name: InstanceContent{Unlock}
       Converter: !!link_conv
         TargetSheet: InstanceContent
-    Index: 1472
+    Index: 1497
   - InnerDefinition: !!single_def
       Name: Tomestone{Reward}
-      Converter: !!link_conv
-        TargetSheet: Tomestones
-    Index: 1474
+    Index: 1499
   - InnerDefinition: !!single_def
       Name: TomestoneCount{Reward}
-    Index: 1475
+    Index: 1500
   - InnerDefinition: !!single_def
       Name: ReputationReward
-    Index: 1476
+    Index: 1501
   - InnerDefinition: !!single_def
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 1477
+    Index: 1502
   - InnerDefinition: !!single_def
       Name: JournalGenre
       Converter: !!link_conv
         TargetSheet: JournalGenre
-    Index: 1478
+    Index: 1503
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 1479
+    Index: 1505
   - InnerDefinition: !!single_def
       Name: Icon{Special}
       Converter: !!icon_conv {}
-    Index: 1480
+    Index: 1506
   - InnerDefinition: !!single_def
       Name: EventIconType
       Converter: !!link_conv
         TargetSheet: EventIconType
-    Index: 1483
+    Index: 1509
   - InnerDefinition: !!single_def
       Name: SortKey
-    Index: 1485
+    Index: 1511
   Name: Quest
   DefaultColumn: Name
   IsGenericReferenceTarget: true
@@ -4306,13 +4304,18 @@
   DefaultColumn: Feminine
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: WeeklyLimit
+  Name: Tomestones
+  DefaultColumn: WeeklyLimit
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
         TargetSheet: Item
   - InnerDefinition: !!single_def
-      Name: WeeklyLimit
+      Name: RewardIndex
     Index: 2
-  Name: Tomestones
+  Name: TomestonesItem
   DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -4355,12 +4358,12 @@
     Index: 3
   - InnerDefinition: !!single_def
       Name: Value
-    Index: 7
+    Index: 5
   - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
-    Index: 8
+    Index: 6
   Name: Trait
   DefaultColumn: Name
 - DataDefinitions:
@@ -4569,14 +4572,6 @@
   IsGenericReferenceTarget: true
 - DataDefinitions:
   - InnerDefinition: !!single_def
-      Name: WeatherRate
-      Converter: !!link_conv
-        TargetSheet: WeatherRate
-    Index: 1
-  Name: WeatherGroup
-  DefaultColumn: Name
-- DataDefinitions:
-  - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
   - InnerDefinition: !!single_def
@@ -4586,6 +4581,14 @@
       Name: Description
     Index: 2
   Name: Weather
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: WeatherRate
+      Converter: !!link_conv
+        TargetSheet: WeatherRate
+    Index: 1
+  Name: WeatherGroup
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!repeat_def
@@ -4647,4 +4650,4 @@
       Name: Name
   Name: WorldDCGroupType
   DefaultColumn: Name
-Version: 2017.04.13.0000.0000
+Version: 2017.06.09.0000.0000
