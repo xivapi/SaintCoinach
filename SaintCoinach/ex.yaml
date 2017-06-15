@@ -2643,6 +2643,7 @@
           Name: Value{HQ}
         - !!single_def
           Name: Max{HQ}
+    Index: 1
   Name: ItemFood
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3000,15 +3001,15 @@
     Index: 4
   - InnerDefinition: !!single_def
       Name: Type
-    Index: 5
+    Index: 6
   - InnerDefinition: !!single_def
       Name: SubType
-    Index: 6
+    Index: 7
   - InnerDefinition: !!single_def
       Name: PlaceName{Tooltip}
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 7
+    Index: 8
   Name: MapMarker
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -3028,11 +3029,6 @@
   - InnerDefinition: !!single_def
       Name: ItemLevel
     Index: 1
-  - InnerDefinition: !!single_def
-      Name: RewardItem
-      Converter: !!link_conv
-        TargetSheet: Item
-    Index: 2
   - InnerDefinition: !!repeat_def
       RepeatCount: 8
       RepeatedDefinition: !!group_def
@@ -3158,16 +3154,16 @@
     Index: 10
   - InnerDefinition: !!single_def
       Name: IsFlying
-    Index: 13
+    Index: 14
   - InnerDefinition: !!single_def
       Name: RideBGM
       Converter: !!link_conv
         TargetSheet: BGM
-    Index: 27
+    Index: 28
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 40
+    Index: 41
   Name: Mount
   DefaultColumn: Singular
 - DataDefinitions:
@@ -3203,29 +3199,23 @@
       Name: AdditionalActions
     Index: 1
   - InnerDefinition: !!single_def
-      Name: AttributeBonus{Class}
-    Index: 2
-  - InnerDefinition: !!single_def
-      Name: AttributeBonus{Job}
-    Index: 3
-  - InnerDefinition: !!single_def
       Name: MpModifier
-    Index: 5
+    Index: 4
   - InnerDefinition: !!single_def
       Name: BaseSpeed
-    Index: 6
+    Index: 5
   - InnerDefinition: !!single_def
       Name: LevelModifier
-    Index: 7
+    Index: 6
   - InnerDefinition: !!single_def
       Name: QuestExpModifier
-    Index: 8
+    Index: 7
   - InnerDefinition: !!single_def
       Name: HpModifier
-    Index: 9
+    Index: 8
   - InnerDefinition: !!single_def
       Name: HuntingLogExpReward
-    Index: 10
+    Index: 9
   Name: ParamGrow
 - DataDefinitions:
   - InnerDefinition: !!single_def
