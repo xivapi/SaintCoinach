@@ -68,108 +68,105 @@
         TargetSheet: ActionCategory
     Index: 3
   - InnerDefinition: !!single_def
-      Name: SpellGroup
-    Index: 5
-  - InnerDefinition: !!single_def
       Name: ActionTimeline{Use}
-      Converter: !!link_conv
-        TargetSheet: ActionTimeline
-    Index: 6
-  - InnerDefinition: !!single_def
-      Name: ActionTimeline{Hit}
       Converter: !!link_conv
         TargetSheet: ActionTimeline
     Index: 7
   - InnerDefinition: !!single_def
+      Name: ActionTimeline{Hit}
+      Converter: !!link_conv
+        TargetSheet: ActionTimeline
+    Index: 8
+  - InnerDefinition: !!single_def
       Name: ClassJob
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 9
-  - InnerDefinition: !!single_def
-      Name: Level
     Index: 10
   - InnerDefinition: !!single_def
-      Name: Range
+      Name: Level
     Index: 11
   - InnerDefinition: !!single_def
-      Name: CanTargetSelf
-    Index: 12
-  - InnerDefinition: !!single_def
-      Name: CanTargetParty
+      Name: Range
     Index: 13
   - InnerDefinition: !!single_def
-      Name: CanTargetFriendly
+      Name: CanTargetSelf
     Index: 14
   - InnerDefinition: !!single_def
-      Name: CanTargetHostile
+      Name: CanTargetParty
     Index: 15
   - InnerDefinition: !!single_def
+      Name: CanTargetFriendly
+    Index: 16
+  - InnerDefinition: !!single_def
+      Name: CanTargetHostile
+    Index: 17
+  - InnerDefinition: !!single_def
       Name: TargetArea
-    Index: 18
+    Index: 20
   - InnerDefinition: !!single_def
       Name: CanTargetDead
-    Index: 22
-  - InnerDefinition: !!single_def
-      Name: CastType
     Index: 24
   - InnerDefinition: !!single_def
-      Name: EffectRange
-    Index: 25
-  - InnerDefinition: !!single_def
-      Name: XAxisModifier
+      Name: CastType
     Index: 26
   - InnerDefinition: !!single_def
-      Name: Cost{Type}
+      Name: EffectRange
+    Index: 27
+  - InnerDefinition: !!single_def
+      Name: XAxisModifier
     Index: 28
   - InnerDefinition: !!single_def
+      Name: Cost{Type}
+    Index: 30
+  - InnerDefinition: !!single_def
       Name: Cost
-    Index: 29
+    Index: 31
   - InnerDefinition: !!single_def
       Name: Status{Required}
       Converter: !!link_conv
         TargetSheet: Status
-    Index: 31
+    Index: 33
   - InnerDefinition: !!single_def
       Name: Action{Combo}
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 32
-  - InnerDefinition: !!single_def
-      Name: Cast<100ms>
     Index: 34
   - InnerDefinition: !!single_def
-      Name: Recast<100ms>
-    Index: 35
-  - InnerDefinition: !!single_def
-      Name: CooldownGroup
+      Name: Cast<100ms>
     Index: 36
   - InnerDefinition: !!single_def
-      Name: Element
+      Name: Recast<100ms>
+    Index: 37
+  - InnerDefinition: !!single_def
+      Name: CooldownGroup
     Index: 38
+  - InnerDefinition: !!single_def
+      Name: Element
+    Index: 40
   - InnerDefinition: !!single_def
       Name: ActionProcStatus
       Converter: !!link_conv
         TargetSheet: ActionProcStatus
-    Index: 39
+    Index: 41
   - InnerDefinition: !!single_def
       Name: Status{GainSelf}
       Converter: !!link_conv
         TargetSheet: Status
-    Index: 40
+    Index: 42
   - InnerDefinition: !!single_def
       Name: ActionData
       Converter: !!ref_conv {}
-    Index: 41
+    Index: 43
   - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
-    Index: 42
+    Index: 44
   - InnerDefinition: !!single_def
       Name: Omen
       Converter: !!link_conv
         TargetSheet: Omen
-    Index: 46
+    Index: 48
   Name: Action
   DefaultColumn: Name
 - DataDefinitions:
@@ -258,14 +255,6 @@
       Name: PlaceName
       Converter: !!link_conv
         TargetSheet: PlaceName
-    Index: 2
-  Name: Aethernet
-  DefaultColumn: PlaceName
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: PlaceName
-      Converter: !!link_conv
-        TargetSheet: PlaceName
     Index: 8
   - InnerDefinition: !!single_def
       Name: AethernetName
@@ -276,24 +265,24 @@
       Name: Territory
       Converter: !!link_conv
         TargetSheet: TerritoryType
-    Index: 11
+    Index: 10
   - InnerDefinition: !!single_def
       Name: IsAetheryte
-    Index: 16
+    Index: 15
   - InnerDefinition: !!single_def
       Name: AethernetGroup
-    Index: 17
+    Index: 16
   - InnerDefinition: !!single_def
       Name: Map
       Converter: !!link_conv
         TargetSheet: Map
-    Index: 18
-  - InnerDefinition: !!single_def
-      Name: Aetherstream{X}
     Index: 19
   - InnerDefinition: !!single_def
-      Name: Aetherstream{Y}
+      Name: Aetherstream{X}
     Index: 20
+  - InnerDefinition: !!single_def
+      Name: Aetherstream{Y}
+    Index: 21
   Name: Aetheryte
   DefaultColumn: PlaceName
 - DataDefinitions:
@@ -402,17 +391,17 @@
   - InnerDefinition: !!single_def
       Name: Icon{Reputation}
       Converter: !!icon_conv {}
-    Index: 2
+    Index: 3
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 3
+    Index: 4
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 9
+    Index: 10
   - InnerDefinition: !!single_def
       Name: Name{Relation}
-    Index: 17
+    Index: 18
   Name: BeastTribe
   DefaultColumn: Name
 - DataDefinitions:
@@ -749,9 +738,6 @@
       Name: Modifier{HitPoints}
     Index: 9
   - InnerDefinition: !!single_def
-      Name: Modifier{ClassPoints}
-    Index: 10
-  - InnerDefinition: !!single_def
       Name: Modifier{Strength}
     Index: 11
   - InnerDefinition: !!single_def
@@ -773,35 +759,30 @@
       Name: ClassJob{Parent}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 23
+    Index: 26
   - InnerDefinition: !!single_def
       Name: Name{English}
-    Index: 24
+    Index: 27
   - InnerDefinition: !!single_def
       Name: Item{StartingWeapon}
       Converter: !!link_conv
         TargetSheet: Item
-    Index: 25
+    Index: 28
   - InnerDefinition: !!single_def
       Name: LimitBreak1
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 30
+    Index: 33
   - InnerDefinition: !!single_def
       Name: LimitBreak2
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 31
+    Index: 34
   - InnerDefinition: !!single_def
       Name: LimitBreak3
       Converter: !!link_conv
         TargetSheet: Action
-    Index: 32
-  - InnerDefinition: !!single_def
-      Name: LimitBreak{PvP}
-      Converter: !!link_conv
-        TargetSheet: Action
-    Index: 33
+    Index: 35
   - InnerDefinition: !!single_def
       Name: Item{SoulCrystal}
       Converter: !!link_conv
