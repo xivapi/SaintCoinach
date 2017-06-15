@@ -2380,10 +2380,10 @@
       Name: InstanceContentBuff
       Converter: !!link_conv
         TargetSheet: InstanceContentBuff
-    Index: 53
+    Index: 54
   - InnerDefinition: !!single_def
       Name: PartyCondition
-    Index: 56
+    Index: 57
   Name: InstanceContent
   DefaultColumn: Name
 - DataDefinitions:
@@ -2516,79 +2516,55 @@
       Name: EquipRestriction
     Index: 40
   - InnerDefinition: !!single_def
-      Name: EquippableByRace[1]
-    Index: 41
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[2]
-    Index: 42
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[3]
-    Index: 43
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[4]
-    Index: 44
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[5]
-    Index: 45
-  - InnerDefinition: !!single_def
-      Name: EquippableByRace[6]
-    Index: 46
-  - InnerDefinition: !!single_def
-      Name: EquippableByGender{M}
-    Index: 47
-  - InnerDefinition: !!single_def
-      Name: EquippableByGender{F}
-    Index: 48
-  - InnerDefinition: !!single_def
       Name: ClassJobCategory
       Converter: !!link_conv
         TargetSheet: ClassJobCategory
-    Index: 49
+    Index: 41
   - InnerDefinition: !!single_def
       Name: GrandCompany
       Converter: !!link_conv
         TargetSheet: GrandCompany
-    Index: 50
+    Index: 42
   - InnerDefinition: !!single_def
       Name: ItemSeries
       Converter: !!link_conv
         TargetSheet: ItemSeries
-    Index: 51
+    Index: 43
   - InnerDefinition: !!single_def
       Name: BaseParamModifier
-    Index: 52
+    Index: 44
   - InnerDefinition: !!single_def
       Name: Model{Main}
-    Index: 53
+    Index: 45
   - InnerDefinition: !!single_def
       Name: Model{Sub}
-    Index: 54
+    Index: 46
   - InnerDefinition: !!single_def
       Name: ClassJob{Use}
       Converter: !!link_conv
         TargetSheet: ClassJob
-    Index: 55
+    Index: 47
   - InnerDefinition: !!single_def
       Name: Damage{Phys}
-    Index: 57
+    Index: 49
   - InnerDefinition: !!single_def
       Name: Damage{Mag}
-    Index: 58
+    Index: 50
   - InnerDefinition: !!single_def
       Name: Delay<ms>
-    Index: 59
+    Index: 51
   - InnerDefinition: !!single_def
       Name: BlockRate
-    Index: 61
+    Index: 53
   - InnerDefinition: !!single_def
       Name: Block
-    Index: 62
+    Index: 54
   - InnerDefinition: !!single_def
       Name: Defense{Phys}
-    Index: 63
+    Index: 55
   - InnerDefinition: !!single_def
       Name: Defense{Mag}
-    Index: 64
+    Index: 56
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!group_def
@@ -2599,15 +2575,15 @@
             TargetSheet: BaseParam
         - !!single_def
           Name: BaseParamValue
-    Index: 65
+    Index: 57
   - InnerDefinition: !!single_def
       Name: ItemSpecialBonus
       Converter: !!link_conv
         TargetSheet: ItemSpecialBonus
-    Index: 77
+    Index: 69
   - InnerDefinition: !!single_def
       Name: ItemSpecialBonus{Param}
-    Index: 78
+    Index: 70
   - InnerDefinition: !!repeat_def
       RepeatCount: 6
       RepeatedDefinition: !!group_def
@@ -2618,19 +2594,19 @@
             TargetSheet: BaseParam
         - !!single_def
           Name: BaseParamValue{Special}
-    Index: 79
+    Index: 71
   - InnerDefinition: !!single_def
       Name: MaterializeType
-    Index: 91
+    Index: 83
   - InnerDefinition: !!single_def
       Name: MateriaSlotCount
-    Index: 92
+    Index: 84
   - InnerDefinition: !!single_def
       Name: IsAdvancedMeldingPermitted
-    Index: 93
+    Index: 85
   - InnerDefinition: !!single_def
       Name: IsPvP
-    Index: 94
+    Index: 86
   Name: Item
   DefaultColumn: Name
 - DataDefinitions:
