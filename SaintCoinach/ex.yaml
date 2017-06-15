@@ -4646,11 +4646,7 @@
   - InnerDefinition: !!single_def
       Name: Reward{Type}
   - InnerDefinition: !!single_def
-      Name: Reward
-      Converter: !!multiref_conv
-        Targets:
-        - Tomestones
-        - Item
+      Name: Reward{Data}
     Index: 1
   - InnerDefinition: !!single_def
       Name: NeedsThreeLines
