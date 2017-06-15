@@ -90,11 +90,11 @@ namespace SaintCoinach.Xiv {
         public override IEnumerable<IContentReward> FixedRewards {
             get {
                 // XXX: Magic numbers here
-                const int TomestoneAKey = 2;    // Soldiery
-                const int TomestoneBKey = 3;    // Poetics
+                const int TomestoneAKey = 3;    // Poetics
+                const int TomestoneBKey = 8;    // Verity
                 const int CurrencyCount = 5;
 
-                var tomestones = Sheet.Collection.GetSheet<Tomestone>();
+                var tomestones = Sheet.Collection.GetSheet<TomestonesItem>();
 
                 var tomeA = tomestones[TomestoneAKey].Item;
                 var tomeB = tomestones[TomestoneBKey].Item;

@@ -2148,6 +2148,7 @@
   - InnerDefinition: !!single_def
       Name: Name
   DefaultColumn: Name
+  IsGenericReferenceTarget: true
   Name: GilShop
 - DataDefinitions:
   - InnerDefinition: !!single_def

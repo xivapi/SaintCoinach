@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    [XivSheet("Tomestones")]
-    public class Tomestone : XivRow {
+    public class TomestonesItem : XivRow {
         #region Properties
 
-        public int WeeklyLimit { get { return AsInt32("WeeklyLimit"); } }
+        public Item Item { get { return As<Item>(); } }
+        public int RewardIndex { get { return AsInt32("RewardIndex"); } }
 
         #endregion
 
         #region Constructors
 
-        public Tomestone(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public TomestonesItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
     }

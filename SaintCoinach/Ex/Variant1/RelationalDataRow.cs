@@ -40,9 +40,8 @@ namespace SaintCoinach.Ex.Variant1 {
 
         public object this[string columnName] {
             get {
-                WeakReference<object> valRef;
                 object val;
-                if (_ValueReferences.TryGetValue(columnName, out valRef)) {
+                if (_ValueReferences.TryGetValue(columnName, out WeakReference<object> valRef)) {
                     if (valRef.TryGetTarget(out val))
                         return val;
                     _ValueReferences.Remove(columnName);

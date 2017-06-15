@@ -774,7 +774,9 @@
     <Compile Include="Xiv\RetainerTaskRandom.cs" />
     <Compile Include="Xiv\Sheets\InventoryItemSheet.cs" />
     <Compile Include="Xiv\Sheets\ItemActionSheet.cs" />
+    <Compile Include="Xiv\GilShop.cs" />
     <Compile Include="Xiv\Shop.cs" />
+    <Compile Include="Xiv\GilShopItem.cs" />
     <Compile Include="Xiv\ShopItem.cs" />
     <Compile Include="Xiv\ShopListingItem.cs" />
     <Compile Include="Xiv\SpecialShop.cs" />
@@ -783,6 +785,7 @@
     <Compile Include="Xiv\Status.cs" />
     <Compile Include="Xiv\TerritoryType.cs" />
     <Compile Include="Xiv\Title.cs" />
+    <Compile Include="Xiv\TomestonesItem.cs" />
     <Compile Include="Xiv\Tomestone.cs" />
     <Compile Include="Xiv\Trait.cs" />
     <Compile Include="Xiv\Tribe.cs" />
