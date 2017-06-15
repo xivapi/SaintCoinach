@@ -1272,6 +1272,13 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Name
+      Converter: !!link_conv
+        TargetSheet: Item
+  Name: Currency
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Icon{Actor}
       Converter: !!icon_conv {}
   - InnerDefinition: !!single_def
@@ -3037,6 +3044,11 @@
   - InnerDefinition: !!single_def
       Name: ItemLevel
     Index: 1
+  - InnerDefinition: !!single_def
+      Name: Reward{Currency}
+      Converter: !!link_conv
+        TargetSheet: Currency
+    Index: 2
   - InnerDefinition: !!repeat_def
       RepeatCount: 8
       RepeatedDefinition: !!group_def
@@ -3060,11 +3072,11 @@
         - !!single_def
           Name: Reward{Base}
         - !!single_def
+          Name: Unknown
+        - !!single_def
           Name: RecipeLevel
         - !!single_def
           Name: Stars
-        - !!single_def
-          Name: Unknown
     Index: 3
   Name: MasterpieceSupplyDuty
 - DataDefinitions:
