@@ -30,8 +30,9 @@ namespace SaintCoinach.Xiv.Sheets {
                 87, typeof(PhysicalWeapon)  // DRK
             }, {
                 88, typeof(PhysicalWeapon)  // MCH
+            }, {
+                96, typeof(PhysicalWeapon)  // SAM
             },
-                                            // TODO: SAM
 
             // 
             {
@@ -46,8 +47,11 @@ namespace SaintCoinach.Xiv.Sheets {
                 10, typeof(MagicWeapon)     // ACN
             }, {
                 89, typeof(MagicWeapon)     // AST
+            }, {
+                97, typeof(MagicWeapon)     // RDM
+            }, {
+                98, typeof(MagicWeapon)     // SCH
             },
-                                            // TODO: RDM
 
             // 
             {
@@ -98,8 +102,10 @@ namespace SaintCoinach.Xiv.Sheets {
                 31, typeof(GatheringTool)   // BTN
             }, {
                 32, typeof(GatheringTool)   // FSH
+            }, {
+                99, typeof(GatheringTool)   // FSH (sub)
             },
-                                            // TODO: FSH (sub) spear
+
             // 
             {
                 34, typeof(Armour)          // Head
@@ -195,8 +201,7 @@ namespace SaintCoinach.Xiv.Sheets {
         protected override Item CreateRow(IRelationalRow sourceRow) {
             var uiCategory = (ItemUICategory)sourceRow["ItemUICategory"];
 
-            Type type;
-            if (!ItemTypes.TryGetValue(uiCategory.Key, out type))
+            if (!ItemTypes.TryGetValue(uiCategory.Key, out Type type))
                 type = DefaultItemType;
             var args = new object[] {
                 this, sourceRow
