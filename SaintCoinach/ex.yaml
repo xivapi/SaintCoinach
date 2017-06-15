@@ -4038,7 +4038,9 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: RewardIndex
+          Converter: !!link_conv
+            TargetSheet: Currency
+          Name: Reward{Currency}
         - !!single_def
           Name: Quantity{Low}
         - !!single_def
