@@ -2452,7 +2452,7 @@
       Name: Stain
       Converter: !!link_conv
         TargetSheet: Stain
-    Index: 14
+    Index: 13
   - InnerDefinition: !!single_def
       Name: ItemUICategory
       Converter: !!link_conv
