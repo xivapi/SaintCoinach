@@ -23,7 +23,16 @@ namespace SaintCoinach.Xiv {
         StatusAmount,
         Unknown17,
         TPAll,
-        Unknown19
+        Unknown19,
+        Unknown20,
+        Unknown21,
+        BeastGauge,
+        Unknown23,
+        DreadwyrmAether,
+        BloodGauge,
+        NinkiGauge,
+        Chakra,
+        GreasedLightning
     }
 
     public abstract class ClassJobActionBase : ActionBase {

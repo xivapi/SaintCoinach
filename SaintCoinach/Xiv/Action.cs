@@ -16,7 +16,6 @@ namespace SaintCoinach.Xiv {
         public bool CanTargetDead { get { return AsBoolean("CanTargetDead"); } }
         public bool TargetArea { get { return AsBoolean("TargetArea"); } }
         public int EffectRange { get { return AsInt32("EffectRange"); } }
-        public Status RequiredStatus { get { return As<Status>("Status{Required}"); } }
         public Action ComboFrom { get { return As<Action>("Action{Combo}"); } }
 
         public TimeSpan CastTime {

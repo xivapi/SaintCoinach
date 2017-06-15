@@ -122,11 +122,6 @@
       Name: Cost
     Index: 31
   - InnerDefinition: !!single_def
-      Name: Status{Required}
-      Converter: !!link_conv
-        TargetSheet: Status
-    Index: 33
-  - InnerDefinition: !!single_def
       Name: Action{Combo}
       Converter: !!link_conv
         TargetSheet: Action

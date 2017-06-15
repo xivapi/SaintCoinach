@@ -21,17 +21,15 @@ namespace SaintCoinach.Xiv {
         #region Constructor
 
         public InstanceContentData(InstanceContent instanceContent) {
-            if (instanceContent == null)
-                throw new ArgumentNullException("instanceContent");
-
-            this.InstanceContent = instanceContent;
+            this.InstanceContent = instanceContent ?? throw new ArgumentNullException("instanceContent");
 
             var coll = instanceContent.Sheet.Collection;
             if (!coll.IsLibraAvailable) return;
 
-            var libraRow = coll.Libra.InstanceContents.FirstOrDefault(i => i.Key == instanceContent.Key);
-            if (libraRow != null)
-                Parse(libraRow);
+            // Now inaccurate.
+            //var libraRow = coll.Libra.InstanceContents.FirstOrDefault(i => i.Key == instanceContent.Key);
+            //if (libraRow != null)
+            //    Parse(libraRow);
         }
         #endregion
 
