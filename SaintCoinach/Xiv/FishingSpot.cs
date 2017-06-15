@@ -38,10 +38,10 @@ namespace SaintCoinach.Xiv {
         public Text.XivString OnEndBigFish { get { return AsString("BigFish{OnEnd}"); } }
 
         /// <summary>
-        ///     Gets the <see cref="FishingSpotCategory" /> of the current <see cref="FishingSpot" />.
+        ///     Gets the FishingSpotCategory of the current <see cref="FishingSpot" />.
         /// </summary>
-        /// <value>The <see cref="FishingSpotCategory" /> of the current <see cref="FishingSpot" />.</value>
-        public FishingSpotCategory FishingSpotCategory { get { return As<FishingSpotCategory>(); } }
+        /// <value>The FishingSpotCategory of the current <see cref="FishingSpot" />.</value>
+        public byte FishingSpotCategory { get { return As<byte>("FishingSpotCategory"); } }
 
         /// <summary>
         ///     Gets the <see cref="TerritoryType" /> the current <see cref="FishingSpot" /> is in.

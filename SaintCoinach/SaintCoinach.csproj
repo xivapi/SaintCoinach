@@ -632,7 +632,6 @@
     <Compile Include="Xiv\Fate.cs" />
     <Compile Include="Xiv\FCRank.cs" />
     <Compile Include="Xiv\FishingSpot.cs" />
-    <Compile Include="Xiv\FishingSpotCategory.cs" />
     <Compile Include="Xiv\FishParameter.cs" />
     <Compile Include="Xiv\GatheringItem.cs" />
     <Compile Include="Xiv\GatheringType.cs" />

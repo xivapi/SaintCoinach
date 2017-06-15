@@ -1745,6 +1745,9 @@
       Name: BigFish{OnEnd}
     Index: 2
   - InnerDefinition: !!single_def
+      Name: FishingSpotCategory
+    Index: 3
+  - InnerDefinition: !!single_def
       Name: TerritoryType
       Converter: !!link_conv
         TargetSheet: TerritoryType
