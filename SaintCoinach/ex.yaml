@@ -1132,17 +1132,17 @@
       Name: ContentMemberType
       Converter: !!link_conv
         TargetSheet: ContentMemberType
-    Index: 6
+    Index: 5
   - InnerDefinition: !!single_def
       Name: Level
-    Index: 9
+    Index: 8
   - InnerDefinition: !!single_def
       Name: ItemLevel{Required}
     Index: 10
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 28
+    Index: 29
   Name: ContentFinderCondition
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -1365,26 +1365,26 @@
       Name: EmoteCategory
       Converter: !!link_conv
         TargetSheet: EmoteCategory
-    Index: 9
+    Index: 11
   - InnerDefinition: !!single_def
       Name: TextCommand
       Converter: !!link_conv
         TargetSheet: TextCommand
-    Index: 16
+    Index: 18
   - InnerDefinition: !!single_def
       Name: Icon
       Converter: !!icon_conv {}
-    Index: 17
+    Index: 19
   - InnerDefinition: !!single_def
       Name: LogMessage{Targeted}
       Converter: !!link_conv
         TargetSheet: LogMessage
-    Index: 18
+    Index: 20
   - InnerDefinition: !!single_def
       Name: LogMessage{Untargeted}
       Converter: !!link_conv
         TargetSheet: LogMessage
-    Index: 19
+    Index: 21
   Name: Emote
   DefaultColumn: Name
 - DataDefinitions:
@@ -1630,18 +1630,18 @@
     Index: 10
   - InnerDefinition: !!single_def
       Name: Name
-    Index: 24
+    Index: 26
   - InnerDefinition: !!single_def
       Name: Description
-    Index: 25
+    Index: 27
   - InnerDefinition: !!single_def
       Name: Objective
-    Index: 26
+    Index: 28
   - InnerDefinition: !!repeat_def
       RepeatCount: 3
       RepeatedDefinition: !!single_def
         Name: StatusText
-    Index: 27
+    Index: 29
   Name: Fate
   DefaultColumn: Name
 - DataDefinitions:
@@ -1743,11 +1743,6 @@
       Name: BigFish{OnEnd}
     Index: 2
   - InnerDefinition: !!single_def
-      Name: FishingSpotCategory
-      Converter: !!link_conv
-        TargetSheet: FishingSpotCategory
-    Index: 3
-  - InnerDefinition: !!single_def
       Name: TerritoryType
       Converter: !!link_conv
         TargetSheet: TerritoryType
@@ -1775,11 +1770,6 @@
     Index: 20
   Name: FishingSpot
   DefaultColumn: PlaceName
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: Name
-  Name: FishingSpotCategory
-  DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Text
@@ -1890,10 +1880,10 @@
         Name: GatheringItem
         Converter: !!link_conv
           TargetSheet: GatheringItem
-    Index: 3
+    Index: 2
   - InnerDefinition: !!single_def
       Name: IsLimited
-    Index: 11
+    Index: 10
   Name: GatheringPointBase
 - DataDefinitions:
   - InnerDefinition: !!single_def
@@ -2264,24 +2254,6 @@
     Index: 7
   Name: HousingFurniture
   DefaultColumn: Item
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: Name
-  Name: HousingItemCategory
-  DefaultColumn: Name
-- DataDefinitions:
-  - InnerDefinition: !!single_def
-      Name: PersonalChamber
-  - InnerDefinition: !!single_def
-      Name: Small
-    Index: 1
-  - InnerDefinition: !!single_def
-      Name: Medium
-    Index: 2
-  - InnerDefinition: !!single_def
-      Name: Large
-    Index: 3
-  Name: HousingLayoutLimit
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: ModelKey
