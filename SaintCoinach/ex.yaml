@@ -413,6 +413,12 @@
   DefaultColumn: File
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Icon
+      Converter: !!icon_conv {}
+  Name: BNpcAnnounceIcon
+  DefaultColumn: Icon
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: Scale
     Index: 4
   - InnerDefinition: !!single_def
