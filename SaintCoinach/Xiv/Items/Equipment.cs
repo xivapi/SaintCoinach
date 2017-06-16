@@ -22,21 +22,12 @@ namespace SaintCoinach.Xiv.Items {
         /// </summary>
         private ParameterCollection _SecondaryParameters;
 
-        private Race[] _RacesEquippableBy;
-
         #endregion
 
         #region Properties
 
-        public IEnumerable<Race> RacesEquippableBy {
-            get { return _RacesEquippableBy ?? (_RacesEquippableBy = BuildRacesEquippableBy()); }
-        }
-
-        public bool EquippableByMale {
-            get { return AsBoolean("EquippableByGender{M}"); }
-        }
-        public bool EquippableByFemale {
-            get { return AsBoolean("EquippableByGender{F}"); }
+        public byte EquipmentRestriction {
+            get { return As<byte>("EquipmentRestriction"); }
         }
 
         public bool IsCrestWorthy {
@@ -273,6 +264,29 @@ namespace SaintCoinach.Xiv.Items {
             return (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0, MidpointRounding.AwayFromZero);
         }
 
+        public int GetModelCharacterType() {
+            switch (EquipmentRestriction) {
+                case 0: return 0; // Not equippable
+                case 1: return 101; // Unrestricted, default to male hyur
+                case 2: return 101; // Any male
+                case 3: return 201; // Any female
+                case 4: return 101; // Hyur male
+                case 5: return 201; // Hyur female
+                case 6: return 501; // Elezen male
+                case 7: return 601; // Elezen female
+                case 8: return 1101; // Lalafell male
+                case 9: return 1201; // Lalafell female
+                case 10: return 701; // Miqo'te male
+                case 11: return 801; // Miqo'te female
+                case 12: return 901; // Roegadyn male
+                case 13: return 1001; // Roegadyn female
+                case 14: return 1301; // Au Ra male
+                case 15: return 1401; // Au Ra female
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
         #endregion
 
         #region Build
@@ -288,17 +302,6 @@ namespace SaintCoinach.Xiv.Items {
             AddSpecialParameters(parameters);
 
             return parameters;
-        }
-
-        private Race[] BuildRacesEquippableBy() {
-            var allRaces = Sheet.Collection.GetSheet<Race>();
-            var races = new List<Race>();
-            foreach (var race in allRaces.Where(r => r.Key != 0)) {
-                if (AsBoolean("EquippableByRace", race.Key))
-                    races.Add(race);
-            }
-
-            return races.ToArray();
         }
 
         /// <summary>

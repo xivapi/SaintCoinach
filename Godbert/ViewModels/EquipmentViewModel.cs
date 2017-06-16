@@ -80,43 +80,27 @@ namespace Godbert.ViewModels {
         public ICommand NewCommand { get { return _NewCommand ?? (_NewCommand = new DelegateCommand(OnNew)); } }
 
         private void OnAdd() {
-            ModelDefinition model;
-            ModelVariantIdentifier variant;
-            if (TryGetModel(out model, out variant))
+            if (TryGetModel(out var model, out var variant))
                 Parent.EngineHelper.AddToLast(SelectedEquipment.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
         }
         private void OnReplace() {
-            ModelDefinition model;
-            ModelVariantIdentifier variant;
-            if (TryGetModel(out model, out variant))
+            if (TryGetModel(out var model, out var variant))
                 Parent.EngineHelper.ReplaceInLast(SelectedEquipment.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
         }
         private void OnNew() {
-            ModelDefinition model;
-            ModelVariantIdentifier variant;
-            if (TryGetModel(out model, out variant))
+            if (TryGetModel(out var model, out var variant))
                 Parent.EngineHelper.OpenInNew(SelectedEquipment.Name, (e) => new SaintCoinach.Graphics.Viewer.Content.ContentModel(e, variant, model, ModelQuality.High));
         }
-
-        private static int[] RaceCharacterTypes = new int[] {
-            0,
-            101,    // Hyur (Midlander)
-            501,    // Elezen
-            1101,   // Lalafell
-            701,    // Miqo'te
-            901,    // Roegadyn
-            1301    // Au Ra
-        };
 
         private bool TryGetModel(out ModelDefinition model, out ModelVariantIdentifier variant) {
             model = null;
             variant = default(ModelVariantIdentifier);
             if (SelectedEquipment == null)
                 return false;
-            
-            var charType = RaceCharacterTypes[SelectedEquipment.RacesEquippableBy.First().Key];
-            if (!SelectedEquipment.EquippableByMale)
-                charType += 100;
+
+            var charType = SelectedEquipment.GetModelCharacterType();
+            if (charType == 0)
+                return false;
             try {
                 model = SelectedEquipment.GetModel(charType, out variant.ImcVariant);
                 if (SelectedEquipment.IsDyeable && SelectedStain != null)

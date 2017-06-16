@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Viewer {
     public class EquipmentImageRendererSource : IImageRendererSource {
-        private static int[] RaceCharacterTypes = new int[] {
-            0,
-            101,    // Hyur (Midlander)
-            501,    // Elezen
-            1101,   // Lalafell
-            701,    // Miqo'te
-            901,    // Roegadyn
-            1301    // Au Ra
-        };
-
         #region Fields
         private Engine _Engine;
         private bool _IsCurrentStained;
@@ -54,8 +44,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
             while (_EquipmentIterator.MoveNext()) {
                 var eq = _EquipmentIterator.Current;
-                var charType = RaceCharacterTypes[eq.RacesEquippableBy.First().Key];
-                if (!eq.EquippableByMale)
+                var charType = eq.GetModelCharacterType();
                     charType += 100;
 
                 _CurrentModel = eq.GetModel(charType, out _CurrentVariant);
