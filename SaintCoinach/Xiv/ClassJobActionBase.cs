@@ -30,9 +30,32 @@ namespace SaintCoinach.Xiv {
         Unknown23,
         DreadwyrmAether,
         BloodGauge,
+        Unknown26,
         NinkiGauge,
         Chakra,
-        GreasedLightning
+        GreasedLightning,
+        Aetherflow,
+        AethertrailAttunement,
+        Repertoire,
+        AstrologianCard2,
+        AstrologianCard3,
+        AstrologianCard4,
+        AstrologianCard5,
+        AstrologianCard6,
+        Unknown38,
+        KenkiGauge,
+        Unknown40,
+        OathGauge,
+        Unknown42,
+        BalanceGauge,
+        Unknown44,
+        KenkiGauge2,
+        FaerieGauge,
+        DreadwyrmTrance,
+        UnknownDragoon48,
+        LilyAll,
+        AstralFireOrUmbralIce,
+        MP2
     }
 
     public abstract class ClassJobActionBase : ActionBase {

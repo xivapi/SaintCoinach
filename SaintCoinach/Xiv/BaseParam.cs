@@ -50,7 +50,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="category"><see cref="EquipSlotCategory"/> to get the maximum parameter value for.</param>
         /// <returns>Returns the maximum value for the current <see cref="BaseParam"/> on <c>category</c>.</returns>
         public int GetMaximum(EquipSlotCategory category) {
-            const int Offset = 2;
+            const int Offset = 3;
             return category.Key == 0 ? 0 : Convert.ToInt32(this[Offset + category.Key]);
         }
 
@@ -60,7 +60,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="role">Role to get the modifier for.</param>
         /// <returns>Returns the modifier for <c>role</c>, in percent.</returns>
         public int GetModifier(int role) {
-            const int Offset = 24;
+            const int Offset = 25;
             const int Maximum = 12;
             if (role < 0 || role > Maximum)
                 return 0;

@@ -26,8 +26,8 @@ namespace SaintCoinach.Xiv.Items {
 
         #region Properties
 
-        public byte EquipmentRestriction {
-            get { return As<byte>("EquipmentRestriction"); }
+        public byte EquipRestriction {
+            get { return As<byte>("EquipRestriction"); }
         }
 
         public bool IsCrestWorthy {
@@ -265,7 +265,7 @@ namespace SaintCoinach.Xiv.Items {
         }
 
         public int GetModelCharacterType() {
-            switch (EquipmentRestriction) {
+            switch (EquipRestriction) {
                 case 0: return 0; // Not equippable
                 case 1: return 101; // Unrestricted, default to male hyur
                 case 2: return 101; // Any male
