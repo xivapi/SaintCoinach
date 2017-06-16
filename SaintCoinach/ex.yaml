@@ -445,6 +445,9 @@
       Name: Gender
     Index: 1
   - InnerDefinition: !!single_def
+      Name: BodyType
+    Index: 2
+  - InnerDefinition: !!single_def
       Name: Height
     Index: 3
   - InnerDefinition: !!single_def
@@ -1409,6 +1412,9 @@
   - InnerDefinition: !!single_def
       Name: Gender
     Index: 37
+  - InnerDefinition: !!single_def
+      Name: BodyType
+    Index: 38
   - InnerDefinition: !!single_def
       Name: Height
     Index: 39
