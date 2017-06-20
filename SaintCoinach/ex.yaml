@@ -3072,7 +3072,7 @@
       Converter: !!link_conv
         TargetSheet: ClassJob
   - InnerDefinition: !!single_def
-      Name: ItemLevel
+      Name: MinLevel
     Index: 1
   - InnerDefinition: !!single_def
       Name: Reward{Currency}
@@ -3098,13 +3098,15 @@
         - !!single_def
           Name: Collectability{Base}
         - !!single_def
-          Name: Reward{Factor}
+          Name: ExpModifier
         - !!single_def
-          Name: Reward{Base}
+          Name: Reward{Scrips}
         - !!single_def
-          Name: Unknown
+          Name: BonusMultiplier
+          Converter: !!link_conv
+            TargetSheet: MasterpieceSupplyMultiplier
         - !!single_def
-          Name: RecipeLevel
+          Name: MaxLevel
         - !!single_def
           Name: Stars
     Index: 3

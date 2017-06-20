@@ -29,9 +29,7 @@ namespace SaintCoinach.Ex {
 
         public virtual object this[int columnIndex] {
             get {
-                object value;
-  
-                if (_ValueReferences.ContainsKey(columnIndex) && _ValueReferences[columnIndex].TryGetTarget(out value))
+                if (_ValueReferences.ContainsKey(columnIndex) && _ValueReferences[columnIndex].TryGetTarget(out var value))
                     return value;
   
                 var column = Sheet.Header.GetColumn(columnIndex);
