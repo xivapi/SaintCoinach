@@ -1811,6 +1811,11 @@
       Name: Level
     Index: 2
   - InnerDefinition: !!single_def
+      Name: TerritoryType
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 4
+  - InnerDefinition: !!single_def
       Name: IsFish
     Index: 5
   - InnerDefinition: !!single_def
@@ -2473,12 +2478,12 @@
       Name: Rarity
     Index: 12
   - InnerDefinition: !!single_def
+      Name: FilterGroup
+    Index: 13
+  - InnerDefinition: !!single_def
       Name: Stain
       Converter: !!link_conv
         TargetSheet: Stain
-    Index: 13
-  - InnerDefinition: !!single_def
-      Name: FilterGroup
     Index: 14
   - InnerDefinition: !!single_def
       Name: ItemUICategory
@@ -4167,6 +4172,48 @@
     Index: 8
   Name: ShopItem
   DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Description
+  - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: ItemLevel
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: TerritoryType
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 4
+  DefaultColumn: Item
+  Name: SpearfishingItem
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Level
+  - InnerDefinition: !!single_def
+      Name: TerritoryType
+      Converter: !!link_conv
+        TargetSheet: TerritoryType
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: X
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Y
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Radius
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: PlaceName
+      Converter: !!link_conv
+        TargetSheet: PlaceName
+    Index: 7
+  DefaultColumn: PlaceName
+  Name: SpearfishingNotebook
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
