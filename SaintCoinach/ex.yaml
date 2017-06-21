@@ -2181,16 +2181,16 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
+  Name: GilShop
   DefaultColumn: Name
   IsGenericReferenceTarget: true
-  Name: GilShop
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
         TargetSheet: Item
-  DefaultColumn: Item
   Name: GilShopItem
+  DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Text
@@ -4075,9 +4075,9 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
+          Name: Reward{Currency}
           Converter: !!link_conv
             TargetSheet: Currency
-          Name: Reward{Currency}
         - !!single_def
           Name: Quantity{Low}
         - !!single_def
@@ -4188,8 +4188,8 @@
       Converter: !!link_conv
         TargetSheet: TerritoryType
     Index: 4
-  DefaultColumn: Item
   Name: SpearfishingItem
+  DefaultColumn: Item
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Level
@@ -4212,8 +4212,8 @@
       Converter: !!link_conv
         TargetSheet: PlaceName
     Index: 7
-  DefaultColumn: PlaceName
   Name: SpearfishingNotebook
+  DefaultColumn: PlaceName
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
@@ -4747,4 +4747,4 @@
       Name: Name
   Name: WorldDCGroupType
   DefaultColumn: Name
-Version: 2017.06.09.0000.0000
+Version: 2017.06.19.0000.0000
