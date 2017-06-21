@@ -87,6 +87,7 @@
     <Compile Include="Ex\Variant2\DataRow.cs" />
     <Compile Include="Ex\Variant2\RelationalDataRow.cs" />
     <Compile Include="Ex\Variant2\SubRow.cs" />
+    <Compile Include="Graphics\ColorMap.cs" />
     <Compile Include="Xiv\ActionTransient.cs" />
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
