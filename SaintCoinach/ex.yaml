@@ -3787,6 +3787,7 @@
         Name: Recipe
         Converter: !!link_conv
           TargetSheet: Recipe
+    Index: 1
   Name: RecipeNotebookList
 - DataDefinitions:
   - InnerDefinition: !!single_def
