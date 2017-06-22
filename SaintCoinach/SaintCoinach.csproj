@@ -83,7 +83,6 @@
     <Compile Include="Ex\Relational\Update\ColumnComparer.cs" />
     <Compile Include="Ex\Variant1\DataRow.cs" />
     <Compile Include="Ex\Variant1\RelationalDataRow.cs" />
-    <Compile Include="Ex\Variant2\ColumnValues.cs" />
     <Compile Include="Ex\Variant2\DataRow.cs" />
     <Compile Include="Ex\Variant2\RelationalDataRow.cs" />
     <Compile Include="Ex\Variant2\SubRow.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Xiv\ItemActions\MgpCard.cs" />
     <Compile Include="Xiv\ItemActions\Heavenscracker.cs" />
     <Compile Include="Xiv\ItemActions\TripleTriadCardUnlock.cs" />
+    <Compile Include="Xiv\IXivSubRow.cs" />
     <Compile Include="Xiv\MinionRace.cs" />
     <Compile Include="Xiv\MinionSkillType.cs" />
     <Compile Include="Xiv\Quad.cs" />
@@ -796,6 +796,8 @@
     <Compile Include="Xiv\TripleTriadRule.cs" />
     <Compile Include="Xiv\Weather.cs" />
     <Compile Include="Xiv\WeatherRate.cs" />
+    <Compile Include="Xiv\XivSheet2.Enumerator.cs" />
+    <Compile Include="Xiv\XivSheet2.cs" />
     <Compile Include="Xiv\XivSheet.cs" />
     <Compile Include="Xiv\IXivRow.cs" />
     <Compile Include="Xiv\IXivSheet.cs" />
@@ -804,6 +806,7 @@
     <Compile Include="Xiv\XivRow.cs" />
     <Compile Include="Xiv\XivSheet.Enumerator.cs" />
     <Compile Include="Xiv\XivSheetAttribute.cs" />
+    <Compile Include="Xiv\XivSubRow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotSquish\DotSquish.csproj">

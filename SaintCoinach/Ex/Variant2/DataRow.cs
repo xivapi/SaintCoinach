@@ -10,7 +10,7 @@ namespace SaintCoinach.Ex.Variant2 {
         const int MetadataLength = 0x06;
 
         private bool _IsRead;
-        private Dictionary<int, ColumnValues> _ColumnCache = new Dictionary<int, ColumnValues>();
+
         private Dictionary<int, SubRow> _SubRows = new Dictionary<int, SubRow>();
 
         public int Length { get; private set; }
@@ -47,13 +47,9 @@ namespace SaintCoinach.Ex.Variant2 {
         #endregion
 
         protected virtual void Read() {
-            _ColumnCache.Clear();
             _SubRows.Clear();
 
             var h = Sheet.Header;
-            foreach (var c in h.Columns)
-                _ColumnCache.Add(c.Index, new ColumnValues(c));
-
             var b = Sheet.GetBuffer();
             var o = Offset;
             for(var i = 0; i < SubRowCount; ++i) {
@@ -62,12 +58,6 @@ namespace SaintCoinach.Ex.Variant2 {
 
                 var r = new SubRow(this, key, o);
                 _SubRows.Add(key, r);
-                
-                foreach (var c in _ColumnCache.Values)
-                {
-                    c.Values.Add(key, r[c.Column.Index]);
-                    c.RawValues.Add(key, r.GetRaw(c.Column.Index));
-                }
 
                 o += h.FixedSizeDataLength;
             }
@@ -76,15 +66,11 @@ namespace SaintCoinach.Ex.Variant2 {
         }
         
         public override object this[int column] {
-            get {
-                if (!_IsRead) Read();
-                return _ColumnCache[column].Values;
-            }
+            get { throw new InvalidOperationException(); }
         }
 
         public override object GetRaw(int column) {
-            if (!_IsRead) Read();
-            return _ColumnCache[column].RawValues;
+            throw new InvalidOperationException();
         }
     }
 }

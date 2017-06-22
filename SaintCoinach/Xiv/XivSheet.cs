@@ -11,8 +11,8 @@ namespace SaintCoinach.Xiv {
     public partial class XivSheet<T> : IXivSheet<T> where T : IXivRow {
         #region Fields
 
-        private readonly Dictionary<int, T> _Rows = new Dictionary<int, T>();
-        private readonly IRelationalSheet _Source;
+        protected readonly Dictionary<int, T> _Rows = new Dictionary<int, T>();
+        protected readonly IRelationalSheet _Source;
         private ConstructorInfo _RowConstructor;
 
         #endregion
@@ -22,25 +22,24 @@ namespace SaintCoinach.Xiv {
         private ConstructorInfo RowConstructor {
             get {
                 if (_RowConstructor != null) return _RowConstructor;
-
-                var ctors =
-                    typeof(T).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-                foreach (var ctor in ctors) {
-                    var param = ctor.GetParameters();
-                    if (param.Length != 2) continue;
-                    if (!param[0].ParameterType.IsAssignableFrom(GetType())) continue;
-                    if (!param[1].ParameterType.IsAssignableFrom(typeof(IRelationalRow))) continue;
-
-                    _RowConstructor = ctor;
-                    break;
-                }
-
-                if (_RowConstructor == null)
-                    throw new NotSupportedException("No matching constructor found.");
-
-                return _RowConstructor;
+                return _RowConstructor = GetRowConstructor(typeof(T), GetType());
             }
+        }
+
+        protected static ConstructorInfo GetRowConstructor(Type type, Type sheetType) {
+            var ctors =
+                type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (var ctor in ctors) {
+                var param = ctor.GetParameters();
+                if (param.Length != 2) continue;
+                if (!param[0].ParameterType.IsAssignableFrom(sheetType)) continue;
+                if (!param[1].ParameterType.IsAssignableFrom(typeof(IRelationalRow))) continue;
+
+                return ctor;
+            }
+
+            throw new NotSupportedException("No matching constructor found.");
         }
 
         public IEnumerable<int> Keys { get { return _Source.Keys; } }

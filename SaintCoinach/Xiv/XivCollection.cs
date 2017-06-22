@@ -242,7 +242,12 @@ namespace SaintCoinach.Xiv {
             var baseSheet = (IRelationalSheet)base.CreateSheet(header);
 
             var xivSheet = TryCreateXivSheet(baseSheet);
-            return xivSheet ?? new XivSheet<XivRow>(this, baseSheet);
+            if (xivSheet != null)
+                return xivSheet;
+
+            if (header.Variant == 2)
+                return new XivSheet2<XivSubRow>(this, baseSheet);
+            return new XivSheet<XivRow>(this, baseSheet);
         }
 
         /// <summary>

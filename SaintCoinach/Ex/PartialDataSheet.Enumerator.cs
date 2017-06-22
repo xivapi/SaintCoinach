@@ -24,8 +24,7 @@ namespace SaintCoinach.Ex {
             public T Current {
                 get {
                     var inner = _InnerEnumerator.Current;
-                    T row;
-                    if (_Sheet._Rows.TryGetValue(inner.Key, out row))
+                    if (_Sheet._Rows.TryGetValue(inner.Key, out var row))
                         return row;
 
                     _Sheet._Rows.Add(inner.Key, row = _Sheet.CreateRow(inner.Key, inner.Value));
