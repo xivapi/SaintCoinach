@@ -4427,9 +4427,11 @@
       RepeatedDefinition: !!group_def
         Members:
         - !!single_def
-          Name: SpecialShop
-          Converter: !!link_conv
-            TargetSheet: SpecialShop
+          Name: Shop
+          Converter: !!multiref_conv
+            Targets:
+            - SpecialShop
+            - GilShop
     Index: 3
   Name: TopicSelect
   DefaultColumn: Name
