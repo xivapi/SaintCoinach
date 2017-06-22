@@ -96,13 +96,8 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         private Dictionary<int, WeatherRate> BuildWeatherGroups() {
-            var weatherGroups = Sheet.Collection.GetSheet("WeatherGroup")
-                .Cast<IXivRow>()
-                .Select(r => (Ex.Variant2.DataRow)r.SourceRow)
-                .SelectMany(r => r.SubRows);
-
             var map = new Dictionary<int, WeatherRate>();
-            foreach (var weatherGroup in weatherGroups) {
+            foreach (XivSubRow weatherGroup in Sheet.Collection.GetSheet("WeatherGroup")) {
                 // Not sure what the other rows are used for.
                 if (weatherGroup.Key != 0)
                     continue;
