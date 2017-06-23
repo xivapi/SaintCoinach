@@ -1,12 +1,10 @@
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class GatheringItem : XivRow {
+    public class GatheringItem : GatheringItemBase {
         #region Properties
 
-        public Item Item { get { return As<Item>("Item"); } }
-        public int ItemLevel { get { return AsInt32("ItemLevel"); } }
-        public bool IsHidden { get { return AsBoolean("IsHidden"); } }
+        public bool IsHidden => AsBoolean("IsHidden");
 
         #endregion
 
@@ -16,8 +14,5 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        public override string ToString() {
-            return string.Format("{0}", Item);
-        }
     }
 }

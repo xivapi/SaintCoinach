@@ -1911,9 +1911,11 @@
   - InnerDefinition: !!repeat_def
       RepeatCount: 8
       RepeatedDefinition: !!single_def
-        Name: GatheringItem
-        Converter: !!link_conv
-          TargetSheet: GatheringItem
+        Name: Item
+        Converter: !!multiref_conv
+          Targets:
+          - GatheringItem
+          - SpearfishingItem
     Index: 2
   - InnerDefinition: !!single_def
       Name: IsLimited
@@ -4189,6 +4191,9 @@
       Converter: !!link_conv
         TargetSheet: TerritoryType
     Index: 4
+  - InnerDefinition: !!single_def
+      Name: IsVisible
+    Index: 5
   Name: SpearfishingItem
   DefaultColumn: Item
 - DataDefinitions:
@@ -4213,6 +4218,11 @@
       Converter: !!link_conv
         TargetSheet: PlaceName
     Index: 7
+  - InnerDefinition: !!single_def
+      Name: GatheringPointBase
+      Converter: !!link_conv
+        TargetSheet: GatheringPointBase
+    Index: 9
   Name: SpearfishingNotebook
   DefaultColumn: PlaceName
 - DataDefinitions:

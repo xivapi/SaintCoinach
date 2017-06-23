@@ -9,14 +9,14 @@ namespace SaintCoinach.Xiv {
 
     public class GatheringPointBase : XivRow, IItemSource {
         #region Fields
-        private GatheringItem[] _GatheringItems;
+        private GatheringItemBase[] _Items;
         #endregion
 
         #region Properties
 
         public GatheringType Type { get { return As<GatheringType>(); } }
         public int Level { get { return AsInt32("Level"); } }
-        public IEnumerable<GatheringItem> GatheringItems { get { return _GatheringItems ?? (_GatheringItems = BuildGatheringItems()); } }
+        public IEnumerable<GatheringItemBase> Items { get { return _Items ?? (_Items = BuildItems()); } }
         public bool IsLimited { get { return AsBoolean("IsLimited"); } }
         #endregion
 
@@ -27,14 +27,14 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         #region Build
-        private GatheringItem[] BuildGatheringItems() {
+        private GatheringItemBase[] BuildItems() {
             const int Count = 8;
 
-            var items = new GatheringItem[Count];
+            var items = new GatheringItemBase[Count];
             for (var i = 0; i < Count; ++i) {
-                var gi = As<GatheringItem>(i);
-                if (gi?.Key != null && gi?.Item?.Key != null)
-                    items[i] = gi;
+                var gib = (GatheringItemBase)this["Item[" + i + "]"];
+                if (gib?.Key != null && gib?.Item?.Key != null)
+                    items[i] = gib;
             }
             return items;
         }
@@ -44,7 +44,7 @@ namespace SaintCoinach.Xiv {
 
         private Item[] _ItemSourceItems;
         IEnumerable<Item> IItemSource.Items {
-            get { return _ItemSourceItems ?? (_ItemSourceItems = GatheringItems.Where(i => i != null).Select(i => i.Item).ToArray()); }
+            get { return _ItemSourceItems ?? (_ItemSourceItems = Items.Where(i => i != null).Select(i => i.Item).ToArray()); }
         }
 
         #endregion

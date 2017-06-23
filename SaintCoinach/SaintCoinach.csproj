@@ -91,6 +91,8 @@
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
     <Compile Include="Xiv\ContentMemberType.cs" />
+    <Compile Include="Xiv\SpearfishingItem.cs" />
+    <Compile Include="Xiv\GatheringItemBase.cs" />
     <Compile Include="Xiv\GilShop.cs" />
     <Compile Include="Xiv\GilShopItem.cs" />
     <Compile Include="Xiv\ItemActions\CustomizeUnlock.cs" />
