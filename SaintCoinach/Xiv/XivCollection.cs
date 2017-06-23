@@ -172,6 +172,23 @@ namespace SaintCoinach.Xiv {
         }
 
         /// <summary>
+        ///     Get the <see cref="XivSheet2{T}" /> for a specific type.
+        /// </summary>
+        /// <typeparam name="T">Type of the rows to get the <see cref="XivSheet2{T}" /> for.</typeparam>
+        /// <returns>Returns the <see cref="XivSheet2{T}" /> for the specified <c>T</c>.</returns>
+        public XivSheet2<T> GetSheet2<T>() where T : IXivSubRow
+        {
+            var t = typeof(T);
+
+            var attr = t.GetCustomAttribute<XivSheetAttribute>();
+            if (attr != null)
+                return GetSheet2<T>(attr.SheetName);
+
+            var name = t.FullName.Substring(t.FullName.IndexOf(".Xiv.", StringComparison.OrdinalIgnoreCase) + 5);
+            return GetSheet2<T>(name);
+        }
+
+        /// <summary>
         ///     Get the <see cref="IXivSheet{T}" /> for a specific type using a sheet identifier.
         /// </summary>
         /// <typeparam name="T">Type of the rows to get the <see cref="IXivSheet{T}" /> for.</typeparam>
@@ -201,12 +218,31 @@ namespace SaintCoinach.Xiv {
         }
 
         /// <summary>
+        ///     Get the <see cref="XivSheet2{T}" /> for a specific type using a sheet name.
+        /// </summary>
+        /// <typeparam name="T">Type of the rows to get the <see cref="IXivSheet{T}" /> for.</typeparam>
+        /// <param name="name">Name of the sheet.</param>
+        /// <returns>Returns the <see cref="XivSheet2{T}" /> for a specific type using <c>name</c> as sheet name.</returns>
+        public XivSheet2<T> GetSheet2<T>(string name) where T : IXivSubRow {
+            return (XivSheet2<T>)base.GetSheet(name);
+        }
+
+        /// <summary>
         ///     Get the <see cref="IXivSheet" /> for a sheet with a specific name.
         /// </summary>
         /// <param name="name">Name of the sheet.</param>
         /// <returns>Returns the <see cref="IXivSheet" /> with <c>name</c> as sheet name.</returns>
-        public new IXivSheet GetSheet(string name) {
-            return (IXivSheet)base.GetSheet(name);
+        public new IXivSheet<XivRow> GetSheet(string name) {
+            return (IXivSheet<XivRow>)base.GetSheet(name);
+        }
+
+        /// <summary>
+        ///     Get the <see cref="XivSheet2" /> for a sheet with a specific name.
+        /// </summary>
+        /// <param name="name">Name of the sheet.</param>
+        /// <returns>Returns the <see cref="XivSheet2" /> with <c>name</c> as sheet name.</returns>
+        public XivSheet2<XivSubRow> GetSheet2(string name) {
+            return (XivSheet2<XivSubRow>)base.GetSheet(name);
         }
 
         #endregion
@@ -266,7 +302,7 @@ namespace SaintCoinach.Xiv {
             if (match == null)
                 return null;
 
-            var genericType = typeof(XivSheet<>);
+            var genericType = sourceSheet.Header.Variant == 2 ? typeof(XivSheet2<>) : typeof(XivSheet<>);
 
             var constructedType = genericType.MakeGenericType(match);
             var constructor = constructedType.GetConstructor(

@@ -58,9 +58,7 @@ namespace Godbert.Controls {
 
         private IEnumerable GetVariant2Items()
         {
-            var rows = _Sheet.Cast<SaintCoinach.Xiv.XivRow>()
-                .Select(r => (SaintCoinach.Ex.Variant2.DataRow)r.SourceRow)
-                .SelectMany(r => r.SubRows);
+            var rows = _Sheet.Cast<SaintCoinach.Xiv.XivSubRow>();
             _Items = FilterAndCompare(rows).ToArray();
             return _Items;
         }

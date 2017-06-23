@@ -1,13 +1,13 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
-    ///     Class representing an <see cref="Item" /> used in <see cref="Shop" />s.
+    ///     Class representing an <see cref="Item" /> used in <see cref="GilShop" />s.
     /// </summary>
-    public class ShopItem : XivRow, IShopListing, IShopListingItem {
+    public class GilShopItem : XivSubRow, IShopListing, IShopListingItem {
         #region Static
 
         /// <summary>
@@ -27,23 +27,11 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Shops offering the current item.
         /// </summary>
-        private Shop[] _Shops;
+        private GilShop[] _Shops;
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     Gets the <see cref="Quest" /> required to purchase the current item.
-        /// </summary>
-        /// <value>The <see cref="Quest" /> required to purchase the current item.</value>
-        public Quest Quest { get { return As<Quest>(); } }
-
-        /// <summary>
-        ///     Gets the factor, in %, applied to the <see cref="Item" />'s base price.
-        /// </summary>
-        /// <value>The factor, in %, applied to the <see cref="Item" />'s base price.</value>
-        public int PriceFactor { get { return AsInt32("PriceFactor{Mid}"); } }
 
         /// <summary>
         ///     Gets the associated <see cref="Item" />.
@@ -60,9 +48,9 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <param name="sheet"><see cref="IXivSheet" /> containing this object.</param>
         /// <param name="sourceRow"><see cref="IRelationalRow" /> to read data from.</param>
-        public ShopItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) {
+        public GilShopItem(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) {
             _Cost = new ShopListingItem(this, Sheet.Collection.GetSheet<Item>()[GilItemKey],
-                (PriceFactor * Item.Ask) / 100, false, 0);
+                Item.Ask, false, 0);
         }
 
         #endregion
@@ -78,11 +66,11 @@ namespace SaintCoinach.Xiv {
         #region Build
 
         /// <summary>
-        ///     Build an array of the <see cref="Shop" />s offering the current item.
+        ///     Build an array of the <see cref="GilShop" />s offering the current item.
         /// </summary>
-        /// <returns>An array of the <see cref="Shop" />s offering the current item.</returns>
-        private Shop[] BuildShops() {
-            var sSheet = Sheet.Collection.GetSheet<Shop>();
+        /// <returns>An array of the <see cref="GilShop" />s offering the current item.</returns>
+        private GilShop[] BuildShops() {
+            var sSheet = Sheet.Collection.GetSheet<GilShop>();
             return sSheet.Where(shop => shop.Items.Contains(this)).ToArray();
         }
 

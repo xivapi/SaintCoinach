@@ -52,7 +52,7 @@ namespace SaintCoinach.Xiv {
 
         #region IShopListingItem Members
 
-        ItemBase IShopListingItem.Item { get { return Item; } }
+        Item IShopListingItem.Item { get { return Item; } }
 
         bool IShopListingItem.IsHq { get { return false; } }
 
