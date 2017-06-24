@@ -52,6 +52,8 @@ namespace SaintCoinach.Ex.Relational.Serialization {
                 typeof(RepeatDataDefinition), "repeat_def"
             }, {
                 typeof(SingleDataDefinition), "single_def"
+            }, {
+                typeof(TomestoneOrItemReferenceConverter), "tomestone_item_conv"
             }
         };
 

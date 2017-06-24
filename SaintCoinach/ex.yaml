@@ -4732,22 +4732,33 @@
     Index: 4
   Name: WeeklyBingoOrderData
 - DataDefinitions:
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!group_def
+        Members:
+        - !!single_def
+          Name: Reward{Type}
+        - !!single_def
+          Name: Reward{Item}
+          Converter: !!tomestone_item_conv {}
+        - !!single_def
+          Name: NeedsThreeLines
+        - !!single_def
+          Name: Reward{Quantity}
+        - !!single_def
+          Name: Reward{Option}
+          Converter: !!link_conv
+            TargetSheet: WeeklyBingoRewardData
   - InnerDefinition: !!single_def
-      Name: Reward{Type}
+      Name: Reward{Item}[2]
+      Converter: !!tomestone_item_conv {}
+    Index: 10
   - InnerDefinition: !!single_def
-      Name: Reward{Data}
-    Index: 1
+      Name: NeedsThreeLines[2]
+    Index: 11
   - InnerDefinition: !!single_def
-      Name: NeedsThreeLines
-    Index: 2
-  - InnerDefinition: !!single_def
-      Name: Reward{Quantity}
-    Index: 3
-  - InnerDefinition: !!single_def
-      Name: Reward{Option}
-      Converter: !!link_conv
-        TargetSheet: WeeklyBingoRewardData
-    Index: 4
+      Name: Reward{Quantity}[2]
+    Index: 12
   Name: WeeklyBingoRewardData
   DefaultColumn: Reward
 - DataDefinitions:

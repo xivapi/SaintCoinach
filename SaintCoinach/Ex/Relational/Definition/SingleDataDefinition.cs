@@ -41,14 +41,14 @@ namespace SaintCoinach.Ex.Relational.Definition {
             if (index != 0)
                 throw new ArgumentOutOfRangeException("index");
 
-            return Converter == null ? null : Converter.TargetTypeName;
+            return Converter?.TargetTypeName;
         }
 
         public Type GetValueType(int index) {
             if (index != 0)
                 throw new ArgumentOutOfRangeException("index");
 
-            return Converter == null ? null : Converter.TargetType;
+            return Converter?.TargetType;
         }
 
         #endregion

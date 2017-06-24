@@ -92,6 +92,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
             deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ColorConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(IconConverter));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:link_conv", typeof(SheetLinkConverter));
+            deserializer.RegisterTagMapping("tag:yaml.org,2002:tomestone_item_conv", typeof(TomestoneOrItemReferenceConverter));
 
             deserializer.RegisterTagMapping("tag:yaml.org,2002:group_def", typeof(GroupDataDefinition));
             deserializer.RegisterTagMapping("tag:yaml.org,2002:repeat_def", typeof(RepeatDataDefinition));
