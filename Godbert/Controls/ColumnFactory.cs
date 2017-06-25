@@ -77,21 +77,7 @@ namespace Godbert.Controls {
                     return null;
 
                 var i = System.Convert.ToInt32(parameter);
-                var v = row[i];
-                var d = v as IDictionary<int, object>;
-                if (d != null) {
-                    var sb = new StringBuilder();
-                    var isFirst = true;
-                    foreach (var kvp in d) {
-                        if (isFirst)
-                            isFirst = false;
-                        else
-                            sb.AppendLine();
-                        sb.AppendFormat("[{0},{1}]", kvp.Key, kvp.Value);
-                    }
-                    return sb.ToString();
-                }
-                return v;
+                return row[i] ?? row.GetRaw(i);
             }
 
             public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
