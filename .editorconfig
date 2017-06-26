@@ -1,0 +1,7 @@
+root = true
+
+# Code
+[*.cs]
+indent_size = 4
+indent_style = space
+csharp_new_line_before_open_brace = all:warning
