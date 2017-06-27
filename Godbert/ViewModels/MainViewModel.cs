@@ -43,6 +43,8 @@ namespace Godbert.ViewModels {
         }
 
         void Initialize(ARealmReversed realm) {
+            realm.Packs.GetPack(new SaintCoinach.IO.PackIdentifier("exd", SaintCoinach.IO.PackIdentifier.DefaultExpansion, 0)).KeepInMemory = true;
+
             Realm = realm;
             EngineHelper = new EngineHelper();
             Equipment = new EquipmentViewModel(this);
