@@ -72,6 +72,10 @@ namespace SaintCoinach.Ex.Relational {
         #region Find
 
         public IRelationalRow FindReference(int key) {
+            // Optimization for unlikely references.
+            if (key <= 0)
+                return null;
+
             foreach (var sheetDef in Definition.SheetDefinitions.Where(d => d.IsGenericReferenceTarget)) {
                 var sheet = GetSheet(sheetDef.Name);
                 if (!sheet.Header.DataFileRanges.Any(r => r.Contains(key)))
