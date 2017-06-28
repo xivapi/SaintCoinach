@@ -4742,7 +4742,7 @@
           Name: Reward{Item}
           Converter: !!tomestone_item_conv {}
         - !!single_def
-          Name: NeedsThreeLines
+          Name: Reward{HQ}
         - !!single_def
           Name: Reward{Quantity}
         - !!single_def
@@ -4754,7 +4754,7 @@
       Converter: !!tomestone_item_conv {}
     Index: 10
   - InnerDefinition: !!single_def
-      Name: NeedsThreeLines[2]
+      Name: Reward{HQ}[2]
     Index: 11
   - InnerDefinition: !!single_def
       Name: Reward{Quantity}[2]
