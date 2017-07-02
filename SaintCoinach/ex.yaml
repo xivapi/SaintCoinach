@@ -2745,6 +2745,11 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
+  - InnerDefinition: !!single_def
+      Name: JournalSection
+      Converter: !!link_conv
+        TargetSheet: JournalSection
+    Index: 3
   Name: JournalCategory
   DefaultColumn: Name
 - DataDefinitions:
@@ -2760,6 +2765,11 @@
       Name: Name
     Index: 2
   Name: JournalGenre
+  DefaultColumn: Name
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Name
+  Name: JournalSection
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def

@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
-    public class JournalCategory : XivRow {
+    public class JournalSection : XivRow {
         #region Properties
 
-        public Text.XivString Name => AsString("Name");
-        public JournalSection JournalSection => As<JournalSection>();
+        public Text.XivString Name { get { return AsString("Name"); } }
 
         #endregion
 
         #region Constructors
 
-        public JournalCategory(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+        public JournalSection(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
     }
