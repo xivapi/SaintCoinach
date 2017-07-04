@@ -14,9 +14,7 @@ namespace SaintCoinach.Ex.Relational.Update {
             ColumnComparer comparer;
             var type = column.Reader.Type;
 
-            if (column.Header.Variant == 2)
-                comparer = new DictionaryColumnComparer();
-            else if (Comparer.IsPrimitiveType(type) || type == typeof(Quad))
+            if (Comparer.IsPrimitiveType(type) || type == typeof(Quad))
                 comparer = new PrimitiveColumnComparer();
             else if (type == typeof(Text.XivString) || type == typeof(string))
                 comparer = new StringColumnComparer();
@@ -112,17 +110,6 @@ namespace SaintCoinach.Ex.Relational.Update {
 
         public override bool IsCompatibleType(Type type, Type candidateType) {
             return candidateType == typeof(Text.XivString) || candidateType == typeof(string);
-        }
-    }
-
-    public class DictionaryColumnComparer : ColumnComparer {
-        public override bool Compare(object v1, object v2) {
-            return Comparer.IsMatch((IDictionary)v1, (IDictionary)v2);
-        }
-
-        public override bool IsCompatibleType(Type type, Type candidateType) {
-            // The candidate type is not representative at this time.
-            return true;
         }
     }
 }

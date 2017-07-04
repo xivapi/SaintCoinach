@@ -200,12 +200,36 @@ namespace SaintCoinach.Ex.Relational.Update {
                 .Select(c => ColumnComparer.Create(c, _UpdatedSheet.Header.Columns))
                 .ToArray();
 
+            if (_PreviousSheet.Header.Variant == 2)
+                return MatchVariant2Rows(defUpdaters, comparers);
+
             foreach (IRow prevRow in _PreviousSheet) {
                 if (!_UpdatedSheet.ContainsRow(prevRow.Key)) continue;
 
                 var prevRowFields =
                     _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
                 var updatedRow = _UpdatedSheet[prevRow.Key];
+                var updatedRowFields =
+                    _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
+
+                foreach (var def in defUpdaters)
+                    def.MatchRow(prevRowFields, updatedRowFields, comparers);
+            }
+
+            return defUpdaters;
+        }
+
+        private IEnumerable<DefinitionUpdater> MatchVariant2Rows(DefinitionUpdater[] defUpdaters, ColumnComparer[] comparers) {
+            var prevRows = _PreviousSheet.Cast<Variant2.RelationalDataRow>().SelectMany(r => r.SubRows).ToArray();
+            var updatedRows = _UpdatedSheet.Cast<Variant2.RelationalDataRow>().SelectMany(r => r.SubRows).ToArray();
+            var updatedRowIndex = updatedRows.ToDictionary(r => r.FullKey);
+
+            foreach (var prevRow in prevRows) {
+                if (!updatedRowIndex.TryGetValue(prevRow.FullKey, out var updatedRow))
+                    continue;
+
+                var prevRowFields =
+                    _PreviousSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => prevRow[_.Index]).ToArray();
                 var updatedRowFields =
                     _UpdatedSheet.Header.Columns.OrderBy(_ => _.Index).Select(_ => updatedRow[_.Index]).ToArray();
 

@@ -109,14 +109,43 @@ namespace SaintCoinach.Ex.Relational.Update {
                                                     ISheet updatedSheet,
                                                     Language language,
                                                     ColumnMap[] columns) {
-            var prevRows = previousSheet.Cast<IRow>().ToArray();
-            var updatedRows = updatedSheet.Cast<IRow>().ToDictionary(_ => _.Key, _ => _);
+            if (previousSheet.Header.Variant == 2) {
+                foreach (var result in CompareVariant2(previousSheet, updatedSheet, language, columns))
+                    yield return result;
+            }
+            else {
+                var prevRows = previousSheet.Cast<IRow>().ToArray();
+                var updatedRows = updatedSheet.Cast<IRow>().ToDictionary(_ => _.Key, _ => _);
 
+                foreach (var prevRow in prevRows) {
+                    if (!updatedRows.ContainsKey(prevRow.Key)) continue;
+
+                    var updatedRow = updatedRows[prevRow.Key];
+
+                    foreach (var col in columns) {
+                        var prevVal = prevRow[col.PreviousIndex];
+                        var upVal = updatedRow[col.NewIndex];
+
+                        if (!Comparer.IsMatch(prevVal, upVal))
+                            yield return
+                                new FieldChanged(updatedSheet.Header.Name, language, col.Name, updatedRow.Key, prevVal,
+                                    upVal);
+                    }
+                }
+            }
+        }
+
+        private static IEnumerable<IChange> CompareVariant2(ISheet previousSheet,
+                                            ISheet updatedSheet,
+                                            Language language,
+                                            ColumnMap[] columns) {
+            var prevRows = previousSheet.Cast<Variant2.RelationalDataRow>().SelectMany(r => r.SubRows).ToArray();
+            var updatedRows = updatedSheet.Cast<Variant2.RelationalDataRow>().SelectMany(r => r.SubRows).ToArray();
+            var updatedRowIndex = updatedRows.ToDictionary(r => r.FullKey);
 
             foreach (var prevRow in prevRows) {
-                if (!updatedRows.ContainsKey(prevRow.Key)) continue;
-
-                var updatedRow = updatedRows[prevRow.Key];
+                if (!updatedRowIndex.TryGetValue(prevRow.FullKey, out var updatedRow))
+                    continue;
 
                 foreach (var col in columns) {
                     var prevVal = prevRow[col.PreviousIndex];
