@@ -242,8 +242,7 @@ namespace SaintCoinach.Xiv {
         public ModelDefinition GetModel(Quad key, int characterType, out Graphics.ImcVariant variant) {
             variant = Graphics.ImcVariant.Default;
 
-            ModelHelper helper;
-            if (!ModelHelpers.TryGetValue(Key, out helper))
+            if (!ModelHelpers.TryGetValue(Key, out var helper))
                 return null;
             if (helper == null)
                 return null;
@@ -253,8 +252,7 @@ namespace SaintCoinach.Xiv {
             var variantIndex = (int)((key.ToInt64() >> (helper.VariantIndexWord * 16)) & 0xFFFF);
 
             var imcPath = string.Format(helper.ImcFileFormat, key.Value1, key.Value2, key.Value3, key.Value4, characterType);
-            IO.File imcBase;
-            if (!packs.TryGetFile(imcPath, out imcBase))
+            if (!packs.TryGetFile(imcPath, out var imcBase))
                 return null;
 
             var imc = new Graphics.ImcFile(imcBase);
@@ -271,8 +269,7 @@ namespace SaintCoinach.Xiv {
 
 
         public string GetModelKey(Quad key, int characterType) {
-            ModelHelper helper;
-            if (!ModelHelpers.TryGetValue(Key, out helper))
+            if (!ModelHelpers.TryGetValue(Key, out var helper))
                 return null;
             if (helper == null)
                 return null;

@@ -103,6 +103,8 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 32, typeof(GatheringTool)   // FSH
             }, {
+                33, typeof(GatheringTool)   // FSH (tackle)
+            }, {
                 99, typeof(GatheringTool)   // FSH (sub)
             },
 
