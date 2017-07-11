@@ -1539,6 +1539,9 @@
         TargetSheet: Stain
     Index: 70
   - InnerDefinition: !!single_def
+      Name: Visor
+    Index: 71
+  - InnerDefinition: !!single_def
       Name: Model{Body}
     Index: 72
   - InnerDefinition: !!single_def
@@ -3367,6 +3370,9 @@
       Converter: !!link_conv
         TargetSheet: Stain
     Index: 5
+  - InnerDefinition: !!single_def
+      Name: Visor
+    Index: 6
   - InnerDefinition: !!single_def
       Name: Model{Body}
     Index: 7
