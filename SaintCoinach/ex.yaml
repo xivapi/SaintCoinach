@@ -1505,10 +1505,111 @@
       Name: FacePaintColor
     Index: 61
   - InnerDefinition: !!single_def
+      Name: NpcEquip
+      Converter: !!link_conv
+        TargetSheet: NpcEquip
+    Index: 63
+  - InnerDefinition: !!single_def
       Name: Behavior
       Converter: !!link_conv
         TargetSheet: Behavior
     Index: 64
+  - InnerDefinition: !!single_def
+      Name: Model{MainHand}
+    Index: 65
+  - InnerDefinition: !!single_def
+      Name: Dye{MainHand}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 66
+  - InnerDefinition: !!single_def
+      Name: Model{OffHand}
+    Index: 67
+  - InnerDefinition: !!single_def
+      Name: Dye{OffHand}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 68
+  - InnerDefinition: !!single_def
+      Name: Model{Head}
+    Index: 69
+  - InnerDefinition: !!single_def
+      Name: Dye{Head}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 70
+  - InnerDefinition: !!single_def
+      Name: Model{Body}
+    Index: 72
+  - InnerDefinition: !!single_def
+      Name: Dye{Body}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 73
+  - InnerDefinition: !!single_def
+      Name: Model{Hands}
+    Index: 74
+  - InnerDefinition: !!single_def
+      Name: Dye{Hands}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 75
+  - InnerDefinition: !!single_def
+      Name: Model{Legs}
+    Index: 76
+  - InnerDefinition: !!single_def
+      Name: Dye{Legs}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 77
+  - InnerDefinition: !!single_def
+      Name: Model{Feet}
+    Index: 78
+  - InnerDefinition: !!single_def
+      Name: Dye{Feet}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 79
+  - InnerDefinition: !!single_def
+      Name: Model{Ears}
+    Index: 80
+  - InnerDefinition: !!single_def
+      Name: Dye{Ears}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 81
+  - InnerDefinition: !!single_def
+      Name: Model{Neck}
+    Index: 82
+  - InnerDefinition: !!single_def
+      Name: Dye{Neck}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 83
+  - InnerDefinition: !!single_def
+      Name: Model{Wrists}
+    Index: 84
+  - InnerDefinition: !!single_def
+      Name: Dye{Wrists}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 85
+  - InnerDefinition: !!single_def
+      Name: Model{LeftRing}
+    Index: 86
+  - InnerDefinition: !!single_def
+      Name: Dye{LeftRing}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 87
+  - InnerDefinition: !!single_def
+      Name: Model{RightRing}
+    Index: 88
+  - InnerDefinition: !!single_def
+      Name: Dye{RightRing}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 89
   - InnerDefinition: !!single_def
       Name: Balloon
       Converter: !!link_conv
@@ -3242,6 +3343,103 @@
     Index: 41
   Name: Mount
   DefaultColumn: Singular
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Model{MainHand}
+  - InnerDefinition: !!single_def
+      Name: Dye{MainHand}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 1
+  - InnerDefinition: !!single_def
+      Name: Model{OffHand}
+    Index: 2
+  - InnerDefinition: !!single_def
+      Name: Dye{OffHand}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 3
+  - InnerDefinition: !!single_def
+      Name: Model{Head}
+    Index: 4
+  - InnerDefinition: !!single_def
+      Name: Dye{Head}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 5
+  - InnerDefinition: !!single_def
+      Name: Model{Body}
+    Index: 7
+  - InnerDefinition: !!single_def
+      Name: Dye{Body}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 8
+  - InnerDefinition: !!single_def
+      Name: Model{Hands}
+    Index: 9
+  - InnerDefinition: !!single_def
+      Name: Dye{Hands}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 10
+  - InnerDefinition: !!single_def
+      Name: Model{Legs}
+    Index: 11
+  - InnerDefinition: !!single_def
+      Name: Dye{Legs}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 12
+  - InnerDefinition: !!single_def
+      Name: Model{Feet}
+    Index: 13
+  - InnerDefinition: !!single_def
+      Name: Dye{Feet}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 14
+  - InnerDefinition: !!single_def
+      Name: Model{Ears}
+    Index: 15
+  - InnerDefinition: !!single_def
+      Name: Dye{Ears}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 16
+  - InnerDefinition: !!single_def
+      Name: Model{Neck}
+    Index: 17
+  - InnerDefinition: !!single_def
+      Name: Dye{Neck}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 18
+  - InnerDefinition: !!single_def
+      Name: Model{Wrists}
+    Index: 19
+  - InnerDefinition: !!single_def
+      Name: Dye{Wrists}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 20
+  - InnerDefinition: !!single_def
+      Name: Model{LeftRing}
+    Index: 21
+  - InnerDefinition: !!single_def
+      Name: Dye{LeftRing}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 22
+  - InnerDefinition: !!single_def
+      Name: Model{RightRing}
+    Index: 23
+  - InnerDefinition: !!single_def
+      Name: Dye{RightRing}
+      Converter: !!link_conv
+        TargetSheet: Stain
+    Index: 24
+  Name: NpcEquip
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: FileName
