@@ -86,6 +86,9 @@
       Name: Level
     Index: 11
   - InnerDefinition: !!single_def
+      Name: IsRoleAction
+    Index: 12
+  - InnerDefinition: !!single_def
       Name: Range
     Index: 13
   - InnerDefinition: !!single_def

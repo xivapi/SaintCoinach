@@ -6,18 +6,19 @@ namespace SaintCoinach.Xiv {
     public class Action : ClassJobActionBase {
         #region Properties
 
-        public ActionCategory ActionCategory { get { return As<ActionCategory>(); } }
-        public int SpellGroup { get { return AsInt32("SpellGroup"); } }
-        public int Range { get { return AsInt32("Range"); } }
-        public bool CanTargetSelf { get { return AsBoolean("CanTargetSelf"); } }
-        public bool CanTargetParty { get { return AsBoolean("CanTargetParty"); } }
-        public bool CanTargetFriendly { get { return AsBoolean("CanTargetFriendly"); } }
-        public bool CanTargetHostile { get { return AsBoolean("CanTargetHostile"); } }
-        public bool CanTargetDead { get { return AsBoolean("CanTargetDead"); } }
-        public bool TargetArea { get { return AsBoolean("TargetArea"); } }
-        public int EffectRange { get { return AsInt32("EffectRange"); } }
-        public Action ComboFrom { get { return As<Action>("Action{Combo}"); } }
-        public Status GainedStatus { get { return As<Status>("Status{GainSelf}"); } }
+        public ActionCategory ActionCategory => As<ActionCategory>();
+        public int SpellGroup => AsInt32("SpellGroup");
+        public int Range => AsInt32("Range");
+        public bool IsRoleAction => AsBoolean("IsRoleAction");
+        public bool CanTargetSelf => AsBoolean("CanTargetSelf");
+        public bool CanTargetParty => AsBoolean("CanTargetParty");
+        public bool CanTargetFriendly => AsBoolean("CanTargetFriendly");
+        public bool CanTargetHostile => AsBoolean("CanTargetHostile");
+        public bool CanTargetDead => AsBoolean("CanTargetDead");
+        public bool TargetArea => AsBoolean("TargetArea");
+        public int EffectRange => AsInt32("EffectRange");
+        public Action ComboFrom => As<Action>("Action{Combo}");
+        public Status GainedStatus => As<Status>("Status{GainSelf}");
 
         public TimeSpan CastTime {
             get { return TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond * 100 * AsInt32("Cast<100ms>")); }
