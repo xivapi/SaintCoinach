@@ -36,22 +36,25 @@ namespace SaintCoinach.Cmd.Commands {
 
             var c = 0;
             var allMaps = _Realm.GameData.GetSheet<SaintCoinach.Xiv.Map>()
-                .Where(m => m.TerritoryType != null && m.TerritoryType.Key != 0);
+                .Where(m => m.PlaceName != null);
 
-            foreach(var map in allMaps) {
+            foreach (var map in allMaps) {
                 var img = map.MediumImage;
                 if (img == null)
                     continue;
 
                 var outPathSb = new StringBuilder("ui/map/");
-                var territoryName = map.TerritoryType.Name.ToString();
-                if(territoryName.Length < 3) {
-                    outPathSb.AppendFormat("{0}/", territoryName);
-                } else {
-                    outPathSb.AppendFormat("{0}/", territoryName.Substring(0, 3));
-                }
+                var territoryName = map.TerritoryType?.Name?.ToString();
+                if (!string.IsNullOrEmpty(territoryName)) {
+                    if (territoryName.Length < 3) {
+                        outPathSb.AppendFormat("{0}/", territoryName);
+                    }
+                    else {
+                        outPathSb.AppendFormat("{0}/", territoryName.Substring(0, 3));
+                    }
 
-                outPathSb.AppendFormat("{0} - ", territoryName);
+                    outPathSb.AppendFormat("{0} - ", territoryName);
+                }
                 outPathSb.AppendFormat("{0}", ToPathSafeString(map.PlaceName.Name.ToString()));
                 if (map.LocationPlaceName != null && map.LocationPlaceName.Key != 0 && !map.LocationPlaceName.Name.IsEmpty)
                     outPathSb.AppendFormat(" - {0}", ToPathSafeString(map.LocationPlaceName.Name.ToString()));
