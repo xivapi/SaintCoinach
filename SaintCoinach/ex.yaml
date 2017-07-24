@@ -1,4 +1,4 @@
-﻿SheetDefinitions:
+SheetDefinitions:
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: AchievementCategory
@@ -4385,16 +4385,21 @@
   - InnerDefinition: !!single_def
       Name: PriceFactor{High}
     Index: 4
-  - InnerDefinition: !!single_def
-      Name: Quest
-      Converter: !!link_conv
-        TargetSheet: Quest
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!single_def
+        Name: Quest
+        Converter: !!link_conv
+          TargetSheet: Quest
     Index: 6
   - InnerDefinition: !!single_def
       Name: Achievement
       Converter: !!link_conv
         TargetSheet: Achievement
     Index: 8
+  - InnerDefinition: !!single_def
+      Name: RequireMultiple
+    Index: 9
   Name: ShopItem
   DefaultColumn: Item
 - DataDefinitions:
