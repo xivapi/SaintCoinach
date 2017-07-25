@@ -4173,6 +4173,11 @@ SheetDefinitions:
       Name: Level
     Index: 2
   - InnerDefinition: !!single_def
+      Name: RetainerTaskParameter
+      Converter: !!link_conv
+        TargetSheet: RetainerTaskParameter
+    Index: 4
+  - InnerDefinition: !!single_def
       Name: VentureCost
     Index: 5
   - InnerDefinition: !!single_def
@@ -4211,6 +4216,22 @@ SheetDefinitions:
     Index: 3
   Name: RetainerTaskNormal
   DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!single_def
+        Name: ItemLevel{DoW}
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!single_def
+        Name: ItemLevel{DoL}
+    Index: 2
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 2
+      RepeatedDefinition: !!single_def
+        Name: ItemLevel{FSH}
+    Index: 4
+  Name: RetainerTaskParameter
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Name
