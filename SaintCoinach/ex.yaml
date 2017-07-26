@@ -4224,12 +4224,12 @@ SheetDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!single_def
-        Name: ItemLevel{DoL}
+        Name: Gathering{DoL}
     Index: 2
   - InnerDefinition: !!repeat_def
       RepeatCount: 2
       RepeatedDefinition: !!single_def
-        Name: ItemLevel{FSH}
+        Name: Gathering{FSH}
     Index: 4
   Name: RetainerTaskParameter
 - DataDefinitions:
