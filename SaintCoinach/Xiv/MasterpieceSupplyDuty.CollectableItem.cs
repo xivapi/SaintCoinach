@@ -56,6 +56,10 @@ namespace SaintCoinach.Xiv {
                 // Apply bonus multipliers.
                 return new int[] { baseExp, (int)(baseExp * _bonusMultiplier), (int)(baseExp * _bonusMultiplier2) };
             }
+
+            public int[] CalculateScripRewards() {
+                return new int[] { ScripRewards, (int)(ScripRewards * _bonusMultiplier), (int)(ScripRewards * _bonusMultiplier2) };
+            }
         }
     }
 }
