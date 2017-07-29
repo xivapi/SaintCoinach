@@ -4575,6 +4575,9 @@ SheetDefinitions:
       Name: Icon
       Converter: !!icon_conv {}
     Index: 2
+  - InnerDefinition: !!single_def
+      Name: MaxStacks
+    Index: 3
   Name: Status
   DefaultColumn: Name
 - DataDefinitions: []
