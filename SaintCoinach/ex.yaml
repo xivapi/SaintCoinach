@@ -1,4 +1,4 @@
-SheetDefinitions:
+﻿SheetDefinitions:
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: AchievementCategory
@@ -5022,4 +5022,4 @@ SheetDefinitions:
       Name: Name
   Name: WorldDCGroupType
   DefaultColumn: Name
-Version: 2017.07.12.0000.0000
+Version: 2017.08.03.0000.0000
