@@ -447,6 +447,11 @@ namespace SaintCoinach {
                     previousPack.GetPack(exdPackId).KeepInMemory = true;
                     var previousDefinition = ReadDefinition(zip);
 
+                    // Override previous definition when current definition version matches.
+                    // Definitions may have changed since this was recorded and we want to compare that.
+                    if (previousDefinition.Version == _GameData.Definition.Version)
+                        previousDefinition = _GameData.Definition;
+
                     var updater = new RelationUpdater(previousPack, previousDefinition, Packs, GameVersion, progress);
 
                     var changes = updater.Update(detectDataChanges);
