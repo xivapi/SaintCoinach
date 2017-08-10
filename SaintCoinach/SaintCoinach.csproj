@@ -94,6 +94,8 @@
     <Compile Include="Xiv\ContentMemberType.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
     <Compile Include="Xiv\ItemActions\EquipmentCoffer.cs" />
+    <Compile Include="Xiv\ItemActions\SustainPotion.cs" />
+    <Compile Include="Xiv\ItemActions\FateContentAction.cs" />
     <Compile Include="Xiv\JournalSection.cs" />
     <Compile Include="Xiv\SpearfishingItem.cs" />
     <Compile Include="Xiv\GatheringItemBase.cs" />

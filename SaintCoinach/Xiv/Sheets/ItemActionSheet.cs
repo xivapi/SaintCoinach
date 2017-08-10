@@ -95,6 +95,10 @@ namespace SaintCoinach.Xiv.Sheets {
                 5564, typeof(IA.AdventureBook)
             }, {
                 5845, typeof(IA.OrchestrionRollUnlock)
+            }, {
+                8667, typeof(IA.SustainPotion)
+            }, {
+                9343, typeof(IA.FateContentAction)
             }
         };
 

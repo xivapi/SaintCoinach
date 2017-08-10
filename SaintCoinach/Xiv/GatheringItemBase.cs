@@ -4,7 +4,7 @@ namespace SaintCoinach.Xiv {
     public abstract class GatheringItemBase : XivRow {
         #region Properties
 
-        public Item Item => As<Item>("Item");
+        public ItemBase Item => As<ItemBase>("Item");
 
         #endregion
 

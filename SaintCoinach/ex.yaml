@@ -1955,13 +1955,27 @@
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
+      Converter: !!multiref_conv
+        Targets:
+        - Item
+        - EventItem
+  - InnerDefinition: !!single_def
+      Name: GatheringItemLevel
       Converter: !!link_conv
-        TargetSheet: Item
+        TargetSheet: GatheringItemLevelConvertTable
+    Index: 1
   - InnerDefinition: !!single_def
       Name: IsHidden
     Index: 2
   Name: GatheringItem
   DefaultColumn: Item
+- DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: Level
+  - InnerDefinition: !!single_def
+      Name: Stars
+    Index: 1
+  Name: GatheringItemLevelConvertTable
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: GatheringPoint
@@ -4432,7 +4446,9 @@
         TargetSheet: Item
     Index: 1
   - InnerDefinition: !!single_def
-      Name: ItemLevel
+      Name: GatheringItemLevel
+      Converter: !!link_conv
+        TargetSheet: GatheringItemLevelConvertTable
     Index: 2
   - InnerDefinition: !!single_def
       Name: TerritoryType

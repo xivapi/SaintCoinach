@@ -44,7 +44,7 @@ namespace SaintCoinach.Xiv {
 
         private Item[] _ItemSourceItems;
         IEnumerable<Item> IItemSource.Items {
-            get { return _ItemSourceItems ?? (_ItemSourceItems = Items.Where(i => i != null).Select(i => i.Item).ToArray()); }
+            get { return _ItemSourceItems ?? (_ItemSourceItems = Items.Where(i => i != null).Select(i => i.Item).OfType<Item>().ToArray()); }
         }
 
         #endregion
