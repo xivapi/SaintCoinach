@@ -88,7 +88,11 @@ namespace SaintCoinach.Xiv.Sheets {
             }, {
                 4107, typeof(IA.FolkloreBook)
             }, {
+                4647, typeof(IA.EquipmentCoffer)
+            }, {
                 5136, typeof(IA.Heavenscracker)
+            }, {
+                5564, typeof(IA.AdventureBook)
             }, {
                 5845, typeof(IA.OrchestrionRollUnlock)
             }
