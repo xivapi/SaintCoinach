@@ -390,6 +390,37 @@ SheetDefinitions:
   Name: BaseParam
   DefaultColumn: Name
 - DataDefinitions:
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: EnemyLevel
+    Index: 16
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: BNpcName
+        Converter: !!link_conv
+          TargetSheet: BNpcName
+    Index: 24
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: ItemsInvolved
+        Converter: !!link_conv
+          TargetSheet: EventItem
+    Index: 32
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: ItemsInvolvedQty
+    Index: 40
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: ItemDropRate
+    Index: 48
+  Name: BattleLeve
+  - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
