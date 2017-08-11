@@ -1,4 +1,4 @@
-﻿SheetDefinitions:
+SheetDefinitions:
 - DataDefinitions:
   - InnerDefinition: !!single_def
       Name: AchievementCategory
@@ -3764,6 +3764,11 @@
       RepeatedDefinition: !!single_def
         Name: ItemCount{Reward}[1]
     Index: 1474
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 5
+      RepeatedDefinition: !!single_def
+        Name: Item{Reward}[1]IsHQ
+    Index: 1479
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
