@@ -3798,7 +3798,7 @@ SheetDefinitions:
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
       RepeatedDefinition: !!single_def
-        Name: Item{Reward}[1]IsHQ
+        Name: IsHQ{Reward}[1]
     Index: 1479
   - InnerDefinition: !!repeat_def
       RepeatCount: 5
