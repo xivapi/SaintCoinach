@@ -420,7 +420,7 @@ SheetDefinitions:
         Name: ItemDropRate
     Index: 48
   Name: BattleLeve
-  - DataDefinitions:
+- DataDefinitions:
   - InnerDefinition: !!single_def
       Name: Item
       Converter: !!link_conv
