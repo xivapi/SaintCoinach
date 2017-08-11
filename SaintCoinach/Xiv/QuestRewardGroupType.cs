@@ -11,6 +11,7 @@ namespace SaintCoinach.Xiv {
         One,
         GenderSpecificMale,
         GenderSpecificFemale,
-        OnePerDay       // Used by 2014 Starlight
+        OnePerDay,       // Used by 2014 Starlight
+        BeastRankBonus
     }
 }

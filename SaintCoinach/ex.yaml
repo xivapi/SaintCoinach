@@ -391,6 +391,18 @@
   DefaultColumn: Name
 - DataDefinitions:
   - InnerDefinition: !!single_def
+      Name: Item
+      Converter: !!link_conv
+        TargetSheet: Item
+    Index: 8
+  - InnerDefinition: !!repeat_def
+      RepeatCount: 8
+      RepeatedDefinition: !!single_def
+        Name: Item{Quantity}
+    Index: 9
+  Name: BeastRankBonus
+- DataDefinitions:
+  - InnerDefinition: !!single_def
       Name: RequiredReputation
   - InnerDefinition: !!single_def
       Name: Name
@@ -398,6 +410,11 @@
   Name: BeastReputationRank
   DefaultColumn: Name
 - DataDefinitions:
+  - InnerDefinition: !!single_def
+      Name: BeastRankBonus
+      Converter: !!link_conv
+        TargetSheet: BeastRankBonus
+    Index: 2
   - InnerDefinition: !!single_def
       Name: Icon{Reputation}
       Converter: !!icon_conv {}

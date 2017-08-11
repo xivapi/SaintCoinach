@@ -48,12 +48,16 @@ namespace SaintCoinach.Xiv {
                     t1 = QuestRewardGroupType.All;
                     t2 = QuestRewardGroupType.One;
                     break;
-                case 3:
+                case 3: // Gender-specific rewards.
+                case 7: // Beast rank bonuses.
                     // Special handler
                     break;
                 case 5:
                     t1 = QuestRewardGroupType.OnePerDay;
                     t2 = QuestRewardGroupType.OnePerDay;
+                    break;
+                case 6:
+                    // Relic quests
                     break;
             }
 
@@ -84,7 +88,7 @@ namespace SaintCoinach.Xiv {
 
                     groups.Add(
                         new QuestRewardItemGroup(
-                            new[]{ new QuestRewardItem(mItem, mCount, mStain) },
+                            new[] { new QuestRewardItem(mItem, mCount, mStain) },
                             QuestRewardGroupType.GenderSpecificMale));
                 }
                 {
@@ -94,9 +98,16 @@ namespace SaintCoinach.Xiv {
 
                     groups.Add(
                         new QuestRewardItemGroup(
-                            new[]{ new QuestRewardItem(fItem, fCount, fStain) },
+                            new[] { new QuestRewardItem(fItem, fCount, fStain) },
                             QuestRewardGroupType.GenderSpecificFemale));
                 }
+            } else if (groupsType == 7) {
+                var beastRankBonus = (XivRow)Quest.BeastTribe["BeastRankBonus"];
+                var item = beastRankBonus.As<Item>();
+                var counts = new List<int>();
+                for (var i = 0; i < 8; i++)
+                    counts.Add(beastRankBonus.AsInt32("Item{Quantity}", i));
+                groups.Add(new QuestRewardItemGroup(new[] { new QuestRewardItem(item, counts.Distinct(), null) }, QuestRewardGroupType.BeastRankBonus));
             } else {
                 groups.Add(BuildItemGroup(t1, "Item{Reward}[0]", "ItemCount{Reward}[0]", "Stain{Reward}[0]", Group1Count));
                 groups.Add(BuildItemGroup(t2, "Item{Reward}[1]", "ItemCount{Reward}[1]", "Stain{Reward}[1]", Group2Count));
