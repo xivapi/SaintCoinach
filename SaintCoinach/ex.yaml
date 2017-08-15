@@ -165,6 +165,10 @@ SheetDefinitions:
       Converter: !!link_conv
         TargetSheet: Omen
     Index: 48
+  - InnerDefinition: !!single_def
+      Name: IsPvP
+      Converter: !!ref_conv {}
+    Index: 49
   Name: Action
   DefaultColumn: Name
 - DataDefinitions:
