@@ -130,6 +130,9 @@ SheetDefinitions:
         TargetSheet: Action
     Index: 34
   - InnerDefinition: !!single_def
+      Name: InterruptsCombo
+    Index: 35
+  - InnerDefinition: !!single_def
       Name: Cast<100ms>
     Index: 36
   - InnerDefinition: !!single_def
