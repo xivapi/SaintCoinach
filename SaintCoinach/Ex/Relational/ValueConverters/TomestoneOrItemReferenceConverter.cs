@@ -53,6 +53,10 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static TomestoneOrItemReferenceConverter FromJson(JToken obj) {
+            return new TomestoneOrItemReferenceConverter();
+        }
+
         #endregion
     }
 }

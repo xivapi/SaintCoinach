@@ -39,6 +39,12 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static SheetLinkConverter FromJson(JToken obj) {
+            return new SheetLinkConverter() {
+                TargetSheet = (string)obj["target"]
+            };
+        }
+
         #endregion
     }
 }

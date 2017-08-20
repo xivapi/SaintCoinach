@@ -154,6 +154,15 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return obj;
         }
 
+        public static SheetDefinition FromJson(JToken obj) {
+            return new SheetDefinition() {
+                Name = (string)obj["sheet"],
+                DefaultColumn = (string)obj["defaultColumn"],
+                IsGenericReferenceTarget = (bool?)obj["isGenericReferenceTarget"] ?? false,
+                DataDefinitions = new List<PositionedDataDefintion>(obj["definitions"].Select(j => PositionedDataDefintion.FromJson(j)))
+            };
+        }
+
         #endregion
 
         public override string ToString() {

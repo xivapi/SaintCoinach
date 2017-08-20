@@ -46,6 +46,10 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static ColorConverter FromJson(JToken obj) {
+            return new ColorConverter();
+        }
+
         #endregion
     }
 }

@@ -84,6 +84,13 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public static RepeatDataDefinition FromJson(JToken obj) {
+            return new RepeatDataDefinition() {
+                RepeatCount = (int)obj["count"],
+                RepeatedDefinition = DataDefinitionSerializer.FromJson(obj["definition"])
+            };
+        }
+
         #endregion
     }
 }

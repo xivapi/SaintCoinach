@@ -32,6 +32,10 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static GenericReferenceConverter FromJson(JToken obj) {
+            return new GenericReferenceConverter();
+        }
+
         #endregion
     }
 }

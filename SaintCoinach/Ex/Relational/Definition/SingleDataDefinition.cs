@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.ValueConverters;
 using System;
 
 using YamlDotNet.Serialization;
@@ -63,6 +64,33 @@ namespace SaintCoinach.Ex.Relational.Definition {
             if (Converter != null)
                 obj["converter"] = Converter.ToJson();
             return obj;
+        }
+
+        public static SingleDataDefinition FromJson(JToken obj) {
+            var converterObj = (JObject)obj["converter"];
+            IValueConverter converter = null;
+            if (converterObj != null) {
+                var type = (string)converterObj["type"];
+                if (type == "color")
+                    converter = ColorConverter.FromJson(converterObj);
+                else if (type == "generic")
+                    converter = GenericReferenceConverter.FromJson(converterObj);
+                else if (type == "icon")
+                    converter = IconConverter.FromJson(converterObj);
+                else if (type == "multiref")
+                    converter = MultiReferenceConverter.FromJson(converterObj);
+                else if (type == "link")
+                    converter = SheetLinkConverter.FromJson(converterObj);
+                else if (type == "tomestone")
+                    converter = TomestoneOrItemReferenceConverter.FromJson(converterObj);
+                else
+                    throw new ArgumentException("Invalid converter type.", "obj");
+            }
+
+            return new SingleDataDefinition() {
+                Name = (string)obj["name"],
+                Converter = converter
+            };
         }
 
         #endregion

@@ -74,6 +74,18 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public static RelationDefinition FromJson(JToken obj) {
+            return new RelationDefinition() {
+                Version = (string)obj["version"],
+                SheetDefinitions = new List<SheetDefinition>(obj["sheets"].Select(j => SheetDefinition.FromJson(j)))
+            };
+        }
+
+        public static RelationDefinition FromJson(string json) {
+            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<JObject>(json);
+            return RelationDefinition.FromJson(obj);
+        }
+
         public void Serialize(string filePath) {
             using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 Serialize(writer);

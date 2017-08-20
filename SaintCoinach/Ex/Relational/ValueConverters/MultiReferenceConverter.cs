@@ -48,6 +48,12 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static MultiReferenceConverter FromJson(JToken obj) {
+            return new MultiReferenceConverter() {
+                Targets = obj["targets"].Select(t => (string)t).ToArray()
+            };
+        }
+
         #endregion
     }
 }

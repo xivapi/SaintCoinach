@@ -71,6 +71,13 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return obj;
         }
 
+        public static PositionedDataDefintion FromJson(JToken obj) {
+            return new PositionedDataDefintion() {
+                Index = (int?)obj["index"] ?? 0,
+                InnerDefinition = DataDefinitionSerializer.FromJson(obj)
+            };
+        }
+
         #endregion
     }
 }

@@ -33,6 +33,10 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static IconConverter FromJson(JToken obj) {
+            return new IconConverter();
+        }
+
         #endregion
     }
 }
