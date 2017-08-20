@@ -127,7 +127,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public static GroupDataDefinition FromJson(JToken obj) {
             return new GroupDataDefinition() {
-                _Members = obj["members"].Select(m => DataDefinitionSerializer.FromJson(m)).ToList()
+                Members = obj["members"].Select(m => DataDefinitionSerializer.FromJson(m)).ToList()
             };
         }
 

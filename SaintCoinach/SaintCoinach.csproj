@@ -836,7 +836,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LibraModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ex.yaml">
+    <Content Include="ex.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Libra\LibraModel.Context.tt">
