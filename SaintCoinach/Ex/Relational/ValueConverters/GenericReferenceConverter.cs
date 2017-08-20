@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,16 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             var coll = (RelationalExCollection)row.Sheet.Collection;
             var key = System.Convert.ToInt32(rawValue);
             return coll.FindReference(key);
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            return new JObject() {
+                ["type"] = "generic"
+            };
         }
 
         #endregion

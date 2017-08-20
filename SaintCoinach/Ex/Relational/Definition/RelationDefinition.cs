@@ -8,6 +8,7 @@ using SaintCoinach.Ex.Relational.Serialization;
 using SaintCoinach.Ex.Relational.ValueConverters;
 
 using YamlDotNet.Serialization;
+using Newtonsoft.Json.Linq;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class RelationDefinition {
@@ -65,6 +66,13 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #endregion
 
         #region Serialization
+
+        public JObject ToJson() {
+            return new JObject {
+                ["version"] = Version,
+                ["sheets"] = new JArray(_SheetDefinitions.Select(s => s.ToJson()))
+            };
+        }
 
         public void Serialize(string filePath) {
             using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))

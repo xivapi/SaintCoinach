@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 using YamlDotNet.Serialization;
 
@@ -69,6 +70,18 @@ namespace SaintCoinach.Ex.Relational.Definition {
             var innerIndex = index % RepeatedDefinition.Length;
 
             return RepeatedDefinition.GetValueType(innerIndex);
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            return new JObject {
+                ["type"] = "repeat",
+                ["count"] = RepeatCount,
+                ["definition"] = RepeatedDefinition.ToJson()
+            };
         }
 
         #endregion

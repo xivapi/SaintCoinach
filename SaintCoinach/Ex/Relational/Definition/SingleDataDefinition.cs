@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 using YamlDotNet.Serialization;
 
@@ -49,6 +50,19 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 throw new ArgumentOutOfRangeException("index");
 
             return Converter?.TargetType;
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            var obj = new JObject() {
+                ["name"] = Name
+            };
+            if (Converter != null)
+                obj["converter"] = Converter.ToJson();
+            return obj;
         }
 
         #endregion

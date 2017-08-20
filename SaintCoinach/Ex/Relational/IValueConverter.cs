@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace SaintCoinach.Ex.Relational {
     public interface IValueConverter {
@@ -10,5 +11,7 @@ namespace SaintCoinach.Ex.Relational {
         #endregion
 
         object Convert(IDataRow row, object rawValue);
+
+        JObject ToJson();
     }
 }

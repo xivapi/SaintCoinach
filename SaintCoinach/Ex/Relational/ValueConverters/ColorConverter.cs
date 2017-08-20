@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Drawing;
 
 using YamlDotNet.Serialization;
@@ -33,6 +34,16 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 argb = (int)(((uint)argb) | 0xFF000000);
 
             return Color.FromArgb(argb);
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            return new JObject() {
+                ["type"] = "color"
+            };
         }
 
         #endregion

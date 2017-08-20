@@ -2,6 +2,7 @@
 using SaintCoinach.IO;
 
 using YamlDotNet.Serialization;
+using Newtonsoft.Json.Linq;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class IconConverter : IValueConverter {
@@ -20,6 +21,16 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
             var sheet = row.Sheet;
             return Imaging.IconHelper.GetIcon(sheet.Collection.PackCollection, sheet.Language, nr);
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            return new JObject() {
+                ["type"] = "icon"
+            };
         }
 
         #endregion

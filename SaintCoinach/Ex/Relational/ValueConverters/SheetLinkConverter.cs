@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
@@ -25,6 +26,17 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
             var key = System.Convert.ToInt32(rawValue);
             return !sheet.ContainsRow(key) ? null : sheet[key];
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            return new JObject() {
+                ["type"] = "link",
+                ["target"] = TargetSheet
+            };
         }
 
         #endregion

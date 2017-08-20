@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -137,6 +138,20 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public object Convert(IDataRow row, object value, int index) {
             return TryGetDefinition(index, out var def) ? def.Convert(row, value, index) : value;
+        }
+
+        #endregion
+
+        #region Serialization
+
+        public JObject ToJson() {
+            var obj = new JObject { ["sheet"] = Name };
+            if (DefaultColumn != null)
+                obj["defaultColumn"] = DefaultColumn;
+            if (IsGenericReferenceTarget)
+                obj["isGenericReferenceTarget"] = true;
+            obj["definitions"] = new JArray(_DataDefinitions.Select(dd => dd.ToJson()));
+            return obj;
         }
 
         #endregion
