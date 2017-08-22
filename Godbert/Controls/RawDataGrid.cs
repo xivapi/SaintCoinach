@@ -13,6 +13,8 @@ using SaintCoinach.Ex.Relational;
 using Godbert.ViewModels;
 using SaintCoinach.Xiv;
 using System.Collections;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using SaintCoinach.Ex;
 
 namespace Godbert.Controls {
@@ -110,6 +112,22 @@ namespace Godbert.Controls {
         protected override void OnMouseDown(MouseButtonEventArgs e) {
             base.OnMouseDown(e);
 
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                var cell = GetClickedHeader(e);
+                if (cell == null)
+                    return;
+
+                if (cell.Column is RawDataGridImageColumn ||
+                    cell.Column is RawDataGridTextColumn ||
+                    cell.Column is RawDataGridColorColumn)
+                {
+                    ColumnFactory.ForceRaw = !ColumnFactory.ForceRaw;
+                    Items.Refresh();
+                    e.Handled = true;
+                }
+            }
+
             if (e.MiddleButton == MouseButtonState.Pressed) {
                 var cell = GetClickedCell(e);
                 if (cell == null)
@@ -146,6 +164,21 @@ namespace Godbert.Controls {
 
                 dataViewModel.Bookmarks.Add(bookmark);
             }
+        }
+
+        private DataGridColumnHeader GetClickedHeader(MouseButtonEventArgs e)
+        {
+            DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+            // iteratively traverse the visual tree
+            while ((dep != null) &&
+            !(dep is DataGridCell) &&
+            !(dep is DataGridColumnHeader))
+            {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            return dep as DataGridColumnHeader;
         }
 
         protected override void OnMouseDoubleClick(MouseButtonEventArgs e) {

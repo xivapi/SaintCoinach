@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Command;
+using Tharga.Toolkit.Console.Command.Base;
 
 namespace SaintCoinach.Cmd {
     class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
@@ -62,16 +63,12 @@ namespace SaintCoinach.Cmd {
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {
-            rootCmd.RegisterCommand(new Commands.LanguageCommand(realm));
-            rootCmd.RegisterCommand(new Commands.RawCommand(realm));
-            rootCmd.RegisterCommand(new Commands.ImageCommand(realm));
-            rootCmd.RegisterCommand(new Commands.UiCommand(realm));
-            rootCmd.RegisterCommand(new Commands.MapCommand(realm));
-            rootCmd.RegisterCommand(new Commands.ExdCommand(realm));
-            rootCmd.RegisterCommand(new Commands.AllExdCommand(realm));
-            rootCmd.RegisterCommand(new Commands.RawExdCommand(realm));
-            rootCmd.RegisterCommand(new Commands.AllExdRawCommand(realm));
-            rootCmd.RegisterCommand(new Commands.BgmCommand(realm));
+            var assembly = typeof(Program).Assembly;
+            foreach (var t in assembly.GetTypes().Where(t => typeof(ActionCommandBase).IsAssignableFrom(t)))
+            {
+                var cons = t.GetConstructor(new[] { typeof(ARealmReversed) });
+                rootCmd.RegisterCommand((ActionCommandBase)cons.Invoke(new[] { realm }));
+            }
         }
 
         static string[] SearchForDataPaths() {

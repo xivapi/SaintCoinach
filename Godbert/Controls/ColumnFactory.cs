@@ -64,10 +64,12 @@ namespace Godbert.Controls {
             };
         }
 
-
+        public static bool ForceRaw;
         public static readonly System.Windows.Data.IValueConverter CellConverterInstance = new CellConverter();
 
         private class CellConverter : System.Windows.Data.IValueConverter {
+
+
 
             #region IValueConverter Members
 
@@ -77,6 +79,10 @@ namespace Godbert.Controls {
                     return null;
 
                 var i = System.Convert.ToInt32(parameter);
+
+                if (ForceRaw)
+                    return row.GetRaw(i);
+
                 return row[i] ?? row.GetRaw(i);
             }
 
