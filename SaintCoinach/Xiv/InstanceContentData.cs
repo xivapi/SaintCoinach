@@ -26,10 +26,9 @@ namespace SaintCoinach.Xiv {
             var coll = instanceContent.Sheet.Collection;
             if (!coll.IsLibraAvailable) return;
 
-            // Now inaccurate.
-            //var libraRow = coll.Libra.InstanceContents.FirstOrDefault(i => i.Key == instanceContent.Key);
-            //if (libraRow != null)
-            //    Parse(libraRow);
+            var libraRow = coll.Libra.InstanceContents.FirstOrDefault(i => i.Key == instanceContent.Key);
+            if (libraRow != null)
+                Parse(libraRow);
         }
         #endregion
 
