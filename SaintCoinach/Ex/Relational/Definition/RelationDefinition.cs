@@ -70,7 +70,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         public JObject ToJson() {
             return new JObject {
                 ["version"] = Version,
-                ["sheets"] = new JArray(_SheetDefinitions.Select(s => s.ToJson()))
+                ["sheets"] = new JArray(_SheetDefinitions.OrderBy(s => s.Name).Select(s => s.ToJson()))
             };
         }
 
