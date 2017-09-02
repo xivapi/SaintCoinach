@@ -218,8 +218,12 @@
           "name": "CooldownGroup"
         },
         {
+          "index": 39,
+          "name": "Nature"
+        },
+        {
           "index": 40,
-          "name": "Element"
+          "name": "Aspect"
         },
         {
           "index": 41,
@@ -251,6 +255,10 @@
             "type": "link",
             "target": "ClassJobCategory"
           }
+        },
+        {
+          "index": 47,
+          "name": "AffectsMovement"
         },
         {
           "index": 48,
