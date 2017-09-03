@@ -139,7 +139,7 @@
         },
         {
           "index": 11,
-          "name": "Level"
+          "name": "ClassJobLevel"
         },
         {
           "index": 12,
@@ -1060,7 +1060,7 @@
       "sheet": "BuddySkill",
       "definitions": [
         {
-          "name": "Level"
+          "name": "BuddyLevel"
         }
       ]
     },
@@ -1933,7 +1933,7 @@
         },
         {
           "index": 8,
-          "name": "Level"
+          "name": "ClassJobLevel"
         },
         {
           "index": 10,
@@ -2097,7 +2097,7 @@
         },
         {
           "index": 7,
-          "name": "Level"
+          "name": "ClassJobLevel"
         },
         {
           "index": 10,
@@ -2866,11 +2866,11 @@
       "definitions": [
         {
           "index": 2,
-          "name": "CLevel"
+          "name": "ClassJobLevel"
         },
         {
           "index": 3,
-          "name": "CLevel{Max}"
+          "name": "ClassJobLevel{Max}"
         },
         {
           "index": 4,
@@ -4087,7 +4087,7 @@
         },
         {
           "index": 3,
-          "name": "Level{Sync}"
+          "name": "ClassJobLevel{Sync}"
         },
         {
           "index": 4,
@@ -4777,7 +4777,7 @@
         },
         {
           "index": 5,
-          "name": "CLevel"
+          "name": "ClassJobLevel"
         },
         {
           "index": 9,
@@ -5858,7 +5858,7 @@
         },
         {
           "index": 4,
-          "name": "ClassLevel[0]"
+          "name": "ClassJobLevel[0]"
         },
         {
           "index": 5,
@@ -5874,7 +5874,7 @@
         },
         {
           "index": 8,
-          "name": "ClassLevel[1]"
+          "name": "ClassJobLevel[1]"
         },
         {
           "index": 9,
@@ -6501,7 +6501,7 @@
         },
         {
           "index": 36,
-          "name": "UnlockKey",
+          "name": "SecretRecipeBook",
           "converter": {
             "type": "link",
             "target": "SecretRecipeBook"
@@ -6550,7 +6550,7 @@
       "sheet": "RecipeLevelTable",
       "definitions": [
         {
-          "name": "CharacterLevel"
+          "name": "ClassJobLevel"
         },
         {
           "index": 1,
@@ -6855,7 +6855,7 @@
         },
         {
           "index": 2,
-          "name": "Level"
+          "name": "RetainerLevel"
         },
         {
           "index": 4,
@@ -8066,7 +8066,7 @@
       "isGenericReferenceTarget": true,
       "definitions": [
         {
-          "name": "LevelId",
+          "name": "Level",
           "converter": {
             "type": "link",
             "target": "Level"
