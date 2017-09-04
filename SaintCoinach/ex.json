@@ -5373,6 +5373,19 @@
       ]
     },
     {
+      "sheet": "MinionRules",
+      "defaultColumn": "Rule",
+      "definitions": [
+        {
+          "name": "Rule"
+        },
+        {
+          "index": 1,
+          "name": "Description"
+        }
+      ]
+    },
+    {
       "sheet": "MinionSkillType",
       "defaultColumn": "Name",
       "definitions": [
