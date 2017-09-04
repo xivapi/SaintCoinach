@@ -219,7 +219,11 @@
         },
         {
           "index": 39,
-          "name": "Nature"
+          "name": "AttackType",
+          "converter": {
+            "type": "link",
+            "target": "AttackType"
+          }
         },
         {
           "index": 40,
@@ -613,6 +617,15 @@
       "definitions": [
         {
           "index": 1,
+          "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "AttackType",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
           "name": "Name"
         }
       ]
