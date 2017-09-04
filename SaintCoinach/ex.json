@@ -7304,7 +7304,7 @@
       "defaultColumn": "PlaceName",
       "definitions": [
         {
-          "name": "Level"
+          "name": "NodeLevel"
         },
         {
           "index": 2,
