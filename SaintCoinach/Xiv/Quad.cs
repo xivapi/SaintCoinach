@@ -36,5 +36,27 @@ namespace SaintCoinach.Xiv {
         public bool IsEmpty {
             get { return Value1 == 0 && Value2 == 0 && Value3 == 0 && Value4 == 0; }
         }
+
+        #region Operators
+
+        public static bool operator==(Quad lhs, Quad rhs) {
+            return rhs.Value1 == lhs.Value1 && rhs.Value2 == lhs.Value2 && rhs.Value3 == lhs.Value3 && rhs.Value4 == lhs.Value4;
+        }
+
+        public static bool operator!=(Quad lhs, Quad rhs) {
+            return rhs.Value1 != lhs.Value1 || rhs.Value2 != lhs.Value2 || rhs.Value3 != lhs.Value3 || rhs.Value4 != lhs.Value4;
+        }
+
+        public override bool Equals(object obj) {
+            if (obj is Quad)
+                return (Quad)obj == this;
+            return false;
+        }
+
+        public override int GetHashCode() {
+            return ToInt64().GetHashCode();
+        }
+
+        #endregion
     }
 }
