@@ -32,5 +32,9 @@ namespace SaintCoinach.Xiv {
         public Int64 ToInt64() {
             return (Int64)Value1 + ((Int64)Value2 << 16) + ((Int64)Value3 << 32) + ((Int64)Value4 << 48);
         }
+
+        public bool IsEmpty {
+            get { return Value1 == 0 && Value2 == 0 && Value3 == 0 && Value4 == 0; }
+        }
     }
 }
