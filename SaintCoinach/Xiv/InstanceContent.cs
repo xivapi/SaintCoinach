@@ -34,7 +34,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the maximum level for the current content.
         /// </summary>
         /// <value>The maximum level for the current content.</value>
-        public int LevelSync { get { return AsInt32("Level{Sync}"); } }
+        public int ClassJobLevelSync { get { return AsInt32("ClassJobLevel{Sync}"); } }
 
         /// <summary>
         /// Gets the number of parties for the current content.

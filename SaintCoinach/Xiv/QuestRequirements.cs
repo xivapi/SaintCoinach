@@ -47,7 +47,7 @@ namespace SaintCoinach.Xiv {
             var cjr = new List<ClassJobRequirement>();
             for (var i = 0; i < Count; ++i) {
                 var cjc = Quest.As<ClassJobCategory>(i);
-                var lv = Quest.AsInt32("ClassLevel", i);
+                var lv = Quest.AsInt32("ClassJobLevel", i);
 
                 if (cjc.Key != 0 && lv > 0)
                     cjr.Add(new ClassJobRequirement(cjc, lv));

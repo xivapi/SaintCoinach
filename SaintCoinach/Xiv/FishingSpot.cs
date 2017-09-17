@@ -23,7 +23,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the level of the current <see cref="FishingSpot" />.
         /// </summary>
         /// <value>The level of the current <see cref="FishingSpot" />.</value>
-        public int Level { get { return AsInt32("Level"); } }
+        public int GatheringLevel { get { return AsInt32("GatheringLevel"); } }
 
         /// <summary>
         ///     Gets the text indicating special conditions have been met.

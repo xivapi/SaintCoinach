@@ -13,7 +13,7 @@ namespace SaintCoinach.Xiv {
         
         #region Properties
         public ClassJob ClassJob { get { return As<ClassJob>(); } }
-        public int MinLevel { get { return AsInt32("MinLevel"); } }
+        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
         public IEnumerable<CollectableItem> CollectableItems { get { return _CollectableItems ?? (_CollectableItems = BuildCollectableItems()); } }
         #endregion
 

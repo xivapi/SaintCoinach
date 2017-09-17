@@ -10,7 +10,7 @@ namespace SaintCoinach.Xiv {
 
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public bool IsRandom { get { return AsBoolean("IsRandom"); } }
-        public int Level { get { return AsInt32("Level"); } }
+        public int RetainerLevel { get { return AsInt32("RetainerLevel"); } }
         public int VentureCost { get { return AsInt32("VentureCost"); } }
         public TimeSpan BaseDuration { get { return TimeSpan.FromMinutes(AsInt32("MaxTime{min}")); } }
         public int Experience { get { return AsInt32("Experience"); } }

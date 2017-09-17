@@ -46,7 +46,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the level of the current leve.
         /// </summary>
         /// <value>The level of the current leve.</value>
-        public int CharacterLevel { get { return AsInt32("CLevel"); } }
+        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> the current leve takes place at.

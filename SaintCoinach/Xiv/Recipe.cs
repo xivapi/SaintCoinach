@@ -165,7 +165,7 @@ namespace SaintCoinach.Xiv {
         public Item UnlockItem {
             get {
                 if (!_UnlockItemFetched) {
-                    var secretRecipeBook = (IXivRow)this["UnlockKey"];
+                    var secretRecipeBook = (IXivRow)this["SecretRecipeBook"];
                     if (secretRecipeBook != null && secretRecipeBook.Key != 0)
                         _UnlockItem = (Item)secretRecipeBook["Item"];
                     _UnlockItemFetched = true;

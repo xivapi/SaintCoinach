@@ -19,7 +19,7 @@ namespace SaintCoinach.Xiv {
             public int CollectabilityBase { get; private set; }
             public int Stars { get; private set; }
             public int ScripRewards { get; private set; }
-            public int MaxLevel { get; private set; }
+            public int MaxClassJobLevel { get; private set; }
             public int ExpModifier { get; private set; }
             #endregion
 
@@ -33,7 +33,7 @@ namespace SaintCoinach.Xiv {
                 CollectabilityBase = duty.AsInt32("Collectability{Base}", index);
                 ExpModifier = duty.AsInt32("ExpModifier", index);
                 ScripRewards = duty.AsInt32("Reward{Scrips}", index);
-                MaxLevel = duty.AsInt32("MaxLevel", index);
+                MaxClassJobLevel = duty.AsInt32("ClassJobLevel{Max}", index);
                 Stars = duty.AsInt32("Stars", index);
 
                 var bonusMultiplierRow = duty.As<IXivRow>("BonusMultiplier", index);
@@ -45,8 +45,8 @@ namespace SaintCoinach.Xiv {
 
             public int[] CalculateExp(int level) {
                 // Constrain level by valid range for this collectable.
-                level = Math.Min(MasterpieceSupplyDuty.MinLevel, level);
-                level = Math.Max(MaxLevel, level);
+                level = Math.Min(MasterpieceSupplyDuty.ClassJobLevel, level);
+                level = Math.Max(MaxClassJobLevel, level);
 
                 // Find the base XP.
                 var paramGrow = MasterpieceSupplyDuty.Sheet.Collection.GetSheet<ParamGrow>()[level];

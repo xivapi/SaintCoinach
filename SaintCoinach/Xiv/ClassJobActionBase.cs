@@ -63,7 +63,7 @@ namespace SaintCoinach.Xiv {
 
         public ClassJob ClassJob { get { return As<ClassJob>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
-        public int Level { get { return AsInt32("Level"); } }
+        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
         public ActionCostType CostType {  get { return (ActionCostType)As<byte>("Cost{Type}"); } }
         public int Cost { get { return AsInt32("Cost"); } }
 

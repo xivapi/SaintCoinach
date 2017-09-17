@@ -25,7 +25,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the minimum level required for the current content.
         /// </summary>
         /// <value>The minimum level required for the current content.</value>
-        public int Level { get { return AsInt32("Level"); } }
+        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
 
         /// <summary>
         /// Gets the item level required to enter the current content.
