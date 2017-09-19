@@ -587,6 +587,23 @@
       ]
     },
     {
+      "sheet": "AnimaWeaponItem",
+      "definitions": [
+        {
+          "name": "Item",
+          "type": "repeat",
+          "count": 14,
+          "definition": {
+            "name": "Item",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "AquariumFish",
       "defaultColumn": "Item",
       "definitions": [
@@ -4230,6 +4247,15 @@
         {
           "index": 1,
           "name": "Echo{Death}"
+        }
+      ]
+    },
+    {
+      "sheet": "InstanceContentTextData",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
         }
       ]
     },
@@ -8058,6 +8084,31 @@
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "Tutorial",
+      "definitions": [
+        {
+          "index": 6,
+          "type": "repeat",
+          "count": 3,
+          "definition": {
+            "name": "Reward{Item}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+          }
+        },
+        {
+          "index": 9,
+          "name": "Objective",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContentTextData"
+          }
         }
       ]
     },
