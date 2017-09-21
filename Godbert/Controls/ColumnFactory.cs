@@ -10,6 +10,7 @@ using System.Windows.Data;
 using SaintCoinach.Ex.Relational;
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex;
+using SaintCoinach.Ex.DataReaders;
 
 namespace Godbert.Controls {
     static class ColumnFactory {
@@ -54,6 +55,12 @@ namespace Godbert.Controls {
 
             if (column.ValueType != column.Reader.Name)
                 sb.AppendFormat(" > {0}", column.ValueType);
+
+            if (column.Reader is PackedBooleanDataReader)
+                sb.AppendFormat(" [{0:X}&{1:X2}]", column.Offset, ((PackedBooleanDataReader) column.Reader).Mask);
+            else
+                sb.AppendFormat(" [{0:X}]", column.Offset);
+
             return sb.ToString();
         }
         private static Binding CreateCellBinding(RelationalColumn column) {

@@ -10,7 +10,7 @@ namespace SaintCoinach.Ex.DataReaders {
         /// <summary>
         /// Mask used to determine the resulting value.
         /// </summary>
-        private readonly byte _Mask;
+        public readonly byte Mask;
         /// <summary>
         /// The name of the value type read.
         /// </summary>
@@ -45,7 +45,7 @@ namespace SaintCoinach.Ex.DataReaders {
         /// </summary>
         /// <param name="mask">Mask to match the read byte against.</param>
         public PackedBooleanDataReader(byte mask) {
-            _Mask = mask;
+            Mask = mask;
             _Name = string.Format("bit&{0:X2}", mask);
         }
 
@@ -62,11 +62,11 @@ namespace SaintCoinach.Ex.DataReaders {
         /// <returns>Returns the value read from the given <c>row</c> and <c>column</c>.</returns>
         public override object Read(byte[] buffer, Column col, IDataRow row) {
             var offset = GetFieldOffset(col, row);
-            return (buffer[offset] & _Mask) != 0;
+            return (buffer[offset] & Mask) != 0;
         }
 
         public override object Read(byte[] buffer, int offset) {
-            return (buffer[offset] & _Mask) != 0;
+            return (buffer[offset] & Mask) != 0;
         }
 
         #endregion
