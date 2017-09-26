@@ -2878,6 +2878,15 @@
       ]
     },
     {
+      "sheet": "ExVersion",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
+    {
       "sheet": "Fate",
       "defaultColumn": "Name",
       "definitions": [
@@ -5873,6 +5882,14 @@
         {
           "index": 1,
           "name": "Id"
+        },
+        {
+          "index": 2,
+          "name": "Expansion",
+          "converter": {
+            "type": "link",
+            "target": "ExVersion"
+          }
         },
         {
           "index": 3,
