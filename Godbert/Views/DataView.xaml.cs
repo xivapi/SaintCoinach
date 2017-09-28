@@ -21,6 +21,20 @@ namespace Godbert.Views {
     public partial class DataView : UserControl {
         public DataView() {
             InitializeComponent();
+
+            DataContextChanged += DataView_DataContextChanged;
+        }
+
+        private void DataView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e) {
+            var viewModel = (DataViewModel)DataContext;
+            viewModel.Parent.DataGridChanged += MainViewModel_DataGridChanged;
+        }
+
+        private void MainViewModel_DataGridChanged(object sender, EventArgs e) {
+            // Hacky contents refresh.
+            var sheet = _DataGrid.Sheet;
+            _DataGrid.Sheet = null;
+            _DataGrid.Sheet = sheet;
         }
 
         public void RowSizeChanged(object sender, SizeChangedEventArgs e)

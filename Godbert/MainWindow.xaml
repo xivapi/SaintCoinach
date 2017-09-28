@@ -35,6 +35,11 @@
                 <MenuItem Header="Change game location"
                           Command="{Binding Path=GameLocationCommand}" />
             </MenuItem>
+            <MenuItem Header="Settings">
+                <MenuItem Header="Show Offsets"
+                          IsChecked="{Binding Path=ShowOffsets, Mode=OneWay}"
+                          Command="{Binding Path=ShowOffsetsCommand}" />
+            </MenuItem>
         </Menu>
         <TabControl>
             <TabItem Header="Data" DataContext="{Binding Path=Data}">

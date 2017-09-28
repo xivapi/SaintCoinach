@@ -24,8 +24,13 @@ namespace Godbert {
             SaintCoinach.Graphics.Animation.Interop.HavokInterop.InitializeMTA();
 
             base.OnStartup(e);
+
+            this.Exit += App_Exit;
         }
 
+        private void App_Exit(object sender, ExitEventArgs e) {
+            Settings.Default.Save();
+        }
 
         #region Startup
 

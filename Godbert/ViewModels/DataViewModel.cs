@@ -27,6 +27,7 @@ namespace Godbert.ViewModels {
         #region Properties
         public ICommand ExportCsvCommand { get { return _ExportCsvCommand ?? (_ExportCsvCommand = new DelegateCommand(OnExportCsv)); } }
         public SaintCoinach.ARealmReversed Realm { get; private set; }
+        public MainViewModel Parent { get; private set; }
 
         public IEnumerable<string> FilteredSheetNames { get { return _FilteredSheets; } }
 
@@ -37,6 +38,8 @@ namespace Godbert.ViewModels {
                 _SelectedSheet = null;
                 OnPropertyChanged(() => SelectedSheetName);
                 OnPropertyChanged(() => SelectedSheet);
+
+                Settings.Default.SelectedSheetName = value;
             }
         }
         public IRelationalSheet SelectedSheet {
@@ -60,6 +63,8 @@ namespace Godbert.ViewModels {
 
                 OnPropertyChanged(() => FilterSheetTerm);
                 OnPropertyChanged(() => FilteredSheetNames);
+
+                Settings.Default.FilterSheetTerm = value;
             }
         }
 
@@ -69,6 +74,8 @@ namespace Godbert.ViewModels {
                 _FilterDataTerm = value;
 
                 OnPropertyChanged(() => FilterDataTerm);
+
+                Settings.Default.FilterDataTerm = value;
             }
         }
 
@@ -82,10 +89,16 @@ namespace Godbert.ViewModels {
         #endregion
 
         #region Constructor
-        public DataViewModel(SaintCoinach.ARealmReversed realm) {
+        public DataViewModel(SaintCoinach.ARealmReversed realm, MainViewModel parent) {
             this.Realm = realm;
+            this.Parent = parent;
 
             _FilteredSheets = Realm.GameData.AvailableSheets;
+
+            _SelectedSheetName = Settings.Default.SelectedSheetName;
+            _FilterDataTerm = Settings.Default.FilterDataTerm;
+            FilterSheetTerm = Settings.Default.FilterSheetTerm;
+
             _Bookmarks.CollectionChanged += _Bookmarks_CollectionChanged;
         }
         #endregion

@@ -56,10 +56,12 @@ namespace Godbert.Controls {
             if (column.ValueType != column.Reader.Name)
                 sb.AppendFormat(" > {0}", column.ValueType);
 
-            if (column.Reader is PackedBooleanDataReader)
-                sb.AppendFormat(" [{0:X}&{1:X2}]", column.Offset, ((PackedBooleanDataReader) column.Reader).Mask);
-            else
-                sb.AppendFormat(" [{0:X}]", column.Offset);
+            if (Settings.Default.ShowOffsets) {
+                if (column.Reader is PackedBooleanDataReader)
+                    sb.AppendFormat(" [{0:X}&{1:X2}]", column.Offset, ((PackedBooleanDataReader)column.Reader).Mask);
+                else
+                    sb.AppendFormat(" [{0:X}]", column.Offset);
+            }
 
             return sb.ToString();
         }
