@@ -2817,19 +2817,31 @@
       "sheet": "EventIconType",
       "definitions": [
         {
-          "name": "NPCIcon{Available}"
+          "name": "NPCIcon{Available}",
+          "converter": {
+            "type": "icon"
+          }
         },
         {
           "index": 1,
-          "name": "MapIcon{Available}"
+          "name": "MapIcon{Available}",
+          "converter": {
+            "type": "icon"
+          }
         },
         {
           "index": 2,
-          "name": "NPCIcon{Invalid}"
+          "name": "NPCIcon{Invalid}",
+          "converter": {
+            "type": "icon"
+          }
         },
         {
           "index": 3,
-          "name": "MapIcon{Invalid}"
+          "name": "MapIcon{Invalid}",
+          "converter": {
+            "type": "icon"
+          }
         },
         {
           "index": 4,
