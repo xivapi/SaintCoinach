@@ -2817,14 +2817,23 @@
       "sheet": "EventIconType",
       "definitions": [
         {
-          "type": "repeat",
-          "count": 4,
-          "definition": {
-            "name": "Icon",
-            "converter": {
-              "type": "icon"
-            }
-          }
+          "name": "NPCIcon{Available}"
+        },
+        {
+          "index": 1,
+          "name": "MapIcon{Available}"
+        },
+        {
+          "index": 2,
+          "name": "NPCIcon{Invalid}"
+        },
+        {
+          "index": 3,
+          "name": "MapIcon{Invalid}"
+        },
+        {
+          "index": 4,
+          "name": "IconRange"
         }
       ]
     },
