@@ -20,8 +20,20 @@ namespace Godbert {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+
+            var settings = Settings.Default;
+            if (settings.MainWindowWidth > 0)
+                Width = Settings.Default.MainWindowWidth;
+            if (settings.MainWindowHeight > 0)
+                Height = Settings.Default.MainWindowHeight;
+
+            SizeChanged += MainWindow_SizeChanged;
         }
 
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e) {
+            Settings.Default.MainWindowHeight = Height;
+            Settings.Default.MainWindowWidth = Width;
+        }
     }
 
 }

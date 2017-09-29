@@ -41,6 +41,9 @@ namespace Godbert {
         }
         #endregion
 
+        public double MainWindowWidth;
+        public double MainWindowHeight;
+
         public string SelectedSheetName;
         public string FilterSheetTerm;
         public string FilterDataTerm;
