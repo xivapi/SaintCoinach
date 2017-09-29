@@ -2817,7 +2817,7 @@
       "sheet": "EventIconType",
       "definitions": [
         {
-          "name": "NPCIcon{Available}",
+          "name": "NpcIcon{Available}",
           "converter": {
             "type": "icon"
           }
@@ -2831,7 +2831,7 @@
         },
         {
           "index": 2,
-          "name": "NPCIcon{Invalid}",
+          "name": "NpcIcon{Invalid}",
           "converter": {
             "type": "icon"
           }
