@@ -4849,7 +4849,7 @@
         },
         {
           "index": 10,
-          "name": "PlaceName",
+          "name": "IssuerLocation",
           "converter": {
             "type": "link",
             "target": "PlaceName"
@@ -4873,7 +4873,7 @@
         },
         {
           "index": 15,
-          "name": "PlaceName{Zone}",
+          "name": "InitiateZoneName",
           "converter": {
             "type": "link",
             "target": "PlaceName"
