@@ -49,16 +49,22 @@ namespace SaintCoinach.Xiv {
         public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
 
         /// <summary>
-        ///     Gets the <see cref="PlaceName" /> the current leve takes place at.
+        ///     Gets the <see cref="PlaceName" /> the current leve starts.
         /// </summary>
-        /// <value>The <see cref="PlaceName" /> the current leve takes place at.</value>
-        public PlaceName PlaceName { get { return As<PlaceName>(); } }
+        /// <value>The <see cref="PlaceName" /> the current leve starts.</value>
+        public PlaceName PlaceNameStart { get { return As<PlaceName>("PlaceName{Start}"); } }
+
+        /// <summary>
+        ///     Gets the <see cref="PlaceName" /> the current leve is issued.
+        /// </summary>
+        /// <value>The <see cref="PlaceName" /> where the current leve is issued.</value>
+        public PlaceName PlaceNameIssued { get { return As<PlaceName>("PlaceName{Issued}"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the zone the current leve takes place in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the zone the current leve takes place in.</value>
-        public PlaceName ZonePlaceName { get { return As<PlaceName>("PlaceName{Zone}"); } }
+        public PlaceName PlaceNameStartZone { get { return As<PlaceName>("PlaceName{StartZone}"); } }
 
         /// <summary>
         ///     Gets the icon of the city state that issued the current leve.
