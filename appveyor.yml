@@ -1,0 +1,55 @@
+version: 'Build {build}'
+
+skip_tags: true
+
+image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+
+cache:
+  - packages -> **\packages.config
+
+before_build:
+- ps: >-
+    $env:GIT_HASH = $env:APPVEYOR_REPO_COMMIT.Substring(0, 7)
+    
+    ($env:APPVEYOR_REPO_NAME) >> VERSION
+    
+    ($env:APPVEYOR_REPO_BRANCH) >> VERSION
+    
+    ($env:GIT_HASH) >> VERSION
+    
+    ($env:APPVEYOR_BUILD_VERSION) >> VERSION
+    
+    ($env:APPVEYOR_REPO_COMMIT_TIMESTAMP) >> VERSION
+    
+- appveyor-retry nuget restore
+
+build:
+  project: SaintCoinach.sln
+  verbosity: minimal
+
+after_build:
+- cmd: >-
+    cp README.md VERSION .\Godbert\bin\Release
+    
+    7z a Godbert-%APPVEYOR_REPO_BRANCH%-b%APPVEYOR_BUILD_NUMBER%-%GIT_HASH%.zip .\Godbert\bin\Release\* -mx=7
+    
+    cp README.md VERSION .\SaintCoinach.Cmd\bin\Release
+    
+    7z a SaintCoinach.Cmd-%APPVEYOR_REPO_BRANCH%-b%APPVEYOR_BUILD_NUMBER%-%GIT_HASH%.zip .\SaintCoinach.Cmd\bin\Release\* -mx=7
+    
+
+artifacts:
+- path: Godbert-$(APPVEYOR_REPO_BRANCH)-b$(APPVEYOR_BUILD_NUMBER)-$(GIT_HASH).zip
+  name: Godbert
+- path: SaintCoinach.Cmd-$(APPVEYOR_REPO_BRANCH)-b$(APPVEYOR_BUILD_NUMBER)-$(GIT_HASH).zip
+  name: SaintCoinach.Cmd
+
+deploy:
+- provider: GitHub
+  release: $(APPVEYOR_BUILD_VERSION)
+  description: ""
+  artifact: Godbert,SaintCoinach.Cmd
+  auth_token:
+    secure: P5xOt894Gg8zZBmUblkV3QFS1nXmJtW1D9VcZl4E2vEMTknLi+FinTrsJfH/N1gE
