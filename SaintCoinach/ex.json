@@ -4836,8 +4836,20 @@
           "name": "ClassJobLevel"
         },
         {
+          "index": 7,
+          "name": "AllowanceCost"
+        },
+        {
           "index": 9,
           "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 10,
+          "name": "InitiateLocation",
           "converter": {
             "type": "link",
             "target": "PlaceName"
@@ -4849,6 +4861,14 @@
           "converter": {
             "type": "link",
             "target": "ClassJobCategory"
+          }
+        },
+        {
+          "index": 13,
+          "name": "JournalCategory",
+          "converter": {
+            "type": "link",
+            "target": "JournalGenre"
           }
         },
         {
@@ -4923,6 +4943,14 @@
           "converter": {
             "type": "link",
             "target": "Level"
+          }
+        },
+        {
+          "index": 30,
+          "name": "BGM",
+          "converter": {
+            "type": "link",
+            "target": "BGM"
           }
         }
       ]
