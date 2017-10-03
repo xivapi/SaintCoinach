@@ -5308,15 +5308,11 @@
         },
         {
           "index": 7,
-          "name": "SubType"
+          "name": "Data{Type}"
         },
         {
           "index": 8,
-          "name": "PlaceName{Tooltip}",
-          "converter": {
-            "type": "link",
-            "target": "PlaceName"
-          }
+          "name": "Data{Key}"
         }
       ]
     },
@@ -6126,6 +6122,18 @@
           "count": 50,
           "definition": {
             "name": "Script{Arg}"
+          }
+        },
+        {
+          "index": 1219,
+          "type": "repeat",
+          "count": 171,
+          "definition": {
+            "name": "Level",
+            "converter": {
+              "type": "link",
+              "target": "Level"
+            }
           }
         },
         {
