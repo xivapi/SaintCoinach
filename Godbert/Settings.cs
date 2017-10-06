@@ -41,6 +41,8 @@ namespace Godbert {
         }
         #endregion
 
+        public double MainWindowLeft;
+        public double MainWindowTop;
         public double MainWindowWidth;
         public double MainWindowHeight;
 

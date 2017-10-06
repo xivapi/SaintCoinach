@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,13 +27,19 @@ namespace Godbert {
                 Width = Settings.Default.MainWindowWidth;
             if (settings.MainWindowHeight > 0)
                 Height = Settings.Default.MainWindowHeight;
-
-            SizeChanged += MainWindow_SizeChanged;
+            if (settings.MainWindowLeft > 0)
+                Left = Settings.Default.MainWindowLeft;
+            if (settings.MainWindowTop > 0)
+                Top = Settings.Default.MainWindowTop;
         }
 
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e) {
+        protected override void OnClosing(CancelEventArgs e) {
+            base.OnClosing(e);
+
             Settings.Default.MainWindowHeight = Height;
             Settings.Default.MainWindowWidth = Width;
+            Settings.Default.MainWindowLeft = Left;
+            Settings.Default.MainWindowTop = Top;
         }
     }
 
