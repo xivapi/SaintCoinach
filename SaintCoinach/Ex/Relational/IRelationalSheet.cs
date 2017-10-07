@@ -10,5 +10,7 @@ namespace SaintCoinach.Ex.Relational {
         object this[int row, string columnName] { get; }
 
         #endregion
+
+        IRelationalRow IndexedLookup(string index, int key);
     }
 }

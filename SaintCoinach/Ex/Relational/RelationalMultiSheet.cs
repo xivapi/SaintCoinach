@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SaintCoinach.Ex.Relational {
@@ -37,6 +38,8 @@ namespace SaintCoinach.Ex.Relational {
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 
         object IRelationalSheet.this[int row, string columnName] { get { return this[row][columnName]; } }
+
+        IRelationalRow IRelationalSheet.IndexedLookup(string index, int key) { return ActiveSheet.IndexedLookup(index, key); }
 
         #endregion
 

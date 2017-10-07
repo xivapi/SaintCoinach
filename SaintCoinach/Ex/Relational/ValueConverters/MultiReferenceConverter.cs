@@ -22,11 +22,12 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public Type TargetType { get { return typeof(IRelationalRow); } }
 
         public object Convert(IDataRow row, object rawValue) {
-            var key = System.Convert.ToInt32(rawValue);
             if (Targets == null)
                 return null;
 
-            foreach(var target in Targets) {
+            var key = System.Convert.ToInt32(rawValue);
+
+            foreach (var target in Targets) {
                 var sheet = row.Sheet.Collection.GetSheet(target);
                 if (!sheet.Header.DataFileRanges.Any(r => r.Contains(key)))
                     continue;

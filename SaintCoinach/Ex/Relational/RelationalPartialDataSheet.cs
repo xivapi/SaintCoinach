@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using SaintCoinach.IO;
@@ -27,6 +28,10 @@ namespace SaintCoinach.Ex.Relational {
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 
         public object this[int row, string columnName] { get { return this[row][columnName]; } }
+
+        public IRelationalRow IndexedLookup(string index, int key) {
+            throw new NotImplementedException("Indexes are not supported in partial sheets.");
+        }
 
         #endregion
     }

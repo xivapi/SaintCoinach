@@ -66,16 +66,14 @@ namespace SaintCoinach.Xiv {
             var catalysts = BuildItemGroup(QuestRewardGroupType.All, "Item{Catalyst}", "ItemCount{Catalyst}", null, null, CatalystCount);
             groups.Add(catalysts);
 
-            var tomestoneRewardIndex = Quest.AsInt32("Tomestone{Reward}");
             var tomestoneCount = Quest.AsInt32("TomestoneCount{Reward}");
-            if (tomestoneRewardIndex != 0 && tomestoneCount > 0) {
-                var tomestoneItems = Quest.Sheet.Collection.GetSheet<TomestonesItem>();
-                var tomestone = tomestoneItems.FirstOrDefault(t => t.RewardIndex == tomestoneRewardIndex);
-                if (tomestone != null)
+            if (tomestoneCount > 0) {
+                var tomestoneItem = Quest.As<Item>("Tomestone{Reward}");
+                if (tomestoneItem != null)
                 {
                     groups.Add(
                         new QuestRewardItemGroup(
-                            new[] { new QuestRewardItem(tomestone.Item, tomestoneCount, null, false) },
+                            new[] { new QuestRewardItem(tomestoneItem, tomestoneCount, null, false) },
                             QuestRewardGroupType.All));
                 }
             }

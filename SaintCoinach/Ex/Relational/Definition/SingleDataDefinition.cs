@@ -83,6 +83,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
                     converter = SheetLinkConverter.FromJson(converterObj);
                 else if (type == "tomestone")
                     converter = TomestoneOrItemReferenceConverter.FromJson(converterObj);
+                else if (type == "complexlink")
+                    converter = ComplexLinkConverter.FromJson(converterObj);
                 else
                     throw new ArgumentException("Invalid converter type.", "obj");
             }

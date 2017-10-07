@@ -5,6 +5,13 @@ using SaintCoinach.IO;
 
 namespace SaintCoinach.Ex.Relational {
     public class RelationalDataSheet<T> : DataSheet<T>, IRelationalDataSheet<T> where T : IRelationalDataRow {
+        #region Fields
+
+        private Dictionary<string, RelationalDataIndex<T>> _indexes = new Dictionary<string, RelationalDataIndex<T>>();
+
+        #endregion
+
+
         #region Constructors
 
         public RelationalDataSheet(RelationalExCollection collection, RelationalHeader header, Language language)
@@ -28,6 +35,21 @@ namespace SaintCoinach.Ex.Relational {
         IRelationalRow IRelationalSheet.this[int row] { get { return this[row]; } }
 
         public object this[int row, string columnName] { get { return this[row][columnName]; } }
+
+        public IRelationalRow IndexedLookup(string indexName, int key) {
+            if (key == 0)
+                return null;
+
+            if (!_indexes.TryGetValue(indexName, out var index)) {
+                var column = Header.FindColumn(indexName);
+                if (column == null)
+                    throw new KeyNotFoundException();
+
+                _indexes[indexName] = index = new RelationalDataIndex<T>(this, column);
+            }
+
+            return index[key];
+        }
 
         #endregion
     }

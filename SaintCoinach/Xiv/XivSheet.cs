@@ -134,6 +134,8 @@ namespace SaintCoinach.Xiv {
 
         public object this[int row, string columnName] { get { return this[row][columnName]; } }
 
+        public IRelationalRow IndexedLookup(string index, int key) { return _Source.IndexedLookup(index, key); }
+
         #endregion
 
         #region IXivSheet Members

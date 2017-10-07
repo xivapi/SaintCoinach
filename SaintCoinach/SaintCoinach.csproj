@@ -79,8 +79,10 @@
     <Compile Include="Ex\DataSheet.Enumerator.cs" />
     <Compile Include="Ex\MultiSheet.Enumerator.cs" />
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
+    <Compile Include="Ex\Relational\RelationalDataIndex.cs" />
     <Compile Include="Ex\Relational\Update\ColumnComparer.cs" />
     <Compile Include="Ex\Relational\ValueConverters\TomestoneOrItemReferenceConverter.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\ComplexLinkConverter.cs" />
     <Compile Include="Ex\Variant1\DataRow.cs" />
     <Compile Include="Ex\Variant1\RelationalDataRow.cs" />
     <Compile Include="Ex\Variant2\DataRow.cs" />

@@ -10,8 +10,8 @@ namespace SaintCoinach.Xiv {
     public class TomestonesItem : XivRow {
         #region Properties
 
-        public Item Item { get { return As<Item>(); } }
-        public int RewardIndex { get { return AsInt32("RewardIndex"); } }
+        public Item Item => As<Item>();
+        public Tomestone Tomestone => As<Tomestone>("Tomestones");
 
         #endregion
 

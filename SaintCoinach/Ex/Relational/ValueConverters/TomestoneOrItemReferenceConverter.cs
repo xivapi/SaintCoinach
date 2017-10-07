@@ -37,7 +37,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
             var sheet = coll.GetSheet("TomestonesItem");
             foreach (XivRow row in sheet) {
-                var rewardIndex = (int)row["RewardIndex"];
+                var rewardIndex = (int)row.GetRaw(2); // For compatibility only.
                 if (rewardIndex > 0)
                     index[rewardIndex] = row.As<Item>();
             }

@@ -2183,6 +2183,10 @@
             "type": "link",
             "target": "Item"
           }
+        },
+        {
+          "name": "Limit",
+          "index": 2
         }
       ]
     },
@@ -6298,7 +6302,17 @@
         },
         {
           "index": 1499,
-          "name": "Tomestone{Reward}"
+          "name": "Tomestone{Reward}",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "TomestonesItem",
+                "project": "Item",
+                "key": "Tomestones"
+              }
+            ]
+          }
         },
         {
           "index": 1500,
@@ -7769,7 +7783,6 @@
     },
     {
       "sheet": "Tomestones",
-      "defaultColumn": "WeeklyLimit",
       "definitions": [
         {
           "name": "WeeklyLimit"
@@ -7789,7 +7802,11 @@
         },
         {
           "index": 2,
-          "name": "RewardIndex"
+          "name": "Tomestones",
+          "converter":  {
+            "type": "link",
+            "target": "Tomestones"
+          }
         }
       ]
     },
@@ -8326,7 +8343,17 @@
               {
                 "name": "Reward{Item}",
                 "converter": {
-                  "type": "tomestone"
+                  "type": "complexlink",
+                  "links": [
+                    {
+                      "sheet": "TomestonesItem",
+                      "project": "Item",
+                      "key": "Tomestones"
+                    },
+                    {
+                      "sheet": "Item"
+                    }
+                  ]
                 }
               },
               {
