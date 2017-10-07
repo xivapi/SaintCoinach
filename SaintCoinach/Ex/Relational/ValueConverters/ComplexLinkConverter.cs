@@ -51,7 +51,6 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             return new ComplexLinkConverter() {
                 _Links = obj["links"].Select(o => SheetLinkData.FromJson((JObject)o)).ToArray()
             };
-            throw new NotImplementedException();
         }
 
         #endregion
