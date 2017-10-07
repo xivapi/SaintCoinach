@@ -57,17 +57,17 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         #region SheetLinkData
 
-        interface ILinkedRowProducer {
+        interface IRowProducer {
             IRow GetRow(IRelationalSheet sheet, int key);
         }
 
-        class PrimaryKeyLinkedRowProducer : ILinkedRowProducer {
+        class PrimaryKeyRowProducer : IRowProducer {
             public IRow GetRow(IRelationalSheet sheet, int key) {
                 return sheet[key];
             }
         }
 
-        class IndexedLinkedRowProducer : ILinkedRowProducer {
+        class IndexedRowProducer : IRowProducer {
             public string KeyColumnName;
 
             public IRow GetRow(IRelationalSheet sheet, int key) {
@@ -85,7 +85,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             }
         }
 
-        class LinkedRowProjection : IProjectable {
+        class ColumnProjection : IProjectable {
             public string ProjectedColumnName;
 
             public object Project(IRow row) {
@@ -99,7 +99,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             public string ProjectedColumnName;
             public string KeyColumnName;
 
-            public ILinkedRowProducer RowProducer;
+            public IRowProducer RowProducer;
             public IProjectable Projection;
 
             public JObject ToJson() {
@@ -121,14 +121,14 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                     data.Projection = new IdentityProjection();
                 else {
                     data.ProjectedColumnName = (string)obj["project"];
-                    data.Projection = new LinkedRowProjection() { ProjectedColumnName = data.ProjectedColumnName };
+                    data.Projection = new ColumnProjection() { ProjectedColumnName = data.ProjectedColumnName };
                 }
 
                 if (obj["key"] == null)
-                    data.RowProducer = new PrimaryKeyLinkedRowProducer();
+                    data.RowProducer = new PrimaryKeyRowProducer();
                 else {
                     data.KeyColumnName = (string)obj["key"];
-                    data.RowProducer = new IndexedLinkedRowProducer() { KeyColumnName = data.KeyColumnName };
+                    data.RowProducer = new IndexedRowProducer() { KeyColumnName = data.KeyColumnName };
                 }
 
                 return data;
