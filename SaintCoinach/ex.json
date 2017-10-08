@@ -309,6 +309,19 @@
       ]
     },
     {
+      "sheet": "ActionIndirection",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ActionProcStatus",
       "defaultColumn": "Status",
       "definitions": [
@@ -424,6 +437,34 @@
       ]
     },
     {
+      "sheet": "AdventureExPhase",
+      "definitions": [
+        {
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Adventure{Begin}",
+          "converter": {
+            "type": "link",
+            "target": "Adventure"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Adventure{End}",
+          "converter": {
+            "type": "link",
+            "target": "Adventure"
+          }
+        },
+      ]
+    },
+    {
       "sheet": "AetherCurrent",
       "definitions": [
         {
@@ -433,6 +474,34 @@
             "target": "Quest"
           }
         }
+      ]
+    },
+    {
+      "sheet": "AetherialWheel",
+      "definitions": [
+        {
+          "name": "Item{Unprimed}",
+          "converter": {
+            "type": "link",
+            "target": "Item",
+          }
+        },
+        {
+          "index": 1,
+          "name": "Item{Primed}",
+          "converter": {
+            "type": "link",
+            "target": "Item",
+          }
+        },
+        {
+          "index": 2,
+          "name": "Grade"
+        },
+        {
+          "index": 3,
+          "name": "HoursRequired"
+        },
       ]
     },
     {
@@ -587,6 +656,199 @@
       ]
     },
     {
+      "sheet": "AnimaWeapon5",
+      "definitions": [
+        {
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 2,
+          "name": "SecondaryStatTotal"
+        },
+        {
+          "index": 3,
+          "type": "repeat",
+          "count": 5,
+          "definition": {
+            "name": "Parameter",
+            "converter": {
+              "type": "link",
+              "target": "AnimaWeapon5Param"
+            }
+          }
+        },
+      ]
+    },
+    {
+      "sheet": "AnimaWeapon5Param",
+      "defaultColumn": "BaseParam",
+      "definitions": [
+        {
+          "name": "BaseParam",
+          "converter": {
+            "type": "link",
+            "target": "BaseParam"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Name"
+        },
+      ]
+    },
+    {
+      "sheet": "AnimaWeapon5PatternGroup",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "AnimaWeapon5SpiritTalk",
+      "defaultColumn": "Dialogue",
+      "definitions": [
+        {
+          "name": "Dialogue",
+          "converter": {
+            "type": "link",
+            "target": "AnimaWeapon5SpiritTalkParam",
+          },
+        }
+      ],
+    },
+    {
+      "sheet": "AnimaWeapon5SpiritTalkParam",
+      "defaultColumn": "Prologue",
+      "definitions": [
+        {
+          "name": "Prologue",
+        },
+        {
+          "index": 1,
+          "name": "Epilogue",
+        },
+      ]
+    },
+    {
+      "sheet": "AnimaWeapon5TradeItem",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "CrystalSand",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          },
+        },
+        {
+          "index": 2,
+          "name": "Qty",
+        },
+        {
+          "index": 3,
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "type": "group",
+            "members": [
+              {
+                "name": "ItemName",
+                "converter": {
+                  "type": "link",
+                  "target": "Item"
+                }
+              },
+              {
+                "name": "IsHQ"
+              },
+              {
+                "name": "Quantity"
+              },
+            ]
+          }
+        },
+        {
+          "index": 27,
+          "name": "Category",
+          "converter": {
+            "type": "link",
+            "target": "AnimaWeapon5PatternGroup"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AnimaWeaponFUITalk",
+      "defaultColumn": "Dialogue",
+      "definitions": [
+        {
+          "name": "Dialogue",
+          "converter": {
+            "type": "link",
+            "target": "AnimaWeaponFUITalkParam",
+          },
+        }
+      ],
+    },
+    {
+      "sheet": "AnimaWeaponFUITalkParam",
+      "defaultColumn": "Prologue",
+      "definitions": [
+        {
+          "name": "Prologue",
+        },
+        {
+          "index": 1,
+          "name": "Epilogue",
+        },
+      ]
+    },
+    {
+      "sheet": "AnimaWeaponIcon",
+      "definitions": [
+        {
+          "name": "Hyperconductive",
+          "converter": {
+            "type": "icon",
+          }
+        },
+        {
+          "index": 1,
+          "name": "Reborn",
+          "converter": {
+            "type": "icon",
+          }
+        },
+        {
+          "index": 2,
+          "name": "Sharpened",
+          "converter": {
+            "type": "icon",
+          }
+        },
+        {
+          "index": 3,
+          "name": "Zodiac",
+          "converter": {
+            "type": "icon",
+          }
+        },
+        {
+          "index": 4,
+          "name": "ZodiacLux",
+          "converter": {
+            "type": "icon",
+          }
+        },
+      ]
+    },
+    {
       "sheet": "AnimaWeaponItem",
       "definitions": [
         {
@@ -644,6 +906,16 @@
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "Balloon",
+      "defaultColumn": "Dialogue",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Dialogue"
         }
       ]
     },
@@ -1074,6 +1346,26 @@
       ]
     },
     {
+      "sheet": "BuddyItem",
+      "definitions": [
+        {
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "Item",
+          },
+        }
+      ]
+    },
+    {
+      "sheet": "BuddyRank",
+      "definitions": [
+        {
+          "name": "ExpRequired"
+        }
+      ]
+    },
+    {
       "sheet": "BuddySkill",
       "definitions": [
         {
@@ -1098,8 +1390,56 @@
         },
         {
           "index": 2,
-          "name": "Category"
+          "name": "Category",
+          "converter": {
+            "type": "link",
+            "target": "CabinetCategory"
+          }
         }
+      ]
+    },
+    {
+      "sheet": "CabinetCategory",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "MenuOrder"
+        },
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Category",
+          "converter": {
+            "type": "link",
+            "target": "Addon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "Calendar",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "Month",
+          }
+        },
+        {
+          "index": 32,
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "Day",
+          }
+        },
       ]
     },
     {
@@ -1313,7 +1653,12 @@
     {
       "sheet": "ChocoboTaxiStand",
       "isGenericReferenceTarget": true,
-      "definitions": []
+      "definitions": [
+        {
+          "index": 8,
+          "name": "PlaceName"
+        }
+      ]
     },
     {
       "sheet": "ClassJob",
@@ -1724,6 +2069,10 @@
         {
           "index": 5,
           "name": "Order"
+        },
+        {
+          "index": 6,
+          "name": "Purchasable"
         }
       ]
     },
@@ -1927,6 +2276,64 @@
       ]
     },
     {
+      "sheet": "CompleteJournal",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "index": 5,
+          "name": "Name"
+        },
+        {
+          "index": 6,
+          "type": "repeat",
+          "count": 24,
+          "definition": {
+            "name": "Cutscene",
+            "converter": {
+              "type": "link",
+              "target": "Cutscene"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "CompleteJournalCategory",
+      "definitions": [
+        {
+          "name": "FirstQuest",
+          "converter": {
+            "type": "link",
+            "target": "CompleteJournal"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LastQuest",
+          "converter": {
+            "type": "link",
+            "target": "CompleteJournal"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ContentExAction",
+      "definitions": [
+        {
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Charges"
+        }
+      ]
+    },
+    {
       "sheet": "ContentFinderCondition",
       "definitions": [
         {
@@ -2117,9 +2524,85 @@
           "name": "ClassJobLevel"
         },
         {
+          "index": 8,
+          "name": "QuestRequirement",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Specialist"
+        },
+        {
           "index": 10,
           "name": "Cost"
-        }
+        },
+        {
+          "index": 11,
+          "name": "CRP",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 12,
+          "name": "BSM",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 13,
+          "name": "ARM",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 14,
+          "name": "GSM",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 15,
+          "name": "LTW",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 16,
+          "name": "WVR",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 17,
+          "name": "ALC",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
+        {
+          "index": 18,
+          "name": "CUL",
+          "converter": {
+            "type": "link",
+            "target": "CraftAction"
+          }
+        },
       ]
     },
     {
@@ -2183,10 +2666,6 @@
             "type": "link",
             "target": "Item"
           }
-        },
-        {
-          "name": "Limit",
-          "index": 2
         }
       ]
     },
@@ -2235,6 +2714,25 @@
       ]
     },
     {
+      "sheet": "Cutscene",
+      "defaultColumn": "Path",
+      "definitions": [
+        {
+          "name": "Path"
+        }
+      ]
+    },
+    {
+      "sheet": "CutScreenImage",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Image",
+        }
+      ]
+    },
+
+    {
       "sheet": "DailySupplyItem",
       "definitions": [
         {
@@ -2259,6 +2757,175 @@
             ]
           }
         }
+      ]
+    },
+    {
+      "sheet": "DeepDungeonBan",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "ScreenImage",
+          "converter": {
+            "type": "link",
+            "target": "ScreenImage"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LogMessage",
+          "converter": {
+            "type": "link",
+            "target": "LogMessage"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "DeepDungeonFloorEffectUI"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "DeepDungeonDanger",
+      "definitions": [
+        {
+          "name": "ScreenImage",
+          "converter": {
+            "type": "link",
+            "target": "ScreenImage"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LogMessage",
+          "converter": {
+            "type": "link",
+            "target": "LogMessage"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "DeepDungeonFloorEffectUI"
+          }
+        },
+      ]
+    },
+    {
+      "sheet": "DeepDungeonEquipment",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Singular"
+        },
+        {
+          "index": 3,
+          "name": "Plural"
+        },
+        {
+          "index": 9,
+          "name": "Name"
+        },
+        {
+          "index": 10,
+          "name": "Description"
+        },
+      ]
+    },
+    {
+      "sheet": "DeepDungeonFloorEffectUI",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Description"
+        },
+      ]
+    },
+    {
+      "sheet": "DeepDungeonItem",
+      "defaultcolumn": "Name",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Singular"
+        },
+        {
+          "index": 3,
+          "name": "Plural"
+        },
+        {
+          "index": 9,
+          "name": "Name"
+        },
+        {
+          "index": 10,
+          "name": "Tooltip"
+        },
+        {
+          "index": 11,
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        },
+      ]
+    },
+    {
+      "sheet": "DeepDungeonStatus",
+      "definitions": [
+        {
+          "name": "ScreenImage",
+          "converter": {
+            "type": "link",
+            "target": "ScreenImage"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LogMessage",
+          "converter": {
+            "type": "link",
+            "target": "LogMessage"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "DeepDungeonFloorEffectUI"
+          }
+        },
       ]
     },
     {
@@ -2310,6 +2977,15 @@
       ]
     },
     {
+      "sheet": "DisposalShopFilterType",
+      "defaultColumn": "Category",
+      "definitions": [
+        {
+          "name": "Category"
+        }
+      ]
+    },
+    {
       "sheet": "DisposalShopItem",
       "defaultColumn": "Item{Disposed}",
       "definitions": [
@@ -2332,6 +3008,78 @@
           "index": 4,
           "name": "Quantity{Received}"
         }
+      ]
+    },
+    {
+      "sheet": "DpsChallenge",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "PlayerLevel"
+        },
+        {
+          "index": 1,
+          "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Order"
+        },
+        {
+          "index": 4,
+          "name": "Name"
+        },
+        {
+          "index": 5,
+          "name": "Description"
+        },
+      ]
+    },
+    {
+      "sheet": "DpsChallengeOfficer",
+      "definitions": [
+        {
+          "name": "UnlockQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 1,
+          "type": "repeat",
+          "count": 25,
+          "definition": {
+            "name": "ChallengeName",
+            "converter": {
+              "type": "link",
+              "target": "DpsChallenge"
+            }
+          }
+        },
+      ]
+    },
+    {
+      "sheet": "DpsChallengeTransient",
+      "definitions": [
+        {
+          "name": "InstanceContent",
+          "converter": {
+            "type": "link",
+            "target":"InstanceContent"
+          }
+        },
       ]
     },
     {
@@ -3994,7 +4742,20 @@
     {
       "sheet": "GuildleveAssignment",
       "isGenericReferenceTarget": true,
-      "definitions": []
+      "definitions": [
+        {
+          "index": 2,
+          "type": "repeat",
+          "count": 2,
+          "definition": {
+            "name": "Quest",
+            "converter": {
+              "type": "link",
+              "target": "Quest"
+            }
+          }
+        },
+      ]
     },
     {
       "sheet": "GuildOrderGuide",
@@ -5178,6 +5939,36 @@
       ]
     },
     {
+      "sheet": "MacroIcon",
+      "defaultColumn": "Icon",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "MacroIconRedirectOld",
+      "definitions": [
+        {
+          "name": "Icon{Old}",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Icon{New}",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "MainCommand",
       "defaultColumn": "Name",
       "definitions": [
@@ -5479,6 +6270,49 @@
       ]
     },
     {
+      "sheet": "MobHuntTarget",
+      "definitions": [
+        {
+          "name": "Name",
+          "converter": {
+            "type": "link",
+            "target": "BNpcName"
+          }
+        },
+        {
+          "index": 1,
+          "name": "FATE",
+          "converter": {
+            "type": "link",
+            "target": "Fate"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Icon",
+          "converter": {
+            "type": "icon",
+          }
+        },
+        {
+          "index": 3,
+          "name": "TerritoryType",
+          "converter": {
+            "type": "link",
+            "target": "Map"
+          }
+        },
+        {
+          "index": 4,
+          "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ModelChara",
       "definitions": [
         {
@@ -5609,6 +6443,22 @@
             "type": "icon"
           }
         }
+      ]
+    },
+    {
+      "sheet": "MountAction",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 6,
+          "definition": {
+            "name": "Action",
+            "converter": {
+              "type": "link",
+              "target": "Action"
+            }
+          }
+        },
       ]
     },
     {
@@ -6302,17 +7152,7 @@
         },
         {
           "index": 1499,
-          "name": "Tomestone{Reward}",
-          "converter": {
-            "type": "complexlink",
-            "links": [
-              {
-                "sheet": "TomestonesItem",
-                "project": "Item",
-                "key": "Tomestones"
-              }
-            ]
-          }
+          "name": "Tomestone{Reward}"
         },
         {
           "index": 1500,
@@ -7257,6 +8097,14 @@
       ]
     },
     {
+      "sheet": "ScreenImage",
+      "definitions": [
+        {
+          "name": "Image",
+        }
+      ]
+    },
+    {
       "sheet": "SecretRecipeBook",
       "defaultColumn": "Name",
       "definitions": [
@@ -7783,6 +8631,7 @@
     },
     {
       "sheet": "Tomestones",
+      "defaultColumn": "WeeklyLimit",
       "definitions": [
         {
           "name": "WeeklyLimit"
@@ -7802,11 +8651,7 @@
         },
         {
           "index": 2,
-          "name": "Tomestones",
-          "converter":  {
-            "type": "link",
-            "target": "Tomestones"
-          }
+          "name": "RewardIndex"
         }
       ]
     },
@@ -8180,18 +9025,39 @@
     },
     {
       "sheet": "Tutorial",
+      "defaultColumn": "Objective",
       "definitions": [
         {
+          "index": 4,
+          "name": "Exp"
+        },
+        {
+          "index": 5,
+          "name": "Gil"
+        },
+        {
           "index": 6,
-          "type": "repeat",
-          "count": 3,
-          "definition": {
-            "name": "Reward{Item}",
+          "name": "Reward{Tank}",
             "converter": {
               "type": "link",
               "target": "Item"
             }
-          }
+        },
+        {
+          "index": 7,
+          "name": "Reward{PhysicalDps}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+        },
+        {
+          "index": 8,
+          "name": "Reward{CasterDpsHealer}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
         },
         {
           "index": 9,
@@ -8199,6 +9065,42 @@
           "converter": {
             "type": "link",
             "target": "InstanceContentTextData"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "TutorialDPS",
+      "definitions": [
+        {
+          "name": "Objective",
+          "converter": {
+            "type": "link",
+            "target": "Tutorial"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "TutorialHealer",
+      "definitions": [
+        {
+          "name": "Objective",
+          "converter": {
+            "type": "link",
+            "target": "Tutorial"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "TutorialTank",
+      "definitions": [
+        {
+          "name": "Objective",
+          "converter": {
+            "type": "link",
+            "target": "Tutorial"
           }
         }
       ]
@@ -8343,17 +9245,7 @@
               {
                 "name": "Reward{Item}",
                 "converter": {
-                  "type": "complexlink",
-                  "links": [
-                    {
-                      "sheet": "TomestonesItem",
-                      "project": "Item",
-                      "key": "Tomestones"
-                    },
-                    {
-                      "sheet": "Item"
-                    }
-                  ]
+                  "type": "tomestone"
                 }
               },
               {
