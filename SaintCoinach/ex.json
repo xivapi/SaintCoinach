@@ -9063,7 +9063,7 @@
         },
         {
           "index": 7,
-          "name": "Reward{PhysicalDps}",
+          "name": "Reward{Melee}",
             "converter": {
               "type": "link",
               "target": "Item"
@@ -9071,7 +9071,7 @@
         },
         {
           "index": 8,
-          "name": "Reward{CasterDpsHealer}",
+          "name": "Reward{Ranged}",
             "converter": {
               "type": "link",
               "target": "Item"
