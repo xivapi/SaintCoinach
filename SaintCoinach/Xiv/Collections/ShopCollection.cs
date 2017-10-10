@@ -44,7 +44,7 @@ namespace SaintCoinach.Xiv.Collections {
 
             // ReSharper disable once InconsistentNaming
             private readonly IEnumerator<GCShop> _GCShopEnumerator;
-            private readonly IEnumerator<Shop> _ShopEnumerator;
+            private readonly IEnumerator<GilShop> _GilShopEnumerator;
             private readonly IEnumerator<SpecialShop> _SpecialShopEnumerator;
             private readonly IEnumerator<FccShop> _FccShopEnumerator;
             private int _State;
@@ -56,7 +56,7 @@ namespace SaintCoinach.Xiv.Collections {
             #region Constructor
 
             public Enumerator(XivCollection collection) {
-                _ShopEnumerator = collection.GetSheet<Shop>().GetEnumerator();
+                _GilShopEnumerator = collection.GetSheet<GilShop>().GetEnumerator();
                 _GCShopEnumerator = collection.GetSheet<GCShop>().GetEnumerator();
                 _SpecialShopEnumerator = collection.GetSheet<SpecialShop>().GetEnumerator();
                 _FccShopEnumerator = collection.GetSheet<FccShop>().GetEnumerator();
@@ -75,7 +75,7 @@ namespace SaintCoinach.Xiv.Collections {
             #region IDisposable Members
 
             public void Dispose() {
-                _ShopEnumerator.Dispose();
+                _GilShopEnumerator.Dispose();
                 _GCShopEnumerator.Dispose();
                 _SpecialShopEnumerator.Dispose();
             }
@@ -91,9 +91,9 @@ namespace SaintCoinach.Xiv.Collections {
 
                 Current = null;
                 if (_State == 0) {
-                    result = _ShopEnumerator.MoveNext();
+                    result = _GilShopEnumerator.MoveNext();
                     if (result)
-                        Current = _ShopEnumerator.Current;
+                        Current = _GilShopEnumerator.Current;
                     else
                         ++_State;
                 }
@@ -126,7 +126,7 @@ namespace SaintCoinach.Xiv.Collections {
 
             public void Reset() {
                 _State = 0;
-                _ShopEnumerator.Reset();
+                _GilShopEnumerator.Reset();
                 _GCShopEnumerator.Dispose();
                 _SpecialShopEnumerator.Dispose();
             }

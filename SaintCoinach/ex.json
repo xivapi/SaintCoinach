@@ -1,5 +1,5 @@
 {
-  "version": "2017.08.23.0000.0000",
+  "version": "2017.10.05.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -483,7 +483,7 @@
           "name": "Item{Unprimed}",
           "converter": {
             "type": "link",
-            "target": "Item",
+            "target": "Item"
           }
         },
         {
@@ -491,7 +491,7 @@
           "name": "Item{Primed}",
           "converter": {
             "type": "link",
-            "target": "Item",
+            "target": "Item"
           }
         },
         {
@@ -501,7 +501,7 @@
         {
           "index": 3,
           "name": "HoursRequired"
-        },
+        }
       ]
     },
     {
@@ -680,7 +680,7 @@
               "target": "AnimaWeapon5Param"
             }
           }
-        },
+        }
       ]
     },
     {
@@ -697,7 +697,7 @@
         {
           "index": 1,
           "name": "Name"
-        },
+        }
       ]
     },
     {
@@ -717,22 +717,22 @@
           "name": "Dialogue",
           "converter": {
             "type": "link",
-            "target": "AnimaWeapon5SpiritTalkParam",
-          },
+            "target": "AnimaWeapon5SpiritTalkParam"
+          }
         }
-      ],
+      ]
     },
     {
       "sheet": "AnimaWeapon5SpiritTalkParam",
       "defaultColumn": "Prologue",
       "definitions": [
         {
-          "name": "Prologue",
+          "name": "Prologue"
         },
         {
           "index": 1,
-          "name": "Epilogue",
-        },
+          "name": "Epilogue"
+        }
       ]
     },
     {
@@ -744,11 +744,11 @@
           "converter": {
             "type": "link",
             "target": "Item"
-          },
+          }
         },
         {
           "index": 2,
-          "name": "Qty",
+          "name": "Qty"
         },
         {
           "index": 3,
@@ -769,7 +769,7 @@
               },
               {
                 "name": "Quantity"
-              },
+              }
             ]
           }
         },
@@ -791,22 +791,22 @@
           "name": "Dialogue",
           "converter": {
             "type": "link",
-            "target": "AnimaWeaponFUITalkParam",
-          },
+            "target": "AnimaWeaponFUITalkParam"
+          }
         }
-      ],
+      ]
     },
     {
       "sheet": "AnimaWeaponFUITalkParam",
       "defaultColumn": "Prologue",
       "definitions": [
         {
-          "name": "Prologue",
+          "name": "Prologue"
         },
         {
           "index": 1,
-          "name": "Epilogue",
-        },
+          "name": "Epilogue"
+        }
       ]
     },
     {
@@ -815,44 +815,43 @@
         {
           "name": "Hyperconductive",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
           "index": 1,
           "name": "Reborn",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
           "index": 2,
           "name": "Sharpened",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
           "index": 3,
           "name": "Zodiac",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
           "index": 4,
           "name": "ZodiacLux",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
-        },
+        }
       ]
     },
     {
       "sheet": "AnimaWeaponItem",
       "definitions": [
         {
-          "name": "Item",
           "type": "repeat",
           "count": 14,
           "definition": {
@@ -1047,11 +1046,11 @@
           }
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "Name"
         },
         {
-          "index": 18,
+          "index": 19,
           "name": "Name{Relation}"
         }
       ]
@@ -1122,7 +1121,7 @@
           }
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "ArrayEventHandler",
           "converter": {
             "type": "link",
@@ -1352,8 +1351,8 @@
           "name": "Name",
           "converter": {
             "type": "link",
-            "target": "Item",
-          },
+            "target": "Item"
+          }
         }
       ]
     },
@@ -1429,7 +1428,7 @@
           "type": "repeat",
           "count": 32,
           "definition": {
-            "name": "Month",
+            "name": "Month"
           }
         },
         {
@@ -1437,9 +1436,9 @@
           "type": "repeat",
           "count": 32,
           "definition": {
-            "name": "Day",
+            "name": "Day"
           }
-        },
+        }
       ]
     },
     {
@@ -2385,19 +2384,19 @@
       "defaultColumn": "InstanceContent",
       "definitions": [
         {
-          "index": 8,
+          "index": 9,
           "name": "TanksPerParty"
         },
         {
-          "index": 9,
+          "index": 10,
           "name": "HealersPerParty"
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "MeleesPerParty"
         },
         {
-          "index": 11,
+          "index": 12,
           "name": "RangedPerParty"
         }
       ]
@@ -2437,23 +2436,23 @@
           }
         },
         {
-          "index": 12,
+          "index": 13,
           "name": "Reward{TomeA}"
         },
         {
-          "index": 13,
+          "index": 14,
           "name": "Reward{TomeB}"
         },
         {
-          "index": 14,
+          "index": 15,
           "name": "Reward{TomeC}"
         },
         {
-          "index": 17,
+          "index": 18,
           "name": "SortKey"
         },
         {
-          "index": 19,
+          "index": 20,
           "name": "ContentMemberType",
           "converter": {
             "type": "link",
@@ -2536,11 +2535,11 @@
           "name": "Specialist"
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "Cost"
         },
         {
-          "index": 11,
+          "index": 12,
           "name": "CRP",
           "converter": {
             "type": "link",
@@ -2548,7 +2547,7 @@
           }
         },
         {
-          "index": 12,
+          "index": 13,
           "name": "BSM",
           "converter": {
             "type": "link",
@@ -2556,7 +2555,7 @@
           }
         },
         {
-          "index": 13,
+          "index": 14,
           "name": "ARM",
           "converter": {
             "type": "link",
@@ -2564,7 +2563,7 @@
           }
         },
         {
-          "index": 14,
+          "index": 15,
           "name": "GSM",
           "converter": {
             "type": "link",
@@ -2572,7 +2571,7 @@
           }
         },
         {
-          "index": 15,
+          "index": 16,
           "name": "LTW",
           "converter": {
             "type": "link",
@@ -2580,7 +2579,7 @@
           }
         },
         {
-          "index": 16,
+          "index": 17,
           "name": "WVR",
           "converter": {
             "type": "link",
@@ -2588,7 +2587,7 @@
           }
         },
         {
-          "index": 17,
+          "index": 18,
           "name": "ALC",
           "converter": {
             "type": "link",
@@ -2596,13 +2595,13 @@
           }
         },
         {
-          "index": 18,
+          "index": 19,
           "name": "CUL",
           "converter": {
             "type": "link",
             "target": "CraftAction"
           }
-        },
+        }
       ]
     },
     {
@@ -2668,7 +2667,7 @@
           }
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "Limit"
         }
       ]
@@ -2731,11 +2730,10 @@
       "definitions": [
         {
           "index": 1,
-          "name": "Image",
+          "name": "Image"
         }
       ]
     },
-
     {
       "sheet": "DailySupplyItem",
       "definitions": [
@@ -2817,7 +2815,7 @@
             "type": "link",
             "target": "DeepDungeonFloorEffectUI"
           }
-        },
+        }
       ]
     },
     {
@@ -2845,7 +2843,7 @@
         {
           "index": 10,
           "name": "Description"
-        },
+        }
       ]
     },
     {
@@ -2865,7 +2863,7 @@
         {
           "index": 2,
           "name": "Description"
-        },
+        }
       ]
     },
     {
@@ -2901,7 +2899,7 @@
             "type": "link",
             "target": "Action"
           }
-        },
+        }
       ]
     },
     {
@@ -2929,7 +2927,7 @@
             "type": "link",
             "target": "DeepDungeonFloorEffectUI"
           }
-        },
+        }
       ]
     },
     {
@@ -3047,7 +3045,7 @@
         {
           "index": 5,
           "name": "Description"
-        },
+        }
       ]
     },
     {
@@ -3071,7 +3069,7 @@
               "target": "DpsChallenge"
             }
           }
-        },
+        }
       ]
     },
     {
@@ -3081,9 +3079,9 @@
           "name": "InstanceContent",
           "converter": {
             "type": "link",
-            "target":"InstanceContent"
+            "target": "InstanceContent"
           }
-        },
+        }
       ]
     },
     {
@@ -4758,7 +4756,7 @@
               "target": "Quest"
             }
           }
-        },
+        }
       ]
     },
     {
@@ -5032,7 +5030,7 @@
           }
         },
         {
-          "index": 57,
+          "index": 58,
           "name": "PartyCondition"
         }
       ]
@@ -6295,7 +6293,7 @@
           "index": 2,
           "name": "Icon",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
@@ -6462,7 +6460,7 @@
               "target": "Action"
             }
           }
-        },
+        }
       ]
     },
     {
@@ -6931,7 +6929,7 @@
           }
         },
         {
-          "index": 35,
+          "index": 37,
           "name": "Mount{Required}",
           "converter": {
             "type": "link",
@@ -6939,11 +6937,11 @@
           }
         },
         {
-          "index": 36,
+          "index": 38,
           "name": "IsHouseRequired"
         },
         {
-          "index": 38,
+          "index": 40,
           "name": "ENpcResident{Start}",
           "converter": {
             "type": "link",
@@ -6951,7 +6949,7 @@
           }
         },
         {
-          "index": 40,
+          "index": 42,
           "name": "ENpcResident{End}",
           "converter": {
             "type": "link",
@@ -6959,15 +6957,15 @@
           }
         },
         {
-          "index": 41,
+          "index": 43,
           "name": "IsRepeatable"
         },
         {
-          "index": 42,
+          "index": 44,
           "name": "RepeatIntervalType"
         },
         {
-          "index": 47,
+          "index": 49,
           "type": "repeat",
           "count": 50,
           "definition": {
@@ -6975,7 +6973,7 @@
           }
         },
         {
-          "index": 97,
+          "index": 99,
           "type": "repeat",
           "count": 50,
           "definition": {
@@ -6983,7 +6981,7 @@
           }
         },
         {
-          "index": 1219,
+          "index": 1221,
           "type": "repeat",
           "count": 171,
           "definition": {
@@ -6995,7 +6993,7 @@
           }
         },
         {
-          "index": 1435,
+          "index": 1437,
           "name": "ClassJob{Required}",
           "converter": {
             "type": "link",
@@ -7003,19 +7001,19 @@
           }
         },
         {
-          "index": 1437,
+          "index": 1439,
           "name": "ExpFactor"
         },
         {
-          "index": 1438,
+          "index": 1440,
           "name": "GilReward"
         },
         {
-          "index": 1440,
+          "index": 1442,
           "name": "GCSeals"
         },
         {
-          "index": 1441,
+          "index": 1443,
           "type": "repeat",
           "count": 3,
           "definition": {
@@ -7027,7 +7025,7 @@
           }
         },
         {
-          "index": 1444,
+          "index": 1446,
           "type": "repeat",
           "count": 3,
           "definition": {
@@ -7035,11 +7033,11 @@
           }
         },
         {
-          "index": 1447,
+          "index": 1449,
           "name": "ItemRewardType"
         },
         {
-          "index": 1448,
+          "index": 1450,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -7051,7 +7049,7 @@
           }
         },
         {
-          "index": 1455,
+          "index": 1457,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -7059,7 +7057,7 @@
           }
         },
         {
-          "index": 1462,
+          "index": 1464,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -7071,7 +7069,7 @@
           }
         },
         {
-          "index": 1469,
+          "index": 1471,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7083,7 +7081,7 @@
           }
         },
         {
-          "index": 1474,
+          "index": 1476,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7091,7 +7089,7 @@
           }
         },
         {
-          "index": 1479,
+          "index": 1481,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7099,7 +7097,7 @@
           }
         },
         {
-          "index": 1484,
+          "index": 1486,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7111,7 +7109,7 @@
           }
         },
         {
-          "index": 1489,
+          "index": 1491,
           "name": "Emote{Reward}",
           "converter": {
             "type": "link",
@@ -7119,7 +7117,7 @@
           }
         },
         {
-          "index": 1490,
+          "index": 1492,
           "name": "Action{Reward}",
           "converter": {
             "type": "link",
@@ -7127,7 +7125,7 @@
           }
         },
         {
-          "index": 1491,
+          "index": 1493,
           "type": "repeat",
           "count": 2,
           "definition": {
@@ -7139,7 +7137,7 @@
           }
         },
         {
-          "index": 1494,
+          "index": 1496,
           "name": "Other{Reward}",
           "converter": {
             "type": "link",
@@ -7147,7 +7145,7 @@
           }
         },
         {
-          "index": 1497,
+          "index": 1499,
           "name": "InstanceContent{Unlock}",
           "converter": {
             "type": "link",
@@ -7155,7 +7153,7 @@
           }
         },
         {
-          "index": 1499,
+          "index": 1501,
           "name": "Tomestone{Reward}",
           "converter": {
             "type": "complexlink",
@@ -7169,15 +7167,15 @@
           }
         },
         {
-          "index": 1500,
+          "index": 1502,
           "name": "TomestoneCount{Reward}"
         },
         {
-          "index": 1501,
+          "index": 1503,
           "name": "ReputationReward"
         },
         {
-          "index": 1502,
+          "index": 1504,
           "name": "PlaceName",
           "converter": {
             "type": "link",
@@ -7185,7 +7183,7 @@
           }
         },
         {
-          "index": 1503,
+          "index": 1505,
           "name": "JournalGenre",
           "converter": {
             "type": "link",
@@ -7193,21 +7191,21 @@
           }
         },
         {
-          "index": 1505,
+          "index": 1507,
           "name": "Icon",
           "converter": {
             "type": "icon"
           }
         },
         {
-          "index": 1506,
+          "index": 1508,
           "name": "Icon{Special}",
           "converter": {
             "type": "icon"
           }
         },
         {
-          "index": 1509,
+          "index": 1511,
           "name": "EventIconType",
           "converter": {
             "type": "link",
@@ -7215,7 +7213,7 @@
           }
         },
         {
-          "index": 1511,
+          "index": 1513,
           "name": "SortKey"
         }
       ]
@@ -7484,7 +7482,7 @@
           "name": "CanHq"
         },
         {
-          "index": 39,
+          "index": 40,
           "name": "Status{Required}",
           "converter": {
             "type": "link",
@@ -7492,7 +7490,7 @@
           }
         },
         {
-          "index": 40,
+          "index": 41,
           "name": "Item{Required}",
           "converter": {
             "type": "link",
@@ -7500,7 +7498,7 @@
           }
         },
         {
-          "index": 41,
+          "index": 42,
           "name": "IsSpecializationRequired"
         }
       ]
@@ -7952,11 +7950,11 @@
           }
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "DeliveriesPerWeek"
         },
         {
-          "index": 3,
+          "index": 4,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -7964,7 +7962,7 @@
           }
         },
         {
-          "index": 9,
+          "index": 10,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -7972,7 +7970,7 @@
           }
         },
         {
-          "index": 15,
+          "index": 16,
           "type": "repeat",
           "count": 3,
           "definition": {
@@ -8007,7 +8005,7 @@
           }
         },
         {
-          "index": 69,
+          "index": 70,
           "name": "Icon",
           "converter": {
             "type": "icon"
@@ -8060,6 +8058,7 @@
       "sheet": "SatisfactionSupplyReward",
       "definitions": [
         {
+          "index": 1,
           "type": "repeat",
           "count": 2,
           "definition": {
@@ -8085,27 +8084,27 @@
           }
         },
         {
-          "index": 8,
+          "index": 10,
           "name": "Satisfaction{Low}"
         },
         {
-          "index": 9,
+          "index": 11,
           "name": "Satisfaction{Mid}"
         },
         {
-          "index": 10,
+          "index": 12,
           "name": "Satisfaction{High}"
         },
         {
-          "index": 11,
+          "index": 13,
           "name": "Gil{Low}"
         },
         {
-          "index": 12,
+          "index": 14,
           "name": "Gil{Mid}"
         },
         {
-          "index": 13,
+          "index": 15,
           "name": "Gil{High}"
         }
       ]
@@ -8114,7 +8113,7 @@
       "sheet": "ScreenImage",
       "definitions": [
         {
-          "name": "Image",
+          "name": "Image"
         }
       ]
     },
@@ -8132,109 +8131,6 @@
         {
           "index": 1,
           "name": "Name"
-        }
-      ]
-    },
-    {
-      "sheet": "Shop",
-      "defaultColumn": "Name",
-      "isGenericReferenceTarget": true,
-      "definitions": [
-        {
-          "index": 1,
-          "name": "Icon",
-          "converter": {
-            "type": "icon"
-          }
-        },
-        {
-          "index": 3,
-          "name": "BeastTribe",
-          "converter": {
-            "type": "link",
-            "target": "BeastTribe"
-          }
-        },
-        {
-          "index": 4,
-          "name": "BeastReputationRank",
-          "converter": {
-            "type": "link",
-            "target": "BeastReputationRank"
-          }
-        },
-        {
-          "index": 5,
-          "name": "Quest",
-          "converter": {
-            "type": "link",
-            "target": "Quest"
-          }
-        },
-        {
-          "index": 8,
-          "type": "repeat",
-          "count": 40,
-          "definition": {
-            "name": "ShopItem",
-            "converter": {
-              "type": "link",
-              "target": "ShopItem"
-            }
-          }
-        },
-        {
-          "index": 48,
-          "name": "Name"
-        }
-      ]
-    },
-    {
-      "sheet": "ShopItem",
-      "defaultColumn": "Item",
-      "definitions": [
-        {
-          "name": "Item",
-          "converter": {
-            "type": "link",
-            "target": "Item"
-          }
-        },
-        {
-          "index": 2,
-          "name": "PriceFactor{Low}"
-        },
-        {
-          "index": 3,
-          "name": "PriceFactor{Mid}"
-        },
-        {
-          "index": 4,
-          "name": "PriceFactor{High}"
-        },
-        {
-          "index": 6,
-          "type": "repeat",
-          "count": 2,
-          "definition": {
-            "name": "Quest",
-            "converter": {
-              "type": "link",
-              "target": "Quest"
-            }
-          }
-        },
-        {
-          "index": 8,
-          "name": "Achievement",
-          "converter": {
-            "type": "link",
-            "target": "Achievement"
-          }
-        },
-        {
-          "index": 9,
-          "name": "RequireMultiple"
         }
       ]
     },
@@ -8446,7 +8342,7 @@
           }
         },
         {
-          "index": 1803,
+          "index": 1863,
           "name": "Quest{Shop}",
           "converter": {
             "type": "link",
@@ -8587,11 +8483,11 @@
           }
         },
         {
-          "index": 10,
+          "index": 12,
           "name": "WeatherRate"
         },
         {
-          "index": 20,
+          "index": 23,
           "name": "Aetheryte",
           "converter": {
             "type": "link",
@@ -8666,7 +8562,7 @@
         {
           "index": 2,
           "name": "Tomestones",
-          "converter":  {
+          "converter": {
             "type": "link",
             "target": "Tomestones"
           }
@@ -9056,26 +8952,26 @@
         {
           "index": 6,
           "name": "Reward{Tank}",
-            "converter": {
-              "type": "link",
-              "target": "Item"
-            }
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
         },
         {
           "index": 7,
           "name": "Reward{Melee}",
-            "converter": {
-              "type": "link",
-              "target": "Item"
-            }
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
         },
         {
           "index": 8,
           "name": "Reward{Ranged}",
-            "converter": {
-              "type": "link",
-              "target": "Item"
-            }
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
         },
         {
           "index": 9,
