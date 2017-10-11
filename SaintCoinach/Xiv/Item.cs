@@ -190,8 +190,8 @@ namespace SaintCoinach.Xiv {
             get { return As<GrandCompany>(); }
         }
 
-        public bool IsDesynthesizable {
-            get { return AsInt32("Desynthesize") > 0; }
+        public Salvage Salvage {
+            get { return As<Salvage>(); }
         }
 
         public bool IsAetherialReducible {

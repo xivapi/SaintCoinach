@@ -5225,7 +5225,11 @@
         },
         {
           "index": 35,
-          "name": "Desynthesize"
+          "name": "Salvage",
+          "converter": {
+            "type": "link",
+            "target": "Salvage"
+          }
         },
         {
           "index": 36,
@@ -7927,6 +7931,15 @@
         {
           "index": 1,
           "name": "Requirement"
+        }
+      ]
+    },
+    {
+      "sheet":  "Salvage",
+      "defaultColumn": "OptimalSkill",
+      "definitions": [
+        {
+          "name": "OptimalSkill"
         }
       ]
     },
