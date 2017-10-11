@@ -189,7 +189,7 @@
           "index": 30,
           "name": "Cost{Type}"
         },
-        {
+        { 
           "index": 31,
           "name": "Cost"
         },
@@ -461,7 +461,7 @@
             "type": "link",
             "target": "Adventure"
           }
-        },
+        }
       ]
     },
     {
@@ -8414,6 +8414,42 @@
         {
           "index": 3,
           "name": "MaxStacks"
+        },
+        {
+          "index": 7,
+          "name": "LockMovement"
+        },
+        {
+          "index": 9,
+          "name": "LockActions"
+        },
+        {
+          "index": 10,
+          "name": "LockControl"
+        },
+        {
+          "index": 11,
+          "name": "Transfiguration"
+        },
+        {
+          "index": 13,
+          "name": "CanDispel"
+        },
+        {
+          "index": 15,
+          "name": "IsPermanent"
+        },
+        {
+          "index": 17,
+          "name": "InflictedByActor"
+        },
+        {
+          "index": 21,
+          "name": "IsFcBuff"
+        },
+        {
+          "index": 22,
+          "name": "Invisibility"
         }
       ]
     },
