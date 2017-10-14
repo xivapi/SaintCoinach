@@ -19,23 +19,11 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Items offered by the current <see cref="GCShop" />.
         /// </summary>
-        private GrandCompanySealShopItem[] _Items;
+        private GCScripShopItem[] _Items;
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     Gets the key of the first <see cref="GrandCompanySealShopItem" /> in the current <see cref="GCShop" />.
-        /// </summary>
-        /// <value>The key of the first <see cref="GrandCompanySealShopItem" /> in the current <see cref="GCShop" />.</value>
-        public int Min { get { return AsInt32("Min"); } }
-
-        /// <summary>
-        ///     Gets the key of the last <see cref="GrandCompanySealShopItem" /> in the current <see cref="GCShop" />.
-        /// </summary>
-        /// <value>The key of the last <see cref="GrandCompanySealShopItem" /> in the current <see cref="GCShop" />.</value>
-        public int Max { get { return AsInt32("Max"); } }
 
         /// <summary>
         ///     Gets the <see cref="GrandCompany" /> of the current <see cref="GCShop" />.
@@ -47,7 +35,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the items offered by the current <see cref="GCShop" />.
         /// </summary>
         /// <value>The items offered by the current <see cref="GCShop" />.</value>
-        public IEnumerable<GrandCompanySealShopItem> Items { get { return _Items ?? (_Items = BuildItems()); } }
+        public IEnumerable<GCScripShopItem> Items { get { return _Items ?? (_Items = BuildItems()); } }
 
         /// <summary>
         /// Gets the locations of the current object.
@@ -97,21 +85,24 @@ namespace SaintCoinach.Xiv {
         }
 
         /// <summary>
-        ///     Build the array of <see cref="GrandCompanySealShopItem" />s offered by this shop.
+        ///     Build the array of <see cref="GCScripShopItem" />s offered by this shop.
         /// </summary>
         /// <remarks>
-        ///     This method takes all <see cref="GrandCompanySealShopItem" />s with keys from <see cref="Min" /> to
+        ///     This method takes all <see cref="GCScripShopItem" />s with keys from <see cref="Min" /> to
         ///     <see cref="Max" /> (inclusive).
         /// </remarks>
-        /// <returns>An array of <see cref="GrandCompanySealShopItem" />s offered by this shop.</returns>
-        private GrandCompanySealShopItem[] BuildItems() {
-            var items = new List<GrandCompanySealShopItem>();
+        /// <returns>An array of <see cref="GCScripShopItem" />s offered by this shop.</returns>
+        private GCScripShopItem[] BuildItems() {
+            var items = new List<GCScripShopItem>();
 
-            var gcItems = Sheet.Collection.GetSheet<GrandCompanySealShopItem>();
-            for (var i = Min; i <= Max; ++i) {
-                var item = gcItems[i];
-                if (item.Item.Key != 0)
-                    items.Add(item);
+            var gcShopCategoryKeys = Sheet.Collection.GetSheet<GCScripShopCategory>()
+                .Where(c => c.GrandCompany.Key == this.GrandCompany.Key)
+                .ToDictionary(c => c.Key);
+
+            var gcItems = Sheet.Collection.GetSheet2<GCScripShopItem>();
+            foreach (var gcItem in gcItems) {
+                if (gcItem.Item.Key != 0 && gcShopCategoryKeys.ContainsKey(gcItem.ParentKey))
+                    items.Add(gcItem);
             }
 
             return items.ToArray();

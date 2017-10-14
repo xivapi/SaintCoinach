@@ -93,6 +93,7 @@
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
     <Compile Include="Xiv\ContentMemberType.cs" />
+    <Compile Include="Xiv\GCScripShopCategory.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
     <Compile Include="Xiv\ItemActions\EquipmentCoffer.cs" />
     <Compile Include="Xiv\ItemActions\SustainPotion.cs" />
@@ -653,7 +654,7 @@
     <Compile Include="Xiv\GenericLocation.cs" />
     <Compile Include="Xiv\GrandCompany.cs" />
     <Compile Include="Xiv\GrandCompanyRank.cs" />
-    <Compile Include="Xiv\GrandCompanySealShopItem.cs" />
+    <Compile Include="Xiv\GCScripShopItem.cs" />
     <Compile Include="Xiv\GuardianDeity.cs" />
     <Compile Include="Xiv\HousingFurniture.cs" />
     <Compile Include="Xiv\HousingItem.cs" />

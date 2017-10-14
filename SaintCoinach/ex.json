@@ -4501,6 +4501,26 @@
       ]
     },
     {
+      "sheet": "GCScripShopCategory",
+      "definitions": [
+        {
+          "name": "GrandCompany",
+          "converter": {
+            "type": "link",
+            "target": "GrandCompany"
+          }
+        },
+        {
+          "name": "Tier",
+          "index": 1
+        },
+        {
+          "name": "SubCategory",
+          "index": 2
+        }
+      ]
+    },
+    {
       "sheet": "GCScripShopItem",
       "defaultColumn": "Item",
       "definitions": [
@@ -4513,11 +4533,19 @@
         },
         {
           "index": 1,
-          "name": "Required{Rank}"
+          "name": "Required{GrandCompanyRank}",
+          "converter": {
+            "type": "link",
+            "target": "GrandCompanyRank"
+          }
         },
         {
           "index": 2,
           "name": "Cost{GCSeals}"
+        },
+        {
+          "index": 3,
+          "name": "SortKey"
         }
       ]
     },
