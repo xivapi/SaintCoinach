@@ -58,7 +58,7 @@ namespace SaintCoinach.Xiv {
 
         int IShopListingItem.CollectabilityRating => 0;
 
-        int IShopListingItem.Count => 0;
+        int IShopListingItem.Count => 1;
 
         #endregion
     }
