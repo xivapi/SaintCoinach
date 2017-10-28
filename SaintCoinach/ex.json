@@ -1,5 +1,5 @@
 {
-  "version": "2017.10.05.0000.0000",
+  "version": "2017.10.19.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -189,7 +189,7 @@
           "index": 30,
           "name": "Cost{Type}"
         },
-        { 
+        {
           "index": 31,
           "name": "Cost"
         },
@@ -2868,7 +2868,7 @@
     },
     {
       "sheet": "DeepDungeonItem",
-      "defaultcolumn": "Name",
+      "defaultColumn": "Name",
       "definitions": [
         {
           "name": "Icon",
@@ -2877,7 +2877,7 @@
           }
         },
         {
-          "index": 2,
+          "index": 1,
           "name": "Singular"
         },
         {
@@ -4547,12 +4547,12 @@
           }
         },
         {
-          "name": "Tier",
-          "index": 1
+          "index": 1,
+          "name": "Tier"
         },
         {
-          "name": "SubCategory",
-          "index": 2
+          "index": 2,
+          "name": "SubCategory"
         }
       ]
     },
@@ -7999,7 +7999,7 @@
       ]
     },
     {
-      "sheet":  "Salvage",
+      "sheet": "Salvage",
       "defaultColumn": "OptimalSkill",
       "definitions": [
         {
