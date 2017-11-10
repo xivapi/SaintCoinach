@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SaintCoinach.Cmd</RootNamespace>
     <AssemblyName>SaintCoinach.Cmd</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>31e79848</NuGetPackageImportStamp>
     <TargetFrameworkProfile />
