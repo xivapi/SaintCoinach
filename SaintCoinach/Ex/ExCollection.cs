@@ -143,7 +143,7 @@ namespace SaintCoinach.Ex {
         }
 
         private ISheet CreateSheet<T>(Header header) where T : IDataRow {
-            if (header.AvailableLanguages.Count() > 1)
+            if (header.AvailableLanguagesCount >= 1)
                 return new MultiSheet<MultiRow, T>(this, header);
             return new DataSheet<T>(this, header, header.AvailableLanguages.First());
         }

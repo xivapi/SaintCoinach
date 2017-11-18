@@ -11,7 +11,7 @@ namespace SaintCoinach.Ex {
         [Description("en")] English,
         [Description("de")] German,
         [Description("fr")] French,
-        //[Description("chs")] ChineseSimplified,
+        [Description("chs")] ChineseSimplified,
         //[Description("cht")] ChineseTraditional,
         //[Description("ko")] Korean,
 
@@ -34,7 +34,7 @@ namespace SaintCoinach.Ex {
                 yield return Language.English;
                 yield return Language.French;
                 yield return Language.German;
-                //yield return Language.ChineseSimplified;
+                yield return Language.ChineseSimplified;
                 //yield return Language.ChineseTraditional;
                 //yield return Language.Korean;
             }

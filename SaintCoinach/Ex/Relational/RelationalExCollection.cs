@@ -41,7 +41,7 @@ namespace SaintCoinach.Ex.Relational {
         }
 
         private ISheet CreateSheet<T>(RelationalHeader header) where T : IRelationalDataRow {
-            if (header.AvailableLanguages.Count() > 1)
+            if (header.AvailableLanguagesCount >= 1)
                 return new RelationalMultiSheet<RelationalMultiRow, T>(this, header);
             return new RelationalDataSheet<T>(this, header, header.AvailableLanguages.First());
         }
