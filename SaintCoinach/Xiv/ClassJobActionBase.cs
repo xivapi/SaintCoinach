@@ -55,7 +55,8 @@ namespace SaintCoinach.Xiv {
         UnknownDragoon48,
         LilyAll,
         AstralFireOrUmbralIce,
-        MP2
+        MP2,
+        Ceruleum
     }
 
     public abstract class ClassJobActionBase : ActionBase {
