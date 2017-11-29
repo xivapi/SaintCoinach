@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Xiv {
     public partial class MasterpieceSupplyDuty {
         public class CollectableItem {
-            private double _bonusMultiplier;
-            private double _bonusMultiplier2;
+            private double _xpMultiplier, _xpMultiplier2;
+            private double _currencyMultiplier, _currencyMultiplier2;
 
             #region Properties
             public MasterpieceSupplyDuty MasterpieceSupplyDuty { get; private set; }
@@ -37,9 +37,10 @@ namespace SaintCoinach.Xiv {
                 Stars = duty.AsInt32("Stars", index);
 
                 var bonusMultiplierRow = duty.As<IXivRow>("BonusMultiplier", index);
-                _bonusMultiplier = ((double)(UInt16)bonusMultiplierRow[1]) / 1000;
-                _bonusMultiplier2 = ((double)(UInt16)bonusMultiplierRow[0]) / 1000;
-
+                _xpMultiplier = ((double)(UInt16)bonusMultiplierRow["XpMultiplier[1]"]) / 1000;
+                _xpMultiplier2 = ((double)(UInt16)bonusMultiplierRow["XpMultiplier[0]"]) / 1000;
+                _currencyMultiplier = ((double)(UInt16)bonusMultiplierRow["CurrencyMultiplier[1]"]) / 1000;
+                _currencyMultiplier2 = ((double)(UInt16)bonusMultiplierRow["CurrencyMultiplier[0]"]) / 1000;
             }
             #endregion
 
@@ -54,11 +55,11 @@ namespace SaintCoinach.Xiv {
                 var baseExp = (int)(paramGrow.ExpToNext / expPortion);
 
                 // Apply bonus multipliers.
-                return new int[] { baseExp, (int)(baseExp * _bonusMultiplier), (int)(baseExp * _bonusMultiplier2) };
+                return new int[] { baseExp, (int)(baseExp * _xpMultiplier), (int)(baseExp * _xpMultiplier2) };
             }
 
             public int[] CalculateScripRewards() {
-                return new int[] { ScripRewards, (int)(ScripRewards * _bonusMultiplier), (int)(ScripRewards * _bonusMultiplier2) };
+                return new int[] { ScripRewards, (int)(ScripRewards * _currencyMultiplier), (int)(ScripRewards * _currencyMultiplier2) };
             }
         }
     }
