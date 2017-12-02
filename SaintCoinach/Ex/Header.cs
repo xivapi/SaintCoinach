@@ -23,9 +23,9 @@ namespace SaintCoinach.Ex {
             }, {
                 5, Language.ChineseSimplified /*"chs"*/
             }, {
-                6, Language.Unsupported /*"cht"*/
+                6, Language.ChineseTraditional /*"cht"*/
             }, {
-                7, Language.Unsupported /*"ko"*/
+                7, Language.Korean /*"ko"*/
             }
         };
 
