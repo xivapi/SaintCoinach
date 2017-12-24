@@ -4537,6 +4537,108 @@
       ]
     },
     {
+      "sheet": "GCRankGridaniaFemaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
+      "sheet": "GCRankGridaniaMaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
+      "sheet": "GCRankLimsaFemaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
+      "sheet": "GCRankLimsaMaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
+      "sheet": "GCRankUldahFemaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
+      "sheet": "GCRankUldahMaleText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 8,
+          "name": "Name{Rank}"
+        },
+      ]
+    },
+    {
       "sheet": "GCScripShopCategory",
       "definitions": [
         {
