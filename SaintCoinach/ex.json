@@ -3759,6 +3759,24 @@
       "definitions": [
         {
           "name": "Text"
+        },
+        {
+          "index": 4,
+          "name": "FCActivityCategory",
+          "converter": {
+            "type": "link",
+            "target": "FCActivityCategory"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "FCActivityCategory",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Name"
         }
       ]
     },
@@ -3859,6 +3877,16 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "FCProfile",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "index": 1,
           "name": "Name"
         }
       ]
