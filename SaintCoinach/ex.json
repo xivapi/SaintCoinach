@@ -3585,6 +3585,10 @@
           "converter": {
             "type": "icon"
           }
+        },
+        {
+          "index": 3,
+          "name": "CastTime"
         }
       ]
     },
@@ -3676,7 +3680,11 @@
             "type": "link",
             "target": "Quest"
           }
-        }
+        },
+		{
+          "index": 15,
+          "name": "CastTime"
+        },
       ]
     },
     {
@@ -8748,6 +8756,10 @@
             "type": "link",
             "target": "Map"
           }
+        },
+		{
+          "index": 9,
+          "name": "TerritoryIntendedUse"
         },
         {
           "index": 12,
