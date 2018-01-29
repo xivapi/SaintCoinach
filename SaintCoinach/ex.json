@@ -3681,7 +3681,7 @@
             "target": "Quest"
           }
         },
-		{
+        {
           "index": 15,
           "name": "CastTime"
         },
@@ -8757,7 +8757,7 @@
             "target": "Map"
           }
         },
-		{
+        {
           "index": 9,
           "name": "TerritoryIntendedUse"
         },
