@@ -50,9 +50,9 @@ namespace SaintCoinach.Xiv {
         public float Radius { get { return AsSingle("Radius"); } }
 
         /// <summary>
-        ///     Gets the type of the current location.
+        ///     Gets the LgbEntryType of the current location.
         /// </summary>
-        /// <value>The type of the current location.</value>
+        /// <value>The LgbEntryType of the current location.</value>
         public int Type { get { return AsInt32("Type"); } }
 
         /// <summary>

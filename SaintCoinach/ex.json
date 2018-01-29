@@ -1,5 +1,5 @@
 {
-  "version": "2017.11.15.0000.0000",
+  "version": "2017.12.06.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -4578,7 +4578,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -4595,7 +4595,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -4612,7 +4612,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -4629,7 +4629,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -4646,7 +4646,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -4663,7 +4663,7 @@
         {
           "index": 8,
           "name": "Name{Rank}"
-        },
+        }
       ]
     },
     {
@@ -5987,6 +5987,10 @@
             "type": "link",
             "target": "Map"
           }
+        },
+        {
+          "index": 8,
+          "name": "EventId"
         },
         {
           "index": 9,
