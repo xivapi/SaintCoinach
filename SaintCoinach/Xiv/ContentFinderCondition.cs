@@ -25,13 +25,25 @@ namespace SaintCoinach.Xiv {
         /// Gets the minimum level required for the current content.
         /// </summary>
         /// <value>The minimum level required for the current content.</value>
-        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
+        public int RequiredClassJobLevel { get { return AsInt32("ClassJobLevel{Required}"); } }
+
+        /// <summary>
+        /// Gets the maximum level for the current content.
+        /// </summary>
+        /// <value>The maximum level for the current content.</value>
+        public int ClassJobLevelSync { get { return AsInt32("ClassJobLevel{Sync}"); } }
 
         /// <summary>
         /// Gets the item level required to enter the current content.
         /// </summary>
         /// <value>The item level required to enter the current content.</value>
         public virtual int RequiredItemLevel { get { return AsInt32("ItemLevel{Required}"); } }
+
+        /// <summary>
+        /// Gets the item level the current content gets synced to if it is higher.
+        /// </summary>
+        /// <value>The item level the current content gets synced to if it is higher.</value>
+        public int ItemLevelSync { get { return AsInt32("ItemLevel{Sync}"); } }
 
         /// <summary>
         /// Gets the icon for the current finder content.

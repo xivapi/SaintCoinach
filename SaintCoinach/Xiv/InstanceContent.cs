@@ -31,12 +31,6 @@ namespace SaintCoinach.Xiv {
         public TimeSpan TimeLimit { get { return TimeSpan.FromMinutes(AsInt32("TimeLimit{min}")); } }
 
         /// <summary>
-        /// Gets the maximum level for the current content.
-        /// </summary>
-        /// <value>The maximum level for the current content.</value>
-        public int ClassJobLevelSync { get { return AsInt32("ClassJobLevel{Sync}"); } }
-
-        /// <summary>
         /// Gets the number of parties for the current content.
         /// </summary>
         /// <value>The number of parties for the current content.</value>
@@ -58,12 +52,6 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <value>The description of the current content.</value>
         public override Text.XivString Description { get { throw new InvalidOperationException("Use ContentFinderCondition.Description"); } }
-
-        /// <summary>
-        /// Gets the item level the current content gets synced to if it is higher.
-        /// </summary>
-        /// <value>The item level the current content gets synced to if it is higher.</value>
-        public int ItemLevelSync { get { return AsInt32("ItemLevel{Sync}"); } }
 
         /// <summary>
         /// Gets the numeric order of the current content.

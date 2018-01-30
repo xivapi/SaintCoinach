@@ -35,6 +35,12 @@ namespace SaintCoinach.Xiv {
         public virtual ContentMemberType ContentMemberType { get { return As<ContentMemberType>(); } }
 
         /// <summary>
+        /// Gets the icon for the current content.
+        /// </summary>
+        /// <value>The icon for the current content.</value>
+        public virtual Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+
+        /// <summary>
         /// Gets the rewards received upon completing the current content.
         /// </summary>
         /// <value>The rewards received upon completing the current content.</value>
