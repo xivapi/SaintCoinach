@@ -1024,6 +1024,13 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "name": "MinLevel"
+        },
+        {
+          "index": 1,
+          "name": "MaxLevel"
+        },
+        {
           "index": 2,
           "name": "BeastRankBonus",
           "converter": {
@@ -1044,6 +1051,34 @@
           "converter": {
             "type": "icon"
           }
+        },
+        {
+          "index": 5,
+          "name": "MaxRank"
+        },
+        {
+          "index": 6,
+          "name": "AlliedBeastTribeQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 7,
+          "name": "Expansion"
+        },
+        {
+          "index": 8,
+          "name": "CurrencyItem",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 9,
+          "name": "DisplayOrder"
         },
         {
           "index": 10,
