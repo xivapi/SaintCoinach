@@ -7924,6 +7924,68 @@
       ]
     },
     {
+      "sheet": "QuestClassJobReward",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "index": 0,
+          "name": "ClassJobCategory",
+          "converter": {
+            "type": "link",
+            "target": "ClassJobCategory"
+          }
+        },
+         {
+          "index": 1,
+          "name": "Item{Reward}[1]",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Item{Reward}[2]",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 5,
+          "name": "Reward {Amount}1]"
+        },
+        {
+          "index": 6,
+          "name": "Reward {Amount}[2]"
+        },
+         {
+          "index": 9,
+          "name": "Required{Item}[1]",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+          {
+          "index": 10,
+          "name": "Required{Item}[2]",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+         {
+          "index": 13,
+          "name": "Received {Amount}[1]"
+        },
+        {
+          "index": 14,
+          "name": "Received {Amount}[2]"
+        }
+      ]
+    },
+    {
       "sheet": "QuestRewardOther",
       "defaultColumn": "Name",
       "definitions": [
