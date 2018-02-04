@@ -7516,6 +7516,42 @@
       ]
     },
     {
+      "sheet": "QuickChat",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "index": 0,
+          "name": "Name{Action}"
+        },
+        {
+          "index": 1,
+          "name": "Icon1",
+          "converter": {
+            "type": "icon",
+            "target": "Action"
+          }
+        },          
+          {
+          "index": 3,
+          "name": "Text{Output}",
+          "converter": {
+            "type": "link",
+            "target": "QuickChatTransient"
+          }         
+         }
+        ]
+    },
+     {
+      "sheet": "QuickChatTransient",
+      "defaultColumn": "Text{Output",
+      "definitions": [
+        {
+          "index": 0,
+          "name": "Text{Output"
+        }
+      ]
+    },
+    {
       "sheet": "Race",
       "defaultColumn": "Feminine",
       "definitions": [
