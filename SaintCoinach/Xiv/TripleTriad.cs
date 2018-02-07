@@ -13,6 +13,7 @@ namespace SaintCoinach.Xiv {
         private TripleTriadCard[] _FixedCards;
         private TripleTriadCard[] _VariableCards;
         private TripleTriadRule[] _FixedRules;
+        private Item[] _RewardItems;
         private PrerequisiteQuestsRequirement _QuestRequirement;
         #endregion
 
@@ -23,6 +24,7 @@ namespace SaintCoinach.Xiv {
         public IEnumerable<TripleTriadCard> FixedCards { get { return _FixedCards ?? (_FixedCards = BuildFixedCards()); } }
         public IEnumerable<TripleTriadCard> VariableCards { get { return _VariableCards ?? (_VariableCards = BuildVariableCards()); } }
         public IEnumerable<TripleTriadRule> FixedRules { get { return _FixedRules ?? (_FixedRules = BuildRules()); } }
+        public IEnumerable<Item> RewardItems => _RewardItems ?? (_RewardItems = BuildRewardItems());
         public bool UsesRegionalRules { get { return AsBoolean("UsesRegionalRules"); } }
         public int Fee { get { return AsInt32("Fee"); } }
         public PrerequisiteQuestsRequirement QuestRequirement { get { return _QuestRequirement ?? (_QuestRequirement = BuildQuestRequirement()); } }
@@ -67,6 +69,19 @@ namespace SaintCoinach.Xiv {
             }
 
             return cards.ToArray();
+        }
+        private Item[] BuildRewardItems() {
+            const int Count = 4;
+
+            var cards = new List<Item>();
+            for (var i = 0; i < Count; ++i) {
+                var card = As<Item>("Item{PossibleReward}", i);
+                if (card.Key != 0)
+                    cards.Add(card);
+            }
+
+            return cards.ToArray();
+
         }
         private TripleTriadRule[] BuildRules() {
             const int Count = 2;
