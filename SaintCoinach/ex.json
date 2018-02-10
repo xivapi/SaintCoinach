@@ -8859,13 +8859,10 @@
         }
       ]
     },
-        {
+    {
       "sheet": "SubmarineRank",
       "defaultColumn": "Slot",
       "definitions": [
-        {
-          "name": "0"
-        },
         {
           "index": 1,
           "name": "ExpToNext"
