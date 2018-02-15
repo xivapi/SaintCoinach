@@ -57,8 +57,7 @@ namespace SaintCoinach.IO {
         }
 
         public Directory GetDirectory(uint key) {
-            Directory directory;
-            if (_Directories.TryGetValue(key, out directory))
+            if (_Directories.TryGetValue(key, out var directory))
                 return directory;
 
             var index = Index.Directories[key];
@@ -83,8 +82,7 @@ namespace SaintCoinach.IO {
             if (_Directories.TryGetValue(key, out directory))
                 return true;
 
-            IndexDirectory index;
-            if (Index.Directories.TryGetValue(key, out index)) {
+            if (Index.Directories.TryGetValue(key, out var index)) {
                 directory = new Directory(this.Pack, index);
                 _Directories.Add(key, directory);
                 return true;
@@ -101,8 +99,7 @@ namespace SaintCoinach.IO {
 
             var dirPath = path.Substring(0, lastSeperator);
             var baseName = path.Substring(lastSeperator + 1);
-            Directory dir;
-            return TryGetDirectory(dirPath, out dir) && dir.FileExists(baseName);
+            return TryGetDirectory(dirPath, out var dir) && dir.FileExists(baseName);
         }
 
         public File GetFile(string path) {
@@ -130,8 +127,7 @@ namespace SaintCoinach.IO {
 
             var dirPath = path.Substring(0, lastSeperator);
             var baseName = path.Substring(lastSeperator + 1);
-            Directory dir;
-            if (TryGetDirectory(dirPath, out dir))
+            if (TryGetDirectory(dirPath, out var dir))
                 return dir.TryGetFile(baseName, out file);
 
             file = null;
@@ -139,8 +135,7 @@ namespace SaintCoinach.IO {
         }
 
         public bool TryGetFile(uint directoryKey, uint fileKey, out File file) {
-            Directory dir;
-            if (TryGetDirectory(directoryKey, out dir))
+            if (TryGetDirectory(directoryKey, out var dir))
                 return dir.TryGetFile(fileKey, out file);
 
             file = null;

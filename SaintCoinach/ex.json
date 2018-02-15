@@ -1,5 +1,5 @@
 {
-  "version": "2018.01.25.0000.0000",
+  "version": "2018.02.09.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -4879,9 +4879,9 @@
           }
         },
         {
+          "index": 3,
           "type": "repeat",
           "count": 3,
-          "index": 3,
           "definition": {
             "name": "Row{Required}",
             "converter": {
@@ -7561,15 +7561,13 @@
       "defaultColumn": "Text",
       "definitions": [
         {
-          "index": 0,
           "name": "Name{Action}"
         },
         {
           "index": 1,
           "name": "Icon1",
           "converter": {
-            "type": "icon",
-            "target": "Action"
+            "type": "icon"
           }
         },
         {
@@ -7587,7 +7585,6 @@
       "defaultColumn": "Text{Output}",
       "definitions": [
         {
-          "index": 0,
           "name": "Text{Output}"
         }
       ]
@@ -9194,8 +9191,7 @@
           "index": 1,
           "name": "Icon",
           "converter": {
-            "type": "icon",
-            "target": "Item"
+            "type": "icon"
           }
         },
         {

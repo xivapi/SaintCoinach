@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,6 +10,8 @@ using SaintCoinach.Ex.Relational.Update.Changes;
 
 namespace SaintCoinach.Ex.Relational.Update {
     public class SheetComparer {
+        private static ConcurrentDictionary<Language, bool> _unavailableLanguages = new ConcurrentDictionary<Language, bool>();
+
         #region Fields
 
         private readonly SheetDefinition _PreviousDefinition;
@@ -89,10 +92,22 @@ namespace SaintCoinach.Ex.Relational.Update {
                                              .Select(_ => new SheetLanguageRemoved(_PreviousDefinition.Name, _)));
 
                     foreach (var lang in prevLang.Intersect(upLang)) {
+                        // Do not compare languages marked unavailable elsewhere.
+                        if (_unavailableLanguages.ContainsKey(lang))
+                            continue;
+
                         var prevSheet = prevMulti.GetLocalisedSheet(lang);
                         var upSheet = upMulti.GetLocalisedSheet(lang);
 
-                        changes.AddRange(Compare(prevSheet, upSheet, lang, columns));
+                        try {
+                            changes.AddRange(Compare(prevSheet, upSheet, lang, columns));
+                        } catch (System.IO.FileNotFoundException) {
+                            // Usually caused by one language ahead of another
+                            // in patches, or that language data is not found.
+                            // Skip it and mark unavailable for other comparisons.
+                            _unavailableLanguages.TryAdd(lang, true);
+                            continue;
+                        }
                     }
                 } else
                     changes.AddRange(Compare(_PreviousSheet, _UpdatedSheet, Language.None, columns));
