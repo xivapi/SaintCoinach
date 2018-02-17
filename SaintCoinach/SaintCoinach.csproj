@@ -78,6 +78,7 @@
     <Compile Include="Ex\PartialDataSheet.Enumerator.cs" />
     <Compile Include="Ex\Relational\RelationalDataIndex.cs" />
     <Compile Include="Ex\Relational\Update\ColumnComparer.cs" />
+    <Compile Include="Ex\Relational\ValueConverters\QuadConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\TomestoneOrItemReferenceConverter.cs" />
     <Compile Include="Ex\Relational\ValueConverters\ComplexLinkConverter.cs" />
     <Compile Include="Ex\Variant1\DataRow.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Ex\Variant2\DataRow.cs" />
     <Compile Include="Ex\Variant2\RelationalDataRow.cs" />
     <Compile Include="Ex\Variant2\SubRow.cs" />
+    <Compile Include="Ex\Relational\Definition\ViewDefinition.cs" />
+    <Compile Include="Ex\ViewCollection.cs" />
     <Compile Include="Graphics\ColorMap.cs" />
     <Compile Include="Xiv\ActionTransient.cs" />
     <Compile Include="Xiv\CompanionTransient.cs" />
@@ -856,6 +859,9 @@
     <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
     <Compile Include="Xiv\QuestRequirements.PreviousQuestRequirement.cs" />
     <Compile Include="Xiv\MasterpieceSupplyDuty.CollectableItem.cs" />
+    <Content Include="exview.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

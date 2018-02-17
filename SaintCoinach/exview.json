@@ -1,0 +1,63 @@
+﻿{
+  "views": [
+    {
+      "sheet": "NpcEquip",
+      "columns": [
+        {
+          "name": "Model{Head}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Body}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Hands}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Legs}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Feet}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Neck}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{Wrists}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{LeftRing}",
+          "converter": {
+            "type": "quad"
+          }
+        },
+        {
+          "name": "Model{RightRing}",
+          "converter": {
+            "type": "quad"
+          }
+        }
+      ]
+    }
+  ]
+}
