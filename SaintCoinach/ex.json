@@ -533,6 +533,18 @@
           }
         },
         {
+          "index": 11,
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "Level",
+            "converter": {
+              "type": "link",
+              "target": "Level"
+            }
+          }
+        },
+        {
           "index": 15,
           "name": "IsAetheryte"
         },
