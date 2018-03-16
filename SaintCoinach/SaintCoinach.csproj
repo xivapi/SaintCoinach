@@ -96,6 +96,7 @@
     <Compile Include="Xiv\GCScripShopCategory.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
     <Compile Include="Xiv\ItemActions\EquipmentCoffer.cs" />
+    <Compile Include="Xiv\ItemActions\CompanyEffect.cs" />
     <Compile Include="Xiv\ItemActions\SustainPotion.cs" />
     <Compile Include="Xiv\ItemActions\FateContentAction.cs" />
     <Compile Include="Xiv\JournalSection.cs" />

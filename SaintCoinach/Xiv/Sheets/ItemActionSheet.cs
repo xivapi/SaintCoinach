@@ -15,9 +15,11 @@ namespace SaintCoinach.Xiv.Sheets {
 
         private static readonly Dictionary<int, Type> ItemActionTypes = new Dictionary<int, Type> {
             {
+                // Just so it stops giving messages.
                 0, typeof(ItemAction)
-            }, // Just so it stops giving messages.
-            {
+            }, {
+                816, typeof(IA.CompanyEffect)
+            }, {
                 841, typeof(IA.HostileEffect)
             }, {
                 842, typeof(IA.StatusRemoval)

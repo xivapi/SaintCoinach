@@ -18,7 +18,7 @@ namespace Godbert {
             try {
                 if (File.Exists(FileName)) {
                     var text = File.ReadAllText(FileName);
-                    return JsonConvert.DeserializeObject<Settings>(text);
+                    return JsonConvert.DeserializeObject<Settings>(text) ?? new Settings();
                 }
             } catch (Exception) {
                 // Error reading settings.  Return default.
