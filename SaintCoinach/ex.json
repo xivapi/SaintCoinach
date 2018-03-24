@@ -128,7 +128,7 @@
             "type": "link",
             "target": "ActionCastVFX"
           }
-        },                  
+        },
         {
           "index": 7,
           "name": "Animation{End}",
@@ -309,17 +309,17 @@
       "definitions": [
         {
           "name": "Name",
-            "converter": {
-             "type": "link",
-             "target": "ActionTimeline"
-          }          
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
         },
-       {
+        {
           "index": 1,
           "name": "VFX",
-            "converter": {
-             "type": "link",
-             "target": "VFX"
+          "converter": {
+            "type": "link",
+            "target": "VFX"
           }
         }
       ]
@@ -330,9 +330,9 @@
       "definitions": [
         {
           "name": "VFX",
-            "converter": {
-             "type": "link",
-             "target": "VFX"
+          "converter": {
+            "type": "link",
+            "target": "VFX"
           }
         }
       ]
@@ -371,7 +371,7 @@
         }
       ]
     },
-   {
+    {
       "sheet": "ActionParam",
       "defaultColumn": "Name",
       "definitions": [
@@ -2689,7 +2689,7 @@
             "type": "link",
             "target": "ActionTimeline"
           }
-        },                 
+        },
         {
           "index": 3,
           "name": "Animation{End}",
@@ -2697,7 +2697,7 @@
             "type": "link",
             "target": "ActionTimeline"
           }
-        },        
+        },
         {
           "index": 4,
           "name": "Icon",
@@ -3805,7 +3805,7 @@
           "name": "PowerModifier"
         }
       ]
-    },         
+    },
     {
       "sheet": "EventAction",
       "defaultColumn": "Name",
@@ -3987,7 +3987,7 @@
             "type": "link",
             "target": "BGM"
           }
-        },        
+        },
         {
           "index": 27,
           "name": "Name"
@@ -5072,7 +5072,7 @@
             "type": "link",
             "target": "Action"
           }
-        },              
+        },
         {
           "index": 7,
           "name": "Icon",
@@ -7460,7 +7460,7 @@
         }
       ]
     },
-    {  
+    {
       "sheet": "PvPActionSort",
       "defaultColumn": "Name",
       "definitions": [
@@ -7928,60 +7928,51 @@
       "defaultColumn": "Name",
       "definitions": [
         {
-          "index": 0,
           "name": "ClassJobCategory",
           "converter": {
             "type": "link",
             "target": "ClassJobCategory"
           }
         },
-         {
-          "index": 1,
-          "name": "Item{Reward}[1]",
-          "converter": {
-            "type": "link",
-            "target": "Item"
-          }
-        },
         {
-          "index": 2,
-          "name": "Item{Reward}[2]",
-          "converter": {
-            "type": "link",
-            "target": "Item"
+          "index": 1,
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "Reward{Item}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
           }
         },
         {
           "index": 5,
-          "name": "Reward {Amount}1]"
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "Reward{Amount}"
+          }
         },
         {
-          "index": 6,
-          "name": "Reward {Amount}[2]"
-        },
-         {
           "index": 9,
-          "name": "Required{Item}[1]",
-          "converter": {
-            "type": "link",
-            "target": "Item"
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "Required{Item}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
           }
-        },
-          {
-          "index": 10,
-          "name": "Required{Item}[2]",
-          "converter": {
-            "type": "link",
-            "target": "Item"
-          }
-        },
-         {
-          "index": 13,
-          "name": "Received {Amount}[1]"
         },
         {
-          "index": 14,
-          "name": "Received {Amount}[2]"
+          "index": 13,
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "Required{Amount}"
+          }
         }
       ]
     },
@@ -9218,7 +9209,7 @@
         {
           "index": 4,
           "name": "Category"
-        },        
+        },
         {
           "index": 5,
           "name": "HitEffect",
@@ -9226,7 +9217,7 @@
             "type": "link",
             "target": "StatusHitEffect"
           }
-        }, 
+        },
         {
           "index": 6,
           "name": "VFX",
@@ -9234,7 +9225,7 @@
             "type": "link",
             "target": "StatusLoopVFX"
           }
-        },        
+        },
         {
           "index": 7,
           "name": "LockMovement"
@@ -9285,7 +9276,7 @@
           }
         }
       ]
-    },     
+    },
     {
       "sheet": "StatusLoopVFX",
       "defaultColumn": "Location",
@@ -9298,7 +9289,7 @@
           }
         }
       ]
-    },    
+    },
     {
       "sheet": "Story",
       "isGenericReferenceTarget": true,
@@ -10263,7 +10254,7 @@
         }
       ]
     },
-     {
+    {
       "sheet": "VFX",
       "defaultColumn": "Location",
       "definitions": [
