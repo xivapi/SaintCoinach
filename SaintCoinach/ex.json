@@ -114,8 +114,24 @@
           }
         },
         {
+          "index": 5,
+          "name": "Animation{Start}",
+          "converter": {
+            "type": "link",
+            "target": "ActionCastTimeline"
+          }
+        },
+        {
+          "index": 6,
+          "name": "VFX",
+          "converter": {
+            "type": "link",
+            "target": "ActionCastVFX"
+          }
+        },                  
+        {
           "index": 7,
-          "name": "ActionTimeline{Use}",
+          "name": "Animation{End}",
           "converter": {
             "type": "link",
             "target": "ActionTimeline"
@@ -288,6 +304,40 @@
       ]
     },
     {
+      "sheet": "ActionCastTimeline",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name",
+            "converter": {
+             "type": "link",
+             "target": "ActionTimeline"
+          }          
+        },
+       {
+          "index": 1,
+          "name": "VFX",
+            "converter": {
+             "type": "link",
+             "target": "VFX"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ActionCastVFX",
+      "defaultColumn": "VFX",
+      "definitions": [
+        {
+          "name": "VFX",
+            "converter": {
+             "type": "link",
+             "target": "VFX"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ActionComboRoute",
       "defaultColumn": "Name",
       "definitions": [
@@ -318,6 +368,15 @@
             "type": "link",
             "target": "Action"
           }
+        }
+      ]
+    },
+   {
+      "sheet": "ActionParam",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
         }
       ]
     },
@@ -2624,6 +2683,22 @@
           "name": "Description"
         },
         {
+          "index": 2,
+          "name": "Animation{Start}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },                 
+        {
+          "index": 3,
+          "name": "Animation{End}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },        
+        {
           "index": 4,
           "name": "Icon",
           "converter": {
@@ -3701,6 +3776,37 @@
       ]
     },
     {
+      "sheet": "EurekaAethernet",
+      "defaultColumn": "Location",
+      "definitions": [
+        {
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaGrowData",
+      "defaultColumn": "BaseElementalPower",
+      "definitions": [
+        {
+          "name": "BaseResistance"
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaSphereElementAdjust",
+      "defaultColumn": "PowerModifier",
+      "definitions": [
+        {
+          "name": "PowerModifier"
+        }
+      ]
+    },         
+    {
       "sheet": "EventAction",
       "defaultColumn": "Name",
       "definitions": [
@@ -3838,6 +3944,13 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "name": "EurekaFate"
+        },
+        {
+          "index": 2,
+          "name": "Location"
+        },
+        {
           "index": 3,
           "name": "ClassJobLevel"
         },
@@ -3868,6 +3981,14 @@
           }
         },
         {
+          "index": 13,
+          "name": "Music",
+          "converter": {
+            "type": "link",
+            "target": "BGM"
+          }
+        },        
+        {
           "index": 27,
           "name": "Name"
         },
@@ -3885,6 +4006,14 @@
           "count": 3,
           "definition": {
             "name": "StatusText"
+          }
+        },
+        {
+          "index": 33,
+          "name": "ArrayIndex",
+          "converter": {
+            "type": "link",
+            "target": "ArrayEventHandler"
           }
         }
       ]
@@ -4936,6 +5065,14 @@
           "index": 1,
           "name": "Description"
         },
+        {
+          "index": 3,
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        },              
         {
           "index": 7,
           "name": "Icon",
@@ -6842,6 +6979,112 @@
       ]
     },
     {
+      "sheet": "MoveTimeline",
+      "defaultColumn": "Idle",
+      "definitions": [
+        {
+          "name": "Idle",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 1,
+          "name": "MoveForward",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 2,
+          "name": "MoveBack",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 3,
+          "name": "MoveLeft",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 4,
+          "name": "MoveRight",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 5,
+          "name": "MoveUp",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 6,
+          "name": "MoveDown",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 7,
+          "name": "MoveTurnLeft",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 8,
+          "name": "MoveTurnRight",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Extra",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "MoveVfx",
+      "defaultColumn": "0",
+      "definitions": [
+        {
+          "name": "0",
+          "converter": {
+            "type": "link",
+            "target": "VFX"
+          }
+        },
+        {
+          "index": 1,
+          "name": "1",
+          "converter": {
+            "type": "link",
+            "target": "VFX"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "NpcEquip",
       "definitions": [
         {
@@ -7185,6 +7428,23 @@
         {
           "index": 2,
           "name": "Name{NoArticle}"
+        }
+      ]
+    },
+    {
+      "sheet": "PvPActionSort",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 1,
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
         }
       ]
     },
@@ -8861,6 +9121,26 @@
           "name": "MaxStacks"
         },
         {
+          "index": 4,
+          "name": "Category"
+        },        
+        {
+          "index": 5,
+          "name": "HitEffect",
+          "converter": {
+            "type": "link",
+            "target": "StatusHitEffect"
+          }
+        }, 
+        {
+          "index": 6,
+          "name": "VFX",
+          "converter": {
+            "type": "link",
+            "target": "StatusLoopVFX"
+          }
+        },        
+        {
           "index": 7,
           "name": "LockMovement"
         },
@@ -8898,6 +9178,32 @@
         }
       ]
     },
+    {
+      "sheet": "StatusHitEffect",
+      "defaultColumn": "Location",
+      "definitions": [
+        {
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "VFX"
+          }
+        }
+      ]
+    },     
+    {
+      "sheet": "StatusLoopVFX",
+      "defaultColumn": "Location",
+      "definitions": [
+        {
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "VFX"
+          }
+        }
+      ]
+    },    
     {
       "sheet": "Story",
       "isGenericReferenceTarget": true,
@@ -9859,6 +10165,15 @@
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+     {
+      "sheet": "VFX",
+      "defaultColumn": "Location",
+      "definitions": [
+        {
+          "name": "Location"
         }
       ]
     }
