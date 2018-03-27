@@ -1,5 +1,5 @@
 {
-  "version": "2018.03.07.0000.0000",
+  "version": "2018.03.22.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -295,15 +295,6 @@
       ]
     },
     {
-      "sheet": "ActionCategory",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Name"
-        }
-      ]
-    },
-    {
       "sheet": "ActionCastTimeline",
       "defaultColumn": "Name",
       "definitions": [
@@ -334,6 +325,15 @@
             "type": "link",
             "target": "VFX"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ActionCategory",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
         }
       ]
     },
@@ -10051,6 +10051,15 @@
       ]
     },
     {
+      "sheet": "VFX",
+      "defaultColumn": "Location",
+      "definitions": [
+        {
+          "name": "Location"
+        }
+      ]
+    },
+    {
       "sheet": "Warp",
       "isGenericReferenceTarget": true,
       "definitions": [
@@ -10251,15 +10260,6 @@
       "definitions": [
         {
           "name": "Name"
-        }
-      ]
-    },
-    {
-      "sheet": "VFX",
-      "defaultColumn": "Location",
-      "definitions": [
-        {
-          "name": "Location"
         }
       ]
     }
