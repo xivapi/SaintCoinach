@@ -38,6 +38,7 @@ namespace SaintCoinach.Cmd.Commands {
             var allMaps = _Realm.GameData.GetSheet<SaintCoinach.Xiv.Map>()
                 .Where(m => m.PlaceName != null);
 
+            var fileSet = new Dictionary<string, int>();
             foreach (var map in allMaps) {
                 var img = map.MediumImage;
                 if (img == null)
@@ -58,6 +59,12 @@ namespace SaintCoinach.Cmd.Commands {
                 outPathSb.AppendFormat("{0}", ToPathSafeString(map.PlaceName.Name.ToString()));
                 if (map.LocationPlaceName != null && map.LocationPlaceName.Key != 0 && !map.LocationPlaceName.Name.IsEmpty)
                     outPathSb.AppendFormat(" - {0}", ToPathSafeString(map.LocationPlaceName.Name.ToString()));
+                var mapKey = outPathSb.ToString();
+                fileSet.TryGetValue(mapKey, out int mapIndex);
+                if (mapIndex > 0) {
+                    outPathSb.AppendFormat(" - {0}", mapIndex);
+                }
+                fileSet[mapKey] = mapIndex + 1;
                 outPathSb.Append(FormatToExtension(format));
 
                 var outFile = new FileInfo(Path.Combine(_Realm.GameVersion, outPathSb.ToString()));
