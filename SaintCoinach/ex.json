@@ -411,7 +411,7 @@
           "converter": {
             "type": "link",
             "target": "ActionTimeline"
-          }          
+          }
         },
         {
           "index": 1,
@@ -419,7 +419,7 @@
           "converter": {
             "type": "link",
             "target": "ActionTimeline"
-          }          
+          }
         }
       ]
     },
@@ -1840,7 +1840,7 @@
         },
         {
           "index": 3,
-          "name": "IsActive",
+          "name": "ChocoboRaceAbilityType",
           "converter": {
             "type": "link",
             "target": "ChocoboRaceAbilityType"
@@ -2846,14 +2846,14 @@
             "type": "link",
             "target": "ContentsNoteCategory"
           }
-        }, 
+        },
         {
-          "index": 2,          
+          "index": 2,
           "name": "RequiredAmount"
         }
       ]
     },
-    { 
+    {
       "sheet": "ContentTalk",
       "defaultColumn": "Text",
       "definitions": [
@@ -2872,7 +2872,7 @@
     },
     {
       "sheet": "ContentsNoteCategory",
-      "defaultColumn": "Type",      
+      "defaultColumn": "Type",
       "definitions": [
         {
           "index": 1,
@@ -2881,7 +2881,7 @@
             "type": "link",
             "target": "ContentType"
           }
-        }        
+        }
       ]
     },
     {
@@ -3939,7 +3939,7 @@
           "name": "Singular"
         }
       ]
-    },    
+    },
     {
       "sheet": "EquipRaceCategory",
       "definitions": [
@@ -4470,7 +4470,7 @@
           "name": "VFX",
           "converter": {
             "type": "link",
-            "target": "VFX"            
+            "target": "VFX"
           }
         },
         {
@@ -4481,7 +4481,7 @@
           }
         }
       ]
-    },    
+    },
     {
       "sheet": "FishingSpot",
       "defaultColumn": "PlaceName",
@@ -5712,7 +5712,7 @@
           "converter": {
             "type": "link",
             "target": "InstanceContentTextData"
-          }          
+          }
         },
         {
           "index": 17,
@@ -5720,7 +5720,7 @@
           "converter": {
             "type": "link",
             "target": "InstanceContentTextData"
-          }           
+          }
         },
         {
           "index": 18,
@@ -5822,7 +5822,7 @@
     },
     {
       "sheet": "InstanceContentType",
-      "defaultColumn": "ContentType",      
+      "defaultColumn": "ContentType",
       "definitions": [
         {
           "index": 2,
@@ -6548,11 +6548,15 @@
         },
         {
           "index": 6,
-          "name": "ObjectKey",
+          "name": "ObjectKey"
         },
         {
           "index": 7,
-          "name": "Map"
+          "name": "Map",
+          "converter": {
+            "type": "link",
+            "target": "Map"
+          }
         },
         {
           "index": 8,
@@ -6560,7 +6564,11 @@
         },
         {
           "index": 9,
-          "name": "Territory"
+          "name": "Territory",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
+          }
         }
       ]
     },
@@ -6878,7 +6886,7 @@
             "type": "link",
             "target": "MapMarkerRegion"
           }
-        },        
+        },
         {
           "index": 6,
           "name": "Type"
@@ -6895,13 +6903,13 @@
     },
     {
       "sheet": "MapMarkerRegion",
-      "defaultColumn": "X",      
+      "defaultColumn": "X",
       "definitions": [
         {
           "name": "X"
         }
       ]
-    },    
+    },
     {
       "sheet": "MapSymbol",
       "definitions": [
@@ -6935,7 +6943,7 @@
           "name": "Name"
         }
       ]
-    },    
+    },
     {
       "sheet": "MasterpieceSupplyDuty",
       "definitions": [
@@ -7719,7 +7727,7 @@
             "type": "link",
             "target": "ActionTimeline"
           }
-        },   
+        },
         {
           "index": 7,
           "name": "StopAnimation",
@@ -7739,7 +7747,7 @@
             "type": "link",
             "target": "PerformTransient"
           }
-        }                                             
+        }
       ]
     },
     {
@@ -7750,7 +7758,7 @@
           "name": "Text"
         }
       ]
-    },    
+    },
     {
       "sheet": "Pet",
       "defaultColumn": "Name",
@@ -9395,7 +9403,7 @@
     },
     {
       "sheet": "ScenarioType",
-      "defaultColumn": "Type",      
+      "defaultColumn": "Type",
       "definitions": [
         {
           "name": "Type"
@@ -9404,7 +9412,7 @@
     },
     {
       "sheet": "ScenarioTreeTips",
-      "defaultColumn": "Type",      
+      "defaultColumn": "Type",
       "definitions": [
         {
           "index": 1,
@@ -9421,9 +9429,9 @@
             "type": "link",
             "target": "ScenarioTree"
           }
-        }        
+        }
       ]
-    }, 
+    },
     {
       "sheet": "ScenarioTreeTipsQuest",
       "definitions": [
@@ -9437,7 +9445,7 @@
         {
           "index": 1,
           "name": "RequiredLevel",
-        }                
+        }
       ]
     },
     {
@@ -9456,23 +9464,23 @@
           "name": "RequiredLevel",
         },
         {
-          "index": 2,          
+          "index": 2,
           "name": "RequiredExpansion",
           "converter": {
             "type": "link",
             "target": "ExVersion"
           }
-        },                 
+        },
         {
-          "index": 3,          
+          "index": 3,
           "name": "RequiredQuest",
           "converter": {
             "type": "link",
             "target": "Quest"
           }
-        }        
+        }
       ]
-    },           
+    },
     {
       "sheet": "ScreenImage",
       "definitions": [
@@ -9510,7 +9518,7 @@
           }
         },
         {
-          "index": 1,            
+          "index": 1,
           "name": "Item{2}",
           "converter": {
             "type": "link",
@@ -9518,7 +9526,7 @@
           }
         },
         {
-          "index": 4,            
+          "index": 4,
           "name": "Objective{1}",
           "converter": {
             "type": "link",
@@ -9526,11 +9534,11 @@
           }
         },
         {
-          "index": 6,            
+          "index": 6,
           "name": "RequiredAmount{1}"
         },
         {
-          "index": 9,            
+          "index": 9,
           "name": "Objective2",
           "converter": {
             "type": "link",
@@ -9538,31 +9546,31 @@
           }
         },
         {
-          "index": 11,            
+          "index": 11,
           "name": "RequiredAmount{2}"
         },
         {
-          "index": 14,            
+          "index": 14,
           "name": "Objective3",
           "converter": {
             "type": "link",
             "target": "SkyIsland2MissionDetail"
           }
-        },                
+        },
         {
           "index": 20,
           "name": "Image",
           "converter": {
             "type": "icon"
           }
-        },        
+        },
       ]
     },
     {
       "sheet": "SkyIsland2MissionDetail",
-      "defaultColumn": "Objective", 
+      "defaultColumn": "Objective",
       "definitions": [
-        {          
+        {
           "name": "Type",
           "converter": {
             "type": "link",
@@ -9570,7 +9578,7 @@
           }
         },
         {
-          "index": 2,            
+          "index": 2,
           "name": "Range",
           "converter": {
             "type": "link",
@@ -9578,37 +9586,37 @@
           }
         },
         {
-          "index": 4,            
+          "index": 4,
           "name": "EObj",
           "converter": {
             "type": "link",
             "target": "EObjName"
           }
-        },                         
+        },
         {
-          "index": 7,            
+          "index": 7,
           "name": "Objective"
-        }        
+        }
       ]
     },
     {
       "sheet": "SkyIsland2MissionType",
-      "defaultColumn": "Type",      
+      "defaultColumn": "Type",
       "definitions": [
-        {            
+        {
           "name": "Type",
-        }        
+        }
       ]
     },
     {
       "sheet": "SkyIsland2RangeType",
-      "defaultColumn": "Type",      
+      "defaultColumn": "Type",
       "definitions": [
-        {            
+        {
           "name": "Type",
-        }        
+        }
       ]
-    },                  
+    },
     {
       "sheet": "SpearfishingItem",
       "defaultColumn": "Item",
@@ -10066,7 +10074,7 @@
       "definitions": [
         {
           "name": "Rank"
-        },        
+        },
         {
           "index": 1,
           "name": "ExpToNext"
@@ -10105,7 +10113,7 @@
     },
     {
       "sheet": "TerritoryType",
-      "defaultColumn": "PlaceName",
+      "defaultColumn": "Name",
       "definitions": [
         {
           "name": "Name"
@@ -10452,7 +10460,7 @@
           }
         }
       ]
-    },    
+    },
     {
       "sheet": "TreasureHuntRank",
       "defaultColumn": "Name",
