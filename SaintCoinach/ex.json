@@ -2589,6 +2589,23 @@
       ]
     },
     {
+      "sheet": "ContentNpcTalk",
+      "definitions": [
+        {
+          "index": 1,
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "name": "Script{Instruction}",
+            "converter": {
+            "type": "link",
+            "target": "ContentTalk"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ContentRoulette",
       "defaultColumn": "Name",
       "definitions": [
@@ -2645,6 +2662,39 @@
         {
           "index": 31,
           "name": "RequireAllDuties"
+        }
+      ]
+    },
+    {
+      "sheet": "ContentTalk",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Param",
+          "converter": {
+            "type": "link",
+            "target": "ContentTalkParam"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Text",
+        }
+      ]
+    },
+    {
+      "sheet": "ContentTalkParam",
+      "definitions": [
+        {
+          "name": "Param",
+        },
+        {
+          "index": 2,
+          "name": "TestAction",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
         }
       ]
     },
@@ -4461,6 +4511,7 @@
     },
     {
       "sheet": "GatheringPointBase",
+      "defaultColumn": "GatheringType",      
       "definitions": [
         {
           "name": "GatheringType",
@@ -4496,6 +4547,7 @@
     },
     {
       "sheet": "GatheringPointBonus",
+      "defaultColumn": "Condition",      
       "definitions": [
         {
           "name": "Condition",
@@ -6259,15 +6311,11 @@
         },
         {
           "index": 6,
-          "name": "ObjectKey"
+          "name": "ObjectKey",
         },
         {
           "index": 7,
-          "name": "Map",
-          "converter": {
-            "type": "link",
-            "target": "Map"
-          }
+          "name": "Map"
         },
         {
           "index": 8,
@@ -6275,11 +6323,7 @@
         },
         {
           "index": 9,
-          "name": "Territory",
-          "converter": {
-            "type": "link",
-            "target": "TerritoryType"
-          }
+          "name": "Territory"
         }
       ]
     },
