@@ -404,6 +404,26 @@
       ]
     },
     {
+      "sheet": "ActionTimelineReplace",
+      "definitions": [
+        {
+          "name": "Old",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }          
+        },
+        {
+          "index": 1,
+          "name": "New",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }          
+        }
+      ]
+    },
+    {
       "sheet": "ActionTransient",
       "defaultColumn": "Description",
       "definitions": [
@@ -531,6 +551,30 @@
           "converter": {
             "type": "link",
             "target": "Quest"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AetherCurrentCompFlgSet",
+      "definitions": [
+        {
+          "name": "Territory",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
+          }
+        },
+        {
+          "index": 2,
+          "type": "repeat",
+          "count": 15,
+          "definition": {
+            "name": "AetherCurrent",
+            "converter": {
+              "type": "link",
+              "target": "AetherCurrent"
+            }
           }
         }
       ]
@@ -1213,7 +1257,11 @@
         },
         {
           "index": 7,
-          "name": "Expansion"
+          "name": "Expansion",
+          "converter": {
+            "type": "link",
+            "target": "ExVersion"
+          }
         },
         {
           "index": 8,
@@ -1442,6 +1490,43 @@
       ]
     },
     {
+      "sheet": "Buddy",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "QuestRequirement{2}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 2,
+          "name": "QuestRequirement{1}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 4,
+          "name": "SoundEffect{4}"
+        },
+        {
+          "index": 5,
+          "name": "SoundEffect{3}"
+        },
+        {
+          "index": 6,
+          "name": "SoundEffect{2}"
+        },
+        {
+          "index": 7,
+          "name": "SoundEffect{1}"
+        }
+      ]
+    },
+    {
       "sheet": "BuddyAction",
       "defaultColumn": "Name",
       "definitions": [
@@ -1551,6 +1636,43 @@
       "definitions": [
         {
           "name": "BuddyLevel"
+        },
+        {
+          "index": 1,
+          "name": "IsActive"
+        },
+        {
+          "index": 2,
+          "name": "Defender",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "Trait",
+              "Action"
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "name": "Attacker",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "Trait",
+              "Action"
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "name": "Healer",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "Trait",
+              "Action"
+            ]
+          }
         }
       ]
     },
@@ -1581,7 +1703,7 @@
     },
     {
       "sheet": "CabinetCategory",
-      "defaultColumn": "Name",
+      "defaultColumn": "Category",
       "definitions": [
         {
           "name": "MenuOrder"
@@ -1636,6 +1758,10 @@
         {
           "index": 2,
           "name": "Data"
+        },
+        {
+          "index": 3,
+          "name": "IsPurchasable"
         }
       ]
     },
@@ -1714,7 +1840,7 @@
         },
         {
           "index": 3,
-          "name": "ChocoboRaceAbilityType",
+          "name": "IsActive",
           "converter": {
             "type": "link",
             "target": "ChocoboRaceAbilityType"
@@ -1728,6 +1854,7 @@
     },
     {
       "sheet": "ChocoboRaceAbilityType",
+      "defaultColumn": "IsActive",
       "definitions": [
         {
           "name": "IsActive"
@@ -1820,7 +1947,20 @@
       ]
     },
     {
+      "sheet": "ChocoboTaxi",
+      "definitions": [
+        {
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "ChocoboTaxiStand"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ChocoboTaxiStand",
+      "defaultColumn": "PlaceName",
       "isGenericReferenceTarget": true,
       "definitions": [
         {
@@ -1934,6 +2074,30 @@
           "converter": {
             "type": "link",
             "target": "Item"
+          }
+        },
+        {
+          "index": 38,
+          "name": "UnlockQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 39,
+          "name": "RelicQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 40,
+          "name": "Prerequisite",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
           }
         },
         {
@@ -2084,6 +2248,14 @@
         {
           "index": 34,
           "name": "AST"
+        },
+        {
+          "index": 35,
+          "name": "SAM"
+        },
+        {
+          "index": 36,
+          "name": "RDM"
         }
       ]
     },
@@ -2666,6 +2838,22 @@
       ]
     },
     {
+      "sheet": "ContentsNote",
+      "definitions": [
+        {
+          "name": "ContentType",
+          "converter": {
+            "type": "link",
+            "target": "ContentsNoteCategory"
+          }
+        }, 
+        {
+          "index": 2,          
+          "name": "RequiredAmount"
+        }
+      ]
+    },
+    { 
       "sheet": "ContentTalk",
       "defaultColumn": "Text",
       "definitions": [
@@ -2680,6 +2868,20 @@
           "index": 1,
           "name": "Text"
         }
+      ]
+    },
+    {
+      "sheet": "ContentsNoteCategory",
+      "defaultColumn": "Type",      
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Type",
+          "converter": {
+            "type": "link",
+            "target": "ContentType"
+          }
+        }        
       ]
     },
     {
@@ -3730,6 +3932,15 @@
       ]
     },
     {
+      "sheet": "EObjName",
+      "defaultColumn": "Singular",
+      "definitions": [
+        {
+          "name": "Singular"
+        }
+      ]
+    },    
+    {
       "sheet": "EquipRaceCategory",
       "definitions": [
         {
@@ -4251,6 +4462,26 @@
         }
       ]
     },
+    {
+      "sheet": "FieldMarker",
+      "defaultColumn": "Icon",
+      "definitions": [
+        {
+          "name": "VFX",
+          "converter": {
+            "type": "link",
+            "target": "VFX"            
+          }
+        },
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },    
     {
       "sheet": "FishingSpot",
       "defaultColumn": "PlaceName",
@@ -5477,11 +5708,19 @@
         },
         {
           "index": 16,
-          "name": "InstanceContentTextData{Objective}{Start}"
+          "name": "InstanceContentTextData{Objective}{Start}",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContentTextData"
+          }          
         },
         {
           "index": 17,
-          "name": "InstanceContentTextData{Objective}{End}"
+          "name": "InstanceContentTextData{Objective}{End}",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContentTextData"
+          }           
         },
         {
           "index": 18,
@@ -5583,6 +5822,7 @@
     },
     {
       "sheet": "InstanceContentType",
+      "defaultColumn": "ContentType",      
       "definitions": [
         {
           "index": 2,
@@ -6282,7 +6522,6 @@
     },
     {
       "sheet": "Level",
-      "defaultColumn": "Map",
       "definitions": [
         {
           "name": "X"
@@ -6313,11 +6552,7 @@
         },
         {
           "index": 7,
-          "name": "Map",
-          "converter": {
-            "type": "link",
-            "target": "Map"
-          }
+          "name": "Map"
         },
         {
           "index": 8,
@@ -6325,11 +6560,7 @@
         },
         {
           "index": 9,
-          "name": "Territory",
-          "converter": {
-            "type": "link",
-            "target": "TerritoryType"
-          }
+          "name": "Territory"
         }
       ]
     },
@@ -6641,6 +6872,14 @@
           "name": "SubtextOrientation"
         },
         {
+          "index": 5,
+          "name": "MapMarkerRegion",
+          "converter": {
+            "type": "link",
+            "target": "MapMarkerRegion"
+          }
+        },        
+        {
           "index": 6,
           "name": "Type"
         },
@@ -6654,6 +6893,15 @@
         }
       ]
     },
+    {
+      "sheet": "MapMarkerRegion",
+      "defaultColumn": "X",      
+      "definitions": [
+        {
+          "name": "X"
+        }
+      ]
+    },    
     {
       "sheet": "MapSymbol",
       "definitions": [
@@ -6673,6 +6921,21 @@
         }
       ]
     },
+    {
+      "sheet": "Marker",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Name"
+        }
+      ]
+    },    
     {
       "sheet": "MasterpieceSupplyDuty",
       "definitions": [
@@ -7407,6 +7670,88 @@
       ]
     },
     {
+      "sheet": "Perform",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 1,
+          "name": "ModelKey"
+        },
+        {
+          "index": 2,
+          "name": "Animation{Start}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Animation{End}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Animation{Idle}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 5,
+          "name": "Animation{Play01}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 6,
+          "name": "Animation{Play02}",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },   
+        {
+          "index": 7,
+          "name": "StopAnimation",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 8,
+          "name": "Instrument",
+        },
+        {
+          "index": 10,
+          "name": "Transient",
+          "converter": {
+            "type": "link",
+            "target": "PerformTransient"
+          }
+        }                                             
+      ]
+    },
+    {
+      "sheet": "PerformTransient",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },    
+    {
       "sheet": "Pet",
       "defaultColumn": "Name",
       "definitions": [
@@ -8027,6 +8372,19 @@
       ]
     },
     {
+      "sheet": "QuestRepeatFlag",
+      "defaultColumn": "Quest",
+      "definitions": [
+        {
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+      ]
+    },
+    {
       "sheet": "QuestRewardOther",
       "defaultColumn": "Name",
       "definitions": [
@@ -8045,9 +8403,17 @@
         },
         {
           "index": 1,
-          "name": "Icon1",
+          "name": "Icon",
           "converter": {
             "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Addon",
+          "converter": {
+            "type": "link",
+            "target": "Addon"
           }
         },
         {
@@ -8399,6 +8765,19 @@
       ]
     },
     {
+      "sheet": "RecommendContents",
+      "defaultColumn": "Level",
+      "definitions": [
+        {
+          "name": "Level",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Relic",
       "defaultColumn": "Item{Animus}",
       "definitions": [
@@ -8710,6 +9089,18 @@
       ]
     },
     {
+      "sheet": "RetainerTaskLvRange",
+      "definitions": [
+        {
+          "name": "Min"
+        },
+        {
+          "index": 1,
+          "name": "Max"
+        }
+      ]
+    },
+    {
       "sheet": "RetainerTaskNormal",
       "defaultColumn": "Item",
       "definitions": [
@@ -8731,6 +9122,25 @@
         {
           "index": 3,
           "name": "Quantity[2]"
+        },
+        {
+          "index": 4,
+          "name": "GatheringLog",
+          "converter": {
+            "type": "link",
+            "target": "GatheringItem"
+          }
+        },
+        {
+          "index": 5,
+          "name": "FishingLog",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "SpearfishingItem",
+              "FishParameter"
+            ]
+          }
         }
       ]
     },
@@ -8964,6 +9374,106 @@
       ]
     },
     {
+      "sheet": "ScenarioTree",
+      "definitions": [
+        {
+          "name": "Type",
+          "converter": {
+            "type": "link",
+            "target": "ScenarioType"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Image",
+          "converter": {
+            "type": "link",
+            "target": "ScreenImage"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ScenarioType",
+      "defaultColumn": "Type",      
+      "definitions": [
+        {
+          "name": "Type"
+        }
+      ]
+    },
+    {
+      "sheet": "ScenarioTreeTips",
+      "defaultColumn": "Type",      
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Tips1",
+          "converter": {
+            "type": "link",
+            "target": "ScenarioTreeTipsQuest"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Tips2",
+          "converter": {
+            "type": "link",
+            "target": "ScenarioTree"
+          }
+        }        
+      ]
+    }, 
+    {
+      "sheet": "ScenarioTreeTipsQuest",
+      "definitions": [
+        {
+          "name": "Level",
+          "converter": {
+            "type": "link",
+            "target": "level"
+          }
+        },
+        {
+          "index": 1,
+          "name": "RequiredLevel",
+        }                
+      ]
+    },
+    {
+      "sheet": "ScenarioTreeTipsClassQuest",
+      "defaultColumn": "Quest",
+      "definitions": [
+        {
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 1,
+          "name": "RequiredLevel",
+        },
+        {
+          "index": 2,          
+          "name": "RequiredExpansion",
+          "converter": {
+            "type": "link",
+            "target": "ExVersion"
+          }
+        },                 
+        {
+          "index": 3,          
+          "name": "RequiredQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        }        
+      ]
+    },           
+    {
       "sheet": "ScreenImage",
       "definitions": [
         {
@@ -8988,6 +9498,117 @@
         }
       ]
     },
+    {
+      "sheet": "SkyIsland2Mission",
+      "defaultColumn": "Item{1}",
+      "definitions": [
+        {
+          "name": "Item{1}",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        },
+        {
+          "index": 1,            
+          "name": "Item{2}",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        },
+        {
+          "index": 4,            
+          "name": "Objective{1}",
+          "converter": {
+            "type": "link",
+            "target": "SkyIsland2MissionDetail"
+          }
+        },
+        {
+          "index": 6,            
+          "name": "RequiredAmount{1}"
+        },
+        {
+          "index": 9,            
+          "name": "Objective2",
+          "converter": {
+            "type": "link",
+            "target": "SkyIsland2MissionDetail"
+          }
+        },
+        {
+          "index": 11,            
+          "name": "RequiredAmount{2}"
+        },
+        {
+          "index": 14,            
+          "name": "Objective3",
+          "converter": {
+            "type": "link",
+            "target": "SkyIsland2MissionDetail"
+          }
+        },                
+        {
+          "index": 20,
+          "name": "Image",
+          "converter": {
+            "type": "icon"
+          }
+        },        
+      ]
+    },
+    {
+      "sheet": "SkyIsland2MissionDetail",
+      "defaultColumn": "Objective", 
+      "definitions": [
+        {          
+          "name": "Type",
+          "converter": {
+            "type": "link",
+            "target": "SkyIsland2MissionType"
+          }
+        },
+        {
+          "index": 2,            
+          "name": "Range",
+          "converter": {
+            "type": "link",
+            "target": "SkyIsland2RangeType"
+          }
+        },
+        {
+          "index": 4,            
+          "name": "EObj",
+          "converter": {
+            "type": "link",
+            "target": "EObjName"
+          }
+        },                         
+        {
+          "index": 7,            
+          "name": "Objective"
+        }        
+      ]
+    },
+    {
+      "sheet": "SkyIsland2MissionType",
+      "defaultColumn": "Type",      
+      "definitions": [
+        {            
+          "name": "Type",
+        }        
+      ]
+    },
+    {
+      "sheet": "SkyIsland2RangeType",
+      "defaultColumn": "Type",      
+      "definitions": [
+        {            
+          "name": "Type",
+        }        
+      ]
+    },                  
     {
       "sheet": "SpearfishingItem",
       "defaultColumn": "Item",
@@ -9235,6 +9856,27 @@
       ]
     },
     {
+      "sheet": "StainTransient",
+      "defaultColumn": "Item{1}",
+      "definitions": [
+        {
+          "name": "Item{1}",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Item{2}",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Status",
       "defaultColumn": "Name",
       "definitions": [
@@ -9421,8 +10063,10 @@
     },
     {
       "sheet": "SubmarineRank",
-      "defaultColumn": "Slot",
       "definitions": [
+        {
+          "name": "Rank"
+        },        
         {
           "index": 1,
           "name": "ExpToNext"
@@ -9461,7 +10105,7 @@
     },
     {
       "sheet": "TerritoryType",
-      "defaultColumn": "Name",
+      "defaultColumn": "PlaceName",
       "definitions": [
         {
           "name": "Name"
@@ -9509,6 +10153,28 @@
         {
           "index": 12,
           "name": "WeatherRate"
+        },
+        {
+          "index": 19,
+          "name": "TerritoryNameImage",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 20,
+          "name": "TerritoryAreaNameImage",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 21,
+          "name": "ArrayEventHandler",
+          "converter": {
+            "type": "link",
+            "target": "ArrayEventHandler"
+          }
         },
         {
           "index": 23,
@@ -9713,6 +10379,80 @@
         }
       ]
     },
+    {
+      "sheet": "Transformation",
+      "definitions": [
+        {
+          "name": "Model",
+          "converter": {
+            "type": "link",
+            "target": "ModelChara"
+          }
+        },
+        {
+          "index": 1,
+          "name": "BNpcCustomize",
+          "converter": {
+            "type": "link",
+            "target": "BNpcCustomize"
+          }
+        },
+        {
+          "index": 2,
+          "name": "BNpcEquip",
+          "converter": {
+            "type": "link",
+            "target": "BNpcEquip"
+          }
+        },
+        {
+          "index": 3,
+          "type": "repeat",
+          "count": 6,
+          "definition": {
+            "name": "Action",
+            "converter": {
+              "type": "link",
+              "target": "Action"
+            }
+          }
+        },
+        {
+          "index": 11,
+          "name": "Speed"
+        },
+        {
+          "index": 12,
+          "name": "Scale"
+        },
+        {
+          "index": 13,
+          "name": "IsPvP"
+        },
+        {
+          "index": 14,
+          "name": "IsEvent"
+        },
+        {
+          "index": 15,
+          "name": "PlayerCamera"
+        },
+      ]
+    },
+    {
+      "sheet": "Treasure",
+      "defaultColumn": "Item",
+      "definitions": [
+        {
+          "index": 8,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },    
     {
       "sheet": "TreasureHuntRank",
       "defaultColumn": "Name",
@@ -10101,6 +10841,19 @@
       ]
     },
     {
+      "sheet": "VaseFlower",
+      "definitions": [
+        {
+          "index": 3,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "VFX",
       "defaultColumn": "Location",
       "definitions": [
@@ -10130,15 +10883,27 @@
         },
         {
           "index": 2,
-          "name": "DefaultTalk1"
+          "name": "DefaultTalk1",
+          "converter": {
+            "type": "link",
+            "target": "DefaultTalk"
+          }
         },
         {
           "index": 3,
-          "name": "DefaultTalk2"
+          "name": "DefaultTalk2",
+          "converter": {
+            "type": "link",
+            "target": "DefaultTalk"
+          }
         },
         {
           "index": 4,
-          "name": "DefaultTalk3"
+          "name": "DefaultTalk3",
+          "converter": {
+            "type": "link",
+            "target": "DefaultTalk"
+          }
         },
         {
           "index": 5,
@@ -10147,6 +10912,43 @@
         {
           "index": 6,
           "name": "WarpLogic"
+        }
+      ]
+    },
+    {
+      "sheet": "WarpCondition",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "RequiredQuest{1}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 3,
+          "name": "RequiredQuest{2}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 4,
+          "name": "DRequiredQuest{3}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 5,
+          "name": "RequiredQuest{4}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
         }
       ]
     },
@@ -10206,6 +11008,23 @@
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "sheet": "WeddingBGM",
+      "defaultColumn": "Song",
+      "definitions": [
+        {
+          "name": "Song",
+          "converter": {
+            "type": "link",
+            "target": "BGM"
+          }
+        },
+        {
+          "index": 1,
+          "name": "SongName"
         }
       ]
     },
@@ -10305,11 +11124,102 @@
       ]
     },
     {
+      "sheet": "World",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "DataCenter",
+          "converter": {
+            "type": "link",
+            "target": "WorldDCGroupType"
+          }
+        },
+      ]
+    },
+    {
       "sheet": "WorldDCGroupType",
       "defaultColumn": "Name",
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "YKW",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 2,
+          "type": "repeat",
+          "count": 3,
+          "definition": {
+            "name": "Location",
+            "converter": {
+              "type": "link",
+              "target": "TerritoryType"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ZoneSharedGroup",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "Quest{1}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 6,
+          "name": "Quest{2}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 10,
+          "name": "Quest{3}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 14,
+          "name": "Quest{4}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 18,
+          "name": "Quest{5}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 22,
+          "name": "Quest{6}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
         }
       ]
     }
