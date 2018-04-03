@@ -2888,7 +2888,7 @@
       "sheet": "ContentTalkParam",
       "definitions": [
         {
-          "name": "Param",
+          "name": "Param"
         },
         {
           "index": 2,
@@ -7738,7 +7738,7 @@
         },
         {
           "index": 8,
-          "name": "Instrument",
+          "name": "Instrument"
         },
         {
           "index": 10,
@@ -8389,7 +8389,7 @@
             "type": "link",
             "target": "Quest"
           }
-        },
+        }
       ]
     },
     {
@@ -9444,7 +9444,7 @@
         },
         {
           "index": 1,
-          "name": "RequiredLevel",
+          "name": "RequiredLevel"
         }
       ]
     },
@@ -9461,7 +9461,7 @@
         },
         {
           "index": 1,
-          "name": "RequiredLevel",
+          "name": "RequiredLevel"
         },
         {
           "index": 2,
@@ -9563,7 +9563,7 @@
           "converter": {
             "type": "icon"
           }
-        },
+        }
       ]
     },
     {
@@ -9604,7 +9604,7 @@
       "defaultColumn": "Type",
       "definitions": [
         {
-          "name": "Type",
+          "name": "Type"
         }
       ]
     },
@@ -9613,7 +9613,7 @@
       "defaultColumn": "Type",
       "definitions": [
         {
-          "name": "Type",
+          "name": "Type"
         }
       ]
     },
@@ -10444,7 +10444,7 @@
         {
           "index": 15,
           "name": "PlayerCamera"
-        },
+        }
       ]
     },
     {
@@ -11141,7 +11141,7 @@
             "type": "link",
             "target": "WorldDCGroupType"
           }
-        },
+        }
       ]
     },
     {
