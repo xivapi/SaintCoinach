@@ -142,6 +142,11 @@ namespace SaintCoinach.Ex {
             const int CountOffset = 0x0C;
             const int Length = 0x02;
 
+            // ScreenImage and CutScreenImage reference localized image files,
+            // however their available languages are only None.  Perhaps there
+            // is a flag to use a global list of available languages in this
+            // buffer?
+
             var count = OrderedBitConverter.ToUInt16(buffer, CountOffset, true);
             var langs = new List<Language>();
             for (var i = 0; i < count; ++i) {
