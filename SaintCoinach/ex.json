@@ -2596,10 +2596,10 @@
           "type": "repeat",
           "count": 8,
           "definition": {
-            "name": "Script{Instruction}",
+            "name": "ContentTalk",
             "converter": {
-            "type": "link",
-            "target": "ContentTalk"
+              "type": "link",
+              "target": "ContentTalk"
             }
           }
         }
@@ -2670,7 +2670,7 @@
       "defaultColumn": "Text",
       "definitions": [
         {
-          "name": "Param",
+          "name": "ContentTalkParam",
           "converter": {
             "type": "link",
             "target": "ContentTalkParam"
@@ -2678,7 +2678,7 @@
         },
         {
           "index": 1,
-          "name": "Text",
+          "name": "Text"
         }
       ]
     },
@@ -4511,7 +4511,6 @@
     },
     {
       "sheet": "GatheringPointBase",
-      "defaultColumn": "GatheringType",      
       "definitions": [
         {
           "name": "GatheringType",
@@ -4547,7 +4546,6 @@
     },
     {
       "sheet": "GatheringPointBonus",
-      "defaultColumn": "Condition",      
       "definitions": [
         {
           "name": "Condition",
@@ -6315,7 +6313,11 @@
         },
         {
           "index": 7,
-          "name": "Map"
+          "name": "Map",
+          "converter": {
+            "type": "link",
+            "target": "Map"
+          }
         },
         {
           "index": 8,
@@ -6323,7 +6325,11 @@
         },
         {
           "index": 9,
-          "name": "Territory"
+          "name": "Territory",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
+          }
         }
       ]
     },
