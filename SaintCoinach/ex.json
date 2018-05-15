@@ -2629,6 +2629,17 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "index": 1,
+          "name": "RequiredLevel"
+        },
+        {
+          "index": 3,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
           "index": 5,
           "name": "Name"
         },
