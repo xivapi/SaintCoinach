@@ -9870,6 +9870,22 @@
             "type": "link",
             "target": "Quest"
           }
+        },
+        {
+          "index": 1864,
+          "name": "NotCompleteText",
+          "converter": {
+            "type": "link",
+            "target": "DefaultTalk"
+          }
+        },
+        {
+          "index": 1865,
+          "name": "CompleteText",
+          "converter": {
+            "type": "link",
+            "target": "DefaultTalk"
+          }
         }
       ]
     },
