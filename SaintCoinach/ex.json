@@ -1,5 +1,5 @@
 {
-  "version": "2018.03.28.0000.0000",
+  "version": "2018.05.16.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -1788,7 +1788,7 @@
           "name": "Gender"
         },
         {
-          "index": 2283,
+          "index": 3291,
           "type": "repeat",
           "count": 42,
           "definition": {
@@ -2686,11 +2686,7 @@
       "sheet": "ContentFinderCondition",
       "definitions": [
         {
-          "index": 1,
-          "name": "ContentIndicator"
-        },
-        {
-          "index": 2,
+          "index": 3,
           "name": "InstanceContent",
           "converter": {
             "type": "link",
@@ -2698,7 +2694,7 @@
           }
         },
         {
-          "index": 7,
+          "index": 9,
           "name": "ContentMemberType",
           "converter": {
             "type": "link",
@@ -2706,23 +2702,27 @@
           }
         },
         {
-          "index": 13,
+          "index": 15,
           "name": "ClassJobLevel{Required}"
         },
         {
-          "index": 14,
+          "index": 16,
           "name": "ClassJobLevel{Sync}"
         },
         {
-          "index": 15,
+          "index": 17,
           "name": "ItemLevel{Required}"
         },
         {
-          "index": 16,
+          "index": 18,
           "name": "ItemLevel{Sync}"
         },
         {
-          "index": 36,
+          "index": 24,
+          "name": "ContentIndicator"
+        },
+        {
+          "index": 37,
           "name": "Icon",
           "converter": {
             "type": "icon"
@@ -2797,34 +2797,34 @@
           "name": "IsInDutyFinder"
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "ItemLevel{Required}"
         },
         {
-          "index": 12,
+          "index": 13,
           "name": "Icon",
           "converter": {
             "type": "icon"
           }
         },
         {
-          "index": 14,
+          "index": 15,
           "name": "Reward{TomeA}"
         },
         {
-          "index": 15,
+          "index": 16,
           "name": "Reward{TomeB}"
         },
         {
-          "index": 16,
+          "index": 17,
           "name": "Reward{TomeC}"
         },
         {
-          "index": 19,
+          "index": 20,
           "name": "SortKey"
         },
         {
-          "index": 21,
+          "index": 22,
           "name": "ContentMemberType",
           "converter": {
             "type": "link",
@@ -2832,7 +2832,7 @@
           }
         },
         {
-          "index": 31,
+          "index": 32,
           "name": "RequireAllDuties"
         }
       ]
@@ -2854,6 +2854,20 @@
       ]
     },
     {
+      "sheet": "ContentsNoteCategory",
+      "defaultColumn": "Type",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Type",
+          "converter": {
+            "type": "link",
+            "target": "ContentType"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ContentTalk",
       "defaultColumn": "Text",
       "definitions": [
@@ -2867,20 +2881,6 @@
         {
           "index": 1,
           "name": "Text"
-        }
-      ]
-    },
-    {
-      "sheet": "ContentsNoteCategory",
-      "defaultColumn": "Type",
-      "definitions": [
-        {
-          "index": 1,
-          "name": "Type",
-          "converter": {
-            "type": "link",
-            "target": "ContentType"
-          }
         }
       ]
     },
@@ -3091,9 +3091,6 @@
               },
               {
                 "name": "ItemCount"
-              },
-              {
-                "name": "HQ"
               }
             ]
           }
@@ -5585,11 +5582,11 @@
           }
         },
         {
-          "index": 5,
+          "index": 6,
           "name": "Event"
         },
         {
-          "index": 6,
+          "index": 7,
           "name": "Item",
           "converter": {
             "type": "link",
@@ -5597,7 +5594,7 @@
           }
         },
         {
-          "index": 7,
+          "index": 8,
           "name": "DestroyOnRemoval"
         }
       ]
@@ -5817,24 +5814,6 @@
       "definitions": [
         {
           "name": "Text"
-        }
-      ]
-    },
-    {
-      "sheet": "InstanceContentType",
-      "defaultColumn": "ContentType",
-      "definitions": [
-        {
-          "index": 2,
-          "name": "SortKey"
-        },
-        {
-          "index": 4,
-          "name": "ContentType",
-          "converter": {
-            "type": "link",
-            "target": "ContentType"
-          }
         }
       ]
     },
@@ -7685,11 +7664,11 @@
           "name": "Name"
         },
         {
-          "index": 1,
+          "index": 2,
           "name": "ModelKey"
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "Animation{Start}",
           "converter": {
             "type": "link",
@@ -7697,7 +7676,7 @@
           }
         },
         {
-          "index": 3,
+          "index": 4,
           "name": "Animation{End}",
           "converter": {
             "type": "link",
@@ -7705,7 +7684,7 @@
           }
         },
         {
-          "index": 4,
+          "index": 5,
           "name": "Animation{Idle}",
           "converter": {
             "type": "link",
@@ -7713,7 +7692,7 @@
           }
         },
         {
-          "index": 5,
+          "index": 6,
           "name": "Animation{Play01}",
           "converter": {
             "type": "link",
@@ -7721,7 +7700,7 @@
           }
         },
         {
-          "index": 6,
+          "index": 7,
           "name": "Animation{Play02}",
           "converter": {
             "type": "link",
@@ -7729,7 +7708,7 @@
           }
         },
         {
-          "index": 7,
+          "index": 8,
           "name": "StopAnimation",
           "converter": {
             "type": "link",
@@ -7737,11 +7716,11 @@
           }
         },
         {
-          "index": 8,
+          "index": 9,
           "name": "Instrument"
         },
         {
-          "index": 10,
+          "index": 11,
           "name": "Transient",
           "converter": {
             "type": "link",
@@ -8073,7 +8052,7 @@
           "name": "RepeatIntervalType"
         },
         {
-          "index": 49,
+          "index": 50,
           "type": "repeat",
           "count": 50,
           "definition": {
@@ -8081,7 +8060,7 @@
           }
         },
         {
-          "index": 99,
+          "index": 100,
           "type": "repeat",
           "count": 50,
           "definition": {
@@ -8089,7 +8068,7 @@
           }
         },
         {
-          "index": 1221,
+          "index": 1222,
           "type": "repeat",
           "count": 171,
           "definition": {
@@ -8101,7 +8080,7 @@
           }
         },
         {
-          "index": 1437,
+          "index": 1438,
           "name": "ClassJob{Required}",
           "converter": {
             "type": "link",
@@ -8109,19 +8088,19 @@
           }
         },
         {
-          "index": 1439,
+          "index": 1440,
           "name": "ExpFactor"
         },
         {
-          "index": 1440,
+          "index": 1441,
           "name": "GilReward"
         },
         {
-          "index": 1442,
+          "index": 1443,
           "name": "GCSeals"
         },
         {
-          "index": 1443,
+          "index": 1444,
           "type": "repeat",
           "count": 3,
           "definition": {
@@ -8133,7 +8112,7 @@
           }
         },
         {
-          "index": 1446,
+          "index": 1447,
           "type": "repeat",
           "count": 3,
           "definition": {
@@ -8141,11 +8120,11 @@
           }
         },
         {
-          "index": 1449,
+          "index": 1450,
           "name": "ItemRewardType"
         },
         {
-          "index": 1450,
+          "index": 1451,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -8157,7 +8136,7 @@
           }
         },
         {
-          "index": 1457,
+          "index": 1458,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -8165,7 +8144,7 @@
           }
         },
         {
-          "index": 1464,
+          "index": 1465,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -8177,7 +8156,7 @@
           }
         },
         {
-          "index": 1471,
+          "index": 1472,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -8189,7 +8168,7 @@
           }
         },
         {
-          "index": 1476,
+          "index": 1477,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -8197,7 +8176,7 @@
           }
         },
         {
-          "index": 1481,
+          "index": 1482,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -8205,7 +8184,7 @@
           }
         },
         {
-          "index": 1486,
+          "index": 1487,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -8217,7 +8196,7 @@
           }
         },
         {
-          "index": 1491,
+          "index": 1492,
           "name": "Emote{Reward}",
           "converter": {
             "type": "link",
@@ -8225,7 +8204,7 @@
           }
         },
         {
-          "index": 1492,
+          "index": 1493,
           "name": "Action{Reward}",
           "converter": {
             "type": "link",
@@ -8233,7 +8212,7 @@
           }
         },
         {
-          "index": 1493,
+          "index": 1494,
           "type": "repeat",
           "count": 2,
           "definition": {
@@ -8245,7 +8224,7 @@
           }
         },
         {
-          "index": 1496,
+          "index": 1497,
           "name": "Other{Reward}",
           "converter": {
             "type": "link",
@@ -8253,7 +8232,7 @@
           }
         },
         {
-          "index": 1499,
+          "index": 1500,
           "name": "InstanceContent{Unlock}",
           "converter": {
             "type": "link",
@@ -8261,7 +8240,7 @@
           }
         },
         {
-          "index": 1501,
+          "index": 1502,
           "name": "Tomestone{Reward}",
           "converter": {
             "type": "complexlink",
@@ -8275,15 +8254,15 @@
           }
         },
         {
-          "index": 1502,
+          "index": 1503,
           "name": "TomestoneCount{Reward}"
         },
         {
-          "index": 1503,
+          "index": 1504,
           "name": "ReputationReward"
         },
         {
-          "index": 1504,
+          "index": 1505,
           "name": "PlaceName",
           "converter": {
             "type": "link",
@@ -8291,7 +8270,7 @@
           }
         },
         {
-          "index": 1505,
+          "index": 1506,
           "name": "JournalGenre",
           "converter": {
             "type": "link",
@@ -8299,21 +8278,21 @@
           }
         },
         {
-          "index": 1507,
+          "index": 1508,
           "name": "Icon",
           "converter": {
             "type": "icon"
           }
         },
         {
-          "index": 1508,
+          "index": 1509,
           "name": "Icon{Special}",
           "converter": {
             "type": "icon"
           }
         },
         {
-          "index": 1511,
+          "index": 1512,
           "name": "EventIconType",
           "converter": {
             "type": "link",
@@ -8321,7 +8300,7 @@
           }
         },
         {
-          "index": 1513,
+          "index": 1514,
           "name": "SortKey"
         }
       ]
@@ -8742,15 +8721,15 @@
           "name": "Stars"
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "Difficulty"
         },
         {
-          "index": 3,
+          "index": 4,
           "name": "Quality"
         },
         {
-          "index": 4,
+          "index": 5,
           "name": "Durability"
         }
       ]
@@ -9402,15 +9381,6 @@
       ]
     },
     {
-      "sheet": "ScenarioType",
-      "defaultColumn": "Type",
-      "definitions": [
-        {
-          "name": "Type"
-        }
-      ]
-    },
-    {
       "sheet": "ScenarioTreeTips",
       "defaultColumn": "Type",
       "definitions": [
@@ -9429,22 +9399,6 @@
             "type": "link",
             "target": "ScenarioTree"
           }
-        }
-      ]
-    },
-    {
-      "sheet": "ScenarioTreeTipsQuest",
-      "definitions": [
-        {
-          "name": "Level",
-          "converter": {
-            "type": "link",
-            "target": "level"
-          }
-        },
-        {
-          "index": 1,
-          "name": "RequiredLevel"
         }
       ]
     },
@@ -9478,6 +9432,27 @@
             "type": "link",
             "target": "Quest"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ScenarioTreeTipsQuest",
+      "definitions": [
+        {
+          "name": "Level",
+          "converter": {
+            "type": "link",
+            "target": "level"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ScenarioType",
+      "defaultColumn": "Type",
+      "definitions": [
+        {
+          "name": "Type"
         }
       ]
     },
@@ -9947,12 +9922,12 @@
           "name": "CanDispel"
         },
         {
-          "index": 15,
-          "name": "IsPermanent"
+          "index": 14,
+          "name": "InflictedByActor"
         },
         {
-          "index": 17,
-          "name": "InflictedByActor"
+          "index": 15,
+          "name": "IsPermanent"
         },
         {
           "index": 21,
@@ -10163,21 +10138,7 @@
           "name": "WeatherRate"
         },
         {
-          "index": 19,
-          "name": "TerritoryNameImage",
-          "converter": {
-            "type": "icon"
-          }
-        },
-        {
-          "index": 20,
-          "name": "TerritoryAreaNameImage",
-          "converter": {
-            "type": "icon"
-          }
-        },
-        {
-          "index": 21,
+          "index": 22,
           "name": "ArrayEventHandler",
           "converter": {
             "type": "link",
@@ -10185,7 +10146,7 @@
           }
         },
         {
-          "index": 23,
+          "index": 24,
           "name": "Aetheryte",
           "converter": {
             "type": "link",
@@ -10391,6 +10352,7 @@
       "sheet": "Transformation",
       "definitions": [
         {
+          "index": 1,
           "name": "Model",
           "converter": {
             "type": "link",
@@ -10398,7 +10360,7 @@
           }
         },
         {
-          "index": 1,
+          "index": 2,
           "name": "BNpcCustomize",
           "converter": {
             "type": "link",
@@ -10406,7 +10368,7 @@
           }
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "BNpcEquip",
           "converter": {
             "type": "link",
@@ -10414,7 +10376,7 @@
           }
         },
         {
-          "index": 3,
+          "index": 4,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -10426,23 +10388,23 @@
           }
         },
         {
-          "index": 11,
+          "index": 12,
           "name": "Speed"
         },
         {
-          "index": 12,
+          "index": 13,
           "name": "Scale"
         },
         {
-          "index": 13,
+          "index": 14,
           "name": "IsPvP"
         },
         {
-          "index": 14,
+          "index": 15,
           "name": "IsEvent"
         },
         {
-          "index": 15,
+          "index": 16,
           "name": "PlayerCamera"
         }
       ]

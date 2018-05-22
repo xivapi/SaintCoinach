@@ -44,6 +44,9 @@ namespace SaintCoinach.Ex.Relational.Update {
                     var prevColumn = i + DataDefinition.Index;
                     var upColumn = updatedI + i;
 
+                    if (prevColumn >= comparers.Length)
+                        continue; // Not compatible, index out of bounds.
+
                     var comparer = comparers[prevColumn];
                     if (comparer == null || !comparer.IsCompatibleIndex(upColumn))
                         continue; // Not compatible.

@@ -668,7 +668,6 @@
     <Compile Include="Xiv\InstanceContentData.cs" />
     <Compile Include="Xiv\InstanceContentData.Fight.cs" />
     <Compile Include="Xiv\InstanceContentData.RewardItem.cs" />
-    <Compile Include="Xiv\InstanceContentType.cs" />
     <Compile Include="Xiv\Item.cs" />
     <Compile Include="Xiv\IParameterObject.cs" />
     <Compile Include="Xiv\IShop.cs" />

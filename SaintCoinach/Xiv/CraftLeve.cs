@@ -44,9 +44,7 @@ namespace SaintCoinach.Xiv {
                 if (item.Key == 0)
                     continue;
 
-                var hq = AsBoolean("HQ", i);
-
-                items.Add(new CraftLeveItem(item, count, hq));
+                items.Add(new CraftLeveItem(item, count, false));
             }
 
             return items.ToArray();

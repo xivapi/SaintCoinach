@@ -19,12 +19,6 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         /// <summary>
-        /// Gets the <see cref="InstanceContentType"/> of the current content.
-        /// </summary>
-        /// <value>The <see cref="InstanceContentType"/> of the current content.</value>
-        public InstanceContentType InstanceContentType { get { return As<InstanceContentType>(); } }
-
-        /// <summary>
         /// Gets the time limit to complete the current content.
         /// </summary>
         /// <value>The time limit to complete the current content.</value>
