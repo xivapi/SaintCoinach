@@ -16,7 +16,8 @@ namespace SaintCoinach.Text {
          * - 218 / DAh  Hour
          * - 217 / D9h  Minute
          */
-        Time            = 0x07,     // TODO: It seems to set the time used further on.
+        ResetTime = 0x06,
+        Time = 0x07,     // TODO: It seems to set the time used further on.
         If              = 0x08,
         Switch          = 0x09,
         IfEquals        = 0x0C,

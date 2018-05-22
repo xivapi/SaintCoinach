@@ -2686,6 +2686,10 @@
       "sheet": "ContentFinderCondition",
       "definitions": [
         {
+          "index": 2,
+          "name": "ContentLinkType"
+        },
+        {
           "index": 3,
           "name": "InstanceContent",
           "converter": {
@@ -2718,8 +2722,8 @@
           "name": "ItemLevel{Sync}"
         },
         {
-          "index": 24,
-          "name": "ContentIndicator"
+          "index": 32,
+          "name": "Name"
         },
         {
           "index": 33,
