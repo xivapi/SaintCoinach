@@ -2722,6 +2722,14 @@
           "name": "ContentIndicator"
         },
         {
+          "index": 33,
+          "name": "ContentType",
+          "converter": {
+            "type": "link",
+            "target": "ContentType"
+          }
+        },
+        {
           "index": 37,
           "name": "Icon",
           "converter": {

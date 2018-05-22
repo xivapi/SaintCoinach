@@ -13,6 +13,8 @@ namespace SaintCoinach.Xiv {
 
         public ContentMemberType ContentMemberType { get { return As<ContentMemberType>(); } }
 
+        public ContentType ContentType { get { return As<ContentType>(); } }
+
         public int ContentIndicator { get { return AsInt32("ContentIndicator"); } }
 
         /// <summary>
