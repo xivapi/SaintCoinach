@@ -20,7 +20,6 @@ namespace SaintCoinach.Xiv {
         // 1 = InstanceContent, 2 = PartyContent, 3 = PublicContent, 4 = GoldSaucerContent?, 5 = special or test event content?
         public byte ContentLinkType => As<byte>("ContentLinkType");
 
-
         /// <summary>
         /// Gets the description of the current content.
         /// </summary>

@@ -6142,6 +6142,10 @@
         {
           "index": 86,
           "name": "IsPvP"
+        },
+        {
+          "index": 87,
+          "name": "IsGlamourous"
         }
       ]
     },

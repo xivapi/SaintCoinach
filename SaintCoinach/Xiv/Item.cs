@@ -201,6 +201,8 @@ namespace SaintCoinach.Xiv {
         public bool IsConvertable {
             get { return As<byte>("MaterializeType") > 0; }
         }
+
+        public bool IsGlamourous => AsBoolean("IsGlamourous");
         #endregion
 
         #region Constructors
