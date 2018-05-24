@@ -9193,6 +9193,27 @@
       ]
     },
     {
+      "sheet": "PreHandler",
+      "defaultColumn": "",
+      "definitions": [
+        {
+          "name": "GilShop",
+          "converter": {
+            "type": "link",
+            "target": "GilShop"
+          }
+        },
+        {
+          "index": 2,
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Salvage",
       "defaultColumn": "OptimalSkill",
       "definitions": [
