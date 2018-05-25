@@ -88,12 +88,6 @@ namespace SaintCoinach.Xiv.Items {
         public int FreeMateriaSlots { get { return AsInt32("MateriaSlotCount"); } }
 
         /// <summary>
-        ///     Gets the <see cref="ClassJob" /> required to repair the current item.
-        /// </summary>
-        /// <value>The <see cref="ClassJob" /> required to repair the current item.</value>
-        public ClassJob RepairClassJob { get { return As<ClassJob>("ClassJob{Repair}"); } }
-
-        /// <summary>
         ///     Gets the <see cref="Item" /> required to repair the current item.
         /// </summary>
         /// <value>The <see cref="Item" /> required to repair the current item.</value>
