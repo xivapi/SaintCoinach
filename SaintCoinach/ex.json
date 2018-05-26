@@ -1155,6 +1155,14 @@
       "sheet": "BattleLeve",
       "definitions": [
         {
+          "index": 8,
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "name": "MULTIREF"
+          }
+        },
+        {
           "index": 16,
           "type": "repeat",
           "count": 8,
