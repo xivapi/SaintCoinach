@@ -1681,6 +1681,14 @@
           "name": "Plural"
         },
         {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 5,
+          "name": "Rarity"
+        },
+        {
           "index": 8,
           "name": "Name"
         },
