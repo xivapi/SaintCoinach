@@ -4600,6 +4600,19 @@
       ]
     },
     {
+      "sheet": "EventItemCastTimeline",
+      "defaultColumn": "ActionTimeline",
+      "definitions": [
+        {
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ExVersion",
       "defaultColumn": "Name",
       "definitions": [
