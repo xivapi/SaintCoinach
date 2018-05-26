@@ -7648,6 +7648,27 @@
       ]
     },
     {
+      "sheet": "MobHuntOrderType",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 2,
+          "name": "EventItem",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "MobHuntTarget",
       "definitions": [
         {
