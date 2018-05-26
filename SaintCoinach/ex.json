@@ -6244,6 +6244,14 @@
           "name": "Event"
         },
         {
+          "index": 5,
+          "name": "CustomTalk",
+          "converter": {
+            "type": "link",
+            "target": "CustomTalk"
+          }
+        },
+        {
           "index": 7,
           "name": "Item",
           "converter": {
@@ -6254,6 +6262,147 @@
         {
           "index": 8,
           "name": "DestroyOnRemoval"
+        },
+        {
+          "index": 9,
+          "name": "Tooltip",
+          "converter": {
+            "type": "link",
+            "target": "HousingPlacement"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "HousingPlacement",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },
+    {
+      "sheet": "HousingPreset",
+      "definitions": [
+        {
+          "name": "Singular"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 10,
+          "name": "ExteriorRoof",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 11,
+          "name": "ExteriorWall",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 12,
+          "name": "ExteriorWindow",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 13,
+          "name": "ExteriorDoor",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 14,
+          "name": "InteriorWall",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 15,
+          "name": "InteriorFlooring",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 16,
+          "name": "InteriorLighting",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 17,
+          "name": "OtherFloorWall",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 18,
+          "name": "OtherFloorFlooring",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 19,
+          "name": "OtherFloorLighting",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 20,
+          "name": "BasementWall",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 21,
+          "name": "BasementFlooring",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 22,
+          "name": "BasementLighting",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        },
+        {
+          "index": 23,
+          "name": "MansionLighting",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
         }
       ]
     },
@@ -6290,7 +6439,11 @@
         },
         {
           "index": 5,
-          "name": "Event"
+          "name": "CustomTalk",
+          "converter": {
+            "type": "link",
+            "target": "CustomTalk"
+          }
         },
         {
           "index": 6,
