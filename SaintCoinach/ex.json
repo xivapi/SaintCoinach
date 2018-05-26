@@ -6448,6 +6448,53 @@
       ]
     },
     {
+      "sheet": "HowTo",
+      "definitions": [
+        {
+          "index": 2,
+          "type": "repeat",
+          "count": 10,
+          "definition": {
+            "name": "Images",
+            "converter": {
+              "type": "link",
+              "target": "HowToPage"
+            }
+          }
+        },
+        {
+          "index": 12,
+          "name": "Category",
+          "converter": {
+            "type": "link",
+            "target": "HowToCategory"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "HowToCategory",
+      "defaultColumn": "Category",
+      "definitions": [
+        {
+          "name": "Category"
+        }
+      ]
+    },
+    {
+      "sheet": "HowToPage",
+      "defaultColumn": "Image",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "Image",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "InstanceContent",
       "defaultColumn": "Name",
       "definitions": [
