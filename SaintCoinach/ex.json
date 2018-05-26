@@ -3337,6 +3337,14 @@
           }
         },
         {
+          "index": 1,
+          "name": "CraftLeveTalk",
+          "converter": {
+            "type": "link",
+            "target": "CraftLeveTalk"
+          }
+        },
+        {
           "index": 2,
           "name": "Repeats"
         },
@@ -3360,6 +3368,11 @@
             ]
           }
         }
+      ]
+    },
+    {
+      "sheet": "CraftLeveTalk",
+      "definitions": [
       ]
     },
     {
