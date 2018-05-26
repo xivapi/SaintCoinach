@@ -3689,6 +3689,14 @@
           "name": "Plural"
         },
         {
+          "index": 5,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Rarity"
+        },
+        {
           "index": 9,
           "name": "Name"
         },
@@ -3735,6 +3743,14 @@
         {
           "index": 3,
           "name": "Plural"
+        },
+        {
+          "index": 5,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Rarity"
         },
         {
           "index": 9,
