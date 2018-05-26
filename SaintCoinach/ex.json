@@ -7695,6 +7695,27 @@
       ]
     },
     {
+      "sheet": "ModelState",
+      "defaultColumn": "Start",
+      "definitions": [
+       {
+          "name": "Start",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 1,
+          "name": "End",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "MonsterNote",
       "defaultColumn": "Name",
       "definitions": [
