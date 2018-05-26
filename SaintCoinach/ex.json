@@ -1598,6 +1598,10 @@
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
         }
       ]
     },
