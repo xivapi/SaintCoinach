@@ -12144,6 +12144,43 @@
       ]
     },
     {
+      "sheet": "WarpLogic",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "WarpName"
+        },
+        {
+          "index": 3,
+          "type": "repeat",
+          "count": 10,
+          "definition": {
+            "name": "Function"
+          }
+        },
+        {
+          "index": 13,
+          "type": "repeat",
+          "count": 10,
+          "definition": {
+            "name": "Argument"
+          }
+        },
+        {
+          "index": 23,
+          "name": "TextString"
+        },
+        {
+          "index": 24,
+          "name": "Response(1)"
+        },
+        {
+          "index": 25,
+          "name": "Response(2)"
+        }
+      ]
+    },
+    {
       "sheet": "Weather",
       "defaultColumn": "Name",
       "definitions": [
