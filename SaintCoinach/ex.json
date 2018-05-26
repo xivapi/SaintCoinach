@@ -5121,6 +5121,59 @@
       ]
     },
     {
+      "sheet": "GatheringLeve",
+      "definitions": [
+        {
+          "index": 4,
+          "name": "RequiredItem[1]",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        },
+        {
+          "index": 5,
+          "name": "LeveLevel"
+        },
+        {
+          "index": 6,
+          "name": "RequiredItem[2]",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "GatheringLeveRoute",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 12,
+          "definition": {
+            "type": "group",
+            "members": [
+              {
+                "name": "GatheringPoint",
+                "converter": {
+                  "type": "link",
+                  "target": "GatheringPoint"
+                }
+              },
+              {
+                  "name": "Level",
+                "converter": {
+                  "type": "link",
+                  "target": "Level"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "sheet": "GatheringNotebookList",
       "definitions": [
         {
