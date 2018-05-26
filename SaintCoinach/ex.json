@@ -4917,6 +4917,18 @@
       ]
     },
     {
+      "sheet": "FishingRecordTypeTransient",
+      "defaultColumn": "Icon",
+      "definitions": [
+        {
+          "name": "Image",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "FishingSpot",
       "defaultColumn": "PlaceName",
       "definitions": [
