@@ -4591,15 +4591,6 @@
       ]
     },
     {
-      "sheet": "EventItemHelp",
-      "defaultColumn": "Description",
-      "definitions": [
-        {
-          "name": "Description"
-        }
-      ]
-    },
-    {
       "sheet": "EventItemCastTimeline",
       "defaultColumn": "ActionTimeline",
       "definitions": [
@@ -4609,6 +4600,15 @@
             "type": "link",
             "target": "ActionTimeline"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "EventItemHelp",
+      "defaultColumn": "Description",
+      "definitions": [
+        {
+          "name": "Description"
         }
       ]
     },
