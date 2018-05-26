@@ -8939,6 +8939,61 @@
       ]
     },
     {
+      "sheet": "PvPRank",
+      "definitions": [
+        {
+          "name": "ExpRequired"
+        }
+      ]
+    },
+    {
+      "sheet": "PvPSelectTrait",
+      "definitions": [
+        {
+          "name": "Effect"
+        },
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Value"
+        }
+      ]
+    },
+    {
+      "sheet": "PvPTrait",
+      "definitions": [
+        {
+          "name": "Trait{1}",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Trait{2}",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Trait{3}",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Quest",
       "defaultColumn": "Name",
       "isGenericReferenceTarget": true,
