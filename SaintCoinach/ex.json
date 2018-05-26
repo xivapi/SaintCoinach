@@ -2071,6 +2071,26 @@
       ]
     },
     {
+      "sheet": "ChocoboRaceWeather",
+      "definitions": [
+        {
+          "name": "WeatherType[1]",
+          "converter": {
+            "type": "link",
+            "target": "Weather"
+          }
+        },
+        {
+          "index": 1,
+          "name": "WeatherType[2]",
+          "converter": {
+            "type": "link",
+            "target": "Weather"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ChocoboTaxi",
       "definitions": [
         {
