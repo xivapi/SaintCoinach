@@ -7586,6 +7586,31 @@
       ]
     },
     {
+      "sheet": "LotteryExchangeShop",
+      "definitions": [
+        {
+          "index": 1,
+          "type": "repeat",
+          "count": 16,
+          "definition": {
+            "name": "ItemAccepted",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+          }
+        },
+        {
+          "index": 17,
+          "type": "repeat",
+          "count": 16,
+          "definition": {
+            "name": "AmountAccepted"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "MacroIcon",
       "defaultColumn": "Icon",
       "definitions": [
