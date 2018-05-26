@@ -12663,6 +12663,22 @@
       ]
     },
     {
+      "sheet": "WeeklyLotBonus",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 31,
+          "definition": {
+            "name": "WeeklyLotBonusThreshold",
+            "converter": {
+              "type": "link",
+              "target": "WeeklyLotBonusThreshold"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "World",
       "definitions": [
         {
