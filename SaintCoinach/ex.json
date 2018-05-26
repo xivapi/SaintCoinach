@@ -3907,11 +3907,31 @@
           "name": "Name"
         },
         {
+          "index": 1,
+          "type": "repeat",
+          "count": 7,
+          "definition": {
+            "name": "ActionTimeline",
+            "converter": {
+             "type": "link",
+              "target": "ActionTimeline"
+            }
+          }
+        },
+        {
           "index": 11,
           "name": "EmoteCategory",
           "converter": {
             "type": "link",
             "target": "EmoteCategory"
+          }
+        },
+        {
+          "index": 12,
+          "name": "EmoteMode",
+          "converter": {
+            "type": "link",
+            "target": "EmoteMode"
           }
         },
         {
@@ -3944,6 +3964,10 @@
             "type": "link",
             "target": "LogMessage"
           }
+        },
+        {
+          "index": 22,
+          "name": "ReceivedFrom"
         }
       ]
     },
