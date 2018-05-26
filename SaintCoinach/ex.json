@@ -2926,6 +2926,42 @@
       ]
     },
     {
+      "sheet": "ContentGauge",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 1,
+          "name": "Color",
+          "converter": {
+            "type": "link",
+            "target": "ContentGaugeColor"
+          }
+        },
+        {
+          "index": 3,
+          "name": "TextString"
+        }
+      ]
+    },
+    {
+      "sheet": "ContentGaugeColor",
+      "definitions": [
+        {
+          "name": "AndroidColor{1}"
+        },
+        {
+          "index": 1,
+          "name": "AndroidColor{2}"
+        },
+        {
+          "index": 2,
+          "name": "AndroidColor{3}"
+        }
+      ]
+    },
+    {
       "sheet": "ContentMemberType",
       "defaultColumn": "InstanceContent",
       "definitions": [
