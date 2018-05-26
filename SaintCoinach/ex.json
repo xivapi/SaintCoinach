@@ -11175,10 +11175,10 @@
     },
     {
       "sheet": "StatusLoopVFX",
-      "defaultColumn": "Location",
+      "defaultColumn": "VFX",
       "definitions": [
         {
-          "name": "Location",
+          "name": "VFX",
           "converter": {
             "type": "link",
             "target": "VFX"
@@ -11309,7 +11309,7 @@
     },
     {
       "sheet": "TerritoryType",
-      "defaultColumn": "Name",
+      "defaultColumn": "PlaceName",
       "definitions": [
         {
           "name": "Name"
