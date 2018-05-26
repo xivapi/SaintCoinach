@@ -4468,6 +4468,18 @@
         {
           "index": 2,
           "name": "CastTime"
+        },
+        {
+          "index": 3,
+          "type": "repeat",
+          "count": 3,
+          "definition": {
+            "name": "Animation",
+            "converter": {
+              "type": "link",
+              "target": "ActionTimeline"
+            }
+          }
         }
       ]
     },
