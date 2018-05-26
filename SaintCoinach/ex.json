@@ -1335,6 +1335,70 @@
         }
       ]
     },
+    
+    {
+      "sheet": "BGMFade",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "BGMFadeType",
+          "converter": {
+            "type": "link",
+            "target": "BGMFadeType"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "BGMFadeType",
+      "definitions": [
+      ]
+    },
+    {
+      "sheet": "BGMSituation",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 4,
+          "definition": {
+            "name": "BGM}",
+            "converter": {
+            "type": "link",
+            "target": "BGM"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "BGMSwitch",
+      "definitions": [
+        {
+          "name": "BGMSystemDefine",
+          "converter": {
+            "type": "link",
+            "target": "BGMSystemDefine"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "BGMSystemDefine",
+      "defaultColumn": "Define",
+      "definitions": [
+        {
+          "name": "Define"
+        }
+      ]
+    },
     {
       "sheet": "BNpcAnnounceIcon",
       "defaultColumn": "Icon",
