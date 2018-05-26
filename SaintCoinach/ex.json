@@ -5267,6 +5267,46 @@
       ]
     },
     {
+      "sheet": "Frontline04",
+      "definitions": [
+        {
+          "name": "Level[1]",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Level[2]",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Level[3]",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
+        },
+        {
+          "index": 6,
+          "type": "repeat",
+          "count": 27,
+          "definition": {
+            "name": "Level(1)",
+            "converter": {
+              "type": "link",
+              "target": "Level"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "GardeningSeed",
       "defaultColumn": "Item",
       "definitions": [
