@@ -1031,6 +1031,18 @@
       ]
     },
     {
+      "sheet": "ArrayEventHandler",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 16,
+          "definition": {
+            "name": "MULTIREF"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "AttackType",
       "defaultColumn": "Name",
       "definitions": [
