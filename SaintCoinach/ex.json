@@ -6108,6 +6108,107 @@
       ]
     },
     {
+      "sheet": "HairMakeType",
+      "definitions": [
+        {
+          "name": "Race",
+          "converter": {
+            "type": "link",
+            "target": "Race"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Tribe",
+          "converter": {
+            "type": "link",
+            "target": "Tribe"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Gender"
+        }
+      ]
+    },
+    {
+      "sheet": "HousingAethernet",
+      "definitions": [
+        {
+          "name": "Level"
+        },
+        {
+          "index": 1,
+          "name": "TerritoryType",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
+          }
+        },
+        {
+          "index": 2,
+          "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Order"
+        }
+      ]
+    },
+    {
+      "sheet": "HousingEmploymentNpcList",
+      "definitions": [
+        {
+          "name": "Race",
+          "converter": {
+            "type": "link",
+            "target": "HousingEmploymentNpcRace"
+          }
+        },
+        {
+          "index": 1,
+          "type": "repeat",
+          "count": 2,
+          "definition": {
+            "name": "ENpcBase",
+            "converter": {
+              "type": "link",
+              "target": "ENpcBase"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "HousingEmploymentNpcRace",
+      "defaultColumn": "Race",
+      "definitions": [
+        {
+          "name": "Race"
+        }
+      ]
+    },
+    {
+      "sheet": "HousingEmploymentNpcType",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 12,
+          "definition": {
+            "name": "ENpcBase",
+            "converter": {
+              "type": "link",
+              "target": "ENpcBase"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "HousingFurniture",
       "defaultColumn": "Item",
       "definitions": [
