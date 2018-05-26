@@ -8741,6 +8741,10 @@
         {
           "index": 42,
           "name": "IsSpecializationRequired"
+        },
+        {
+          "index": 44,
+          "name": "PatchNumber"
         }
       ]
     },
@@ -8762,6 +8766,10 @@
         {
           "index": 1,
           "name": "Stars"
+        },
+        {
+          "index": 2,
+          "name": "SuggestedCraftsmanship"
         },
         {
           "index": 3,
