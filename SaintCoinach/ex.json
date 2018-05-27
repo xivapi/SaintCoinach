@@ -1440,7 +1440,7 @@
         }
       ]
     },
-    
+
     {
       "sheet": "BGMFade",
       "definitions": [
@@ -1468,8 +1468,8 @@
           "definition": {
             "name": "BGM}",
             "converter": {
-            "type": "link",
-            "target": "BGM"
+              "type": "link",
+              "target": "BGM"
             }
           }
         }
@@ -3913,7 +3913,7 @@
           "definition": {
             "name": "ActionTimeline",
             "converter": {
-             "type": "link",
+              "type": "link",
               "target": "ActionTimeline"
             }
           }
@@ -5162,7 +5162,7 @@
                 }
               },
               {
-                  "name": "Level",
+                "name": "Level",
                 "converter": {
                   "type": "link",
                   "target": "Level"
@@ -5876,8 +5876,8 @@
           "definition": {
             "name": "Icon",
             "converter": {
-            "type": "icon"
-           }
+              "type": "icon"
+            }
           }
         }
       ]
@@ -5904,9 +5904,9 @@
           "definition": {
             "name": "Quest{Required}",
             "converter": {
-            "type": "link",
-            "target": "Quest"
-           }
+              "type": "link",
+              "target": "Quest"
+            }
           }
         },
         {
@@ -7989,7 +7989,7 @@
       "sheet": "ModelState",
       "defaultColumn": "Start",
       "definitions": [
-       {
+        {
           "name": "Start",
           "converter": {
             "type": "link",
