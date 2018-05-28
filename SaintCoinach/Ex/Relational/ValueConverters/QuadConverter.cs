@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Xiv;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public static QuadConverter FromJson(JToken obj) {
             return new QuadConverter();
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }

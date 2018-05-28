@@ -91,6 +91,10 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public void ResolveReferences(SheetDefinition sheetDef) {
+            RepeatedDefinition.ResolveReferences(sheetDef);
+        }
+
         #endregion
     }
 }

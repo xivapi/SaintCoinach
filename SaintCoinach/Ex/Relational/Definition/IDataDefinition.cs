@@ -26,6 +26,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
         IDataDefinition Clone();
 
         JObject ToJson();
+
+        void ResolveReferences(SheetDefinition sheetDef);
     }
 
     public static class DataDefinitionSerializer {

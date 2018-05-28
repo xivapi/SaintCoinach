@@ -155,12 +155,17 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public static SheetDefinition FromJson(JToken obj) {
-            return new SheetDefinition() {
+            var sheetDef = new SheetDefinition() {
                 Name = (string)obj["sheet"],
                 DefaultColumn = (string)obj["defaultColumn"],
                 IsGenericReferenceTarget = (bool?)obj["isGenericReferenceTarget"] ?? false,
                 DataDefinitions = new List<PositionedDataDefintion>(obj["definitions"].Select(j => PositionedDataDefintion.FromJson(j)))
             };
+
+            foreach (var dataDef in sheetDef.DataDefinitions)
+                dataDef.ResolveReferences(sheetDef);
+
+            return sheetDef;
         }
 
         #endregion

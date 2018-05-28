@@ -78,6 +78,10 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public void ResolveReferences(SheetDefinition sheetDef) {
+            InnerDefinition.ResolveReferences(sheetDef);
+        }
+
         #endregion
     }
 }

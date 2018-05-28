@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using System;
 using YamlDotNet.Serialization;
 
@@ -44,6 +45,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 TargetSheet = (string)obj["target"]
             };
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }

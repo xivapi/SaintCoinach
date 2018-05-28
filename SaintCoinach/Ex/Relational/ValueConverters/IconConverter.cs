@@ -3,6 +3,7 @@ using SaintCoinach.IO;
 
 using YamlDotNet.Serialization;
 using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class IconConverter : IValueConverter {
@@ -36,6 +37,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public static IconConverter FromJson(JToken obj) {
             return new IconConverter();
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }

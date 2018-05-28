@@ -95,6 +95,11 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public void ResolveReferences(SheetDefinition sheetDef) {
+            if (Converter != null)
+                Converter.ResolveReferences(sheetDef);
+        }
+
         #endregion
     }
 }

@@ -9008,8 +9008,23 @@
           "definition": {
             "name": "Item{Reward}[0]",
             "converter": {
-              "type": "link",
-              "target": "Item"
+              "type": "complexlink",
+              "links": [
+                {
+                  "sheet": "Item",
+                  "when": {
+                    "key": "ItemRewardType",
+                    "value": 1
+                  }
+                },
+                {
+                  "sheet": "QuestClassJobReward",
+                  "when": {
+                    "key": "ItemRewardType",
+                    "value": 6
+                  }
+                }
+              ]
             }
           }
         },
@@ -9185,7 +9200,6 @@
     },
     {
       "sheet": "QuestClassJobReward",
-      "defaultColumn": "Name",
       "definitions": [
         {
           "name": "ClassJobCategory",

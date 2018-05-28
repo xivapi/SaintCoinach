@@ -131,6 +131,11 @@ namespace SaintCoinach.Ex.Relational.Definition {
             };
         }
 
+        public void ResolveReferences(SheetDefinition sheetDef) {
+            foreach (var member in _Members)
+                member.ResolveReferences(sheetDef);
+        }
+
         #endregion
     }
 }

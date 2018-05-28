@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 Targets = obj["targets"].Select(t => (string)t).ToArray()
             };
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }

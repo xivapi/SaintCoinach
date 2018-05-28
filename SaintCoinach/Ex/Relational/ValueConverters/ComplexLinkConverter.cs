@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Xiv;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
@@ -24,6 +25,9 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             var coll = row.Sheet.Collection;
 
             foreach (var link in _Links) {
+                if (link.When != null && !link.When.Match(row))
+                    continue;
+
                 var sheet = (IRelationalSheet)coll.GetSheet(link.SheetName);
                 var result = link.RowProducer.GetRow(sheet, key);
                 if (result == null)
@@ -94,6 +98,22 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             }
         }
 
+        class LinkCondition {
+            public string KeyColumnName;
+            public int KeyColumnIndex;
+            public object Value;
+            bool _ValueTypeChanged;
+
+            public bool Match(IDataRow row) {
+                var rowValue = row[KeyColumnIndex];
+                if (!_ValueTypeChanged && rowValue != null) {
+                    Value = System.Convert.ChangeType(Value, rowValue.GetType());
+                    _ValueTypeChanged = true;
+                }
+                return Equals(rowValue, Value);
+            }
+        }
+
         class SheetLinkData {
             public string SheetName;
             public string ProjectedColumnName;
@@ -102,12 +122,20 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             public IRowProducer RowProducer;
             public IProjectable Projection;
 
+            public LinkCondition When;
+
             public JObject ToJson() {
                 var obj = new JObject() { ["sheet"] = SheetName };
                 if (ProjectedColumnName != null)
                     obj["project"] = ProjectedColumnName;
                 if (KeyColumnName != null)
                     obj["key"] = KeyColumnName;
+                if (When != null) {
+                    obj["when"] = new JObject() {
+                        ["key"] = When.KeyColumnName,
+                        ["value"] = new JValue(When.Value)
+                    };
+                }
 
                 return obj;
             }
@@ -131,7 +159,28 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                     data.RowProducer = new IndexedRowProducer() { KeyColumnName = data.KeyColumnName };
                 }
 
+                var when = obj["when"];
+                if (when != null) {
+                    var condition = new LinkCondition();
+                    condition.KeyColumnName = (string)when["key"];
+                    condition.Value = when["value"].ToObject<object>();
+                    data.When = condition;
+                }
+
                 return data;
+            }
+        }
+
+        public void ResolveReferences(SheetDefinition sheetDef) {
+            foreach (var link in _Links) {
+                if (link.When != null) {
+                    var keyDefinition = sheetDef.DataDefinitions
+                        .FirstOrDefault(d => d.InnerDefinition.GetName(0) == link.When.KeyColumnName);
+                    if (keyDefinition == null)
+                        throw new InvalidOperationException($"Can't find conditional key column '{link.When.KeyColumnName}' in sheet '{sheetDef.Name}'");
+
+                    link.When.KeyColumnIndex = keyDefinition.Index;
+                }
             }
         }
 

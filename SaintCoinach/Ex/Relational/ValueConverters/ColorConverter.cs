@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using System;
 using System.Drawing;
 
@@ -49,6 +50,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public static ColorConverter FromJson(JToken obj) {
             return new ColorConverter();
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }

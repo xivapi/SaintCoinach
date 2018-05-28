@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SaintCoinach.Ex.Relational.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public static GenericReferenceConverter FromJson(JToken obj) {
             return new GenericReferenceConverter();
         }
+
+        public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
     }
