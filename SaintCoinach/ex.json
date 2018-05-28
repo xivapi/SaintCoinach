@@ -1,5 +1,5 @@
 {
-  "version": "2018.05.16.0000.0000",
+  "version": "2018.05.26.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -527,6 +527,22 @@
       ]
     },
     {
+      "sheet": "AddonHud",
+      "definitions": [
+        {
+          "name": "Long"
+        },
+        {
+          "index": 1,
+          "name": "Short"
+        },
+        {
+          "index": 2,
+          "name": "Function"
+        }
+      ]
+    },
+    {
       "sheet": "Adventure",
       "defaultColumn": "Name",
       "definitions": [
@@ -597,22 +613,6 @@
         {
           "index": 13,
           "name": "IsInitial"
-        }
-      ]
-    },
-    {
-      "sheet": "AddonHud",
-      "definitions": [
-        {
-          "name": "Long"
-        },
-        {
-          "index": 1,
-          "name": "Short"
-        },
-        {
-          "index": 2,
-          "name": "Function"
         }
       ]
     },
@@ -1440,7 +1440,6 @@
         }
       ]
     },
-
     {
       "sheet": "BGMFade",
       "definitions": [
@@ -1452,11 +1451,6 @@
             "target": "BGMFadeType"
           }
         }
-      ]
-    },
-    {
-      "sheet": "BGMFadeType",
-      "definitions": [
       ]
     },
     {
@@ -2915,6 +2909,18 @@
       ]
     },
     {
+      "sheet": "ContentCloseCycle",
+      "definitions": [
+        {
+          "name": "Unixtime"
+        },
+        {
+          "index": 1,
+          "name": "Time{Seconds}"
+        }
+      ]
+    },
+    {
       "sheet": "ContentExAction",
       "definitions": [
         {
@@ -2927,18 +2933,6 @@
         {
           "index": 2,
           "name": "Charges"
-        }
-      ]
-    },
-    {
-      "sheet": "ContentCloseCycle",
-      "definitions": [
-        {
-          "name": "Unixtime"
-        },
-        {
-          "index": 1,
-          "name": "Time{Seconds}"
         }
       ]
     },
@@ -3163,11 +3157,6 @@
           "index": 32,
           "name": "RequireAllDuties"
         }
-      ]
-    },
-    {
-      "sheet": "ContentRouletteOpenRule",
-      "definitions": [
       ]
     },
     {
@@ -3453,11 +3442,6 @@
             ]
           }
         }
-      ]
-    },
-    {
-      "sheet": "CraftLeveTalk",
-      "definitions": [
       ]
     },
     {
@@ -4613,15 +4597,6 @@
       ]
     },
     {
-      "sheet": "ExVersion",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Name"
-        }
-      ]
-    },
-    {
       "sheet": "EventItemTimeline",
       "defaultColumn": "ActionTimeline",
       "definitions": [
@@ -4631,6 +4606,15 @@
             "type": "link",
             "target": "ActionTimeline"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ExVersion",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
         }
       ]
     },
@@ -6095,19 +6079,6 @@
       "definitions": []
     },
     {
-      "sheet": "HouseRetainerPose",
-      "defaultColumn": "ActionTimeline",
-      "definitions": [
-        {
-          "name": "ActionTimeline",
-          "converter": {
-            "type": "link",
-            "target": "ActionTimeline"
-          }
-        }
-      ]
-    },
-    {
       "sheet": "HairMakeType",
       "definitions": [
         {
@@ -6128,6 +6099,19 @@
         {
           "index": 2,
           "name": "Gender"
+        }
+      ]
+    },
+    {
+      "sheet": "HouseRetainerPose",
+      "defaultColumn": "ActionTimeline",
+      "definitions": [
+        {
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
         }
       ]
     },
@@ -6193,22 +6177,6 @@
       ]
     },
     {
-      "sheet": "HousingEmploymentNpcType",
-      "definitions": [
-        {
-          "type": "repeat",
-          "count": 12,
-          "definition": {
-            "name": "ENpcBase",
-            "converter": {
-              "type": "link",
-              "target": "ENpcBase"
-            }
-          }
-        }
-      ]
-    },
-    {
       "sheet": "HousingFurniture",
       "defaultColumn": "Item",
       "definitions": [
@@ -6240,16 +6208,16 @@
           }
         },
         {
-          "index": 6,
-          "name": "Event"
-        },
-        {
           "index": 5,
           "name": "CustomTalk",
           "converter": {
             "type": "link",
             "target": "CustomTalk"
           }
+        },
+        {
+          "index": 6,
+          "name": "Event"
         },
         {
           "index": 7,
@@ -8662,6 +8630,19 @@
       ]
     },
     {
+      "sheet": "PlaceName",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 2,
+          "name": "Name{NoArticle}"
+        }
+      ]
+    },
+    {
       "sheet": "PlantPotFlowerSeed",
       "definitions": [
         {
@@ -8677,15 +8658,23 @@
       ]
     },
     {
-      "sheet": "PlaceName",
-      "defaultColumn": "Name",
+      "sheet": "PreHandler",
+      "defaultColumn": "",
       "definitions": [
         {
-          "name": "Name"
+          "name": "GilShop",
+          "converter": {
+            "type": "link",
+            "target": "GilShop"
+          }
         },
         {
           "index": 2,
-          "name": "Name{NoArticle}"
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
         }
       ]
     },
@@ -10115,27 +10104,6 @@
           "converter": {
             "type": "link",
             "target": "ClassJob"
-          }
-        }
-      ]
-    },
-    {
-      "sheet": "PreHandler",
-      "defaultColumn": "",
-      "definitions": [
-        {
-          "name": "GilShop",
-          "converter": {
-            "type": "link",
-            "target": "GilShop"
-          }
-        },
-        {
-          "index": 2,
-          "name": "ActionTimeline",
-          "converter": {
-            "type": "link",
-            "target": "ActionTimeline"
           }
         }
       ]
