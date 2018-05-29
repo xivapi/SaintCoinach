@@ -9011,18 +9011,14 @@
               "type": "complexlink",
               "links": [
                 {
-                  "sheet": "Item",
-                  "when": {
-                    "key": "ItemRewardType",
-                    "value": 1
-                  }
-                },
-                {
                   "sheet": "QuestClassJobReward",
                   "when": {
                     "key": "ItemRewardType",
                     "value": 6
                   }
+                },
+                {
+                  "sheet": "Item"
                 }
               ]
             }
