@@ -125,7 +125,7 @@ namespace SaintCoinach.Xiv {
                 var itm = Quest.As<Item>(itemPrefix, i);
                 var c = Quest.AsInt32(countPrefix, i);
 
-                if (itm.Key == 0 || c == 0)
+                if (itm == null || itm.Key == 0 || c == 0)
                     continue;
 
                 Stain s = null;
