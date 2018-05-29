@@ -12350,8 +12350,23 @@
       "sheet": "WeeklyBingoOrderData",
       "definitions": [
         {
+          "name": "Type"
+        },
+        {
           "index": 1,
-          "name": "Data"
+          "name": "Data",
+          "converter": {
+            "type": "complexlink",
+              "links": [
+                {
+                  "sheet": "InstanceContent",
+                  "when": {
+                    "key": "Type",
+                    "value": 0
+                  }
+                }
+              ]
+            }
         },
         {
           "index": 3,
