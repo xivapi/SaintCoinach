@@ -67,7 +67,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         class PrimaryKeyRowProducer : IRowProducer {
             public IRow GetRow(IRelationalSheet sheet, int key) {
-                return sheet[key];
+                return !sheet.ContainsRow(key) ? null : sheet[key];
             }
         }
 
