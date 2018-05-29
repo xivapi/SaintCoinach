@@ -1122,7 +1122,20 @@
           "type": "repeat",
           "count": 16,
           "definition": {
-            "name": "MULTIREF"
+            "name": "Data",
+            "converter": {
+              "type": "multiref",
+              "targets": [
+                "InstanceContentGuide",
+                "Story",
+                "Opening",
+                "CustomTalk",
+                "DefaultTalk",
+                "GilShop",
+                "Warp",
+                "Quest"
+              ]
+            }
           }
         }
       ]
