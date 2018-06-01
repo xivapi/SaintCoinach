@@ -93,6 +93,7 @@
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
     <Compile Include="Xiv\ContentMemberType.cs" />
+    <Compile Include="Xiv\GatheringSubCategory.cs" />
     <Compile Include="Xiv\GCScripShopCategory.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
     <Compile Include="Xiv\ItemActions\EquipmentCoffer.cs" />

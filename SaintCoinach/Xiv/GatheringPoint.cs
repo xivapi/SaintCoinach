@@ -20,7 +20,7 @@ namespace SaintCoinach.Xiv {
         public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
         public GatheringPointBonus[] GatheringPointBonus { get { return _Bonuses ?? (_Bonuses = BuildGatheringPointBonus()); } }
-        
+        public GatheringSubCategory GatheringSubCategory => As<GatheringSubCategory>();
         #endregion
 
         #region Constructors
