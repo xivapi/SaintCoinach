@@ -7438,7 +7438,47 @@
         },
         {
           "index": 6,
-          "name": "ObjectKey"
+          "name": "ObjectKey",
+          "converter": {
+            "type": "complexlink",
+              "links": [
+                {
+                  "sheet": "ENpcBase",
+                  "when": {
+                    "key": "Type",
+                    "value": 8
+                  }
+                },
+                {
+                  "sheet": "BNpcBase",
+                  "when": {
+                    "key": "Type",
+                    "value": 9
+                  }
+                },
+                {
+                  "sheet": "Aetheryte",
+                  "when": {
+                    "key": "Type",
+                    "value": 12
+                  }
+                },
+                {
+                  "sheet": "GatheringPoint",
+                  "when": {
+                    "key": "Type",
+                    "value": 14
+                  }
+                },
+                {
+                  "sheet": "EObj",
+                  "when": {
+                    "key": "Type",
+                    "value": 45
+                  }
+                }
+              ]
+            }
         },
         {
           "index": 7,
@@ -7450,7 +7490,16 @@
         },
         {
           "index": 8,
-          "name": "EventId"
+          "name": "EventId",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "TripleTriad",
+              "Adventure",
+              "Opening",
+              "Quest"
+            ]
+          }
         },
         {
           "index": 9,
