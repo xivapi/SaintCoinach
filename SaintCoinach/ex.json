@@ -2996,6 +2996,10 @@
           "name": "ItemLevel{Sync}"
         },
         {
+          "index": 26,
+          "name": "HighEndDuty"
+        },
+        {
           "index": 32,
           "name": "Name"
         },
