@@ -56,10 +56,10 @@ namespace SaintCoinach.Xiv {
         public int Type { get { return AsInt32("Type"); } }
 
         /// <summary>
-        ///     Gets the key of the object associated witht he current location.
+        ///     Gets the key of the object associated with the current location.
         /// </summary>
-        /// <value>The key of the object associated witht he current location.</value>
-        public int ObjectKey { get { return AsInt32("ObjectKey"); } }
+        /// <value>The key of the object associated with the current location.</value>
+        public IXivRow Object => As<IXivRow>("Object");
 
         /// <summary>
         ///     Gets the <see cref="Map" /> the current location is in.

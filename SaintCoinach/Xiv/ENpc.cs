@@ -40,7 +40,7 @@ namespace SaintCoinach.Xiv {
         #region Build
 
         private Level[] BuildLevels() {
-            return Collection.Collection.GetSheet<Level>().Where(_ => _.ObjectKey == Key).ToArray();
+            return Collection.Collection.GetSheet<Level>().Where(_ => _.Object?.Key == Key).ToArray();
         }
 
         private ILocation[] BuildLocations() {

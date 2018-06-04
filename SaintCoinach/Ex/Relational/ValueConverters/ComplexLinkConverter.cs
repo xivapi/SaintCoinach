@@ -36,7 +36,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 return link.Projection.Project(result);
             }
 
-            return rawValue;
+            return null;
         }
 
 

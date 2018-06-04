@@ -31,7 +31,7 @@ namespace SaintCoinach.Xiv {
         #endregion
 
         private Level[] BuildLocations() {
-            return Sheet.Collection.GetSheet<Level>().Where(_ => _.ObjectKey == Key).ToArray();
+            return Sheet.Collection.GetSheet<Level>().Where(_ => _.Object.Key == Key).ToArray();
         }
     }
 }

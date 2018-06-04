@@ -7438,47 +7438,47 @@
         },
         {
           "index": 6,
-          "name": "ObjectKey",
+          "name": "Object",
           "converter": {
             "type": "complexlink",
-              "links": [
-                {
-                  "sheet": "ENpcBase",
-                  "when": {
-                    "key": "Type",
-                    "value": 8
-                  }
-                },
-                {
-                  "sheet": "BNpcBase",
-                  "when": {
-                    "key": "Type",
-                    "value": 9
-                  }
-                },
-                {
-                  "sheet": "Aetheryte",
-                  "when": {
-                    "key": "Type",
-                    "value": 12
-                  }
-                },
-                {
-                  "sheet": "GatheringPoint",
-                  "when": {
-                    "key": "Type",
-                    "value": 14
-                  }
-                },
-                {
-                  "sheet": "EObj",
-                  "when": {
-                    "key": "Type",
-                    "value": 45
-                  }
+            "links": [
+              {
+                "sheet": "ENpcBase",
+                "when": {
+                  "key": "Type",
+                  "value": 8
                 }
-              ]
-            }
+              },
+              {
+                "sheet": "BNpcBase",
+                "when": {
+                  "key": "Type",
+                  "value": 9
+                }
+              },
+              {
+                "sheet": "Aetheryte",
+                "when": {
+                  "key": "Type",
+                  "value": 12
+                }
+              },
+              {
+                "sheet": "GatheringPoint",
+                "when": {
+                  "key": "Type",
+                  "value": 14
+                }
+              },
+              {
+                "sheet": "EObj",
+                "when": {
+                  "key": "Type",
+                  "value": 45
+                }
+              }
+            ]
+          }
         },
         {
           "index": 7,
