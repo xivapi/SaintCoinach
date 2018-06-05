@@ -1,5 +1,5 @@
 {
-  "version": "2018.05.26.0000.0000",
+  "version": "2018.05.31.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -6021,7 +6021,7 @@
           "converter": {
             "type": "icon"
           }
-        },
+        }
       ]
     },
     {
@@ -8719,6 +8719,19 @@
       ]
     },
     {
+      "sheet": "PartyContentCutscene",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Cutscene",
+          "converter": {
+            "type": "link",
+            "target": "Cutscene"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Perform",
       "defaultColumn": "Name",
       "definitions": [
@@ -8787,19 +8800,6 @@
           "converter": {
             "type": "link",
             "target": "PerformTransient"
-          }
-        }
-      ]
-    },
-    {
-      "sheet": "PartyContentCutscene",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Cutscene",
-          "converter": {
-            "type": "link",
-            "target": "Cutscene"
           }
         }
       ]
