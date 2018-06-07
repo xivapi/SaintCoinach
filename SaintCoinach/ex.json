@@ -3919,6 +3919,19 @@
       ]
     },
     {
+      "sheet": "DefaultTalkLipSyncType",
+      "defaultColumn": "ActionTimeline",
+      "definitions": [
+        {
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "DeliveryQuest",
       "defaultColumn": "Quest",
       "definitions": [
