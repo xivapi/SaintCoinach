@@ -2183,6 +2183,22 @@
       ]
     },
     {
+      "sheet": "ChocoboRaceTutorial",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "name": "NpcYell",
+            "converter": {
+              "type": "link",
+              "target": "NpcYell"
+            }
+          }
+        }
+      ]
+    },
+    {
       "sheet": "ChocoboRaceWeather",
       "definitions": [
         {
@@ -8595,6 +8611,16 @@
             "type": "link",
             "target": "Stain"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "NpcYell",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "index": 9,
+          "name": "Text"
         }
       ]
     },
