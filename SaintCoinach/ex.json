@@ -3218,6 +3218,27 @@
         {
           "index": 32,
           "name": "RequireAllDuties"
+        },
+        {
+          "index": 34,
+          "name": "ContentRouletteOpenRule"
+        },
+        {
+          "index": 35,
+          "name": "InstanceContent",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ContentRouletteOpenRule",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Type"
         }
       ]
     },
