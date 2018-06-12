@@ -11459,6 +11459,14 @@
           }
         },
         {
+          "index": 1862,
+          "name": "Quest{Unlock}",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
           "index": 1863,
           "name": "Quest{Shop}",
           "converter": {
