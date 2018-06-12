@@ -3041,6 +3041,14 @@
           }
         },
         {
+          "index": 34,
+          "name": "Transient",
+          "converter": {
+            "type": "link",
+            "target": "ContentFinderConditionTransient"
+          }
+        },
+        {
           "index": 37,
           "name": "Icon",
           "converter": {
@@ -3051,6 +3059,7 @@
     },
     {
       "sheet": "ContentFinderConditionTransient",
+      "defaultColumn": "Description",
       "definitions": [
         {
           "name": "Description"
