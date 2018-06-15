@@ -3249,8 +3249,44 @@
           }
         },
         {
+          "index": 1,
+          "name": "MenuOrder"
+        },
+        {
           "index": 2,
           "name": "RequiredAmount"
+        },
+        {
+          "index": 4,
+          "name": "ExpMultiplier"
+        },
+        {
+          "index": 6,
+          "name": "GilRward"
+        },
+        {
+          "index": 7,
+          "name": "LevelUnlock"
+        },
+        {
+          "index": 8,
+          "name": "HowTo",
+          "converter": {
+            "type": "link",
+            "target": "HowTo"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Name"
+        },
+        {
+          "index": 10,
+          "name": "Description"
+        },
+        {
+          "index": 11,
+          "name": "ExpCap"
         }
       ]
     },
