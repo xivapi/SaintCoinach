@@ -12001,6 +12001,14 @@
           }
         },
         {
+          "index": 4,
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
           "index": 3,
           "name": "Level"
         },
