@@ -6805,6 +6805,22 @@
           }
         },
         {
+          "index": 6,
+          "name": "WinBGM",
+          "converter": {
+            "type": "link",
+            "target": "BGM"
+          }
+        },
+        {
+          "index": 7,
+          "name": "Cutscene",
+          "converter": {
+            "type": "link",
+            "target": "Cutscene"
+          }
+        },
+        {
           "index": 9,
           "name": "TerritoryType",
           "converter": {
@@ -6818,11 +6834,19 @@
         },
         {
           "index": 13,
-          "name": "InstanceContentTextData{Boss}{Start}"
+          "name": "InstanceContentTextData{Boss}{Start}",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContentTextData"
+          }
         },
         {
           "index": 14,
-          "name": "InstanceContentTextData{Boss}{End}"
+          "name": "InstanceContentTextData{Boss}{End}",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContentTextData"
+          }
         },
         {
           "index": 15,
@@ -6861,6 +6885,10 @@
           "name": "NewPlayerBonusB"
         },
         {
+          "index": 23,
+          "name": "FinalBossExp"
+        },
+        {
           "index": 24,
           "name": "FinalBossCurrencyA"
         },
@@ -6871,6 +6899,19 @@
         {
           "index": 26,
           "name": "FinalBossCurrencyC"
+        },
+        {
+          "index": 27,
+          "type": "repeat",
+          "count": 5,
+          "definition": {
+            "type": "group",
+            "members": [
+              {
+                "name": "BossExp"
+              }
+            ]
+          }
         },
         {
           "index": 32,
@@ -6912,11 +6953,23 @@
           }
         },
         {
+          "index": 47,
+          "name": "InstanceClearExp"
+        },
+        {
           "index": 52,
           "name": "InstanceContentBuff",
           "converter": {
             "type": "link",
             "target": "InstanceContentBuff"
+          }
+        },
+        {
+          "index": 53,
+          "name": "ReqInstance",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
           }
         },
         {
