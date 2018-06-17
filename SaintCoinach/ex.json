@@ -11219,6 +11219,26 @@
       ]
     },
     {
+      "sheet": "SpearfishingRecordPage",
+      "definitions": [
+        {
+          "index": 3,
+          "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Image",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "SpecialShop",
       "defaultColumn": "Name",
       "isGenericReferenceTarget": true,
