@@ -6416,15 +6416,6 @@
       ]
     },
     {
-      "sheet": "GuildleveAssignmentTalk",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Name"
-        }
-      ]
-    },
-    {
       "sheet": "GuildOrderGuide",
       "isGenericReferenceTarget": true,
       "definitions": []
