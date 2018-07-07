@@ -5297,7 +5297,7 @@
           "type": "repeat",
           "count": 27,
           "definition": {
-            "name": "Level(1)",
+            "name": "Unknown{Level}",
             "converter": {
               "type": "link",
               "target": "Level"
@@ -8710,7 +8710,7 @@
         },
         {
           "index": 38,
-          "name": "IsAirborne",
+          "name": "IsAirborne"
         }
       ]
     },
