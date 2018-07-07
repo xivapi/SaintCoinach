@@ -11903,7 +11903,6 @@
     },
     {
       "sheet": "Tomestones",
-      "defaultColumn": "WeeklyLimit",
       "definitions": [
         {
           "name": "WeeklyLimit"
