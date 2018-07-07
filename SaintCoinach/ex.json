@@ -789,10 +789,6 @@
       "definitions": [
         {
           "name": "Text"
-        },
-        {
-          "index": 1,
-          "name": "MULTIREF"
         }
       ]
     },
@@ -1286,14 +1282,6 @@
     {
       "sheet": "BattleLeve",
       "definitions": [
-        {
-          "index": 8,
-          "type": "repeat",
-          "count": 8,
-          "definition": {
-            "name": "MULTIREF"
-          }
-        },
         {
           "index": 16,
           "type": "repeat",
