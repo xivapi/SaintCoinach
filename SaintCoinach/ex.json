@@ -3060,6 +3060,13 @@
         },
         {
           "index": 37,
+          "name": "Image",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 38,
           "name": "Icon",
           "converter": {
             "type": "icon"
