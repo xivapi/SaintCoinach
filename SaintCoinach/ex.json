@@ -3941,6 +3941,42 @@
       ]
     },
     {
+      "sheet": "DeepDungeonMagicStone",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Singular"
+        },
+        {
+          "index": 3,
+          "name": "Plural"
+        },
+        {
+          "index": 5,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Rarity"
+        },
+        {
+          "index": 9,
+          "name": "Name"
+        },
+        {
+          "index": 10,
+          "name": "Tooltip"
+        }
+      ]
+    },
+    {
       "sheet": "DeepDungeonStatus",
       "definitions": [
         {
