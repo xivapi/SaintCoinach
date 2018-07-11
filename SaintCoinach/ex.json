@@ -4214,6 +4214,10 @@
           }
         },
         {
+          "index": 15,
+          "name": "HasCancelEmote"
+        },
+        {
           "index": 18,
           "name": "TextCommand",
           "converter": {
