@@ -8711,7 +8711,40 @@
         },
         {
           "index": 8,
-          "name": "Data{Key}"
+          "name": "Data{Key}",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "Map",
+                "when": {
+                  "key": "Data{Type}",
+                  "value": 1
+                }
+              },
+              {
+                "sheet": "Map",
+                "when": {
+                  "key": "Data{Type}",
+                  "value": 2
+                }
+              },
+              {
+                "sheet": "Aetheryte",
+                "when": {
+                  "key": "Data{Type}",
+                  "value": 3
+                }
+              },
+              {
+                "sheet": "PlaceName",
+                "when": {
+                  "key": "Data{Type}",
+                  "value": 4
+                }
+              }
+            ]
+          }
         }
       ]
     },
