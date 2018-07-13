@@ -53,11 +53,165 @@
         },
         {
           "index": 9,
-          "type": "repeat",
-          "count": 9,
-          "definition": {
-            "name": "Data"
+          "name": "Key",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "Achievement",
+                "when": {
+                  "key": "Type",
+                  "value": 2
+                }
+              },
+              {
+                "sheet": "ClassJob",
+                "when": {
+                  "key": "Type",
+                  "value": 3
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 6
+                }
+              },
+              {
+                "sheet": "ClassJob",
+                "when": {
+                  "key": "Type",
+                  "value": 7
+                }
+              },
+              {
+                "sheet": "Map",
+                "when": {
+                  "key": "Type",
+                  "value": 8
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 9
+                }
+              },
+              {
+                "sheet": "GrandCompany",
+                "when": {
+                  "key": "Type",
+                  "value": 11
+                }
+              },
+              {
+                "sheet": "InstanceContent",
+                "when": {
+                  "key": "Type",
+                  "value": 14
+                }
+              },
+              {
+                "sheet": "BeastTribe",
+                "when": {
+                  "key": "Type",
+                  "value": 15
+                }
+              },
+              {
+                "sheet": "GrandCompany",
+                "when": {
+                  "key": "Type",
+                  "value": 18
+                }
+              },
+              {
+                "sheet": "AetherCurrentCompFlgSet",
+                "when": {
+                  "key": "Type",
+                  "value": 20
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 24
+                }
+              },
+              {
+                "sheet": "ClassJob",
+                "when": {
+                  "key": "Type",
+                  "value": 24
+                }
+              }
+            ]
           }
+        },
+        {
+          "index": 10,
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "name": "Data",
+            "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "Achievement",
+                "when": {
+                  "key": "Type",
+                  "value": 2
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 6
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 9
+                }
+              },
+              {
+                "sheet": "BeastReputationRank",
+                "when": {
+                  "key": "Type",
+                  "value": 15
+                }
+              },
+              {
+                "sheet": "AetherCurrentCompFlgSet",
+                "when": {
+                  "key": "Type",
+                  "value": 20
+                }
+              },
+              {
+                "sheet": "Quest",
+                "when": {
+                  "key": "Type",
+                  "value": 24
+                }
+              },
+              {
+                "sheet": "ClassJob",
+                "when": {
+                  "key": "Type",
+                  "value": 24
+                }
+              }
+            ]
+          }
+         }
         },
         {
           "index": 18,
