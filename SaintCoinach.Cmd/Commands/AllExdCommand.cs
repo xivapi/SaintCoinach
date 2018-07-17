@@ -48,7 +48,7 @@ namespace SaintCoinach.Cmd.Commands {
                         if (!target.Directory.Exists)
                             target.Directory.Create();
 
-                        ExdHelper.SaveAsCsv(sheet, lang, target.FullName);
+                        ExdHelper.SaveAsCsv(sheet, lang, target.FullName, false);
 
                         ++successCount;
                     } catch (Exception e) {

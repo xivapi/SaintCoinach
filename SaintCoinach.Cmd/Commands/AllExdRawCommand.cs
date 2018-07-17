@@ -78,7 +78,7 @@ namespace SaintCoinach.Cmd.Commands
 
                         // Save
                         OutputInformation("[{0}/{1}] Processing: {2} - Language: {3}", currentCount, total, name, lang.GetSuffix());
-                        ExdHelper.SaveAsCsv(sheet, lang, target.FullName);
+                        ExdHelper.SaveAsCsv(sheet, lang, target.FullName, true);
                         ++successCount;
                     }
                     catch (Exception e)

@@ -40,7 +40,7 @@ namespace SaintCoinach.Cmd.Commands {
                     if (!target.Directory.Exists)
                         target.Directory.Create();
 
-                    ExdHelper.SaveAsCsv(sheet, Ex.Language.None, target.FullName);
+                    ExdHelper.SaveAsCsv(sheet, Ex.Language.None, target.FullName, false);
 
                     ++successCount;
                 } catch (Exception e) {
