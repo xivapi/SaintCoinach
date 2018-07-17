@@ -34,6 +34,12 @@ namespace SaintCoinach.Cmd.Commands
         /// <returns></returns>
         public override async Task<bool> InvokeAsync(string paramList)
         {
+            var versionPath = _Realm.GameVersion;
+            if (paramList?.Contains("/UseDefinitionVersion") ?? false)
+                versionPath = _Realm.DefinitionVersion;
+
+            AssignVariables(this, paramList);
+
             const string CsvFileFormat = "raw-exd-all/{0}{1}.csv";
 
             IEnumerable<string> filesToExport;
@@ -63,7 +69,7 @@ namespace SaintCoinach.Cmd.Commands
                     if (code.Length > 0)
                         code = "." + code;
 
-                    var target = new FileInfo(Path.Combine(_Realm.GameVersion, string.Format(CsvFileFormat, name, code)));
+                    var target = new FileInfo(Path.Combine(versionPath, string.Format(CsvFileFormat, name, code)));
 
                     try
                     {
