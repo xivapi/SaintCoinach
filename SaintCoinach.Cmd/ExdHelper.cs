@@ -10,6 +10,29 @@ namespace SaintCoinach.Cmd {
     using Xiv;
 
     static class ExdHelper {
+        public static void SaveAsCsv(Ex.Relational.IRelationalSheet sheet, Language language, string path) {
+            using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
+                var indexLine = new StringBuilder("key");
+                var nameLine = new StringBuilder("#");
+                var typeLine = new StringBuilder("int32");
+
+                var colIndices = new List<int>();
+                foreach (var col in sheet.Header.Columns) {
+                    indexLine.AppendFormat(",{0}", col.Index);
+                    nameLine.AppendFormat(",{0}", col.Name);
+                    typeLine.AppendFormat(",{0}", col.ValueType);
+
+                    colIndices.Add(col.Index);
+                }
+
+                s.WriteLine(indexLine);
+                s.WriteLine(nameLine);
+                s.WriteLine(typeLine);
+
+                ExdHelper.WriteRows(s, sheet, language, colIndices, false);
+            }
+        }
+
         public static void WriteRows(StreamWriter s, ISheet sheet, Language language, IEnumerable<int> colIndices, bool writeRaw) {
             if (sheet.Header.Variant == 1)
                 WriteRowsCore(s, sheet.Cast<Ex.IRow>(), language, colIndices, writeRaw, WriteRowKey);

@@ -48,7 +48,7 @@ namespace SaintCoinach.Cmd.Commands {
                         if (!target.Directory.Exists)
                             target.Directory.Create();
 
-                        SaveAsCsv(sheet, lang, target.FullName);
+                        ExdHelper.SaveAsCsv(sheet, lang, target.FullName);
 
                         ++successCount;
                     } catch (Exception e) {
@@ -62,29 +62,6 @@ namespace SaintCoinach.Cmd.Commands {
             OutputInformation("{0} files exported, {1} failed", successCount, failCount);
 
             return true;
-        }
-
-        public static void SaveAsCsv(Ex.Relational.IRelationalSheet sheet, Language language, string path) {
-            using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
-                var indexLine = new StringBuilder("key");
-                var nameLine = new StringBuilder("#");
-                var typeLine = new StringBuilder("int32");
-
-                var colIndices = new List<int>();
-                foreach (var col in sheet.Header.Columns) {
-                    indexLine.AppendFormat(",{0}", col.Index);
-                    nameLine.AppendFormat(",{0}", col.Name);
-                    typeLine.AppendFormat(",{0}", col.ValueType);
-
-                    colIndices.Add(col.Index);
-                }
-
-                s.WriteLine(indexLine);
-                s.WriteLine(nameLine);
-                s.WriteLine(typeLine);
-
-                ExdHelper.WriteRows(s, sheet, language, colIndices, false);
-            }
         }
     }
 }

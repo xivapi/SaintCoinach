@@ -14,7 +14,7 @@ using Tharga.Toolkit.Console.Command.Base;
 namespace SaintCoinach.Cmd.Commands {
     public class UiCommand : ActionCommandBase {
         const string UiImagePathFormat = "ui/icon/{0:D3}000{1}/{2:D6}.tex";
-        static string[] UiVersions = new string[] {
+        static readonly string[] UiVersions = new string[] {
             "",
             "/en",
             "/ja",
