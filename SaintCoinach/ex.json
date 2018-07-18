@@ -4595,6 +4595,14 @@
         {
           "index": 9,
           "name": "Data"
+        },
+        {
+          "index": 11,
+          "name": "SgbPath",
+          "converter": {
+            "type": "link",
+            "target": "ExportedSG"
+          }
         }
       ]
     },
@@ -13117,6 +13125,16 @@
             "type": "link",
             "target": "Quest"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ExportedSG",
+      "defaultColumn": "SgbPath",
+      "definitions": [
+        {
+          "index": 0,
+          "name": "SgbPath"
         }
       ]
     }
