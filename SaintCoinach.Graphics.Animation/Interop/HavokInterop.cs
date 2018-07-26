@@ -14,7 +14,7 @@ namespace SaintCoinach.Graphics.Animation.Interop {
         static bool _IsThreaded;
         static bool _IsLive;
 
-        static bool _IsAwaiting = false;
+        static volatile bool _IsAwaiting = false;
         static Func<object> _CurrentAction;
         static object _CurrentResult;
 
