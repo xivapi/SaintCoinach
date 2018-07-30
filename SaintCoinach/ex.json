@@ -1,5 +1,5 @@
 {
-  "version": "2018.06.27.0000.0000",
+  "version": "2018.07.06.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -4917,6 +4917,15 @@
             "type": "link",
             "target": "ActionTimeline"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ExportedSG",
+      "defaultColumn": "SgbPath",
+      "definitions": [
+        {
+          "name": "SgbPath"
         }
       ]
     },
@@ -12173,16 +12182,16 @@
           }
         },
         {
+          "index": 3,
+          "name": "Level"
+        },
+        {
           "index": 4,
           "name": "Quest",
           "converter": {
             "type": "link",
             "target": "Quest"
           }
-        },
-        {
-          "index": 3,
-          "name": "Level"
         },
         {
           "index": 5,
@@ -13145,16 +13154,6 @@
             "type": "link",
             "target": "Quest"
           }
-        }
-      ]
-    },
-    {
-      "sheet": "ExportedSG",
-      "defaultColumn": "SgbPath",
-      "definitions": [
-        {
-          "index": 0,
-          "name": "SgbPath"
         }
       ]
     }
