@@ -3064,13 +3064,6 @@
           "converter": {
             "type": "icon"
           }
-        },
-        {
-          "index": 38,
-          "name": "Icon",
-          "converter": {
-            "type": "icon"
-          }
         }
       ]
     },
