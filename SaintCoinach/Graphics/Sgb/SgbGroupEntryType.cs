@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Graphics.Sgb {
     public enum SgbGroupEntryType : int {
         Model = 0x01,
+        Light = 0x03,
+        Gimmick = 0x06
     }
 }

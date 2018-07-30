@@ -89,6 +89,16 @@
     <Compile Include="Ex\Relational\Definition\ViewDefinition.cs" />
     <Compile Include="Ex\ViewCollection.cs" />
     <Compile Include="Graphics\ColorMap.cs" />
+    <Compile Include="Graphics\Lgb\LgbLightEntry.cs" />
+    <Compile Include="Graphics\Lgb\LgbEventObjectEntry.cs" />
+    <Compile Include="Graphics\Sgb\SgbLightEntry.cs" />
+    <Compile Include="Graphics\Sgb\SgbGimmickEntry.cs" />
+    <Compile Include="Graphics\Sgb\SgbGroup1CEntry.cs" />
+    <Compile Include="Graphics\Pcb\IPcbBlockData.cs" />
+    <Compile Include="Graphics\Pcb\PcbBlockData.cs" />
+    <Compile Include="Graphics\Pcb\PcbBlockDataType.cs" />
+    <Compile Include="Graphics\Pcb\PcbBlockEntry.cs" />
+    <Compile Include="Graphics\Pcb\PcbFile.cs" />
     <Compile Include="Xiv\ActionTransient.cs" />
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />

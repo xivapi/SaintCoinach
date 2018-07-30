@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Viewer.Content {
     using SharpDX;
+    using System.Numerics;
 
     public class ContentTerritory : Drawable3DComponent {
         #region Fields
@@ -20,20 +21,23 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #region Constructor
         public ContentTerritory(Engine engine, Territory territory) : base(engine) {
             this.Territory = territory;
-            
+
             if (territory.Terrain != null) {
-                foreach (var part in territory.Terrain.Parts)
+                foreach (var part in territory.Terrain.Parts) {
                     _TerrainContainer.Add(new ContentModel(engine, part));
+                }
             }
             foreach (var lgb in territory.LgbFiles) {
                 foreach(var group in lgb.Groups) {
                     foreach(var part in group.Entries) {
                         var asMdl = part as Lgb.LgbModelEntry;
                         var asGim = part as Lgb.LgbGimmickEntry;
-                        
-                        if (asMdl != null && asMdl.Model != null)
+                        var asEobj = part as Lgb.LgbEventObjectEntry;
+
+                        if (asMdl != null && asMdl.Model != null) {
                             _LgbPartsContainer.Add(new ContentModel(engine, asMdl.Model));
-                        if (asGim != null && asGim.Gimmick != null)
+                        }
+                        if (asGim != null && asGim.Gimmick != null) {
                             _LgbPartsContainer.Add(new ContentSgb(engine, asGim.Gimmick) {
                                 Transformation =
                                     Matrix.Scaling(asGim.Header.Scale.ToDx())
@@ -42,12 +46,40 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                                     * Matrix.RotationZ(asGim.Header.Rotation.Z)
                                     * Matrix.Translation(asGim.Header.Translation.ToDx())
                             });
+                        }
+                        if (asEobj != null && asEobj.Gimmick != null) {
+                            var transformation = Matrix.Scaling(asEobj.Header.Scale.ToDx())
+                                    * Matrix.RotationX(asEobj.Header.Rotation.X)
+                                    * Matrix.RotationY(asEobj.Header.Rotation.Y)
+                                    * Matrix.RotationZ(asEobj.Header.Rotation.Z)
+                                    * Matrix.Translation(asEobj.Header.Translation.ToDx());
+
+                            _LgbPartsContainer.Add(new ContentSgb(engine, asEobj.Gimmick) {
+                                Transformation = transformation
+                            });
+                            foreach (var rootGimGroup in asEobj.Gimmick.Data.OfType<Sgb.SgbGroup>()) {
+                                foreach (var sgb1CEntry in rootGimGroup.Entries.OfType<Sgb.SgbGroup1CEntry>()) {
+                                    var rootGimEntry = sgb1CEntry;
+                                    if (rootGimEntry.Gimmick != null) {
+                                        _LgbPartsContainer.Add(new ContentSgb(engine, sgb1CEntry.Gimmick) {
+                                            Transformation = transformation
+                                        });
+                                        foreach (var subGimGroup in rootGimEntry.Gimmick.Data.OfType<Sgb.SgbGroup>()) {
+                                            foreach (var subGimEntry in subGimGroup.Entries.OfType<Sgb.SgbGimmickEntry>()) {
+                                                _LgbPartsContainer.Add(new ContentSgb(engine, subGimEntry.Gimmick) {
+                                                    Transformation = transformation
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         #endregion
-
         public override void LoadContent() {
             _TerrainContainer.LoadContent();
             _LgbPartsContainer.LoadContent();
