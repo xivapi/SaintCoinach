@@ -54,16 +54,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite.EF6, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.105.2\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\System.Data.SQLite.EF6.1.0.105.2\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Tharga.Toolkit.Console, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Tharga.Toolkit.Console.1.4.5.0\lib\net45\Tharga.Toolkit.Console.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Tharga.Toolkit.Console.1.4.5.0\lib\net45\Tharga.Toolkit.Console.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
