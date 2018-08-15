@@ -84,13 +84,16 @@ namespace SaintCoinach.Cmd.Commands {
                 if (e == null)
                     continue;
 
-                var fileNameWithoutExtension = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filePath), System.IO.Path.GetFileNameWithoutExtension(filePath));
+                var fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(filePath);
                 if (suffix != null)
                     fileNameWithoutExtension += "-" + suffix;
                 if (++count > 1)
                     fileNameWithoutExtension += "-" + count;
 
-                var targetPath = System.IO.Path.Combine(_Realm.GameVersion, fileNameWithoutExtension);
+                foreach (var invalidChar in System.IO.Path.GetInvalidFileNameChars())
+                    fileNameWithoutExtension = fileNameWithoutExtension.Replace(invalidChar.ToString(), "");
+
+                var targetPath = System.IO.Path.Combine(_Realm.GameVersion, System.IO.Path.GetDirectoryName(filePath), fileNameWithoutExtension);
 
                 switch (e.Header.Codec) {
                     case Sound.ScdCodec.MSADPCM:
