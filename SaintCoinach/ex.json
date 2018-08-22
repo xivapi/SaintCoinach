@@ -3360,6 +3360,10 @@
           "name": "ItemLevel{Sync}"
         },
         {
+          "index": 20,
+          "name": "AllowReplacement"
+        },
+        {
           "index": 26,
           "name": "HighEndDuty"
         },
