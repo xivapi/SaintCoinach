@@ -3324,15 +3324,52 @@
       "sheet": "ContentFinderCondition",
       "definitions": [
         {
+          "index": 1,
+          "name": "TerritoryType",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
+          }
+        },
+        {
           "index": 2,
           "name": "ContentLinkType"
         },
         {
           "index": 3,
-          "name": "InstanceContent",
+          "name": "Content",
           "converter": {
-            "type": "link",
-            "target": "InstanceContent"
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "InstanceContent",
+                "when": {
+                  "key": "ContentLinkType",
+                  "value": 1
+                }
+              },
+              {
+                "sheet": "PartyContent",
+                "when": {
+                  "key": "ContentLinkType",
+                  "value": 2
+                }
+              },
+              {
+                "sheet": "PublicContent",
+                "when": {
+                  "key": "ContentLinkType",
+                  "value": 3
+                }
+              },
+              {
+                "sheet": "GoldSaucerContent",
+                "when": {
+                  "key": "ContentLinkType",
+                  "value": 4
+                }
+              }
+            ]
           }
         },
         {

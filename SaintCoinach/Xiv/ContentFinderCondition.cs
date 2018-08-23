@@ -9,7 +9,7 @@ namespace SaintCoinach.Xiv {
     public class ContentFinderCondition : XivRow {
         #region Properties
 
-        public InstanceContent InstanceContent => As<InstanceContent>();
+        public XivRow Content => As<XivRow>("Content");
 
         public ContentMemberType ContentMemberType => As<ContentMemberType>();
 
@@ -17,7 +17,7 @@ namespace SaintCoinach.Xiv {
 
         public Text.XivString Name => AsString("Name");
 
-        // 1 = InstanceContent, 2 = PartyContent, 3 = PublicContent, 4 = GoldSaucerContent?, 5 = special or test event content?
+        // 1 = InstanceContent, 2 = PartyContent, 3 = PublicContent, 4 = GoldSaucerContent, 5 = special or test event content?
         public byte ContentLinkType => As<byte>("ContentLinkType");
 
         /// <summary>
