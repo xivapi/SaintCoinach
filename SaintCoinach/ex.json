@@ -3322,6 +3322,7 @@
     },
     {
       "sheet": "ContentFinderCondition",
+      "defaultColumn": "Name",
       "definitions": [
         {
           "index": 1,
@@ -10034,11 +10035,35 @@
           "name": "Name"
         },
         {
-          "index": 7,
-          "name": "TerritoryType",
+          "index": 4,
+          "name": "TextData[Start]",
           "converter": {
             "type": "link",
-            "target": "TerritoryType"
+            "target": "PublicContentTextData"
+          }
+        },
+        {
+          "index": 5,
+          "name": "TextData[End]",
+          "converter": {
+            "type": "link",
+            "target": "PublicContentTextData"
+          }
+        },
+        {
+          "index": 8,
+          "name": "ContentFinderCondition",
+          "converter": {
+            "type": "link",
+            "target": "ContentFinderCondition"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Eureka",
+          "converter": {
+            "type": "link",
+            "target": "Eureka"
           }
         }
       ]
@@ -10060,6 +10085,15 @@
             "type": "link",
             "target": "Cutscene"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "PublicContentTextData",
+      "defaultColumn": "TextData",
+      "definitions": [
+        {
+          "name": "TextData",
         }
       ]
     },
