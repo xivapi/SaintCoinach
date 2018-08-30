@@ -7680,10 +7680,67 @@
         },
         {
           "index": 14,
-          "name": "Stain",
+          "name": "DataId",
           "converter": {
-            "type": "link",
-            "target": "Stain"
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "SubmarinePart",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 37
+                }
+              },
+              {
+                "sheet": "AirshipExplorationPart",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 28
+                }
+              },
+              {
+                "sheet": "TripleTriadCard",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 27
+                }
+              },
+              {
+                "sheet": "CompanyAction",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 26
+                }
+              },
+              {
+                "sheet": "AetherialWheel",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 25
+                }
+              },
+              {
+                "sheet": "GardeningSeed",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 20
+                }
+              },
+              {
+                "sheet": "TreasureHuntRank",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 18
+                }
+              },
+              {
+                "sheet": "Stain",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 15
+                }
+              }
+            ]
           }
         },
         {
