@@ -10036,7 +10036,7 @@
         },
         {
           "index": 4,
-          "name": "TextData[Start]",
+          "name": "TextData{Start}",
           "converter": {
             "type": "link",
             "target": "PublicContentTextData"
@@ -10044,10 +10044,18 @@
         },
         {
           "index": 5,
-          "name": "TextData[End]",
+          "name": "TextData{End}",
           "converter": {
             "type": "link",
             "target": "PublicContentTextData"
+          }
+        },
+        {
+          "index": 7,
+          "name": "TerritoryType",
+          "converter": {
+            "type": "link",
+            "target": "TerritoryType"
           }
         },
         {
