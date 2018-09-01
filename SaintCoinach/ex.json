@@ -10183,6 +10183,30 @@
             "type": "link",
             "target": "Action"
           }
+        },
+        {
+          "index": 2,
+          "name": "Trait[1]",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Trait[2]",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Trait[3]",
+          "converter": {
+            "type": "link",
+            "target": "Trait"
+          }
         }
       ]
     },
