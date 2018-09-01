@@ -9183,12 +9183,36 @@
           "name": "Plural"
         },
         {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 8,
+          "name": "ModelChara",
+          "converter": {
+            "type": "link",
+            "target": "ModelChara"
+          }
+        },
+        {
           "index": 10,
-          "name": "FlyingCondition"
+          "name": "FlyingCondition",
+          "converter": {
+            "type": "link",
+            "target": "MountFlyingCondition"
+          }
         },
         {
           "index": 14,
           "name": "IsFlying"
+        },
+        {
+          "index": 16,
+          "name": "MountCustomize",
+          "converter": {
+            "type": "link",
+            "target": "MountCustomize"
+          }
         },
         {
           "index": 17,
@@ -9235,6 +9259,85 @@
               "type": "link",
               "target": "Action"
             }
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "MountCustomize",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "HyurMaleScale"
+        },
+        {
+          "index": 2,
+          "name": "HyurFemaleScale"
+        },
+        {
+          "index": 3,
+          "name": "ElezenMaleScale"
+        },
+        {
+          "index": 4,
+          "name": "ElezenFemaleScale"
+        },
+        {
+          "index": 5,
+          "name": "LalaMaleScale"
+        },
+        {
+          "index": 6,
+          "name": "LalaFemaleScale"
+        },
+        {
+          "index": 7,
+          "name": "MiqoMaleScale"
+        },
+        {
+          "index": 8,
+          "name": "MiqoFemaleScale"
+        },
+        {
+          "index": 9,
+          "name": "RoeMaleScale"
+        },
+        {
+          "index": 10,
+          "name": "RoeFemaleScale"
+        },
+        {
+          "index": 11,
+          "name": "AuRaMaleScale"
+        },
+        {
+          "index": 12,
+          "name": "AuRaFemaleScale"
+        }
+      ]
+    },
+    {
+      "sheet": "MountFlyingCondition",
+      "defaultColumn": "Quest",
+      "definitions": [
+        {
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "MountSpeed",
+      "defaultColumn": "Quest",
+      "definitions": [
+        {
+          "name": "Quest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
           }
         }
       ]
