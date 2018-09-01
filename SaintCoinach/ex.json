@@ -7680,50 +7680,15 @@
         },
         {
           "index": 14,
-          "name": "DataId",
+          "name": "AdditionalData",
           "converter": {
             "type": "complexlink",
             "links": [
               {
-                "sheet": "SubmarinePart",
+                "sheet": "Stain",
                 "when": {
                   "key": "FilterGroup",
-                  "value": 37
-                }
-              },
-              {
-                "sheet": "AirshipExplorationPart",
-                "when": {
-                  "key": "FilterGroup",
-                  "value": 28
-                }
-              },
-              {
-                "sheet": "TripleTriadCard",
-                "when": {
-                  "key": "FilterGroup",
-                  "value": 27
-                }
-              },
-              {
-                "sheet": "CompanyAction",
-                "when": {
-                  "key": "FilterGroup",
-                  "value": 26
-                }
-              },
-              {
-                "sheet": "AetherialWheel",
-                "when": {
-                  "key": "FilterGroup",
-                  "value": 25
-                }
-              },
-              {
-                "sheet": "GardeningSeed",
-                "when": {
-                  "key": "FilterGroup",
-                  "value": 20
+                  "value": 15
                 }
               },
               {
@@ -7734,10 +7699,45 @@
                 }
               },
               {
-                "sheet": "Stain",
+                "sheet": "GardeningSeed",
                 "when": {
                   "key": "FilterGroup",
-                  "value": 15
+                  "value": 20
+                }
+              },
+              {
+                "sheet": "AetherialWheel",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 25
+                }
+              },
+              {
+                "sheet": "CompanyAction",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 26
+                }
+              },
+              {
+                "sheet": "TripleTriadCard",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 27
+                }
+              },
+              {
+                "sheet": "AirshipExplorationPart",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 28
+                }
+              },
+              {
+                "sheet": "SubmarinePart",
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 37
                 }
               }
             ]
