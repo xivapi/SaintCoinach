@@ -4156,7 +4156,7 @@
       "definitions": [
         {
           "index": 22,
-          "name": "Name",
+          "name": "Name"
         }
       ]
     },
@@ -9989,7 +9989,7 @@
           "index": 2,
           "name": "Icon",
           "converter": {
-            "type": "icon",
+            "type": "icon"
           }
         },
         {
@@ -10169,7 +10169,7 @@
       "defaultColumn": "TextData",
       "definitions": [
         {
-          "name": "TextData",
+          "name": "TextData"
         }
       ]
     },
