@@ -1,5 +1,5 @@
 {
-  "version": "2018.08.09.0000.0000",
+  "version": "2018.09.11.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -3647,27 +3647,27 @@
           }
         },
         {
-          "index": 1,
+          "index": 2,
           "name": "MenuOrder"
         },
         {
-          "index": 2,
+          "index": 3,
           "name": "RequiredAmount"
         },
         {
-          "index": 4,
+          "index": 5,
           "name": "ExpMultiplier"
         },
         {
-          "index": 6,
+          "index": 7,
           "name": "GilRward"
         },
         {
-          "index": 7,
+          "index": 8,
           "name": "LevelUnlock"
         },
         {
-          "index": 8,
+          "index": 9,
           "name": "HowTo",
           "converter": {
             "type": "link",
@@ -3675,30 +3675,16 @@
           }
         },
         {
-          "index": 9,
+          "index": 11,
           "name": "Name"
         },
         {
-          "index": 10,
+          "index": 12,
           "name": "Description"
         },
         {
-          "index": 11,
+          "index": 13,
           "name": "ExpCap"
-        }
-      ]
-    },
-    {
-      "sheet": "ContentsNoteCategory",
-      "defaultColumn": "Type",
-      "definitions": [
-        {
-          "index": 1,
-          "name": "Type",
-          "converter": {
-            "type": "link",
-            "target": "ContentType"
-          }
         }
       ]
     },
@@ -4318,6 +4304,18 @@
       ]
     },
     {
+      "sheet": "DeepDungeonLayer",
+      "definitions": [
+        {
+          "name": "DeepDungeon",
+          "converter": {
+            "type": "link",
+            "target": "DeepDungeon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "DeepDungeonMagicStone",
       "defaultColumn": "Name",
       "definitions": [
@@ -4350,18 +4348,6 @@
         {
           "index": 10,
           "name": "Tooltip"
-        }
-      ]
-    },
-    {
-      "sheet": "DeepDungeonLayer",
-      "definitions": [
-        {
-          "name": "DeepDungeon",
-          "converter": {
-            "type": "link",
-            "target": "DeepDungeon"
-          }
         }
       ]
     },
@@ -5727,7 +5713,7 @@
           "name": "GatheringItemLevel"
         },
         {
-          "index": 4,
+          "index": 6,
           "name": "TerritoryType",
           "converter": {
             "type": "link",
@@ -5735,11 +5721,11 @@
           }
         },
         {
-          "index": 5,
+          "index": 7,
           "name": "IsFish"
         },
         {
-          "index": 6,
+          "index": 10,
           "name": "GatheringSubCategory",
           "converter": {
             "type": "link",
@@ -7455,18 +7441,10 @@
         },
         {
           "index": 9,
-          "name": "TerritoryType",
-          "converter": {
-            "type": "link",
-            "target": "TerritoryType"
-          }
-        },
-        {
-          "index": 10,
           "name": "Order"
         },
         {
-          "index": 13,
+          "index": 12,
           "name": "InstanceContentTextData{Boss}{Start}",
           "converter": {
             "type": "link",
@@ -7474,7 +7452,7 @@
           }
         },
         {
-          "index": 14,
+          "index": 13,
           "name": "InstanceContentTextData{Boss}{End}",
           "converter": {
             "type": "link",
@@ -7482,7 +7460,7 @@
           }
         },
         {
-          "index": 15,
+          "index": 14,
           "name": "BNpcBase{Boss}",
           "converter": {
             "type": "link",
@@ -7490,7 +7468,7 @@
           }
         },
         {
-          "index": 16,
+          "index": 15,
           "name": "InstanceContentTextData{Objective}{Start}",
           "converter": {
             "type": "link",
@@ -7498,7 +7476,7 @@
           }
         },
         {
-          "index": 17,
+          "index": 16,
           "name": "InstanceContentTextData{Objective}{End}",
           "converter": {
             "type": "link",
@@ -7506,35 +7484,35 @@
           }
         },
         {
-          "index": 18,
+          "index": 17,
           "name": "SortKey"
         },
         {
-          "index": 21,
+          "index": 20,
           "name": "NewPlayerBonusA"
         },
         {
-          "index": 22,
+          "index": 21,
           "name": "NewPlayerBonusB"
         },
         {
-          "index": 23,
+          "index": 22,
           "name": "FinalBossExp"
         },
         {
-          "index": 24,
+          "index": 23,
           "name": "FinalBossCurrencyA"
         },
         {
-          "index": 25,
+          "index": 24,
           "name": "FinalBossCurrencyB"
         },
         {
-          "index": 26,
+          "index": 25,
           "name": "FinalBossCurrencyC"
         },
         {
-          "index": 27,
+          "index": 26,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7547,7 +7525,7 @@
           }
         },
         {
-          "index": 32,
+          "index": 31,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7560,7 +7538,7 @@
           }
         },
         {
-          "index": 37,
+          "index": 36,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7573,7 +7551,7 @@
           }
         },
         {
-          "index": 42,
+          "index": 41,
           "type": "repeat",
           "count": 5,
           "definition": {
@@ -7586,11 +7564,11 @@
           }
         },
         {
-          "index": 47,
+          "index": 46,
           "name": "InstanceClearExp"
         },
         {
-          "index": 52,
+          "index": 51,
           "name": "InstanceContentBuff",
           "converter": {
             "type": "link",
@@ -7598,7 +7576,7 @@
           }
         },
         {
-          "index": 53,
+          "index": 52,
           "name": "ReqInstance",
           "converter": {
             "type": "link",
@@ -7606,7 +7584,7 @@
           }
         },
         {
-          "index": 56,
+          "index": 55,
           "name": "PartyCondition"
         }
       ]
@@ -10120,14 +10098,6 @@
         },
         {
           "index": 7,
-          "name": "TerritoryType",
-          "converter": {
-            "type": "link",
-            "target": "TerritoryType"
-          }
-        },
-        {
-          "index": 8,
           "name": "ContentFinderCondition",
           "converter": {
             "type": "link",
@@ -10135,7 +10105,7 @@
           }
         },
         {
-          "index": 9,
+          "index": 8,
           "name": "Eureka",
           "converter": {
             "type": "link",
@@ -10182,30 +10152,6 @@
           "converter": {
             "type": "link",
             "target": "Action"
-          }
-        },
-        {
-          "index": 2,
-          "name": "Trait[1]",
-          "converter": {
-            "type": "link",
-            "target": "Trait"
-          }
-        },
-        {
-          "index": 3,
-          "name": "Trait[2]",
-          "converter": {
-            "type": "link",
-            "target": "Trait"
-          }
-        },
-        {
-          "index": 4,
-          "name": "Trait[3]",
-          "converter": {
-            "type": "link",
-            "target": "Trait"
           }
         }
       ]
@@ -12952,7 +12898,7 @@
           }
         },
         {
-          "index": 2,
+          "index": 4,
           "name": "BNpcCustomize",
           "converter": {
             "type": "link",
@@ -12960,15 +12906,7 @@
           }
         },
         {
-          "index": 3,
-          "name": "BNpcEquip",
-          "converter": {
-            "type": "link",
-            "target": "BNpcEquip"
-          }
-        },
-        {
-          "index": 4,
+          "index": 5,
           "type": "repeat",
           "count": 6,
           "definition": {
@@ -12980,23 +12918,23 @@
           }
         },
         {
-          "index": 12,
+          "index": 13,
           "name": "Speed"
         },
         {
-          "index": 13,
+          "index": 14,
           "name": "Scale"
         },
         {
-          "index": 14,
+          "index": 15,
           "name": "IsPvP"
         },
         {
-          "index": 15,
+          "index": 16,
           "name": "IsEvent"
         },
         {
-          "index": 16,
+          "index": 17,
           "name": "PlayerCamera"
         }
       ]
