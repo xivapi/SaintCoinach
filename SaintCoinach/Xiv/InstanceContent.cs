@@ -95,12 +95,6 @@ namespace SaintCoinach.Xiv {
             }
         }
 
-        /// <summary>
-        /// Gets the <see cref="TerritoryType"/> for the current content.
-        /// </summary>
-        /// <value>The <see cref="TerritoryType"/> for the current content.</value>
-        public TerritoryType TerritoryType { get { return As<TerritoryType>(); } }
-
         public InstanceContentData Data { get { return _Data ?? (_Data = new InstanceContentData(this)); } }
 
         public BNpcBase Boss { get { return As<BNpcBase>("BNpcBase{Boss}"); } }

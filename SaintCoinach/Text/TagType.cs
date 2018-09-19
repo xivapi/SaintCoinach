@@ -58,6 +58,8 @@ namespace SaintCoinach.Text {
         SheetDe         = 0x32,
         SheetFr         = 0x33,
         InstanceContent = 0x40,     // Presumably so it can be clicked?
+        UIForeground    = 0x48,
+        UIGlow          = 0x49,
         ZeroPaddedValue = 0x50,
         Unknown60       = 0x60,     // TODO: Used as prefix in Gold Saucer announcements.
     }
