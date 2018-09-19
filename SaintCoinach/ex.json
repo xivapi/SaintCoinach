@@ -7193,6 +7193,23 @@
       ]
     },
     {
+      "sheet": "HousingMerchantPose",
+      "defaultColumn": "Pose",
+      "definitions": [
+        {
+          "name": "ActionTimeline",
+          "converter": {
+            "type": "link",
+            "target": "ActionTimeline"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Pose"
+        }
+      ]
+    },
+    {
       "sheet": "HousingPlacement",
       "defaultColumn": "Text",
       "definitions": [
