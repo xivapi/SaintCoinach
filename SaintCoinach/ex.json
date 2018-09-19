@@ -5755,6 +5755,19 @@
       ]
     },
     {
+      "sheet": "FishingRecordType",
+      "defaultColumn": "Addon",
+      "definitions": [
+        {
+          "name": "Addon",
+          "converter": {
+            "type": "link",
+            "target": "Addon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Frontline03",
       "definitions": [
         {
