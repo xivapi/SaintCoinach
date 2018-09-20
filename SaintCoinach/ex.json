@@ -5418,6 +5418,15 @@
       ]
     },
     {
+      "sheet": "Festival",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
+    {
       "sheet": "FCActivity",
       "defaultColumn": "Text",
       "definitions": [
@@ -10389,6 +10398,10 @@
           "name": "QuestLevelOffset"
         },
         {
+          "index": 6,
+          "name": "Level{Max}"
+        },
+        {
           "index": 7,
           "name": "ClassJobCategory[1]",
           "converter": {
@@ -10485,6 +10498,14 @@
           }
         },
         {
+          "index": 27,
+          "name": "Festival",
+          "converter": {
+            "type": "link",
+            "target": "Festival"
+          }
+        },
+        {
           "index": 30,
           "name": "Bell{Start}"
         },
@@ -10543,6 +10564,14 @@
         {
           "index": 44,
           "name": "RepeatIntervalType"
+        },
+        {
+          "index": 45,
+          "name": "QuestRepeatFlag",
+          "converter": {
+            "type": "link",
+            "target": "QuestRepeatFlag"
+          }
         },
         {
           "index": 50,
