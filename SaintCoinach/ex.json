@@ -7037,7 +7037,11 @@
       "sheet": "HousingAethernet",
       "definitions": [
         {
-          "name": "Level"
+          "name": "Level",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
         },
         {
           "index": 1,
@@ -7126,16 +7130,12 @@
           }
         },
         {
-          "index": 5,
+          "index": 6,
           "name": "CustomTalk",
           "converter": {
             "type": "link",
             "target": "CustomTalk"
           }
-        },
-        {
-          "index": 6,
-          "name": "Event"
         },
         {
           "index": 7,
@@ -7288,6 +7288,36 @@
           "converter": {
             "type": "link",
             "target": "Item"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "HousingMapMarkerInfo",
+      "definitions": [
+        {
+          "index": 4,
+          "name": "Map",
+          "converter": {
+            "type": "link",
+            "target": "Map"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "HousingUnitedExterior",
+      "definitions": [
+        {
+          "index": 1,
+          "type": "repeat",
+          "count": 8,
+          "definition": {
+            "name": "Item",
+            "converter": {
+              "type": "link",
+              "target": "HousingExterior"
+            }
           }
         }
       ]
