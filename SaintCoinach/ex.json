@@ -2886,6 +2886,14 @@
           "name": "Rarity"
         },
         {
+          "index": 8,
+          "name": "Model",
+          "converter": {
+            "type": "link",
+            "target": "ModelChara"
+          }
+        },
+        {
           "index": 14,
           "name": "Behavior",
           "converter": {
