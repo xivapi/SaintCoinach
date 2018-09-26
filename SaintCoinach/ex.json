@@ -10700,6 +10700,9 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "name": "Key"
+        },
+        {
           "index": 1,
           "name": "TimeLimit"
         },
@@ -10740,10 +10743,25 @@
         },
         {
           "index": 8,
-          "name": "Eureka",
+          "name": "AdditionalData",
           "converter": {
-            "type": "link",
-            "target": "Eureka"
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "Eureka",
+                "when": {
+                  "key": "Key",
+                  "value": 3
+                }
+              },
+              {
+                "sheet": "GFateClimbing2Content",
+                "when": {
+                  "key": "Key",
+                  "value": 5
+                }
+              }
+            ]
           }
         }
       ]
