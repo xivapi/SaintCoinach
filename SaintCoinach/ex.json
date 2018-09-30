@@ -6770,6 +6770,30 @@
       ]
     },
     {
+      "sheet": "GFateClimbing2Content",
+      "definitions": [
+        {
+          "name": "PublicContentTextData",
+          "converter": {
+            "type": "link",
+            "target": "PublicContentTextData"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "GFateClimbing2TotemType",
+      "definitions": [
+        {
+          "name": "PublicContentTextData",
+          "converter": {
+            "type": "link",
+            "target": "PublicContentTextData"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "GFateClimbing2",
       "definitions": [
         {
