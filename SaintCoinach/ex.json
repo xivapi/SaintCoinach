@@ -7331,12 +7331,12 @@
           "name": "StartsWithVowel"
         },
         {
-          "index": 5,
-          "name": "Rarity"
-        },
-        {
           "index": 6,
           "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
