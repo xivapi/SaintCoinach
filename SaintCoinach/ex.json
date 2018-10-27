@@ -9901,6 +9901,10 @@
           }
         },
         {
+          "index": 36,
+          "name": "ExtraSeats"
+        },
+        {
           "index": 37,
           "name": "MountAction",
           "converter": {
