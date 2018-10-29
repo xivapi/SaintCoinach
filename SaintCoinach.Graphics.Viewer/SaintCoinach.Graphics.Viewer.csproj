@@ -106,7 +106,8 @@
     <Compile Include="Effects\SkinnedEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
-    <Compile Include="EquipmentImageRendererSource.cs" />
+    <Compile Include="RendererSources\BaseImageRendererSource.cs" />
+    <Compile Include="RendererSources\EquipmentImageRendererSource.cs" />
     <Compile Include="FormEngine.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IContentComponent.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="MouseState.cs" />
     <Compile Include="ParametersExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RendererSources\MonsterImageRendererSource.cs" />
     <Compile Include="TextureFactory.cs" />
     <Compile Include="Vertex3D.cs" />
     <Compile Include="VectorConverter.cs" />

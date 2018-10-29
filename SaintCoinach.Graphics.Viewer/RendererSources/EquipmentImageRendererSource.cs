@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Viewer {
-    public class EquipmentImageRendererSource : IImageRendererSource {
+namespace SaintCoinach.Graphics.Viewer.RendererSources {
+    public class EquipmentImageRendererSource : BaseImageRendererSource {
         #region Fields
-        private Engine _Engine;
         private bool _IsCurrentStained;
         private ModelDefinition _CurrentModel;
         private ImcVariant _CurrentVariant;
@@ -29,16 +28,7 @@ namespace SaintCoinach.Graphics.Viewer {
 
         #region IImageRendererSource Members
 
-        public string CurrentName { get; private set; }
-
-        public IComponent CurrentComponent { get; private set; }
-
-        public BoundingBox CurrentBoundingBox { get; private set; }
-
-        public System.IO.FileInfo CurrentTargetFile { get; private set; }
-        public bool RenderFromOppositeSide { get; private set; }
-
-        public bool MoveNext() {
+        public override bool MoveNext() {
             if (MoveNextStain())
                 return true;
 
@@ -114,8 +104,8 @@ namespace SaintCoinach.Graphics.Viewer {
             return sb.ToString();
         }
 
-        public void Reset(Engine engine) {
-            _Engine = engine;
+        public override void Reset(Engine engine) {
+            base.Reset(engine);
 
             _EquipmentIterator.Reset();
         }
