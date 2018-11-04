@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatedModel.cs" />
+    <Compile Include="Animation.cs" />
+    <Compile Include="AnimationContainer.cs" />
+    <Compile Include="AnimationPlayer.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ComponentContainer.cs" />
@@ -106,6 +110,9 @@
     <Compile Include="Effects\SkinnedEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
+    <Compile Include="Interop\HavokInterop.cs" />
+    <Compile Include="Interop\InteropTransform.cs" />
+    <Compile Include="Interop\InteropVector4.cs" />
     <Compile Include="RendererSources\BaseImageRendererSource.cs" />
     <Compile Include="RendererSources\EquipmentImageRendererSource.cs" />
     <Compile Include="FormEngine.cs" />
@@ -127,6 +134,7 @@
     <Compile Include="ParametersExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RendererSources\MonsterImageRendererSource.cs" />
+    <Compile Include="Skeleton.cs" />
     <Compile Include="TextureFactory.cs" />
     <Compile Include="Vertex3D.cs" />
     <Compile Include="VectorConverter.cs" />
@@ -177,6 +185,9 @@
   <ItemGroup>
     <Content Include="Effects\HLSL\Character.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="hkAnimationInterop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sharpdx_direct3d11_effects_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

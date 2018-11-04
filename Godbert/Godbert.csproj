@@ -218,10 +218,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SaintCoinach.Graphics.Animation\SaintCoinach.Graphics.Animation.csproj">
-      <Project>{f3dc8303-6bca-47de-875f-236443b914a5}</Project>
-      <Name>SaintCoinach.Graphics.Animation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SaintCoinach.Graphics.Viewer\SaintCoinach.Graphics.Viewer.csproj">
       <Project>{226bf71e-334f-4585-8fec-4239704cf539}</Project>
       <Name>SaintCoinach.Graphics.Viewer</Name>

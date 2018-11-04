@@ -83,8 +83,8 @@ namespace SaintCoinach.Xiv {
                 throw new InvalidOperationException($"Unable to find files for {this}.");
 
             try {
-                var imcFile = new ImcFile(imcFileBase);
                 var model = ((ModelFile)mdlFileBase).GetModelDefinition();
+                var imcFile = new ImcFile(imcFileBase);
                 var variant = imcFile.GetVariant(Variant);
 
                 return Tuple.Create(model, variant);
