@@ -10750,14 +10750,14 @@
               {
                 "sheet": "Eureka",
                 "when": {
-                  "key": "Key",
+                  "key": "Type",
                   "value": 3
                 }
               },
               {
                 "sheet": "GFateClimbing2Content",
                 "when": {
-                  "key": "Key",
+                  "key": "Type",
                   "value": 5
                 }
               }
