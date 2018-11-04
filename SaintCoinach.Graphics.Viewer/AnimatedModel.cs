@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Animation {
+namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
     using Viewer;
 
