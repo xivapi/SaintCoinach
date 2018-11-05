@@ -18,7 +18,7 @@ namespace SaintCoinach.Graphics.Exports {
             // UVs
             foreach (var vertex in mesh.Vertices.Where(v => v.UV.HasValue)) {
                 var uv = vertex.UV.Value;
-                sb.AppendLine($"v {uv.X:N5} {(uv.Y * -1):N5}");
+                sb.AppendLine($"vt {uv.X:N5} {(1 - uv.Y):N5}");
             }
 
             // Normals
@@ -28,7 +28,7 @@ namespace SaintCoinach.Graphics.Exports {
             }
 
             // Indices
-            for (var i = 0; i < mesh.Indices.Length; i +=3) {
+            for (var i = 0; i < mesh.Indices.Length; i += 3) {
                 var index1 = mesh.Indices[i] + 1;
                 var index2 = mesh.Indices[i + 1] + 1;
                 var index3 = mesh.Indices[i + 2] + 1;
