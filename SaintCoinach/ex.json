@@ -5334,6 +5334,55 @@
       ]
     },
     {
+      "sheet": "EurekaMagiaAction",
+      "definitions": [
+        {
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaMagiciteItem",
+      "definitions": [
+        {
+          "name": "EurekaMagiciteItemType",
+          "converter": {
+            "type": "link",
+            "target": "EurekaMagiciteItemType"
+          }
+        },
+        {
+          "index": 1,
+          "name": "ClassJobCategory",
+          "converter": {
+            "type": "link",
+            "target": "ClassJobCategory"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaMagiciteItemType",
+      "defaultColumn": "Type",
+      "definitions": [
+        {
+          "name": "Type"
+        }
+      ]
+    },
+    {
       "sheet": "EurekaSphereElementAdjust",
       "defaultColumn": "PowerModifier",
       "definitions": [
@@ -5594,6 +5643,10 @@
             "type": "link",
             "target": "BGM"
           }
+        },
+        {
+        "index": 19,
+        "name": "HasWorldMapIcon"
         },
         {
           "index": 27,
