@@ -12,12 +12,12 @@ namespace SaintCoinach.Graphics {
         public byte Unknown3;
         public byte Unknown4;
         public ushort FileSize;
-        public ushort UnknownSize1;
+        public ushort DataSetSize;
         public ushort StringsSize;
         public ushort ShaderOffset;
         public byte TextureCount;
         public byte MapCount;
         public byte DataSetCount;
-        public byte UnknownSize2;
+        public byte UnknownSize;
     }
 }
