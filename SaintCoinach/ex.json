@@ -14112,6 +14112,18 @@
       ]
     },
     {
+      "sheet": "UIColor",
+      "definitions": [
+        {
+          "name": "Foreground",
+        },
+        {
+          "index": 1,
+          "name": "Background",
+        }
+      ]
+    },
+    {
       "sheet": "VaseFlower",
       "definitions": [
         {
