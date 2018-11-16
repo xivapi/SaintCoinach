@@ -14482,7 +14482,7 @@
         },
         {
           "index": 2,
-          "name": "DefaultTalk1",
+          "name": "ConditionSuccessEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -14490,7 +14490,7 @@
         },
         {
           "index": 3,
-          "name": "DefaultTalk2",
+          "name": "ConditionFailEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -14498,7 +14498,7 @@
         },
         {
           "index": 4,
-          "name": "DefaultTalk3",
+          "name": "ConfirmEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -14506,11 +14506,19 @@
         },
         {
           "index": 5,
-          "name": "WarpCondition"
+          "name": "WarpCondition",
+          "converter": {
+            "type": "link",
+            "target": "WarpCondition"
+          }
         },
         {
           "index": 6,
-          "name": "WarpLogic"
+          "name": "WarpLogic",
+          "converter": {
+            "type": "link",
+            "target": "WarpLogic"
+          }
         }
       ]
     },
@@ -14553,9 +14561,10 @@
     },
     {
       "sheet": "WarpLogic",
+      "defaultColumn": "WarpName",
       "definitions": [
         {
-          "index": 2,
+          "index": 1,
           "name": "WarpName"
         },
         {
@@ -14576,15 +14585,15 @@
         },
         {
           "index": 23,
-          "name": "TextString"
+          "name": "Question"
         },
         {
           "index": 24,
-          "name": "Response(1)"
+          "name": "Response{Yes}"
         },
         {
           "index": 25,
-          "name": "Response(2)"
+          "name": "Response{No}"
         }
       ]
     },
