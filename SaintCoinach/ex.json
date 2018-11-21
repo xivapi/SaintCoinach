@@ -5334,6 +5334,14 @@
       ]
     },
     {
+      "sheet": "EurekaLogosMixerProbability",
+      "definitions": [
+        {
+          "name": "Probability<%>"
+        }
+      ]
+    },
+    {
       "sheet": "EurekaMagiaAction",
       "definitions": [
         {
@@ -5342,6 +5350,10 @@
             "type": "link",
             "target": "Action"
           }
+        },
+        {
+          "index": 1,
+          "name": "MaxUses"
         }
       ]
     },
@@ -9377,7 +9389,7 @@
         },
         {
           "index": 5,
-          "name": "Id"
+          "name": "MiniMapId"
         },
         {
           "index": 6,
@@ -10014,6 +10026,14 @@
         {
           "index": 38,
           "name": "IsAirborne"
+        },
+        {
+          "index": 40,
+          "name": "UseEP"
+        },
+        {
+          "index": 42,
+          "name": "IsImmobile"
         }
       ]
     },
