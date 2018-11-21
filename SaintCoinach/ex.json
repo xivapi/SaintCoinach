@@ -9696,7 +9696,7 @@
         },
         {
           "index": 5,
-          "name": "MiniMapId"
+          "name": "Id"
         },
         {
           "index": 6,
@@ -14498,7 +14498,7 @@
         },
         {
           "index": 1,
-          "name": "Background",
+          "name": "Background"
         }
       ]
     },
