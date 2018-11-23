@@ -4,8 +4,11 @@ namespace SaintCoinach.Xiv {
     public class FishParameter : XivRow {
         #region Properties
 
-        public Text.XivString Text { get { return AsString("Text"); } }
-        public Item Item { get { return As<Item>("Item"); } }
+        public Text.XivString Text => AsString("Text");
+        public Item Item => As<Item>("Item");
+        public bool IsInLog => AsBoolean("IsInLog");
+        public bool TimeRestricted => AsBoolean("TimeRestricted");
+        public bool WeatherRestricted => AsBoolean("WeatherRestricted");
 
         #endregion
 

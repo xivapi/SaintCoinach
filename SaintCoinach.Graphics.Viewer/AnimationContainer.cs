@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Animation {
+namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
     using Interop;
 

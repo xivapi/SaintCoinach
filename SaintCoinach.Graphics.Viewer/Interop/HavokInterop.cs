@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaintCoinach.Graphics.Animation.Interop {
+namespace SaintCoinach.Graphics.Viewer.Interop {
     public static class HavokInterop {
         static object _Lock = new object();
 

@@ -22,8 +22,8 @@ namespace SaintCoinach.Graphics {
         public string[] Maps { get; private set; }
         public string[] DataSets { get; private set; }
         public string Shader { get; private set; }
-        public byte[] Unknown1 { get; private set; }
-        public byte[] Unknown2 { get; private set; }
+        public byte[] Unknown { get; private set; }
+        public byte[] DataSetData { get; private set; }
         public MaterialMetadataHeader MetadataHeader { get; private set; }
         public Unknowns.MaterialStruct1[] UnknownStructs1 { get; private set; }
         public Unknowns.MaterialStruct2[] UnknownStructs2 { get; private set; }
@@ -68,13 +68,13 @@ namespace SaintCoinach.Graphics {
 
             offset = stringsStart + Header.StringsSize;
 
-            this.Unknown1 = new byte[Header.UnknownSize1];
-            Array.Copy(buffer, offset, this.Unknown1, 0, Header.UnknownSize1);
-            offset += Header.UnknownSize1;
+            this.Unknown = new byte[Header.UnknownSize];
+            Array.Copy(buffer, offset, this.Unknown, 0, Header.UnknownSize);
+            offset += Header.UnknownSize;
 
-            this.Unknown2 = new byte[Header.UnknownSize2];
-            Array.Copy(buffer, offset, this.Unknown2, 0, Header.UnknownSize2);
-            offset += Header.UnknownSize2;
+            this.DataSetData = new byte[Header.DataSetSize];
+            Array.Copy(buffer, offset, this.DataSetData, 0, Header.DataSetSize);
+            offset += Header.DataSetSize;
 
             this.MetadataHeader = buffer.ToStructure<MaterialMetadataHeader>(ref offset);
 
@@ -95,5 +95,35 @@ namespace SaintCoinach.Graphics {
             return values;
         }
         #endregion
+
+        public unsafe System.Drawing.Image GetColorSet() {
+            // ColorSet is R16G16B16A16F.
+            const int width = 4;
+            const int height = 16;
+
+            var bmp = new System.Drawing.Bitmap(width, height);
+            var i = 0;
+            for (var y = 0; y < height; y++) {
+                for (var x = 0; x < width; x++) {
+                    var offset = i++ * 4 * 2;
+
+                    var red = GetColorValue(HalfHelper.Unpack(DataSetData, offset));
+                    var green = GetColorValue(HalfHelper.Unpack(DataSetData, offset + 2));
+                    var blue = GetColorValue(HalfHelper.Unpack(DataSetData, offset + 4));
+                    var alpha = GetColorValue(HalfHelper.Unpack(DataSetData, offset + 6));
+                    bmp.SetPixel(x, y, System.Drawing.Color.FromArgb(alpha, red, green, blue));
+                }
+            }
+
+            return bmp;
+        }
+
+        private static byte GetColorValue(float half) {
+            if (half > 1)
+                return byte.MaxValue;
+            if (half < 0)
+                return 0;
+            return (byte)(half * byte.MaxValue);
+        }
     }
 }

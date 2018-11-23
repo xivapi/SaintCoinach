@@ -1,5 +1,5 @@
 {
-  "version": "2018.09.11.0000.0000",
+  "version": "2018.10.30.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -216,6 +216,10 @@
         {
           "index": 18,
           "name": "Order"
+        },
+        {
+          "index": 20,
+          "name": "InitialHide"
         }
       ]
     },
@@ -233,6 +237,10 @@
             "type": "link",
             "target": "AchievementKind"
           }
+        },
+        {
+          "index": 3,
+          "name": "HideCategory"
         }
       ]
     },
@@ -872,6 +880,33 @@
       "defaultColumn": "PlaceName",
       "definitions": [
         {
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
+        },
+        {
           "index": 8,
           "name": "PlaceName",
           "converter": {
@@ -1351,6 +1386,9 @@
       "sheet": "BaseParam",
       "defaultColumn": "Name",
       "definitions": [
+        {
+          "name": "Order"
+        },
         {
           "index": 1,
           "name": "Name"
@@ -1899,12 +1937,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
         },
         {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
           "index": 4,
           "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         }
       ]
     },
@@ -2124,16 +2178,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
         },
         {
           "index": 4,
           "name": "StartsWithVowel"
         },
         {
-          "index": 5,
-          "name": "Rarity"
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -2874,16 +2940,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
         },
         {
           "index": 4,
           "name": "StartsWithVowel"
         },
         {
-          "index": 5,
-          "name": "Rarity"
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -3412,6 +3490,10 @@
         {
           "index": 26,
           "name": "HighEndDuty"
+        },
+        {
+          "index": 30,
+          "name": "DutyRecorderAllowed"
         },
         {
           "index": 32,
@@ -4226,16 +4308,28 @@
           "name": "Singular"
         },
         {
+          "index": 2,
+          "name": "Adjective"
+        },
+        {
           "index": 3,
           "name": "Plural"
+        },
+        {
+          "index": 4,
+          "name": "PossessivePronoun"
         },
         {
           "index": 5,
           "name": "StartsWithVowel"
         },
         {
-          "index": 6,
-          "name": "Rarity"
+          "index": 7,
+          "name": "Pronoun"
+        },
+        {
+          "index": 8,
+          "name": "Article"
         },
         {
           "index": 9,
@@ -4282,16 +4376,28 @@
           "name": "Singular"
         },
         {
+          "index": 2,
+          "name": "Adjective"
+        },
+        {
           "index": 3,
           "name": "Plural"
+        },
+        {
+          "index": 4,
+          "name": "PossessivePronoun"
         },
         {
           "index": 5,
           "name": "StartsWithVowel"
         },
         {
-          "index": 6,
-          "name": "Rarity"
+          "index": 7,
+          "name": "Pronoun"
+        },
+        {
+          "index": 8,
+          "name": "Article"
         },
         {
           "index": 9,
@@ -4338,16 +4444,28 @@
           "name": "Singular"
         },
         {
+          "index": 2,
+          "name": "Adjective"
+        },
+        {
           "index": 3,
           "name": "Plural"
+        },
+        {
+          "index": 4,
+          "name": "PossessivePronoun"
         },
         {
           "index": 5,
           "name": "StartsWithVowel"
         },
         {
-          "index": 6,
-          "name": "Rarity"
+          "index": 7,
+          "name": "Pronoun"
+        },
+        {
+          "index": 8,
+          "name": "Article"
         },
         {
           "index": 9,
@@ -4983,8 +5101,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -5024,6 +5162,30 @@
       "definitions": [
         {
           "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         }
       ]
     },
@@ -5124,6 +5286,43 @@
       ]
     },
     {
+      "sheet": "EurekaAetherItem",
+      "defaultColumn": "Singular",
+      "definitions": [
+        {
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
+          "index": 2,
+          "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
+        },
+        {
+          "index": 8,
+          "name": "Name"
+        }
+      ]
+    },
+    {
       "sheet": "EurekaAethernet",
       "defaultColumn": "Location",
       "definitions": [
@@ -5142,6 +5341,67 @@
       "definitions": [
         {
           "name": "BaseResistance"
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaLogosMixerProbability",
+      "definitions": [
+        {
+          "name": "Probability<%>"
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaMagiaAction",
+      "definitions": [
+        {
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        },
+        {
+          "index": 1,
+          "name": "MaxUses"
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaMagiciteItem",
+      "definitions": [
+        {
+          "name": "EurekaMagiciteItemType",
+          "converter": {
+            "type": "link",
+            "target": "EurekaMagiciteItemType"
+          }
+        },
+        {
+          "index": 1,
+          "name": "ClassJobCategory",
+          "converter": {
+            "type": "link",
+            "target": "ClassJobCategory"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EurekaMagiciteItemType",
+      "defaultColumn": "Type",
+      "definitions": [
+        {
+          "name": "Type"
         }
       ]
     },
@@ -5245,16 +5505,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
         },
         {
           "index": 4,
           "name": "StartsWithVowel"
         },
         {
-          "index": 5,
-          "name": "Rarity"
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 9,
@@ -5396,6 +5668,10 @@
           }
         },
         {
+        "index": 19,
+        "name": "HasWorldMapIcon"
+        },
+        {
           "index": 27,
           "name": "Name"
         },
@@ -5422,15 +5698,6 @@
             "type": "link",
             "target": "ArrayEventHandler"
           }
-        }
-      ]
-    },
-    {
-      "sheet": "Festival",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Name"
         }
       ]
     },
@@ -5618,6 +5885,15 @@
       ]
     },
     {
+      "sheet": "Festival",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
+    {
       "sheet": "FieldMarker",
       "defaultColumn": "Icon",
       "definitions": [
@@ -5633,6 +5909,19 @@
           "name": "Icon",
           "converter": {
             "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "FishingRecordType",
+      "defaultColumn": "Addon",
+      "definitions": [
+        {
+          "name": "Addon",
+          "converter": {
+            "type": "link",
+            "target": "Addon"
           }
         }
       ]
@@ -5767,19 +6056,6 @@
           "converter": {
             "type": "link",
             "target": "GatheringSubCategory"
-          }
-        }
-      ]
-    },
-    {
-      "sheet": "FishingRecordType",
-      "defaultColumn": "Addon",
-      "definitions": [
-        {
-          "name": "Addon",
-          "converter": {
-            "type": "link",
-            "target": "Addon"
           }
         }
       ]
@@ -6162,12 +6438,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
         },
         {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
           "index": 4,
           "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         }
       ]
     },
@@ -6498,14 +6790,34 @@
     },
     {
       "sheet": "GCRankGridaniaFemaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6515,14 +6827,34 @@
     },
     {
       "sheet": "GCRankGridaniaMaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6532,14 +6864,34 @@
     },
     {
       "sheet": "GCRankLimsaFemaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6549,14 +6901,34 @@
     },
     {
       "sheet": "GCRankLimsaMaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6566,14 +6938,34 @@
     },
     {
       "sheet": "GCRankUldahFemaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6583,14 +6975,34 @@
     },
     {
       "sheet": "GCRankUldahMaleText",
-      "defaultColumn": "Name",
+      "defaultColumn": "Singular",
       "definitions": [
         {
-          "name": "Name"
+          "name": "Singular"
+        },
+        {
+          "index": 1,
+          "name": "Adjective"
         },
         {
           "index": 2,
           "name": "Plural"
+        },
+        {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
+          "index": 4,
+          "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -6770,6 +7182,18 @@
       ]
     },
     {
+      "sheet": "GFateClimbing2",
+      "definitions": [
+        {
+          "name": "ContentEntry",
+          "converter": {
+            "type": "link",
+            "target": "ContentEntry"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "GFateClimbing2Content",
       "definitions": [
         {
@@ -6789,18 +7213,6 @@
           "converter": {
             "type": "link",
             "target": "PublicContentTextData"
-          }
-        }
-      ]
-    },
-    {
-      "sheet": "GFateClimbing2",
-      "definitions": [
-        {
-          "name": "ContentEntry",
-          "converter": {
-            "type": "link",
-            "target": "ContentEntry"
           }
         }
       ]
@@ -7205,6 +7617,27 @@
       ]
     },
     {
+      "sheet": "HousingExterior",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "PlaceName",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 3,
+          "name": "HousingSize"
+        },
+        {
+          "index": 4,
+          "name": "Model"
+        }
+      ]
+    },
+    {
       "sheet": "HousingFurniture",
       "defaultColumn": "Item",
       "definitions": [
@@ -7234,6 +7667,10 @@
             "type": "link",
             "target": "HousingLayoutLimit"
           }
+        },
+        {
+          "index": 5,
+          "name": "AquariumTier"
         },
         {
           "index": 6,
@@ -7266,6 +7703,19 @@
       ]
     },
     {
+      "sheet": "HousingMapMarkerInfo",
+      "definitions": [
+        {
+          "index": 4,
+          "name": "Map",
+          "converter": {
+            "type": "link",
+            "target": "Map"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "HousingMerchantPose",
       "defaultColumn": "Pose",
       "definitions": [
@@ -7279,6 +7729,27 @@
         {
           "index": 1,
           "name": "Pose"
+        }
+      ]
+    },
+    {
+      "sheet": "HousingLandSet",
+      "defaultColumn": "",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "PlotSize"
+          }
+        },
+        {
+          "index": 300,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "InitialPrice"
+          }
         }
       ]
     },
@@ -7314,12 +7785,12 @@
           "name": "StartsWithVowel"
         },
         {
-          "index": 5,
-          "name": "Rarity"
-        },
-        {
           "index": 6,
           "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -7443,19 +7914,6 @@
           "converter": {
             "type": "link",
             "target": "Item"
-          }
-        }
-      ]
-    },
-    {
-      "sheet": "HousingMapMarkerInfo",
-      "definitions": [
-        {
-          "index": 4,
-          "name": "Map",
-          "converter": {
-            "type": "link",
-            "target": "Map"
           }
         }
       ]
@@ -7803,12 +8261,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
         },
         {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
           "index": 4,
           "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -8235,6 +8709,302 @@
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "sheet": "ItemLevel",
+      "definitions": [
+        {
+          "name": "Strength"
+        },
+        {
+          "index": 1,
+          "name": "Dexterity"
+        },
+        {
+          "index": 2,
+          "name": "Vitality"
+        },
+        {
+          "index": 3,
+          "name": "Intelligence"
+        },
+        {
+          "index": 4,
+          "name": "Mind"
+        },
+        {
+          "index": 5,
+          "name": "Piety"
+        },
+        {
+          "index": 6,
+          "name": "HP"
+        },
+        {
+          "index": 7,
+          "name": "MP"
+        },
+        {
+          "index": 8,
+          "name": "TP"
+        },
+        {
+          "index": 9,
+          "name": "GP"
+        },
+        {
+          "index": 10,
+          "name": "CP"
+        },
+        {
+          "index": 11,
+          "name": "PhysicalDamage"
+        },
+        {
+          "index": 12,
+          "name": "MagicalDamage"
+        },
+        {
+          "index": 13,
+          "name": "Delay"
+        },
+        {
+          "index": 14,
+          "name": "AdditionalEffect"
+        },
+        {
+          "index": 15,
+          "name": "AttackSpeed"
+        },
+        {
+          "index": 16,
+          "name": "BlockRate"
+        },
+        {
+          "index": 17,
+          "name": "BlockStrength"
+        },
+        {
+          "index": 18,
+          "name": "Tenacity"
+        },
+        {
+          "index": 19,
+          "name": "AttackPower"
+        },
+        {
+          "index": 20,
+          "name": "Defense"
+        },
+        {
+          "index": 21,
+          "name": "DirectHitRate"
+        },
+        {
+          "index": 22,
+          "name": "Evasion"
+        },
+        {
+          "index": 23,
+          "name": "MagicDefense"
+        },
+        {
+          "index": 24,
+          "name": "CriticalHitPower"
+        },
+        {
+          "index": 25,
+          "name": "CriticalHitResilience"
+        },
+        {
+          "index": 26,
+          "name": "CriticalHit"
+        },
+        {
+          "index": 27,
+          "name": "CriticalHitEvasion"
+        },
+        {
+          "index": 28,
+          "name": "SlashingResistance"
+        },
+        {
+          "index": 29,
+          "name": "PiercingResistance"
+        },
+        {
+          "index": 30,
+          "name": "BluntResistance"
+        },
+        {
+          "index": 31,
+          "name": "ProjectileResistance"
+        },
+        {
+          "index": 32,
+          "name": "AttackMagicPotency"
+        },
+        {
+          "index": 33,
+          "name": "HealingMagicPotency"
+        },
+        {
+          "index": 34,
+          "name": "EnhancementMagicPotency"
+        },
+        {
+          "index": 35,
+          "name": "EnfeeblingMagicPotency"
+        },
+        {
+          "index": 36,
+          "name": "FireResistance"
+        },
+        {
+          "index": 37,
+          "name": "IceResistance"
+        },
+        {
+          "index": 38,
+          "name": "WindResistance"
+        },
+        {
+          "index": 39,
+          "name": "EarthResistance"
+        },
+        {
+          "index": 40,
+          "name": "LightningResistance"
+        },
+        {
+          "index": 41,
+          "name": "WaterResistance"
+        },
+        {
+          "index": 42,
+          "name": "MagicResistance"
+        },
+        {
+          "index": 43,
+          "name": "Determination"
+        },
+        {
+          "index": 44,
+          "name": "SkillSpeed"
+        },
+        {
+          "index": 45,
+          "name": "SpellSpeed"
+        },
+        {
+          "index": 46,
+          "name": "Haste"
+        },
+        {
+          "index": 47,
+          "name": "Morale"
+        },
+        {
+          "index": 48,
+          "name": "Enmity"
+        },
+        {
+          "index": 49,
+          "name": "EnmityReduction"
+        },
+        {
+          "index": 50,
+          "name": "CarefulDesynthesis"
+        },
+        {
+          "index": 51,
+          "name": "EXPBonus"
+        },
+        {
+          "index": 52,
+          "name": "Regen"
+        },
+        {
+          "index": 53,
+          "name": "Refresh"
+        },
+        {
+          "index": 54,
+          "name": "MovementSpeed"
+        },
+        {
+          "index": 55,
+          "name": "Spikes"
+        },
+        {
+          "index": 56,
+          "name": "SlowResistance"
+        },
+        {
+          "index": 57,
+          "name": "PetrificationResistance"
+        },
+        {
+          "index": 58,
+          "name": "ParalysisResistance"
+        },
+        {
+          "index": 59,
+          "name": "SilenceResistance"
+        },
+        {
+          "index": 60,
+          "name": "BlindResistance"
+        },
+        {
+          "index": 61,
+          "name": "PoisonResistance"
+        },
+        {
+          "index": 62,
+          "name": "StunResistance"
+        },
+        {
+          "index": 63,
+          "name": "SleepResistance"
+        },
+        {
+          "index": 64,
+          "name": "BindResistance"
+        },
+        {
+          "index": 65,
+          "name": "HeavyResistance"
+        },
+        {
+          "index": 66,
+          "name": "DoomResistance"
+        },
+        {
+          "index": 67,
+          "name": "ReducedDurabilityLoss"
+        },
+        {
+          "index": 68,
+          "name": "IncreasedSpiritbondGain"
+        },
+        {
+          "index": 69,
+          "name": "Craftsmanship"
+        },
+        {
+          "index": 70,
+          "name": "Control"
+        },
+        {
+          "index": 71,
+          "name": "Gathering"
+        },
+        {
+          "index": 72,
+          "name": "Perception"
         }
       ]
     },
@@ -9478,12 +10248,28 @@
           "name": "Singular"
         },
         {
+          "index": 1,
+          "name": "Adjective"
+        },
+        {
           "index": 2,
           "name": "Plural"
         },
         {
+          "index": 3,
+          "name": "PossessivePronoun"
+        },
+        {
           "index": 4,
           "name": "StartsWithVowel"
+        },
+        {
+          "index": 6,
+          "name": "Pronoun"
+        },
+        {
+          "index": 7,
+          "name": "Article"
         },
         {
           "index": 8,
@@ -9533,6 +10319,10 @@
           }
         },
         {
+          "index": 36,
+          "name": "ExtraSeats"
+        },
+        {
           "index": 37,
           "name": "MountAction",
           "converter": {
@@ -9543,6 +10333,14 @@
         {
           "index": 38,
           "name": "IsAirborne"
+        },
+        {
+          "index": 40,
+          "name": "UseEP"
+        },
+        {
+          "index": 42,
+          "name": "IsImmobile"
         }
       ]
     },
@@ -9612,6 +10410,54 @@
         {
           "index": 12,
           "name": "AuRaFemaleScale"
+        },
+        {
+          "index": 13,
+          "name": "HyurMaleCameraHeight"
+        },
+        {
+          "index": 14,
+          "name": "HyurFemaleCameraHeight"
+        },
+        {
+          "index": 15,
+          "name": "ElezenMaleCameraHeight"
+        },
+        {
+          "index": 16,
+          "name": "ElezenFemaleCameraHeight"
+        },
+        {
+          "index": 17,
+          "name": "LalaMaleCameraHeight"
+        },
+        {
+          "index": 18,
+          "name": "LalaFemaleCameraHeight"
+        },
+        {
+          "index": 19,
+          "name": "MiqoMaleCameraHeight"
+        },
+        {
+          "index": 20,
+          "name": "MiqoFemaleCameraHeight"
+        },
+        {
+          "index": 21,
+          "name": "RoeMaleCameraHeight"
+        },
+        {
+          "index": 22,
+          "name": "RoeFemaleCameraHeight"
+        },
+        {
+          "index": 23,
+          "name": "AuRaMaleCameraHeight"
+        },
+        {
+          "index": 24,
+          "name": "AuRaFemaleCameraHeight"
         }
       ]
     },
@@ -10102,15 +10948,6 @@
       ]
     },
     {
-      "sheet": "PartyContentTextData",
-      "defaultColumn": "Data",
-      "definitions": [
-        {
-          "name": "Data"
-        }
-      ]
-    },
-    {
       "sheet": "PartyContentCutscene",
       "defaultColumn": "Name",
       "definitions": [
@@ -10120,6 +10957,15 @@
             "type": "link",
             "target": "Cutscene"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "PartyContentTextData",
+      "defaultColumn": "Data",
+      "definitions": [
+        {
+          "name": "Data"
         }
       ]
     },
@@ -10328,6 +11174,9 @@
       "defaultColumn": "Name",
       "definitions": [
         {
+          "name": "Type"
+        },
+        {
           "index": 1,
           "name": "TimeLimit"
         },
@@ -10368,10 +11217,25 @@
         },
         {
           "index": 8,
-          "name": "Eureka",
+          "name": "AdditionalData",
           "converter": {
-            "type": "link",
-            "target": "Eureka"
+            "type": "complexlink",
+            "links": [
+              {
+                "sheet": "Eureka",
+                "when": {
+                  "key": "Type",
+                  "value": 3
+                }
+              },
+              {
+                "sheet": "GFateClimbing2Content",
+                "when": {
+                  "key": "Type",
+                  "value": 5
+                }
+              }
+            ]
           }
         }
       ]
@@ -13008,6 +13872,10 @@
         {
           "index": 2,
           "name": "IsPrefix"
+        },
+        {
+          "index": 3,
+          "name": "Order"
         }
       ]
     },
@@ -13623,6 +14491,18 @@
       ]
     },
     {
+      "sheet": "UIColor",
+      "definitions": [
+        {
+          "name": "Foreground",
+        },
+        {
+          "index": 1,
+          "name": "Background"
+        }
+      ]
+    },
+    {
       "sheet": "VaseFlower",
       "definitions": [
         {
@@ -13665,7 +14545,7 @@
         },
         {
           "index": 2,
-          "name": "DefaultTalk1",
+          "name": "ConditionSuccessEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -13673,7 +14553,7 @@
         },
         {
           "index": 3,
-          "name": "DefaultTalk2",
+          "name": "ConditionFailEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -13681,7 +14561,7 @@
         },
         {
           "index": 4,
-          "name": "DefaultTalk3",
+          "name": "ConfirmEvent",
           "converter": {
             "type": "link",
             "target": "DefaultTalk"
@@ -13689,11 +14569,19 @@
         },
         {
           "index": 5,
-          "name": "WarpCondition"
+          "name": "WarpCondition",
+          "converter": {
+            "type": "link",
+            "target": "WarpCondition"
+          }
         },
         {
           "index": 6,
-          "name": "WarpLogic"
+          "name": "WarpLogic",
+          "converter": {
+            "type": "link",
+            "target": "WarpLogic"
+          }
         }
       ]
     },
@@ -13736,9 +14624,10 @@
     },
     {
       "sheet": "WarpLogic",
+      "defaultColumn": "WarpName",
       "definitions": [
         {
-          "index": 2,
+          "index": 1,
           "name": "WarpName"
         },
         {
@@ -13759,15 +14648,15 @@
         },
         {
           "index": 23,
-          "name": "TextString"
+          "name": "Question"
         },
         {
           "index": 24,
-          "name": "Response(1)"
+          "name": "Response{Yes}"
         },
         {
           "index": 25,
-          "name": "Response(2)"
+          "name": "Response{No}"
         }
       ]
     },

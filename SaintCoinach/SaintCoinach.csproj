@@ -37,8 +37,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.12.0\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -89,6 +89,8 @@
     <Compile Include="Ex\Relational\Definition\ViewDefinition.cs" />
     <Compile Include="Ex\ViewCollection.cs" />
     <Compile Include="Graphics\ColorMap.cs" />
+    <Compile Include="Graphics\Exports\ModelExport.cs" />
+    <Compile Include="Graphics\Exports\Obj.cs" />
     <Compile Include="Graphics\Lgb\LgbLightEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbEventObjectEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbLightEntry.cs" />

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using SaintCoinach.Graphics;
-using SaintCoinach.Graphics.Animation;
 using SaintCoinach.Graphics.Viewer;
 using SaintCoinach.Graphics.Viewer.Content;
 using SaintCoinach.Xiv;

@@ -21,7 +21,7 @@ namespace Godbert {
                 return;
             }
 
-            SaintCoinach.Graphics.Animation.Interop.HavokInterop.InitializeMTA();
+            SaintCoinach.Graphics.Viewer.Interop.HavokInterop.InitializeMTA();
 
             base.OnStartup(e);
 
