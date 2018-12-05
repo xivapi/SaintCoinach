@@ -11553,19 +11553,41 @@
           "name": "IsHouseRequired"
         },
         {
+          "index": 39,
+          "name": "DeliveryQuest",
+          "converter": {
+            "type": "link",
+            "target": "DeliveryQuest"
+          }
+        },
+        {
           "index": 40,
           "name": "ENpcResident{Start}",
           "converter": {
+            "type": "multiref",
+            "targets": [
+              "EObjName",
+              "ENpcResident"
+            ]
+          }
+        },
+        {
+          "index": 41,
+          "name": "Behavior",
+          "converter": {
             "type": "link",
-            "target": "ENpcResident"
+            "target": "Behavior"
           }
         },
         {
           "index": 42,
           "name": "ENpcResident{End}",
           "converter": {
-            "type": "link",
-            "target": "ENpcResident"
+            "type": "multiref",
+            "targets": [
+              "EObjName",
+              "ENpcResident"
+            ]
           }
         },
         {
@@ -11582,6 +11604,22 @@
           "converter": {
             "type": "link",
             "target": "QuestRepeatFlag"
+          }
+        },
+        {
+          "index": 46,
+          "name": "UnlocksSystemContent"
+        },
+        {
+          "index": 48,
+          "name": "Type"
+        },
+        {
+          "index": 49,
+          "name": "QuestClassJobSupply",
+          "converter": {
+            "type": "link",
+            "target": "QuestClassJobSupply"
           }
         },
         {
