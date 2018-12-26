@@ -8376,6 +8376,13 @@
                   "key": "FilterGroup",
                   "value": 37
                 }
+              },
+              {
+                "sheets": [ "HousingExterior", "HousingInterior", "HousingYardObject", "HousingFurniture", "HousingPreset", "HousingUnitedExterior" ],
+                "when":  {
+                  "key": "FilterGroup",
+                  "value":  14
+                }
               }
             ]
           }
