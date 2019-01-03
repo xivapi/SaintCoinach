@@ -7706,6 +7706,17 @@
       "sheet": "HousingMapMarkerInfo",
       "definitions": [
         {
+          "name": "X"
+        },
+        {
+          "index": 1,
+          "name": "Y"
+        },
+        {
+          "index": 2,
+          "name": "Z"
+        },
+        {
           "index": 4,
           "name": "Map",
           "converter": {
