@@ -11569,7 +11569,7 @@
         },
         {
           "index": 40,
-          "name": "ENpcResident{Start}",
+          "name": "Issuer{Start}",
           "converter": {
             "type": "multiref",
             "targets": [
@@ -11588,7 +11588,7 @@
         },
         {
           "index": 42,
-          "name": "ENpcResident{End}",
+          "name": "Target{End}",
           "converter": {
             "type": "multiref",
             "targets": [
