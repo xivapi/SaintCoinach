@@ -13570,7 +13570,27 @@
         {
           "index": 1261,
           "type": "repeat",
-          "count": 4,
+          "count": 60,
+          "definition": {
+            "name": "Unknown"
+          }
+        },
+        {
+          "index": 1321,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "AchievementUnlock",
+            "converter": {
+              "type": "link",
+              "target": "Achievement"
+            }
+          }
+        },
+        {
+          "index": 1381,
+          "type": "repeat",
+          "count": 2,
           "definition": {
             "type": "group",
             "members": [
@@ -13582,6 +13602,14 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "index": 1801,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "PatchNumber"
           }
         },
         {
