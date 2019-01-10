@@ -11180,8 +11180,12 @@
         {
           "name": "GilShop",
           "converter": {
-            "type": "link",
-            "target": "GilShop"
+            "type": "multiref",
+            "targets": [
+              "GilShop",
+              "SpecialShop",
+              "Description"
+            ]
           }
         },
         {
