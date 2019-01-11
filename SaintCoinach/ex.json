@@ -8256,6 +8256,38 @@
       ]
     },
     {
+      "sheet": "InstanceContentCSBonus",
+      "definitions": [
+        {
+          "name": "Instance",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "InstanceContentGuide",
+      "definitions": [
+        {
+          "name": "Instance",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "InstanceContentTextData",
       "defaultColumn": "Text",
       "definitions": [
