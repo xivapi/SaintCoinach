@@ -1292,6 +1292,218 @@
       ]
     },
     {
+      "sheet": "AozAction",
+      "defaultColumn": "Action",
+      "definitions": [
+        {
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AozActionTransient",
+      "defaultColumn": "Action",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Stats"
+        },
+        {
+          "index": 3,
+          "name": "Description"
+        },
+        {
+          "index": 5,
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "ContentFinderCondition"
+          }
+        },
+        {
+          "index": 6,
+          "name": "StartQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 7,
+          "name": "NextQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZArrangement",
+      "definitions": [
+        {
+          "name": "AOZContentBriefingBNpc",
+          "converter": {
+            "type": "link",
+            "target": "AOZContentBriefingBNpc"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZBoss",
+      "defaultColumn": "Boss",
+      "definitions": [
+        {
+          "name": "Boss",
+          "converter": {
+            "type": "link",
+            "target": "AOZContentBriefingBNpc"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZContent",
+      "definitions": [
+        {
+          "name": "StandardFinishTime"
+        },
+        {
+          "index": 1,
+          "name": "IdealFinishTime"
+        },
+        {
+          "index": 2,
+          "name": "Act1FightType"
+        },
+        {
+          "index": 3,
+          "name": "Act1",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act1FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act1FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "name": "ArenaType[1]"
+        },
+        {
+          "index": 5,
+          "name": "Act2FightType"
+        },
+        {
+          "index": 6,
+          "name": "Act2",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act2FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act2FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "name": "ArenaType[2]"
+        },
+        {
+          "index": 8,
+          "name": "Act3FightType"
+        },
+        {
+          "index": 9,
+          "name": "Act3",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act3FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act3FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "name": "ArenaType[3]"
+        },
+        {
+          "index": 11,
+          "name": "ContentEntry",
+          "converter": {
+            "type": "link",
+            "target": "ContentEntry"
+          }
+        },
+        {
+          "index": 12,
+          "name": "Order"
+        },
+        {
+          "index": 13,
+          "name": "GilReward"
+        },
+        {
+          "index": 14,
+          "name": "AlliedSealsReward"
+        },
+        {
+          "index": 15,
+          "name": "TomestonesReward"
+        }
+      ]
+    },
+    {
       "sheet": "AOZContentBriefingBNpc",
       "defaultColumn": "BNpcName",
       "definitions": [
@@ -1398,7 +1610,7 @@
         },
         {
           "index": 24,
-          "name": "DoomResistance"
+          "name": "InstaDeathResistance"
         }
       ]
     },
@@ -4232,6 +4444,18 @@
       ]
     },
     {
+      "sheet": "CreditBackImage",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "BackImage",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "Currency",
       "defaultColumn": "Item",
       "definitions": [
@@ -4289,6 +4513,41 @@
         {
           "index": 66,
           "name": "Text"
+        }
+      ]
+    },
+    {
+      "sheet": "CustomTalkDynamicIcon",
+      "definitions": [
+        {
+          "name": "SmallIcon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LargeIcon",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "CustomTalkNestHandlers",
+      "definitions": [
+        {
+          "name": "NestHandler",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "GilShop",
+              "SpecialShop",
+              "DisposalShop",
+              "ContentEntry"
+            ]
+          }
         }
       ]
     },
@@ -4701,6 +4960,155 @@
       ]
     },
     {
+      "sheet": "DescriptionPage",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Text[1]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Image[1]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Text[2]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Image[2]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 5,
+          "name": "Text[3]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 6,
+          "name": "Image[3]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 7,
+          "name": "Text[4]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 8,
+          "name": "Image[4]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Text[5]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 10,
+          "name": "Image[5]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 11,
+          "name": "Text[6]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 12,
+          "name": "Image[6]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 13,
+          "name": "Text[7]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 14,
+          "name": "Image[7]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 15,
+          "name": "Text[8]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 16,
+          "name": "Image[8]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 17,
+          "name": "Text[9]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 18,
+          "name": "Image[9]",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "DescriptionString",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },
+    {
       "sheet": "DisposalShop",
       "defaultColumn": "ShopName",
       "definitions": [
@@ -4811,6 +5219,26 @@
           "converter": {
             "type": "link",
             "target": "InstanceContent"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EmjAddon",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },
+    {
+      "sheet": "EmjDani",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
           }
         }
       ]
@@ -5200,6 +5628,32 @@
           "converter": {
             "type": "link",
             "target": "Balloon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ENpcDressUp",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "ENpcDressUpDress",
+          "converter": {
+            "type": "link",
+            "target": "ENpcDressUpDress"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ENpcDressUpDress",
+      "definitions": [
+        {
+          "index": 6,
+          "name": "ENpc",
+          "converter": {
+            "type": "link",
+            "target": "ENpcResident"
           }
         }
       ]
@@ -7324,6 +7778,18 @@
           "converter": {
             "type": "link",
             "target": "PublicContentTextData"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "GFateRideShooting",
+      "definitions": [
+        {
+          "name": "ContentEntry",
+          "converter": {
+            "type": "link",
+            "target": "ContentEntry"
           }
         }
       ]
