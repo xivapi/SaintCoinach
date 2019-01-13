@@ -11650,14 +11650,95 @@
           }
         },
         {
+          "index": 150,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+            "name": "ActorSpawnSeq"
+          }
+        },
+        {
+          "index": 214,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+            "name": "ActorDespawnSeq"
+          }
+        },
+        {
+          "index": 278,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+          "name": "ActorSpawn",
+            "converter": {
+              "type": "multiref",
+              "targets": [
+                "EObjName",
+                "ENpcResident",
+                "ENpcBase",
+                "BNpcName"
+              ]
+            }
+          }
+        },
+        {
+          "index": 342,
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "QuestUInt8A"
+          }
+        },
+        {
+          "index": 374,
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "QuestUInt8B"
+          }
+        },
+        {
+          "index": 1174,
+          "type": "repeat",
+          "count": 24,
+          "definition":{
+            "name": "ToDoCompleteSeq"
+          }
+        },
+        {
+          "index": 1198,
+          "type": "repeat",
+          "count": 24,
+          "definition": {
+            "name": "ToDoQty"
+          }
+        },
+        {
           "index": 1222,
           "type": "repeat",
-          "count": 171,
+          "count": 24,
           "definition": {
-            "name": "Level",
+            "name": "ToDoMainLocation",
             "converter": {
               "type": "link",
               "target": "Level"
+            }
+          }
+        },
+        {
+          "index": 1246,
+          "type": "repeat",
+          "count": 7,
+          "definition": {
+            "type": "repeat",
+            "count": 24,
+            "definition": {
+              "name": "ToDoChildLocation",
+              "converter": {
+                "type": "link",
+                "target": "Level"
+              }
             }
           }
         },

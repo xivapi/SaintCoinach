@@ -64,6 +64,10 @@ namespace SaintCoinach.Graphics {
         private void Build() {
             const int DefinitionPart = 1;
 
+            // osg and bil_*_base.mdl workaround
+            // These models contain an extra 120 bytes after model headers
+            bool isOsg = File.Path.Contains("/osg_");
+
             var buffer = File.GetPart(DefinitionPart);
             var stringsSize = BitConverter.ToInt32(buffer, StringsSizeOffset);
 
@@ -72,6 +76,10 @@ namespace SaintCoinach.Graphics {
             this.Header = buffer.ToStructure<ModelDefinitionHeader>(ref offset);
             this.UnknownStructs1 = buffer.ToStructures<Unknowns.ModelStruct1>(Header.UnknownStruct1Count, ref offset);
             this.ModelHeaders = buffer.ToStructures<ModelHeader>(ModelCount, ref offset);
+
+            // Skip 120 bytes after model headers
+            if (isOsg)
+                offset += 120;
 
             var availableQualities = new List<ModelQuality>();
             for (var i = 0; i < this.ModelHeaders.Length; ++i) {
@@ -130,7 +138,7 @@ namespace SaintCoinach.Graphics {
         }
         private static string[] ReadStrings(byte[] buffer, int count, ref int offset) {
             var values = new string[count];
-            for(var i = 0; i < count; ++i) {
+            for (var i = 0; i < count; ++i) {
                 var stringOffset = BitConverter.ToInt32(buffer, offset);
                 values[i] = buffer.ReadString(StringsOffset + stringOffset);
                 offset += 4;

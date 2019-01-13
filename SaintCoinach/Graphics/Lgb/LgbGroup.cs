@@ -39,6 +39,9 @@ namespace SaintCoinach.Graphics.Lgb {
             this.Header = buffer.ToStructure<HeaderData>(offset);
             this.Name = buffer.ReadString(offset + Header.GroupNameOffset);
 
+            //byte[] Unknown = new byte[100];
+            //System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
+
             var entriesOffset = offset + Header.EntriesOffset;
             Entries = new ILgbEntry[Header.EntryCount];
             for(var i = 0; i < Header.EntryCount; ++i) {
