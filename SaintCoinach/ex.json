@@ -453,6 +453,10 @@
         {
           "index": 50,
           "name": "IsPvP"
+        },
+        {
+          "index": 62,
+          "name": "IsPlayerAction"
         }
       ]
     },
