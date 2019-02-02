@@ -1,5 +1,5 @@
 {
-  "version": "2018.12.25.0000.0000",
+  "version": "2019.01.18.0001.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -4439,15 +4439,6 @@
       ]
     },
     {
-      "sheet": "CreditCast",
-      "defaultColumn": "Name",
-      "definitions": [
-        {
-          "name": "Name"
-        }
-      ]
-    },
-    {
       "sheet": "CreditBackImage",
       "definitions": [
         {
@@ -4456,6 +4447,15 @@
           "converter": {
             "type": "icon"
           }
+        }
+      ]
+    },
+    {
+      "sheet": "CreditCast",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
         }
       ]
     },
@@ -12888,60 +12888,60 @@
       "sheet": "RecastNavimesh",
       "definitions": [
         {
-          "name": "Tile{Size}",
-          "index": 1
+          "index": 1,
+          "name": "Tile{Size}"
         },
         {
-          "name": "Cell{Size}",
-          "index": 2
-        },
-        {   
-          "name": "Cell{Height}",
-          "index": 3
+          "index": 2,
+          "name": "Cell{Size}"
         },
         {
-          "name": "Agent{Height}",
-          "index": 4
+          "index": 3,
+          "name": "Cell{Height}"
         },
         {
-          "name": "Agent{Radius}",
-          "index": 5
+          "index": 4,
+          "name": "Agent{Height}"
         },
         {
-          "name": "Agent{MaxClimb}",
-          "index": 6
+          "index": 5,
+          "name": "Agent{Radius}"
         },
         {
-          "name": "Agent{MaxSlope}",
-          "index": 7
+          "index": 6,
+          "name": "Agent{MaxClimb}"
         },
         {
-          "name": "Region{MinSize}",
-          "index": 9
+          "index": 7,
+          "name": "Agent{MaxSlope}"
         },
         {
-          "name": "Region{MergedSize}",
-          "index": 10
+          "index": 9,
+          "name": "Region{MinSize}"
         },
         {
-          "name": "MaxEdgeLength",
-          "index": 12
+          "index": 10,
+          "name": "Region{MergedSize}"
         },
         {
-          "name": "MaxEdgeError",
-          "index": 13
+          "index": 12,
+          "name": "MaxEdgeLength"
         },
         {
-          "name": "VertsPerPoly",
-          "index": 14
+          "index": 13,
+          "name": "MaxEdgeError"
         },
         {
-          "name": "DetailMesh{SampleDistance}",
-          "index": 15
+          "index": 14,
+          "name": "VertsPerPoly"
         },
         {
-          "name": "DetailMesh{MaxSampleError}",
-          "index": 16
+          "index": 15,
+          "name": "DetailMesh{SampleDistance}"
+        },
+        {
+          "index": 16,
+          "name": "DetailMesh{MaxSampleError}"
         }
       ]
     },
