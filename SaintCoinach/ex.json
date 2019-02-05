@@ -11208,6 +11208,32 @@
       ]
     },
     {
+      "sheet": "NotebookDivision",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        },
+        {
+          "index": 1,
+          "name": "NotebookDivisionCategory",
+          "converter": {
+            "type": "link",
+            "target": "NotebookDivisionCategory"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "NotebookDivisionCategory",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
+    {
       "sheet": "NpcEquip",
       "definitions": [
         {
