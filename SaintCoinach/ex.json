@@ -372,6 +372,40 @@
           "name": "Cost"
         },
         {
+          "index": 33,
+          "name": "Cost{Type2}"
+        },
+        {
+          "index": 34,
+          "name": "Cost{2}",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Cost{Type2}",
+                  "value": 32
+                },
+                "sheet": "Status"
+              },
+              {
+                "when": {
+                  "key": "Cost{Type2}",
+                  "value": 35
+                },
+                "sheet": "Status"
+              },
+              {
+                "when": {
+                  "key": "Cost{Type2}",
+                  "value": 46
+                },
+                "sheet": "Status"
+              },
+            ]
+          }
+        },
+        {
           "index": 35,
           "name": "Action{Combo}",
           "converter": {
