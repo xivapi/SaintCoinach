@@ -365,39 +365,39 @@
         },
         {
           "index": 31,
-          "name": "Cost{Type}"
+          "name": "Cost{Type}[1]"
         },
         {
           "index": 32,
-          "name": "Cost"
+          "name": "Cost{Value}[1]"
         },
         {
           "index": 33,
-          "name": "Cost{Type2}"
+          "name": "Cost{Type}[2]"
         },
         {
           "index": 34,
-          "name": "Cost{2}",
+          "name": "Cost{Value}[2]",
           "converter": {
             "type": "complexlink",
             "links": [
               {
                 "when": {
-                  "key": "Cost{Type2}",
+                  "key": "Cost{Type}[2]",
                   "value": 32
                 },
                 "sheet": "Status"
               },
               {
                 "when": {
-                  "key": "Cost{Type2}",
+                  "key": "Cost{Type}[2]",
                   "value": 35
                 },
                 "sheet": "Status"
               },
               {
                 "when": {
-                  "key": "Cost{Type2}",
+                  "key": "Cost{Type}[2]",
                   "value": 46
                 },
                 "sheet": "Status"
