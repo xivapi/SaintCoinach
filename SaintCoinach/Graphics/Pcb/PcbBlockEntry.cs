@@ -11,11 +11,11 @@ namespace SaintCoinach.Graphics.Pcb {
         [StructLayout(LayoutKind.Sequential)]
         public struct HeaderData
         {
-            PcbBlockDataType Type;       // 0 for entry, 0x30 for group
+            public PcbBlockDataType Type;       // 0 for entry, 0x30 for group
             public uint BlockSize;       // when group size in bytes for the group block
             public Vector3 Min;          // bounding box
             public Vector3 Max;
-            public ushort V16EntryCount; // number of vertices packed into 16 bit
+            public ushort VerticesI16Count; // number of vertices packed into 16 bit
             public ushort IndicesCount;  // number of indices
             public uint VerticesCount;   // number of normal float vertices
         }
@@ -24,27 +24,27 @@ namespace SaintCoinach.Graphics.Pcb {
         #region Properties
         public HeaderData Header { get; private set; }
         public PcbFile Parent { get; private set; }
-        public PcbBlockData[] Data { get; private set; }
+        public PcbBlockData Data { get; private set; }
+        public int Offset { get; private set; }
         #endregion
 
         #region Constructor
-        public PcbBlockEntry(PcbFile parent, byte[] buffer, ref int offset )
+        public PcbBlockEntry(PcbFile parent, byte[] buffer, int offset)
         {
             this.Parent = parent;
-            this.Header = buffer.ToStructure<HeaderData>(offset);
-            Build();
+            Offset = offset;
+            this.Header = buffer.ToStructure<HeaderData>(ref offset);
+            this.Data = new PcbBlockData();
+            Build(buffer);
         }
         #endregion
         #region Functions
-        private void ParsePcbBlockEntry(byte[] buffer, ref int offset) {
-            bool isGroup = true;
-            while (isGroup) {
+        private void ParseBlockEntry(byte[] buffer, int offset, int globalOffset) {
 
-            }
         }
         #endregion
         #region Build
-        private void Build()
+        private void Build(byte[] buffer)
         {
 
         }

@@ -22,14 +22,14 @@ namespace SaintCoinach.Xiv {
         public BeastTribe BeastTribe { get { return As<BeastTribe>(); } }
 
         public ENpc IssuingENpc {
-            get { 
-                var resident = As<ENpcResident>("ENpcResident{Start}");
+            get {
+                var resident = this["Issuer{Start}"] as ENpcResident;
                 return resident == null ? null : Sheet.Collection.ENpcs[resident.Key];
             }
         }
         public ENpc TargetENpc {
             get {
-                var resident = As<ENpcResident>("ENpcResident{End}");
+                var resident = this["Target{End}"] as ENpcResident;
                 return resident == null ? null : Sheet.Collection.ENpcs[resident.Key];
             }
         }

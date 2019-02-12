@@ -31,7 +31,7 @@ namespace SaintCoinach.Cmd {
             if (string.IsNullOrWhiteSpace(dataPath))
                 dataPath = SearchForDataPaths().FirstOrDefault(p => System.IO.Directory.Exists(p));
             if (string.IsNullOrWhiteSpace(dataPath) || !System.IO.Directory.Exists(dataPath)) {
-                Console.WriteLine("Need data!");
+                Console.WriteLine($"Need data!  The path '{dataPath}' doesn't exist.");
                 return;
             }
 

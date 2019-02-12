@@ -1,5 +1,5 @@
 {
-  "version": "2018.10.30.0000.0000",
+  "version": "2019.02.06.0000.0000",
   "sheets": [
     {
       "sheet": "Achievement",
@@ -58,95 +58,95 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "Achievement",
                 "when": {
                   "key": "Type",
                   "value": 2
-                }
+                },
+                "sheet": "Achievement"
               },
               {
-                "sheet": "ClassJob",
                 "when": {
                   "key": "Type",
                   "value": 3
-                }
+                },
+                "sheet": "ClassJob"
               },
               {
-                "sheet": "Quest",
                 "when": {
                   "key": "Type",
                   "value": 6
-                }
+                },
+                "sheet": "Quest"
               },
               {
-                "sheet": "ClassJob",
                 "when": {
                   "key": "Type",
                   "value": 7
-                }
+                },
+                "sheet": "ClassJob"
               },
               {
-                "sheet": "Map",
                 "when": {
                   "key": "Type",
                   "value": 8
-                }
+                },
+                "sheet": "Map"
               },
               {
-                "sheet": "Quest",
                 "when": {
                   "key": "Type",
                   "value": 9
-                }
+                },
+                "sheet": "Quest"
               },
               {
-                "sheet": "GrandCompany",
                 "when": {
                   "key": "Type",
                   "value": 11
-                }
+                },
+                "sheet": "GrandCompany"
               },
               {
-                "sheet": "InstanceContent",
                 "when": {
                   "key": "Type",
                   "value": 14
-                }
+                },
+                "sheet": "InstanceContent"
               },
               {
-                "sheet": "BeastTribe",
                 "when": {
                   "key": "Type",
                   "value": 15
-                }
+                },
+                "sheet": "BeastTribe"
               },
               {
-                "sheet": "GrandCompany",
                 "when": {
                   "key": "Type",
                   "value": 18
-                }
+                },
+                "sheet": "GrandCompany"
               },
               {
-                "sheet": "AetherCurrentCompFlgSet",
                 "when": {
                   "key": "Type",
                   "value": 20
-                }
+                },
+                "sheet": "AetherCurrentCompFlgSet"
               },
               {
-                "sheet": "Quest",
                 "when": {
                   "key": "Type",
                   "value": 24
-                }
+                },
+                "sheet": "Quest"
               },
               {
-                "sheet": "ClassJob",
                 "when": {
                   "key": "Type",
                   "value": 24
-                }
+                },
+                "sheet": "ClassJob"
               }
             ]
           }
@@ -161,53 +161,53 @@
               "type": "complexlink",
               "links": [
                 {
-                  "sheet": "Achievement",
                   "when": {
                     "key": "Type",
                     "value": 2
-                  }
+                  },
+                  "sheet": "Achievement"
                 },
                 {
-                  "sheet": "Quest",
                   "when": {
                     "key": "Type",
                     "value": 6
-                  }
+                  },
+                  "sheet": "Quest"
                 },
                 {
-                  "sheet": "Quest",
                   "when": {
                     "key": "Type",
                     "value": 9
-                  }
+                  },
+                  "sheet": "Quest"
                 },
                 {
-                  "sheet": "BeastReputationRank",
                   "when": {
                     "key": "Type",
                     "value": 15
-                  }
+                  },
+                  "sheet": "BeastReputationRank"
                 },
                 {
-                  "sheet": "AetherCurrentCompFlgSet",
                   "when": {
                     "key": "Type",
                     "value": 20
-                  }
+                  },
+                  "sheet": "AetherCurrentCompFlgSet"
                 },
                 {
-                  "sheet": "Quest",
                   "when": {
                     "key": "Type",
                     "value": 24
-                  }
+                  },
+                  "sheet": "Quest"
                 },
                 {
-                  "sheet": "ClassJob",
                   "when": {
                     "key": "Type",
                     "value": 24
-                  }
+                  },
+                  "sheet": "ClassJob"
                 }
               ]
             }
@@ -453,6 +453,10 @@
         {
           "index": 50,
           "name": "IsPvP"
+        },
+        {
+          "index": 62,
+          "name": "IsPlayerAction"
         }
       ]
     },
@@ -1288,6 +1292,329 @@
               "target": "Item"
             }
           }
+        }
+      ]
+    },
+    {
+      "sheet": "AozAction",
+      "defaultColumn": "Action",
+      "definitions": [
+        {
+          "name": "Action",
+          "converter": {
+            "type": "link",
+            "target": "Action"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AozActionTransient",
+      "defaultColumn": "Action",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Stats"
+        },
+        {
+          "index": 3,
+          "name": "Description"
+        },
+        {
+          "index": 5,
+          "name": "Location",
+          "converter": {
+            "type": "link",
+            "target": "ContentFinderCondition"
+          }
+        },
+        {
+          "index": 6,
+          "name": "StartQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        },
+        {
+          "index": 7,
+          "name": "NextQuest",
+          "converter": {
+            "type": "link",
+            "target": "Quest"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZArrangement",
+      "definitions": [
+        {
+          "name": "AOZContentBriefingBNpc",
+          "converter": {
+            "type": "link",
+            "target": "AOZContentBriefingBNpc"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZBoss",
+      "defaultColumn": "Boss",
+      "definitions": [
+        {
+          "name": "Boss",
+          "converter": {
+            "type": "link",
+            "target": "AOZContentBriefingBNpc"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "AOZContent",
+      "definitions": [
+        {
+          "name": "StandardFinishTime"
+        },
+        {
+          "index": 1,
+          "name": "IdealFinishTime"
+        },
+        {
+          "index": 2,
+          "name": "Act1FightType"
+        },
+        {
+          "index": 3,
+          "name": "Act1",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act1FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act1FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "name": "ArenaType[1]"
+        },
+        {
+          "index": 5,
+          "name": "Act2FightType"
+        },
+        {
+          "index": 6,
+          "name": "Act2",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act2FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act2FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "name": "ArenaType[2]"
+        },
+        {
+          "index": 8,
+          "name": "Act3FightType"
+        },
+        {
+          "index": 9,
+          "name": "Act3",
+          "converter": {
+            "type": "complexlink",
+            "links": [
+              {
+                "when": {
+                  "key": "Act3FightType",
+                  "value": 1
+                },
+                "sheet": "AOZArrangement"
+              },
+              {
+                "when": {
+                  "key": "Act3FightType",
+                  "value": 2
+                },
+                "sheet": "AOZBoss"
+              }
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "name": "ArenaType[3]"
+        },
+        {
+          "index": 11,
+          "name": "ContentEntry",
+          "converter": {
+            "type": "link",
+            "target": "ContentEntry"
+          }
+        },
+        {
+          "index": 12,
+          "name": "Order"
+        },
+        {
+          "index": 13,
+          "name": "GilReward"
+        },
+        {
+          "index": 14,
+          "name": "AlliedSealsReward"
+        },
+        {
+          "index": 15,
+          "name": "TomestonesReward"
+        }
+      ]
+    },
+    {
+      "sheet": "AOZContentBriefingBNpc",
+      "defaultColumn": "BNpcName",
+      "definitions": [
+        {
+          "name": "BNpcName",
+          "converter": {
+            "type": "link",
+            "target": "BNpcName"
+          }
+        },
+        {
+          "index": 1,
+          "name": "TargetSmall",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "TargetLarge",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Endurance"
+        },
+        {
+          "index": 5,
+          "name": "Fire"
+        },
+        {
+          "index": 6,
+          "name": "Ice"
+        },
+        {
+          "index": 7,
+          "name": "Wind"
+        },
+        {
+          "index": 8,
+          "name": "Earth"
+        },
+        {
+          "index": 9,
+          "name": "Thunder"
+        },
+        {
+          "index": 10,
+          "name": "Water"
+        },
+        {
+          "index": 11,
+          "name": "Slashing"
+        },
+        {
+          "index": 12,
+          "name": "Piercing"
+        },
+        {
+          "index": 13,
+          "name": "Blunt"
+        },
+        {
+          "index": 14,
+          "name": "Magic"
+        },
+        {
+          "index": 15,
+          "name": "SlowResistance"
+        },
+        {
+          "index": 16,
+          "name": "PetrificationResistance"
+        },
+        {
+          "index": 17,
+          "name": "ParalysisResistance"
+        },
+        {
+          "index": 18,
+          "name": "SilenceResistance"
+        },
+        {
+          "index": 19,
+          "name": "BlindResistance"
+        },
+        {
+          "index": 20,
+          "name": "StunResistance"
+        },
+        {
+          "index": 21,
+          "name": "SleepResistance"
+        },
+        {
+          "index": 22,
+          "name": "BindResistance"
+        },
+        {
+          "index": 23,
+          "name": "HeavyResistance"
+        },
+        {
+          "index": 24,
+          "name": "InstaDeathResistance"
         }
       ]
     },
@@ -2718,7 +3045,7 @@
           }
         },
         {
-          "index": 33,
+          "index": 34,
           "name": "LimitBreak1",
           "converter": {
             "type": "link",
@@ -2726,7 +3053,7 @@
           }
         },
         {
-          "index": 34,
+          "index": 35,
           "name": "LimitBreak2",
           "converter": {
             "type": "link",
@@ -2734,7 +3061,7 @@
           }
         },
         {
-          "index": 35,
+          "index": 36,
           "name": "LimitBreak3",
           "converter": {
             "type": "link",
@@ -2742,7 +3069,7 @@
           }
         },
         {
-          "index": 37,
+          "index": 38,
           "name": "Item{SoulCrystal}",
           "converter": {
             "type": "link",
@@ -2750,7 +3077,7 @@
           }
         },
         {
-          "index": 38,
+          "index": 39,
           "name": "UnlockQuest",
           "converter": {
             "type": "link",
@@ -2758,7 +3085,7 @@
           }
         },
         {
-          "index": 39,
+          "index": 40,
           "name": "RelicQuest",
           "converter": {
             "type": "link",
@@ -2766,7 +3093,7 @@
           }
         },
         {
-          "index": 40,
+          "index": 41,
           "name": "Prerequisite",
           "converter": {
             "type": "link",
@@ -2774,7 +3101,7 @@
           }
         },
         {
-          "index": 41,
+          "index": 42,
           "name": "StartingLevel"
         }
       ]
@@ -3429,32 +3756,32 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "InstanceContent",
                 "when": {
                   "key": "ContentLinkType",
                   "value": 1
-                }
+                },
+                "sheet": "InstanceContent"
               },
               {
-                "sheet": "PartyContent",
                 "when": {
                   "key": "ContentLinkType",
                   "value": 2
-                }
+                },
+                "sheet": "PartyContent"
               },
               {
-                "sheet": "PublicContent",
                 "when": {
                   "key": "ContentLinkType",
                   "value": 3
-                }
+                },
+                "sheet": "PublicContent"
               },
               {
-                "sheet": "GoldSaucerContent",
                 "when": {
                   "key": "ContentLinkType",
                   "value": 4
-                }
+                },
+                "sheet": "GoldSaucerContent"
               }
             ]
           }
@@ -3496,11 +3823,11 @@
           "name": "DutyRecorderAllowed"
         },
         {
-          "index": 32,
+          "index": 34,
           "name": "Name"
         },
         {
-          "index": 33,
+          "index": 35,
           "name": "ContentType",
           "converter": {
             "type": "link",
@@ -3508,7 +3835,7 @@
           }
         },
         {
-          "index": 34,
+          "index": 37,
           "name": "Transient",
           "converter": {
             "type": "link",
@@ -3516,7 +3843,7 @@
           }
         },
         {
-          "index": 37,
+          "index": 39,
           "name": "Image",
           "converter": {
             "type": "icon"
@@ -4112,6 +4439,18 @@
       ]
     },
     {
+      "sheet": "CreditBackImage",
+      "definitions": [
+        {
+          "index": 2,
+          "name": "BackImage",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "CreditCast",
       "defaultColumn": "Name",
       "definitions": [
@@ -4178,6 +4517,41 @@
         {
           "index": 66,
           "name": "Text"
+        }
+      ]
+    },
+    {
+      "sheet": "CustomTalkDynamicIcon",
+      "definitions": [
+        {
+          "name": "SmallIcon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 1,
+          "name": "LargeIcon",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "CustomTalkNestHandlers",
+      "definitions": [
+        {
+          "name": "NestHandler",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "GilShop",
+              "SpecialShop",
+              "DisposalShop",
+              "ContentEntry"
+            ]
+          }
         }
       ]
     },
@@ -4590,6 +4964,155 @@
       ]
     },
     {
+      "sheet": "DescriptionPage",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Text[1]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Image[1]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 3,
+          "name": "Text[2]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 4,
+          "name": "Image[2]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 5,
+          "name": "Text[3]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 6,
+          "name": "Image[3]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 7,
+          "name": "Text[4]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 8,
+          "name": "Image[4]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 9,
+          "name": "Text[5]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 10,
+          "name": "Image[5]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 11,
+          "name": "Text[6]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 12,
+          "name": "Image[6]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 13,
+          "name": "Text[7]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 14,
+          "name": "Image[7]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 15,
+          "name": "Text[8]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 16,
+          "name": "Image[8]",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 17,
+          "name": "Text[9]",
+          "converter": {
+            "type": "link",
+            "target": "DescriptionString"
+          }
+        },
+        {
+          "index": 18,
+          "name": "Image[9]",
+          "converter": {
+            "type": "icon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "DescriptionString",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },
+    {
       "sheet": "DisposalShop",
       "defaultColumn": "ShopName",
       "definitions": [
@@ -4700,6 +5223,26 @@
           "converter": {
             "type": "link",
             "target": "InstanceContent"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "EmjAddon",
+      "defaultColumn": "Text",
+      "definitions": [
+        {
+          "name": "Text"
+        }
+      ]
+    },
+    {
+      "sheet": "EmjDani",
+      "definitions": [
+        {
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
           }
         }
       ]
@@ -5089,6 +5632,32 @@
           "converter": {
             "type": "link",
             "target": "Balloon"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ENpcDressUp",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "ENpcDressUpDress",
+          "converter": {
+            "type": "link",
+            "target": "ENpcDressUpDress"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "ENpcDressUpDress",
+      "definitions": [
+        {
+          "index": 6,
+          "name": "ENpc",
+          "converter": {
+            "type": "link",
+            "target": "ENpcResident"
           }
         }
       ]
@@ -5668,8 +6237,8 @@
           }
         },
         {
-        "index": 19,
-        "name": "HasWorldMapIcon"
+          "index": 19,
+          "name": "HasWorldMapIcon"
         },
         {
           "index": 27,
@@ -7218,6 +7787,18 @@
       ]
     },
     {
+      "sheet": "GFateRideShooting",
+      "definitions": [
+        {
+          "name": "ContentEntry",
+          "converter": {
+            "type": "link",
+            "target": "ContentEntry"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "GilShop",
       "defaultColumn": "Name",
       "isGenericReferenceTarget": true,
@@ -7703,8 +8284,40 @@
       ]
     },
     {
+      "sheet": "HousingLandSet",
+      "defaultColumn": "",
+      "definitions": [
+        {
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "PlotSize"
+          }
+        },
+        {
+          "index": 300,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "InitialPrice"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "HousingMapMarkerInfo",
       "definitions": [
+        {
+          "name": "X"
+        },
+        {
+          "index": 1,
+          "name": "Y"
+        },
+        {
+          "index": 2,
+          "name": "Z"
+        },
         {
           "index": 4,
           "name": "Map",
@@ -7729,27 +8342,6 @@
         {
           "index": 1,
           "name": "Pose"
-        }
-      ]
-    },
-    {
-      "sheet": "HousingLandSet",
-      "defaultColumn": "",
-      "definitions": [
-        {
-          "type": "repeat",
-          "count": 60,
-          "definition": {
-            "name": "PlotSize"
-          }
-        },
-        {
-          "index": 300,
-          "type": "repeat",
-          "count": 60,
-          "definition": {
-            "name": "InitialPrice"
-          }
         }
       ]
     },
@@ -8227,7 +8819,7 @@
           }
         },
         {
-          "index": 55,
+          "index": 54,
           "name": "PartyCondition"
         }
       ]
@@ -8241,6 +8833,38 @@
         {
           "index": 1,
           "name": "Echo{Death}"
+        }
+      ]
+    },
+    {
+      "sheet": "InstanceContentCSBonus",
+      "definitions": [
+        {
+          "name": "Instance",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
+          }
+        },
+        {
+          "index": 1,
+          "name": "Item",
+          "converter": {
+            "type": "link",
+            "target": "Item"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "InstanceContentGuide",
+      "definitions": [
+        {
+          "name": "Instance",
+          "converter": {
+            "type": "link",
+            "target": "InstanceContent"
+          }
         }
       ]
     },
@@ -8322,60 +8946,74 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "Stain",
                 "when": {
                   "key": "FilterGroup",
                   "value": 15
-                }
+                },
+                "sheet": "Stain"
               },
               {
-                "sheet": "TreasureHuntRank",
                 "when": {
                   "key": "FilterGroup",
                   "value": 18
-                }
+                },
+                "sheet": "TreasureHuntRank"
               },
               {
-                "sheet": "GardeningSeed",
                 "when": {
                   "key": "FilterGroup",
                   "value": 20
-                }
+                },
+                "sheet": "GardeningSeed"
               },
               {
-                "sheet": "AetherialWheel",
                 "when": {
                   "key": "FilterGroup",
                   "value": 25
-                }
+                },
+                "sheet": "AetherialWheel"
               },
               {
-                "sheet": "CompanyAction",
                 "when": {
                   "key": "FilterGroup",
                   "value": 26
-                }
+                },
+                "sheet": "CompanyAction"
               },
               {
-                "sheet": "TripleTriadCard",
                 "when": {
                   "key": "FilterGroup",
                   "value": 27
-                }
+                },
+                "sheet": "TripleTriadCard"
               },
               {
-                "sheet": "AirshipExplorationPart",
                 "when": {
                   "key": "FilterGroup",
                   "value": 28
-                }
+                },
+                "sheet": "AirshipExplorationPart"
               },
               {
-                "sheet": "SubmarinePart",
                 "when": {
                   "key": "FilterGroup",
                   "value": 37
-                }
+                },
+                "sheet": "SubmarinePart"
+              },
+              {
+                "when": {
+                  "key": "FilterGroup",
+                  "value": 14
+                },
+                "sheets": [
+                  "HousingExterior",
+                  "HousingInterior",
+                  "HousingYardObject",
+                  "HousingFurniture",
+                  "HousingPreset",
+                  "HousingUnitedExterior"
+                ]
               }
             ]
           }
@@ -8419,10 +9057,6 @@
         {
           "index": 22,
           "name": "IsIndisposable"
-        },
-        {
-          "index": 23,
-          "name": "IsEquippable"
         },
         {
           "index": 24,
@@ -8645,7 +9279,7 @@
           "name": "IsPvP"
         },
         {
-          "index": 87,
+          "index": 88,
           "name": "IsGlamourous"
         }
       ]
@@ -9354,39 +9988,39 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "ENpcBase",
                 "when": {
                   "key": "Type",
                   "value": 8
-                }
+                },
+                "sheet": "ENpcBase"
               },
               {
-                "sheet": "BNpcBase",
                 "when": {
                   "key": "Type",
                   "value": 9
-                }
+                },
+                "sheet": "BNpcBase"
               },
               {
-                "sheet": "Aetheryte",
                 "when": {
                   "key": "Type",
                   "value": 12
-                }
+                },
+                "sheet": "Aetheryte"
               },
               {
-                "sheet": "GatheringPoint",
                 "when": {
                   "key": "Type",
                   "value": 14
-                }
+                },
+                "sheet": "GatheringPoint"
               },
               {
-                "sheet": "EObj",
                 "when": {
                   "key": "Type",
                   "value": 45
-                }
+                },
+                "sheet": "EObj"
               }
             ]
           }
@@ -9804,32 +10438,32 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "Map",
                 "when": {
                   "key": "Data{Type}",
                   "value": 1
-                }
+                },
+                "sheet": "Map"
               },
               {
-                "sheet": "Map",
                 "when": {
                   "key": "Data{Type}",
                   "value": 2
-                }
+                },
+                "sheet": "Map"
               },
               {
-                "sheet": "Aetheryte",
                 "when": {
                   "key": "Data{Type}",
                   "value": 3
-                }
+                },
+                "sheet": "Aetheryte"
               },
               {
-                "sheet": "PlaceName",
                 "when": {
                   "key": "Data{Type}",
                   "value": 4
-                }
+                },
+                "sheet": "PlaceName"
               }
             ]
           }
@@ -11153,10 +11787,14 @@
       "defaultColumn": "",
       "definitions": [
         {
-          "name": "GilShop",
+          "name": "Target",
           "converter": {
-            "type": "link",
-            "target": "GilShop"
+            "type": "multiref",
+            "targets": [
+              "GilShop",
+              "SpecialShop",
+              "Description"
+            ]
           }
         },
         {
@@ -11208,7 +11846,7 @@
           }
         },
         {
-          "index": 7,
+          "index": 8,
           "name": "ContentFinderCondition",
           "converter": {
             "type": "link",
@@ -11216,24 +11854,24 @@
           }
         },
         {
-          "index": 8,
+          "index": 9,
           "name": "AdditionalData",
           "converter": {
             "type": "complexlink",
             "links": [
               {
-                "sheet": "Eureka",
                 "when": {
                   "key": "Type",
                   "value": 3
-                }
+                },
+                "sheet": "Eureka"
               },
               {
-                "sheet": "GFateClimbing2Content",
                 "when": {
                   "key": "Type",
                   "value": 5
-                }
+                },
+                "sheet": "GFateClimbing2Content"
               }
             ]
           }
@@ -11535,19 +12173,41 @@
           "name": "IsHouseRequired"
         },
         {
-          "index": 40,
-          "name": "ENpcResident{Start}",
+          "index": 39,
+          "name": "DeliveryQuest",
           "converter": {
             "type": "link",
-            "target": "ENpcResident"
+            "target": "DeliveryQuest"
+          }
+        },
+        {
+          "index": 40,
+          "name": "Issuer{Start}",
+          "converter": {
+            "type": "multiref",
+            "targets": [
+              "EObjName",
+              "ENpcResident"
+            ]
+          }
+        },
+        {
+          "index": 41,
+          "name": "Behavior",
+          "converter": {
+            "type": "link",
+            "target": "Behavior"
           }
         },
         {
           "index": 42,
-          "name": "ENpcResident{End}",
+          "name": "Target{End}",
           "converter": {
-            "type": "link",
-            "target": "ENpcResident"
+            "type": "multiref",
+            "targets": [
+              "EObjName",
+              "ENpcResident"
+            ]
           }
         },
         {
@@ -11567,6 +12227,22 @@
           }
         },
         {
+          "index": 46,
+          "name": "UnlocksSystemContent"
+        },
+        {
+          "index": 48,
+          "name": "Type"
+        },
+        {
+          "index": 49,
+          "name": "QuestClassJobSupply",
+          "converter": {
+            "type": "link",
+            "target": "QuestClassJobSupply"
+          }
+        },
+        {
           "index": 50,
           "type": "repeat",
           "count": 50,
@@ -11583,14 +12259,95 @@
           }
         },
         {
+          "index": 150,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+            "name": "ActorSpawnSeq"
+          }
+        },
+        {
+          "index": 214,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+            "name": "ActorDespawnSeq"
+          }
+        },
+        {
+          "index": 278,
+          "type": "repeat",
+          "count": 64,
+          "definition": {
+            "name": "ActorSpawn",
+            "converter": {
+              "type": "multiref",
+              "targets": [
+                "EObjName",
+                "ENpcResident",
+                "ENpcBase",
+                "BNpcName"
+              ]
+            }
+          }
+        },
+        {
+          "index": 342,
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "QuestUInt8A"
+          }
+        },
+        {
+          "index": 374,
+          "type": "repeat",
+          "count": 32,
+          "definition": {
+            "name": "QuestUInt8B"
+          }
+        },
+        {
+          "index": 1174,
+          "type": "repeat",
+          "count": 24,
+          "definition": {
+            "name": "ToDoCompleteSeq"
+          }
+        },
+        {
+          "index": 1198,
+          "type": "repeat",
+          "count": 24,
+          "definition": {
+            "name": "ToDoQty"
+          }
+        },
+        {
           "index": 1222,
           "type": "repeat",
-          "count": 171,
+          "count": 24,
           "definition": {
-            "name": "Level",
+            "name": "ToDoMainLocation",
             "converter": {
               "type": "link",
               "target": "Level"
+            }
+          }
+        },
+        {
+          "index": 1246,
+          "type": "repeat",
+          "count": 7,
+          "definition": {
+            "type": "repeat",
+            "count": 24,
+            "definition": {
+              "name": "ToDoChildLocation",
+              "converter": {
+                "type": "link",
+                "target": "Level"
+              }
             }
           }
         },
@@ -11648,11 +12405,11 @@
               "type": "complexlink",
               "links": [
                 {
-                  "sheet": "QuestClassJobReward",
                   "when": {
                     "key": "ItemRewardType",
                     "value": 6
-                  }
+                  },
+                  "sheet": "QuestClassJobReward"
                 },
                 {
                   "sheet": "Item"
@@ -11772,9 +12529,9 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "TomestonesItem",
                 "project": "Item",
-                "key": "Tomestones"
+                "key": "Tomestones",
+                "sheet": "TomestonesItem"
               }
             ]
           }
@@ -12124,6 +12881,67 @@
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "RecastNavimesh",
+      "definitions": [
+        {
+          "index": 1,
+          "name": "Tile{Size}"
+        },
+        {
+          "index": 2,
+          "name": "Cell{Size}"
+        },
+        {
+          "index": 3,
+          "name": "Cell{Height}"
+        },
+        {
+          "index": 4,
+          "name": "Agent{Height}"
+        },
+        {
+          "index": 5,
+          "name": "Agent{Radius}"
+        },
+        {
+          "index": 6,
+          "name": "Agent{MaxClimb}"
+        },
+        {
+          "index": 7,
+          "name": "Agent{MaxSlope}"
+        },
+        {
+          "index": 9,
+          "name": "Region{MinSize}"
+        },
+        {
+          "index": 10,
+          "name": "Region{MergedSize}"
+        },
+        {
+          "index": 12,
+          "name": "MaxEdgeLength"
+        },
+        {
+          "index": 13,
+          "name": "MaxEdgeError"
+        },
+        {
+          "index": 14,
+          "name": "VertsPerPoly"
+        },
+        {
+          "index": 15,
+          "name": "DetailMesh{SampleDistance}"
+        },
+        {
+          "index": 16,
+          "name": "DetailMesh{MaxSampleError}"
         }
       ]
     },
@@ -13422,7 +14240,27 @@
         {
           "index": 1261,
           "type": "repeat",
-          "count": 4,
+          "count": 60,
+          "definition": {
+            "name": "Unknown"
+          }
+        },
+        {
+          "index": 1321,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "AchievementUnlock",
+            "converter": {
+              "type": "link",
+              "target": "Achievement"
+            }
+          }
+        },
+        {
+          "index": 1381,
+          "type": "repeat",
+          "count": 2,
           "definition": {
             "type": "group",
             "members": [
@@ -13434,6 +14272,14 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "index": 1801,
+          "type": "repeat",
+          "count": 60,
+          "definition": {
+            "name": "PatchNumber"
           }
         },
         {
@@ -14494,11 +15340,11 @@
       "sheet": "UIColor",
       "definitions": [
         {
-          "name": "Foreground",
+          "name": "UIForeground"
         },
         {
           "index": 1,
-          "name": "Background"
+          "name": "UIGlow"
         }
       ]
     },
@@ -14720,6 +15566,26 @@
       ]
     },
     {
+      "sheet": "WeatherReportReplace",
+      "definitions": [
+        {
+          "name": "PlaceName{Sub}",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        },
+        {
+          "index": 1,
+          "name": "PlaceName{Parent}",
+          "converter": {
+            "type": "link",
+            "target": "PlaceName"
+          }
+        }
+      ]
+    },
+    {
       "sheet": "WeddingBGM",
       "defaultColumn": "Song",
       "definitions": [
@@ -14749,11 +15615,11 @@
             "type": "complexlink",
             "links": [
               {
-                "sheet": "InstanceContent",
                 "when": {
                   "key": "Type",
                   "value": 0
-                }
+                },
+                "sheet": "InstanceContent"
               }
             ]
           }
@@ -14794,9 +15660,9 @@
                   "type": "complexlink",
                   "links": [
                     {
-                      "sheet": "TomestonesItem",
                       "project": "Item",
-                      "key": "Tomestones"
+                      "key": "Tomestones",
+                      "sheet": "TomestonesItem"
                     },
                     {
                       "sheet": "Item"
@@ -14888,6 +15754,10 @@
       "definitions": [
         {
           "name": "Name"
+        },
+        {
+          "index": 1,
+          "name": "Region"
         }
       ]
     },

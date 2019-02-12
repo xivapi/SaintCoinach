@@ -32,7 +32,9 @@ namespace SaintCoinach.Graphics.Lgb {
         public HeaderData Header { get; private set; }
         public string Name { get; private set; }
         public string ModelFilePath { get; private set; }
+        public string CollisionFilePath { get; private set; }
         public TransformedModel Model { get; private set; }
+        public Pcb.PcbFile CollisionFile { get; private set; }
         #endregion
 
         #region Constructor
@@ -41,10 +43,17 @@ namespace SaintCoinach.Graphics.Lgb {
             this.Name = buffer.ReadString(offset + Header.NameOffset);
 
             ModelFilePath = buffer.ReadString(offset + Header.ModelFileOffset);
+            CollisionFilePath = buffer.ReadString(offset + Header.CollisionFileOffset);
+
             if (!string.IsNullOrWhiteSpace(ModelFilePath)) {
                 SaintCoinach.IO.File mdlFile;
                 if (packs.TryGetFile(ModelFilePath, out mdlFile))
                     this.Model = new TransformedModel(((Graphics.ModelFile)mdlFile).GetModelDefinition(), Header.Translation, Header.Rotation, Header.Scale);
+            }
+            if (!string.IsNullOrWhiteSpace(CollisionFilePath)) {
+                SaintCoinach.IO.File pcbFile;
+                if (packs.TryGetFile(CollisionFilePath, out pcbFile))
+                    this.CollisionFile = new Pcb.PcbFile(pcbFile);
             }
         }
         #endregion

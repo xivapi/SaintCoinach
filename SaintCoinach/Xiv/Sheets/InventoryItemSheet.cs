@@ -51,8 +51,9 @@ namespace SaintCoinach.Xiv.Sheets {
                 97, typeof(MagicWeapon)     // RDM
             }, {
                 98, typeof(MagicWeapon)     // SCH
+            }, {
+                105, typeof(MagicWeapon)    // BLU
             },
-
             // 
             {
                 11, typeof(Shield)
