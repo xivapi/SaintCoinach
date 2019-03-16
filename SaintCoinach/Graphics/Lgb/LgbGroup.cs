@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -46,9 +47,9 @@ namespace SaintCoinach.Graphics.Lgb {
             Entries = new ILgbEntry[Header.EntryCount];
             for(var i = 0; i < Header.EntryCount; ++i) {
                 var entryOffset = entriesOffset + BitConverter.ToInt32(buffer, entriesOffset + i * 4);
+                var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
 
                 try {
-                    var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
                     switch (type) {
                         case LgbEntryType.Model:
                             Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
@@ -63,12 +64,12 @@ namespace SaintCoinach.Graphics.Lgb {
                             Entries[i] = new LgbLightEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         default:
-                            System.Diagnostics.Trace.WriteLine(string.Format("{0}: Type {1} at 0x{2:X} in {3}", Parent.File.Path, type, entryOffset, Name));
+                            Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name}: Can't read type.");
                             break;
                             // TODO: Work out other parts.
                     }
                 } catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name} failure: {ex.Message}");
                 }
             }
 
