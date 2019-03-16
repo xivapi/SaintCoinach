@@ -63,6 +63,9 @@ namespace SaintCoinach.Graphics.Lgb {
                         case LgbEntryType.Light:
                             Entries[i] = new LgbLightEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
+                        case LgbEntryType.EventNpc:
+                            Entries[i] = new LgbENpcEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
                         default:
                             Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name}: Can't read type.");
                             break;

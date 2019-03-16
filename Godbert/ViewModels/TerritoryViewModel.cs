@@ -94,7 +94,6 @@ namespace Godbert.ViewModels {
 
         private void OnExport() {
             
-            string teriName = "";
             if (SelectedTerritory == null)
                 return;
             try {

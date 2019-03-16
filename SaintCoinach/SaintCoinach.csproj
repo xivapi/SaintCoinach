@@ -91,6 +91,7 @@
     <Compile Include="Graphics\ColorMap.cs" />
     <Compile Include="Graphics\Exports\ModelExport.cs" />
     <Compile Include="Graphics\Exports\Obj.cs" />
+    <Compile Include="Graphics\Lgb\LgbENpcEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbLightEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbEventObjectEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbLightEntry.cs" />
