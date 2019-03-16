@@ -8226,28 +8226,12 @@
           "name": "ModelKey"
         },
         {
-          "index": 1,
-          "name": "HousingItemCategory",
-          "converter": {
-            "type": "link",
-            "target": "HousingItemCategory"
-          }
-        },
-        {
           "index": 2,
           "name": "UsageType"
         },
         {
           "index": 3,
           "name": "UsageParameter"
-        },
-        {
-          "index": 4,
-          "name": "HousingLayoutLimit",
-          "converter": {
-            "type": "link",
-            "target": "HousingLayoutLimit"
-          }
         },
         {
           "index": 5,
@@ -8535,28 +8519,12 @@
           "name": "ModelKey"
         },
         {
-          "index": 1,
-          "name": "HousingItemCategory",
-          "converter": {
-            "type": "link",
-            "target": "HousingItemCategory"
-          }
-        },
-        {
           "index": 2,
           "name": "UsageType"
         },
         {
           "index": 3,
           "name": "UsageParameter"
-        },
-        {
-          "index": 4,
-          "name": "HousingLayoutLimit",
-          "converter": {
-            "type": "link",
-            "target": "HousingLayoutLimit"
-          }
         },
         {
           "index": 5,
