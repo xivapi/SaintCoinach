@@ -251,7 +251,7 @@ namespace Godbert.ViewModels {
                                 hq = mdl.Model.Model.GetModel(ModelQuality.High);
                             }
                             catch (Exception e) {
-                                System.Diagnostics.Debug.WriteLine($"Unable to load model for {mdl.Name} path: {filePath}");
+                                System.Diagnostics.Debug.WriteLine($"Unable to load model for {mdl.Name} path: {filePath}.  Exception: {e.Message}");
                                 continue;
                             }
                             if (newGroup) {

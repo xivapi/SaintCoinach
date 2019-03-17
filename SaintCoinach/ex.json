@@ -10289,6 +10289,10 @@
       "defaultColumn": "PlaceName",
       "definitions": [
         {
+          "index": 2,
+          "name": "MapIndex"
+        },
+        {
           "index": 3,
           "name": "Hierarchy"
         },

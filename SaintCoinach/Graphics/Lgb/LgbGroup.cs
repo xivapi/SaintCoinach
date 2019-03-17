@@ -23,6 +23,8 @@ namespace SaintCoinach.Graphics.Lgb {
             // This number corresponds to the last digits of Map.Id.  In
             // territories with rotated subdivisions, it can be used to select
             // the appropriate map for coordinate calculation.
+            // Possibly 3-4 bytes to match the first three columns in the Map
+            // exd.
             public uint MapIndex;
             public uint Unknown7;
             public uint Unknown8;
