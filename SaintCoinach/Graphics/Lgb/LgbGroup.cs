@@ -19,7 +19,11 @@ namespace SaintCoinach.Graphics.Lgb {
             public uint Unknown3;
             public uint Unknown4;
             public uint Unknown5;
-            public uint Unknown6;
+            // Just a guess -
+            // This number corresponds to the last digits of Map.Id.  In
+            // territories with rotated subdivisions, it can be used to select
+            // the appropriate map for coordinate calculation.
+            public uint MapIndex;
             public uint Unknown7;
             public uint Unknown8;
             public uint Unknown9;
@@ -67,9 +71,9 @@ namespace SaintCoinach.Graphics.Lgb {
                             Entries[i] = new LgbENpcEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         default:
-                            Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name}: Can't read type.");
-                            break;
                             // TODO: Work out other parts.
+                            //Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name}: Can't read type.");
+                            break;
                     }
                 } catch (Exception ex) {
                     Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name} failure: {ex.Message}");

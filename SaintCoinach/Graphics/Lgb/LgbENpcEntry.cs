@@ -17,7 +17,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public Vector3 Rotation;
             public Vector3 Scale;
             public uint ENpcId;
-            public byte[] Unknown1; // 24 bytes
+            // 24 bytes of unknowns
         }
         #endregion
 

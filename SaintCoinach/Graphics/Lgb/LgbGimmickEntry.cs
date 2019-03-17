@@ -34,10 +34,10 @@ namespace SaintCoinach.Graphics.Lgb {
             byte[] Unknown = new byte[100];
             System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
 
-            foreach (var c in Unknown) {
-                if (c == 101)
-                    System.Diagnostics.Debugger.Break();
-            }
+            //foreach (var c in Unknown) {
+            //    if (c == 101)
+            //        System.Diagnostics.Debugger.Break();
+            //}
             this.Name = buffer.ReadString(offset + Header.NameOffset);
 
             var gimmickFilePath = buffer.ReadString(offset + Header.GimmickFileOffset);
