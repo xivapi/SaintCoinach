@@ -24,7 +24,7 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         private WeatherRate _WeatherRate;
 
-        private Dictionary<sbyte, Map> _MapsByIndex;
+        private Dictionary<uint, Map> _MapsByIndex;
         #endregion
 
         #region Properties
@@ -96,7 +96,7 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        public Map GetRelatedMap(sbyte index) {
+        public Map GetRelatedMap(uint index) {
             if (_MapsByIndex == null)
                 _MapsByIndex = BuildMapIndex();
 
@@ -119,10 +119,26 @@ namespace SaintCoinach.Xiv {
             return map;
         }
 
-        private Dictionary<sbyte, Map> BuildMapIndex() {
-            return Sheet.Collection.GetSheet<Map>()
-                .Where(m => m.TerritoryType != null && m.TerritoryType.Key == Key)
-                .ToDictionary(m => m.Index);
+        private Dictionary<uint, Map> BuildMapIndex() {
+            var maps = Sheet.Collection.GetSheet<Map>()
+                .Where(m => m.TerritoryType != null && m.TerritoryType.Key == Key);
+
+            var index = new Dictionary<uint, Map>();
+
+            foreach (var map in maps) {
+                var mapId = map.Id.ToString();
+                if (string.IsNullOrEmpty(mapId))
+                    continue;
+
+                var mapIndex = mapId.Substring(mapId.IndexOf("/") + 1);
+                var convertedIndex = uint.Parse(mapIndex);
+                if (index.ContainsKey(convertedIndex))
+                    continue; // Skip it for now.
+
+                index[convertedIndex] = map;
+            }
+
+            return index;
         }
     }
 }

@@ -30,6 +30,8 @@ namespace SaintCoinach.Xiv {
         /// </remarks>
         public long Key { get; private set; }
 
+        public string FullKey => Base.Key + "-" + Name.Key;
+
         /// <summary>
         /// Gets the <see cref="BNpcBase"/> of the current BNpc.
         /// </summary>
