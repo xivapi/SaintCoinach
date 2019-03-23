@@ -5696,14 +5696,6 @@
         {
           "index": 8,
           "name": "Title"
-        },
-        {
-          "index": 9,
-          "name": "Map",
-          "converter": {
-            "type": "link",
-            "target": "Map"
-          }
         }
       ]
     },
@@ -14583,7 +14575,7 @@
     },
     {
       "sheet": "TerritoryType",
-      "defaultColumn": "PlaceName",
+      "defaultColumn": "Name",
       "definitions": [
         {
           "name": "Name"
