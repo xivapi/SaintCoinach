@@ -1,8 +1,28 @@
-﻿namespace SaintCoinach.Ex.Relational {
+﻿using SaintCoinach.Ex.Relational.Definition;
+
+namespace SaintCoinach.Ex.Relational {
     public class RelationalColumn : Column {
+        private bool _hasDefinition;
+        private PositionedDataDefintion _Definition;
+
         #region Properties
 
         public new RelationalHeader Header { get { return (RelationalHeader)base.Header; } }
+
+        public PositionedDataDefintion Definition {
+            get {
+                if (_hasDefinition)
+                    return _Definition;
+
+                if (Header.SheetDefinition != null) {
+                    if (Header.SheetDefinition.TryGetDefinition(Index, out var definition))
+                        _Definition = definition;
+                }
+
+                _hasDefinition = true;
+                return _Definition;
+            }
+        }
 
         public string Name {
             get {
@@ -38,14 +58,14 @@
         public override object Read(byte[] buffer, IDataRow row) {
             var baseVal = base.Read(buffer, row);
 
-            var def = Header.SheetDefinition;
+            var def = Definition;
             return def != null ? def.Convert(row, baseVal, Index) : baseVal;
         }
 
         public override object Read(byte[] buffer, IDataRow row, int offset) {
             var baseVal = base.Read(buffer, row, offset);
 
-            var def = Header.SheetDefinition;
+            var def = Definition;
             return def != null ? def.Convert(row, baseVal, Index) : baseVal;
         }
 
