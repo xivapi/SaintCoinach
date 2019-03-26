@@ -4459,6 +4459,47 @@
         }
       ]
     },
+    
+    {
+      "sheet": "CreditList",
+      "definitions": [
+        {
+          "name": "Scale"
+        },
+        {
+          "index": 1,
+          "name": "Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 2,
+          "name": "Font",
+          "converter": {
+            "type": "link",
+            "target": "CreditFont"
+          }
+        },
+        {
+          "index": 5,
+          "name": "Cast",
+          "converter": {
+            "type": "link",
+            "target": "CreditListText"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "CreditListText",
+      "defaultColumn": "Name",
+      "definitions": [
+        {
+          "name": "Name"
+        }
+      ]
+    },
     {
       "sheet": "Currency",
       "defaultColumn": "Item",
