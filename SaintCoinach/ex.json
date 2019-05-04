@@ -9273,6 +9273,9 @@
       "sheet": "ItemFood",
       "definitions": [
         {
+          "name": "EXPBonus%"
+        },
+        {
           "index": 1,
           "type": "repeat",
           "count": 3,
