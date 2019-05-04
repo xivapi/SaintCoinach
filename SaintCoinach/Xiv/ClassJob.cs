@@ -7,6 +7,7 @@ namespace SaintCoinach.Xiv {
         #region Static
 
         private const int IconOffset = 62000;
+        private const int FramedIconOffset = 62100;
         private const string IconFormat = "ui/icon/{0:D3}000/{1:D6}.tex";
 
         #endregion
@@ -30,6 +31,17 @@ namespace SaintCoinach.Xiv {
                 return null;
             }
         }
+
+        public ImageFile FramedIcon {
+            get {
+                var nr = FramedIconOffset + Key;
+                var path = string.Format(IconFormat, nr / 1000, nr);
+                if (Sheet.Collection.PackCollection.TryGetFile(path, out var file))
+                    return file as ImageFile;
+                return null;
+            }
+        }
+
 
         #endregion
 

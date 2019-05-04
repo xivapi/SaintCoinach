@@ -331,6 +331,9 @@ namespace SaintCoinach.Xiv.Items {
                 case 6:
                     type = ParameterType.SetBonusCapped;
                     break;
+                case 7:
+                    type = ParameterType.EurekaEffect;
+                    break;
                 default:
                     type = ParameterType.Hq;
                     break;

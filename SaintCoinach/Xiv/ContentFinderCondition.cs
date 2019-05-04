@@ -9,52 +9,48 @@ namespace SaintCoinach.Xiv {
     public class ContentFinderCondition : XivRow {
         #region Properties
 
-        public InstanceContent InstanceContent { get { return As<InstanceContent>(); } }
+        public XivRow Content => As<XivRow>("Content");
 
-        public ContentMemberType ContentMemberType { get { return As<ContentMemberType>(); } }
+        public ContentMemberType ContentMemberType => As<ContentMemberType>();
 
-        public ContentType ContentType { get { return As<ContentType>(); } }
+        public ContentType ContentType => As<ContentType>();
 
         public Text.XivString Name => AsString("Name");
 
-        // 1 = InstanceContent, 2 = PartyContent, 3 = PublicContent, 4 = GoldSaucerContent?, 5 = special or test event content?
+        // 1 = InstanceContent, 2 = PartyContent, 3 = PublicContent, 4 = GoldSaucerContent, 5 = special or test event content?
         public byte ContentLinkType => As<byte>("ContentLinkType");
 
         /// <summary>
         /// Gets the description of the current content.
         /// </summary>
         /// <value>The description of the current content.</value>
-        public Text.XivString Description { get { return (Text.XivString)Sheet.Collection.GetSheet("ContentFinderConditionTransient")[this.Key]["Description"]; } }
+        public Text.XivString Description => (Text.XivString)Sheet.Collection.GetSheet("ContentFinderConditionTransient")[this.Key]["Description"];
 
         /// <summary>
         /// Gets the minimum level required for the current content.
         /// </summary>
         /// <value>The minimum level required for the current content.</value>
-        public int RequiredClassJobLevel { get { return AsInt32("ClassJobLevel{Required}"); } }
+        public int RequiredClassJobLevel => AsInt32("ClassJobLevel{Required}");
 
         /// <summary>
         /// Gets the maximum level for the current content.
         /// </summary>
         /// <value>The maximum level for the current content.</value>
-        public int ClassJobLevelSync { get { return AsInt32("ClassJobLevel{Sync}"); } }
+        public int ClassJobLevelSync => AsInt32("ClassJobLevel{Sync}");
 
         /// <summary>
         /// Gets the item level required to enter the current content.
         /// </summary>
         /// <value>The item level required to enter the current content.</value>
-        public virtual int RequiredItemLevel { get { return AsInt32("ItemLevel{Required}"); } }
+        public virtual int RequiredItemLevel => AsInt32("ItemLevel{Required}");
 
         /// <summary>
         /// Gets the item level the current content gets synced to if it is higher.
         /// </summary>
         /// <value>The item level the current content gets synced to if it is higher.</value>
-        public int ItemLevelSync { get { return AsInt32("ItemLevel{Sync}"); } }
+        public int ItemLevelSync => AsInt32("ItemLevel{Sync}");
 
-        /// <summary>
-        /// Gets the icon for the current finder content.
-        /// </summary>
-        /// <value>The icon for the current finder content.</value>
-        public virtual Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
+        public virtual Imaging.ImageFile Image => AsImage("Image");
 
         #endregion
 

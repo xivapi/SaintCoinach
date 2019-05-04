@@ -54,14 +54,6 @@ namespace SaintCoinach.Xiv {
 
         #endregion
 
-        /// <summary>
-        ///     Returns a string that represents the current <see cref="ItemBase" />.
-        /// </summary>
-        /// <returns>Returns the value of <see cref="Name" />.</returns>
-        public override string ToString() {
-            return Name;
-        }
-
         #region IQuantifiableName Members
         string IQuantifiable.Singular {
             get { return Singular; }

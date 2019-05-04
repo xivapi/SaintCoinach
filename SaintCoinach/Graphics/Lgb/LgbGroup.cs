@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,7 +19,13 @@ namespace SaintCoinach.Graphics.Lgb {
             public uint Unknown3;
             public uint Unknown4;
             public uint Unknown5;
-            public uint Unknown6;
+            // Just a guess -
+            // This number corresponds to the last digits of Map.Id.  In
+            // territories with rotated subdivisions, it can be used to select
+            // the appropriate map for coordinate calculation.
+            // Possibly 3-4 bytes to match the first three columns in the Map
+            // exd.
+            public uint MapIndex;
             public uint Unknown7;
             public uint Unknown8;
             public uint Unknown9;
@@ -39,13 +46,16 @@ namespace SaintCoinach.Graphics.Lgb {
             this.Header = buffer.ToStructure<HeaderData>(offset);
             this.Name = buffer.ReadString(offset + Header.GroupNameOffset);
 
+            //byte[] Unknown = new byte[100];
+            //System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
+
             var entriesOffset = offset + Header.EntriesOffset;
             Entries = new ILgbEntry[Header.EntryCount];
             for(var i = 0; i < Header.EntryCount; ++i) {
                 var entryOffset = entriesOffset + BitConverter.ToInt32(buffer, entriesOffset + i * 4);
+                var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
 
                 try {
-                    var type = (LgbEntryType)BitConverter.ToInt32(buffer, entryOffset);
                     switch (type) {
                         case LgbEntryType.Model:
                             Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
@@ -53,13 +63,22 @@ namespace SaintCoinach.Graphics.Lgb {
                         case LgbEntryType.Gimmick:
                             Entries[i] = new LgbGimmickEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
-                        default:
-                            //System.Diagnostics.Trace.WriteLine(string.Format("{0}: Type {1} at 0x{2:X} in {3}", Parent.File.Path, type, entryOffset, Name));
+                        case LgbEntryType.EventObject:
+                            Entries[i] = new LgbEventObjectEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
+                        case LgbEntryType.Light:
+                            Entries[i] = new LgbLightEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
+                        case LgbEntryType.EventNpc:
+                            Entries[i] = new LgbENpcEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
+                        default:
                             // TODO: Work out other parts.
+                            //Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name}: Can't read type.");
+                            break;
                     }
                 } catch (Exception ex) {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    Debug.WriteLine($"{Parent.File.Path} {type} at 0x{entryOffset:X} in {Name} failure: {ex.Message}");
                 }
             }
 

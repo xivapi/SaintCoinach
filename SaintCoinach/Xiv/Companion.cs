@@ -30,6 +30,7 @@ namespace SaintCoinach.Xiv {
         public byte SpecialActionCost { get { return As<byte>("Skill{Cost}"); } }
         public UInt16 SpecialActionAngle {  get { return As<UInt16>("Skill{Angle}"); } }
         public MinionRace Race {  get { return As<MinionRace>(); } }
+        public ModelChara ModelChara => As<ModelChara>("Model");
 
         public CompanionTransient CompanionTransient { get { return _CompanionTransient ?? (_CompanionTransient = BuildTransient()); } }
 

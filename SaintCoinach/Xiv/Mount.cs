@@ -11,6 +11,7 @@ namespace SaintCoinach.Xiv {
         public Text.XivString GuideDescription { get { return AsString("Description{Enhanced}"); } }
         public Text.XivString Tooltip { get { return AsString("Tooltip"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
+        public ModelChara ModelChara => As<ModelChara>();
 
         #endregion
 

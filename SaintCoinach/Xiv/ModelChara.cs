@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SaintCoinach.Ex.Relational;
+using SaintCoinach.Graphics;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
@@ -12,7 +13,6 @@ namespace SaintCoinach.Xiv {
     /// </summary>
     public class ModelChara : XivRow {
         #region Properties
-
         /// <summary>
         /// Gets the type of the current model.
         /// </summary>
@@ -56,6 +56,42 @@ namespace SaintCoinach.Xiv {
         /// <param name="sheet"><see cref="IXivSheet"/> containing this object.</param>
         /// <param name="sourceRow"><see cref="IRelationalRow"/> to read data from.</param>
         public ModelChara(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
+
+        #endregion
+
+        #region Models
+
+        public Tuple<ModelDefinition, ImcVariant> GetModelDefinition() {
+            switch (Type) {
+                case 3:
+                    return GetMonsterModelDefinition();
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        private Tuple<ModelDefinition, ImcVariant> GetMonsterModelDefinition() {
+            const string ImcPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/b{1:D4}.imc";
+            const string ModelPathFormat = "chara/monster/m{0:D4}/obj/body/b{1:D4}/model/m{0:D4}b{1:D4}.mdl";
+
+            var imcPath = string.Format(ImcPathFormat, ModelKey, BaseKey);
+            var mdlPath = string.Format(ModelPathFormat, ModelKey, BaseKey);
+
+            var packs = this.Sheet.Collection.PackCollection;
+
+            if (!packs.TryGetFile(imcPath, out var imcFileBase) || !packs.TryGetFile(mdlPath, out var mdlFileBase) || !(mdlFileBase is ModelFile))
+                throw new InvalidOperationException($"Unable to find files for {this}.");
+
+            try {
+                var model = ((ModelFile)mdlFileBase).GetModelDefinition();
+                var imcFile = new ImcFile(imcFileBase);
+                var variant = imcFile.GetVariant(Variant);
+
+                return Tuple.Create(model, variant);
+            } catch (Exception ex) {
+                throw new InvalidOperationException($"Unable to load model for {this}.", ex);
+            }
+        }
 
         #endregion
     }

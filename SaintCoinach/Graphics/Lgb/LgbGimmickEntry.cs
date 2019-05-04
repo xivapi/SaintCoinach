@@ -11,7 +11,7 @@ namespace SaintCoinach.Graphics.Lgb {
         [StructLayout(LayoutKind.Sequential)]
         public struct HeaderData {
             public LgbEntryType Type;
-            public uint Unknown2;
+            public uint GimmickId;
             public int NameOffset;
             public Vector3 Translation;
             public Vector3 Rotation;
@@ -31,12 +31,20 @@ namespace SaintCoinach.Graphics.Lgb {
         #region Constructor
         public LgbGimmickEntry(IO.PackCollection packs, byte[] buffer, int offset) {
             this.Header = buffer.ToStructure<HeaderData>(offset);
+            byte[] Unknown = new byte[100];
+            System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
+
+            //foreach (var c in Unknown) {
+            //    if (c == 101)
+            //        System.Diagnostics.Debugger.Break();
+            //}
             this.Name = buffer.ReadString(offset + Header.NameOffset);
 
             var gimmickFilePath = buffer.ReadString(offset + Header.GimmickFileOffset);
             if (!string.IsNullOrWhiteSpace(gimmickFilePath)) {
-                var file = packs.GetFile(gimmickFilePath);
-                this.Gimmick = new Sgb.SgbFile(file);
+                SaintCoinach.IO.File file;
+                if (packs.TryGetFile(gimmickFilePath, out file))
+                    this.Gimmick = new Sgb.SgbFile(file);
             }
         }
         #endregion

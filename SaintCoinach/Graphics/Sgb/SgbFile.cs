@@ -21,7 +21,7 @@ namespace SaintCoinach.Graphics.Sgb {
             public int Offset1C;
 
             public uint Unknown20;
-            public uint Unknown24;
+            public int StatesOffset;
             public uint Unknown28;
             public uint Unknown2C;
 
@@ -66,8 +66,14 @@ namespace SaintCoinach.Graphics.Sgb {
 
             var data = new List<ISgbData>();
 
-            data.Add(new SgbGroup(this, buffer, BaseOffset + Header.SharedOffset));
-            data.Add(new SgbGroup(this, buffer, BaseOffset + Header.Offset1C));
+            try {
+                data.Add(new SgbGroup(this, buffer, BaseOffset + Header.SharedOffset));
+                data.Add(new SgbGroup(this, buffer, BaseOffset + Header.Offset1C, true));
+                //data.Add(new SgbGroup(this, buffer, BaseOffset + Header.Unknown1));
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
             this.Data = data.ToArray();
         }

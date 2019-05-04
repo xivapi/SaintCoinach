@@ -23,12 +23,48 @@ namespace SaintCoinach.Graphics.Viewer.Content {
             this.SgbFile = sgbFile;
             this.Parameters = parameters;
             this.Transformation = Matrix.Identity;
-         
-            foreach(var group in sgbFile.Data.OfType<Sgb.SgbGroup>()) {
-                foreach(var mdl in group.Entries.OfType<Sgb.SgbModelEntry>()) {
-                    _Content.Add(new ContentModel(engine, mdl.Model) { Parameters = parameters });
+
+            // todo: fixme!
+
+            bool LoadModels(Sgb.SgbFile file, Matrix rootTransform, Matrix gimTransform) {
+                if (file == null)
+                    return false;
+
+                foreach (var group in file.Data.OfType<Sgb.SgbGroup>()) {
+                    foreach (var mdl in group.Entries.OfType<Sgb.SgbModelEntry>()) {
+                        var content = new ContentModel(engine, mdl.Model) { Parameters = parameters };
+                        content.Transformation = content.Transformation * gimTransform * rootTransform;
+                        _Content.Add(content);
+                    }
                 }
-            }   
+                return true;
+            }
+
+            Matrix CreateMatrix(Vector3 translation, Vector3 rotation, Vector3 scale) {
+                return (Matrix.Scaling(scale.ToDx())
+                    * Matrix.RotationX(rotation.X)
+                    * Matrix.RotationY(rotation.Y)
+                    * Matrix.RotationZ(rotation.Z)
+                    * Matrix.Translation(translation.ToDx()));
+            }
+            void LoadSgbFile(Sgb.SgbFile file) {
+                if (LoadModels(file, Matrix.Identity, Matrix.Identity)) {
+                    foreach (var rootGimGroup in file.Data.OfType<Sgb.SgbGroup>()) {
+                        foreach (var rootGimEntry in rootGimGroup.Entries.OfType<Sgb.SgbGimmickEntry>()) {
+                            var rootGimTransform = CreateMatrix(rootGimEntry.Header.Translation, rootGimEntry.Header.Rotation, rootGimEntry.Header.Scale);
+                            if (LoadModels(rootGimEntry.Gimmick, rootGimTransform, Matrix.Identity)) {
+                                foreach (var subGimGroup in rootGimEntry.Gimmick.Data.OfType<Sgb.SgbGroup>()) {
+                                    foreach (var subGim in subGimGroup.Entries.OfType<Sgb.SgbGimmickEntry>()) {
+                                        var subGimTransform = CreateMatrix(subGim.Header.Translation, subGim.Header.Rotation, subGim.Header.Scale);
+                                        LoadModels(subGim.Gimmick, rootGimTransform, subGimTransform);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            LoadSgbFile(sgbFile);
         }
         #endregion
         

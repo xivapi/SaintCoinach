@@ -24,7 +24,7 @@ namespace SaintCoinach.Xiv {
         Unknown17,
         TPAll,
         Unknown19,
-        Unknown20,
+        Unknown20, // Contents Actions?
         Unknown21,
         BeastGauge,
         Unknown23,

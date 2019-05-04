@@ -36,6 +36,11 @@
         /// <summary>
         ///     Value indicating the bonus is only valid when set and level conditions are fulfilled.
         /// </summary>
-        SetBonusCapped
+        SetBonusCapped,
+
+        /// <summary>
+        ///     Value indicating the bonus is only valid inside Eureka.
+        /// </summary>
+        EurekaEffect,
     }
 }
