@@ -5351,6 +5351,18 @@
           }
         },
         {
+          "index": 34,
+          "name": "Scale"
+        },
+        {
+          "index": 35,
+          "name": "ModelChara",
+          "converter": {
+            "type": "link",
+            "target": "ModelChara"
+          }
+        },
+        {
           "index": 36,
           "name": "Race",
           "converter": {
