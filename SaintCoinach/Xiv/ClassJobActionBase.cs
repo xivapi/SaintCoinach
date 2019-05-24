@@ -65,8 +65,8 @@ namespace SaintCoinach.Xiv {
         public ClassJob ClassJob { get { return As<ClassJob>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
-        public ActionCostType CostType {  get { return (ActionCostType)As<byte>("Cost{Type}"); } }
-        public int Cost { get { return AsInt32("Cost"); } }
+        public ActionCostType CostType {  get { return (ActionCostType)As<byte>("Cost{Type}[1]"); } }
+        public int Cost { get { return AsInt32("Cost{Value}[1]"); } }
 
         #endregion
 
