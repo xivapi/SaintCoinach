@@ -65,8 +65,6 @@ namespace SaintCoinach.Xiv {
         public ClassJob ClassJob { get { return As<ClassJob>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
-        public ActionCostType CostType {  get { return (ActionCostType)As<byte>("Cost{Type}[1]"); } }
-        public int Cost { get { return AsInt32("Cost{Value}[1]"); } }
 
         #endregion
 
@@ -74,17 +72,6 @@ namespace SaintCoinach.Xiv {
 
         protected ClassJobActionBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
-        #endregion
-
-        #region Helper
-        public int GetMpCost(int level) {
-            var paramGrowSheet = Sheet.Collection.GetSheet<ParamGrow>();
-            if (!paramGrowSheet.ContainsRow(level))
-                return 0;
-            var paramGrow = paramGrowSheet[level];
-
-            return (int)(paramGrow.MpModifier * Cost);
-        }
         #endregion
     }
 }
