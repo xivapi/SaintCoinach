@@ -4,11 +4,11 @@ namespace SaintCoinach.Xiv {
     public abstract class HousingItem : XivRow {
         #region Properties
 
-        public int ModelKey { get { return AsInt32("ModelKey"); } }
-        public HousingItemCategory HousingItemCategory { get { return As<HousingItemCategory>(); } }
-        public Item Item { get { return As<Item>("Item"); } }
-        public HousingLayoutLimit HousingLayoutLimit { get { return As<HousingLayoutLimit>(); } }
-        public bool DestroyedOnRemoval { get { return AsBoolean("DestroyOnRemoval"); } }
+        public int ModelKey => AsInt32("ModelKey");
+        public HousingItemCategory HousingItemCategory => As<HousingItemCategory>();
+        public Item Item => As<Item>("Item");
+        public HousingLayoutLimit HousingLayoutLimit => As<HousingLayoutLimit>();
+        public bool DestroyedOnRemoval => AsBoolean("DestroyOnRemoval");
 
         #endregion
 
@@ -20,8 +20,6 @@ namespace SaintCoinach.Xiv {
 
         public abstract Graphics.Sgb.SgbFile GetScene();
 
-        public override string ToString() {
-            return string.Format("{0}", Item);
-        }
+        public override string ToString() => string.Format("{0}", Item);
     }
 }
