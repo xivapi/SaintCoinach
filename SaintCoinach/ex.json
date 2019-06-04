@@ -3348,6 +3348,10 @@
           }
         },
         {
+          "index": 27,
+          "name": "Order"
+        },
+        {
           "index": 30,
           "name": "Cost"
         },
@@ -3683,6 +3687,40 @@
       "definitions": [
         {
           "name": "Name"
+        }
+      ]
+    },
+    {
+      "sheet": "CompanyLeve",
+      "definitions": [
+        {
+          "index": 32,
+          "name": "EventItem",
+          "converter": {
+            "type": "link",
+            "target": "EventItem"
+          }
+        },
+        {
+          "index": 40,
+          "name": "EventItem{Amount}"
+        },
+        {
+          "index": 176,
+          "name": "CompanyLeveRule",
+          "converter": {
+            "type": "link",
+            "target": "CompanyLeveRule"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "CompanyLeveRule",
+      "defaultColumn": "Type",
+      "definitions": [
+        {
+          "name": "Type"
         }
       ]
     },
