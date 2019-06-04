@@ -14784,6 +14784,20 @@
           "name": "WeatherRate"
         },
         {
+          "index": 20,
+          "name": "PlaceName{Region}Icon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
+          "index": 21,
+          "name": "PlaceNameIcon",
+          "converter": {
+            "type": "icon"
+          }
+        },
+        {
           "index": 22,
           "name": "ArrayEventHandler",
           "converter": {
@@ -14798,6 +14812,10 @@
             "type": "link",
             "target": "Aetheryte"
           }
+        },
+        {
+          "index": 28,
+          "name": "IsPvpZone"
         }
       ]
     },
