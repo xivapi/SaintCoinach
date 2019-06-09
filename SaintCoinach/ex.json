@@ -15721,7 +15721,20 @@
           "type": "repeat",
           "count": 10,
           "definition": {
-            "name": "Argument"
+            "type": "group",
+            "members": [
+              {
+                "name": "Argument",
+                "converter": {
+                  "type": "multiref",
+                  "targets": [
+                    "HowTo",
+                    "Item",
+                    "Quest"
+                  ]
+                }
+              }
+            ]
           }
         },
         {
