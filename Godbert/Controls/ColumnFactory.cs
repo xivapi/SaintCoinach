@@ -89,7 +89,7 @@ namespace Godbert.Controls {
 
                 var i = System.Convert.ToInt32(parameter);
 
-                if (ForceRaw)
+                if (ForceRaw || RawDataGrid.ColumnSetToRaw[i])
                     return row.GetRaw(i);
 
                 return row[i] ?? row.GetRaw(i);
