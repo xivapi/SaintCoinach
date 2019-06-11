@@ -3079,6 +3079,22 @@
           }
         },
         {
+          "index": 30,
+          "name": "Role"
+        },
+        {
+          "index": 31,
+          "name": "StartingTown",
+          "converter": {
+            "type": "link",
+            "target": "Town"
+          }
+        },
+        {
+          "index": 33,
+          "name": "PrimaryStat"
+        },
+        {
           "index": 34,
           "name": "LimitBreak1",
           "converter": {
@@ -3137,6 +3153,14 @@
         {
           "index": 42,
           "name": "StartingLevel"
+        },
+        {
+          "index": 43,
+          "name": "PartyBonus"
+        },
+        {
+          "index": 44,
+          "name": "IsLimitedJob"
         }
       ]
     },
@@ -11673,6 +11697,10 @@
           "name": "MpModifier"
         },
         {
+          "index": 3,
+          "name": "ScaledQuestXP"
+        },
+        {
           "index": 5,
           "name": "BaseSpeed"
         },
@@ -11691,6 +11719,10 @@
         {
           "index": 9,
           "name": "HuntingLogExpReward"
+        },
+        {
+          "index": 11,
+          "name": "ItemLevelSync"
         }
       ]
     },
