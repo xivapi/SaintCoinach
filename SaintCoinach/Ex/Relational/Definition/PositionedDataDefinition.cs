@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 
-using YamlDotNet.Serialization;
-
 namespace SaintCoinach.Ex.Relational.Definition {
     public class PositionedDataDefintion {
         #region Properties
 
         public IDataDefinition InnerDefinition { get; set; }
 
-        [YamlIgnore]
         public int Length { get { return InnerDefinition == null ? 0 : InnerDefinition.Length; } }
 
         public int Index { get; set; }

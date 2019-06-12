@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 
-using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class RepeatDataDefinition : IDataDefinition {
@@ -21,7 +20,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #endregion
 
-        [YamlIgnore]
         public int Length { get { return RepeatCount * (RepeatedDefinition == null ? 0 : RepeatedDefinition.Length); } }
 
         public IDataDefinition Clone() {

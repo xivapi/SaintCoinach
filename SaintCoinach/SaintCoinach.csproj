@@ -465,8 +465,6 @@
     <Compile Include="Ex\Relational\RelationalDataSheet.cs" />
     <Compile Include="Ex\DataRowBase.cs" />
     <Compile Include="Ex\DataSheet.cs" />
-    <Compile Include="Ex\Relational\Serialization\ExRelationEventEmitter.cs" />
-    <Compile Include="Ex\Relational\Serialization\ExRelationSerializer.cs" />
     <Compile Include="Ex\Relational\Update\Changes\DefinitionMoved.cs" />
     <Compile Include="Ex\Relational\Update\Changes\DefinitionRemoved.cs" />
     <Compile Include="Ex\Relational\Update\Changes\FieldChanged.cs" />
@@ -837,10 +835,6 @@
     <ProjectReference Include="..\DotSquish\DotSquish.csproj">
       <Project>{f9681545-4bea-4fd3-9ab9-a67bd37ab36d}</Project>
       <Name>DotSquish</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\YamlDotNet\YamlDotNet.csproj">
-      <Project>{bf32de1b-6276-4341-b212-f8862adbba7a}</Project>
-      <Name>YamlDotNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using SaintCoinach.Ex.Relational.Serialization;
-using SaintCoinach.Ex.Relational.ValueConverters;
-
-using YamlDotNet.Serialization;
 using Newtonsoft.Json.Linq;
 
 namespace SaintCoinach.Ex.Relational.Definition {
@@ -84,41 +80,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
         public static RelationDefinition FromJson(string json) {
             var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<JObject>(json);
             return RelationDefinition.FromJson(obj);
-        }
-
-        public void Serialize(string filePath) {
-            using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
-                Serialize(writer);
-        }
-
-        public void Serialize(TextWriter writer) {
-            // Sort definitions before serializing.
-            _SheetDefinitions = _SheetDefinitions.OrderBy(s => s.Name).ToList();
-
-            var serializer = new ExRelationSerializer();
-            serializer.Serialize(writer, this);
-        }
-
-        public static RelationDefinition Deserialize(string filePath) {
-            using (var reader = new StreamReader(filePath, Encoding.UTF8))
-                return Deserialize(reader);
-        }
-
-        public static RelationDefinition Deserialize(TextReader reader) {
-            var deserializer = new Deserializer();
-
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:multiref_conv", typeof(MultiReferenceConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:ref_conv", typeof(GenericReferenceConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:color_conv", typeof(ColorConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:icon_conv", typeof(IconConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:link_conv", typeof(SheetLinkConverter));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:tomestone_item_conv", typeof(TomestoneOrItemReferenceConverter));
-
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:group_def", typeof(GroupDataDefinition));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:repeat_def", typeof(RepeatDataDefinition));
-            deserializer.RegisterTagMapping("tag:yaml.org,2002:single_def", typeof(SingleDataDefinition));
-
-            return deserializer.Deserialize<RelationDefinition>(reader);
         }
 
         #endregion

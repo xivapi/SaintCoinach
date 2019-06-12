@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using YamlDotNet.Serialization;
-
 namespace SaintCoinach.Ex.Relational.Definition {
     public class GroupDataDefinition : IDataDefinition {
         #region Fields
@@ -26,7 +24,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #endregion
 
-        [YamlIgnore]
         public int Length { get { return _Length; } }
 
         public IDataDefinition Clone() {

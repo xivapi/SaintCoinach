@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using SaintCoinach.Ex.Relational.Definition;
 using System;
-using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class SheetLinkConverter : IValueConverter {
@@ -13,9 +12,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         #region IValueConverter Members
 
-        [YamlIgnore]
         public string TargetTypeName { get { return TargetSheet; } }
-        [YamlIgnore]
         public Type TargetType { get { return typeof(IRelationalRow); } }
 
         public object Convert(IDataRow row, object rawValue) {

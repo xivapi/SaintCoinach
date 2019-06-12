@@ -12,8 +12,6 @@ using SaintCoinach.Ex.Relational.Update;
 using SaintCoinach.IO;
 using SaintCoinach.Xiv;
 
-using YamlDotNet.Serialization;
-
 using Directory = System.IO.Directory;
 using File = System.IO.File;
 
@@ -40,11 +38,6 @@ namespace SaintCoinach {
         private const string ViewDefinitionFile = "exview.json";
 
         /// <summary>
-        ///     Older file name inside the archive of the data mappings for conversions.
-        /// </summary>
-        private const string OldDefinitionFile = "ex.yaml";
-
-        /// <summary>
         ///     File name containing the current version string.
         /// </summary>
         private const string VersionFile = "ffxivgame.ver";
@@ -55,9 +48,9 @@ namespace SaintCoinach {
         private const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
 
         /// <summary>
-        ///     Format string to create the file name for update reports in YAML form. {0} is the previous and {1} the new version.
+        ///     Format string to create the file name for update reports in JSON form. {0} is the previous and {1} the new version.
         /// </summary>
-        private const string UpdateReportYamlFile = "logs/report-{0}-{1}.yaml";
+        private const string UpdateReportJsonFile = "logs/report-{0}-{1}.json";
 
         /// <summary>
         ///     Format string to create the file name for update reports in binary form. {0} is the previous and {1} the new
@@ -166,7 +159,7 @@ namespace SaintCoinach {
             if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
                 fsDef = null;
 
-            if (zip.ContainsEntry(DefinitionFile) || zip.ContainsEntry(OldDefinitionFile))
+            if (zip.ContainsEntry(DefinitionFile))
                 zipDef = ReadDefinition(zip, DefinitionFile, out zipMod);
 
             if (fsDef == null && zipDef == null)
@@ -338,15 +331,9 @@ namespace SaintCoinach {
                     using (var r = new StreamReader(s, ZipEncoding))
                         return RelationDefinition.FromJson(r.ReadToEnd());
                 }
-            } else {
-                var oldEntry = Path.ChangeExtension(entry, "yaml");
-                var zipEntry = zip[oldEntry];
-                lastModified = zipEntry.LastModified.ToUniversalTime();
-                using (var s = zipEntry.OpenReader()) {
-                    using (var r = new StreamReader(s, ZipEncoding))
-                        return RelationDefinition.Deserialize(r);
-                }
             }
+
+            throw new InvalidOperationException($"No definition '{entry}'");
         }
 
         private ViewCollection ReadViewCollection() {
@@ -377,17 +364,10 @@ namespace SaintCoinach {
             zip.UpdateEntry(textTarget, string.Join(Environment.NewLine, report.Changes.Select(_ => _.ToString())),
                 ZipEncoding);
 
-            var yamlTarget = string.Format(UpdateReportYamlFile, report.PreviousVersion, report.UpdateVersion);
-            var serializer = new Serializer();
-            byte[] yamlBuffer;
-            using (var ms = new MemoryStream()) {
-                using (TextWriter writer = new StreamWriter(ms, ZipEncoding)) {
-                    serializer.Serialize(writer, report);
-                    writer.Flush();
-                    yamlBuffer = ms.ToArray();
-                }
-            }
-            zip.UpdateEntry(yamlTarget, yamlBuffer);
+            var jsonTarget = string.Format(UpdateReportJsonFile, report.PreviousVersion, report.UpdateVersion);
+            var obj = report.ToJson();
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+            zip.UpdateEntry(jsonTarget, json);
 
             var binTarget = string.Format(UpdateReportBinFile, report.PreviousVersion, report.UpdateVersion);
             var formatter = new BinaryFormatter();
@@ -435,16 +415,6 @@ namespace SaintCoinach {
 
                     definition = ReadDefinition(zip, DefinitionFile, out lastMod);
                     return true;
-                } else {
-                    var existingOldPath = Path.ChangeExtension(existingDefPath, "yaml");
-                    if (zip.ContainsEntry(existingOldPath)) {
-                        ZipCopy(zip, existingOldPath, Path.ChangeExtension(DefinitionFile, "yaml"));
-                        UpdateVersion(zip);
-                        zip.Save();
-
-                        definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-                        return true;
-                    }
                 }
 
                 definition = null;

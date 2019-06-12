@@ -1,7 +1,6 @@
 ﻿using System;
 using SaintCoinach.IO;
 
-using YamlDotNet.Serialization;
 using Newtonsoft.Json.Linq;
 using SaintCoinach.Ex.Relational.Definition;
 
@@ -9,9 +8,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class IconConverter : IValueConverter {
         #region IValueConverter Members
 
-        [YamlIgnore]
         public string TargetTypeName { get { return "Image"; } }
-        [YamlIgnore]
         public Type TargetType { get { return typeof(Imaging.ImageFile); } }
 
         public object Convert(IDataRow row, object rawValue) {
