@@ -142,25 +142,8 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
         /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
-        private RelationDefinition Setup(ZipFile zip) {
-            RelationDefinition zipDef = null;
-            DateTime zipMod = DateTime.MinValue;
-
-            if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
-                fsDef = null;
-
-            if (zip.ContainsEntry(DefinitionFile))
-                zipDef = ReadDefinition(zip, DefinitionFile, out zipMod);
-
-            if (fsDef == null && zipDef == null)
-                throw new InvalidOperationException();
-
-            RelationDefinition def;
-            if (fsMod > zipMod)
-                def = fsDef;
-            else
-                def = zipDef;
-
+        private void Setup(ZipFile zip) {
+            var def = _GameData.Definition;
             if (def.Version != GameVersion)
                 System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
@@ -171,8 +154,6 @@ namespace SaintCoinach {
             UpdateVersion(zip);
 
             zip.Save();
-
-            return def;
         }
 
         #endregion
@@ -219,22 +200,11 @@ namespace SaintCoinach {
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
             _StateFile = storeFile;
+            _GameData.Definition = ReadDefinition();
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
-                if (zipFile.ContainsEntry(VersionFile)) {
-                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out var zipDef, out var zipMod))
-                        zipDef = ReadDefinition(zipFile, DefinitionFile,  out zipMod);
-                    if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
-                        fsDef = null;
-
-                    if (fsDef != null && fsMod > zipMod) {
-                        _GameData.Definition = fsDef;
-                        StoreDefinition(zipFile, fsDef, DefinitionFile);
-                        zipFile.Save();
-                    } else
-                        _GameData.Definition = zipDef;
-                } else
-                    _GameData.Definition = Setup(zipFile);
+                if (!zipFile.ContainsEntry(VersionFile))
+                    Setup(zipFile);
             }
 
             _GameData.Definition.Compile();
@@ -243,21 +213,14 @@ namespace SaintCoinach {
         #endregion
 
         #region Shared
-        private bool TryGetDefinitionFromFileSystem(out RelationDefinition definition, out DateTime lastWrite) {
+        private RelationDefinition ReadDefinition() {
             var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, DefinitionFile));
-            return TryGetDefinitionFromFileSystem(file, out definition, out lastWrite);
-        }
-        private bool TryGetDefinitionFromFileSystem(FileInfo file, out RelationDefinition definition, out DateTime lastWrite) {
-            if (file.Exists) {
-                lastWrite = file.LastWriteTimeUtc;
-                using (var reader = new StreamReader(file.FullName, Encoding.UTF8))
-                    definition = RelationDefinition.FromJson(reader.ReadToEnd());
-                return true;
-            }
+            if (!file.Exists)
+                throw new InvalidOperationException("ex.json must exist in this directory.");
 
-            lastWrite = DateTime.MinValue;
-            definition = null;
-            return false;
+
+            using (var reader = new StreamReader(file.FullName, Encoding.UTF8))
+                return RelationDefinition.FromJson(reader.ReadToEnd());
         }
 
         /// <summary>
