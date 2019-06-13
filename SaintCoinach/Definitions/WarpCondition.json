@@ -1,0 +1,37 @@
+{
+  "sheet": "WarpCondition",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "RequiredQuest{1}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 3,
+      "name": "RequiredQuest{2}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 4,
+      "name": "DRequiredQuest{3}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 5,
+      "name": "RequiredQuest{4}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}

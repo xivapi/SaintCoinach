@@ -1,0 +1,26 @@
+{
+  "sheet": "DefaultTalk",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "index": 5,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "ActionTimeline{Pose}",
+        "converter": {
+          "type": "link",
+          "target": "ActionTimeline"
+        }
+      }
+    },
+    {
+      "index": 20,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "Text"
+      }
+    }
+  ]
+}

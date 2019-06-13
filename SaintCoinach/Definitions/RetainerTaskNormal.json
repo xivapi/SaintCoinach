@@ -1,0 +1,44 @@
+{
+  "sheet": "RetainerTaskNormal",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Quantity[0]"
+    },
+    {
+      "index": 2,
+      "name": "Quantity[1]"
+    },
+    {
+      "index": 3,
+      "name": "Quantity[2]"
+    },
+    {
+      "index": 4,
+      "name": "GatheringLog",
+      "converter": {
+        "type": "link",
+        "target": "GatheringItem"
+      }
+    },
+    {
+      "index": 5,
+      "name": "FishingLog",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "SpearfishingItem",
+          "FishParameter"
+        ]
+      }
+    }
+  ]
+}

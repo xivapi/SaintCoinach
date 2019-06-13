@@ -1,0 +1,9 @@
+{
+  "sheet": "GcArmyExpeditionType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

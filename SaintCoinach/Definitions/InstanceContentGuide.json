@@ -1,0 +1,12 @@
+{
+  "sheet": "InstanceContentGuide",
+  "definitions": [
+    {
+      "name": "Instance",
+      "converter": {
+        "type": "link",
+        "target": "InstanceContent"
+      }
+    }
+  ]
+}

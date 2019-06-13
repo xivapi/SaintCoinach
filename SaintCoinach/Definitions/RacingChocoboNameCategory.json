@@ -1,0 +1,13 @@
+{
+  "sheet": "RacingChocoboNameCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "SortKey"
+    },
+    {
+      "index": 1,
+      "name": "Name"
+    }
+  ]
+}

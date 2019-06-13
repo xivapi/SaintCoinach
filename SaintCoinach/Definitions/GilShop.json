@@ -1,0 +1,45 @@
+{
+  "sheet": "GilShop",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Quest{Required}",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "AcceptTalk",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 7,
+      "name": "FailTalk",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    }
+  ]
+}

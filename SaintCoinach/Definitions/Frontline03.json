@@ -1,0 +1,49 @@
+{
+  "sheet": "Frontline03",
+  "definitions": [
+    {
+      "index": 9,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "EmptyIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    },
+    {
+      "index": 12,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "MaelstromIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    },
+    {
+      "index": 15,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "TwinAdderIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    },
+    {
+      "index": 18,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "ImmortalFlamesIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    }
+  ]
+}

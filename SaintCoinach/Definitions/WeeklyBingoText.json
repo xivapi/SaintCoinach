@@ -1,0 +1,9 @@
+{
+  "sheet": "WeeklyBingoText",
+  "defaultColumn": "Description",
+  "definitions": [
+    {
+      "name": "Description"
+    }
+  ]
+}

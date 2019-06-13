@@ -1,0 +1,85 @@
+{
+  "sheet": "Credit",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Roles(1)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 2,
+      "name": "JapaneseCast(1)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 3,
+      "name": "EnglishCast(1)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 4,
+      "name": "FrenchCast(1)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 5,
+      "name": "GermanCast(1)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Roles(2)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 7,
+      "name": "JapaneseCast(2)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 8,
+      "name": "EnglishCast(2)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 9,
+      "name": "FrenchCast(2)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    },
+    {
+      "index": 10,
+      "name": "GermanCast(2)",
+      "converter": {
+        "type": "link",
+        "target": "CreditCast"
+      }
+    }
+  ]
+}

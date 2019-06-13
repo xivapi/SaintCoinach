@@ -1,0 +1,26 @@
+{
+  "sheet": "TextCommand",
+  "defaultColumn": "Command",
+  "definitions": [
+    {
+      "index": 5,
+      "name": "Command"
+    },
+    {
+      "index": 6,
+      "name": "ShortCommand"
+    },
+    {
+      "index": 7,
+      "name": "Description"
+    },
+    {
+      "index": 8,
+      "name": "Alias"
+    },
+    {
+      "index": 9,
+      "name": "ShortAlias"
+    }
+  ]
+}

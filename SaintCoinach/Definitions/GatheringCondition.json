@@ -1,0 +1,9 @@
+{
+  "sheet": "GatheringCondition",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    }
+  ]
+}

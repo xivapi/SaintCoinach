@@ -1,0 +1,17 @@
+{
+  "sheet": "ContentRouletteRoleBonus",
+  "definitions": [
+    {
+      "index": 6,
+      "name": "ItemRewardType",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 7,
+      "name": "RewardAmount"
+    }
+  ]
+}

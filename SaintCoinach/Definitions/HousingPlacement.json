@@ -1,0 +1,9 @@
+{
+  "sheet": "HousingPlacement",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    }
+  ]
+}

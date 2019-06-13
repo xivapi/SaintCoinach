@@ -1,0 +1,28 @@
+{
+  "sheet": "Relic",
+  "defaultColumn": "Item{Animus}",
+  "definitions": [
+    {
+      "name": "Item{Atma}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Item{Animus}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

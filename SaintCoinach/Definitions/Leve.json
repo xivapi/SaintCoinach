@@ -1,0 +1,160 @@
+{
+  "sheet": "Leve",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    },
+    {
+      "index": 2,
+      "name": "LeveClient",
+      "converter": {
+        "type": "link",
+        "target": "LeveClient"
+      }
+    },
+    {
+      "index": 3,
+      "name": "LeveAssignmentType",
+      "converter": {
+        "type": "link",
+        "target": "LeveAssignmentType"
+      }
+    },
+    {
+      "index": 5,
+      "name": "ClassJobLevel"
+    },
+    {
+      "index": 7,
+      "name": "AllowanceCost"
+    },
+    {
+      "index": 9,
+      "name": "PlaceName{Start}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 10,
+      "name": "PlaceName{Issued}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 12,
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
+      "index": 13,
+      "name": "JournalGenre",
+      "converter": {
+        "type": "link",
+        "target": "JournalGenre"
+      }
+    },
+    {
+      "index": 15,
+      "name": "PlaceName{StartZone}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 16,
+      "name": "Icon{CityState}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 17,
+      "name": "DataId",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "CraftLeve",
+          "CompanyLeve",
+          "GatheringLeve",
+          "BattleLeve"
+        ]
+      }
+    },
+    {
+      "index": 21,
+      "name": "ExpReward"
+    },
+    {
+      "index": 22,
+      "name": "GilReward"
+    },
+    {
+      "index": 23,
+      "name": "LeveRewardItem",
+      "converter": {
+        "type": "link",
+        "target": "LeveRewardItem"
+      }
+    },
+    {
+      "index": 24,
+      "name": "LeveVfx",
+      "converter": {
+        "type": "link",
+        "target": "LeveVfx"
+      }
+    },
+    {
+      "index": 25,
+      "name": "LeveVfx{Frame}",
+      "converter": {
+        "type": "link",
+        "target": "LeveVfx"
+      }
+    },
+    {
+      "index": 26,
+      "name": "Level{Levemete}",
+      "converter": {
+        "type": "link",
+        "target": "Level"
+      }
+    },
+    {
+      "index": 27,
+      "name": "Icon{Issuer}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 29,
+      "name": "Level{Start}",
+      "converter": {
+        "type": "link",
+        "target": "Level"
+      }
+    },
+    {
+      "index": 30,
+      "name": "BGM",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    }
+  ]
+}

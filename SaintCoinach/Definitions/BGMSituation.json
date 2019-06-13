@@ -1,0 +1,36 @@
+{
+  "sheet": "BGMSituation",
+  "definitions": [
+    {
+      "name": "BGM{Day}",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    },
+    {
+      "index": 1,
+      "name": "BGM{Night}",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    },
+    {
+      "index": 2,
+      "name": "BGM{Battle}",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    },
+    {
+      "index": 3,
+      "name": "BGM{Field}",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    }
+  ]
+}

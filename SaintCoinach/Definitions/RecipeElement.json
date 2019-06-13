@@ -1,0 +1,9 @@
+{
+  "sheet": "RecipeElement",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

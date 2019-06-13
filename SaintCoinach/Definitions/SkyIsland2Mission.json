@@ -1,0 +1,60 @@
+{
+  "sheet": "SkyIsland2Mission",
+  "defaultColumn": "Item{1}",
+  "definitions": [
+    {
+      "name": "Item{1}",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Item{2}",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Objective{1}",
+      "converter": {
+        "type": "link",
+        "target": "SkyIsland2MissionDetail"
+      }
+    },
+    {
+      "index": 6,
+      "name": "RequiredAmount{1}"
+    },
+    {
+      "index": 9,
+      "name": "Objective2",
+      "converter": {
+        "type": "link",
+        "target": "SkyIsland2MissionDetail"
+      }
+    },
+    {
+      "index": 11,
+      "name": "RequiredAmount{2}"
+    },
+    {
+      "index": 14,
+      "name": "Objective3",
+      "converter": {
+        "type": "link",
+        "target": "SkyIsland2MissionDetail"
+      }
+    },
+    {
+      "index": 20,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "sheet": "StatusLoopVFX",
+  "defaultColumn": "VFX",
+  "definitions": [
+    {
+      "name": "VFX",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    },
+    {
+      "index": 2,
+      "name": "VFX2",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    },
+    {
+      "index": 4,
+      "name": "VFX3",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    }
+  ]
+}

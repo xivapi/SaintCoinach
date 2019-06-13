@@ -1,0 +1,28 @@
+{
+  "sheet": "GatheringPointBonus",
+  "definitions": [
+    {
+      "name": "Condition",
+      "converter": {
+        "type": "link",
+        "target": "GatheringCondition"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ConditionValue"
+    },
+    {
+      "index": 3,
+      "name": "BonusType",
+      "converter": {
+        "type": "link",
+        "target": "GatheringPointBonusType"
+      }
+    },
+    {
+      "index": 4,
+      "name": "BonusValue"
+    }
+  ]
+}

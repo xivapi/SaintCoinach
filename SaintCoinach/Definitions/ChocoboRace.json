@@ -1,0 +1,20 @@
+{
+  "sheet": "ChocoboRace",
+  "definitions": [
+    {
+      "name": "ChocoboRaceRank",
+      "converter": {
+        "type": "link",
+        "target": "ChocoboRaceRank"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ChocoboRaceTerritory",
+      "converter": {
+        "type": "link",
+        "target": "ChocoboRaceTerritory"
+      }
+    }
+  ]
+}

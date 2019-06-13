@@ -1,0 +1,10 @@
+{
+  "sheet": "NpcYell",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "index": 9,
+      "name": "Text"
+    }
+  ]
+}

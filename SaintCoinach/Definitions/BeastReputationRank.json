@@ -1,0 +1,13 @@
+{
+  "sheet": "BeastReputationRank",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "RequiredReputation"
+    },
+    {
+      "index": 1,
+      "name": "Name"
+    }
+  ]
+}

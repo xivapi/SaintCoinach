@@ -1,0 +1,10 @@
+{
+  "sheet": "DeepDungeon",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 22,
+      "name": "Name"
+    }
+  ]
+}

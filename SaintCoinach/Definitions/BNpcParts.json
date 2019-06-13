@@ -1,0 +1,144 @@
+{
+  "sheet": "BNpcParts",
+  "definitions": [
+    {
+      "name": "BNpcBase[1]",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 1,
+      "name": "PartSlot[1]"
+    },
+    {
+      "index": 6,
+      "name": "X[1]"
+    },
+    {
+      "index": 7,
+      "name": "Y[1]"
+    },
+    {
+      "index": 8,
+      "name": "Z[1]"
+    },
+    {
+      "index": 10,
+      "name": "Scale[1]"
+    },
+    {
+      "index": 11,
+      "name": "BNpcBase[2]",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 12,
+      "name": "PartSlot[2]"
+    },
+    {
+      "index": 17,
+      "name": "X[2]"
+    },
+    {
+      "index": 18,
+      "name": "Y[2]"
+    },
+    {
+      "index": 19,
+      "name": "Z[2]"
+    },
+    {
+      "index": 21,
+      "name": "Scale[2]"
+    },
+    {
+      "index": 22,
+      "name": "BNpcBase[3]",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 23,
+      "name": "PartSlot[3]"
+    },
+    {
+      "index": 28,
+      "name": "X[3]"
+    },
+    {
+      "index": 29,
+      "name": "Y[3]"
+    },
+    {
+      "index": 30,
+      "name": "Z[3]"
+    },
+    {
+      "index": 31,
+      "name": "Scale[3]"
+    },
+    {
+      "index": 33,
+      "name": "BNpcBase[4]",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 34,
+      "name": "PartSlot[4]"
+    },
+    {
+      "index": 39,
+      "name": "X[4]"
+    },
+    {
+      "index": 40,
+      "name": "Y[4]"
+    },
+    {
+      "index": 41,
+      "name": "Z[4]"
+    },
+    {
+      "index": 43,
+      "name": "Scale[4]"
+    },
+    {
+      "index": 44,
+      "name": "BNpcBase[5]",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 45,
+      "name": "PartSlot[5]"
+    },
+    {
+      "index": 50,
+      "name": "X[5]"
+    },
+    {
+      "index": 51,
+      "name": "Y[5]"
+    },
+    {
+      "index": 52,
+      "name": "Z[5]"
+    },
+    {
+      "index": 54,
+      "name": "Scale[5]"
+    }
+  ]
+}

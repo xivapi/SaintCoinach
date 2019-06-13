@@ -1,0 +1,13 @@
+{
+  "sheet": "AnimaWeaponFUITalkParam",
+  "defaultColumn": "Prologue",
+  "definitions": [
+    {
+      "name": "Prologue"
+    },
+    {
+      "index": 1,
+      "name": "Epilogue"
+    }
+  ]
+}

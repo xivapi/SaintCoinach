@@ -1,0 +1,22 @@
+{
+  "sheet": "ScenarioTreeTips",
+  "defaultColumn": "Type",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Tips1",
+      "converter": {
+        "type": "link",
+        "target": "ScenarioTreeTipsQuest"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Tips2",
+      "converter": {
+        "type": "link",
+        "target": "ScenarioTree"
+      }
+    }
+  ]
+}

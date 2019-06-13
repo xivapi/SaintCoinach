@@ -1,0 +1,15 @@
+{
+  "sheet": "PlantPotFlowerSeed",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "SeedIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    }
+  ]
+}

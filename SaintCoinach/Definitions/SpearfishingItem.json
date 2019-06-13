@@ -1,0 +1,37 @@
+{
+  "sheet": "SpearfishingItem",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Description"
+    },
+    {
+      "index": 1,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "name": "GatheringItemLevel",
+      "converter": {
+        "type": "link",
+        "target": "GatheringItemLevelConvertTable"
+      }
+    },
+    {
+      "index": 4,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 5,
+      "name": "IsVisible"
+    }
+  ]
+}

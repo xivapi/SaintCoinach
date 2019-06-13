@@ -1,0 +1,32 @@
+{
+  "sheet": "QuickChat",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Name{Action}"
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Addon",
+      "converter": {
+        "type": "link",
+        "target": "Addon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "QuickChatTransient",
+      "converter": {
+        "type": "link",
+        "target": "QuickChatTransient"
+      }
+    }
+  ]
+}

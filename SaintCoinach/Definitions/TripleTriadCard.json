@@ -1,0 +1,17 @@
+{
+  "sheet": "TripleTriadCard",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 4,
+      "name": "StartsWithVowel"
+    },
+    {
+      "index": 8,
+      "name": "Description"
+    }
+  ]
+}

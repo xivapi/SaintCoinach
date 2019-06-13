@@ -1,0 +1,13 @@
+{
+  "sheet": "VaseFlower",
+  "definitions": [
+    {
+      "index": 3,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

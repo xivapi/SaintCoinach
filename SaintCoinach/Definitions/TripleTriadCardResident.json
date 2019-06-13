@@ -1,0 +1,45 @@
+{
+  "sheet": "TripleTriadCardResident",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Top"
+    },
+    {
+      "index": 2,
+      "name": "Bottom"
+    },
+    {
+      "index": 3,
+      "name": "Left"
+    },
+    {
+      "index": 4,
+      "name": "Right"
+    },
+    {
+      "index": 5,
+      "name": "TripleTriadCardRarity",
+      "converter": {
+        "type": "link",
+        "target": "TripleTriadCardRarity"
+      }
+    },
+    {
+      "index": 6,
+      "name": "TripleTriadCardType",
+      "converter": {
+        "type": "link",
+        "target": "TripleTriadCardType"
+      }
+    },
+    {
+      "index": 7,
+      "name": "SaleValue"
+    },
+    {
+      "index": 8,
+      "name": "SortKey"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "sheet": "LogKind",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Format"
+    },
+    {
+      "index": 2,
+      "name": "Name"
+    },
+    {
+      "index": 3,
+      "name": "Example"
+    },
+    {
+      "index": 4,
+      "name": "LogKindCategoryText",
+      "converter": {
+        "type": "link",
+        "target": "LogKindCategoryText"
+      }
+    }
+  ]
+}

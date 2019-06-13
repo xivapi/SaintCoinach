@@ -1,0 +1,13 @@
+{
+  "sheet": "AOZBoss",
+  "defaultColumn": "Boss",
+  "definitions": [
+    {
+      "name": "Boss",
+      "converter": {
+        "type": "link",
+        "target": "AOZContentBriefingBNpc"
+      }
+    }
+  ]
+}

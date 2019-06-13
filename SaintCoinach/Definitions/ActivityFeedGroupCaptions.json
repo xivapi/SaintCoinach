@@ -1,0 +1,20 @@
+{
+  "sheet": "ActivityFeedGroupCaptions",
+  "definitions": [
+    {
+      "name": "JA"
+    },
+    {
+      "index": 1,
+      "name": "EN"
+    },
+    {
+      "index": 2,
+      "name": "DE"
+    },
+    {
+      "index": 3,
+      "name": "FR"
+    }
+  ]
+}

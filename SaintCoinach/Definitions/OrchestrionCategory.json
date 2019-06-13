@@ -1,0 +1,9 @@
+{
+  "sheet": "OrchestrionCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

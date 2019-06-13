@@ -1,0 +1,101 @@
+{
+  "sheet": "Level",
+  "definitions": [
+    {
+      "name": "X"
+    },
+    {
+      "index": 1,
+      "name": "Y"
+    },
+    {
+      "index": 2,
+      "name": "Z"
+    },
+    {
+      "index": 3,
+      "name": "Yaw"
+    },
+    {
+      "index": 4,
+      "name": "Radius"
+    },
+    {
+      "index": 5,
+      "name": "Type"
+    },
+    {
+      "index": 6,
+      "name": "Object",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Type",
+              "value": 8
+            },
+            "sheet": "ENpcBase"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 9
+            },
+            "sheet": "BNpcBase"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 12
+            },
+            "sheet": "Aetheryte"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 14
+            },
+            "sheet": "GatheringPoint"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 45
+            },
+            "sheet": "EObj"
+          }
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "name": "Map",
+      "converter": {
+        "type": "link",
+        "target": "Map"
+      }
+    },
+    {
+      "index": 8,
+      "name": "EventId",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "TripleTriad",
+          "Adventure",
+          "Opening",
+          "Quest"
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "name": "Territory",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    }
+  ]
+}

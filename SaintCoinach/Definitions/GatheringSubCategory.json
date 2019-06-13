@@ -1,0 +1,18 @@
+{
+  "sheet": "GatheringSubCategory",
+  "defaultColumn": "FolkloreBook",
+  "definitions": [
+    {
+      "index": 4,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 5,
+      "name": "FolkloreBook"
+    }
+  ]
+}

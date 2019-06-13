@@ -1,0 +1,25 @@
+{
+  "sheet": "ItemAction",
+  "definitions": [
+    {
+      "index": 4,
+      "name": "Type"
+    },
+    {
+      "index": 5,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "Data"
+      }
+    },
+    {
+      "index": 14,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "Data{HQ}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "sheet": "PublicContentCutscene",
+  "definitions": [
+    {
+      "name": "Cutscene",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Cutscene2",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
+    }
+  ]
+}

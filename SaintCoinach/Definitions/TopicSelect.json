@@ -1,0 +1,30 @@
+{
+  "sheet": "TopicSelect",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Shop",
+            "converter": {
+              "type": "multiref",
+              "targets": [
+                "SpecialShop",
+                "GilShop"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

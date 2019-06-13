@@ -1,0 +1,25 @@
+{
+  "sheet": "GatheringLeve",
+  "definitions": [
+    {
+      "index": 4,
+      "name": "RequiredItem[1]",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    },
+    {
+      "index": 5,
+      "name": "LeveLevel"
+    },
+    {
+      "index": 6,
+      "name": "RequiredItem[2]",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    }
+  ]
+}

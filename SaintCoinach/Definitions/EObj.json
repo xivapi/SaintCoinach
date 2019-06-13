@@ -1,0 +1,18 @@
+{
+  "sheet": "EObj",
+  "defaultColumn": "Singular",
+  "definitions": [
+    {
+      "index": 9,
+      "name": "Data"
+    },
+    {
+      "index": 11,
+      "name": "SgbPath",
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    }
+  ]
+}

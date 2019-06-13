@@ -1,0 +1,40 @@
+{
+  "sheet": "GcArmyCaptureTactics",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name",
+      "converter": {
+        "type": "link",
+        "target": "Status"
+      }
+    },
+    {
+      "index": 1,
+      "name": "HP"
+    },
+    {
+      "index": 2,
+      "name": "DamageDealt"
+    },
+    {
+      "index": 3,
+      "name": "DamageReceived"
+    },
+    {
+      "index": 4,
+      "name": "Tactic",
+      "converter": {
+        "type": "link",
+        "target": "Addon"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

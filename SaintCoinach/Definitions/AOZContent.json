@@ -1,0 +1,129 @@
+{
+  "sheet": "AOZContent",
+  "definitions": [
+    {
+      "name": "StandardFinishTime"
+    },
+    {
+      "index": 1,
+      "name": "IdealFinishTime"
+    },
+    {
+      "index": 2,
+      "name": "Act1FightType"
+    },
+    {
+      "index": 3,
+      "name": "Act1",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Act1FightType",
+              "value": 1
+            },
+            "sheet": "AOZArrangement"
+          },
+          {
+            "when": {
+              "key": "Act1FightType",
+              "value": 2
+            },
+            "sheet": "AOZBoss"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "name": "ArenaType[1]"
+    },
+    {
+      "index": 5,
+      "name": "Act2FightType"
+    },
+    {
+      "index": 6,
+      "name": "Act2",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Act2FightType",
+              "value": 1
+            },
+            "sheet": "AOZArrangement"
+          },
+          {
+            "when": {
+              "key": "Act2FightType",
+              "value": 2
+            },
+            "sheet": "AOZBoss"
+          }
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "name": "ArenaType[2]"
+    },
+    {
+      "index": 8,
+      "name": "Act3FightType"
+    },
+    {
+      "index": 9,
+      "name": "Act3",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Act3FightType",
+              "value": 1
+            },
+            "sheet": "AOZArrangement"
+          },
+          {
+            "when": {
+              "key": "Act3FightType",
+              "value": 2
+            },
+            "sheet": "AOZBoss"
+          }
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "name": "ArenaType[3]"
+    },
+    {
+      "index": 11,
+      "name": "ContentEntry",
+      "converter": {
+        "type": "link",
+        "target": "ContentEntry"
+      }
+    },
+    {
+      "index": 12,
+      "name": "Order"
+    },
+    {
+      "index": 13,
+      "name": "GilReward"
+    },
+    {
+      "index": 14,
+      "name": "AlliedSealsReward"
+    },
+    {
+      "index": 15,
+      "name": "TomestonesReward"
+    }
+  ]
+}

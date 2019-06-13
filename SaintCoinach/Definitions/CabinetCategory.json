@@ -1,0 +1,24 @@
+{
+  "sheet": "CabinetCategory",
+  "defaultColumn": "Category",
+  "definitions": [
+    {
+      "name": "MenuOrder"
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Category",
+      "converter": {
+        "type": "link",
+        "target": "Addon"
+      }
+    }
+  ]
+}

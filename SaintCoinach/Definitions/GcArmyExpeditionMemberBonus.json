@@ -1,0 +1,20 @@
+{
+  "sheet": "GcArmyExpeditionMemberBonus",
+  "definitions": [
+    {
+      "name": "Race",
+      "converter": {
+        "type": "link",
+        "target": "Race"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    }
+  ]
+}

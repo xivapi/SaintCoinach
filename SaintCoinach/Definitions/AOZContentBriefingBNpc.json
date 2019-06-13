@@ -1,0 +1,111 @@
+{
+  "sheet": "AOZContentBriefingBNpc",
+  "defaultColumn": "BNpcName",
+  "definitions": [
+    {
+      "name": "BNpcName",
+      "converter": {
+        "type": "link",
+        "target": "BNpcName"
+      }
+    },
+    {
+      "index": 1,
+      "name": "TargetSmall",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "TargetLarge",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Endurance"
+    },
+    {
+      "index": 5,
+      "name": "Fire"
+    },
+    {
+      "index": 6,
+      "name": "Ice"
+    },
+    {
+      "index": 7,
+      "name": "Wind"
+    },
+    {
+      "index": 8,
+      "name": "Earth"
+    },
+    {
+      "index": 9,
+      "name": "Thunder"
+    },
+    {
+      "index": 10,
+      "name": "Water"
+    },
+    {
+      "index": 11,
+      "name": "Slashing"
+    },
+    {
+      "index": 12,
+      "name": "Piercing"
+    },
+    {
+      "index": 13,
+      "name": "Blunt"
+    },
+    {
+      "index": 14,
+      "name": "Magic"
+    },
+    {
+      "index": 15,
+      "name": "SlowResistance"
+    },
+    {
+      "index": 16,
+      "name": "PetrificationResistance"
+    },
+    {
+      "index": 17,
+      "name": "ParalysisResistance"
+    },
+    {
+      "index": 18,
+      "name": "SilenceResistance"
+    },
+    {
+      "index": 19,
+      "name": "BlindResistance"
+    },
+    {
+      "index": 20,
+      "name": "StunResistance"
+    },
+    {
+      "index": 21,
+      "name": "SleepResistance"
+    },
+    {
+      "index": 22,
+      "name": "BindResistance"
+    },
+    {
+      "index": 23,
+      "name": "HeavyResistance"
+    },
+    {
+      "index": 24,
+      "name": "InstaDeathResistance"
+    }
+  ]
+}

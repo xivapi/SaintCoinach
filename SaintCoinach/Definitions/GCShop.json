@@ -1,0 +1,13 @@
+{
+  "sheet": "GCShop",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "GrandCompany",
+      "converter": {
+        "type": "link",
+        "target": "GrandCompany"
+      }
+    }
+  ]
+}

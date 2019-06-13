@@ -1,0 +1,17 @@
+{
+  "sheet": "GuildleveAssignmentCategory",
+  "defaultColumn": "",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Category",
+        "converter": {
+          "type": "link",
+          "target": "LeveAssignmentType"
+        }
+      }
+    }
+  ]
+}

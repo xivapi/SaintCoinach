@@ -1,0 +1,12 @@
+{
+  "sheet": "DeepDungeonLayer",
+  "definitions": [
+    {
+      "name": "DeepDungeon",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeon"
+      }
+    }
+  ]
+}

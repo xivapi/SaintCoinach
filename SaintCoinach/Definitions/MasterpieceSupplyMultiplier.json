@@ -1,0 +1,20 @@
+{
+  "sheet": "MasterpieceSupplyMultiplier",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "XpMultiplier"
+      }
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "CurrencyMultiplier"
+      }
+    }
+  ]
+}

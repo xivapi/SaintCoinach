@@ -1,0 +1,12 @@
+{
+  "sheet": "TutorialHealer",
+  "definitions": [
+    {
+      "name": "Objective",
+      "converter": {
+        "type": "link",
+        "target": "Tutorial"
+      }
+    }
+  ]
+}

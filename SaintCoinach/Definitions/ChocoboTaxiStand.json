@@ -1,0 +1,11 @@
+{
+  "sheet": "ChocoboTaxiStand",
+  "defaultColumn": "PlaceName",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "index": 8,
+      "name": "PlaceName"
+    }
+  ]
+}

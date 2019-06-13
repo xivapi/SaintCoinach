@@ -28,11 +28,6 @@ namespace SaintCoinach {
         private const string DefaultStateFile = "SaintCoinach.History.zip";
 
         /// <summary>
-        ///     File name inside the archive of the data mappings.
-        /// </summary>
-        private const string DefinitionFile = "ex.json";
-
-        /// <summary>
         ///     File name containing the current version string.
         /// </summary>
         private const string VersionFile = "ffxivgame.ver";
@@ -148,8 +143,7 @@ namespace SaintCoinach {
                 System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
             def.Version = GameVersion;
-            StoreDefinition(zip, def, string.Format("{0}/{1}", def.Version, DefinitionFile));
-            StoreDefinition(zip, def, DefinitionFile);
+            StoreDefinition(zip, def, def.Version);
             StorePacks(zip);
             UpdateVersion(zip);
 
@@ -213,14 +207,25 @@ namespace SaintCoinach {
         #endregion
 
         #region Shared
+
         private RelationDefinition ReadDefinition() {
-            var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, DefinitionFile));
+            // fixme: replace
+            var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, "ex.json"));
             if (!file.Exists)
                 throw new InvalidOperationException("ex.json must exist in this directory.");
 
-
             using (var reader = new StreamReader(file.FullName, Encoding.UTF8))
                 return RelationDefinition.FromJson(reader.ReadToEnd());
+        }
+
+        /// <summary>
+        ///     Deserialize a <see cref="RelationDefinition" /> file inside a <see cref="ZipFile" />.
+        /// </summary>
+        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
+        /// <param name="version">Version of the definition to read.</param>
+        /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
+        private static RelationDefinition ReadDefinition(ZipFile zip, string version) {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -265,38 +270,30 @@ namespace SaintCoinach {
         }
 
         /// <summary>
-        ///     Deserialize a <see cref="RelationDefinition" /> file inside a <see cref="ZipFile" />.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
-        /// <param name="entry">File name of the definition to read.</param>
-        /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
-        private static RelationDefinition ReadDefinition(ZipFile zip, string entry = DefinitionFile) {
-            return ReadDefinition(zip, entry, out var mod);
-        }
-
-        private static RelationDefinition ReadDefinition(ZipFile zip, string entry, out DateTime lastModified) {
-            if (zip.ContainsEntry(entry)) {
-                var zipEntry = zip[entry];
-                lastModified = zipEntry.LastModified.ToUniversalTime();
-                using (var s = zipEntry.OpenReader()) {
-                    using (var r = new StreamReader(s, ZipEncoding))
-                        return RelationDefinition.FromJson(r.ReadToEnd());
-                }
-            }
-
-            throw new InvalidOperationException($"No definition '{entry}'");
-        }
-
-        /// <summary>
         ///     Serialize a <see cref="RelationDefinition" /> into a <see cref="ZipFile" />.
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> to write to.</param>
         /// <param name="definition"><see cref="RelationDefinition" /> to store.</param>
-        /// <param name="path">File name inside the storage to write to.</param>
-        private static void StoreDefinition(ZipFile zip, RelationDefinition definition, string path) {
-            var obj = definition.ToJson();
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
-            zip.UpdateEntry(path, json);
+        /// <param name="version">Version these definitions are for.</param>
+        private static void StoreDefinition(ZipFile zip, RelationDefinition definition, string version) {
+            // Since this method is only ever called to update the zip with the
+            // lateset definitions, store these for both the given version *and*
+            // root.
+
+            StoreDefinitionCore(zip, definition, Path.Combine(version, "Definitions"));
+
+            // todo: prior to storage, delete everything under "Definitions" to prevent
+            // dead sheets from resurrecting.
+            StoreDefinitionCore(zip, definition, "Definitions");
+        }
+
+        private static void StoreDefinitionCore(ZipFile zip, RelationDefinition definition, string basePath) {
+            foreach (var sheetDef in definition.SheetDefinitions) {
+                var obj = sheetDef.ToJson();
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+                var sheetDefPath = Path.Combine(basePath, sheetDef.Name + ".json");
+                zip.UpdateEntry(sheetDefPath, json);
+            }
         }
 
         /// <summary>
@@ -331,47 +328,6 @@ namespace SaintCoinach {
         #region Update
 
         /// <summary>
-        ///     Attempt to get the <see cref="RelationDefinition" /> for a specific version from storage.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
-        /// <param name="version">Definition version to look for.</param>
-        /// <param name="definition">
-        ///     When this method returns, contains the <see cref="RelationDefinition" /> for the specified
-        ///     version, if found; otherwise, <c>null</c>.
-        /// </param>
-        /// <returns><c>true</c> if the definition for the specified version was present; <c>false</c> otherwise.</returns>
-        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition) {
-            return TryGetDefinitionVersion(zip, version, out definition, out var mod);
-        }
-        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition, out DateTime lastMod) {
-            var storedVersionEntry = zip[VersionFile];
-            string storedVersion;
-            using (var s = storedVersionEntry.OpenReader()) {
-                using (var r = new StreamReader(s))
-                    storedVersion = r.ReadToEnd();
-            }
-
-            if (storedVersion != version) {
-                var existingDefPath = string.Format("{0}/{1}", version, DefinitionFile);
-                if (zip.ContainsEntry(existingDefPath)) {
-                    ZipCopy(zip, existingDefPath, DefinitionFile);
-                    UpdateVersion(zip);
-                    zip.Save();
-
-                    definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-                    return true;
-                }
-
-                definition = null;
-                lastMod = DateTime.MinValue;
-                return false;
-            }
-
-            definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-            return true;
-        }
-
-        /// <summary>
         ///     Update to the current version.
         /// </summary>
         /// <param name="detectDataChanges">Boolean indicating whether the update should also look for changes in data.</param>
@@ -396,12 +352,17 @@ namespace SaintCoinach {
                     tempPath = ExtractPacks(zip, previousVersion);
                     var previousPack = new PackCollection(Path.Combine(tempPath, previousVersion));
                     previousPack.GetPack(exdPackId).KeepInMemory = true;
-                    var previousDefinition = ReadDefinition(zip);
 
-                    // Override previous definition when current definition version matches.
-                    // Definitions may have changed since this was recorded and we want to compare that.
-                    if (previousDefinition.Version == _GameData.Definition.Version)
+                    RelationDefinition previousDefinition;
+                    if (previousVersion == _GameData.Definition.Version) {
+                        // Override previous definition when current definition version matches.
+                        // Definitions may have changed since this was recorded and we want to compare that.
                         previousDefinition = _GameData.Definition;
+
+                    } else {
+                        // Otherwise, read the previous definition from the zip.
+                        previousDefinition = ReadDefinition(zip, previousVersion);
+                    }
 
                     var updater = new RelationUpdater(previousPack, previousDefinition, Packs, GameVersion, progress);
 
@@ -411,8 +372,7 @@ namespace SaintCoinach {
                     var definition = updater.Updated;
 
                     StorePacks(zip);
-                    StoreDefinition(zip, definition, DefinitionFile);
-                    StoreDefinition(zip, definition, string.Format("{0}/{1}", definition.Version, DefinitionFile));
+                    StoreDefinition(zip, definition, definition.Version);
                     StoreReport(zip, report);
                     zip.Save();
 

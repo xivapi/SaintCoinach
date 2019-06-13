@@ -1,0 +1,9 @@
+{
+  "sheet": "CompanyCraftType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "sheet": "ActionTimelineReplace",
+  "definitions": [
+    {
+      "name": "Old",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 1,
+      "name": "New",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    }
+  ]
+}

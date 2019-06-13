@@ -1,0 +1,33 @@
+{
+  "sheet": "AirshipExplorationPoint",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Name{Short}"
+    },
+    {
+      "index": 5,
+      "name": "RequiredLevel"
+    },
+    {
+      "index": 6,
+      "name": "RequiredFuel"
+    },
+    {
+      "index": 7,
+      "name": "Duration<min>"
+    },
+    {
+      "index": 10,
+      "name": "RequiredSurveillance"
+    },
+    {
+      "index": 13,
+      "name": "ExpReward"
+    }
+  ]
+}

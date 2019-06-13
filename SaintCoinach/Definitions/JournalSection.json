@@ -1,0 +1,9 @@
+{
+  "sheet": "JournalSection",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

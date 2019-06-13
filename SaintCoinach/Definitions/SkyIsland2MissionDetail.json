@@ -1,0 +1,33 @@
+{
+  "sheet": "SkyIsland2MissionDetail",
+  "defaultColumn": "Objective",
+  "definitions": [
+    {
+      "name": "Type",
+      "converter": {
+        "type": "link",
+        "target": "SkyIsland2MissionType"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Range",
+      "converter": {
+        "type": "link",
+        "target": "SkyIsland2RangeType"
+      }
+    },
+    {
+      "index": 4,
+      "name": "EObj",
+      "converter": {
+        "type": "link",
+        "target": "EObjName"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Objective"
+    }
+  ]
+}

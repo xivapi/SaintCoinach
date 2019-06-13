@@ -1,0 +1,20 @@
+{
+  "sheet": "FieldMarker",
+  "defaultColumn": "Icon",
+  "definitions": [
+    {
+      "name": "VFX",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

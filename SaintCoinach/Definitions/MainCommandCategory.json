@@ -1,0 +1,10 @@
+{
+  "sheet": "MainCommandCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Name"
+    }
+  ]
+}

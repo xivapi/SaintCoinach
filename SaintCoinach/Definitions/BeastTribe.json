@@ -1,0 +1,75 @@
+{
+  "sheet": "BeastTribe",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "MinLevel"
+    },
+    {
+      "index": 1,
+      "name": "MaxLevel"
+    },
+    {
+      "index": 2,
+      "name": "BeastRankBonus",
+      "converter": {
+        "type": "link",
+        "target": "BeastRankBonus"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Icon{Reputation}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 5,
+      "name": "MaxRank"
+    },
+    {
+      "index": 6,
+      "name": "AlliedBeastTribeQuest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Expansion",
+      "converter": {
+        "type": "link",
+        "target": "ExVersion"
+      }
+    },
+    {
+      "index": 8,
+      "name": "CurrencyItem",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 9,
+      "name": "DisplayOrder"
+    },
+    {
+      "index": 10,
+      "name": "Name"
+    },
+    {
+      "index": 18,
+      "name": "Name{Relation}"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "sheet": "Materia",
+  "defaultColumn": "Item[0]",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "name": "Item",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "BaseParam",
+      "converter": {
+        "type": "link",
+        "target": "BaseParam"
+      }
+    },
+    {
+      "index": 11,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "name": "Value"
+      }
+    }
+  ]
+}

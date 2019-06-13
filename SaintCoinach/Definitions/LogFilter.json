@@ -1,0 +1,21 @@
+{
+  "sheet": "LogFilter",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "LogKind",
+      "converter": {
+        "type": "link",
+        "target": "LogKind"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Name"
+    },
+    {
+      "index": 7,
+      "name": "Example"
+    }
+  ]
+}

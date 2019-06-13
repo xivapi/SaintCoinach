@@ -1,0 +1,52 @@
+{
+  "sheet": "ContentsNote",
+  "definitions": [
+    {
+      "name": "ContentType",
+      "converter": {
+        "type": "link",
+        "target": "ContentsNoteCategory"
+      }
+    },
+    {
+      "index": 2,
+      "name": "MenuOrder"
+    },
+    {
+      "index": 3,
+      "name": "RequiredAmount"
+    },
+    {
+      "index": 5,
+      "name": "ExpMultiplier"
+    },
+    {
+      "index": 7,
+      "name": "GilRward"
+    },
+    {
+      "index": 8,
+      "name": "LevelUnlock"
+    },
+    {
+      "index": 9,
+      "name": "HowTo",
+      "converter": {
+        "type": "link",
+        "target": "HowTo"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Name"
+    },
+    {
+      "index": 12,
+      "name": "Description"
+    },
+    {
+      "index": 13,
+      "name": "ExpCap"
+    }
+  ]
+}

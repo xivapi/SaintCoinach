@@ -1,0 +1,17 @@
+{
+  "sheet": "ContentNpcTalk",
+  "definitions": [
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ContentTalk",
+        "converter": {
+          "type": "link",
+          "target": "ContentTalk"
+        }
+      }
+    }
+  ]
+}

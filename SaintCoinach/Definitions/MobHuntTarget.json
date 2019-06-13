@@ -1,0 +1,43 @@
+{
+  "sheet": "MobHuntTarget",
+  "definitions": [
+    {
+      "name": "Name",
+      "converter": {
+        "type": "link",
+        "target": "BNpcName"
+      }
+    },
+    {
+      "index": 1,
+      "name": "FATE",
+      "converter": {
+        "type": "link",
+        "target": "Fate"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "Map"
+      }
+    },
+    {
+      "index": 4,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    }
+  ]
+}

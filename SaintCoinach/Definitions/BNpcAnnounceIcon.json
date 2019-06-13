@@ -1,0 +1,12 @@
+{
+  "sheet": "BNpcAnnounceIcon",
+  "defaultColumn": "Icon",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

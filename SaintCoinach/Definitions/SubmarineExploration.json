@@ -1,0 +1,33 @@
+{
+  "sheet": "SubmarineExploration",
+  "defaultColumn": "Destination",
+  "definitions": [
+    {
+      "name": "Destination"
+    },
+    {
+      "index": 1,
+      "name": "Location"
+    },
+    {
+      "index": 5,
+      "name": "RankReq"
+    },
+    {
+      "index": 6,
+      "name": "CeruleumTankReq"
+    },
+    {
+      "index": 7,
+      "name": "Duration<min>"
+    },
+    {
+      "index": 8,
+      "name": "DistanceForSurvey"
+    },
+    {
+      "index": 9,
+      "name": "ExpReward"
+    }
+  ]
+}

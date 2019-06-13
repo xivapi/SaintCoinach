@@ -1,0 +1,21 @@
+{
+  "sheet": "RPParameter",
+  "defaultColumn": "BNpcName",
+  "definitions": [
+    {
+      "name": "BNpcName",
+      "converter": {
+        "type": "link",
+        "target": "BNpcName"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    }
+  ]
+}

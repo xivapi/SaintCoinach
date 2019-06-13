@@ -1,0 +1,20 @@
+{
+  "sheet": "Weather",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Name"
+    },
+    {
+      "index": 2,
+      "name": "Description"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "sheet": "MapMarkerRegion",
+  "defaultColumn": "X",
+  "definitions": [
+    {
+      "name": "X"
+    }
+  ]
+}

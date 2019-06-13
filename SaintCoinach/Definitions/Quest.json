@@ -1,0 +1,596 @@
+{
+  "sheet": "Quest",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Id"
+    },
+    {
+      "index": 2,
+      "name": "Expansion",
+      "converter": {
+        "type": "link",
+        "target": "ExVersion"
+      }
+    },
+    {
+      "index": 3,
+      "name": "ClassJobCategory[0]",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
+      "index": 4,
+      "name": "ClassJobLevel[0]"
+    },
+    {
+      "index": 5,
+      "name": "QuestLevelOffset"
+    },
+    {
+      "index": 6,
+      "name": "Level{Max}"
+    },
+    {
+      "index": 7,
+      "name": "ClassJobCategory[1]",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
+      "index": 8,
+      "name": "ClassJobLevel[1]"
+    },
+    {
+      "index": 9,
+      "name": "PreviousQuestJoin"
+    },
+    {
+      "index": 10,
+      "name": "PreviousQuest[0]",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 12,
+      "name": "PreviousQuest[1]",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 13,
+      "name": "PreviousQuest[2]",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 14,
+      "name": "QuestLockJoin"
+    },
+    {
+      "index": 15,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "QuestLock",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    },
+    {
+      "index": 20,
+      "name": "ClassJob{Unlock}",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 21,
+      "name": "GrandCompany",
+      "converter": {
+        "type": "link",
+        "target": "GrandCompany"
+      }
+    },
+    {
+      "index": 22,
+      "name": "GrandCompanyRank",
+      "converter": {
+        "type": "link",
+        "target": "GrandCompanyRank"
+      }
+    },
+    {
+      "index": 23,
+      "name": "InstanceContentJoin"
+    },
+    {
+      "index": 24,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "InstanceContent",
+        "converter": {
+          "type": "link",
+          "target": "InstanceContent"
+        }
+      }
+    },
+    {
+      "index": 27,
+      "name": "Festival",
+      "converter": {
+        "type": "link",
+        "target": "Festival"
+      }
+    },
+    {
+      "index": 30,
+      "name": "Bell{Start}"
+    },
+    {
+      "index": 31,
+      "name": "Bell{End}"
+    },
+    {
+      "index": 32,
+      "name": "BeastTribe",
+      "converter": {
+        "type": "link",
+        "target": "BeastTribe"
+      }
+    },
+    {
+      "index": 33,
+      "name": "BeastReputationRank",
+      "converter": {
+        "type": "link",
+        "target": "BeastReputationRank"
+      }
+    },
+    {
+      "index": 37,
+      "name": "Mount{Required}",
+      "converter": {
+        "type": "link",
+        "target": "Mount"
+      }
+    },
+    {
+      "index": 38,
+      "name": "IsHouseRequired"
+    },
+    {
+      "index": 39,
+      "name": "DeliveryQuest",
+      "converter": {
+        "type": "link",
+        "target": "DeliveryQuest"
+      }
+    },
+    {
+      "index": 40,
+      "name": "Issuer{Start}",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "EObjName",
+          "ENpcResident"
+        ]
+      }
+    },
+    {
+      "index": 41,
+      "name": "Behavior",
+      "converter": {
+        "type": "link",
+        "target": "Behavior"
+      }
+    },
+    {
+      "index": 42,
+      "name": "Target{End}",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "EObjName",
+          "ENpcResident"
+        ]
+      }
+    },
+    {
+      "index": 43,
+      "name": "IsRepeatable"
+    },
+    {
+      "index": 44,
+      "name": "RepeatIntervalType"
+    },
+    {
+      "index": 45,
+      "name": "QuestRepeatFlag",
+      "converter": {
+        "type": "link",
+        "target": "QuestRepeatFlag"
+      }
+    },
+    {
+      "index": 46,
+      "name": "UnlocksSystemContent"
+    },
+    {
+      "index": 48,
+      "name": "Type"
+    },
+    {
+      "index": 49,
+      "name": "QuestClassJobSupply",
+      "converter": {
+        "type": "link",
+        "target": "QuestClassJobSupply"
+      }
+    },
+    {
+      "index": 50,
+      "type": "repeat",
+      "count": 50,
+      "definition": {
+        "name": "Script{Instruction}"
+      }
+    },
+    {
+      "index": 100,
+      "type": "repeat",
+      "count": 50,
+      "definition": {
+        "name": "Script{Arg}"
+      }
+    },
+    {
+      "index": 150,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ActorSpawnSeq"
+      }
+    },
+    {
+      "index": 214,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ActorDespawnSeq"
+      }
+    },
+    {
+      "index": 278,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ActorSpawn",
+        "converter": {
+          "type": "multiref",
+          "targets": [
+            "EObjName",
+            "ENpcResident",
+            "ENpcBase",
+            "BNpcName"
+          ]
+        }
+      }
+    },
+    {
+      "index": 342,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "QuestUInt8A"
+      }
+    },
+    {
+      "index": 374,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "QuestUInt8B"
+      }
+    },
+    {
+      "index": 1174,
+      "type": "repeat",
+      "count": 24,
+      "definition": {
+        "name": "ToDoCompleteSeq"
+      }
+    },
+    {
+      "index": 1198,
+      "type": "repeat",
+      "count": 24,
+      "definition": {
+        "name": "ToDoQty"
+      }
+    },
+    {
+      "index": 1222,
+      "type": "repeat",
+      "count": 24,
+      "definition": {
+        "name": "ToDoMainLocation",
+        "converter": {
+          "type": "link",
+          "target": "Level"
+        }
+      }
+    },
+    {
+      "index": 1246,
+      "type": "repeat",
+      "count": 7,
+      "definition": {
+        "type": "repeat",
+        "count": 24,
+        "definition": {
+          "name": "ToDoChildLocation",
+          "converter": {
+            "type": "link",
+            "target": "Level"
+          }
+        }
+      }
+    },
+    {
+      "index": 1438,
+      "name": "ClassJob{Required}",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 1440,
+      "name": "ExpFactor"
+    },
+    {
+      "index": 1441,
+      "name": "GilReward"
+    },
+    {
+      "index": 1443,
+      "name": "GCSeals"
+    },
+    {
+      "index": 1444,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "Item{Catalyst}",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 1447,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "ItemCount{Catalyst}"
+      }
+    },
+    {
+      "index": 1450,
+      "name": "ItemRewardType"
+    },
+    {
+      "index": 1451,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Item{Reward}[0]",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "when": {
+                "key": "ItemRewardType",
+                "value": 6
+              },
+              "sheet": "QuestClassJobReward"
+            },
+            {
+              "sheet": "Item"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "index": 1458,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "ItemCount{Reward}[0]"
+      }
+    },
+    {
+      "index": 1465,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Stain{Reward}[0]",
+        "converter": {
+          "type": "link",
+          "target": "Stain"
+        }
+      }
+    },
+    {
+      "index": 1472,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Item{Reward}[1]",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 1477,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "ItemCount{Reward}[1]"
+      }
+    },
+    {
+      "index": 1482,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "IsHQ{Reward}[1]"
+      }
+    },
+    {
+      "index": 1487,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Stain{Reward}[1]",
+        "converter": {
+          "type": "link",
+          "target": "Stain"
+        }
+      }
+    },
+    {
+      "index": 1492,
+      "name": "Emote{Reward}",
+      "converter": {
+        "type": "link",
+        "target": "Emote"
+      }
+    },
+    {
+      "index": 1493,
+      "name": "Action{Reward}",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 1494,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "GeneralAction{Reward}",
+        "converter": {
+          "type": "link",
+          "target": "GeneralAction"
+        }
+      }
+    },
+    {
+      "index": 1497,
+      "name": "Other{Reward}",
+      "converter": {
+        "type": "link",
+        "target": "QuestRewardOther"
+      }
+    },
+    {
+      "index": 1500,
+      "name": "InstanceContent{Unlock}",
+      "converter": {
+        "type": "link",
+        "target": "InstanceContent"
+      }
+    },
+    {
+      "index": 1502,
+      "name": "Tomestone{Reward}",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "project": "Item",
+            "key": "Tomestones",
+            "sheet": "TomestonesItem"
+          }
+        ]
+      }
+    },
+    {
+      "index": 1503,
+      "name": "TomestoneCount{Reward}"
+    },
+    {
+      "index": 1504,
+      "name": "ReputationReward"
+    },
+    {
+      "index": 1505,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 1506,
+      "name": "JournalGenre",
+      "converter": {
+        "type": "link",
+        "target": "JournalGenre"
+      }
+    },
+    {
+      "index": 1508,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1509,
+      "name": "Icon{Special}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1512,
+      "name": "EventIconType",
+      "converter": {
+        "type": "link",
+        "target": "EventIconType"
+      }
+    },
+    {
+      "index": 1514,
+      "name": "SortKey"
+    }
+  ]
+}

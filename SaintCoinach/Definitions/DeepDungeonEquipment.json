@@ -1,0 +1,48 @@
+{
+  "sheet": "DeepDungeonEquipment",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Singular"
+    },
+    {
+      "index": 2,
+      "name": "Adjective"
+    },
+    {
+      "index": 3,
+      "name": "Plural"
+    },
+    {
+      "index": 4,
+      "name": "PossessivePronoun"
+    },
+    {
+      "index": 5,
+      "name": "StartsWithVowel"
+    },
+    {
+      "index": 7,
+      "name": "Pronoun"
+    },
+    {
+      "index": 8,
+      "name": "Article"
+    },
+    {
+      "index": 9,
+      "name": "Name"
+    },
+    {
+      "index": 10,
+      "name": "Description"
+    }
+  ]
+}

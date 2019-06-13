@@ -1,0 +1,125 @@
+{
+  "sheet": "TripleTriad",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "TripleTriadCard{Fixed}",
+        "converter": {
+          "type": "link",
+          "target": "TripleTriadCard"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "TripleTriadCard{Variable}",
+        "converter": {
+          "type": "link",
+          "target": "TripleTriadCard"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "TripleTriadRule",
+        "converter": {
+          "type": "link",
+          "target": "TripleTriadRule"
+        }
+      }
+    },
+    {
+      "index": 12,
+      "name": "UsesRegionalRules"
+    },
+    {
+      "index": 13,
+      "name": "Fee"
+    },
+    {
+      "index": 14,
+      "name": "PreviousQuestJoin"
+    },
+    {
+      "index": 15,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "PreviousQuest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "StartTime"
+    },
+    {
+      "index": 19,
+      "name": "EndTime"
+    },
+    {
+      "index": 20,
+      "name": "DefaultTalk{Challenge}",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 21,
+      "name": "DefaultTalk{Unavailable}",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 22,
+      "name": "DefaultTalk{NPCWin}",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 23,
+      "name": "DefaultTalk{Draw}",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 24,
+      "name": "DefaultTalk{PCWin}",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 26,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Item{PossibleReward}",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    }
+  ]
+}

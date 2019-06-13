@@ -1,0 +1,9 @@
+{
+  "sheet": "TripleTriadCardRarity",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Stars"
+    }
+  ]
+}

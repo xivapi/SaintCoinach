@@ -1,0 +1,20 @@
+{
+  "sheet": "Stain",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Color",
+      "converter": {
+        "type": "color"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Shade"
+    },
+    {
+      "index": 2,
+      "name": "Name"
+    }
+  ]
+}

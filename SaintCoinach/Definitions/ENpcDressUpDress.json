@@ -1,0 +1,13 @@
+{
+  "sheet": "ENpcDressUpDress",
+  "definitions": [
+    {
+      "index": 6,
+      "name": "ENpc",
+      "converter": {
+        "type": "link",
+        "target": "ENpcResident"
+      }
+    }
+  ]
+}

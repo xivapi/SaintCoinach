@@ -1,0 +1,20 @@
+{
+  "sheet": "GcArmyMemberGrow",
+  "definitions": [
+    {
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ClassBook",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

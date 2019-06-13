@@ -1,0 +1,16 @@
+{
+  "sheet": "ContentTalkParam",
+  "definitions": [
+    {
+      "name": "Param"
+    },
+    {
+      "index": 2,
+      "name": "TestAction",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "sheet": "RetainerTaskParameter",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "ItemLevel{DoW}"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Gathering{DoL}"
+      }
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Gathering{FSH}"
+      }
+    }
+  ]
+}

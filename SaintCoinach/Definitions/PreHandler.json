@@ -1,0 +1,25 @@
+{
+  "sheet": "PreHandler",
+  "defaultColumn": "",
+  "definitions": [
+    {
+      "name": "Target",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "GilShop",
+          "SpecialShop",
+          "Description"
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "name": "ActionTimeline",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sheet": "OnlineStatus",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Priority"
+    },
+    {
+      "index": 3,
+      "name": "Name"
+    },
+    {
+      "index": 4,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

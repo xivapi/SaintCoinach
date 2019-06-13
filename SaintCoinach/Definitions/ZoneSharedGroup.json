@@ -1,0 +1,53 @@
+{
+  "sheet": "ZoneSharedGroup",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Quest{1}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Quest{2}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 10,
+      "name": "Quest{3}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 14,
+      "name": "Quest{4}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 18,
+      "name": "Quest{5}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 22,
+      "name": "Quest{6}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}

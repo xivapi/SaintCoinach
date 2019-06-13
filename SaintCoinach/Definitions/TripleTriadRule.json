@@ -1,0 +1,9 @@
+{
+  "sheet": "TripleTriadRule",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

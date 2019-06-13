@@ -1,0 +1,37 @@
+{
+  "sheet": "Tribe",
+  "defaultColumn": "Feminine",
+  "definitions": [
+    {
+      "name": "Masculine"
+    },
+    {
+      "index": 1,
+      "name": "Feminine"
+    },
+    {
+      "index": 4,
+      "name": "STR"
+    },
+    {
+      "index": 5,
+      "name": "DEX"
+    },
+    {
+      "index": 6,
+      "name": "VIT"
+    },
+    {
+      "index": 7,
+      "name": "INT"
+    },
+    {
+      "index": 8,
+      "name": "MND"
+    },
+    {
+      "index": 9,
+      "name": "PIE"
+    }
+  ]
+}

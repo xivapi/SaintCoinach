@@ -1,0 +1,140 @@
+{
+  "sheet": "DescriptionPage",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Text[1]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Image[1]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Text[2]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Image[2]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Text[3]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Image[3]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Text[4]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Image[4]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 9,
+      "name": "Text[5]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 10,
+      "name": "Image[5]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Text[6]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 12,
+      "name": "Image[6]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 13,
+      "name": "Text[7]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 14,
+      "name": "Image[7]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 15,
+      "name": "Text[8]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 16,
+      "name": "Image[8]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 17,
+      "name": "Text[9]",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 18,
+      "name": "Image[9]",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

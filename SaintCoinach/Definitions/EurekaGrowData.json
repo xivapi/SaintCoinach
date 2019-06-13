@@ -1,0 +1,9 @@
+{
+  "sheet": "EurekaGrowData",
+  "defaultColumn": "BaseElementalPower",
+  "definitions": [
+    {
+      "name": "BaseResistance"
+    }
+  ]
+}

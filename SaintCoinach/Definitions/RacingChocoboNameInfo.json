@@ -1,0 +1,12 @@
+{
+  "sheet": "RacingChocoboNameInfo",
+  "definitions": [
+    {
+      "name": "RacingChocoboNameCategory",
+      "converter": {
+        "type": "link",
+        "target": "RacingChocoboNameCategory"
+      }
+    }
+  ]
+}

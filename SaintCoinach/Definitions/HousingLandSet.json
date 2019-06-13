@@ -1,0 +1,21 @@
+{
+  "sheet": "HousingLandSet",
+  "defaultColumn": "",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "PlotSize"
+      }
+    },
+    {
+      "index": 300,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "InitialPrice"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sheet": "ActionComboRoute",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Action",
+        "converter": {
+          "type": "link",
+          "target": "Action"
+        }
+      }
+    }
+  ]
+}

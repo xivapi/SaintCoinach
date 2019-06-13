@@ -1,0 +1,12 @@
+{
+  "sheet": "RetainerTaskLvRange",
+  "definitions": [
+    {
+      "name": "Min"
+    },
+    {
+      "index": 1,
+      "name": "Max"
+    }
+  ]
+}

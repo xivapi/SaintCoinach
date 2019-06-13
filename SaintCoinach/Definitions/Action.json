@@ -1,0 +1,241 @@
+{
+  "sheet": "Action",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "ActionCategory",
+      "converter": {
+        "type": "link",
+        "target": "ActionCategory"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Animation{Start}",
+      "converter": {
+        "type": "link",
+        "target": "ActionCastTimeline"
+      }
+    },
+    {
+      "index": 6,
+      "name": "VFX",
+      "converter": {
+        "type": "link",
+        "target": "ActionCastVFX"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Animation{End}",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 8,
+      "name": "ActionTimeline{Hit}",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 10,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 12,
+      "name": "ClassJobLevel"
+    },
+    {
+      "index": 13,
+      "name": "IsRoleAction"
+    },
+    {
+      "index": 14,
+      "name": "Range"
+    },
+    {
+      "index": 15,
+      "name": "CanTargetSelf"
+    },
+    {
+      "index": 16,
+      "name": "CanTargetParty"
+    },
+    {
+      "index": 17,
+      "name": "CanTargetFriendly"
+    },
+    {
+      "index": 18,
+      "name": "CanTargetHostile"
+    },
+    {
+      "index": 21,
+      "name": "TargetArea"
+    },
+    {
+      "index": 25,
+      "name": "CanTargetDead"
+    },
+    {
+      "index": 27,
+      "name": "CastType"
+    },
+    {
+      "index": 28,
+      "name": "EffectRange"
+    },
+    {
+      "index": 29,
+      "name": "XAxisModifier"
+    },
+    {
+      "index": 31,
+      "name": "Cost{Type}[1]"
+    },
+    {
+      "index": 32,
+      "name": "Cost{Value}[1]"
+    },
+    {
+      "index": 33,
+      "name": "Cost{Type}[2]"
+    },
+    {
+      "index": 34,
+      "name": "Cost{Value}[2]",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Cost{Type}[2]",
+              "value": 32
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Cost{Type}[2]",
+              "value": 35
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Cost{Type}[2]",
+              "value": 46
+            },
+            "sheet": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "index": 35,
+      "name": "Action{Combo}",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 36,
+      "name": "PreservesCombo"
+    },
+    {
+      "index": 37,
+      "name": "Cast<100ms>"
+    },
+    {
+      "index": 38,
+      "name": "Recast<100ms>"
+    },
+    {
+      "index": 39,
+      "name": "CooldownGroup"
+    },
+    {
+      "index": 40,
+      "name": "AttackType",
+      "converter": {
+        "type": "link",
+        "target": "AttackType"
+      }
+    },
+    {
+      "index": 41,
+      "name": "Aspect"
+    },
+    {
+      "index": 42,
+      "name": "ActionProcStatus",
+      "converter": {
+        "type": "link",
+        "target": "ActionProcStatus"
+      }
+    },
+    {
+      "index": 43,
+      "name": "Status{GainSelf}",
+      "converter": {
+        "type": "link",
+        "target": "Status"
+      }
+    },
+    {
+      "index": 44,
+      "name": "UnlockLink",
+      "converter": {
+        "type": "generic"
+      }
+    },
+    {
+      "index": 45,
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
+      "index": 48,
+      "name": "AffectsPosition"
+    },
+    {
+      "index": 49,
+      "name": "Omen",
+      "converter": {
+        "type": "link",
+        "target": "Omen"
+      }
+    },
+    {
+      "index": 50,
+      "name": "IsPvP"
+    },
+    {
+      "index": 62,
+      "name": "IsPlayerAction"
+    }
+  ]
+}

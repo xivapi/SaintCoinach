@@ -1,0 +1,9 @@
+{
+  "sheet": "Addon",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    }
+  ]
+}

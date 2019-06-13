@@ -1,0 +1,9 @@
+{
+  "sheet": "ActionTransient",
+  "defaultColumn": "Description",
+  "definitions": [
+    {
+      "name": "Description"
+    }
+  ]
+}

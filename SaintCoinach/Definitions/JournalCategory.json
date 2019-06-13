@@ -1,0 +1,17 @@
+{
+  "sheet": "JournalCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 3,
+      "name": "JournalSection",
+      "converter": {
+        "type": "link",
+        "target": "JournalSection"
+      }
+    }
+  ]
+}

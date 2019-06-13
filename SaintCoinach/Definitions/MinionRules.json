@@ -1,0 +1,13 @@
+{
+  "sheet": "MinionRules",
+  "defaultColumn": "Rule",
+  "definitions": [
+    {
+      "name": "Rule"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    }
+  ]
+}

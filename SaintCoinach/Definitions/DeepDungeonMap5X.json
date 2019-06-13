@@ -1,0 +1,16 @@
+{
+  "sheet": "DeepDungeonMap5X",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "DeepDungeonRoom",
+        "converter": {
+          "type": "link",
+          "target": "DeepDungeonRoom"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "sheet": "DeepDungeonDanger",
+  "definitions": [
+    {
+      "name": "ScreenImage",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    },
+    {
+      "index": 1,
+      "name": "LogMessage",
+      "converter": {
+        "type": "link",
+        "target": "LogMessage"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Name",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonFloorEffectUI"
+      }
+    }
+  ]
+}

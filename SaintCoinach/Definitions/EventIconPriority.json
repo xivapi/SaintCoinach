@@ -1,0 +1,15 @@
+{
+  "sheet": "EventIconPriority",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 16,
+      "definition": {
+        "name": "Icon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    }
+  ]
+}

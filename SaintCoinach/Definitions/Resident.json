@@ -1,0 +1,25 @@
+{
+  "sheet": "Resident",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Model"
+    },
+    {
+      "index": 2,
+      "name": "NpcYell",
+      "converter": {
+        "type": "link",
+        "target": "NpcYell"
+      }
+    },
+    {
+      "index": 3,
+      "name": "ResidentMotionType",
+      "converter": {
+        "type": "link",
+        "target": "ResidentMotionType"
+      }
+    }
+  ]
+}

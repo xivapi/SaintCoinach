@@ -1,0 +1,26 @@
+{
+  "sheet": "GuildleveAssignment",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "index": 1,
+      "name": "AssignmentTalk",
+      "converter": {
+        "type": "link",
+        "target": "GuildleveAssignmentTalk"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Quest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    }
+  ]
+}

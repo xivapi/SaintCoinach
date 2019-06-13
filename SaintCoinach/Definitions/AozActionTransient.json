@@ -1,0 +1,45 @@
+{
+  "sheet": "AozActionTransient",
+  "defaultColumn": "Action",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Stats"
+    },
+    {
+      "index": 3,
+      "name": "Description"
+    },
+    {
+      "index": 5,
+      "name": "Location",
+      "converter": {
+        "type": "link",
+        "target": "ContentFinderCondition"
+      }
+    },
+    {
+      "index": 6,
+      "name": "StartQuest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 7,
+      "name": "NextQuest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}

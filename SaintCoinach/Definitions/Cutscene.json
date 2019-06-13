@@ -1,0 +1,9 @@
+{
+  "sheet": "Cutscene",
+  "defaultColumn": "Path",
+  "definitions": [
+    {
+      "name": "Path"
+    }
+  ]
+}
