@@ -844,9 +844,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LibraModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ex.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Definitions\Achievement.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2273,6 +2270,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\ZoneSharedGroup.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\game.ver">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Libra\LibraModel.Context.tt">

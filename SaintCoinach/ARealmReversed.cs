@@ -209,13 +209,18 @@ namespace SaintCoinach {
         #region Shared
 
         private RelationDefinition ReadDefinition() {
-            // fixme: replace
-            var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, "ex.json"));
-            if (!file.Exists)
-                throw new InvalidOperationException("ex.json must exist in this directory.");
+            var versionPath = Path.Combine("Definitions", "game.ver");
+            if (!File.Exists(versionPath))
+                throw new InvalidOperationException("Definitions\\game.ver must exist.");
 
-            using (var reader = new StreamReader(file.FullName, Encoding.UTF8))
-                return RelationDefinition.FromJson(reader.ReadToEnd());
+            var version = File.ReadAllText(versionPath);
+            var def = new RelationDefinition() { Version = version };
+            foreach (var sheetFileName in Directory.EnumerateFiles("Definitions", "*.json")) {
+                var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
+                var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                def.SheetDefinitions.Add(SheetDefinition.FromJson(obj));
+            }
+            return def;
         }
 
         /// <summary>
@@ -285,6 +290,10 @@ namespace SaintCoinach {
             // todo: prior to storage, delete everything under "Definitions" to prevent
             // dead sheets from resurrecting.
             StoreDefinitionCore(zip, definition, "Definitions");
+
+            // Store version in root definition path for quick copying.
+            var versionPath = Path.Combine("Definitions", "game.ver");
+            zip.UpdateEntry(versionPath, version);
         }
 
         private static void StoreDefinitionCore(ZipFile zip, RelationDefinition definition, string basePath) {
