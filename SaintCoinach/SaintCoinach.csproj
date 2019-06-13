@@ -87,7 +87,6 @@
     <Compile Include="Ex\Variant2\RelationalDataRow.cs" />
     <Compile Include="Ex\Variant2\SubRow.cs" />
     <Compile Include="Ex\Relational\Definition\ViewDefinition.cs" />
-    <Compile Include="Ex\ViewCollection.cs" />
     <Compile Include="Graphics\ColorMap.cs" />
     <Compile Include="Graphics\Exports\ModelExport.cs" />
     <Compile Include="Graphics\Exports\Obj.cs" />
@@ -867,9 +866,6 @@
     <Compile Include="Xiv\PrerequisiteQuestsRequirementType.cs" />
     <Compile Include="Xiv\QuestRequirements.PreviousQuestRequirement.cs" />
     <Compile Include="Xiv\MasterpieceSupplyDuty.CollectableItem.cs" />
-    <Content Include="exview.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -33,11 +33,6 @@ namespace SaintCoinach {
         private const string DefinitionFile = "ex.json";
 
         /// <summary>
-        ///     File name inside the archive of the data view mappings.
-        /// </summary>
-        private const string ViewDefinitionFile = "exview.json";
-
-        /// <summary>
         ///     File name containing the current version string.
         /// </summary>
         private const string VersionFile = "ffxivgame.ver";
@@ -138,11 +133,6 @@ namespace SaintCoinach {
         /// <value>The archive file containing current and past data mappings.</value>
         public FileInfo StateFile { get { return _StateFile; } }
 
-        /// <summary>
-        ///     Gets the view collection for game data.
-        /// </summary>
-        public ViewCollection Views { get; private set; }
-
         #endregion
 
         #region Setup
@@ -229,8 +219,6 @@ namespace SaintCoinach {
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
             _StateFile = storeFile;
-
-            Views = ReadViewCollection();
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
                 if (zipFile.ContainsEntry(VersionFile)) {
@@ -334,12 +322,6 @@ namespace SaintCoinach {
             }
 
             throw new InvalidOperationException($"No definition '{entry}'");
-        }
-
-        private ViewCollection ReadViewCollection() {
-            var viewFile = new FileInfo(Path.Combine(StateFile.Directory.FullName, ViewDefinitionFile));
-            using (var reader = new StreamReader(viewFile.FullName, Encoding.UTF8))
-                return ViewCollection.FromJson(reader.ReadToEnd());
         }
 
         /// <summary>
