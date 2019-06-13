@@ -230,7 +230,17 @@ namespace SaintCoinach {
         /// <param name="version">Version of the definition to read.</param>
         /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
         private static RelationDefinition ReadDefinition(ZipFile zip, string version) {
-            throw new NotImplementedException();
+            var def = new RelationDefinition() { Version = version };
+            var entries = zip.SelectEntries("*.json", Path.Combine(version, "Definitions"));
+            foreach (var entry in entries) {
+                using (var stream = entry.OpenReader())
+                using (var reader = new StreamReader(stream)) {
+                    var json = reader.ReadToEnd();
+                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                    def.SheetDefinitions.Add(SheetDefinition.FromJson(obj));
+                }
+            }
+            return def;
         }
 
         /// <summary>
