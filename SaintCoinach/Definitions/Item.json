@@ -180,6 +180,10 @@
       "name": "IsIndisposable"
     },
     {
+      "index": 23,
+      "name": "IsEquippable"
+    },
+    {
       "index": 24,
       "name": "Price{Mid}"
     },

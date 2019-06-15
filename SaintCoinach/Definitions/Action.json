@@ -110,39 +110,39 @@
     },
     {
       "index": 31,
-      "name": "Cost{Type}[1]"
+      "name": "PrimaryCost{Type}"
     },
     {
       "index": 32,
-      "name": "Cost{Value}[1]"
+      "name": "PrimaryCost{Value}"
     },
     {
       "index": 33,
-      "name": "Cost{Type}[2]"
+      "name": "SecondaryCost{Type}"
     },
     {
       "index": 34,
-      "name": "Cost{Value}[2]",
+      "name": "SecondaryCost{Value}",
       "converter": {
         "type": "complexlink",
         "links": [
           {
             "when": {
-              "key": "Cost{Type}[2]",
+              "key": "SecondaryCost{Type}",
               "value": 32
             },
             "sheet": "Status"
           },
           {
             "when": {
-              "key": "Cost{Type}[2]",
+              "key": "SecondaryCost{Type}",
               "value": 35
             },
             "sheet": "Status"
           },
           {
             "when": {
-              "key": "Cost{Type}[2]",
+              "key": "SecondaryCost{Type}",
               "value": 46
             },
             "sheet": "Status"

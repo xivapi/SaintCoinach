@@ -1,0 +1,33 @@
+{
+  "sheet": "QuestBattle",
+  "definitions": [
+    {
+      "name": "Quest"
+    },
+    {
+      "index": 2,
+      "name": "TimeLimit"
+    },
+    {
+      "index": 3,
+      "name": "LevelSync"
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 150,
+      "definition": {
+        "name": "ScriptInstruction"
+      }
+    },
+    {
+      "index": 154,
+      "type": "repeat",
+      "count": 150,
+      "definition": {
+        "name": "ScriptValue"
+      }
+    }
+
+  ]
+}

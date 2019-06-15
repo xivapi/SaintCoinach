@@ -72,6 +72,14 @@
       }
     },
     {
+      "index": 23,
+      "name": "QuestBattle",
+      "converter": {
+        "type": "link",
+        "target": "QuestBattle"
+      }
+    },
+    {
       "index": 24,
       "name": "Aetheryte",
       "converter": {

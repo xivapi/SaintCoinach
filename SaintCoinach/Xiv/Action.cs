@@ -19,8 +19,8 @@ namespace SaintCoinach.Xiv {
         public int EffectRange => AsInt32("EffectRange");
         public Action ComboFrom => As<Action>("Action{Combo}");
         public Status GainedStatus => As<Status>("Status{GainSelf}");
-        public ActionCostType CostType => (ActionCostType)As<byte>("Cost{Type}[1]");
-        public int Cost => AsInt32("Cost{Value}[1]");
+        public ActionCostType CostType => (ActionCostType)As<byte>("PrimaryCost{Type}");
+        public int Cost => AsInt32("PrimaryCost{Value}");
 
         public TimeSpan CastTime {
             get { return TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond * 100 * AsInt32("Cast<100ms>")); }

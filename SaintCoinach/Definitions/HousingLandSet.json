@@ -10,6 +10,14 @@
       }
     },
     {
+      "index": 60,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "MinPrice"
+      }
+    },
+    {
       "index": 300,
       "type": "repeat",
       "count": 60,

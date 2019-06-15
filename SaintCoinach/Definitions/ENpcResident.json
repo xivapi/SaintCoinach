@@ -32,6 +32,10 @@
     {
       "index": 8,
       "name": "Title"
+    },
+    {
+      "index": 9,
+      "name": "Map"
     }
   ]
 }
