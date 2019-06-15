@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 using Ionic.Zip;
-
+using Newtonsoft.Json;
 using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex.Relational.Update;
@@ -217,9 +218,17 @@ namespace SaintCoinach {
             var def = new RelationDefinition() { Version = version };
             foreach (var sheetFileName in Directory.EnumerateFiles("Definitions", "*.json")) {
                 var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
-                var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
-                def.SheetDefinitions.Add(SheetDefinition.FromJson(obj));
+                var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                var sheetDef = SheetDefinition.FromJson(obj);
+                def.SheetDefinitions.Add(sheetDef);
+
+                if (!_GameData.SheetExists(sheetDef.Name)) {
+                    var msg = $"Defined sheet {sheetDef.Name} is missing.";
+                    Debug.WriteLine(msg);
+                    Console.WriteLine(msg);
+                }
             }
+
             return def;
         }
 
@@ -236,7 +245,7 @@ namespace SaintCoinach {
                 using (var stream = entry.OpenReader())
                 using (var reader = new StreamReader(stream)) {
                     var json = reader.ReadToEnd();
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                    var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
                     def.SheetDefinitions.Add(SheetDefinition.FromJson(obj));
                 }
             }
@@ -303,7 +312,7 @@ namespace SaintCoinach {
 
         private static string SheetToJson(SheetDefinition sheetDef) {
             var obj = sheetDef.ToJson();
-            return Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
         /// <summary>
@@ -318,7 +327,7 @@ namespace SaintCoinach {
 
             var jsonTarget = string.Format(UpdateReportJsonFile, report.PreviousVersion, report.UpdateVersion);
             var obj = report.ToJson();
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+            var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
             zip.UpdateEntry(jsonTarget, json);
 
             var binTarget = string.Format(UpdateReportBinFile, report.PreviousVersion, report.UpdateVersion);
@@ -385,7 +394,7 @@ namespace SaintCoinach {
                     StoreDefinitionInZip(zip, definition);
                     StoreDefinitionOnFilesystem(definition, "");
 
-                    if (System.Diagnostics.Debugger.IsAttached) {
+                    if (Debugger.IsAttached) {
                         // Little QOL path - when updating with the debugger attached,
                         // also write to the project definitions path so no need to copy
                         // them manually afterward.
