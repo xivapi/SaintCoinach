@@ -143,7 +143,7 @@ namespace SaintCoinach {
                 System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
             def.Version = GameVersion;
-            StoreDefinition(zip, def, def.Version);
+            StoreDefinitionInZip(zip, def);
             StorePacks(zip);
             UpdateVersion(zip);
 
@@ -213,7 +213,7 @@ namespace SaintCoinach {
             if (!File.Exists(versionPath))
                 throw new InvalidOperationException("Definitions\\game.ver must exist.");
 
-            var version = File.ReadAllText(versionPath);
+            var version = File.ReadAllText(versionPath).Trim();
             var def = new RelationDefinition() { Version = version };
             foreach (var sheetFileName in Directory.EnumerateFiles("Definitions", "*.json")) {
                 var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
@@ -265,54 +265,45 @@ namespace SaintCoinach {
         }
 
         /// <summary>
-        ///     Copy a file entry inside a <see cref="ZipFile" />.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> on which to perform the operation.</param>
-        /// <param name="source">Source file name to copy.</param>
-        /// <param name="target">Destination file name for the copy.</param>
-        private static void ZipCopy(ZipFile zip, string source, string target) {
-            var entry = zip[source];
-
-            byte[] buffer;
-            using (var s = entry.OpenReader()) {
-                using (var ms = new MemoryStream()) {
-                    s.CopyTo(ms);
-                    buffer = ms.ToArray();
-                }
-            }
-
-            zip.UpdateEntry(target, buffer);
-        }
-
-        /// <summary>
         ///     Serialize a <see cref="RelationDefinition" /> into a <see cref="ZipFile" />.
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> to write to.</param>
         /// <param name="definition"><see cref="RelationDefinition" /> to store.</param>
         /// <param name="version">Version these definitions are for.</param>
-        private static void StoreDefinition(ZipFile zip, RelationDefinition definition, string version) {
+        private static void StoreDefinitionInZip(ZipFile zip, RelationDefinition definition) {
             // Since this method is only ever called to update the zip with the
             // lateset definitions, store these for both the given version *and*
             // root.
 
-            StoreDefinitionCore(zip, definition, Path.Combine(version, "Definitions"));
-
             // todo: prior to storage, delete everything under "Definitions" to prevent
             // dead sheets from resurrecting.
-            StoreDefinitionCore(zip, definition, "Definitions");
+
+            var versionBasePath = Path.Combine(definition.Version, "Definitions");
+            foreach (var sheetDef in definition.SheetDefinitions) {
+                var json = SheetToJson(sheetDef);
+                var sheetFileName = sheetDef.Name + ".json";
+                zip.UpdateEntry(Path.Combine(versionBasePath, sheetFileName), json);
+                zip.UpdateEntry(Path.Combine("Definitions", sheetFileName), json);
+            }
 
             // Store version in root definition path for quick copying.
             var versionPath = Path.Combine("Definitions", "game.ver");
-            zip.UpdateEntry(versionPath, version);
+            zip.UpdateEntry(versionPath, definition.Version);
         }
 
-        private static void StoreDefinitionCore(ZipFile zip, RelationDefinition definition, string basePath) {
+        private static void StoreDefinitionOnFilesystem(RelationDefinition definition, string basePath) {
             foreach (var sheetDef in definition.SheetDefinitions) {
-                var obj = sheetDef.ToJson();
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
-                var sheetDefPath = Path.Combine(basePath, sheetDef.Name + ".json");
-                zip.UpdateEntry(sheetDefPath, json);
+                var sheetDefPath = Path.Combine(basePath, "Definitions", sheetDef.Name + ".json");
+                File.WriteAllText(sheetDefPath, SheetToJson(sheetDef));
             }
+
+            var versionPath = Path.Combine(basePath, "Definitions", "game.ver");
+            File.WriteAllText(versionPath, definition.Version);
+        }
+
+        private static string SheetToJson(SheetDefinition sheetDef) {
+            var obj = sheetDef.ToJson();
+            return Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
         }
 
         /// <summary>
@@ -391,7 +382,18 @@ namespace SaintCoinach {
                     var definition = updater.Updated;
 
                     StorePacks(zip);
-                    StoreDefinition(zip, definition, definition.Version);
+                    StoreDefinitionInZip(zip, definition);
+                    StoreDefinitionOnFilesystem(definition, "");
+
+                    if (System.Diagnostics.Debugger.IsAttached) {
+                        // Little QOL path - when updating with the debugger attached,
+                        // also write to the project definitions path so no need to copy
+                        // them manually afterward.
+                        var projectDefinitionsPath = "../../../SaintCoinach";
+                        if (Directory.Exists(projectDefinitionsPath))
+                            StoreDefinitionOnFilesystem(definition, projectDefinitionsPath);
+                    }
+
                     StoreReport(zip, report);
                     zip.Save();
 
