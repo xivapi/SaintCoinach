@@ -8,6 +8,22 @@
         "type": "link",
         "target": "Addon"
       }
+    },
+    {
+      "index": 1,
+      "name": "RankBRequirement"
+    },
+    {
+      "index": 2,
+      "name": "RankARequirement"
+    },
+    {
+      "index": 3,
+      "name": "RankAARequirement"
+    },
+    {
+      "index": 4,
+      "name": "RankAAARequirement"
     }
   ]
 }
