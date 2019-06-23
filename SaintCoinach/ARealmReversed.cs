@@ -393,6 +393,7 @@ namespace SaintCoinach {
                     }
 
                     StoreReport(zip, report);
+                    UpdateVersion(zip);
                     zip.Save();
 
                     GameData.Definition = definition;
