@@ -2,7 +2,6 @@
   "sheet": "ModelSkeleton",
   "definitions": [
     {
-      "index": 0,
       "name": "ScaleFactor"
     }
   ]

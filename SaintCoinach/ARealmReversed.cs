@@ -329,17 +329,6 @@ namespace SaintCoinach {
             var obj = report.ToJson();
             var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
             zip.UpdateEntry(jsonTarget, json);
-
-            var binTarget = string.Format(UpdateReportBinFile, report.PreviousVersion, report.UpdateVersion);
-            var formatter = new BinaryFormatter();
-            byte[] binBuffer;
-
-            using (var ms = new MemoryStream()) {
-                formatter.Serialize(ms, report);
-                binBuffer = ms.ToArray();
-            }
-
-            zip.UpdateEntry(binTarget, binBuffer);
         }
 
         #endregion
@@ -404,6 +393,7 @@ namespace SaintCoinach {
                     }
 
                     StoreReport(zip, report);
+                    UpdateVersion(zip);
                     zip.Save();
 
                     GameData.Definition = definition;

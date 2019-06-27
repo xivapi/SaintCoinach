@@ -9,12 +9,12 @@
       "name": "AdditionalActions"
     },
     {
-      "index": 4,
-      "name": "MpModifier"
-    },
-    {
       "index": 3,
       "name": "ScaledQuestXP"
+    },
+    {
+      "index": 4,
+      "name": "MpModifier"
     },
     {
       "index": 5,

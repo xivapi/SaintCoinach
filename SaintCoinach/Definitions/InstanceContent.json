@@ -174,6 +174,18 @@
       "name": "InstanceClearExp"
     },
     {
+      "index": 47,
+      "name": "InstanceClearGil"
+    },
+    {
+      "index": 48,
+      "name": "InstanceContentRewardItem",
+      "converter": {
+        "type": "link",
+        "target": "InstanceContentRewardItem"
+      }
+    },
+    {
       "index": 51,
       "name": "InstanceContentBuff",
       "converter": {
