@@ -2,99 +2,51 @@
   "sheet": "MountCustomize",
   "definitions": [
     {
-      "index": 1,
-      "name": "HyurMaleScale"
-    },
-    {
-      "index": 2,
-      "name": "HyurFemaleScale"
-    },
-    {
-      "index": 3,
-      "name": "ElezenMaleScale"
-    },
-    {
-      "index": 4,
-      "name": "ElezenFemaleScale"
-    },
-    {
-      "index": 5,
-      "name": "LalaMaleScale"
-    },
-    {
-      "index": 6,
-      "name": "LalaFemaleScale"
-    },
-    {
-      "index": 7,
-      "name": "MiqoMaleScale"
-    },
-    {
-      "index": 8,
-      "name": "MiqoFemaleScale"
-    },
-    {
-      "index": 9,
-      "name": "RoeMaleScale"
-    },
-    {
-      "index": 10,
-      "name": "RoeFemaleScale"
-    },
-    {
-      "index": 11,
-      "name": "AuRaMaleScale"
-    },
-    {
-      "index": 12,
-      "name": "AuRaFemaleScale"
-    },
-    {
-      "index": 13,
+      "index": 17,
       "name": "HyurMaleCameraHeight"
     },
     {
-      "index": 14,
+      "index": 18,
       "name": "HyurFemaleCameraHeight"
     },
     {
-      "index": 15,
+      "index": 21,
       "name": "ElezenMaleCameraHeight"
     },
     {
-      "index": 16,
+      "index": 22,
       "name": "ElezenFemaleCameraHeight"
     },
     {
-      "index": 17,
+      "index": 23,
       "name": "LalaMaleCameraHeight"
     },
     {
-      "index": 18,
+      "index": 24,
       "name": "LalaFemaleCameraHeight"
     },
     {
-      "index": 19,
+      "index": 25,
       "name": "MiqoMaleCameraHeight"
     },
     {
-      "index": 20,
+      "index": 26,
       "name": "MiqoFemaleCameraHeight"
     },
     {
-      "index": 21,
+      "index": 27,
       "name": "RoeMaleCameraHeight"
     },
     {
-      "index": 22,
+      "index": 28,
       "name": "RoeFemaleCameraHeight"
     },
     {
-      "index": 23,
+      "index": 29,
       "name": "AuRaMaleCameraHeight"
     },
     {
-      "index": 24,
+      "index": 30,
       "name": "AuRaFemaleCameraHeight"
     }
   ]
