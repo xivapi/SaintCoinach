@@ -27,7 +27,7 @@ namespace SaintCoinach.Xiv {
         Unknown20, // Contents Actions?
         Unknown21,
         BeastGauge,
-        Unknown23,
+        Polyglot,
         DreadwyrmAether,
         BloodGauge,
         Unknown26,
@@ -56,7 +56,16 @@ namespace SaintCoinach.Xiv {
         LilyAll,
         AstralFireOrUmbralIce,
         MP2,
-        Ceruleum
+        Ceruleum,
+        FourfoldFeather,
+        Espirit,
+        Cartridge,
+        BloodLily,
+        Lily,
+        SealsAll,
+        SoulVoice,
+        Unknown60,
+        Heat
     }
 
     public abstract class ClassJobActionBase : ActionBase {

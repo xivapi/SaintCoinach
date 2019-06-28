@@ -276,6 +276,8 @@ namespace SaintCoinach.Xiv.Items {
                 case 13: return 1001; // Roegadyn female
                 case 14: return 1301; // Au Ra male
                 case 15: return 1401; // Au Ra female
+                case 16: return 1501; // Hrothgar male
+                case 17: return 1801; // Viera female
                 default:
                     throw new NotImplementedException();
             }
