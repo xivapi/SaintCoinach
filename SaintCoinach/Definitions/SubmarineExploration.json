@@ -10,23 +10,23 @@
       "name": "Location"
     },
     {
-      "index": 5,
+      "index": 8,
       "name": "RankReq"
     },
     {
-      "index": 6,
+      "index": 9,
       "name": "CeruleumTankReq"
     },
     {
-      "index": 7,
+      "index": 10,
       "name": "Duration<min>"
     },
     {
-      "index": 8,
+      "index": 11,
       "name": "DistanceForSurvey"
     },
     {
-      "index": 9,
+      "index": 12,
       "name": "ExpReward"
     }
   ]
