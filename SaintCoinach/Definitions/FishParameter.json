@@ -39,23 +39,23 @@
     },
     {
       "index": 7,
-      "name": "IsInLog"
-    },
-    {
-      "index": 8,
-      "name": "TimeRestricted"
-    },
-    {
-      "index": 9,
-      "name": "WeatherRestricted"
-    },
-    {
-      "index": 10,
       "name": "GatheringSubCategory",
       "converter": {
         "type": "link",
         "target": "GatheringSubCategory"
       }
+    },
+    {
+      "index": 8,
+      "name": "IsInLog"
+    },
+    {
+      "index": 9,
+      "name": "TimeRestricted"
+    },
+    {
+      "index": 10,
+      "name": "WeatherRestricted"
     }
   ]
 }

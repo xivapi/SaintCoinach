@@ -161,14 +161,6 @@
     },
     {
       "index": 1863,
-      "name": "Quest{Shop}",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 1864,
       "name": "NotCompleteText",
       "converter": {
         "type": "link",
@@ -176,7 +168,7 @@
       }
     },
     {
-      "index": 1865,
+      "index": 1864,
       "name": "CompleteText",
       "converter": {
         "type": "link",

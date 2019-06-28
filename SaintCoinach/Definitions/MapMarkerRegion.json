@@ -3,6 +3,7 @@
   "defaultColumn": "X",
   "definitions": [
     {
+      "index": 1,
       "name": "X"
     }
   ]

@@ -26,21 +26,21 @@
       }
     },
     {
-      "index": 10,
+      "index": 9,
       "name": "Icon{Objective}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 11,
+      "index": 10,
       "name": "Icon{Map}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 13,
+      "index": 12,
       "name": "Music",
       "converter": {
         "type": "link",
@@ -48,23 +48,23 @@
       }
     },
     {
-      "index": 19,
+      "index": 17,
       "name": "HasWorldMapIcon"
     },
     {
-      "index": 27,
+      "index": 25,
       "name": "Name"
     },
     {
-      "index": 28,
+      "index": 26,
       "name": "Description"
     },
     {
-      "index": 29,
+      "index": 27,
       "name": "Objective"
     },
     {
-      "index": 30,
+      "index": 28,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -72,7 +72,7 @@
       }
     },
     {
-      "index": 33,
+      "index": 31,
       "name": "ArrayIndex",
       "converter": {
         "type": "link",

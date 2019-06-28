@@ -14,19 +14,7 @@
       }
     },
     {
-      "index": 2,
-      "type": "repeat",
-      "count": 4,
-      "definition": {
-        "name": "Quest{Required}",
-        "converter": {
-          "type": "link",
-          "target": "Quest"
-        }
-      }
-    },
-    {
-      "index": 6,
+      "index": 3,
       "name": "AcceptTalk",
       "converter": {
         "type": "link",
@@ -34,7 +22,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 4,
       "name": "FailTalk",
       "converter": {
         "type": "link",

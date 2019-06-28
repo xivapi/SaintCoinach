@@ -51,15 +51,7 @@
       }
     },
     {
-      "index": 25,
-      "name": "RecipeElement",
-      "converter": {
-        "type": "link",
-        "target": "RecipeElement"
-      }
-    },
-    {
-      "index": 27,
+      "index": 26,
       "name": "IsSecondary"
     },
     {

@@ -94,16 +94,16 @@
       "name": "SortKey"
     },
     {
+      "index": 18,
+      "name": "InstanceClearExp"
+    },
+    {
       "index": 20,
       "name": "NewPlayerBonusA"
     },
     {
       "index": 21,
-      "name": "NewPlayerBonusB"
-    },
-    {
-      "index": 22,
-      "name": "FinalBossExp"
+      "name": "FinalBossCurrencyC"
     },
     {
       "index": 23,
@@ -115,7 +115,7 @@
     },
     {
       "index": 25,
-      "name": "FinalBossCurrencyC"
+      "name": "NewPlayerBonusB"
     },
     {
       "index": 26,
@@ -170,10 +170,6 @@
       }
     },
     {
-      "index": 46,
-      "name": "InstanceClearExp"
-    },
-    {
       "index": 47,
       "name": "InstanceClearGil"
     },
@@ -184,6 +180,10 @@
         "type": "link",
         "target": "InstanceContentRewardItem"
       }
+    },
+    {
+      "index": 50,
+      "name": "FinalBossExp"
     },
     {
       "index": 51,

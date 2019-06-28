@@ -3,15 +3,8 @@
   "defaultColumn": "Start",
   "definitions": [
     {
-      "name": "Start",
-      "converter": {
-        "type": "link",
-        "target": "ActionTimeline"
-      }
-    },
-    {
       "index": 1,
-      "name": "End",
+      "name": "Start",
       "converter": {
         "type": "link",
         "target": "ActionTimeline"
