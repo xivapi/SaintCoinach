@@ -21,11 +21,11 @@
       "name": "MaxStacks"
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Category"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "HitEffect",
       "converter": {
         "type": "link",
@@ -33,7 +33,7 @@
       }
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "VFX",
       "converter": {
         "type": "link",
@@ -41,39 +41,39 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "LockMovement"
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "LockActions"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "LockControl"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "Transfiguration"
     },
     {
-      "index": 13,
+      "index": 14,
       "name": "CanDispel"
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "InflictedByActor"
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "IsPermanent"
     },
     {
-      "index": 21,
+      "index": 24,
       "name": "IsFcBuff"
     },
     {
-      "index": 22,
+      "index": 25,
       "name": "Invisibility"
     }
   ]
