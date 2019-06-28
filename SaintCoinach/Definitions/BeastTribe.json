@@ -3,11 +3,8 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "MinLevel"
-    },
-    {
       "index": 1,
-      "name": "MaxLevel"
+      "name": "MinLevel"
     },
     {
       "index": 2,
@@ -37,14 +34,6 @@
     },
     {
       "index": 6,
-      "name": "AlliedBeastTribeQuest",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 7,
       "name": "Expansion",
       "converter": {
         "type": "link",
@@ -52,7 +41,7 @@
       }
     },
     {
-      "index": 8,
+      "index": 7,
       "name": "CurrencyItem",
       "converter": {
         "type": "link",
@@ -60,15 +49,15 @@
       }
     },
     {
-      "index": 9,
+      "index": 8,
       "name": "DisplayOrder"
     },
     {
-      "index": 10,
+      "index": 9,
       "name": "Name"
     },
     {
-      "index": 18,
+      "index": 17,
       "name": "Name{Relation}"
     }
   ]
