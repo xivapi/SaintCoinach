@@ -1,0 +1,130 @@
+{
+  "sheet": "Recipe",
+  "defaultColumn": "Item{Result}",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "CraftType",
+      "converter": {
+        "type": "link",
+        "target": "CraftType"
+      }
+    },
+    {
+      "index": 2,
+      "name": "RecipeLevelTable",
+      "converter": {
+        "type": "link",
+        "target": "RecipeLevelTable"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Item{Result}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Amount{Result}"
+    },
+    {
+      "index": 5,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Item{Ingredient}",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+          },
+          {
+            "name": "Amount{Ingredient}"
+          }
+        ]
+      }
+    },
+    {
+      "index": 26,
+      "name": "IsSecondary"
+    },
+    {
+      "index": 28,
+      "name": "DifficultyFactor"
+    },
+    {
+      "index": 29,
+      "name": "QualityFactor"
+    },
+    {
+      "index": 30,
+      "name": "DurabilityFactor"
+    },
+    {
+      "index": 32,
+      "name": "RequiredCraftsmanship"
+    },
+    {
+      "index": 33,
+      "name": "RequiredControl"
+    },
+    {
+      "index": 34,
+      "name": "QuickSynthCraftsmanship"
+    },
+    {
+      "index": 35,
+      "name": "QuickSynthControl"
+    },
+    {
+      "index": 36,
+      "name": "SecretRecipeBook",
+      "converter": {
+        "type": "link",
+        "target": "SecretRecipeBook"
+      }
+    },
+    {
+      "index": 37,
+      "name": "CanQuickSynth"
+    },
+    {
+      "index": 38,
+      "name": "CanHq"
+    },
+    {
+      "index": 39,
+      "name": "ExpRewarded"
+    },
+    {
+      "index": 40,
+      "name": "Status{Required}",
+      "converter": {
+        "type": "link",
+        "target": "Status"
+      }
+    },
+    {
+      "index": 41,
+      "name": "Item{Required}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 42,
+      "name": "IsSpecializationRequired"
+    },
+    {
+      "index": 44,
+      "name": "PatchNumber"
+    }
+  ]
+}

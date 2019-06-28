@@ -1,0 +1,9 @@
+{
+  "sheet": "TripleTriadCompetition",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

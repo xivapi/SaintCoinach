@@ -1,0 +1,17 @@
+{
+  "sheet": "WeddingBGM",
+  "defaultColumn": "Song",
+  "definitions": [
+    {
+      "name": "Song",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
+    },
+    {
+      "index": 1,
+      "name": "SongName"
+    }
+  ]
+}

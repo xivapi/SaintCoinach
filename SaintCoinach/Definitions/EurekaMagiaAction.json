@@ -1,0 +1,16 @@
+{
+  "sheet": "EurekaMagiaAction",
+  "definitions": [
+    {
+      "name": "Action",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 1,
+      "name": "MaxUses"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "sheet": "FishParameter",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Text"
+    },
+    {
+      "index": 1,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "name": "GatheringItemLevel"
+    },
+    {
+      "index": 3,
+      "name": "IsHidden"
+    },
+    {
+      "index": 5,
+      "name": "FishingRecordType",
+      "converter": {
+        "type": "link",
+        "target": "FishingRecordType"
+      }
+    },
+    {
+      "index": 6,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 7,
+      "name": "GatheringSubCategory",
+      "converter": {
+        "type": "link",
+        "target": "GatheringSubCategory"
+      }
+    },
+    {
+      "index": 8,
+      "name": "IsInLog"
+    },
+    {
+      "index": 9,
+      "name": "TimeRestricted"
+    },
+    {
+      "index": 10,
+      "name": "WeatherRestricted"
+    }
+  ]
+}

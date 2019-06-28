@@ -1,0 +1,9 @@
+{
+  "sheet": "EmoteCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

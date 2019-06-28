@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YamlDotNet.Serialization;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class TomestoneOrItemReferenceConverter : IValueConverter {
@@ -14,9 +13,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         #region IValueConverter Members
 
-        [YamlIgnore]
         public string TargetTypeName => "Item";
-        [YamlIgnore]
         public Type TargetType => typeof(IRelationalRow);
 
         public object Convert(IDataRow row, object rawValue) {

@@ -1,0 +1,85 @@
+{
+  "sheet": "MoveTimeline",
+  "defaultColumn": "Idle",
+  "definitions": [
+    {
+      "name": "Idle",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 1,
+      "name": "MoveForward",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 2,
+      "name": "MoveBack",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 3,
+      "name": "MoveLeft",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 4,
+      "name": "MoveRight",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 5,
+      "name": "MoveUp",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 6,
+      "name": "MoveDown",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 7,
+      "name": "MoveTurnLeft",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 8,
+      "name": "MoveTurnRight",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    },
+    {
+      "index": 9,
+      "name": "Extra",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    }
+  ]
+}

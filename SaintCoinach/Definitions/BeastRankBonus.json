@@ -1,0 +1,21 @@
+{
+  "sheet": "BeastRankBonus",
+  "definitions": [
+    {
+      "index": 8,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 9,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Item{Quantity}"
+      }
+    }
+  ]
+}

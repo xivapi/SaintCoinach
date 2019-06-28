@@ -1,0 +1,16 @@
+{
+  "sheet": "DeepDungeonRoom",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Level",
+        "converter": {
+          "type": "link",
+          "target": "Level"
+        }
+      }
+    }
+  ]
+}

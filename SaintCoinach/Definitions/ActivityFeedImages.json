@@ -1,0 +1,24 @@
+{
+  "sheet": "ActivityFeedImages",
+  "definitions": [
+    {
+      "name": "ExpansionImage"
+    },
+    {
+      "index": 1,
+      "name": "ActivityFeedJA"
+    },
+    {
+      "index": 2,
+      "name": "ActivityFeedEN"
+    },
+    {
+      "index": 3,
+      "name": "ActivityFeedDE"
+    },
+    {
+      "index": 4,
+      "name": "ActivityFeedFR"
+    }
+  ]
+}

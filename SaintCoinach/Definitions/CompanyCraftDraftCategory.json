@@ -1,0 +1,26 @@
+{
+  "sheet": "CompanyCraftDraftCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "CompanyCraftType",
+            "converter": {
+              "type": "link",
+              "target": "CompanyCraftType"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

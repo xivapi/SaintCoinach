@@ -1,0 +1,9 @@
+{
+  "sheet": "ItemSeries",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

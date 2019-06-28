@@ -1,0 +1,80 @@
+{
+  "sheet": "Status",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "MaxStacks"
+    },
+    {
+      "index": 5,
+      "name": "Category"
+    },
+    {
+      "index": 6,
+      "name": "HitEffect",
+      "converter": {
+        "type": "link",
+        "target": "StatusHitEffect"
+      }
+    },
+    {
+      "index": 7,
+      "name": "VFX",
+      "converter": {
+        "type": "link",
+        "target": "StatusLoopVFX"
+      }
+    },
+    {
+      "index": 8,
+      "name": "LockMovement"
+    },
+    {
+      "index": 10,
+      "name": "LockActions"
+    },
+    {
+      "index": 11,
+      "name": "LockControl"
+    },
+    {
+      "index": 12,
+      "name": "Transfiguration"
+    },
+    {
+      "index": 14,
+      "name": "CanDispel"
+    },
+    {
+      "index": 15,
+      "name": "InflictedByActor"
+    },
+    {
+      "index": 16,
+      "name": "IsPermanent"
+    },
+    {
+      "index": 24,
+      "name": "IsFcBuff"
+    },
+    {
+      "index": 25,
+      "name": "Invisibility"
+    }
+  ]
+}

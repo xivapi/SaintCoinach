@@ -1,0 +1,9 @@
+{
+  "sheet": "FCHierarchy",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

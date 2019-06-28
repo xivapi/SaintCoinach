@@ -110,9 +110,12 @@
     <Compile Include="Effects\SkinnedEffect.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineTime.cs" />
+    <Compile Include="Interop\FbxExport.cs" />
     <Compile Include="Interop\HavokInterop.cs" />
+    <Compile Include="Interop\InteropMesh.cs" />
     <Compile Include="Interop\InteropTransform.cs" />
     <Compile Include="Interop\InteropVector4.cs" />
+    <Compile Include="Interop\InteropVertex.cs" />
     <Compile Include="RendererSources\BaseImageRendererSource.cs" />
     <Compile Include="RendererSources\EquipmentImageRendererSource.cs" />
     <Compile Include="FormEngine.cs" />
@@ -186,7 +189,13 @@
     <Content Include="Effects\HLSL\Character.fx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fbxInterop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="hkAnimationInterop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libfbxsdk.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sharpdx_direct3d11_effects_x64.dll">

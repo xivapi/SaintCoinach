@@ -1,0 +1,57 @@
+{
+  "sheet": "FccShop",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Item",
+            "converter": {
+              "type": "link",
+              "target": "Item"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 11,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Cost"
+          }
+        ]
+      }
+    },
+    {
+      "index": 21,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "FCRank{Required}",
+            "converter": {
+              "type": "link",
+              "target": "FCRank"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

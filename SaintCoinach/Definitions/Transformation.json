@@ -1,0 +1,93 @@
+{
+  "sheet": "Transformation",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Model",
+      "converter": {
+        "type": "link",
+        "target": "ModelChara"
+      }
+    },
+    {
+      "index": 2,
+      "name": "BNpcName",
+      "converter": {
+        "type": "link",
+        "target": "BNpcName"
+      }
+    },
+    {
+      "index": 3,
+      "name": "BNpcCustomize",
+      "converter": {
+        "type": "link",
+        "target": "BNpcCustomize"
+      }
+    },
+    {
+      "index": 4,
+      "name": "NpcEquip",
+      "converter": {
+        "type": "link",
+        "target": "NpcEquip"
+      }
+    },
+    {
+      "index": 10,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Action",
+        "converter": {
+          "type": "link",
+          "target": "Action"
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "RPParameter",
+      "converter": {
+        "type": "link",
+        "target": "RPParameter"
+      }
+    },
+    {
+      "index": 19,
+      "name": "Speed"
+    },
+    {
+      "index": 20,
+      "name": "Scale"
+    },
+    {
+      "index": 21,
+      "name": "IsPvP"
+    },
+    {
+      "index": 22,
+      "name": "IsEvent"
+    },
+    {
+      "index": 23,
+      "name": "PlayerCamera"
+    },
+    {
+      "index": 24,
+      "name": "StartVFX",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    },
+    {
+      "index": 25,
+      "name": "EndVFX",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    }
+  ]
+}

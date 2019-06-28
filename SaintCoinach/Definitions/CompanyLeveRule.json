@@ -1,0 +1,9 @@
+{
+  "sheet": "CompanyLeveRule",
+  "defaultColumn": "Type",
+  "definitions": [
+    {
+      "name": "Type"
+    }
+  ]
+}

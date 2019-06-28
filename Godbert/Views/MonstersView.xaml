@@ -16,24 +16,32 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
                         Content="Brute-force"
                         Command="{Binding Path=BruteForceCommand}"
                         Visibility="{Binding Path=IsBruteForceAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Margin="2" />
 
         <TreeView x:Name="MonsterTreeView" x:FieldModifier="private"
-                          Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                          Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
                           ItemsSource="{Binding Path=Entries}"
                           ItemTemplate="{StaticResource ModelCharaTree}"
                           SelectedItemChanged="MonsterTreeView_SelectedItemChanged" />
+
+        <ProgressBar x:Name="ExportProgress" x:FieldModifier="private"
+                     Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3"
+                     IsEnabled="True" IsIndeterminate="true" Height="20"
+                     Visibility="{Binding Path=IsExporting, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     />
 
         <Button Content="Add" Command="{Binding Path=AddCommand}"
                         Grid.Row="2" Grid.Column="0"
@@ -43,9 +51,14 @@
                         Grid.Row="2" Grid.Column="1"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
-        <Button Content="New window" Command="{Binding Path=NewCommand}"
+        <Button Content="Export FBX" Command="{Binding Path=ExportCommand}"
                         Grid.Row="2" Grid.Column="2"
                         IsEnabled="{Binding Path=IsValidSelection}"
                         Margin="2" />
+        <Button Content="New window" Command="{Binding Path=NewCommand}"
+                        Grid.Row="2" Grid.Column="3"
+                        IsEnabled="{Binding Path=IsValidSelection}"
+                        Margin="2" />
     </Grid>
+
 </UserControl>

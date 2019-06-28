@@ -1,0 +1,9 @@
+{
+  "sheet": "SkyIsland2RangeType",
+  "defaultColumn": "Type",
+  "definitions": [
+    {
+      "name": "Type"
+    }
+  ]
+}

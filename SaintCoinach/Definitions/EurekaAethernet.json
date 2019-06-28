@@ -1,0 +1,13 @@
+{
+  "sheet": "EurekaAethernet",
+  "defaultColumn": "Location",
+  "definitions": [
+    {
+      "name": "Location",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    }
+  ]
+}

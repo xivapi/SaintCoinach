@@ -1,0 +1,17 @@
+{
+  "sheet": "FCReputation",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "PointsToNext"
+    },
+    {
+      "index": 1,
+      "name": "RequiredPoints"
+    },
+    {
+      "index": 4,
+      "name": "Name"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "sheet": "CustomTalkDynamicIcon",
+  "definitions": [
+    {
+      "name": "SmallIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "LargeIcon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

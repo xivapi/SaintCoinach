@@ -1,0 +1,9 @@
+{
+  "sheet": "BGM",
+  "defaultColumn": "File",
+  "definitions": [
+    {
+      "name": "File"
+    }
+  ]
+}

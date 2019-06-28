@@ -1,0 +1,16 @@
+{
+  "sheet": "AddonHud",
+  "definitions": [
+    {
+      "name": "Long"
+    },
+    {
+      "index": 1,
+      "name": "Short"
+    },
+    {
+      "index": 2,
+      "name": "Function"
+    }
+  ]
+}

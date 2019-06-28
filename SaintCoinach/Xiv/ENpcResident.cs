@@ -7,7 +7,6 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Singular { get { return AsString("Singular"); } }
         public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public Text.XivString Title { get { return AsString("Title"); } }
-        public Map Map { get { return As<Map>(); } }
 
         #endregion
 

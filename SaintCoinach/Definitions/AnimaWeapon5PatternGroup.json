@@ -1,0 +1,9 @@
+{
+  "sheet": "AnimaWeapon5PatternGroup",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

@@ -34,7 +34,7 @@ namespace SaintCoinach.Graphics {
             if (Packs.TryGetFile(terrainPath, out var terrainFile))
                 this.Terrain = new TerritoryParts.Terrain(terrainFile);
 
-            var lgbFiles = new List<Lgb.LgbFile>() { TryGetLgb("level/bg.lgb"), TryGetLgb("level/planmap.lgb") };
+            var lgbFiles = new List<Lgb.LgbFile>() { TryGetLgb("level/bg.lgb"), TryGetLgb("level/planmap.lgb"), TryGetLgb("level/planevent.lgb") };
             this.LgbFiles = lgbFiles.Where(l => l != null).ToArray();
         }
         private Lgb.LgbFile TryGetLgb(string name) {

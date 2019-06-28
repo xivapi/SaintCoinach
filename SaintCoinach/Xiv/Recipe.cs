@@ -47,12 +47,6 @@ namespace SaintCoinach.Xiv {
         public ClassJob ClassJob { get { return CraftType.ClassJob; } }
 
         /// <summary>
-        ///     Gets the <see cref="RecipeElement" /> of the current recipe.
-        /// </summary>
-        /// <value>The <see cref="RecipeElement" /> of the current recipe.</value>
-        public RecipeElement RecipeElement { get { return As<RecipeElement>(); } }
-
-        /// <summary>
         ///     Gets the <see cref="RecipeLevel" /> of the current recipe.
         /// </summary>
         /// <value>The <see cref="RecipeLevel" /> of the current recipe.</value>

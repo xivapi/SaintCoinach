@@ -1,0 +1,17 @@
+{
+  "sheet": "FCActivity",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    },
+    {
+      "index": 4,
+      "name": "FCActivityCategory",
+      "converter": {
+        "type": "link",
+        "target": "FCActivityCategory"
+      }
+    }
+  ]
+}

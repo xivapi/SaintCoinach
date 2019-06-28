@@ -1,0 +1,20 @@
+{
+  "sheet": "CharaMakeCustomize",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Data"
+    },
+    {
+      "index": 3,
+      "name": "IsPurchasable"
+    }
+  ]
+}

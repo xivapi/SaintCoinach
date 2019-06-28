@@ -1,0 +1,53 @@
+{
+  "sheet": "MountCustomize",
+  "definitions": [
+    {
+      "index": 17,
+      "name": "HyurMaleCameraHeight"
+    },
+    {
+      "index": 18,
+      "name": "HyurFemaleCameraHeight"
+    },
+    {
+      "index": 21,
+      "name": "ElezenMaleCameraHeight"
+    },
+    {
+      "index": 22,
+      "name": "ElezenFemaleCameraHeight"
+    },
+    {
+      "index": 23,
+      "name": "LalaMaleCameraHeight"
+    },
+    {
+      "index": 24,
+      "name": "LalaFemaleCameraHeight"
+    },
+    {
+      "index": 25,
+      "name": "MiqoMaleCameraHeight"
+    },
+    {
+      "index": 26,
+      "name": "MiqoFemaleCameraHeight"
+    },
+    {
+      "index": 27,
+      "name": "RoeMaleCameraHeight"
+    },
+    {
+      "index": 28,
+      "name": "RoeFemaleCameraHeight"
+    },
+    {
+      "index": 29,
+      "name": "AuRaMaleCameraHeight"
+    },
+    {
+      "index": 30,
+      "name": "AuRaFemaleCameraHeight"
+    }
+  ]
+}

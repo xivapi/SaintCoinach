@@ -1,0 +1,17 @@
+{
+  "sheet": "RecipeNotebookList",
+  "definitions": [
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 160,
+      "definition": {
+        "name": "Recipe",
+        "converter": {
+          "type": "link",
+          "target": "Recipe"
+        }
+      }
+    }
+  ]
+}

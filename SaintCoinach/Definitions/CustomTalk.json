@@ -1,0 +1,44 @@
+{
+  "sheet": "CustomTalk",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Icon{Actor}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Icon{Map}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Name"
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 30,
+      "definition": {
+        "name": "Script{Instruction}"
+      }
+    },
+    {
+      "index": 33,
+      "type": "repeat",
+      "count": 30,
+      "definition": {
+        "name": "Script{Arg}"
+      }
+    },
+    {
+      "index": 66,
+      "name": "Text"
+    }
+  ]
+}

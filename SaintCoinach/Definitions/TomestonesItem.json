@@ -1,0 +1,21 @@
+{
+  "sheet": "TomestonesItem",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Tomestones",
+      "converter": {
+        "type": "link",
+        "target": "Tomestones"
+      }
+    }
+  ]
+}

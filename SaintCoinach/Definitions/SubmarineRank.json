@@ -1,0 +1,12 @@
+{
+  "sheet": "SubmarineRank",
+  "definitions": [
+    {
+      "name": "Rank"
+    },
+    {
+      "index": 1,
+      "name": "ExpToNext"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "sheet": "RecastNavimesh",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Tile{Size}"
+    },
+    {
+      "index": 2,
+      "name": "Cell{Size}"
+    },
+    {
+      "index": 3,
+      "name": "Cell{Height}"
+    },
+    {
+      "index": 4,
+      "name": "Agent{Height}"
+    },
+    {
+      "index": 5,
+      "name": "Agent{Radius}"
+    },
+    {
+      "index": 6,
+      "name": "Agent{MaxClimb}"
+    },
+    {
+      "index": 7,
+      "name": "Agent{MaxSlope}"
+    },
+    {
+      "index": 9,
+      "name": "Region{MinSize}"
+    },
+    {
+      "index": 10,
+      "name": "Region{MergedSize}"
+    },
+    {
+      "index": 12,
+      "name": "MaxEdgeLength"
+    },
+    {
+      "index": 13,
+      "name": "MaxEdgeError"
+    },
+    {
+      "index": 14,
+      "name": "VertsPerPoly"
+    },
+    {
+      "index": 15,
+      "name": "DetailMesh{SampleDistance}"
+    },
+    {
+      "index": 16,
+      "name": "DetailMesh{MaxSampleError}"
+    }
+  ]
+}

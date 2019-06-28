@@ -1,0 +1,17 @@
+{
+  "sheet": "FCAuthority",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "FCAuthorityCategory",
+      "converter": {
+        "type": "link",
+        "target": "FCAuthorityCategory"
+      }
+    }
+  ]
+}

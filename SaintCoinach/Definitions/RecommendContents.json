@@ -1,0 +1,13 @@
+{
+  "sheet": "RecommendContents",
+  "defaultColumn": "Level",
+  "definitions": [
+    {
+      "name": "Level",
+      "converter": {
+        "type": "link",
+        "target": "Level"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "sheet": "GFateClimbing2TotemType",
+  "definitions": [
+    {
+      "name": "PublicContentTextData",
+      "converter": {
+        "type": "link",
+        "target": "PublicContentTextData"
+      }
+    }
+  ]
+}

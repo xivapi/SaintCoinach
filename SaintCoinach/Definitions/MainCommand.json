@@ -1,0 +1,28 @@
+{
+  "sheet": "MainCommand",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "MainCommandCategory",
+      "converter": {
+        "type": "link",
+        "target": "MainCommandCategory"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Name"
+    },
+    {
+      "index": 5,
+      "name": "Description"
+    }
+  ]
+}

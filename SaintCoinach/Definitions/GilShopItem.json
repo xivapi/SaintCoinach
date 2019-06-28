@@ -1,0 +1,36 @@
+{
+  "sheet": "GilShopItem",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "Row{Required}",
+        "converter": {
+          "type": "multiref",
+          "targets": [
+            "Quest",
+            "Achievement"
+          ]
+        }
+      }
+    },
+    {
+      "index": 7,
+      "name": "State{Required}"
+    },
+    {
+      "index": 8,
+      "name": "Patch"
+    }
+  ]
+}

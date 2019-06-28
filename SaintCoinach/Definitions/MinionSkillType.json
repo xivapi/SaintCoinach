@@ -1,0 +1,9 @@
+{
+  "sheet": "MinionSkillType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "sheet": "Festival",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

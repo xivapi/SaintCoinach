@@ -1,0 +1,17 @@
+{
+  "sheet": "CustomTalkNestHandlers",
+  "definitions": [
+    {
+      "name": "NestHandler",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "GilShop",
+          "SpecialShop",
+          "DisposalShop",
+          "ContentEntry"
+        ]
+      }
+    }
+  ]
+}

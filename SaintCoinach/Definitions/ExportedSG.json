@@ -1,0 +1,9 @@
+{
+  "sheet": "ExportedSG",
+  "defaultColumn": "SgbPath",
+  "definitions": [
+    {
+      "name": "SgbPath"
+    }
+  ]
+}

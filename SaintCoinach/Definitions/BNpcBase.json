@@ -1,0 +1,64 @@
+{
+  "sheet": "BNpcBase",
+  "definitions": [
+    {
+      "name": "Behavior",
+      "converter": {
+        "type": "link",
+        "target": "Behavior"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ActionTimelineMove",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimelineMove"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Scale"
+    },
+    {
+      "index": 5,
+      "name": "ModelChara",
+      "converter": {
+        "type": "link",
+        "target": "ModelChara"
+      }
+    },
+    {
+      "index": 6,
+      "name": "BNpcCustomize",
+      "converter": {
+        "type": "link",
+        "target": "BNpcCustomize"
+      }
+    },
+    {
+      "index": 7,
+      "name": "NpcEquip",
+      "converter": {
+        "type": "link",
+        "target": "NpcEquip"
+      }
+    },
+    {
+      "index": 11,
+      "name": "ArrayEventHandler",
+      "converter": {
+        "type": "link",
+        "target": "ArrayEventHandler"
+      }
+    },
+    {
+      "index": 12,
+      "name": "BNpcParts",
+      "converter": {
+        "type": "link",
+        "target": "BNpcParts"
+      }
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "sheet": "SpecialShop",
+  "defaultColumn": "Name",
+  "isGenericReferenceTarget": true,
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "Item{Receive}",
+              "converter": {
+                "type": "link",
+                "target": "Item"
+              }
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "Count{Receive}"
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "SpecialShopItemCategory",
+              "converter": {
+                "type": "link",
+                "target": "SpecialShopItemCategory"
+              }
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "HQ{Receive}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 481,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "Item{Cost}",
+              "converter": {
+                "type": "link",
+                "target": "Item"
+              }
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "Count{Cost}"
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "HQ{Cost}"
+            }
+          },
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "CollectabilityRating{Cost}"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 1201,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "Quest{Item}",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    },
+    {
+      "index": 1261,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "Unknown"
+      }
+    },
+    {
+      "index": 1321,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "AchievementUnlock",
+        "converter": {
+          "type": "link",
+          "target": "Achievement"
+        }
+      }
+    },
+    {
+      "index": 1381,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 60,
+            "definition": {
+              "name": "Unknown"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 1801,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "PatchNumber"
+      }
+    },
+    {
+      "index": 1862,
+      "name": "Quest{Unlock}",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 1863,
+      "name": "NotCompleteText",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    },
+    {
+      "index": 1864,
+      "name": "CompleteText",
+      "converter": {
+        "type": "link",
+        "target": "DefaultTalk"
+      }
+    }
+  ]
+}

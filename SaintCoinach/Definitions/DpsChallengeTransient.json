@@ -1,0 +1,12 @@
+{
+  "sheet": "DpsChallengeTransient",
+  "definitions": [
+    {
+      "name": "InstanceContent",
+      "converter": {
+        "type": "link",
+        "target": "InstanceContent"
+      }
+    }
+  ]
+}

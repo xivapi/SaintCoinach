@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,10 +78,10 @@ namespace SaintCoinach.Libra {
                     if (reader.TokenType != JsonToken.StartArray) throw new InvalidOperationException();
 
                     if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
-                    var x = float.Parse((string)reader.Value);
+                    var x = float.Parse((string)reader.Value, CultureInfo.InvariantCulture);
 
                     if (!reader.Read() || reader.TokenType != JsonToken.String) throw new InvalidOperationException();
-                    var y = float.Parse((string)reader.Value);
+                    var y = float.Parse((string)reader.Value, CultureInfo.InvariantCulture);
 
                     if (!reader.Read() || reader.TokenType != JsonToken.EndArray) throw new InvalidOperationException();
 

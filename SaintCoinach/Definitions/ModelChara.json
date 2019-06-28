@@ -1,0 +1,20 @@
+{
+  "sheet": "ModelChara",
+  "definitions": [
+    {
+      "name": "Type"
+    },
+    {
+      "index": 1,
+      "name": "Model"
+    },
+    {
+      "index": 2,
+      "name": "Base"
+    },
+    {
+      "index": 3,
+      "name": "Variant"
+    }
+  ]
+}

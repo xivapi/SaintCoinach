@@ -1,0 +1,9 @@
+{
+  "sheet": "EmjAddon",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sheet": "FishingSpot",
+  "defaultColumn": "PlaceName",
+  "definitions": [
+    {
+      "name": "GatheringLevel"
+    },
+    {
+      "index": 1,
+      "name": "BigFish{OnReach}"
+    },
+    {
+      "index": 2,
+      "name": "BigFish{OnEnd}"
+    },
+    {
+      "index": 3,
+      "name": "FishingSpotCategory"
+    },
+    {
+      "index": 5,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 6,
+      "name": "X"
+    },
+    {
+      "index": 7,
+      "name": "Z"
+    },
+    {
+      "index": 8,
+      "name": "Radius"
+    },
+    {
+      "index": 10,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "name": "Item",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 20,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 21,
+      "name": "Order"
+    }
+  ]
+}

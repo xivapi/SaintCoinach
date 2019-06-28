@@ -1,0 +1,62 @@
+{
+  "sheet": "WeeklyBingoRewardData",
+  "defaultColumn": "Reward",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Reward{Type}"
+          },
+          {
+            "name": "Reward{Item}",
+            "converter": {
+              "type": "complexlink",
+              "links": [
+                {
+                  "project": "Item",
+                  "key": "Tomestones",
+                  "sheet": "TomestonesItem"
+                },
+                {
+                  "sheet": "Item"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Reward{HQ}"
+          },
+          {
+            "name": "Reward{Quantity}"
+          },
+          {
+            "name": "Reward{Option}",
+            "converter": {
+              "type": "link",
+              "target": "WeeklyBingoRewardData"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "name": "Reward{Item}[2]",
+      "converter": {
+        "type": "tomestone"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Reward{HQ}[2]"
+    },
+    {
+      "index": 12,
+      "name": "Reward{Quantity}[2]"
+    }
+  ]
+}

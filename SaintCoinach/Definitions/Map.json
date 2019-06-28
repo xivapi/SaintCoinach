@@ -1,0 +1,74 @@
+{
+  "sheet": "Map",
+  "defaultColumn": "PlaceName",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "MapIndex"
+    },
+    {
+      "index": 3,
+      "name": "Hierarchy"
+    },
+    {
+      "index": 4,
+      "name": "MapMarkerRange"
+    },
+    {
+      "index": 5,
+      "name": "Id"
+    },
+    {
+      "index": 6,
+      "name": "SizeFactor"
+    },
+    {
+      "index": 7,
+      "name": "Offset{X}"
+    },
+    {
+      "index": 8,
+      "name": "Offset{Y}"
+    },
+    {
+      "index": 9,
+      "name": "PlaceName{Region}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 10,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 11,
+      "name": "PlaceName{Sub}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 12,
+      "name": "DiscoveryIndex"
+    },
+    {
+      "index": 14,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 15,
+      "name": "DiscoveryArrayByte"
+    }
+  ]
+}

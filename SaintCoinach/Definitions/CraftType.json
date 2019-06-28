@@ -1,0 +1,10 @@
+{
+  "sheet": "CraftType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Name"
+    }
+  ]
+}

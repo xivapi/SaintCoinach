@@ -1,0 +1,95 @@
+{
+  "sheet": "TerritoryType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Bg"
+    },
+    {
+      "index": 3,
+      "name": "PlaceName{Region}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 4,
+      "name": "PlaceName{Zone}",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 5,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Map",
+      "converter": {
+        "type": "link",
+        "target": "Map"
+      }
+    },
+    {
+      "index": 9,
+      "name": "TerritoryIntendedUse"
+    },
+    {
+      "index": 12,
+      "name": "WeatherRate"
+    },
+    {
+      "index": 20,
+      "name": "PlaceName{Region}Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 21,
+      "name": "PlaceNameIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 22,
+      "name": "ArrayEventHandler",
+      "converter": {
+        "type": "link",
+        "target": "ArrayEventHandler"
+      }
+    },
+    {
+      "index": 23,
+      "name": "QuestBattle",
+      "converter": {
+        "type": "link",
+        "target": "QuestBattle"
+      }
+    },
+    {
+      "index": 24,
+      "name": "Aetheryte",
+      "converter": {
+        "type": "link",
+        "target": "Aetheryte"
+      }
+    },
+    {
+      "index": 28,
+      "name": "IsPvpZone"
+    }
+  ]
+}

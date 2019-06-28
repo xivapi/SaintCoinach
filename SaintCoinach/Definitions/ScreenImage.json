@@ -1,0 +1,11 @@
+{
+  "sheet": "ScreenImage",
+  "definitions": [
+    {
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

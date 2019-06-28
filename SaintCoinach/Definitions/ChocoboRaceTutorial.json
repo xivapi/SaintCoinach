@@ -1,0 +1,16 @@
+{
+  "sheet": "ChocoboRaceTutorial",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "NpcYell",
+        "converter": {
+          "type": "link",
+          "target": "NpcYell"
+        }
+      }
+    }
+  ]
+}

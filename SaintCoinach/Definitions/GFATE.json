@@ -1,0 +1,16 @@
+{
+  "sheet": "GFATE",
+  "definitions": [
+    {
+      "index": 22,
+      "type": "repeat",
+      "count": 16,
+      "definition": {
+        "name": "Icon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    }
+  ]
+}

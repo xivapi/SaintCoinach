@@ -1,0 +1,17 @@
+{
+  "sheet": "HousingUnitedExterior",
+  "definitions": [
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Item",
+        "converter": {
+          "type": "link",
+          "target": "HousingExterior"
+        }
+      }
+    }
+  ]
+}

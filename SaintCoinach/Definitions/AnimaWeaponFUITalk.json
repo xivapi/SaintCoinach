@@ -1,0 +1,13 @@
+{
+  "sheet": "AnimaWeaponFUITalk",
+  "defaultColumn": "Dialogue",
+  "definitions": [
+    {
+      "name": "Dialogue",
+      "converter": {
+        "type": "link",
+        "target": "AnimaWeaponFUITalkParam"
+      }
+    }
+  ]
+}

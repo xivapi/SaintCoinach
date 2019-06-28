@@ -1,0 +1,12 @@
+{
+  "sheet": "TutorialTank",
+  "definitions": [
+    {
+      "name": "Objective",
+      "converter": {
+        "type": "link",
+        "target": "Tutorial"
+      }
+    }
+  ]
+}

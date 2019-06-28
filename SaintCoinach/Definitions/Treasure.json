@@ -1,0 +1,14 @@
+{
+  "sheet": "Treasure",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "index": 8,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

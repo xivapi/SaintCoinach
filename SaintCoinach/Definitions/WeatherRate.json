@@ -1,0 +1,25 @@
+{
+  "sheet": "WeatherRate",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "Weather",
+            "converter": {
+              "type": "link",
+              "target": "Weather"
+            }
+          },
+          {
+            "name": "Rate"
+          }
+        ]
+      }
+    }
+  ]
+}

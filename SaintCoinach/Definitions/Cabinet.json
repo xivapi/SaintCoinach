@@ -1,0 +1,25 @@
+{
+  "sheet": "Cabinet",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Order"
+    },
+    {
+      "index": 2,
+      "name": "Category",
+      "converter": {
+        "type": "link",
+        "target": "CabinetCategory"
+      }
+    }
+  ]
+}

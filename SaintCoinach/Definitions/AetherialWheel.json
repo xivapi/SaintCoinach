@@ -1,0 +1,28 @@
+{
+  "sheet": "AetherialWheel",
+  "definitions": [
+    {
+      "name": "Item{Unprimed}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Item{Primed}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Grade"
+    },
+    {
+      "index": 3,
+      "name": "HoursRequired"
+    }
+  ]
+}

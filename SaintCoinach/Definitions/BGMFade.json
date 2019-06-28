@@ -1,0 +1,13 @@
+{
+  "sheet": "BGMFade",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "BGMFadeType",
+      "converter": {
+        "type": "link",
+        "target": "BGMFadeType"
+      }
+    }
+  ]
+}

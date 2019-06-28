@@ -1,0 +1,222 @@
+{
+  "sheet": "Achievement",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "AchievementCategory",
+      "converter": {
+        "type": "link",
+        "target": "AchievementCategory"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Name"
+    },
+    {
+      "index": 2,
+      "name": "Description"
+    },
+    {
+      "index": 3,
+      "name": "Points"
+    },
+    {
+      "index": 4,
+      "name": "Title",
+      "converter": {
+        "type": "link",
+        "target": "Title"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Type"
+    },
+    {
+      "index": 9,
+      "name": "Key",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Type",
+              "value": 2
+            },
+            "sheet": "Achievement"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 3
+            },
+            "sheet": "ClassJob"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 6
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 7
+            },
+            "sheet": "ClassJob"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 8
+            },
+            "sheet": "Map"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 9
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 11
+            },
+            "sheet": "GrandCompany"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 14
+            },
+            "sheet": "InstanceContent"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 15
+            },
+            "sheet": "BeastTribe"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 18
+            },
+            "sheet": "GrandCompany"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 20
+            },
+            "sheet": "AetherCurrentCompFlgSet"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 24
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 24
+            },
+            "sheet": "ClassJob"
+          }
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Data",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "when": {
+                "key": "Type",
+                "value": 2
+              },
+              "sheet": "Achievement"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 6
+              },
+              "sheet": "Quest"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 9
+              },
+              "sheet": "Quest"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 15
+              },
+              "sheet": "BeastReputationRank"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 20
+              },
+              "sheet": "AetherCurrentCompFlgSet"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 24
+              },
+              "sheet": "Quest"
+            },
+            {
+              "when": {
+                "key": "Type",
+                "value": 24
+              },
+              "sheet": "ClassJob"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "Order"
+    },
+    {
+      "index": 20,
+      "name": "InitialHide"
+    }
+  ]
+}

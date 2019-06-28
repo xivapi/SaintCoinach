@@ -1,0 +1,13 @@
+{
+  "sheet": "PlaceName",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 2,
+      "name": "Name{NoArticle}"
+    }
+  ]
+}

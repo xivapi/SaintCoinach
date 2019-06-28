@@ -1,0 +1,36 @@
+{
+  "sheet": "EquipRaceCategory",
+  "definitions": [
+    {
+      "name": "Hyur"
+    },
+    {
+      "index": 1,
+      "name": "Elezen"
+    },
+    {
+      "index": 2,
+      "name": "Lalafell"
+    },
+    {
+      "index": 3,
+      "name": "Miqo'te"
+    },
+    {
+      "index": 4,
+      "name": "Roegadyn"
+    },
+    {
+      "index": 5,
+      "name": "Au Ra"
+    },
+    {
+      "index": 8,
+      "name": "Male"
+    },
+    {
+      "index": 9,
+      "name": "Female"
+    }
+  ]
+}

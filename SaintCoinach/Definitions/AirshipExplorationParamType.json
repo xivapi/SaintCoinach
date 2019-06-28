@@ -1,0 +1,9 @@
+{
+  "sheet": "AirshipExplorationParamType",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

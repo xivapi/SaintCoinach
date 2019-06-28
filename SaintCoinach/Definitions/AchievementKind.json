@@ -1,0 +1,9 @@
+{
+  "sheet": "AchievementKind",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

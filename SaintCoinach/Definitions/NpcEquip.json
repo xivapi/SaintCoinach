@@ -1,0 +1,152 @@
+{
+  "sheet": "NpcEquip",
+  "definitions": [
+    {
+      "name": "Model{MainHand}"
+    },
+    {
+      "index": 1,
+      "name": "Dye{MainHand}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Model{OffHand}"
+    },
+    {
+      "index": 3,
+      "name": "Dye{OffHand}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Model{Head}"
+    },
+    {
+      "index": 5,
+      "name": "Dye{Head}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Visor"
+    },
+    {
+      "index": 7,
+      "name": "Model{Body}"
+    },
+    {
+      "index": 8,
+      "name": "Dye{Body}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 9,
+      "name": "Model{Hands}"
+    },
+    {
+      "index": 10,
+      "name": "Dye{Hands}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Model{Legs}"
+    },
+    {
+      "index": 12,
+      "name": "Dye{Legs}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 13,
+      "name": "Model{Feet}"
+    },
+    {
+      "index": 14,
+      "name": "Dye{Feet}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 15,
+      "name": "Model{Ears}"
+    },
+    {
+      "index": 16,
+      "name": "Dye{Ears}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 17,
+      "name": "Model{Neck}"
+    },
+    {
+      "index": 18,
+      "name": "Dye{Neck}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 19,
+      "name": "Model{Wrists}"
+    },
+    {
+      "index": 20,
+      "name": "Dye{Wrists}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 21,
+      "name": "Model{LeftRing}"
+    },
+    {
+      "index": 22,
+      "name": "Dye{LeftRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 23,
+      "name": "Model{RightRing}"
+    },
+    {
+      "index": 24,
+      "name": "Dye{RightRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    }
+  ]
+}

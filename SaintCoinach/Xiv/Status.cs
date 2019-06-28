@@ -8,6 +8,8 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Name { get { return AsString("Name"); } }
         public Text.XivString Description { get { return AsString("Description"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
+        public bool CanDispel { get { return AsBoolean("CanDispel"); } }
+        public byte Category { get { return As<byte>("Category"); } }
 
         #endregion
 

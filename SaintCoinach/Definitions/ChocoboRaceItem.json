@@ -1,0 +1,20 @@
+{
+  "sheet": "ChocoboRaceItem",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

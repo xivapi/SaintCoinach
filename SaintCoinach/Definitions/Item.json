@@ -1,0 +1,411 @@
+{
+  "sheet": "Item",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Singular"
+    },
+    {
+      "index": 1,
+      "name": "Adjective"
+    },
+    {
+      "index": 2,
+      "name": "Plural"
+    },
+    {
+      "index": 3,
+      "name": "PossessivePronoun"
+    },
+    {
+      "index": 4,
+      "name": "StartsWithVowel"
+    },
+    {
+      "index": 6,
+      "name": "Pronoun"
+    },
+    {
+      "index": 7,
+      "name": "Article"
+    },
+    {
+      "index": 8,
+      "name": "Description"
+    },
+    {
+      "index": 9,
+      "name": "Name"
+    },
+    {
+      "index": 10,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Level{Item}",
+      "converter": {
+        "type": "link",
+        "target": "ItemLevel"
+      }
+    },
+    {
+      "index": 12,
+      "name": "Rarity"
+    },
+    {
+      "index": 13,
+      "name": "FilterGroup"
+    },
+    {
+      "index": 14,
+      "name": "AdditionalData",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 15
+            },
+            "sheet": "Stain"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 18
+            },
+            "sheet": "TreasureHuntRank"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 20
+            },
+            "sheet": "GardeningSeed"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 25
+            },
+            "sheet": "AetherialWheel"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 26
+            },
+            "sheet": "CompanyAction"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 27
+            },
+            "sheet": "TripleTriadCard"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 28
+            },
+            "sheet": "AirshipExplorationPart"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 37
+            },
+            "sheet": "SubmarinePart"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
+              "value": 14
+            },
+            "sheets": [
+              "HousingExterior",
+              "HousingInterior",
+              "HousingYardObject",
+              "HousingFurniture",
+              "HousingPreset",
+              "HousingUnitedExterior"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 15,
+      "name": "ItemUICategory",
+      "converter": {
+        "type": "link",
+        "target": "ItemUICategory"
+      }
+    },
+    {
+      "index": 16,
+      "name": "ItemSearchCategory",
+      "converter": {
+        "type": "link",
+        "target": "ItemSearchCategory"
+      }
+    },
+    {
+      "index": 17,
+      "name": "EquipSlotCategory",
+      "converter": {
+        "type": "link",
+        "target": "EquipSlotCategory"
+      }
+    },
+    {
+      "index": 19,
+      "name": "StackSize"
+    },
+    {
+      "index": 20,
+      "name": "IsUnique"
+    },
+    {
+      "index": 21,
+      "name": "IsUntradable"
+    },
+    {
+      "index": 22,
+      "name": "IsIndisposable"
+    },
+    {
+      "index": 23,
+      "name": "IsEquippable"
+    },
+    {
+      "index": 24,
+      "name": "Price{Mid}"
+    },
+    {
+      "index": 25,
+      "name": "Price{Low}"
+    },
+    {
+      "index": 26,
+      "name": "CanBeHq"
+    },
+    {
+      "index": 27,
+      "name": "IsDyeable"
+    },
+    {
+      "index": 28,
+      "name": "IsCrestWorthy"
+    },
+    {
+      "index": 29,
+      "name": "ItemAction",
+      "converter": {
+        "type": "link",
+        "target": "ItemAction"
+      }
+    },
+    {
+      "index": 31,
+      "name": "Cooldown<s>"
+    },
+    {
+      "index": 32,
+      "name": "ClassJob{Repair}",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 33,
+      "name": "Item{Repair}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 34,
+      "name": "Item{Glamour}",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 35,
+      "name": "Salvage",
+      "converter": {
+        "type": "link",
+        "target": "Salvage"
+      }
+    },
+    {
+      "index": 36,
+      "name": "IsCollectable"
+    },
+    {
+      "index": 37,
+      "name": "AetherialReduce"
+    },
+    {
+      "index": 38,
+      "name": "Level{Equip}"
+    },
+    {
+      "index": 40,
+      "name": "EquipRestriction"
+    },
+    {
+      "index": 41,
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
+      "index": 42,
+      "name": "GrandCompany",
+      "converter": {
+        "type": "link",
+        "target": "GrandCompany"
+      }
+    },
+    {
+      "index": 43,
+      "name": "ItemSeries",
+      "converter": {
+        "type": "link",
+        "target": "ItemSeries"
+      }
+    },
+    {
+      "index": 44,
+      "name": "BaseParamModifier"
+    },
+    {
+      "index": 45,
+      "name": "Model{Main}"
+    },
+    {
+      "index": 46,
+      "name": "Model{Sub}"
+    },
+    {
+      "index": 47,
+      "name": "ClassJob{Use}",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 49,
+      "name": "Damage{Phys}"
+    },
+    {
+      "index": 50,
+      "name": "Damage{Mag}"
+    },
+    {
+      "index": 51,
+      "name": "Delay<ms>"
+    },
+    {
+      "index": 53,
+      "name": "BlockRate"
+    },
+    {
+      "index": 54,
+      "name": "Block"
+    },
+    {
+      "index": 55,
+      "name": "Defense{Phys}"
+    },
+    {
+      "index": 56,
+      "name": "Defense{Mag}"
+    },
+    {
+      "index": 57,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "BaseParam",
+            "converter": {
+              "type": "link",
+              "target": "BaseParam"
+            }
+          },
+          {
+            "name": "BaseParamValue"
+          }
+        ]
+      }
+    },
+    {
+      "index": 69,
+      "name": "ItemSpecialBonus",
+      "converter": {
+        "type": "link",
+        "target": "ItemSpecialBonus"
+      }
+    },
+    {
+      "index": 70,
+      "name": "ItemSpecialBonus{Param}"
+    },
+    {
+      "index": 71,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "BaseParam{Special}",
+            "converter": {
+              "type": "link",
+              "target": "BaseParam"
+            }
+          },
+          {
+            "name": "BaseParamValue{Special}"
+          }
+        ]
+      }
+    },
+    {
+      "index": 83,
+      "name": "MaterializeType"
+    },
+    {
+      "index": 84,
+      "name": "MateriaSlotCount"
+    },
+    {
+      "index": 85,
+      "name": "IsAdvancedMeldingPermitted"
+    },
+    {
+      "index": 86,
+      "name": "IsPvP"
+    },
+    {
+      "index": 88,
+      "name": "IsGlamourous"
+    }
+  ]
+}

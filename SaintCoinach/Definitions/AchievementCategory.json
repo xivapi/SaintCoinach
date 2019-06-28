@@ -1,0 +1,21 @@
+{
+  "sheet": "AchievementCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "AchievementKind",
+      "converter": {
+        "type": "link",
+        "target": "AchievementKind"
+      }
+    },
+    {
+      "index": 3,
+      "name": "HideCategory"
+    }
+  ]
+}

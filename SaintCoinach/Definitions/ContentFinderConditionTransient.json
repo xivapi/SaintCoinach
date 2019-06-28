@@ -1,0 +1,9 @@
+{
+  "sheet": "ContentFinderConditionTransient",
+  "defaultColumn": "Description",
+  "definitions": [
+    {
+      "name": "Description"
+    }
+  ]
+}

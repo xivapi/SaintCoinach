@@ -1,0 +1,25 @@
+{
+  "sheet": "TraitRecast",
+  "defaultColumn": "Trait",
+  "definitions": [
+    {
+      "name": "Trait",
+      "converter": {
+        "type": "link",
+        "target": "Trait"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Action",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Time<ds>"
+    }
+  ]
+}

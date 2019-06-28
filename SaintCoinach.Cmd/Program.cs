@@ -44,7 +44,7 @@ namespace SaintCoinach.Cmd {
             if (!realm.IsCurrentVersion) {
                 Console.Write("Update is available, perform update (Y/n)? ");
                 var updateQuery = Console.ReadLine();
-                if (string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
+                if (string.IsNullOrEmpty(updateQuery) || string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
                     var stopWatch = new System.Diagnostics.Stopwatch();
                     stopWatch.Start();
                     realm.Update(true, new ConsoleProgressReporter());

@@ -1,0 +1,9 @@
+{
+  "sheet": "EurekaSphereElementAdjust",
+  "defaultColumn": "PowerModifier",
+  "definitions": [
+    {
+      "name": "PowerModifier"
+    }
+  ]
+}

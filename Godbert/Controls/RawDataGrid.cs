@@ -37,15 +37,23 @@ namespace Godbert.Controls {
             ((RawDataGrid)o).OnSheetChanged((IRelationalSheet)e.OldValue, (IRelationalSheet)e.NewValue);
         }
 
+        public static bool[] ColumnSetToRaw;
+
         protected virtual void OnSheetChanged(IRelationalSheet oldValue, IRelationalSheet newValue) {
             this.Columns.Clear();
 
             if (newValue != null)
             {
                 var keyPath = newValue.Header.Variant == 1 ? "Key" : "FullKey";
+
+                //prevent multiple enumeration
+                var columns = newValue.Header.Columns.ToList();
+
+                ColumnSetToRaw = new bool[columns.Count];
+
                 Columns.Add(new RawDataGridKeyColumn(keyPath) { CanUserSort = true });
 
-                foreach (var col in newValue.Header.Columns)
+                foreach (var col in columns)
                     Columns.Add(ColumnFactory.Create(col));
 
                 var source = new RawDataItemsSource(newValue);
@@ -128,7 +136,28 @@ namespace Godbert.Controls {
                 }
             }
 
-            if (e.MiddleButton == MouseButtonState.Pressed) {
+            if (e.MiddleButton == MouseButtonState.Pressed) 
+            {
+
+                var cellHeader = GetClickedHeader(e);
+                if (cellHeader != null)
+                {
+
+                    if (cellHeader.Column is RawDataGridImageColumn ||
+                        cellHeader.Column is RawDataGridTextColumn ||
+                        cellHeader.Column is RawDataGridColorColumn)
+                    {
+
+                        var columnIndex = ((IRawDataColumn) cellHeader.Column).Column.Index;
+                        ColumnSetToRaw[columnIndex] = !ColumnSetToRaw[columnIndex];
+                        Items.Refresh();
+                        e.Handled = true;
+                    }
+
+
+                    return;
+                }
+
                 var cell = GetClickedCell(e);
                 if (cell == null)
                     return;

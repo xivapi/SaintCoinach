@@ -16,6 +16,8 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
 
+        public sbyte Index => As<sbyte>("MapIndex");
+
         /// <summary>
         ///     Gets the identifier string of the current map.
         /// </summary>

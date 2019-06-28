@@ -1,0 +1,13 @@
+{
+  "sheet": "CompanyCraftSupplyItem",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

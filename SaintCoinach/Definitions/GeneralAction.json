@@ -1,0 +1,32 @@
+{
+  "sheet": "GeneralAction",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    },
+    {
+      "index": 3,
+      "name": "Action",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 4,
+      "name": "UnlockLink"
+    },
+    {
+      "index": 7,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

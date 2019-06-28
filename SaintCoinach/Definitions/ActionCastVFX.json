@@ -1,0 +1,13 @@
+{
+  "sheet": "ActionCastVFX",
+  "defaultColumn": "VFX",
+  "definitions": [
+    {
+      "name": "VFX",
+      "converter": {
+        "type": "link",
+        "target": "VFX"
+      }
+    }
+  ]
+}

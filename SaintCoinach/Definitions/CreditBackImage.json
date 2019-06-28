@@ -1,0 +1,12 @@
+{
+  "sheet": "CreditBackImage",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "BackImage",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

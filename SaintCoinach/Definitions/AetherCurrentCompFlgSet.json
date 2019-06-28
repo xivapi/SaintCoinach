@@ -1,0 +1,24 @@
+{
+  "sheet": "AetherCurrentCompFlgSet",
+  "definitions": [
+    {
+      "name": "Territory",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 15,
+      "definition": {
+        "name": "AetherCurrent",
+        "converter": {
+          "type": "link",
+          "target": "AetherCurrent"
+        }
+      }
+    }
+  ]
+}

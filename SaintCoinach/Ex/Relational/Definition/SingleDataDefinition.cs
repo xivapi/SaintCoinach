@@ -2,8 +2,6 @@
 using SaintCoinach.Ex.Relational.ValueConverters;
 using System;
 
-using YamlDotNet.Serialization;
-
 namespace SaintCoinach.Ex.Relational.Definition {
     public class SingleDataDefinition : IDataDefinition {
         #region Properties
@@ -13,7 +11,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #endregion
 
-        [YamlIgnore]
         public int Length { get { return 1; } }
 
         public IDataDefinition Clone() {

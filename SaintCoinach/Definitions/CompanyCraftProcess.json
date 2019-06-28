@@ -1,0 +1,27 @@
+{
+  "sheet": "CompanyCraftProcess",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 12,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "SupplyItem",
+            "converter": {
+              "type": "link",
+              "target": "CompanyCraftSupplyItem"
+            }
+          },
+          {
+            "name": "SetQuantity"
+          },
+          {
+            "name": "SetsRequired"
+          }
+        ]
+      }
+    }
+  ]
+}

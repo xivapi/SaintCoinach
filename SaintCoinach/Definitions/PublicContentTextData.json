@@ -1,0 +1,9 @@
+{
+  "sheet": "PublicContentTextData",
+  "defaultColumn": "TextData",
+  "definitions": [
+    {
+      "name": "TextData"
+    }
+  ]
+}

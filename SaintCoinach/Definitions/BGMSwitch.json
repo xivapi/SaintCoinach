@@ -1,0 +1,20 @@
+{
+  "sheet": "BGMSwitch",
+  "definitions": [
+    {
+      "name": "BGMSystemDefine",
+      "converter": {
+        "type": "link",
+        "target": "BGMSystemDefine"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}

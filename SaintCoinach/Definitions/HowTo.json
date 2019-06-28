@@ -1,0 +1,25 @@
+{
+  "sheet": "HowTo",
+  "definitions": [
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 10,
+      "definition": {
+        "name": "Images",
+        "converter": {
+          "type": "link",
+          "target": "HowToPage"
+        }
+      }
+    },
+    {
+      "index": 12,
+      "name": "Category",
+      "converter": {
+        "type": "link",
+        "target": "HowToCategory"
+      }
+    }
+  ]
+}

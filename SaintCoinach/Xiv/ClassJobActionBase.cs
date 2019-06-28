@@ -27,7 +27,7 @@ namespace SaintCoinach.Xiv {
         Unknown20, // Contents Actions?
         Unknown21,
         BeastGauge,
-        Unknown23,
+        Polyglot,
         DreadwyrmAether,
         BloodGauge,
         Unknown26,
@@ -56,7 +56,16 @@ namespace SaintCoinach.Xiv {
         LilyAll,
         AstralFireOrUmbralIce,
         MP2,
-        Ceruleum
+        Ceruleum,
+        FourfoldFeather,
+        Espirit,
+        Cartridge,
+        BloodLily,
+        Lily,
+        SealsAll,
+        SoulVoice,
+        Unknown60,
+        Heat
     }
 
     public abstract class ClassJobActionBase : ActionBase {
@@ -65,8 +74,6 @@ namespace SaintCoinach.Xiv {
         public ClassJob ClassJob { get { return As<ClassJob>(); } }
         public ClassJobCategory ClassJobCategory { get { return As<ClassJobCategory>(); } }
         public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
-        public ActionCostType CostType {  get { return (ActionCostType)As<byte>("Cost{Type}"); } }
-        public int Cost { get { return AsInt32("Cost"); } }
 
         #endregion
 
@@ -74,17 +81,6 @@ namespace SaintCoinach.Xiv {
 
         protected ClassJobActionBase(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
-        #endregion
-
-        #region Helper
-        public int GetMpCost(int level) {
-            var paramGrowSheet = Sheet.Collection.GetSheet<ParamGrow>();
-            if (!paramGrowSheet.ContainsRow(level))
-                return 0;
-            var paramGrow = paramGrowSheet[level];
-
-            return (int)(paramGrow.MpModifier * Cost);
-        }
         #endregion
     }
 }

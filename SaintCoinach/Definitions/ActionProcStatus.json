@@ -1,0 +1,13 @@
+{
+  "sheet": "ActionProcStatus",
+  "defaultColumn": "Status",
+  "definitions": [
+    {
+      "name": "Status",
+      "converter": {
+        "type": "link",
+        "target": "Status"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sheet": "LogMessage",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "LogKind",
+      "converter": {
+        "type": "link",
+        "target": "LogKind"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Text"
+    }
+  ]
+}

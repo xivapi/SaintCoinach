@@ -1,0 +1,12 @@
+{
+  "sheet": "ChocoboTaxi",
+  "definitions": [
+    {
+      "name": "Location",
+      "converter": {
+        "type": "link",
+        "target": "ChocoboTaxiStand"
+      }
+    }
+  ]
+}

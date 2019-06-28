@@ -19,6 +19,8 @@ namespace SaintCoinach.Xiv {
         public int EffectRange => AsInt32("EffectRange");
         public Action ComboFrom => As<Action>("Action{Combo}");
         public Status GainedStatus => As<Status>("Status{GainSelf}");
+        public ActionCostType CostType => (ActionCostType)As<byte>("PrimaryCost{Type}");
+        public int Cost => AsInt32("PrimaryCost{Value}");
 
         public TimeSpan CastTime {
             get { return TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond * 100 * AsInt32("Cast<100ms>")); }
@@ -38,6 +40,19 @@ namespace SaintCoinach.Xiv {
         public Action(IXivSheet sheet, IRelationalRow sourceRow) : base(sheet, sourceRow) { }
 
         #endregion
+
+        #endregion
+
+        #region Helper
+
+        public int GetMpCost(int level) {
+            var paramGrowSheet = Sheet.Collection.GetSheet<ParamGrow>();
+            if (!paramGrowSheet.ContainsRow(level))
+                return 0;
+            var paramGrow = paramGrowSheet[level];
+
+            return (int)(paramGrow.MpModifier * Cost);
+        }
 
         #endregion
     }

@@ -1,0 +1,9 @@
+{
+  "sheet": "CreditCast",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "sheet": "HowToPage",
+  "defaultColumn": "Image",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

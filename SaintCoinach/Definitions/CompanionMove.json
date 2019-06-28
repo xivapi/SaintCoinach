@@ -1,0 +1,9 @@
+{
+  "sheet": "CompanionMove",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

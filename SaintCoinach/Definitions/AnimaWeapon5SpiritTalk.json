@@ -1,0 +1,13 @@
+{
+  "sheet": "AnimaWeapon5SpiritTalk",
+  "defaultColumn": "Dialogue",
+  "definitions": [
+    {
+      "name": "Dialogue",
+      "converter": {
+        "type": "link",
+        "target": "AnimaWeapon5SpiritTalkParam"
+      }
+    }
+  ]
+}

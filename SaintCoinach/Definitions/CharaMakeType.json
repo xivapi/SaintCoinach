@@ -1,0 +1,35 @@
+{
+  "sheet": "CharaMakeType",
+  "definitions": [
+    {
+      "name": "Race",
+      "converter": {
+        "type": "link",
+        "target": "Race"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Tribe",
+      "converter": {
+        "type": "link",
+        "target": "Tribe"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Gender"
+    },
+    {
+      "index": 3293,
+      "type": "repeat",
+      "count": 54,
+      "definition": {
+        "name": "FacialFeatureIcon",
+        "converter": {
+          "type": "icon"
+        }
+      }
+    }
+  ]
+}

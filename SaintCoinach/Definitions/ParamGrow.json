@@ -1,0 +1,44 @@
+{
+  "sheet": "ParamGrow",
+  "definitions": [
+    {
+      "name": "ExpToNext"
+    },
+    {
+      "index": 1,
+      "name": "AdditionalActions"
+    },
+    {
+      "index": 3,
+      "name": "ScaledQuestXP"
+    },
+    {
+      "index": 4,
+      "name": "MpModifier"
+    },
+    {
+      "index": 5,
+      "name": "BaseSpeed"
+    },
+    {
+      "index": 6,
+      "name": "LevelModifier"
+    },
+    {
+      "index": 7,
+      "name": "QuestExpModifier"
+    },
+    {
+      "index": 8,
+      "name": "HpModifier"
+    },
+    {
+      "index": 9,
+      "name": "HuntingLogExpReward"
+    },
+    {
+      "index": 11,
+      "name": "ItemLevelSync"
+    }
+  ]
+}

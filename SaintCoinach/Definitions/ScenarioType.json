@@ -1,0 +1,9 @@
+{
+  "sheet": "ScenarioType",
+  "defaultColumn": "Type",
+  "definitions": [
+    {
+      "name": "Type"
+    }
+  ]
+}

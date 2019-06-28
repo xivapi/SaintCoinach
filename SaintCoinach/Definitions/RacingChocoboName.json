@@ -1,0 +1,9 @@
+{
+  "sheet": "RacingChocoboName",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

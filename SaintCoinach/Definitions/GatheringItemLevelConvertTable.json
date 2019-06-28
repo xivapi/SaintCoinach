@@ -1,0 +1,12 @@
+{
+  "sheet": "GatheringItemLevelConvertTable",
+  "definitions": [
+    {
+      "name": "GatheringItemLevel"
+    },
+    {
+      "index": 1,
+      "name": "Stars"
+    }
+  ]
+}

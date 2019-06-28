@@ -1,0 +1,14 @@
+{
+  "sheet": "ModelState",
+  "defaultColumn": "Start",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Start",
+      "converter": {
+        "type": "link",
+        "target": "ActionTimeline"
+      }
+    }
+  ]
+}

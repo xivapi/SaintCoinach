@@ -1,0 +1,28 @@
+{
+  "sheet": "GCSupplyDuty",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 11,
+      "definition": {
+        "type": "repeat",
+        "count": 3,
+        "definition": {
+          "type": "group",
+          "members": [
+            {
+              "name": "Item",
+              "converter": {
+                "type": "link",
+                "target": "Item"
+              }
+            },
+            {
+              "name": "ItemCount"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

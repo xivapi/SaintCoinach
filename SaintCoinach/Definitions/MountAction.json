@@ -1,0 +1,16 @@
+{
+  "sheet": "MountAction",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Action",
+        "converter": {
+          "type": "link",
+          "target": "Action"
+        }
+      }
+    }
+  ]
+}

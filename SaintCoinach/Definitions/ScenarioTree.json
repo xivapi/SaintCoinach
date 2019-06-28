@@ -1,0 +1,20 @@
+{
+  "sheet": "ScenarioTree",
+  "definitions": [
+    {
+      "name": "Type",
+      "converter": {
+        "type": "link",
+        "target": "ScenarioType"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Image",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "sheet": "GcArmyTraining",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "PhysicalBonus"
+    },
+    {
+      "index": 1,
+      "name": "MentalBonus"
+    },
+    {
+      "index": 2,
+      "name": "TacticalBonus"
+    },
+    {
+      "index": 3,
+      "name": "Experience"
+    },
+    {
+      "index": 4,
+      "name": "Name"
+    },
+    {
+      "index": 5,
+      "name": "Description"
+    }
+  ]
+}

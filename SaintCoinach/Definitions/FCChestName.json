@@ -1,0 +1,9 @@
+{
+  "sheet": "FCChestName",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

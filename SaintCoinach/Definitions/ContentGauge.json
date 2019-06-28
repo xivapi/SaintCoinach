@@ -1,0 +1,20 @@
+{
+  "sheet": "ContentGauge",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Color",
+      "converter": {
+        "type": "link",
+        "target": "ContentGaugeColor"
+      }
+    },
+    {
+      "index": 3,
+      "name": "TextString"
+    }
+  ]
+}

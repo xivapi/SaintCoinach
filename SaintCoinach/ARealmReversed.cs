@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 using Ionic.Zip;
-
+using Newtonsoft.Json;
 using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational.Definition;
 using SaintCoinach.Ex.Relational.Update;
 using SaintCoinach.IO;
 using SaintCoinach.Xiv;
-
-using YamlDotNet.Serialization;
 
 using Directory = System.IO.Directory;
 using File = System.IO.File;
@@ -30,21 +29,6 @@ namespace SaintCoinach {
         private const string DefaultStateFile = "SaintCoinach.History.zip";
 
         /// <summary>
-        ///     File name inside the archive of the data mappings.
-        /// </summary>
-        private const string DefinitionFile = "ex.json";
-
-        /// <summary>
-        ///     File name inside the archive of the data view mappings.
-        /// </summary>
-        private const string ViewDefinitionFile = "exview.json";
-
-        /// <summary>
-        ///     Older file name inside the archive of the data mappings for conversions.
-        /// </summary>
-        private const string OldDefinitionFile = "ex.yaml";
-
-        /// <summary>
         ///     File name containing the current version string.
         /// </summary>
         private const string VersionFile = "ffxivgame.ver";
@@ -55,9 +39,9 @@ namespace SaintCoinach {
         private const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
 
         /// <summary>
-        ///     Format string to create the file name for update reports in YAML form. {0} is the previous and {1} the new version.
+        ///     Format string to create the file name for update reports in JSON form. {0} is the previous and {1} the new version.
         /// </summary>
-        private const string UpdateReportYamlFile = "logs/report-{0}-{1}.yaml";
+        private const string UpdateReportJsonFile = "logs/report-{0}-{1}.json";
 
         /// <summary>
         ///     Format string to create the file name for update reports in binary form. {0} is the previous and {1} the new
@@ -145,11 +129,6 @@ namespace SaintCoinach {
         /// <value>The archive file containing current and past data mappings.</value>
         public FileInfo StateFile { get { return _StateFile; } }
 
-        /// <summary>
-        ///     Gets the view collection for game data.
-        /// </summary>
-        public ViewCollection Views { get; private set; }
-
         #endregion
 
         #region Setup
@@ -159,37 +138,17 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
         /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
-        private RelationDefinition Setup(ZipFile zip) {
-            RelationDefinition zipDef = null;
-            DateTime zipMod = DateTime.MinValue;
-
-            if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
-                fsDef = null;
-
-            if (zip.ContainsEntry(DefinitionFile) || zip.ContainsEntry(OldDefinitionFile))
-                zipDef = ReadDefinition(zip, DefinitionFile, out zipMod);
-
-            if (fsDef == null && zipDef == null)
-                throw new InvalidOperationException();
-
-            RelationDefinition def;
-            if (fsMod > zipMod)
-                def = fsDef;
-            else
-                def = zipDef;
-
+        private void Setup(ZipFile zip) {
+            var def = _GameData.Definition;
             if (def.Version != GameVersion)
                 System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
             def.Version = GameVersion;
-            StoreDefinition(zip, def, string.Format("{0}/{1}", def.Version, DefinitionFile));
-            StoreDefinition(zip, def, DefinitionFile);
+            StoreDefinitionInZip(zip, def);
             StorePacks(zip);
             UpdateVersion(zip);
 
             zip.Save();
-
-            return def;
         }
 
         #endregion
@@ -236,24 +195,11 @@ namespace SaintCoinach {
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
             _StateFile = storeFile;
-
-            Views = ReadViewCollection();
+            _GameData.Definition = ReadDefinition();
 
             using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
-                if (zipFile.ContainsEntry(VersionFile)) {
-                    if (!TryGetDefinitionVersion(zipFile, GameVersion, out var zipDef, out var zipMod))
-                        zipDef = ReadDefinition(zipFile, DefinitionFile,  out zipMod);
-                    if (!TryGetDefinitionFromFileSystem(out var fsDef, out var fsMod))
-                        fsDef = null;
-
-                    if (fsDef != null && fsMod > zipMod) {
-                        _GameData.Definition = fsDef;
-                        StoreDefinition(zipFile, fsDef, DefinitionFile);
-                        zipFile.Save();
-                    } else
-                        _GameData.Definition = zipDef;
-                } else
-                    _GameData.Definition = Setup(zipFile);
+                if (!zipFile.ContainsEntry(VersionFile))
+                    Setup(zipFile);
             }
 
             _GameData.Definition.Compile();
@@ -262,21 +208,48 @@ namespace SaintCoinach {
         #endregion
 
         #region Shared
-        private bool TryGetDefinitionFromFileSystem(out RelationDefinition definition, out DateTime lastWrite) {
-            var file = new FileInfo(Path.Combine(StateFile.Directory.FullName, DefinitionFile));
-            return TryGetDefinitionFromFileSystem(file, out definition, out lastWrite);
-        }
-        private bool TryGetDefinitionFromFileSystem(FileInfo file, out RelationDefinition definition, out DateTime lastWrite) {
-            if (file.Exists) {
-                lastWrite = file.LastWriteTimeUtc;
-                using (var reader = new StreamReader(file.FullName, Encoding.UTF8))
-                    definition = RelationDefinition.FromJson(reader.ReadToEnd());
-                return true;
+
+        private RelationDefinition ReadDefinition() {
+            var versionPath = Path.Combine("Definitions", "game.ver");
+            if (!File.Exists(versionPath))
+                throw new InvalidOperationException("Definitions\\game.ver must exist.");
+
+            var version = File.ReadAllText(versionPath).Trim();
+            var def = new RelationDefinition() { Version = version };
+            foreach (var sheetFileName in Directory.EnumerateFiles("Definitions", "*.json")) {
+                var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
+                var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                var sheetDef = SheetDefinition.FromJson(obj);
+                def.SheetDefinitions.Add(sheetDef);
+
+                if (!_GameData.SheetExists(sheetDef.Name)) {
+                    var msg = $"Defined sheet {sheetDef.Name} is missing.";
+                    Debug.WriteLine(msg);
+                    Console.WriteLine(msg);
+                }
             }
 
-            lastWrite = DateTime.MinValue;
-            definition = null;
-            return false;
+            return def;
+        }
+
+        /// <summary>
+        ///     Deserialize a <see cref="RelationDefinition" /> file inside a <see cref="ZipFile" />.
+        /// </summary>
+        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
+        /// <param name="version">Version of the definition to read.</param>
+        /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
+        private static RelationDefinition ReadDefinition(ZipFile zip, string version) {
+            var def = new RelationDefinition() { Version = version };
+            var entries = zip.SelectEntries("*.json", Path.Combine(version, "Definitions"));
+            foreach (var entry in entries) {
+                using (var stream = entry.OpenReader())
+                using (var reader = new StreamReader(stream)) {
+                    var json = reader.ReadToEnd();
+                    var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
+                    def.SheetDefinitions.Add(SheetDefinition.FromJson(obj));
+                }
+            }
+            return def;
         }
 
         /// <summary>
@@ -301,70 +274,45 @@ namespace SaintCoinach {
         }
 
         /// <summary>
-        ///     Copy a file entry inside a <see cref="ZipFile" />.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> on which to perform the operation.</param>
-        /// <param name="source">Source file name to copy.</param>
-        /// <param name="target">Destination file name for the copy.</param>
-        private static void ZipCopy(ZipFile zip, string source, string target) {
-            var entry = zip[source];
-
-            byte[] buffer;
-            using (var s = entry.OpenReader()) {
-                using (var ms = new MemoryStream()) {
-                    s.CopyTo(ms);
-                    buffer = ms.ToArray();
-                }
-            }
-
-            zip.UpdateEntry(target, buffer);
-        }
-
-        /// <summary>
-        ///     Deserialize a <see cref="RelationDefinition" /> file inside a <see cref="ZipFile" />.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
-        /// <param name="entry">File name of the definition to read.</param>
-        /// <returns>Returns the read <see cref="RelationDefinition" />.</returns>
-        private static RelationDefinition ReadDefinition(ZipFile zip, string entry = DefinitionFile) {
-            return ReadDefinition(zip, entry, out var mod);
-        }
-
-        private static RelationDefinition ReadDefinition(ZipFile zip, string entry, out DateTime lastModified) {
-            if (zip.ContainsEntry(entry)) {
-                var zipEntry = zip[entry];
-                lastModified = zipEntry.LastModified.ToUniversalTime();
-                using (var s = zipEntry.OpenReader()) {
-                    using (var r = new StreamReader(s, ZipEncoding))
-                        return RelationDefinition.FromJson(r.ReadToEnd());
-                }
-            } else {
-                var oldEntry = Path.ChangeExtension(entry, "yaml");
-                var zipEntry = zip[oldEntry];
-                lastModified = zipEntry.LastModified.ToUniversalTime();
-                using (var s = zipEntry.OpenReader()) {
-                    using (var r = new StreamReader(s, ZipEncoding))
-                        return RelationDefinition.Deserialize(r);
-                }
-            }
-        }
-
-        private ViewCollection ReadViewCollection() {
-            var viewFile = new FileInfo(Path.Combine(StateFile.Directory.FullName, ViewDefinitionFile));
-            using (var reader = new StreamReader(viewFile.FullName, Encoding.UTF8))
-                return ViewCollection.FromJson(reader.ReadToEnd());
-        }
-
-        /// <summary>
         ///     Serialize a <see cref="RelationDefinition" /> into a <see cref="ZipFile" />.
         /// </summary>
         /// <param name="zip"><see cref="ZipFile" /> to write to.</param>
         /// <param name="definition"><see cref="RelationDefinition" /> to store.</param>
-        /// <param name="path">File name inside the storage to write to.</param>
-        private static void StoreDefinition(ZipFile zip, RelationDefinition definition, string path) {
-            var obj = definition.ToJson();
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
-            zip.UpdateEntry(path, json);
+        /// <param name="version">Version these definitions are for.</param>
+        private static void StoreDefinitionInZip(ZipFile zip, RelationDefinition definition) {
+            // Since this method is only ever called to update the zip with the
+            // lateset definitions, store these for both the given version *and*
+            // root.
+
+            // todo: prior to storage, delete everything under "Definitions" to prevent
+            // dead sheets from resurrecting.
+
+            var versionBasePath = Path.Combine(definition.Version, "Definitions");
+            foreach (var sheetDef in definition.SheetDefinitions) {
+                var json = SheetToJson(sheetDef);
+                var sheetFileName = sheetDef.Name + ".json";
+                zip.UpdateEntry(Path.Combine(versionBasePath, sheetFileName), json);
+                zip.UpdateEntry(Path.Combine("Definitions", sheetFileName), json);
+            }
+
+            // Store version in root definition path for quick copying.
+            var versionPath = Path.Combine("Definitions", "game.ver");
+            zip.UpdateEntry(versionPath, definition.Version);
+        }
+
+        private static void StoreDefinitionOnFilesystem(RelationDefinition definition, string basePath) {
+            foreach (var sheetDef in definition.SheetDefinitions) {
+                var sheetDefPath = Path.Combine(basePath, "Definitions", sheetDef.Name + ".json");
+                File.WriteAllText(sheetDefPath, SheetToJson(sheetDef));
+            }
+
+            var versionPath = Path.Combine(basePath, "Definitions", "game.ver");
+            File.WriteAllText(versionPath, definition.Version);
+        }
+
+        private static string SheetToJson(SheetDefinition sheetDef) {
+            var obj = sheetDef.ToJson();
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
         /// <summary>
@@ -377,84 +325,15 @@ namespace SaintCoinach {
             zip.UpdateEntry(textTarget, string.Join(Environment.NewLine, report.Changes.Select(_ => _.ToString())),
                 ZipEncoding);
 
-            var yamlTarget = string.Format(UpdateReportYamlFile, report.PreviousVersion, report.UpdateVersion);
-            var serializer = new Serializer();
-            byte[] yamlBuffer;
-            using (var ms = new MemoryStream()) {
-                using (TextWriter writer = new StreamWriter(ms, ZipEncoding)) {
-                    serializer.Serialize(writer, report);
-                    writer.Flush();
-                    yamlBuffer = ms.ToArray();
-                }
-            }
-            zip.UpdateEntry(yamlTarget, yamlBuffer);
-
-            var binTarget = string.Format(UpdateReportBinFile, report.PreviousVersion, report.UpdateVersion);
-            var formatter = new BinaryFormatter();
-            byte[] binBuffer;
-
-            using (var ms = new MemoryStream()) {
-                formatter.Serialize(ms, report);
-                binBuffer = ms.ToArray();
-            }
-
-            zip.UpdateEntry(binTarget, binBuffer);
+            var jsonTarget = string.Format(UpdateReportJsonFile, report.PreviousVersion, report.UpdateVersion);
+            var obj = report.ToJson();
+            var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            zip.UpdateEntry(jsonTarget, json);
         }
 
         #endregion
 
         #region Update
-
-        /// <summary>
-        ///     Attempt to get the <see cref="RelationDefinition" /> for a specific version from storage.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> to read from.</param>
-        /// <param name="version">Definition version to look for.</param>
-        /// <param name="definition">
-        ///     When this method returns, contains the <see cref="RelationDefinition" /> for the specified
-        ///     version, if found; otherwise, <c>null</c>.
-        /// </param>
-        /// <returns><c>true</c> if the definition for the specified version was present; <c>false</c> otherwise.</returns>
-        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition) {
-            return TryGetDefinitionVersion(zip, version, out definition, out var mod);
-        }
-        private bool TryGetDefinitionVersion(ZipFile zip, string version, out RelationDefinition definition, out DateTime lastMod) {
-            var storedVersionEntry = zip[VersionFile];
-            string storedVersion;
-            using (var s = storedVersionEntry.OpenReader()) {
-                using (var r = new StreamReader(s))
-                    storedVersion = r.ReadToEnd();
-            }
-
-            if (storedVersion != version) {
-                var existingDefPath = string.Format("{0}/{1}", version, DefinitionFile);
-                if (zip.ContainsEntry(existingDefPath)) {
-                    ZipCopy(zip, existingDefPath, DefinitionFile);
-                    UpdateVersion(zip);
-                    zip.Save();
-
-                    definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-                    return true;
-                } else {
-                    var existingOldPath = Path.ChangeExtension(existingDefPath, "yaml");
-                    if (zip.ContainsEntry(existingOldPath)) {
-                        ZipCopy(zip, existingOldPath, Path.ChangeExtension(DefinitionFile, "yaml"));
-                        UpdateVersion(zip);
-                        zip.Save();
-
-                        definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-                        return true;
-                    }
-                }
-
-                definition = null;
-                lastMod = DateTime.MinValue;
-                return false;
-            }
-
-            definition = ReadDefinition(zip, DefinitionFile, out lastMod);
-            return true;
-        }
 
         /// <summary>
         ///     Update to the current version.
@@ -481,12 +360,17 @@ namespace SaintCoinach {
                     tempPath = ExtractPacks(zip, previousVersion);
                     var previousPack = new PackCollection(Path.Combine(tempPath, previousVersion));
                     previousPack.GetPack(exdPackId).KeepInMemory = true;
-                    var previousDefinition = ReadDefinition(zip);
 
-                    // Override previous definition when current definition version matches.
-                    // Definitions may have changed since this was recorded and we want to compare that.
-                    if (previousDefinition.Version == _GameData.Definition.Version)
+                    RelationDefinition previousDefinition;
+                    if (previousVersion == _GameData.Definition.Version) {
+                        // Override previous definition when current definition version matches.
+                        // Definitions may have changed since this was recorded and we want to compare that.
                         previousDefinition = _GameData.Definition;
+
+                    } else {
+                        // Otherwise, read the previous definition from the zip.
+                        previousDefinition = ReadDefinition(zip, previousVersion);
+                    }
 
                     var updater = new RelationUpdater(previousPack, previousDefinition, Packs, GameVersion, progress);
 
@@ -496,9 +380,20 @@ namespace SaintCoinach {
                     var definition = updater.Updated;
 
                     StorePacks(zip);
-                    StoreDefinition(zip, definition, DefinitionFile);
-                    StoreDefinition(zip, definition, string.Format("{0}/{1}", definition.Version, DefinitionFile));
+                    StoreDefinitionInZip(zip, definition);
+                    StoreDefinitionOnFilesystem(definition, "");
+
+                    if (Debugger.IsAttached) {
+                        // Little QOL path - when updating with the debugger attached,
+                        // also write to the project definitions path so no need to copy
+                        // them manually afterward.
+                        var projectDefinitionsPath = "../../../SaintCoinach";
+                        if (Directory.Exists(projectDefinitionsPath))
+                            StoreDefinitionOnFilesystem(definition, projectDefinitionsPath);
+                    }
+
                     StoreReport(zip, report);
+                    UpdateVersion(zip);
                     zip.Save();
 
                     GameData.Definition = definition;

@@ -1,0 +1,25 @@
+{
+  "sheet": "YKW",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "Location",
+        "converter": {
+          "type": "link",
+          "target": "TerritoryType"
+        }
+      }
+    }
+  ]
+}

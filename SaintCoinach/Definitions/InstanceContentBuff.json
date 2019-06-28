@@ -1,0 +1,12 @@
+{
+  "sheet": "InstanceContentBuff",
+  "definitions": [
+    {
+      "name": "Echo{Start}"
+    },
+    {
+      "index": 1,
+      "name": "Echo{Death}"
+    }
+  ]
+}

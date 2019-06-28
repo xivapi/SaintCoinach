@@ -1,0 +1,28 @@
+{
+  "sheet": "RecipeLevelTable",
+  "definitions": [
+    {
+      "name": "ClassJobLevel"
+    },
+    {
+      "index": 1,
+      "name": "Stars"
+    },
+    {
+      "index": 2,
+      "name": "SuggestedCraftsmanship"
+    },
+    {
+      "index": 4,
+      "name": "Difficulty"
+    },
+    {
+      "index": 5,
+      "name": "Quality"
+    },
+    {
+      "index": 6,
+      "name": "Durability"
+    }
+  ]
+}
