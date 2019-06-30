@@ -8,31 +8,34 @@ namespace SaintCoinach.Xiv {
     public class RecipeLevelTable : XivRow {
         #region Properties
 
-        public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
+        public int ClassJobLevel => AsInt32("ClassJobLevel");
 
         /// <summary>
         ///     Gets the base difficulty for the current level.
         /// </summary>
         /// <value>The base difficulty for the current level.</value>
-        public int Difficulty { get { return AsInt32("Difficulty"); } }
+        public int Difficulty => AsInt32("Difficulty");
 
         /// <summary>
         ///     Gets the base quality for the current level.
         /// </summary>
         /// <value>The base quality for the current level.</value>
-        public int Quality { get { return AsInt32("Quality"); } }
+        public int Quality => AsInt32("Quality");
 
         /// <summary>
         ///     Gets the base durability for the current level.
         /// </summary>
         /// <value>The base durability for the current level.</value>
-        public int Durability { get { return AsInt32("Durability"); } }
+        public int Durability => AsInt32("Durability");
 
         /// <summary>
         ///     Gets the base star difficulty for the current level.
         /// </summary>
         /// <value>The base star difficulty for the current level.</value>
-        public int Stars { get { return AsInt32("Stars"); } }
+        public int Stars => AsInt32("Stars");
+
+        public int SuggestedCraftsmanship => AsInt32("SuggestedCraftsmanship");
+        public int SuggestedControl => AsInt32("SuggestedControl");
 
         #endregion
 
