@@ -105,6 +105,7 @@
     <Compile Include="Xiv\CompanionTransient.cs" />
     <Compile Include="Xiv\ContentFinderCondition.cs" />
     <Compile Include="Xiv\ContentMemberType.cs" />
+    <Compile Include="Xiv\CraftLevelDifference.cs" />
     <Compile Include="Xiv\GatheringSubCategory.cs" />
     <Compile Include="Xiv\GCScripShopCategory.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
@@ -2279,6 +2280,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\QuestBattle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\CraftLevelDifference.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Libra\LibraModel.Context.tt">

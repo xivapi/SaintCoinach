@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -221,6 +222,33 @@ namespace SaintCoinach.Xiv {
         }
 
         #endregion
+
+        public int BaseProgress(int craftsmanship, int crafterLevel) {
+            var diff = GetCraftLevelDifference(crafterLevel);
+            if (diff == null)
+                throw new ArgumentException("Invalid crafter level / recipe level difference", "crafterLevel");
+
+            return (craftsmanship + 10000)
+                / (RecipeLevelTable.SuggestedCraftsmanship + 10000)
+                * ((craftsmanship * 21) / 100 + 2)
+                * diff.ProgressFactor / 100;
+        }
+
+        public int BaseQuality(int control, int crafterLevel) {
+            var diff = GetCraftLevelDifference(crafterLevel);
+            if (diff == null)
+                throw new ArgumentException("Invalid crafter level / recipe level difference", "crafterLevel");
+            return (control + 10000)
+                / (RecipeLevelTable.SuggestedControl + 10000)
+                * ((control * 35) / 100 + 35)
+                * diff.QualityFactor / 100;
+        }
+
+        public CraftLevelDifference GetCraftLevelDifference(int crafterLevel) {
+            var levelDiff = crafterLevel - RecipeLevelTable.Key;
+            var sheet = Sheet.Collection.GetSheet<CraftLevelDifference>();
+            return sheet.ContainsRow(levelDiff) ? sheet[levelDiff] : null;
+        }
 
         #region IItemSource Members
 
