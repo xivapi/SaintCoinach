@@ -55,6 +55,10 @@
       "name": "IsSecondary"
     },
     {
+      "index": 27,
+      "name": "MaterialQualityFactor"
+    },
+    {
       "index": 28,
       "name": "DifficultyFactor"
     },

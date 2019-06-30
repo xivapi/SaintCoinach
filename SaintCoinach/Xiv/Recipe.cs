@@ -147,11 +147,16 @@ namespace SaintCoinach.Xiv {
         public int QualityFactor { get { return AsInt32("QualityFactor"); } }
 
         /// <summary>
-        ///     Gets the factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />
-        ///     .
+        ///     Gets the factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />.
         /// </summary>
         /// <value>The factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />.</value>
         public int DurabilityFactor { get { return AsInt32("DurabilityFactor"); } }
+
+        /// <summary>
+        ///     Gets the factor, in percent, that high quality materials contribute to the current recipe's quality.
+        /// </summary>
+        /// <value>The factor, in percent, that high quality materials contribute to the current recipe's quality.</value>
+        public int MaterialQualityFactor => AsInt32("MaterialQualityFactor");
 
         /// <summary>
         ///     Gets the <see cref="Item"/> required to unlock the current recipe.
@@ -214,7 +219,7 @@ namespace SaintCoinach.Xiv {
             var itemLevelSum =
                 ingredients.Where(_ => _.Type == RecipeIngredientType.Material)
                            .Sum(_ => _.Count * _.Item.ItemLevel.Key);
-            var qualityFromMats = RecipeLevel.Quality / 2;
+            var qualityFromMats = RecipeLevel.Quality * ((float)MaterialQualityFactor / 100);
             foreach (var mat in ingredients.Where(_ => _.Type == RecipeIngredientType.Material))
                 mat.QualityPerItem = mat.Item.ItemLevel.Key * qualityFromMats / itemLevelSum;
 
