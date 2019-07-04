@@ -22,6 +22,10 @@
       "name": "ExpArrayIndex"
     },
     {
+      "index": 7,
+      "name": "JobIndex"
+    },
+    {
       "index": 9,
       "name": "Modifier{HitPoints}"
     },
@@ -112,6 +116,10 @@
         "type": "link",
         "target": "Action"
       }
+    },
+    {
+      "index": 37,
+      "name": "UIPriority"
     },
     {
       "index": 38,
