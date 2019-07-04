@@ -84,5 +84,7 @@ namespace SaintCoinach.Graphics.Lgb {
 
         }
         #endregion
+
+        public override string ToString() => Name ?? "(null)";
     }
 }
