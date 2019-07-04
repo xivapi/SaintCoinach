@@ -42,6 +42,14 @@
       }
     },
     {
+      "index": 7,
+      "name": "LoadingImage",
+      "converter": {
+        "type": "link",
+        "target": "LoadingImage"
+      }
+    },
+    {
       "index": 9,
       "name": "TerritoryIntendedUse"
     },
