@@ -34,15 +34,51 @@
       }
     },
     {
+      "index": 6,
+      "name": "Action[0]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Action[1]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
       "index": 10,
-      "type": "repeat",
-      "count": 6,
-      "definition": {
-        "name": "Action",
-        "converter": {
-          "type": "link",
-          "target": "Action"
-        }
+      "name": "Action[2]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 12,
+      "name": "Action[3]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 14,
+      "name": "Action[4]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 15,
+      "name": "Action[5]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
       }
     },
     {
