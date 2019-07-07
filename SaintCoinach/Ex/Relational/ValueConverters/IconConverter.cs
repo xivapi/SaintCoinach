@@ -12,9 +12,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         public Type TargetType { get { return typeof(Imaging.ImageFile); } }
 
         public object Convert(IDataRow row, object rawValue) {
-
             var nr = System.Convert.ToInt32(rawValue);
-            if (nr < 0 || nr > 999999)
+            if (nr <= 0 || nr > 999999)
                 return null;
 
             var sheet = row.Sheet;
