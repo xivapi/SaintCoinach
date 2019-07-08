@@ -50,16 +50,16 @@ namespace SaintCoinach.Xiv {
         public Stain DyeMain { get { return As<Stain>("Dye{MainHand}"); } }
         public Quad ModelSub { get { return AsQuad("Model{OffHand}"); } }
         public Stain DyeOff { get { return As<Stain>("Dye{OffHand}"); } }
-        public int[] ModelHead { get { return convertToIntArray("Model{Head}"); } }
-        public int[] ModelBody { get { return convertToIntArray("Model{Body}"); } }
-        public int[] ModelHands { get { return convertToIntArray("Model{Hands}"); } }
-        public int[] ModelLegs { get { return convertToIntArray("Model{Legs}"); } }
-        public int[] ModelFeet { get { return convertToIntArray("Model{Feet}"); } }
-        public int[] ModelEars { get { return convertToIntArray("Model{Ears}"); } }
-        public int[] ModelNeck { get { return convertToIntArray("Model{Neck}"); } }
-        public int[] ModelWrists { get { return convertToIntArray("Model{Wrists}"); } }
-        public int[] ModelLeftRing { get { return convertToIntArray("Model{LeftRing}"); } }
-        public int[] ModelRightRing { get { return convertToIntArray("Model{RightRing}"); } }
+        public int[] ModelHead { get { return AsIntArray("Model{Head}"); } }
+        public int[] ModelBody { get { return AsIntArray("Model{Body}"); } }
+        public int[] ModelHands { get { return AsIntArray("Model{Hands}"); } }
+        public int[] ModelLegs { get { return AsIntArray("Model{Legs}"); } }
+        public int[] ModelFeet { get { return AsIntArray("Model{Feet}"); } }
+        public int[] ModelEars { get { return AsIntArray("Model{Ears}"); } }
+        public int[] ModelNeck { get { return AsIntArray("Model{Neck}"); } }
+        public int[] ModelWrists { get { return AsIntArray("Model{Wrists}"); } }
+        public int[] ModelLeftRing { get { return AsIntArray("Model{LeftRing}"); } }
+        public int[] ModelRightRing { get { return AsIntArray("Model{RightRing}"); } }
         public Stain DyeHead { get { return As<Stain>("Dye{Head}"); } }
         public Stain DyeBody { get { return As<Stain>("Dye{Body}"); } }
         public Stain DyeHands { get { return As<Stain>("Dye{Hands}"); } }
