@@ -164,6 +164,10 @@
     {
       "index": 44,
       "name": "IsLimitedJob"
+    },
+    {
+      "index": 45,
+      "name": "CanQueueForDuty"
     }
   ]
 }
