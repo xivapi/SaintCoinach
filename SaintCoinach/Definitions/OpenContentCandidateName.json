@@ -1,0 +1,9 @@
+{
+  "sheet": "OpenContentCandidateName",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

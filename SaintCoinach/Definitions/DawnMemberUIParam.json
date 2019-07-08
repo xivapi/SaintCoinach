@@ -1,0 +1,17 @@
+{
+  "sheet": "DawnMemberUIParam",
+  "defaultColumn": "Class{Singular}",
+  "definitions": [
+    {
+      "name": "Class{Singular}"
+    },
+    {
+      "index": 1,
+      "name": "VoiceLine"
+    },
+    {
+      "index": 2,
+      "name": "Class{Plural}"
+    }
+  ]
+}

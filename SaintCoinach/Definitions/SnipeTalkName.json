@@ -1,0 +1,9 @@
+{
+  "sheet": "SnipeTalkName",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

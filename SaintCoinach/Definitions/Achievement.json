@@ -216,7 +216,11 @@
     },
     {
       "index": 20,
-      "name": "InitialHide"
+      "name": "AchievementHideCondition",
+      "converter": {
+        "type": "link",
+        "target": "AchievementHideCondition"
+      }
     }
   ]
 }

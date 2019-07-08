@@ -1,0 +1,16 @@
+{
+  "sheet": "JobHudManualPriority",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "JobHudManual",
+        "converter": {
+          "type": "link",
+          "target": "JobHudManual"
+        }
+      }
+    }
+  ]
+}
