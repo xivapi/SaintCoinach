@@ -306,6 +306,20 @@ namespace SaintCoinach.Xiv {
         public Quad AsQuad(string column, params int[] indices) {
             return AsQuad(BuildColumnName(column, indices));
         }
+        /// <summary>
+        ///     Gets the value of a field from a specific column and indices as a Int array.
+        /// </summary>
+        /// <param name="column">Name of the column from which to read.</param>
+        /// <param name="indices">Indices for the full column.</param>
+        /// <returns>The Int array of the field in <c>column</c> of the current row.</returns>
+        public int[] convertToIntArray(string column) {
+            byte[] input = BitConverter.GetBytes(Convert.ToUInt32(this[column]));
+            int[] NewArray = new int[input.Length];
+            for (int i = 0; i < input.Length; i++) {
+                NewArray[i] = input[i] & 0xff;
+            }
+            return NewArray;
+        }
         #endregion
     }
 }
