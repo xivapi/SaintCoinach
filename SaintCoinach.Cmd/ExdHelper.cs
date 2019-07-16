@@ -69,7 +69,7 @@ namespace SaintCoinach.Cmd {
                     else if (IsUnescaped(v))
                         s.Write(string.Format(_culture, "{0}", v));
                     else
-                        s.Write(v.ToString().Replace("\"", "\"\""));
+                        s.Write("\"{0}\"", v.ToString().Replace("\"", "\"\""));
                 }
                 s.WriteLine();
 
