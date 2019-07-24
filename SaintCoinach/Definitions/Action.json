@@ -61,6 +61,10 @@
       }
     },
     {
+      "index": 11,
+      "name": "BehaviourType"
+    },
+    {
       "index": 12,
       "name": "ClassJobLevel"
     },
