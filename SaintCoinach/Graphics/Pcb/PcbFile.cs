@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Graphics.Pcb
 {
+    // TODO: This class should be reworked and checked for errors - the problems they cause with certain PCBs are meanwhile caught in LgbModelEntry L55+
     public class PcbFile
     {
         #region Struct

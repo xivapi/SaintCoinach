@@ -1,0 +1,9 @@
+{
+  "sheet": "YardCatalogCategory",
+  "defaultColumn": "Category",
+  "definitions": [
+    {
+      "name": "Category"
+    }
+  ]
+}

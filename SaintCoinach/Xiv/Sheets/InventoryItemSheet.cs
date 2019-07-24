@@ -32,6 +32,10 @@ namespace SaintCoinach.Xiv.Sheets {
                 88, typeof(PhysicalWeapon)  // MCH
             }, {
                 96, typeof(PhysicalWeapon)  // SAM
+            }, {
+                106, typeof(PhysicalWeapon) // GNB
+            }, {
+                107, typeof(PhysicalWeapon) // DNC
             },
 
             // 

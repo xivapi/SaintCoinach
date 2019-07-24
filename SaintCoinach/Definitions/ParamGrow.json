@@ -39,6 +39,10 @@
     {
       "index": 11,
       "name": "ItemLevelSync"
+    },
+    {
+      "index": 14,
+      "name": "CraftingLevel"
     }
   ]
 }

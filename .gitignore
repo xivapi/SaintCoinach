@@ -234,3 +234,6 @@ $RECYCLE.BIN/
 # DX Things
 *.tkb
 *.StyleCop
+
+# JetBrains
+.idea

@@ -1,0 +1,9 @@
+{
+  "sheet": "FurnitureCatalogCategory",
+  "defaultColumn": "Category",
+  "definitions": [
+    {
+      "name": "Category"
+    }
+  ]
+}

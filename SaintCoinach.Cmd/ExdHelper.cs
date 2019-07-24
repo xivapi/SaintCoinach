@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace SaintCoinach.Cmd {
     using Xiv;
 
     static class ExdHelper {
+        static CultureInfo _culture = new CultureInfo("en-US", false);
+
         public static void SaveAsCsv(Ex.Relational.IRelationalSheet sheet, Language language, string path, bool writeRaw) {
             using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
                 var indexLine = new StringBuilder("key");
@@ -60,12 +63,13 @@ namespace SaintCoinach.Cmd {
                     else
                         v = writeRaw ? multiRow.GetRaw(col, language) : multiRow[col, language];
 
+                    s.Write(",");
                     if (v == null)
-                        s.Write(",");
+                        continue;
                     else if (IsUnescaped(v))
-                        s.Write(",{0}", v);
+                        s.Write(string.Format(_culture, "{0}", v));
                     else
-                        s.Write(",\"{0}\"", v.ToString().Replace("\"", "\"\""));
+                        s.Write("\"{0}\"", v.ToString().Replace("\"", "\"\""));
                 }
                 s.WriteLine();
 

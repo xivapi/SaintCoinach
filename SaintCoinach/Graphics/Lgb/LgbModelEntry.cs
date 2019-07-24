@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -50,10 +51,18 @@ namespace SaintCoinach.Graphics.Lgb {
                 if (packs.TryGetFile(ModelFilePath, out mdlFile))
                     this.Model = new TransformedModel(((Graphics.ModelFile)mdlFile).GetModelDefinition(), Header.Translation, Header.Rotation, Header.Scale);
             }
+            
             if (!string.IsNullOrWhiteSpace(CollisionFilePath)) {
-                SaintCoinach.IO.File pcbFile;
-                if (packs.TryGetFile(CollisionFilePath, out pcbFile))
-                    this.CollisionFile = new Pcb.PcbFile(pcbFile);
+                try
+                {
+                    SaintCoinach.IO.File pcbFile;
+                    if (packs.TryGetFile(CollisionFilePath, out pcbFile))
+                        this.CollisionFile = new Pcb.PcbFile(pcbFile);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"{Name} at 0x{offset:X} PcbFile failure: {ex.Message}");
+                }
             }
         }
         #endregion
