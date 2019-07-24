@@ -175,6 +175,10 @@
       "name": "CooldownGroup"
     },
     {
+      "index": 41,
+      "name": "MaxCharges"
+    },
+    {
       "index": 42,
       "name": "AttackType",
       "converter": {

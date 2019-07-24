@@ -1,0 +1,29 @@
+{
+  "sheet": "IndividualWeather",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Weather",
+        "converter": {
+          "type": "link",
+          "target": "Weather"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Quest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    }
+  ]
+}

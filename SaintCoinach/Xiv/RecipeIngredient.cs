@@ -27,7 +27,7 @@
         ///     Gets the quality gained per high-quality item used for the current ingredient.
         /// </summary>
         /// <value>The quality gained per high-quality item used for the current ingredient.</value>
-        public int QualityPerItem { get; internal set; }
+        public float QualityPerItem { get; internal set; }
 
         #endregion
 

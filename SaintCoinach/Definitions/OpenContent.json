@@ -1,0 +1,16 @@
+{
+  "sheet": "OpenContent",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Content",
+        "converter": {
+          "type": "link",
+          "target": "ContentFinderCondition"
+        }
+      }
+    }
+  ]
+}

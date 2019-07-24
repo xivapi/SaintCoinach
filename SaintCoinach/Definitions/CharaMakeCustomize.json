@@ -2,6 +2,9 @@
   "sheet": "CharaMakeCustomize",
   "definitions": [
     {
+      "name": "FeatureID"
+    },
+    {
       "index": 1,
       "name": "Icon",
       "converter": {

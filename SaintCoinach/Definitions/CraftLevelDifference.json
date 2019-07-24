@@ -1,0 +1,16 @@
+{
+  "sheet": "CraftLevelDifference",
+  "definitions": [
+    {
+      "name": "Difference"
+    },
+    {
+      "index": 1,
+      "name": "ProgressFactor"
+    },
+    {
+      "index": 2,
+      "name": "QualityFactor"
+    }
+  ]
+}

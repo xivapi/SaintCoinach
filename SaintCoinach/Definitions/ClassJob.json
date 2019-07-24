@@ -22,6 +22,10 @@
       "name": "ExpArrayIndex"
     },
     {
+      "index": 7,
+      "name": "JobIndex"
+    },
+    {
       "index": 9,
       "name": "Modifier{HitPoints}"
     },
@@ -114,6 +118,10 @@
       }
     },
     {
+      "index": 37,
+      "name": "UIPriority"
+    },
+    {
       "index": 38,
       "name": "Item{SoulCrystal}",
       "converter": {
@@ -156,6 +164,10 @@
     {
       "index": 44,
       "name": "IsLimitedJob"
+    },
+    {
+      "index": 45,
+      "name": "CanQueueForDuty"
     }
   ]
 }

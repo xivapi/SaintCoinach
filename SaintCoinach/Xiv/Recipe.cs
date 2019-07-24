@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -146,11 +147,16 @@ namespace SaintCoinach.Xiv {
         public int QualityFactor { get { return AsInt32("QualityFactor"); } }
 
         /// <summary>
-        ///     Gets the factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />
-        ///     .
+        ///     Gets the factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />.
         /// </summary>
         /// <value>The factor, in percent, to apply to the durability of the the current recipe's <see cref="RecipeLevelTable" />.</value>
         public int DurabilityFactor { get { return AsInt32("DurabilityFactor"); } }
+
+        /// <summary>
+        ///     Gets the factor, in percent, that high quality materials contribute to the current recipe's quality.
+        /// </summary>
+        /// <value>The factor, in percent, that high quality materials contribute to the current recipe's quality.</value>
+        public int MaterialQualityFactor => AsInt32("MaterialQualityFactor");
 
         /// <summary>
         ///     Gets the <see cref="Item"/> required to unlock the current recipe.
@@ -213,7 +219,7 @@ namespace SaintCoinach.Xiv {
             var itemLevelSum =
                 ingredients.Where(_ => _.Type == RecipeIngredientType.Material)
                            .Sum(_ => _.Count * _.Item.ItemLevel.Key);
-            var qualityFromMats = RecipeLevel.Quality / 2;
+            var qualityFromMats = RecipeLevel.Quality * ((float)MaterialQualityFactor / 100);
             foreach (var mat in ingredients.Where(_ => _.Type == RecipeIngredientType.Material))
                 mat.QualityPerItem = mat.Item.ItemLevel.Key * qualityFromMats / itemLevelSum;
 
@@ -221,6 +227,33 @@ namespace SaintCoinach.Xiv {
         }
 
         #endregion
+
+        public int BaseProgress(int craftsmanship, int crafterLevel) {
+            var diff = GetCraftLevelDifference(crafterLevel);
+            if (diff == null)
+                throw new ArgumentException("Invalid crafter level / recipe level difference", "crafterLevel");
+
+            return (craftsmanship + 10000)
+                / (RecipeLevelTable.SuggestedCraftsmanship + 10000)
+                * ((craftsmanship * 21) / 100 + 2)
+                * diff.ProgressFactor / 100;
+        }
+
+        public int BaseQuality(int control, int crafterLevel) {
+            var diff = GetCraftLevelDifference(crafterLevel);
+            if (diff == null)
+                throw new ArgumentException("Invalid crafter level / recipe level difference", "crafterLevel");
+            return (control + 10000)
+                / (RecipeLevelTable.SuggestedControl + 10000)
+                * ((control * 35) / 100 + 35)
+                * diff.QualityFactor / 100;
+        }
+
+        public CraftLevelDifference GetCraftLevelDifference(int crafterLevel) {
+            var levelDiff = crafterLevel - RecipeLevelTable.Key;
+            var sheet = Sheet.Collection.GetSheet<CraftLevelDifference>();
+            return sheet.ContainsRow(levelDiff) ? sheet[levelDiff] : null;
+        }
 
         #region IItemSource Members
 

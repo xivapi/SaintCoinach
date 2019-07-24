@@ -1,0 +1,21 @@
+{
+  "sheet": "FurnitureCatalogItemList",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Category",
+      "converter": {
+        "type": "link",
+        "target": "FurnitureCatalogCategory"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

@@ -89,6 +89,12 @@ namespace SaintCoinach.Xiv {
         /// <value>The additional data row associated with the current item.</value>
         public IXivRow AdditionalData => As<IXivRow>("AdditionalData");
 
+        /// <summary>
+        ///     Gets the <see cref="EquipSlotCategory" /> of the current item.
+        /// </summary>
+        /// <value>The <see cref="EquipSlotCategory" /> of the current item.</value>
+        public EquipSlotCategory EquipSlotCategory { get { return As<EquipSlotCategory>(); } }
+
         // ReSharper disable once InconsistentNaming
         /// <summary>
         ///     Gets the <see cref="ItemUICategory" /> of the current item.
@@ -204,6 +210,9 @@ namespace SaintCoinach.Xiv {
 
         public bool IsGlamourous => AsBoolean("IsGlamourous");
 
+        public Quad ModelMain { get { return AsQuad("Model{Main}"); } }
+
+        public Quad ModelSub { get { return AsQuad("Model{Sub}"); } }
 
         /// <summary>
         ///     Gets the <see cref="ClassJob" /> required to repair or desynth the current item.
