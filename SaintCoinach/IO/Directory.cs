@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace SaintCoinach.IO {
@@ -9,7 +10,7 @@ namespace SaintCoinach.IO {
         #region Fields
 
         private readonly Dictionary<string, uint> _FileNameMap = new Dictionary<string, uint>();
-        private readonly Dictionary<uint, WeakReference<File>> _Files = new Dictionary<uint, WeakReference<File>>();
+        private readonly ConcurrentDictionary<uint, WeakReference<File>> _Files = new ConcurrentDictionary<uint, WeakReference<File>>();
         private string _Path;
 
         #endregion
@@ -76,11 +77,14 @@ namespace SaintCoinach.IO {
 
             if (!Index.Files.TryGetValue(key, out var index))
                 return null;
+
             file = FileFactory.Get(this.Pack, index);
-            if (_Files.ContainsKey(key))
-                _Files[key].SetTarget(file);
-            else
-                _Files.Add(key, new WeakReference<File>(file));
+            _Files.AddOrUpdate(key,
+                k => new WeakReference<File>(file),
+                (k, r) => {
+                    r.SetTarget(file);
+                    return r;
+                });
             return file;
         }
 
@@ -101,11 +105,14 @@ namespace SaintCoinach.IO {
                 return true;
 
             if (Index.Files.TryGetValue(key, out var index)) {
-                file = FileFactory.Get(this.Pack, index);
-                if (_Files.ContainsKey(key))
-                    _Files[key].SetTarget(file);
-                else
-                    _Files.Add(key, new WeakReference<File>(file));
+                var theFile = FileFactory.Get(this.Pack, index);
+                _Files.AddOrUpdate(key,
+                    k => new WeakReference<File>(theFile),
+                    (k, r) => {
+                        r.SetTarget(theFile);
+                        return r;
+                    });
+                file = theFile;
                 return true;
             }
 

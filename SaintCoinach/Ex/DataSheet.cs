@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,8 +11,8 @@ namespace SaintCoinach.Ex {
         #region Fields
 
         private bool _PartialSheetsCreated = false;
-        private readonly Dictionary<Range, ISheet<T>> _PartialSheets = new Dictionary<Range, ISheet<T>>();
-        private readonly Dictionary<int, ISheet<T>> _RowToPartialSheetMap = new Dictionary<int, ISheet<T>>();
+        private readonly ConcurrentDictionary<Range, ISheet<T>> _PartialSheets = new ConcurrentDictionary<Range, ISheet<T>>();
+        private readonly ConcurrentDictionary<int, ISheet<T>> _RowToPartialSheetMap = new ConcurrentDictionary<int, ISheet<T>>();
 
         #endregion
 
@@ -114,9 +115,9 @@ namespace SaintCoinach.Ex {
             var file = GetPartialFile(range);
 
             var partial = CreatePartialSheet(range, file);
-            _PartialSheets.Add(range, partial);
+            _PartialSheets.TryAdd(range, partial);
             foreach (var key in partial.Keys)
-                _RowToPartialSheetMap.Add(key, partial);
+                _RowToPartialSheetMap.TryAdd(key, partial);
             return partial;
         }
 

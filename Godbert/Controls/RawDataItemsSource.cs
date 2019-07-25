@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational;
 
 namespace Godbert.Controls {
@@ -15,7 +16,8 @@ namespace Godbert.Controls {
         private IRelationalSheet _Sheet;
         private IComparer<object> _Comparer;
         private object[] _Items;
-        private Func<object, bool> _Filter;
+        private string _Filter;
+        private Tuple<IRow, string>[] _RowSearchIndex;
         #endregion
 
         #region Properties
@@ -27,7 +29,7 @@ namespace Godbert.Controls {
                 CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
-        public Func<object, bool> Filter {
+        public string Filter {
             get { return _Filter; }
             set {
                 _Filter = value;
@@ -65,8 +67,12 @@ namespace Godbert.Controls {
 
         private IEnumerable<object> FilterAndCompare(IEnumerable<object> results)
         {
-            if (_Filter != null)
-                results = results.Where(_Filter);
+            if (_Filter != null) {
+                var rows = results.OfType<IRow>().ToArray();
+                if (_RowSearchIndex == null)
+                    BuildSearchIndex(rows);
+                results = FilterMatchingRows();
+            }
             if (_Comparer != null)
                 results = results.OrderBy(o => o, Comparer);
             return results;
@@ -74,10 +80,54 @@ namespace Godbert.Controls {
 
         #endregion
 
+        #region Filter
+
+        private void BuildSearchIndex(IRow[] rows) {
+            if (rows.Length == 0)
+                return;
+
+            var start = DateTime.Now;
+            System.Diagnostics.Debug.WriteLine($"Rebuilding search index for {_Sheet.Name}...");
+
+            var newIndex = new ConcurrentBag<Tuple<IRow, string>>();
+            var columns = rows[0].Sheet.Header.Columns.ToArray();
+
+            Parallel.ForEach(rows, row => {
+                var index = new StringBuilder();
+                index.Append(row.Key.ToString());
+                index.Append("||");
+
+                foreach (var col in columns) {
+                    var cellObj = row[col.Index];
+                    if (cellObj != null) {
+                        index.Append(cellObj.ToString());
+                        index.Append("||");
+                    }
+                }
+
+                newIndex.Add(Tuple.Create(row, index.ToString()));
+            });
+
+
+            _RowSearchIndex = newIndex.OrderBy(r => r.Item1.Key).ToArray();
+            System.Diagnostics.Debug.WriteLine($"{_Sheet.Name} search index complete.  Elapsed {DateTime.Now - start}.");
+        }
+
+        private IRow[] FilterMatchingRows() {
+            return _RowSearchIndex
+                .Where(r => r.Item2.IndexOf(_Filter, StringComparison.OrdinalIgnoreCase) >= 0)
+                .Select(r => r.Item1)
+                .ToArray();
+        }
+
+        #endregion
+
         #region Constructor
+
         public RawDataItemsSource(IRelationalSheet sheet) {
             _Sheet = sheet;
         }
+
         #endregion
 
         #region INotifyCollectionChanged Members
