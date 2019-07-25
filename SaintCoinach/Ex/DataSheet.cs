@@ -11,8 +11,9 @@ namespace SaintCoinach.Ex {
         #region Fields
 
         private bool _PartialSheetsCreated = false;
-        private readonly ConcurrentDictionary<Range, ISheet<T>> _PartialSheets = new ConcurrentDictionary<Range, ISheet<T>>();
-        private readonly ConcurrentDictionary<int, ISheet<T>> _RowToPartialSheetMap = new ConcurrentDictionary<int, ISheet<T>>();
+        private readonly Dictionary<Range, ISheet<T>> _PartialSheets = new Dictionary<Range, ISheet<T>>();
+        private readonly Dictionary<int, ISheet<T>> _RowToPartialSheetMap = new Dictionary<int, ISheet<T>>();
+        private readonly object _partialSheetsLock = new object();
 
         #endregion
 
@@ -95,29 +96,33 @@ namespace SaintCoinach.Ex {
             if (!res.Any())
                 throw new ArgumentOutOfRangeException();
 
-            var range = res.First();
-            if (!_PartialSheets.TryGetValue(range, out var partial)) {
-                partial = CreatePartialSheet(range);
+            lock (_partialSheetsLock) {
+                var range = res.First();
+                if (!_PartialSheets.TryGetValue(range, out var partial)) {
+                    partial = CreatePartialSheet(range);
+                }
+                return partial;
             }
-            return partial;
         }
 
         private void CreateAllPartialSheets() {
-            if (_PartialSheetsCreated)
-                return;
-            foreach (var range in Header.DataFileRanges.Where(range => !_PartialSheets.ContainsKey(range))) {
-                CreatePartialSheet(range);
+            lock (_partialSheetsLock) {
+                if (_PartialSheetsCreated)
+                    return;
+                foreach (var range in Header.DataFileRanges.Where(range => !_PartialSheets.ContainsKey(range))) {
+                    CreatePartialSheet(range);
+                }
+                _PartialSheetsCreated = true;
             }
-            _PartialSheetsCreated = true;
         }
 
         private ISheet<T> CreatePartialSheet(Range range) {
             var file = GetPartialFile(range);
 
             var partial = CreatePartialSheet(range, file);
-            _PartialSheets.TryAdd(range, partial);
+            _PartialSheets.Add(range, partial);
             foreach (var key in partial.Keys)
-                _RowToPartialSheetMap.TryAdd(key, partial);
+                _RowToPartialSheetMap.Add(key, partial);
             return partial;
         }
 
