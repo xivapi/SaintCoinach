@@ -90,6 +90,7 @@
     <Compile Include="Commands\ImageCommand.cs" />
     <Compile Include="Commands\MapCommand.cs" />
     <Compile Include="Commands\RawExdCommand.cs" />
+    <Compile Include="Commands\SqlExport.cs" />
     <Compile Include="ExdHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

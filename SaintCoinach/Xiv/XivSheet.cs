@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +12,7 @@ namespace SaintCoinach.Xiv {
     public partial class XivSheet<T> : IXivSheet<T> where T : IXivRow {
         #region Fields
 
-        protected readonly Dictionary<int, T> _Rows = new Dictionary<int, T>();
+        protected readonly ConcurrentDictionary<int, T> _Rows = new ConcurrentDictionary<int, T>();
         protected readonly IRelationalSheet _Source;
         private ConstructorInfo _RowConstructor;
 
@@ -90,15 +91,12 @@ namespace SaintCoinach.Xiv {
 
         public T this[int key] {
             get {
-                if (_Rows.TryGetValue(key, out var row)) return row;
+                return _Rows.GetOrAdd(key, k => {
+                    if (!_Source.ContainsRow(k))
+                        throw new KeyNotFoundException();
 
-                if (!_Source.ContainsRow(key))
-                    throw new KeyNotFoundException();
-
-                var sourceRow = _Source[key];
-                row = CreateRow(sourceRow);
-                _Rows.Add(key, row);
-                return row;
+                    return CreateRow(_Source[key]);
+                });
             }
         }
 

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Ex.Variant1 {
     using Relational;
+    using System.Collections.Concurrent;
 
     public class RelationalDataRow : DataRow, IRelationalDataRow {
         #region Fields
-        private Dictionary<string, WeakReference<object>> _ValueReferences = new Dictionary<string, WeakReference<object>>();
+        private ConcurrentDictionary<string, WeakReference<object>> _ValueReferences = new ConcurrentDictionary<string, WeakReference<object>>();
         #endregion
 
         public new IRelationalDataSheet Sheet { get { return (IRelationalDataSheet)base.Sheet; } }
@@ -40,21 +41,21 @@ namespace SaintCoinach.Ex.Variant1 {
 
         public object this[string columnName] {
             get {
-                object val;
-                if (_ValueReferences.TryGetValue(columnName, out WeakReference<object> valRef)) {
-                    if (valRef.TryGetTarget(out val))
-                        return val;
-                    _ValueReferences.Remove(columnName);
-                }
+                var valRef = _ValueReferences.GetOrAdd(columnName, c => new WeakReference<object>(GetColumnValue(c)));
+                if (valRef.TryGetTarget(out var val))
+                    return val;
 
-                var col = Sheet.Header.FindColumn(columnName);
-                if (col == null)
-                    throw new KeyNotFoundException();
-                val = this[col.Index];
-
-                _ValueReferences.Add(columnName, new WeakReference<object>(val));
+                val = GetColumnValue(columnName);
+                valRef.SetTarget(val);
                 return val;
             }
+        }
+
+        private object GetColumnValue(string columnName) {
+            var col = Sheet.Header.FindColumn(columnName);
+            if (col == null)
+                throw new KeyNotFoundException();
+            return this[col.Index];
         }
 
         object IRelationalRow.GetRaw(string columnName) {

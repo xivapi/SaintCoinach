@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 using SaintCoinach.IO;
@@ -7,7 +8,7 @@ namespace SaintCoinach.Ex.Relational {
     public class RelationalDataSheet<T> : DataSheet<T>, IRelationalDataSheet<T> where T : IRelationalDataRow {
         #region Fields
 
-        private Dictionary<string, RelationalDataIndex<T>> _indexes = new Dictionary<string, RelationalDataIndex<T>>();
+        private ConcurrentDictionary<string, RelationalDataIndex<T>> _indexes = new ConcurrentDictionary<string, RelationalDataIndex<T>>();
 
         #endregion
 
@@ -40,14 +41,13 @@ namespace SaintCoinach.Ex.Relational {
             if (key == 0)
                 return null;
 
-            if (!_indexes.TryGetValue(indexName, out var index)) {
+            var index = _indexes.GetOrAdd(indexName, i => {
                 var column = Header.FindColumn(indexName);
                 if (column == null)
                     throw new KeyNotFoundException();
 
-                _indexes[indexName] = index = new RelationalDataIndex<T>(this, column);
-            }
-
+                return new RelationalDataIndex<T>(this, column);
+            });
             return index[key];
         }
 

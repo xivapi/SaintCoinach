@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +23,7 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Mapping of sheet names to the object types to use for them.
         /// </summary>
-        private Dictionary<string, Type> _SheetNameToTypeMap;
+        private ConcurrentDictionary<string, Type> _SheetNameToTypeMap;
 
         /// <summary>
         ///     Collection of <see cref="BNpc"/> objects.
@@ -322,23 +323,20 @@ namespace SaintCoinach.Xiv {
             if (_SheetNameToTypeMap == null)
                 BuildSheetToTypeMap();
 
-            if (_SheetNameToTypeMap.TryGetValue(sheetName, out var match))
-                return match;
-
-            var allTypes = Assembly.GetExecutingAssembly().GetTypes();
-
-            var search = "Xiv." + sheetName.Replace('/', '.');
-            var targetType = typeof(IXivRow);
-            match = allTypes.FirstOrDefault(_ => _.FullName.EndsWith(search) && targetType.IsAssignableFrom(_));
-            _SheetNameToTypeMap[sheetName] = match; // Record failed matches too.
-            return match;
+            // Record failed matches too.
+            return _SheetNameToTypeMap.GetOrAdd(sheetName, s => {
+                var search = "Xiv." + sheetName.Replace('/', '.');
+                return _IXivRowTypes.FirstOrDefault(_ => _.FullName.EndsWith(search));
+            });
         }
 
+        private Type[] _IXivRowTypes;
         private void BuildSheetToTypeMap() {
             var allTypes = Assembly.GetExecutingAssembly().GetTypes();
             var attrTypes = allTypes.Select(t => new { Type = t, Attr = t.GetCustomAttribute<XivSheetAttribute>() }).Where(t => t.Attr != null);
+            _IXivRowTypes = allTypes.Where(t => typeof(IXivRow).IsAssignableFrom(t)).ToArray();
 
-            _SheetNameToTypeMap = attrTypes.ToDictionary(i => i.Attr.SheetName, i => i.Type);
+            _SheetNameToTypeMap = new ConcurrentDictionary<string, Type>(attrTypes.ToDictionary(i => i.Attr.SheetName, i => i.Type));
         }
 
         #endregion

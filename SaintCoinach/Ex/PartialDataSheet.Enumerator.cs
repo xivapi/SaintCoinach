@@ -24,12 +24,7 @@ namespace SaintCoinach.Ex {
             public T Current {
                 get {
                     var inner = _InnerEnumerator.Current;
-                    if (_Sheet._Rows.TryGetValue(inner.Key, out var row))
-                        return row;
-
-                    _Sheet._Rows.Add(inner.Key, row = _Sheet.CreateRow(inner.Key, inner.Value));
-
-                    return row;
+                    return _Sheet._Rows.GetOrAdd(inner.Key, k => _Sheet.CreateRow(k, inner.Value));
                 }
             }
 

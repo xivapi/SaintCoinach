@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace SaintCoinach.Ex {
     public partial class PartialDataSheet<T> : IDataSheet<T> where T : IDataRow {
         #region Fields
 
-        private Dictionary<int, T> _Rows;
+        private ConcurrentDictionary<int, T> _Rows;
         private Dictionary<int, int> _RowOffsets = new Dictionary<int, int>();
 
         #endregion
@@ -79,7 +80,7 @@ namespace SaintCoinach.Ex {
             var count = headerLen / EntryLength;
             var currentPosition = EntriesOffset;
 
-            _Rows = new Dictionary<int, T>();
+            _Rows = new ConcurrentDictionary<int, T>();
             for (var i = 0; i < count; ++i) {
                 var key = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryKeyOffset, true);
                 var off = OrderedBitConverter.ToInt32(buffer, currentPosition + EntryPositionOffset, true);
@@ -107,17 +108,12 @@ namespace SaintCoinach.Ex {
 
         public T this[int key] {
             get {
-                T row;
-                if (_Rows.TryGetValue(key, out row))
-                    return row;
-
-                int offset;
-                if (_RowOffsets.TryGetValue(key, out offset))
-                    _Rows.Add(key, row = CreateRow(key, offset));
-                else
-                    _Rows.Add(key, row = default(T));
-
-                return row;
+                return _Rows.GetOrAdd(key, k => {
+                    if (_RowOffsets.TryGetValue(key, out var offset))
+                        return CreateRow(k, offset);
+                    else
+                        return default(T);
+                });
             }
         }
 

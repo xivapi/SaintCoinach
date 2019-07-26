@@ -57,8 +57,8 @@ namespace Godbert.Controls {
                     Columns.Add(ColumnFactory.Create(col));
 
                 var source = new RawDataItemsSource(newValue);
-                if (Filter != null)
-                    source.Filter = o => FilterMatch(o, Filter);
+                if (!string.IsNullOrWhiteSpace(Filter))
+                    source.Filter = Filter;
                 this.ItemsSource = source;
             }
             else
@@ -77,28 +77,9 @@ namespace Godbert.Controls {
             if (string.IsNullOrWhiteSpace(newValue))
                 src.Filter = null;
             else
-                src.Filter = o => FilterMatch(o, newValue);
+                src.Filter = newValue;
         }
 
-        private static bool FilterMatch(object rowObj, string value) {
-            var row = rowObj as IRow;
-            if (row == null)
-                return false;
-
-            if (row.Key.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0)
-                return true;
-
-            foreach (var col in row.Sheet.Header.Columns) {
-                var cellObj = row[col.Index];
-                if (cellObj == null)
-                    continue;
-
-                if (cellObj.ToString().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0)
-                    return true;
-            }
-
-            return false;
-        }
         #endregion
 
         protected override void OnSorting(DataGridSortingEventArgs eventArgs) {

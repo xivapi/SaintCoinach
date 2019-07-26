@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,10 +10,10 @@ namespace SaintCoinach.Ex {
         where TData : IDataRow {
         #region Fields
 
-        private readonly Dictionary<Language, ISheet<TData>> _LocalisedSheets =
-            new Dictionary<Language, ISheet<TData>>();
+        private readonly ConcurrentDictionary<Language, ISheet<TData>> _LocalisedSheets =
+            new ConcurrentDictionary<Language, ISheet<TData>>();
 
-        private Dictionary<int, TMulti> _Rows = new Dictionary<int,TMulti>();
+        private ConcurrentDictionary<int, TMulti> _Rows = new ConcurrentDictionary<int, TMulti>();
 
         #endregion
 
@@ -38,15 +39,12 @@ namespace SaintCoinach.Ex {
         #region Get
 
         public ISheet<TData> GetLocalisedSheet(Language language) {
-            if (_LocalisedSheets.TryGetValue(language, out var sheet)) return sheet;
+            return _LocalisedSheets.GetOrAdd(language, l => {
+                if (!Header.AvailableLanguages.Contains(l))
+                    throw new NotSupportedException();
 
-            if (!Header.AvailableLanguages.Contains(language))
-                throw new NotSupportedException();
-
-            sheet = CreateLocalisedSheet(language);
-            _LocalisedSheets.Add(language, sheet);
-
-            return sheet;
+                return CreateLocalisedSheet(l);
+            });
         }
 
         #endregion
@@ -83,12 +81,7 @@ namespace SaintCoinach.Ex {
 
         public TMulti this[int key] {
             get {
-                if (_Rows.TryGetValue(key, out var row))
-                    return row;
-
-                _Rows.Add(key, row = CreateMultiRow(key));
-
-                return row;
+                return _Rows.GetOrAdd(key, k => CreateMultiRow(k));
             }
         }
 

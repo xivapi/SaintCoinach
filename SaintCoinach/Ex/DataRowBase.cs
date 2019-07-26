@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace SaintCoinach.Ex {
     public abstract class DataRowBase : IDataRow {
         #region Fields
 
-        private Dictionary<int, WeakReference<object>> _ValueReferences;
+        private ConcurrentDictionary<int, WeakReference<object>> _ValueReferences;
 
         #endregion
 
@@ -15,7 +16,7 @@ namespace SaintCoinach.Ex {
             Sheet = sheet;
             Key = key;
             Offset = offset;
-            _ValueReferences = new Dictionary<int, WeakReference<object>>();
+            _ValueReferences = new ConcurrentDictionary<int, WeakReference<object>>();
         }
 
         #endregion
@@ -34,11 +35,13 @@ namespace SaintCoinach.Ex {
   
                 var column = Sheet.Header.GetColumn(columnIndex);
                 value = column.Read(Sheet.GetBuffer(), this);
-  
-                if (_ValueReferences.ContainsKey(columnIndex))
-                    _ValueReferences[columnIndex].SetTarget(value);
-                else
-                    _ValueReferences.Add(columnIndex, new WeakReference<object>(value));
+
+                _ValueReferences.AddOrUpdate(columnIndex,
+                    k => new WeakReference<object>(value),
+                    (k, r) => {
+                        r.SetTarget(value);
+                        return r;
+                    });
   
                 return value;
             }

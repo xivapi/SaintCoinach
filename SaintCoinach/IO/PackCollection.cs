@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace SaintCoinach.IO {
     public class PackCollection {
         #region Fields
 
-        private readonly Dictionary<PackIdentifier, Pack> _Packs = new Dictionary<PackIdentifier, Pack>();
+        private readonly ConcurrentDictionary<PackIdentifier, Pack> _Packs = new ConcurrentDictionary<PackIdentifier, Pack>();
 
         #endregion
 
@@ -45,20 +46,12 @@ namespace SaintCoinach.IO {
         }
 
         public Pack GetPack(PackIdentifier id) {
-            if (_Packs.TryGetValue(id, out var pack)) return pack;
-
-            pack = new Pack(this, DataDirectory, id);
-            _Packs.Add(id, pack);
-            return pack;
+            return _Packs.GetOrAdd(id, i => new Pack(this, DataDirectory, id));
         }
 
         public Pack GetPack(string path) {
             var id = PackIdentifier.Get(path);
-            if (_Packs.TryGetValue(id, out var pack)) return pack;
-
-            pack = new Pack(this, DataDirectory, id);
-            _Packs.Add(id, pack);
-            return pack;
+            return GetPack(id);
         }
 
         public bool TryGetFile(string path, out File file) {
@@ -75,10 +68,7 @@ namespace SaintCoinach.IO {
             if (!PackIdentifier.TryGet(path, out var id))
                 return false;
 
-            if (_Packs.TryGetValue(id, out pack)) return true;
-
-            pack = new Pack(this, DataDirectory, id);
-            _Packs.Add(id, pack);
+            pack =_Packs.GetOrAdd(id, i => new Pack(this, DataDirectory, id));
             return true;
         }
 
