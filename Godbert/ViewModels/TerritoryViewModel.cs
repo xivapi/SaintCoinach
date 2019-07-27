@@ -208,7 +208,11 @@ namespace Godbert.ViewModels {
                         y = t.TranslationVector.Y;
                         z = t.TranslationVector.Z;
 
-                        vertStr.Add($"v {x} {y} {z} {v.Position.Value.W}");
+                        if (v.Color != null)
+                            vertStr.Add($"v {x} {y} {z} {v.Color.Value.X} {v.Color.Value.Y} {v.Color.Value.Z}");
+                        else
+                            vertStr.Add($"v {x} {y} {z}");
+
                         tempVs++;
 
                         vertStr.Add($"vn {v.Normal.Value.X} {v.Normal.Value.Y} {v.Normal.Value.Z}");
