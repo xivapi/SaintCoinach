@@ -1,0 +1,12 @@
+{
+  "sheet": "HugeCraftworksRank",
+  "definitions": [
+    {
+      "name": "CrafterLevel"
+    },
+    {
+      "index": 1,
+      "name": "ExpRewardPerItem"
+    }
+  ]
+}

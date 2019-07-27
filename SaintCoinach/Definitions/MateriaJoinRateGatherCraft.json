@@ -1,0 +1,20 @@
+{
+  "sheet": "MateriaJoinRateGatherCraft",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "[NQ]Overmeld%Slot"
+      }
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "[HQ]Overmeld%Slot"
+      }
+    }
+  ]
+}

@@ -2,7 +2,18 @@
   "sheet": "QuestBattle",
   "definitions": [
     {
-      "name": "Quest"
+      "name": "Quest",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "ArrayEventHandler",
+          "Quest"
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "name": "QuestBattleScene"
     },
     {
       "index": 2,
