@@ -47,10 +47,15 @@ namespace SaintCoinach.Ex {
             }
         }
 
-        public virtual object GetRaw(int columnIndex)
-        {
+        public virtual object GetRaw(int columnIndex) {
             var column = Sheet.Header.GetColumn(columnIndex);
             return column.ReadRaw(Sheet.GetBuffer(), this);
+        }
+
+        public IEnumerable<object> ColumnValues() {
+            var buffer = Sheet.GetBuffer();
+            foreach (var column in Sheet.Header.Columns)
+                yield return column.Read(buffer, this);
         }
 
         #endregion

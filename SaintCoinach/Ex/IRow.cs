@@ -1,4 +1,6 @@
-﻿namespace SaintCoinach.Ex {
+﻿using System.Collections.Generic;
+
+namespace SaintCoinach.Ex {
     public interface IRow {
         #region Properties
 
@@ -9,5 +11,7 @@
         object GetRaw(int columnIndex);
 
         #endregion
+
+        IEnumerable<object> ColumnValues();
     }
 }
