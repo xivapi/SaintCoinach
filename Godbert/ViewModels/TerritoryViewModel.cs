@@ -210,7 +210,7 @@ namespace Godbert.ViewModels {
 
                         // .Replace(',','.') cause decimal separator locale memes
                         if (v.Color != null)
-                            vertStr.Add($"v {x} {y} {z} {v.Color.Value.X} {v.Color.Value.Y} {v.Color.Value.Z}".Replace(',','.'));
+                            vertStr.Add($"v {x} {y} {z} {v.Color.Value.X} {v.Color.Value.Y} {v.Color.Value.Z} {v.Color.Value.W}".Replace(',','.'));
                         else
                             vertStr.Add($"v {x} {y} {z}".Replace(',','.'));
 
@@ -220,7 +220,7 @@ namespace Godbert.ViewModels {
                         tempVn++;
 
                         if (v.UV != null) {
-                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y} {v.UV.Value.Z} {v.UV.Value.W}".Replace(',', '.'));
+                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y}".Replace(',', '.'));
                             tempVt++;
                         }
                     }
