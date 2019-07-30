@@ -1,7 +1,7 @@
 {
   "sheet": "AchievementHideCondition",
   "definitions": [
-  {
+    {
       "name": "HideAchievement"
     },
     {
