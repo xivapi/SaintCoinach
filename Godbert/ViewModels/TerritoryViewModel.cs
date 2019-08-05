@@ -220,7 +220,7 @@ namespace Godbert.ViewModels {
                         tempVn++;
 
                         if (v.UV != null) {
-                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y}".Replace(',', '.'));
+                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y * -1.0}".Replace(',', '.'));
                             tempVt++;
                         }
                     }
