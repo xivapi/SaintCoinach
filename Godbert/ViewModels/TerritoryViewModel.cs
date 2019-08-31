@@ -159,20 +159,26 @@ namespace Godbert.ViewModels {
                             continue;
                         }
 
-                        SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+                        //SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+
                         if (mtlName.Contains("_dummy_"))
                             continue;
+
+                        var ddsBytes = SaintCoinach.Imaging.ImageConverter.GetDDS(img);
+                        System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
+
+
                         if (mtlName.Contains("_n.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}.dds\n");
                         }
                         else if (mtlName.Contains("_s.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}.dds\n");
                         }
                         else if (!mtlName.Contains("_a.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}.dds\n");
                         }
                         else {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}.dds\n");
                         }
 
                         exportedPaths.Add(path + mtlName, true);
