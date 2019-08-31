@@ -165,20 +165,26 @@ namespace Godbert.ViewModels {
                             continue;
 
                         var ddsBytes = SaintCoinach.Imaging.ImageConverter.GetDDS(img);
-                        System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
+
+                        var fileExt = ddsBytes != null ? ".dds" : ".png";
+                        
+                        if (fileExt == ".dds")
+                            System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
+                        else
+                            SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
 
 
                         if (mtlName.Contains("_n.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}.dds\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}{fileExt}\n");
                         }
                         else if (mtlName.Contains("_s.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}.dds\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}{fileExt}\n");
                         }
                         else if (!mtlName.Contains("_a.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}.dds\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}{fileExt}\n");
                         }
                         else {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}.dds\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}{fileExt}\n");
                         }
 
                         exportedPaths.Add(path + mtlName, true);

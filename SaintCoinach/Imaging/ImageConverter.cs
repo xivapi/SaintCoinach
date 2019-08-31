@@ -137,6 +137,10 @@ namespace SaintCoinach.Imaging {
             return argb;
         }
 
+        /// <summary>
+        /// Attempt to convert ImageFile to DDS file. Returns null if no DXT1/3/5 texture found.
+        /// </summary>
+
         public static byte[] GetDDS(ImageFile file) {
             var bytes2 = file.GetData();
             //var offset = bytes2[file.ImageHeader.EndOfHeader];
@@ -148,7 +152,8 @@ namespace SaintCoinach.Imaging {
 
 
             format.dwFlags = (uint)(DDPF_ENUM.DDPF_ALPHAPIXELS | DDPF_ENUM.DDPF_FOURCC);
-            header.dwFlags |= (uint)(DDSD_ENUM.DDSD_CAPS | DDSD_ENUM.DDSD_HEIGHT | DDSD_ENUM.DDSD_WIDTH | DDSD_ENUM.DDSD_PIXELFORMAT | DDSD_ENUM.DDSD_MIPMAPCOUNT | DDSD_ENUM.DDSD_LINEARSIZE);
+            header.dwFlags |= (uint)(DDSD_ENUM.DDSD_CAPS | DDSD_ENUM.DDSD_HEIGHT | DDSD_ENUM.DDSD_WIDTH | DDSD_ENUM.DDSD_PIXELFORMAT | DDSD_ENUM.DDSD_LINEARSIZE);
+            header.dwFlags |= (uint)DDSD_ENUM.DDSD_MIPMAPCOUNT;
 
             switch (file.ImageHeader.Format) {
                 case ImageFormat.Dxt1:
@@ -158,13 +163,12 @@ namespace SaintCoinach.Imaging {
                 case ImageFormat.Dxt3:
                     format.dwFourCC = 0x33545844;
                     header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
-
                     break;
                 case ImageFormat.Dxt5:
                     format.dwFourCC = 0x35545844;
                     header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
-
                     break;
+                /*
                 case ImageFormat.A8R8G8B8_1:
                 case ImageFormat.A8R8G8B8_2:
                 case ImageFormat.A8R8G8B8_4:
@@ -175,25 +179,19 @@ namespace SaintCoinach.Imaging {
                     header.dwFlags &= ~(uint)DDSD_ENUM.DDSD_LINEARSIZE;
                     header.dwFlags |= (uint)DDSD_ENUM.DDSD_PITCH;
                     break;
+                */
                 default:
-                    throw new Exception("Texture format " + file.ImageHeader.Format.ToString() + " DDS export not supported!\n");
+                    System.Diagnostics.Debug.WriteLine("Texture format " + file.ImageHeader.Format.ToString() + " DDS export not supported!\n");
+                    return null;
                     break;
             }
 
             format.dwSize = 32;
 
-            // todo: these masks are probably the wrong way around
-            format.dwRGBBitCount = 32;
-            format.dwABitMask = 0xff000000;
-            format.dwRBitMask = 0x00ff0000;
-            format.dwGBitMask = 0x0000ff00;
-            format.dwBBitMask = 0x000000ff;
-
-
             header.dwSize = 124; // why set this if it MUST be 124?
             header.dwHeight = (uint)height;
             header.dwWidth = (uint)width;
-            header.dwMipMapCount = 10;
+            header.dwMipMapCount = file.ImageHeader._Buffer[0x0E];
             header.dwCaps = 0x08 | 0x400000 | 0x1000; // DDSCAPS_COMPLEX | DDSCAPS_MIPMAP | DDSCAPS_TEXTURE
 
             header.ddspf = format;
