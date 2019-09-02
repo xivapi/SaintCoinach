@@ -61,6 +61,7 @@ namespace SaintCoinach.Graphics.Lgb {
                             Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         case LgbEntryType.Gimmick:
+                        case LgbEntryType.SharedGroup15:
                             Entries[i] = new LgbGimmickEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         case LgbEntryType.EventObject:
