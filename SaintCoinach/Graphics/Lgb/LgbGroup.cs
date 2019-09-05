@@ -17,7 +17,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public int EntryCount;
             public uint Unknown2;
             public uint Unknown3;
-            public uint Unknown4;
+            public uint FestivalId;
             public uint Unknown5;
             // Just a guess -
             // This number corresponds to the last digits of Map.Id.  In
@@ -30,6 +30,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public uint Unknown8;
             public uint Unknown9;
             public uint Unknown10;
+            public uint Unknown11;
         }
         #endregion
 
