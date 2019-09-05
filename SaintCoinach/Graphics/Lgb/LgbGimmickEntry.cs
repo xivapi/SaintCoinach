@@ -17,6 +17,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public Vector3 Rotation;
             public Vector3 Scale;
             public int GimmickFileOffset;
+
             // + 100 bytes of unknowns
         }
         #endregion
@@ -31,7 +32,7 @@ namespace SaintCoinach.Graphics.Lgb {
         #region Constructor
         public LgbGimmickEntry(IO.PackCollection packs, byte[] buffer, int offset) {
             this.Header = buffer.ToStructure<HeaderData>(offset);
-            byte[] Unknown = new byte[100];
+            uint[] Unknown = new uint[25];
             System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
 
             //foreach (var c in Unknown) {
