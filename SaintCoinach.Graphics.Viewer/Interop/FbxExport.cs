@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Ookii.Dialogs.Wpf;
+using SaintCoinach.IO;
+using Directory = System.IO.Directory;
 
 namespace SaintCoinach.Graphics.Viewer.Interop
 {
@@ -17,7 +20,7 @@ namespace SaintCoinach.Graphics.Viewer.Interop
             [DllImport("fbxInterop.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern int exportFbx([In, Out] IntPtr[] meshes, int numMeshes,
                                                 [In, Out] byte[] skeleton, int skeletonSize,
-                                                [In, Out] byte[] animation, int animationSize, [In, Out] string[] animNames,
+                                                [In, Out] IntPtr[] anims, int totalAnims,
                                                 [In, Out] int[] boneMap, int mapLength,
                                                 string filename, int mode);
         }
@@ -26,7 +29,7 @@ namespace SaintCoinach.Graphics.Viewer.Interop
         public static int ExportFbx(string fileName,
                                         Mesh[] ma,
                                         Skeleton skele,
-                                        PapFile pap,
+                                        List<PapFile> paps,
                                         int mode = 0)
         {
             ModelDefinition thisDefinition = ma[0].Model.Definition;
@@ -38,24 +41,30 @@ namespace SaintCoinach.Graphics.Viewer.Interop
             var boneMap = thisDefinition.BoneNames.Select(n => nameMap[n]).ToArray();
 
             // Get mesh ptrs
-            IntPtr[] meshes = new IntPtr[ma.Length];
-            for (int i = 0; i < meshes.Length; i++)
-            {
-                InteropMesh m = new InteropMesh(ma[i]);
-                meshes[i] = m._UnmanagedPtr;
-            }
+            InteropMesh[] managedMeshes = new InteropMesh[ma.Length];
+            for (int i = 0; i < ma.Length; i++)
+                managedMeshes[i] = new InteropMesh(ma[i]);
 
-            // Null pap handling
-            byte[] anims = pap == null ? new byte[0] : pap.HavokData;
-            string[] animNames = pap == null ? new string[0] : pap.Animations.Select(_ => _.Name).ToArray();
+            // Get animations ptrs
+            InteropAnimation[] managedAnims = new InteropAnimation[paps.Count];
+            int numPaps = paps.Count;
+            if (paps.Count > 0)
+            {
+                for (int i = 0; i < paps.Count; i++)
+                    managedAnims[i] = new InteropAnimation(paps[i]);
+            }
+            else
+            {
+                managedAnims = new InteropAnimation[0];
+            }
 
             int result = 0;
 
             try
             {
-                result = Interop.exportFbx(meshes, meshes.Length,
+                result = Interop.exportFbx(managedMeshes.Select(_ => _._UnmanagedPtr).ToArray(), managedMeshes.Length,
                     skele.File.HavokData, skele.File.HavokData.Length,
-                    anims, anims.Length, animNames,
+                    managedAnims.Select(_ => _._UnmanagedPtr).ToArray(), numPaps,
                     boneMap, boneMap.Length,
                     fileName, mode);
             }
@@ -68,18 +77,41 @@ namespace SaintCoinach.Graphics.Viewer.Interop
             {
                 if (e is AccessViolationException || e is SEHException)
                 {
-                    System.Diagnostics.Debug.WriteLine("Access violation with\n" +
-                                                       "Model:\t" + thisDefinition.File.Path + "\n" +
-                                                       "Pap:\t" + pap?.File.Path + "\n" +
-                                                       "Skele:\t" + skele.File.File.Path + "\n");
+                    System.Diagnostics.Debug.WriteLine($"Access violation with\n" +
+                                                       $"Model:\t {thisDefinition.File.Path}\n" +
+                                                       $"Anims:\t {numPaps}\n" +
+                                                       $"Skele:\t {skele.File.File.Path}\n");
                 }
 
                 return 1;
             }
+            
+            // Prevent collection of mesh and anim resources during unmanaged code
+            GC.KeepAlive(managedMeshes);
+            GC.KeepAlive(managedAnims);
 
             return result;
+        }
 
-            //todo: materials/textures
+        // This is monster-specific because the loading of actual materials assumes b0000 for some reason?
+        public static void ExportMonsterMaterials(ARealmReversed realm, string folder, MaterialDefinition[] thisDefinitionMaterials, ImcVariant variant)
+        {
+            string format = "chara/monster/m{0}/obj/body/b{1}/material/v{2:D4}{3}";
+            
+            foreach (var material in thisDefinitionMaterials)
+            {
+                string path = material.Name;
+                string m = path.Substring(path.IndexOf("_m") + 2, 4);
+                string b = path.Substring(path.IndexOf("_m") + 7, 4);
+
+                Material mat = new Material(material, realm.Packs.GetFile(String.Format(format, m, b, variant.Variant, path)), variant);
+                foreach (var tex in mat.TexturesFiles)
+                {
+                    string texFile = tex.Path.Substring(tex.Path.LastIndexOf('/')).Replace(".tex", ".png");
+                    string output = folder + '\\' + texFile;
+                    tex.GetImage().Save(output);
+                }
+            }
         }
     }
 }
