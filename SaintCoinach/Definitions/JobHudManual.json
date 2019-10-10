@@ -9,6 +9,14 @@
         "type": "link",
         "target": "Action"
       }
+    },
+    {
+      "index": 5,
+      "name": "Guide",
+      "converter": {
+        "type": "link",
+        "target": "Guide"
+      }
     }
   ]
 }

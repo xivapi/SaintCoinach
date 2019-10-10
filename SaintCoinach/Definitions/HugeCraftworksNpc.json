@@ -10,6 +10,14 @@
       }
     },
     {
+      "index": 1,
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
+    {
       "index": 3,
       "type": "repeat",
       "count": 4,
