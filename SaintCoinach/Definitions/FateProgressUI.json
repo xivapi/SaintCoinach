@@ -1,0 +1,33 @@
+{
+  "sheet": "FateProgressUI",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Location",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Achievement",
+      "converter": {
+        "type": "link",
+        "target": "Achievement"
+      }
+    },
+    {
+      "index": 2,
+      "name": "ReqFatesToRank2"
+    },
+    {
+      "index": 3,
+      "name": "ReqFatesToRank3"
+    },
+    {
+      "index": 4,
+      "name": "DisplayOrder"
+    }
+  ]
+}

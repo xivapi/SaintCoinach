@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -74,6 +75,8 @@ namespace SaintCoinach.Xiv {
         public int Key { get { return _SourceRow.Key; } }
 
         public object this[int columnIndex] { get { return _SourceRow[columnIndex]; } }
+
+        public IEnumerable<object> ColumnValues() => _SourceRow.ColumnValues();
 
         #endregion
 

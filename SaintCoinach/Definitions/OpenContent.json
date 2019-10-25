@@ -3,12 +3,24 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 2,
+      "count": 16,
       "definition": {
         "name": "Content",
         "converter": {
           "type": "link",
           "target": "ContentFinderCondition"
+        }
+      }
+    },
+    {
+      "index": 16,
+      "type": "repeat",
+      "count": 16,
+      "definition": {
+        "name": "CandidateName",
+        "converter": {
+          "type": "link",
+          "target": "OpenContentCandidateName"
         }
       }
     }

@@ -1,4 +1,16 @@
 {
   "sheet": "AchievementHideCondition",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "HideAchievement"
+    },
+    {
+      "index": 1,
+      "name": "HideName"
+    },
+    {
+      "index": 2,
+      "name": "HideConditions"
+    }
+  ]
 }

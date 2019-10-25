@@ -208,14 +208,19 @@ namespace Godbert.ViewModels {
                         y = t.TranslationVector.Y;
                         z = t.TranslationVector.Z;
 
-                        vertStr.Add($"v {x} {y} {z} {v.Position.Value.W}");
+                        // .Replace(',','.') cause decimal separator locale memes
+                        if (v.Color != null)
+                            vertStr.Add($"v {x} {y} {z} {v.Color.Value.X} {v.Color.Value.Y} {v.Color.Value.Z} {v.Color.Value.W}".Replace(',','.'));
+                        else
+                            vertStr.Add($"v {x} {y} {z}".Replace(',','.'));
+
                         tempVs++;
 
-                        vertStr.Add($"vn {v.Normal.Value.X} {v.Normal.Value.Y} {v.Normal.Value.Z}");
+                        vertStr.Add($"vn {v.Normal.Value.X} {v.Normal.Value.Y} {v.Normal.Value.Z}".Replace(',', '.'));
                         tempVn++;
 
                         if (v.UV != null) {
-                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y} {v.UV.Value.Z} {v.UV.Value.W}");
+                            vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y * -1.0}".Replace(',', '.'));
                             tempVt++;
                         }
                     }
@@ -255,7 +260,7 @@ namespace Godbert.ViewModels {
                                 continue;
                             }
                             if (newGroup) {
-                                vertStr.Add($"o {sgbFile.File.Path}_{sgbGroup.Name}_{i}");
+                                //vertStr.Add($"o {sgbFile.File.Path}_{sgbGroup.Name}_{i}");
                                 newGroup = false;
                             }
                             for (var j = 0; j < hq.Meshes.Length; ++j) {

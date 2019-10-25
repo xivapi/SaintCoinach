@@ -97,17 +97,15 @@ namespace Godbert.Controls {
                 index.Append(row.Key.ToString());
                 index.Append("||");
 
-                foreach (var col in columns) {
-                    var cellObj = row[col.Index];
-                    if (cellObj != null) {
-                        index.Append(cellObj.ToString());
+                foreach (var value in row.ColumnValues()) {
+                    if (value != null) {
+                        index.Append(value.ToString());
                         index.Append("||");
                     }
                 }
 
                 newIndex.Add(Tuple.Create(row, index.ToString()));
             });
-
 
             _RowSearchIndex = newIndex.OrderBy(r => r.Item1.Key).ToArray();
             System.Diagnostics.Debug.WriteLine($"{_Sheet.Name} search index complete.  Elapsed {DateTime.Now - start}.");

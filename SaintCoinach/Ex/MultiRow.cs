@@ -1,4 +1,6 @@
-﻿namespace SaintCoinach.Ex {
+﻿using System.Collections.Generic;
+
+namespace SaintCoinach.Ex {
     public class MultiRow : IMultiRow {
         #region Constructors
 
@@ -31,6 +33,10 @@
 
         object IMultiRow.GetRaw(int columnIndex, Language language) {
             return Sheet.GetLocalisedSheet(language)[Key]?.GetRaw(columnIndex);
+        }
+
+        public IEnumerable<object> ColumnValues() {
+            return Sheet.ActiveSheet[Key].ColumnValues();
         }
 
         #endregion

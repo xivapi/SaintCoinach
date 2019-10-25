@@ -16,6 +16,10 @@
         "type": "link",
         "target": "Item"
       }
+    },
+    {
+      "index": 2,
+      "name": "Patch"
     }
   ]
 }
