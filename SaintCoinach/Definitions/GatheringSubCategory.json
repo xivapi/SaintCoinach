@@ -3,6 +3,25 @@
   "defaultColumn": "FolkloreBook",
   "definitions": [
     {
+      "name": "GatheringType",
+      "converter": {
+        "type": "link",
+        "target": "GatheringType"
+      }
+    },
+    {
+      "index": 1,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Division",
+    },
+    {
       "index": 4,
       "name": "Item",
       "converter": {

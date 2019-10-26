@@ -1,0 +1,16 @@
+{
+  "sheet": "Purify",
+  "definitions": [
+    {
+      "name": "Class",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Level",
+    }
+  ]
+}
