@@ -260,11 +260,11 @@
       "name": "Level{Equip}"
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "EquipRestriction"
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",
@@ -272,7 +272,7 @@
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "GrandCompany",
       "converter": {
         "type": "link",
@@ -280,7 +280,7 @@
       }
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "ItemSeries",
       "converter": {
         "type": "link",
@@ -288,7 +288,7 @@
       }
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "BaseParamModifier"
     },
     {
