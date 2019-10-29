@@ -70,11 +70,11 @@
       "name": "IsAetheryte"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "AethernetGroup"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "RequiredQuest",
       "converter": {
         "type": "link",
@@ -82,7 +82,7 @@
       }
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "Map",
       "converter": {
         "type": "link",
@@ -90,11 +90,11 @@
       }
     },
     {
-      "index": 20,
+      "index": 21,
       "name": "Aetherstream{X}"
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "Aetherstream{Y}"
     }
   ]

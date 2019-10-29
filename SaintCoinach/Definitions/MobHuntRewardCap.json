@@ -2,7 +2,7 @@
   "sheet": "MobHuntRewardCap",
   "definitions": [
     {
-      "name": "ExpCap",
+      "name": "ExpCap"
     }
   ]
 }

@@ -27,7 +27,7 @@
     },
     {
       "index": 4,
-      "name": "Order{Amount}",
+      "name": "Order{Amount}"
     }
   ]
 }
