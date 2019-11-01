@@ -1,0 +1,21 @@
+{
+  "sheet": "QuestChapter",
+  "defaultColumn": "Quest",
+  "definitions": [
+    {
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Redo",
+      "converter": {
+        "type": "link",
+        "target": "QuestRedoChapter"
+      }
+    }
+  ]
+}

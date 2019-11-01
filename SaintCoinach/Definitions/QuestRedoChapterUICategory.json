@@ -1,0 +1,10 @@
+{
+  "sheet": "QuestRedoChapterUICategory",
+  "defaultColumn": "Expac",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Expac"
+    }
+  ]
+}
