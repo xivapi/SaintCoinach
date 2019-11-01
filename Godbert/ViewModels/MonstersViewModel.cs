@@ -13,7 +13,10 @@ using SaintCoinach.Graphics;
 using SaintCoinach.Graphics.Viewer;
 using SaintCoinach.Graphics.Viewer.Content;
 using SaintCoinach.Graphics.Viewer.Interop;
+using SaintCoinach.IO;
 using SaintCoinach.Xiv;
+using SaintCoinach.Xiv.ItemActions;
+using Directory = System.IO.Directory;
 using File = SaintCoinach.IO.File;
 using ProgressBarStyle = Ookii.Dialogs.Wpf.ProgressBarStyle;
 
@@ -113,41 +116,41 @@ namespace Godbert.ViewModels {
             int m, b;
             if (!TryGetModel(out skele, out model, out variant, out m, out b)) return;
 
-            var papPath = string.Format(PapPathFormat, m, b);
+            List<PapFile> paps = SearchPaps(model.File.Path, m);
 
-            PapFile pap = null;
-            // We have animation
-            if (Parent.Realm.Packs.TryGetFile(papPath, out var papFileBase))
-                pap = new PapFile(papFileBase);
-
-            VistaSaveFileDialog dialog = new VistaSaveFileDialog {
-                OverwritePrompt = true,
-                Title = "Export FBX to...",
-                FileName = SelectedEntry.ToString().Replace(" / ", "_"),
-                DefaultExt = ".fbx",
-                Filter = "Autodesk FBX Files|*.fbx"
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog
+            {
+                Description = "Select folder to export to",
+                UseDescriptionForTitle = true
             };
 
             bool? result = dialog.ShowDialog();
-                
-            if (result.HasValue && result.Value && !string.IsNullOrEmpty(dialog.FileName))
+
+            if (result.HasValue && result.Value && !string.IsNullOrEmpty(dialog.SelectedPath))
             {
                 Task.Run(() =>
                 {
+                    string identifier = SelectedEntry.ToString().Replace(" / ", "_");
+                    string folderName = Path.Combine(dialog.SelectedPath, identifier);
+                    Directory.CreateDirectory(folderName);
+
+                    string fileName = Path.Combine(folderName, identifier + ".fbx");
+
                     // Set IsExporting for feedback
                     IsExporting = true;
-                    int exportResult = FbxExport.ExportFbx(dialog.FileName, model.GetModel(0).Meshes, skele, pap);
+                    int exportResult = FbxExport.ExportFbx(fileName, model.GetModel(0).Meshes, skele, paps);
+                    FbxExport.ExportMonsterMaterials(Parent.Realm, folderName, model.GetModel(0).Definition.Materials, variant);
                     IsExporting = false;
-                        
+                    
                     if (exportResult == 0)
-                        System.Windows.MessageBox.Show("The export of " + Path.GetFileName(dialog.FileName) + " has completed.",
+                        System.Windows.MessageBox.Show("The export of " + Path.GetFileName(fileName) + " has completed.",
                             "Export Complete",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information,
                             MessageBoxResult.OK,
                             System.Windows.MessageBoxOptions.DefaultDesktopOnly);
                     else
-                        System.Windows.MessageBox.Show("The export of " + Path.GetFileName(dialog.FileName) + " has failed.",
+                        System.Windows.MessageBox.Show("The export of " + Path.GetFileName(fileName) + " has failed.",
                             "Export Failed",
                             MessageBoxButton.OK,
                             MessageBoxImage.Error,
@@ -165,7 +168,45 @@ namespace Godbert.ViewModels {
                 Parent.EngineHelper.OpenInNew(SelectedEntry.ToString(), (e) => CreateModel(e, skele, model, variant, m, b));
         }
 
-        static string[] DefaultAnimationNames = new string[] { "cbnm_id0", "cbbm_id0" };
+        static string[] DefaultAnimationNames = { "cbnm_id0", "cbbm_id0" };
+
+        private List<PapFile> SearchPaps(string modelPath, int m)
+        {
+            /*  The files found in these paths will all be exported
+             *  If more paths are found, you can add them here
+             *  A good starting point might be attempting to determine how
+             *  a0002 animations are decided?   */
+            string[] searchPaths =
+            {
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}/hide",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}/show",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/event",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/minion",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/resident",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/specialpop"
+            };
+
+            SaintCoinach.IO.Directory d;
+            List<PapFile> allFiles = new List<PapFile>();
+
+            // Animations are in the same pack as the model itself
+            Pack p = Parent.Realm.Packs.GetPack(PackIdentifier.Get(modelPath));
+
+            foreach (string path in searchPaths) {
+                string currentFullPath = string.Format(path, m, 1);
+                ((IndexSource)p.Source).TryGetDirectory(currentFullPath, out d);
+
+                if (d == null)
+                    continue;
+
+                IEnumerator<File> dirEnumerator = d.GetEnumerator();
+                while (dirEnumerator.MoveNext())
+                    allFiles.Add(new PapFile(dirEnumerator.Current));
+                dirEnumerator.Dispose();
+            }
+            return allFiles;
+        }
 
         private IComponent CreateModel(Engine engine, Skeleton skeleton, ModelDefinition model, ImcVariant variant, int m, int b) {
             
