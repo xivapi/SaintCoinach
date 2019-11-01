@@ -90,9 +90,11 @@
     <Compile Include="Graphics\ColorMap.cs" />
     <Compile Include="Graphics\Exports\ModelExport.cs" />
     <Compile Include="Graphics\Exports\Obj.cs" />
+    <Compile Include="Graphics\Lgb\LgbVfxEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbENpcEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbLightEntry.cs" />
     <Compile Include="Graphics\Lgb\LgbEventObjectEntry.cs" />
+    <Compile Include="Graphics\Sgb\SgbVfxEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbLightEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbGimmickEntry.cs" />
     <Compile Include="Graphics\Sgb\SgbGroup1CEntry.cs" />

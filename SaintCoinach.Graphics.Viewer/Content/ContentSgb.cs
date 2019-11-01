@@ -18,8 +18,9 @@ namespace SaintCoinach.Graphics.Viewer.Content {
         #endregion
 
         #region Constructor
-        public ContentSgb(Engine engine, Sgb.SgbFile sgbFile):this(engine, sgbFile, null) { }
-        public ContentSgb(Engine engine, Sgb.SgbFile sgbFile, Data.ParametersBase parameters) : base(engine) {
+        public ContentSgb(Engine engine, Sgb.SgbFile sgbFile, Data.ParametersBase parameters) :this(engine, sgbFile, parameters, Matrix.Identity) {  }
+        public ContentSgb(Engine engine, Sgb.SgbFile sgbFile):this(engine, sgbFile, null, Matrix.Identity) { }
+        public ContentSgb(Engine engine, Sgb.SgbFile sgbFile, Data.ParametersBase parameters, Matrix EObjTransform) : base(engine) {
             this.SgbFile = sgbFile;
             this.Parameters = parameters;
             this.Transformation = Matrix.Identity;
@@ -33,7 +34,11 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                 foreach (var group in file.Data.OfType<Sgb.SgbGroup>()) {
                     foreach (var mdl in group.Entries.OfType<Sgb.SgbModelEntry>()) {
                         var content = new ContentModel(engine, mdl.Model) { Parameters = parameters };
-                        content.Transformation = content.Transformation * gimTransform * rootTransform;
+
+                        if (EObjTransform == Matrix.Identity)
+                            this.Transformation = Matrix.Identity;
+                        content.Transformation = content.Transformation * gimTransform * rootTransform * EObjTransform;
+                        
                         _Content.Add(content);
                     }
                 }

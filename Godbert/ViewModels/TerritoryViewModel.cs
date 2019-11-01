@@ -159,20 +159,32 @@ namespace Godbert.ViewModels {
                             continue;
                         }
 
-                        SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+                        //SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+
                         if (mtlName.Contains("_dummy_"))
                             continue;
+
+                        var ddsBytes = SaintCoinach.Imaging.ImageConverter.GetDDS(img);
+
+                        var fileExt = ddsBytes != null ? ".dds" : ".png";
+                        
+                        if (fileExt == ".dds")
+                            System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
+                        else
+                            SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+
+
                         if (mtlName.Contains("_n.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"bump {mtlName}{fileExt}\n");
                         }
                         else if (mtlName.Contains("_s.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ks {mtlName}{fileExt}\n");
                         }
                         else if (!mtlName.Contains("_a.tex")) {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Kd {mtlName}{fileExt}\n");
                         }
                         else {
-                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}.png\n");
+                            System.IO.File.AppendAllText($"./{_ExportDirectory}/{path}.mtl", $"map_Ka {mtlName}{fileExt}\n");
                         }
 
                         exportedPaths.Add(path + mtlName, true);
@@ -246,6 +258,19 @@ namespace Godbert.ViewModels {
                 void ExportSgbModels(SaintCoinach.Graphics.Sgb.SgbFile sgbFile, ref Matrix lgbTransform, ref Matrix rootGimTransform, ref Matrix currGimTransform) {
                     foreach (var sgbGroup in sgbFile.Data.OfType<SaintCoinach.Graphics.Sgb.SgbGroup>()) {
                         bool newGroup = true;
+
+                        foreach (var sgb1CEntry in sgbGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbGroup1CEntry>()) {
+                            if (sgb1CEntry.Gimmick != null) {
+                                ExportSgbModels(sgb1CEntry.Gimmick, ref lgbTransform, ref IdentityMatrix, ref IdentityMatrix);
+                                foreach (var subGimGroup in sgb1CEntry.Gimmick.Data.OfType<SaintCoinach.Graphics.Sgb.SgbGroup>()) {
+                                    foreach (var subGimEntry in subGimGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbGimmickEntry>()) {
+                                        var subGimTransform = CreateMatrix(subGimEntry.Header.Translation, subGimEntry.Header.Rotation, subGimEntry.Header.Scale);
+                                        ExportSgbModels(subGimEntry.Gimmick, ref lgbTransform, ref IdentityMatrix, ref subGimTransform);
+                                    }
+                                }
+                            }
+                        }
+
                         foreach (var mdl in sgbGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbModelEntry>()) {
                             Model hq = null;
                             var filePath = mdl.ModelFilePath;
@@ -411,17 +436,6 @@ namespace Godbert.ViewModels {
                                                     foreach (var subGimEntry in subGimGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbGimmickEntry>()) {
                                                         var subGimTransform = CreateMatrix(subGimEntry.Header.Translation, subGimEntry.Header.Rotation, subGimEntry.Header.Scale);
                                                         ExportSgbModels(subGimEntry.Gimmick, ref lgbTransform, ref rootGimTransform, ref subGimTransform);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        foreach (var sgb1CEntry in rootGimGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbGroup1CEntry>()) {
-                                            if (sgb1CEntry.Gimmick != null) {
-                                                ExportSgbModels(sgb1CEntry.Gimmick, ref lgbTransform, ref IdentityMatrix, ref IdentityMatrix);
-                                                foreach (var subGimGroup in sgb1CEntry.Gimmick.Data.OfType<SaintCoinach.Graphics.Sgb.SgbGroup>()) {
-                                                    foreach (var subGimEntry in subGimGroup.Entries.OfType<SaintCoinach.Graphics.Sgb.SgbGimmickEntry>()) {
-                                                        var subGimTransform = CreateMatrix(subGimEntry.Header.Translation, subGimEntry.Header.Rotation, subGimEntry.Header.Scale);
-                                                        ExportSgbModels(subGimEntry.Gimmick, ref lgbTransform, ref IdentityMatrix, ref subGimTransform);
                                                     }
                                                 }
                                             }

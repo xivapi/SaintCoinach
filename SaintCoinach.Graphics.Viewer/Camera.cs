@@ -19,6 +19,7 @@ namespace SaintCoinach.Graphics.Viewer {
         private Matrix _Projection;
         private Matrix _View;
         private float _FoV = 0.9f;
+        private float _Speed = 1.0f;
 
         const float RotationSpeed = (float)(Math.PI / 2f);
         const float MoveSpeed = 20.0f;
@@ -119,7 +120,17 @@ namespace SaintCoinach.Graphics.Viewer {
             var aspectRatio = (float)(_Engine.ViewportSize.Width / (float)_Engine.ViewportSize.Height);
 
             if (_Engine.IsActive) {
-                var modFactor = 2f;
+                var modFactor = _Speed;
+
+
+                if (_Engine.Keyboard.IsKeyDown(Keys.OemCloseBrackets)) {
+                    _Speed -= 1f;
+                    _Speed = _Speed < 0f ? 2f : _Speed;
+                }
+                if (_Engine.Keyboard.IsKeyDown(Keys.OemOpenBrackets)) {
+                    _Speed += 1f;
+                }
+
                 if (_Engine.Keyboard.IsKeyDown(Keys.Space))
                     modFactor *= 2f;
                 if (_Engine.Keyboard.IsKeyDown(Keys.ShiftKey))

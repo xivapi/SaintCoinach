@@ -32,7 +32,8 @@ namespace SaintCoinach.Graphics.Pcb
         {
             this.File = file;
 
-            Build();
+            // todo: fix this
+            //Build();
         }
         #endregion
 
