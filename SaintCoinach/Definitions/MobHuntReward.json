@@ -1,0 +1,16 @@
+{
+  "sheet": "MobHuntReward",
+  "definitions": [
+    {
+      "name": "ExpReward"
+    },
+    {
+      "index": 1,
+      "name": "GilReward"
+    },
+    {
+      "index": 3,
+      "name": "CurrencyReward"
+    }
+  ]
+}

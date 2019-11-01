@@ -6,6 +6,63 @@ using System.Drawing.Imaging;
 using DotSquish;
 
 namespace SaintCoinach.Imaging {
+
+    struct DDS_PIXELFORMAT {
+        public uint dwSize;
+        public uint dwFlags;
+        public uint dwFourCC;
+        public uint dwRGBBitCount;
+        public uint dwRBitMask;
+        public uint dwGBitMask;
+        public uint dwBBitMask;
+        public uint dwABitMask;
+    };
+
+    struct DDS_HEADER {
+        public uint dwSize;
+        public uint dwFlags;
+        public uint dwHeight;
+        public uint dwWidth;
+        public uint dwPitchOrLinearSize;
+        public uint dwDepth;
+        public uint dwMipMapCount;
+        public uint dwReserved0;
+        public uint dwReserved1;
+        public uint dwReserved2;
+        public uint dwReserved3;
+        public uint dwReserved4;
+        public uint dwReserved5;
+        public uint dwReserved6;
+        public uint dwReserved7;
+        public uint dwReserved8;
+        public uint dwReserved19;
+        public uint dwReserved10;
+
+        public DDS_PIXELFORMAT ddspf;
+        public uint dwCaps;
+        public uint dwCaps2;
+        public uint dwCaps3;
+        public uint dwCaps4;
+        public uint dwReserved11;
+    };
+
+    enum DDSD_ENUM : uint {
+        DDSD_CAPS = 0x1,//Required in every.dds file. 	
+        DDSD_HEIGHT = 0x2,//Required in every.dds file.
+        DDSD_WIDTH = 0x4,//Required in every.dds file.
+        DDSD_PITCH = 0x8,//Required when pitch is provided for an uncompressed texture.
+        DDSD_PIXELFORMAT = 0x1000,//Required in every.dds file.
+        DDSD_MIPMAPCOUNT = 0x20000,//Required in a mipmapped texture.
+        DDSD_LINEARSIZE = 0x80000,//Required when pitch is provided for a compressed texture.
+        DDSD_DEPTH = 0x800000,//Required in a depth texture
+    }
+
+    enum DDPF_ENUM : uint {
+        DDPF_ALPHAPIXELS = 0x1, // Texture contains alpha data; dwRGBAlphaBitMask contains valid data.
+        DDPF_ALPHA = 0x2, // Used in some older DDS files for alpha channel only uncompressed data (dwRGBBitCount contains the alpha channel bitcount; dwABitMask contains valid data)
+        DDPF_FOURCC = 0x4, // Texture contains compressed RGB data; dwFourCC contains valid data.
+        DDPF_RGB = 0x40, // Texture contains uncompressed RGB data; dwRGBBitCountand the RGB masks(dwRBitMask, dwGBitMask, dwBBitMask) contain valid data.
+    }
     /// <summary>
     ///     Helper class for converting image files as stored in SqPack
     ///     to formats useable in .NET
@@ -78,6 +135,82 @@ namespace SaintCoinach.Imaging {
             var argb = new byte[width * height * 4];
             proc(src, argb, width, height);
             return argb;
+        }
+
+        /// <summary>
+        /// Attempt to convert ImageFile to DDS file. Returns null if no DXT1/3/5 texture found.
+        /// </summary>
+
+        public static byte[] GetDDS(ImageFile file) {
+            var bytes2 = file.GetData();
+            //var offset = bytes2[file.ImageHeader.EndOfHeader];
+            var width = file.ImageHeader.Width;
+            var height = file.ImageHeader.Height;
+
+            DDS_HEADER header = new DDS_HEADER();
+            DDS_PIXELFORMAT format = header.ddspf;
+
+
+            format.dwFlags = (uint)(DDPF_ENUM.DDPF_ALPHAPIXELS | DDPF_ENUM.DDPF_FOURCC);
+            header.dwFlags |= (uint)(DDSD_ENUM.DDSD_CAPS | DDSD_ENUM.DDSD_HEIGHT | DDSD_ENUM.DDSD_WIDTH | DDSD_ENUM.DDSD_PIXELFORMAT | DDSD_ENUM.DDSD_LINEARSIZE);
+            header.dwFlags |= (uint)DDSD_ENUM.DDSD_MIPMAPCOUNT;
+
+            switch (file.ImageHeader.Format) {
+                case ImageFormat.Dxt1:
+                    format.dwFourCC = 0x31545844;
+                    header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 8);
+                    break;
+                case ImageFormat.Dxt3:
+                    format.dwFourCC = 0x33545844;
+                    header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
+                    break;
+                case ImageFormat.Dxt5:
+                    format.dwFourCC = 0x35545844;
+                    header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
+                    break;
+                /*
+                case ImageFormat.A8R8G8B8_1:
+                case ImageFormat.A8R8G8B8_2:
+                case ImageFormat.A8R8G8B8_4:
+                case ImageFormat.A8R8G8B8_5:
+                    format.dwFlags = (uint)(DDPF_ENUM.DDPF_ALPHA | DDPF_ENUM.DDPF_RGB);
+                    format.dwFourCC = 0x42475241;
+                    header.dwPitchOrLinearSize = (uint)(width * height);
+                    header.dwFlags &= ~(uint)DDSD_ENUM.DDSD_LINEARSIZE;
+                    header.dwFlags |= (uint)DDSD_ENUM.DDSD_PITCH;
+                    break;
+                */
+                default:
+                    System.Diagnostics.Debug.WriteLine("Texture format " + file.ImageHeader.Format.ToString() + " DDS export not supported!\n");
+                    return null;
+                    break;
+            }
+
+            format.dwSize = 32;
+
+            header.dwSize = 124; // why set this if it MUST be 124?
+            header.dwHeight = (uint)height;
+            header.dwWidth = (uint)width;
+            header.dwMipMapCount = file.ImageHeader._Buffer[0x0E];
+            header.dwCaps = 0x08 | 0x400000 | 0x1000; // DDSCAPS_COMPLEX | DDSCAPS_MIPMAP | DDSCAPS_TEXTURE
+
+            header.ddspf = format;
+
+            List<byte> data = new List<byte>();
+
+            int size = System.Runtime.InteropServices.Marshal.SizeOf<DDS_HEADER>();
+            byte[] headerBytes = new byte[size];
+
+            var ptr = System.Runtime.InteropServices.Marshal.AllocHGlobal(size);
+            System.Runtime.InteropServices.Marshal.StructureToPtr(header, ptr, false);
+            System.Runtime.InteropServices.Marshal.Copy(ptr, headerBytes, 0, size);
+            System.Runtime.InteropServices.Marshal.FreeHGlobal(ptr);
+
+            data.AddRange(System.Text.ASCIIEncoding.UTF8.GetBytes("DDS "));
+            data.AddRange(headerBytes);
+            data.AddRange(bytes2);
+
+            return data.ToArray();
         }
 
         #endregion
