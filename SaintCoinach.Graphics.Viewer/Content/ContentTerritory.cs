@@ -43,27 +43,6 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                                     * Matrix.RotationY(asGim.Header.Rotation.Y)
                                     * Matrix.RotationZ(asGim.Header.Rotation.Z)
                                     * Matrix.Translation(asGim.Header.Translation.ToDx());
-                            bool skip = false;
-                            foreach (var lgb2 in territory.LgbFiles) {
-                                foreach (var group2 in lgb2.Groups) {
-                                    foreach (var part2 in group2.Entries.OfType<Lgb.LgbEventObjectEntry>()) {
-                                        if (part2.Header.GimmickId == asGim.Header.GimmickId) {
-                                            var eobjTransform = (
-                                                Matrix.Scaling(part2.Header.Scale.ToDx())
-                                                * Matrix.RotationX(part2.Header.Rotation.X)
-                                                * Matrix.RotationY(part2.Header.Rotation.Y)
-                                                * Matrix.RotationZ(part2.Header.Rotation.Z)
-                                                * Matrix.Translation(part2.Header.Translation.ToDx()));
-                                            _LgbPartsContainer.Add(new ContentSgb(engine, asGim.Gimmick, null, eobjTransform) {
-                                                Transformation = transform
-                                            });
-                                            skip = true;
-                                        }
-                                    }
-                                }
-                            }
-                            if (skip)
-                                continue;
                             _LgbPartsContainer.Add(new ContentSgb(engine, asGim.Gimmick) {
                                 Transformation =
                                     Matrix.Scaling(asGim.Header.Scale.ToDx())
