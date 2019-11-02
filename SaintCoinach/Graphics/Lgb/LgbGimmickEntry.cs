@@ -32,13 +32,7 @@ namespace SaintCoinach.Graphics.Lgb {
         #region Constructor
         public LgbGimmickEntry(IO.PackCollection packs, byte[] buffer, int offset) {
             this.Header = buffer.ToStructure<HeaderData>(offset);
-            uint[] Unknown = new uint[25];
-            System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
-
-            //foreach (var c in Unknown) {
-            //    if (c == 101)
-            //        System.Diagnostics.Debugger.Break();
-            //}
+            
             this.Name = buffer.ReadString(offset + Header.NameOffset);
 
             var gimmickFilePath = buffer.ReadString(offset + Header.GimmickFileOffset);
