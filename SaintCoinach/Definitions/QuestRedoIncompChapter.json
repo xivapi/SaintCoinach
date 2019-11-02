@@ -1,0 +1,13 @@
+{
+  "sheet": "QuestRedoIncompChapter",
+  "defaultColumn": "Chapter",
+  "definitions": [
+    {
+      "name": "Chapter",
+      "converter": {
+        "type": "link",
+        "target": "QuestRedoChapter"
+      }
+    }
+  ]
+}

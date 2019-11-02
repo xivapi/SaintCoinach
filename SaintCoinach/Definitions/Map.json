@@ -3,6 +3,13 @@
   "defaultColumn": "PlaceName",
   "definitions": [
     {
+      "name": "MapCondition",
+      "converter": {
+        "type": "link",
+        "target": "MapCondition"
+      }
+    },
+    {
       "index": 3,
       "name": "MapIndex"
     },
