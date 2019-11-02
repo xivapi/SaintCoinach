@@ -72,6 +72,7 @@ namespace SaintCoinach.Graphics.Sgb {
             var entriesOffset = offset;
             int count = 0;
             if (isOffset1C) {
+                this.Header = buffer.ToStructure<HeaderData>(entriesOffset);
                 this.Offset1CHeader = buffer.ToStructure<Offset1CHeaderData>(ref entriesOffset);
                 this.Name = buffer.ReadString(offset + Offset1CHeader.NameOffset);
                 this.ModelFile1 = buffer.ReadString(offset + Offset1CHeader.ModelFileOffset + 1);
@@ -113,6 +114,9 @@ namespace SaintCoinach.Graphics.Sgb {
                                 break;
                             case SgbGroupEntryType.Light:
                                 Entries[i] = new SgbLightEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                                break;
+                            case SgbGroupEntryType.Vfx:
+                                Entries[i] = new SgbVfxEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                                 break;
                             default:
                                 //System.Diagnostics.Trace.WriteLine(string.Format("{0}: Type {1} at 0x{2:X} in {3}", Parent.File.Path, type, entryOffset, Name));

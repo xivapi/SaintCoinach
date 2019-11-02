@@ -3,35 +3,42 @@
   "defaultColumn": "PlaceName",
   "definitions": [
     {
-      "index": 2,
-      "name": "MapIndex"
+      "name": "MapCondition",
+      "converter": {
+        "type": "link",
+        "target": "MapCondition"
+      }
     },
     {
       "index": 3,
-      "name": "Hierarchy"
+      "name": "MapIndex"
     },
     {
       "index": 4,
-      "name": "MapMarkerRange"
+      "name": "Hierarchy"
     },
     {
       "index": 5,
-      "name": "Id"
+      "name": "MapMarkerRange"
     },
     {
       "index": 6,
-      "name": "SizeFactor"
+      "name": "Id"
     },
     {
       "index": 7,
-      "name": "Offset{X}"
+      "name": "SizeFactor"
     },
     {
       "index": 8,
-      "name": "Offset{Y}"
+      "name": "Offset{X}"
     },
     {
       "index": 9,
+      "name": "Offset{Y}"
+    },
+    {
+      "index": 10,
       "name": "PlaceName{Region}",
       "converter": {
         "type": "link",
@@ -39,7 +46,7 @@
       }
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "PlaceName",
       "converter": {
         "type": "link",
@@ -47,7 +54,7 @@
       }
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "PlaceName{Sub}",
       "converter": {
         "type": "link",
@@ -55,11 +62,11 @@
       }
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "DiscoveryIndex"
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "TerritoryType",
       "converter": {
         "type": "link",
@@ -67,7 +74,7 @@
       }
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "DiscoveryArrayByte"
     }
   ]

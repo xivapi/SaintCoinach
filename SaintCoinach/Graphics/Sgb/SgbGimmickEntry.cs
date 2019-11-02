@@ -19,6 +19,7 @@ namespace SaintCoinach.Graphics.Sgb {
             public Vector3 Scale;
             public int GimmickFileOffset;
             public int CollisionFileOffset;
+            // SgbGimmickEntry size is around 152 bytes?
         }
         #endregion
 

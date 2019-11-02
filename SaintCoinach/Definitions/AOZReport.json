@@ -1,0 +1,17 @@
+{
+  "sheet": "AOZReport",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Reward",
+      "converter": {
+        "type": "link",
+        "target": "AOZReportReward"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Order"
+    }
+  ]
+}

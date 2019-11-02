@@ -1,0 +1,13 @@
+{
+  "sheet": "FateTokenType",
+  "defaultColumn": "Currency",
+  "definitions": [
+    {
+      "name": "Currency",
+      "converter": {
+        "type": "link",
+        "target": "Currency"
+      }
+    }
+  ]
+}

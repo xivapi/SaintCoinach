@@ -112,6 +112,7 @@
     <Compile Include="EngineTime.cs" />
     <Compile Include="Interop\FbxExport.cs" />
     <Compile Include="Interop\HavokInterop.cs" />
+    <Compile Include="Interop\InteropAnimation.cs" />
     <Compile Include="Interop\InteropMesh.cs" />
     <Compile Include="Interop\InteropTransform.cs" />
     <Compile Include="Interop\InteropVector4.cs" />

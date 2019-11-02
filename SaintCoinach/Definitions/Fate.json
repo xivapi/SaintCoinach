@@ -52,19 +52,19 @@
       "name": "HasWorldMapIcon"
     },
     {
-      "index": 25,
+      "index": 26,
       "name": "Name"
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "Description"
     },
     {
-      "index": 27,
+      "index": 28,
       "name": "Objective"
     },
     {
-      "index": 28,
+      "index": 29,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -72,7 +72,7 @@
       }
     },
     {
-      "index": 31,
+      "index": 32,
       "name": "ArrayIndex",
       "converter": {
         "type": "link",

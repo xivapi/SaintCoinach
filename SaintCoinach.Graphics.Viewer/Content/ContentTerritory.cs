@@ -38,6 +38,11 @@ namespace SaintCoinach.Graphics.Viewer.Content {
                             _LgbPartsContainer.Add(new ContentModel(engine, asMdl.Model));
                         }
                         if (asGim != null && asGim.Gimmick != null) {
+                            var transform = Matrix.Scaling(asGim.Header.Scale.ToDx())
+                                    * Matrix.RotationX(asGim.Header.Rotation.X)
+                                    * Matrix.RotationY(asGim.Header.Rotation.Y)
+                                    * Matrix.RotationZ(asGim.Header.Rotation.Z)
+                                    * Matrix.Translation(asGim.Header.Translation.ToDx());
                             _LgbPartsContainer.Add(new ContentSgb(engine, asGim.Gimmick) {
                                 Transformation =
                                     Matrix.Scaling(asGim.Header.Scale.ToDx())

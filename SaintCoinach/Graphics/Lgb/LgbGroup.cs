@@ -17,7 +17,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public int EntryCount;
             public uint Unknown2;
             public uint Unknown3;
-            public uint Unknown4;
+            public uint FestivalId;
             public uint Unknown5;
             // Just a guess -
             // This number corresponds to the last digits of Map.Id.  In
@@ -30,6 +30,7 @@ namespace SaintCoinach.Graphics.Lgb {
             public uint Unknown8;
             public uint Unknown9;
             public uint Unknown10;
+            public uint Unknown11;
         }
         #endregion
 
@@ -46,9 +47,10 @@ namespace SaintCoinach.Graphics.Lgb {
             this.Header = buffer.ToStructure<HeaderData>(offset);
             this.Name = buffer.ReadString(offset + Header.GroupNameOffset);
 
-            //byte[] Unknown = new byte[100];
-            //System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 100);
+            //uint[] Unknown = new uint[100];
+            //System.Buffer.BlockCopy(buffer, offset + System.Runtime.InteropServices.Marshal.SizeOf<HeaderData>(), Unknown, 0, 400);
 
+            
             var entriesOffset = offset + Header.EntriesOffset;
             Entries = new ILgbEntry[Header.EntryCount];
             for(var i = 0; i < Header.EntryCount; ++i) {
@@ -61,6 +63,7 @@ namespace SaintCoinach.Graphics.Lgb {
                             Entries[i] = new LgbModelEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         case LgbEntryType.Gimmick:
+                        case LgbEntryType.SharedGroup15:
                             Entries[i] = new LgbGimmickEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         case LgbEntryType.EventObject:
@@ -71,6 +74,9 @@ namespace SaintCoinach.Graphics.Lgb {
                             break;
                         case LgbEntryType.EventNpc:
                             Entries[i] = new LgbENpcEntry(Parent.File.Pack.Collection, buffer, entryOffset);
+                            break;
+                        case LgbEntryType.Vfx:
+                            Entries[i] = new LgbVfxEntry(Parent.File.Pack.Collection, buffer, entryOffset);
                             break;
                         default:
                             // TODO: Work out other parts.

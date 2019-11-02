@@ -11,7 +11,7 @@
     },
     {
       "index": 1,
-      "name": "PlaceName",
+      "name": "TerritoryType",
       "converter": {
         "type": "link",
         "target": "TerritoryType"

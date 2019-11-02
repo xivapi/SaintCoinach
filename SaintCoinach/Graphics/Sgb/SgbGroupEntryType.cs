@@ -8,6 +8,7 @@ namespace SaintCoinach.Graphics.Sgb {
     public enum SgbGroupEntryType : int {
         Model = 0x01,
         Light = 0x03,
+        Vfx = 0x04,
         Gimmick = 0x06
     }
 }
