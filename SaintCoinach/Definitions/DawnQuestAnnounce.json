@@ -1,0 +1,32 @@
+{
+  "sheet": "DawnQuestAnnounce",
+  "definitions": [
+    {
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Content",
+      "converter": {
+        "type": "link",
+        "target": "DawnContent"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "ENPC",
+        "converter": {
+          "type": "link",
+          "target": "ENpcResident"
+        }
+      }
+    }
+  ]
+}
