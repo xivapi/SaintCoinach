@@ -2,6 +2,9 @@
   "sheet": "Buddy",
   "definitions": [
     {
+      "name": "Base"
+    },
+    {
       "index": 1,
       "name": "QuestRequirement{2}",
       "converter": {
@@ -16,6 +19,10 @@
         "type": "link",
         "target": "Quest"
       }
+    },
+    {
+      "index": 3,
+      "name": "BaseEquip"
     },
     {
       "index": 4,

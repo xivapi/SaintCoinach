@@ -7,6 +7,14 @@
         "type": "link",
         "target": "ChocoboTaxiStand"
       }
+    },
+    {
+      "index": 1,
+      "name": "Fare"
+    },
+    {
+      "index": 2,
+      "name": "TimeRequired"
     }
   ]
 }

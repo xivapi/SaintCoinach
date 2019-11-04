@@ -1,0 +1,12 @@
+{
+  "sheet": "FCCrestSymbol",
+  "definitions": [
+    {
+      "name": "ColorNum"
+    },
+    {
+      "index": 1,
+      "name": "FCRight"
+    }
+  ]
+}

@@ -1,9 +1,25 @@
 {
   "sheet": "Omen",
-  "defaultColumn": "FileName",
+  "defaultColumn": "Path",
   "definitions": [
     {
-      "name": "FileName"
+      "name": "Path"
+    },
+    {
+      "index": 1,
+      "name": "PathAlly"
+    },
+    {
+      "index": 2,
+      "name": "Type"
+    },
+    {
+      "index": 3,
+      "name": "RestrictYScale"
+    },
+    {
+      "index": 4,
+      "name": "LargeScale"
     }
   ]
 }

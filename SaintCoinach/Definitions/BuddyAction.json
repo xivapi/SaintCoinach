@@ -22,6 +22,14 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 4,
+      "name": "Reward"
+    },
+    {
+      "index": 5,
+      "name": "Sort"
     }
   ]
 }

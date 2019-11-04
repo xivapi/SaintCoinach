@@ -1,0 +1,20 @@
+{
+  "sheet": "Lobby",
+  "definitions": [
+    {
+      "name": "TYPE"
+    },
+    {
+      "index": 1,
+      "name": "PARAM"
+    },
+    {
+      "index": 2,
+      "name": "LINK"
+    },
+    {
+      "index": 3,
+      "name": "Text"
+    }
+  ]
+}

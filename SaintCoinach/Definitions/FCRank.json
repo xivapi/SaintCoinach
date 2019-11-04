@@ -1,0 +1,24 @@
+{
+  "sheet": "FCRank",
+  "definitions": [
+    {
+      "name": "NextPoint"
+    },
+    {
+      "index": 1,
+      "name": "CurrentPoint"
+    },
+    {
+      "index": 2,
+      "name": "Rights"
+    },
+    {
+      "index": 5,
+      "name": "FCActionActiveNum"
+    },
+    {
+      "index": 6,
+      "name": "FCActionStockNum"
+    }
+  ]
+}

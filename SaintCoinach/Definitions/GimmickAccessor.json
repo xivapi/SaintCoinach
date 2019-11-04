@@ -1,0 +1,20 @@
+{
+  "sheet": "GimmickAccessor",
+  "definitions": [
+    {
+      "name": "Param0"
+    },
+    {
+      "index": 1,
+      "name": "Param1"
+    },
+    {
+      "index": 2,
+      "name": "Param2"
+    },
+    {
+      "index": 3,
+      "name": "Type"
+    }
+  ]
+}

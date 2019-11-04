@@ -1,0 +1,20 @@
+{
+  "sheet": "BGMFadeType",
+  "definitions": [
+    {
+      "name": "FadeOutTime"
+    },
+    {
+      "index": 1,
+      "name": "FadeInTime"
+    },
+    {
+      "index": 2,
+      "name": "FadeInStartTime"
+    },
+    {
+      "index": 3,
+      "name": "ResumeFadeInTime"
+    }
+  ]
+}

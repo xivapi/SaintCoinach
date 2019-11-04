@@ -1,0 +1,32 @@
+{
+  "sheet": "GimmickJump",
+  "definitions": [
+    {
+      "name": "FallDamage"
+    },
+    {
+      "index": 1,
+      "name": "Height"
+    },
+    {
+      "index": 2,
+      "name": "LoopMotion",
+      "converter": {
+        "type": "link",
+        "target": "MotionTimeline"
+      }
+    },
+    {
+      "index": 3,
+      "name": "EndMotion",
+      "converter": {
+        "type": "link",
+        "target": "MotionTimeline"
+      }
+    },
+    {
+      "index": 4,
+      "name": "StartClient"
+    }
+  ]
+}

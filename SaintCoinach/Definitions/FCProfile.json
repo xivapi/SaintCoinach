@@ -3,6 +3,9 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "name": "Priority"
+    },
+    {
       "index": 1,
       "name": "Name"
     }

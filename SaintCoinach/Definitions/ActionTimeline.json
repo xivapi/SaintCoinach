@@ -3,8 +3,71 @@
   "defaultColumn": "Key",
   "definitions": [
     {
+      "name": "Type"
+    },
+    {
+      "index": 1,
+      "name": "Priority"
+    },
+    {
+      "index": 2,
+      "name": "Pause"
+    },
+    {
+      "index": 3,
+      "name": "Stance"
+    },
+    {
+      "index": 4,
+      "name": "Slot"
+    },
+    {
+      "index": 5,
+      "name": "LookAtMode"
+    },
+    {
       "index": 6,
       "name": "Key"
+    },
+    {
+      "index": 7,
+      "name": "ActionTimelineIDMode"
+    },
+    {
+      "index": 8,
+      "name": "WeaponTimeline",
+      "converter": {
+        "type": "link",
+        "target": "WeaponTimeline"
+      }
+    },
+    {
+      "index": 9,
+      "name": "LoadType"
+    },
+    {
+      "index": 10,
+      "name": "StartAttach"
+    },
+    {
+      "index": 11,
+      "name": "ResidentPap"
+    },
+    {
+      "index": 12,
+      "name": "Resident"
+    },
+    {
+      "index": 13,
+      "name": "KillUpper"
+    },
+    {
+      "index": 14,
+      "name": "IsMotionCanceledByMoving"
+    },
+    {
+      "index": 16,
+      "name": "IsLoop"
     }
   ]
 }

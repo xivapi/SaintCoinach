@@ -12,6 +12,30 @@
         "type": "link",
         "target": "NotebookDivisionCategory"
       }
+    },
+    {
+      "index": 2,
+      "name": "CraftOpeningLevel"
+    },
+    {
+      "index": 3,
+      "name": "GatheringOpeningLevel"
+    },
+    {
+      "index": 4,
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 7,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "CanUseCraft"
+      }
     }
   ]
 }

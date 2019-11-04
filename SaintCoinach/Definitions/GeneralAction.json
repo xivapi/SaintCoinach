@@ -22,6 +22,14 @@
       "name": "UnlockLink"
     },
     {
+      "index": 5,
+      "name": "Recast"
+    },
+    {
+      "index": 6,
+      "name": "UIPriority"
+    },
+    {
       "index": 7,
       "name": "Icon",
       "converter": {

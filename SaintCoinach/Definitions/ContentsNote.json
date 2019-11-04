@@ -24,8 +24,16 @@
       "name": "RequiredAmount"
     },
     {
+      "index": 4,
+      "name": "Reward[0]"
+    },
+    {
       "index": 5,
       "name": "ExpMultiplier"
+    },
+    {
+      "index": 6,
+      "name": "Reward[1]"
     },
     {
       "index": 7,

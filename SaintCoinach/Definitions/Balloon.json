@@ -3,6 +3,9 @@
   "defaultColumn": "Dialogue",
   "definitions": [
     {
+      "name": "Slowly"
+    },
+    {
       "index": 1,
       "name": "Dialogue"
     }

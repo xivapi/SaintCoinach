@@ -63,6 +63,18 @@
     {
       "index": 15,
       "name": "CastTime"
+    },
+    {
+      "index": 16,
+      "name": "CastTimeline",
+      "converter": {
+        "type": "link",
+        "target": "EventItemCastTimeline"
+      }
+    },
+    {
+      "index": 17,
+      "name": "Timeline"
     }
   ]
 }

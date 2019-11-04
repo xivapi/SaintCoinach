@@ -2,7 +2,39 @@
   "sheet": "ModelSkeleton",
   "definitions": [
     {
-      "name": "ScaleFactor"
+      "name": "Radius"
+    },
+    {
+      "index": 1,
+      "name": "Height"
+    },
+    {
+      "index": 2,
+      "name": "VFXScale"
+    },
+    {
+      "index": 11,
+      "name": "FloatHeight"
+    },
+    {
+      "index": 12,
+      "name": "FloatDown"
+    },
+    {
+      "index": 13,
+      "name": "FloatUp"
+    },
+    {
+      "index": 15,
+      "name": "MotionBlendType"
+    },
+    {
+      "index": 16,
+      "name": "LoopFlySE"
+    },
+    {
+      "index": 17,
+      "name": "AutoAttackType"
     }
   ]
 }

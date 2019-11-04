@@ -1,0 +1,60 @@
+{
+  "sheet": "PresetCameraAdjust",
+  "definitions": [
+    {
+      "name": "Hyur_M"
+    },
+    {
+      "index": 1,
+      "name": "Hyur_F"
+    },
+    {
+      "index": 2,
+      "name": "Elezen_M"
+    },
+    {
+      "index": 3,
+      "name": "Elezen_F"
+    },
+    {
+      "index": 4,
+      "name": "Lalafell_M"
+    },
+    {
+      "index": 5,
+      "name": "Lalafell_F"
+    },
+    {
+      "index": 6,
+      "name": "Miqote_M"
+    },
+    {
+      "index": 7,
+      "name": "Miqote_F"
+    },
+    {
+      "index": 8,
+      "name": "Roe_M"
+    },
+    {
+      "index": 9,
+      "name": "Roe_F"
+    },
+    {
+      "index": 10,
+      "name": "Hrothgar_M"
+    },
+    {
+      "index": 11,
+      "name": "Hrothgar_F"
+    },
+    {
+      "index": 12,
+      "name": "Viera_M"
+    },
+    {
+      "index": 13,
+      "name": "Viera_F"
+    }
+  ]
+}

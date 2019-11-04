@@ -10,6 +10,10 @@
       "name": "Bg"
     },
     {
+      "index": 2,
+      "name": "BattalionMode"
+    },
+    {
       "index": 3,
       "name": "PlaceName{Region}",
       "converter": {
@@ -50,12 +54,36 @@
       }
     },
     {
+      "index": 8,
+      "name": "ExclusiveType"
+    },
+    {
       "index": 9,
       "name": "TerritoryIntendedUse"
     },
     {
       "index": 12,
       "name": "WeatherRate"
+    },
+    {
+      "index": 15,
+      "name": "PCSearch"
+    },
+    {
+      "index": 16,
+      "name": "Stealth"
+    },
+    {
+      "index": 17,
+      "name": "Mount"
+    },
+    {
+      "index": 19,
+      "name": "BGM",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
     },
     {
       "index": 20,
@@ -94,6 +122,18 @@
         "type": "link",
         "target": "Aetheryte"
       }
+    },
+    {
+      "index": 25,
+      "name": "FixedTime"
+    },
+    {
+      "index": 26,
+      "name": "Resident"
+    },
+    {
+      "index": 27,
+      "name": "AchievementIndex"
     },
     {
       "index": 28,

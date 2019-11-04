@@ -1,0 +1,12 @@
+{
+  "sheet": "WeaponTimeline",
+  "definitions": [
+    {
+      "name": "File"
+    },
+    {
+      "index": 1,
+      "name": "NextWeaponTimeline"
+    }
+  ]
+}

@@ -215,6 +215,10 @@
       "name": "Order"
     },
     {
+      "index": 19,
+      "name": "Padding"
+    },
+    {
       "index": 20,
       "name": "AchievementHideCondition",
       "converter": {
