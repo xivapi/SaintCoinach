@@ -10,6 +10,14 @@
       }
     },
     {
+      "index": 1,
+      "name": "MinLevel"
+    },
+    {
+      "index": 2,
+      "name": "MaxLevel"
+    },
+    {
       "index": 3,
       "name": "Emote",
       "converter": {
