@@ -6,6 +6,10 @@
       "name": "EurekaFate"
     },
     {
+      "index": 1,
+      "name": "Rule"
+    },
+    {
       "index": 2,
       "name": "Location"
     },
@@ -26,6 +30,14 @@
       }
     },
     {
+      "index": 6,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "TypeToDoValue"
+      }
+    },
+    {
       "index": 9,
       "name": "Icon{Objective}",
       "converter": {
@@ -40,6 +52,13 @@
       }
     },
     {
+      "index": 11,
+      "name": "IconInactive{Map}",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
       "index": 12,
       "name": "Music",
       "converter": {
@@ -48,8 +67,40 @@
       }
     },
     {
+      "index": 13,
+      "name": "LGBGuardNPCLocation"
+    },
+    {
+      "index": 14,
+      "name": "ScreenImage{Accept}",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    },
+    {
+      "index": 15,
+      "name": "ScreenImage{Complete}",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    },
+    {
+      "index": 16,
+      "name": "ScreenImage{Failed}",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    },
+    {
       "index": 17,
       "name": "HasWorldMapIcon"
+    },
+    {
+      "index": 18,
+      "name": "IsQuest"
     },
     {
       "index": 26,
