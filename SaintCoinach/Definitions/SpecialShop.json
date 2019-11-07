@@ -152,6 +152,10 @@
       }
     },
     {
+      "index": 1861,
+      "name": "UseCurrencyType",
+    },
+    {
       "index": 1862,
       "name": "Quest{Unlock}",
       "converter": {
@@ -161,7 +165,7 @@
     },
     {
       "index": 1863,
-      "name": "NotCompleteText",
+      "name": "CompleteText",
       "converter": {
         "type": "link",
         "target": "DefaultTalk"
@@ -169,7 +173,7 @@
     },
     {
       "index": 1864,
-      "name": "CompleteText",
+      "name": "NotCompleteText",
       "converter": {
         "type": "link",
         "target": "DefaultTalk"
