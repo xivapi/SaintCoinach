@@ -2,6 +2,13 @@
   "sheet": "DescriptionPage",
   "definitions": [
     {
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
       "index": 1,
       "name": "Text[1]",
       "converter": {
