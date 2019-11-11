@@ -3,6 +3,9 @@
   "defaultColumn": "Item{Result}",
   "definitions": [
     {
+      "name": "Number",
+    },
+    {
       "index": 1,
       "name": "CraftType",
       "converter": {

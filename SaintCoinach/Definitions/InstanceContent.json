@@ -50,6 +50,14 @@
       "name": "Order"
     },
     {
+      "index": 10,
+      "name": "Colosseum",
+      "converter": {
+        "type": "link",
+        "target": "Colosseum"
+      }
+    },
+    {
       "index": 12,
       "name": "InstanceContentTextData{Boss}{Start}",
       "converter": {
