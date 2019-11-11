@@ -1,10 +1,10 @@
 {
   "sheet": "AetheryteSystemDefine",
-  "defaultColumn": "name",
+  "defaultColumn": "Text",
   "definitions": [
     {
       "name": "Text"
-    }
+    },
     {
       "index": 1,
       "name": "DefineValue"

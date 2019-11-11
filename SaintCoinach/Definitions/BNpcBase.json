@@ -57,12 +57,12 @@
       }
     },
     {
-      "index": 7,
-      "name": "SEPack",
-    },
-    {
       "index": 8,
       "name": "Special",
+    },
+    {
+      "index": 9,
+      "name": "SEPack",
     },
     {
       "index": 11,
@@ -85,7 +85,7 @@
       "name": "IsTargetLine",
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "IsDisplayLevel",
     }
   ]
