@@ -23,7 +23,7 @@
     },
     {
       "index": 4,
-      "name": "Quest",
+      "name": "QuestUnlock",
       "converter": {
         "type": "link",
         "target": "Quest"
@@ -31,11 +31,35 @@
     },
     {
       "index": 7,
-      "type": "repeat",
-      "count": 8,
-      "definition": {
-        "name": "CanUseCraft"
-      }
+      "name": "CRPCraft"
+    },
+    {
+      "index": 8,
+      "name": "BSMCraft"
+    },
+    {
+      "index": 9,
+      "name": "ARMCraft"
+    },
+    {
+      "index": 10,
+      "name": "GSMCraft"
+    },
+    {
+      "index": 11,
+      "name": "LTWCraft"
+    },
+    {
+      "index": 12,
+      "name": "WVRCraft"
+    },
+    {
+      "index": 13,
+      "name": "ALCCraft"
+    },
+    {
+      "index": 14,
+      "name": "CULCraft"
     }
   ]
 }
