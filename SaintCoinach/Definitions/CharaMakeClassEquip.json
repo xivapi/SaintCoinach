@@ -1,0 +1,40 @@
+{
+  "sheet": "CharaMakeClassEquip",
+  "definitions": [
+    {
+      "name": "Helmet"
+    },
+    {
+      "index": 1,
+      "name": "Top"
+    },
+    {
+      "index": 2,
+      "name": "Glove"
+    },
+    {
+      "index": 3,
+      "name": "Down"
+    },
+    {
+      "index": 4,
+      "name": "Shoes"
+    },
+    {
+      "index": 5,
+      "name": "Weapon"
+    },
+    {
+      "index": 6,
+      "name": "SubWeapon"
+    },
+    {
+      "index": 7,
+      "name": "Class",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    }
+  ]
+}

@@ -15,6 +15,14 @@
     {
       "index": 3,
       "name": "Variant"
+    },
+    {
+      "index": 4,
+      "name": "SEPack"
+    },
+    {
+      "index": 7,
+      "name": "PapVariation"
     }
   ]
 }

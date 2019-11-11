@@ -1,0 +1,72 @@
+{
+  "sheet": "PresetCamera",
+  "definitions": [
+    {
+      "name": "EID"
+    },
+    {
+      "index": 1,
+      "name": "PosX"
+    },
+    {
+      "index": 2,
+      "name": "PosY"
+    },
+    {
+      "index": 3,
+      "name": "PosZ"
+    },
+    {
+      "index": 4,
+      "name": "Elezen"
+    },
+    {
+      "index": 5,
+      "name": "Lalafell"
+    },
+    {
+      "index": 6,
+      "name": "Miqote"
+    },
+    {
+      "index": 7,
+      "name": "Roe"
+    },
+    {
+      "index": 8,
+      "name": "Hrothgar"
+    },
+    {
+      "index": 9,
+      "name": "Viera"
+    },
+    {
+      "index": 10,
+      "name": "Hyur_F"
+    },
+    {
+      "index": 11,
+      "name": "Elezen_F"
+    },
+    {
+      "index": 12,
+      "name": "Lalafell_F"
+    },
+    {
+      "index": 13,
+      "name": "Miqote_F"
+    },
+    {
+      "index": 14,
+      "name": "Roe_F"
+    },
+    {
+      "index": 15,
+      "name": "Hrothgar_F"
+    },
+    {
+      "index": 16,
+      "name": "Viera_F"
+    }
+  ]
+}

@@ -9,6 +9,10 @@
       "name": "AdditionalActions"
     },
     {
+      "index": 2,
+      "name": "ApplyAction"
+    },
+    {
       "index": 3,
       "name": "ScaledQuestXP"
     },
@@ -37,8 +41,20 @@
       "name": "HuntingLogExpReward"
     },
     {
+      "index": 10,
+      "name": "MonsterNoteSeals"
+    },
+    {
       "index": 11,
       "name": "ItemLevelSync"
+    },
+    {
+      "index": 12,
+      "name": "ProperDungeon"
+    },
+    {
+      "index": 13,
+      "name": "ProperGuildOrder"
     },
     {
       "index": 14,

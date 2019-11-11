@@ -9,12 +9,20 @@
       }
     },
     {
+      "index": 1,
+      "name": "Category"
+    },
+    {
       "index": 2,
       "name": "MainCommandCategory",
       "converter": {
         "type": "link",
         "target": "MainCommandCategory"
       }
+    },
+    {
+      "index": 3,
+      "name": "SortID"
     },
     {
       "index": 4,

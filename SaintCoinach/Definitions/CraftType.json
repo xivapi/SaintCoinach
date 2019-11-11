@@ -3,6 +3,13 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "name": "MainPhysical"
+    },
+    {
+      "index": 1,
+      "name": "SubPhysical"
+    },
+    {
       "index": 2,
       "name": "Name"
     }

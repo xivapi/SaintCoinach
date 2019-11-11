@@ -2,6 +2,9 @@
   "sheet": "ContentNpcTalk",
   "definitions": [
     {
+      "name": "Type"
+    },
+    {
       "index": 1,
       "type": "repeat",
       "count": 8,

@@ -66,6 +66,34 @@
       }
     },
     {
+      "index": 21,
+      "name": "ExitMoveDist"
+    },
+    {
+      "index": 22,
+      "name": "ExitMoveSpeed"
+    },
+    {
+      "index": 24,
+      "name": "IsEmote"
+    },
+    {
+      "index": 25,
+      "name": "EquipHead"
+    },
+    {
+      "index": 26,
+      "name": "EquipBody"
+    },
+    {
+      "index": 27,
+      "name": "EquipLeg"
+    },
+    {
+      "index": 28,
+      "name": "EquipFoot"
+    },
+    {
       "index": 29,
       "name": "Order"
     },
@@ -75,6 +103,22 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 31,
+      "name": "UIPriority"
+    },
+    {
+      "index": 32,
+      "name": "RadiusRate"
+    },
+    {
+      "index": 33,
+      "name": "BaseMotionSpeed_Run"
+    },
+    {
+      "index": 34,
+      "name": "BaseMotionSpeed_Walk"
     },
     {
       "index": 36,
@@ -91,6 +135,10 @@
     {
       "index": 38,
       "name": "IsAirborne"
+    },
+    {
+      "index": 39,
+      "name": "ExHotbarEnableConfig"
     },
     {
       "index": 40,

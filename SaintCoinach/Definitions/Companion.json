@@ -38,12 +38,72 @@
       }
     },
     {
+      "index": 9,
+      "name": "Scale"
+    },
+    {
+      "index": 10,
+      "name": "InactiveIdle[0]"
+    },
+    {
+      "index": 11,
+      "name": "InactiveIdle[1]"
+    },
+    {
+      "index": 12,
+      "name": "InactiveBattle"
+    },
+    {
+      "index": 12,
+      "name": "InactiveWandering"
+    },
+    {
       "index": 14,
       "name": "Behavior",
       "converter": {
         "type": "link",
         "target": "CompanionMove"
       }
+    },
+    {
+      "index": 15,
+      "name": "Special"
+    },
+    {
+      "index": 16,
+      "name": "WanderingWait"
+    },
+    {
+      "index": 17,
+      "name": "Priority"
+    },
+    {
+      "index": 18,
+      "name": "Roulette"
+    },
+    {
+      "index": 20,
+      "name": "Battle"
+    },
+    {
+      "index": 21,
+      "name": "LookAt"
+    },
+    {
+      "index": 22,
+      "name": "Poke"
+    },
+    {
+      "index": 23,
+      "name": "Enemy"
+    },
+    {
+      "index": 24,
+      "name": "Stroke"
+    },
+    {
+      "index": 25,
+      "name": "Clapping"
     },
     {
       "index": 26,

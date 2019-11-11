@@ -2,6 +2,13 @@
   "sheet": "ENpcBase",
   "definitions": [
     {
+      "name": "EventHandler"
+    },
+    {
+      "index": 1,
+      "name": "Important"
+    },
+    {
       "index": 2,
       "type": "repeat",
       "count": 32,
@@ -301,12 +308,24 @@
       }
     },
     {
+      "index": 90,
+      "name": "Invisibility"
+    },
+    {
       "index": 91,
       "name": "Balloon",
       "converter": {
         "type": "link",
         "target": "Balloon"
       }
+    },
+    {
+      "index": 92,
+      "name": "NotRewriteHeight"
+    },
+    {
+      "index": 93,
+      "name": "DefaultBalloon"
     }
   ]
 }
