@@ -6,6 +6,22 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 1,
+      "name": "Jingle",
+      "converter": {
+        "type": "link",
+        "target": "Jingle"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Type"
+    },
+    {
+      "index": 3,
+      "name": "Lang"
     }
   ]
 }

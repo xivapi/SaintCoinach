@@ -2,6 +2,13 @@
   "sheet": "BGMFade",
   "definitions": [
     {
+      "name": "SceneOut"
+    },
+    {
+      "index": 1,
+      "name": "SceneIn"
+    },
+    {
       "index": 2,
       "name": "BGMFadeType",
       "converter": {

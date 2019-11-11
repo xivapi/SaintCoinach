@@ -5,5 +5,9 @@
     {
       "name": "Text"
     }
+    {
+      "index": 1,
+      "name": "DefineValue"
+    }
   ]
 }

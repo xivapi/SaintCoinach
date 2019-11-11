@@ -31,6 +31,14 @@
         "type": "link",
         "target": "Pet"
       }
+    },
+    {
+      "index": 5,
+      "name": "MasterOrder"
+    },
+    {
+      "index": 6,
+      "name": "DisableOrder"
     }
   ]
 }

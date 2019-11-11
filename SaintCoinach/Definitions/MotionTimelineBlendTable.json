@@ -1,0 +1,28 @@
+{
+  "sheet": "MotionTimelineBlendTable",
+  "definitions": [
+    {
+      "name": "DestBlendGroup"
+    },
+    {
+      "index": 1,
+      "name": "SrcBlendGroup"
+    },
+    {
+      "index": 2,
+      "name": "BlendFrame_PC"
+    },
+    {
+      "index": 3,
+      "name": "BlendFram_TypeA"
+    },
+    {
+      "index": 4,
+      "name": "BlendFram_TypeB"
+    },
+    {
+      "index": 5,
+      "name": "BlendFram_TypeC"
+    }
+  ]
+}

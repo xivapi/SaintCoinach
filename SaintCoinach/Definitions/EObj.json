@@ -3,8 +3,16 @@
   "defaultColumn": "Singular",
   "definitions": [
     {
+      "index": 8,
+      "name": "PopType"
+    },
+    {
       "index": 9,
       "name": "Data"
+    },
+    {
+      "index": 10,
+      "name": "Invisibility"
     },
     {
       "index": 11,
@@ -13,6 +21,22 @@
         "type": "link",
         "target": "ExportedSG"
       }
+    },
+    {
+      "index": 12,
+      "name": "EyeCollision"
+    },
+    {
+      "index": 13,
+      "name": "DirectorControl"
+    },
+    {
+      "index": 14,
+      "name": "Target"
+    },
+    {
+      "index": 15,
+      "name": "EventHighAddition"
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "sheet": "CutsceneMotion",
+  "definitions": [
+    {
+      "name": "WALK_LOOP_SPEED"
+    },
+    {
+      "index": 1,
+      "name": "RUN_LOOP_SPEED"
+    },
+    {
+      "index": 2,
+      "name": "SLOWWALK_LOOP_SPEED"
+    },
+    {
+      "index": 3,
+      "name": "SLOWRUN_LOOP_SPEED"
+    },
+    {
+      "index": 4,
+      "name": "BATTLEWALK_LOOP_SPEED"
+    },
+    {
+      "index": 5,
+      "name": "BATTLERUN_LOOP_SPEED"
+    },
+    {
+      "index": 6,
+      "name": "DASH_LOOP_SPEED"
+    },
+    {
+      "index": 7,
+      "name": "TURN_CW90_FRAME"
+    },
+    {
+      "index": 8,
+      "name": "TURN_CCW90_FRAME"
+    },
+    {
+      "index": 9,
+      "name": "TURN_CW180_FRAME"
+    },
+    {
+      "index": 10,
+      "name": "TURN_CCW180_FRAME"
+    }
+  ]
+}

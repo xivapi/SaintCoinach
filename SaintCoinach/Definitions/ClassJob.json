@@ -22,6 +22,10 @@
       "name": "ExpArrayIndex"
     },
     {
+      "index": 5,
+      "name": "BattleClassIndex"
+    },
+    {
       "index": 7,
       "name": "JobIndex"
     },
@@ -87,6 +91,14 @@
       "converter": {
         "type": "link",
         "target": "Town"
+      }
+    },
+    {
+      "index": 32,
+      "name": "MonsterNote",
+      "converter": {
+        "type": "link",
+        "target": "MonsterNote"
       }
     },
     {

@@ -1,0 +1,24 @@
+{
+  "sheet": "LegacyQuest",
+  "definitions": [
+    {
+      "name": "LegacyQuestID"
+    },
+    {
+      "index": 1,
+      "name": "Text"
+    },
+    {
+      "index": 2,
+      "name": "String"
+    },
+    {
+      "index": 3,
+      "name": "SortKey"
+    },
+    {
+      "index": 4,
+      "name": "Genre"
+    }
+  ]
+}

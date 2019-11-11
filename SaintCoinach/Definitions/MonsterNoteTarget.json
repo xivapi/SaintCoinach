@@ -17,6 +17,14 @@
       }
     },
     {
+      "index": 2,
+      "name": "Town",
+      "converter": {
+        "type": "link",
+        "target": "Town"
+      }
+    },
+    {
       "index": 3,
       "type": "repeat",
       "count": 3,

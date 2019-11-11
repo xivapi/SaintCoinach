@@ -2,6 +2,9 @@
   "sheet": "CutScreenImage",
   "definitions": [
     {
+      "name": "Type"
+    },
+    {
       "index": 1,
       "name": "Image"
     }

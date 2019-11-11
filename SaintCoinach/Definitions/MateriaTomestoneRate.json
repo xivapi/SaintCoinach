@@ -1,0 +1,9 @@
+{
+  "sheet": "MateriaTomestoneRate",
+  "defaultColumn": "Rate",
+  "definitions": [
+    {
+      "name": "Rate"
+    }
+  ]
+}

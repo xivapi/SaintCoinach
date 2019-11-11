@@ -10,6 +10,14 @@
       }
     },
     {
+      "index": 1,
+      "name": "PriorityCategoryUI"
+    },
+    {
+      "index": 2,
+      "name": "PriorityUI"
+    },
+    {
       "index": 3,
       "name": "MapIndex"
     },
@@ -66,6 +74,10 @@
       "name": "DiscoveryIndex"
     },
     {
+      "index": 14,
+      "name": "DiscoveryFlag"
+    },
+    {
       "index": 15,
       "name": "TerritoryType",
       "converter": {
@@ -76,6 +88,10 @@
     {
       "index": 16,
       "name": "DiscoveryArrayByte"
+    }
+    {
+      "index": 17,
+      "name": "IsEvent"
     }
   ]
 }

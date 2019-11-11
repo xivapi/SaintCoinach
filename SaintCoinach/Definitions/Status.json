@@ -69,6 +69,14 @@
       "name": "IsPermanent"
     },
     {
+      "index": 17,
+      "name": "PartyListPriority"
+    },
+    {
+      "index": 23,
+      "name": "Log"
+    },
+    {
       "index": 24,
       "name": "IsFcBuff"
     },

@@ -18,6 +18,10 @@
       "name": "FishingSpotCategory"
     },
     {
+      "index": 4,
+      "name": "Rare"
+    },
+    {
       "index": 5,
       "name": "TerritoryType",
       "converter": {

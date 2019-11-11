@@ -1,0 +1,41 @@
+{
+  "sheet": "EmoteMode",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "StartEmote",
+      "converter": {
+        "type": "link",
+        "target": "Emote"
+      }
+    },
+    {
+      "index": 1,
+      "name": "EndEmote",
+      "converter": {
+        "type": "link",
+        "target": "Emote"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Move"
+    },
+    {
+      "index": 3,
+      "name": "Camera"
+    },
+    {
+      "index": 4,
+      "name": "EndOnRotate"
+    },
+    {
+      "index": 5,
+      "name": "EndOnEmote"
+    },
+    {
+      "index": 6,
+      "name": "ConditionMode"
+    }
+  ]
+}
