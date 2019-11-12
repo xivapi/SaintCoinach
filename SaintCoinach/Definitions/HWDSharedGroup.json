@@ -1,0 +1,17 @@
+{
+  "sheet": "HWDSharedGroup",
+  "defaultColumn": "LGB",
+  "definitions": [
+    {
+      "name": "LGB"
+    },
+    {
+      "index": 1,
+      "name": "Param",
+      "converter": {
+        "type": "link",
+        "target": "HWDSharedGroupControlParam"
+      }
+    }
+  ]
+}

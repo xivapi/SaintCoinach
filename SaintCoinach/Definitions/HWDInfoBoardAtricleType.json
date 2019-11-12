@@ -1,0 +1,10 @@
+{
+  "sheet": "HWDInfoBoardAtricleType",
+  "defaultColumn": "Type",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Type"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sheet": "HWDInfoBoardAtricle",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Type",
+      "converter": {
+        "type": "link",
+        "target": "HWDInfoBoardAtricleType"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Text"
+    }
+  ]
+}

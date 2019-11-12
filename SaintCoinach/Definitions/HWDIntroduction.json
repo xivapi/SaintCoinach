@@ -1,0 +1,13 @@
+{
+  "sheet": "HWDIntroduction",
+  "defaultColumn": "CustomTalk",
+  "definitions": [
+    {
+      "name": "CustomTalk",
+      "converter": {
+        "type": "link",
+        "target": "CustomTalk"
+      }
+    }
+  ]
+}

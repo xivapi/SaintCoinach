@@ -1,0 +1,13 @@
+{
+  "sheet": "HWDDevLively",
+  "defaultColumn": "ENPC",
+  "definitions": [
+    {
+      "name": "ENPC",
+      "converter": {
+        "type": "link",
+        "target": "ENpcBase"
+      }
+    }
+  ]
+}
