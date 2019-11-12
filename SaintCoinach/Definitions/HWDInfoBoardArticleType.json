@@ -1,9 +1,8 @@
 {
-  "sheet": "HWDInfoBoardAtricleType",
+  "sheet": "HWDInfoBoardArticleType",
   "defaultColumn": "Type",
   "definitions": [
     {
-      "index": 2,
       "name": "Type"
     }
   ]

@@ -1,12 +1,12 @@
 {
-  "sheet": "HWDInfoBoardAtricle",
+  "sheet": "HWDInfoBoardArticle",
   "defaultColumn": "Text",
   "definitions": [
     {
       "name": "Type",
       "converter": {
         "type": "link",
-        "target": "HWDInfoBoardAtricleType"
+        "target": "HWDInfoBoardArticleType"
       }
     },
     {
