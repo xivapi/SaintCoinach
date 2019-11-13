@@ -1,0 +1,13 @@
+{
+  "sheet": "HWDLevelChangeDeception",
+  "defaultColumn": "Image",
+  "definitions": [
+    {
+      "name": "Image",
+      "converter": {
+        "type": "link",
+        "target": "ScreenImage"
+      }
+    }
+  ]
+}

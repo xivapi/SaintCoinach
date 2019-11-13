@@ -1,0 +1,17 @@
+{
+  "sheet": "HWDInfoBoardArticle",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Type",
+      "converter": {
+        "type": "link",
+        "target": "HWDInfoBoardArticleType"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Text"
+    }
+  ]
+}

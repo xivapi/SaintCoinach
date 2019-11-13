@@ -1,0 +1,17 @@
+{
+  "sheet": "HWDCrafterSupply",
+  "defaultColumn": "Item[0]",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Item",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    }
+  ]
+}
