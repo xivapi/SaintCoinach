@@ -1,15 +1,102 @@
 {
   "sheet": "HWDCrafterSupply",
-  "defaultColumn": "Item[0]",
   "definitions": [
     {
+      "name": "CRP"
+    },
+    {
+      "index": 1,
+      "name": "BSM"
+    },
+    {
+      "index": 2,
+      "name": "ARM"
+    },
+    {
+      "index": 3,
+      "name": "GSM"
+    },
+    {
+      "index": 4,
+      "name": "LTW"
+    },
+    {
+      "index": 5,
+      "name": "WVR"
+    },
+    {
+      "index": 6,
+      "name": "ALC"
+    },
+    {
+      "index": 7,
+      "name": "CUL"
+    },
+    {
+      "index": 16,
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "Item",
+        "name": "Collectable{Level}"
+      }
+    },
+    {
+      "index": 48,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "BaseCollectable{Rating}"
+      }
+    },
+    {
+      "index": 64,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "MidBaseCollectable{Rating}"
+      }
+    },
+    {
+      "index": 80,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "HighBaseCollectable{Rating}"
+      }
+    },
+    {
+      "index": 96,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "BaseCollectable{Reward}",
         "converter": {
           "type": "link",
-          "target": "Item"
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 112,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "MidCollectable{Reward}",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 128,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "HighCollectable{Reward}",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
         }
       }
     }
