@@ -3,8 +3,55 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "name": "AetherpoolArm",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonEquipment"
+      }
+    },
+    {
+      "index": 1,
+      "name": "AetherpoolArmor",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonEquipment"
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 16,
+      "definition": {
+        "name": "PomanderSlot",
+        "converter": {
+          "type": "link",
+          "target": "DeepDungeonItem"
+        }
+      }
+    },
+    {
+      "index": 18,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "MagiciteSlot",
+        "converter": {
+          "type": "link",
+          "target": "DeepDungeonMagicStone"
+        }
+      }
+    },
+    {
       "index": 22,
       "name": "Name"
+    },
+    {
+      "index": 23,
+      "name": "ContentFinderCondition{Start}",
+      "converter": {
+        "type": "link",
+        "target": "ContentFinderCondition"
+      }
     }
   ]
 }
