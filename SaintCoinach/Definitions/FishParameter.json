@@ -15,7 +15,11 @@
     },
     {
       "index": 2,
-      "name": "GatheringItemLevel"
+      "name": "GatheringItemLevel",
+      "converter": {
+        "type": "link",
+        "target": "GatheringItemLevelConvertTable"
+      }
     },
     {
       "index": 3,
