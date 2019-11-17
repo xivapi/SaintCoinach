@@ -2,42 +2,22 @@
   "sheet": "HWDCrafterSupply",
   "definitions": [
     {
-      "name": "CRP"
-    },
-    {
-      "index": 1,
-      "name": "BSM"
-    },
-    {
-      "index": 2,
-      "name": "ARM"
-    },
-    {
-      "index": 3,
-      "name": "GSM"
-    },
-    {
-      "index": 4,
-      "name": "LTW"
-    },
-    {
-      "index": 5,
-      "name": "WVR"
-    },
-    {
-      "index": 6,
-      "name": "ALC"
-    },
-    {
-      "index": 7,
-      "name": "CUL"
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Item{TradeIn}",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
     },
     {
       "index": 16,
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "Collectable{Level}"
+        "name": "Level"
       }
     },
     {
