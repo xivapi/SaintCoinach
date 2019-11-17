@@ -9,8 +9,11 @@
       "index": 1,
       "name": "Item",
       "converter": {
-        "type": "link",
-        "target": "Item"
+        "type": "multiref",
+        "targets": [
+          "EventItem",
+          "Item"
+        ]
       }
     },
     {
