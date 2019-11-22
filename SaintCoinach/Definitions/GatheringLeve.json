@@ -2,6 +2,17 @@
   "sheet": "GatheringLeve",
   "definitions": [
     {
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Route",
+        "converter": {
+          "type": "link",
+          "target": "GatheringLeveRoute"
+        }
+      }
+    },
+    {
       "index": 4,
       "name": "RequiredItem[1]",
       "converter": {
@@ -20,6 +31,34 @@
         "type": "link",
         "target": "EventItem"
       }
+    },
+    {
+      "index": 13,
+      "name": "Rule",
+      "converter": {
+        "type": "link",
+        "target": "GatheringLeveRule"
+      }
+    },
+    {
+      "index": 15,
+      "name": "Objective[0]"
+    },
+    {
+      "index": 16,
+      "name": "Objective[1]"
+    },
+    {
+      "index": 17,
+      "name": "BNpcEntry",
+      "converter": {
+        "type": "link",
+        "target": "GatheringLeveBNpcEntry"
+      }
+    },
+    {
+      "index": 18,
+      "name": "UseSecondaryTool"
     }
   ]
 }

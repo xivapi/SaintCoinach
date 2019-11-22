@@ -15,7 +15,7 @@
             }
           },
           {
-            "name": "Level",
+            "name": "PopRange",
             "converter": {
               "type": "link",
               "target": "Level"
