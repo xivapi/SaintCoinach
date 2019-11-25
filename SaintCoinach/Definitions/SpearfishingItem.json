@@ -22,6 +22,14 @@
       }
     },
     {
+      "index": 3,
+      "name": "FishingRecordType",
+      "converter": {
+      	"type": "link",
+      	"target": "FishingRecordType"
+      }
+    },
+    {
       "index": 4,
       "name": "TerritoryType",
       "converter": {

@@ -29,6 +29,7 @@ namespace Godbert.ViewModels {
         public bool IsFrench { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.French; } }
         public bool IsGerman { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.German; } }
 
+        public bool SortByOffsets { get { return Settings.Default.SortByOffsets;} }
         public bool ShowOffsets { get { return Settings.Default.ShowOffsets; } }
         #endregion
 
@@ -67,11 +68,13 @@ namespace Godbert.ViewModels {
         private ICommand _GameLocationCommand;
         private ICommand _NewWindowCommand;
         private ICommand _ShowOffsetsCommand;
+        private ICommand _SortByOffsetsCommand;
 
         public ICommand LanguageCommand { get { return _LanguageCommand ?? (_LanguageCommand = new Commands.DelegateCommand<SaintCoinach.Ex.Language>(OnLanguage)); } }
         public ICommand GameLocationCommand { get { return _GameLocationCommand ?? (_GameLocationCommand = new Commands.DelegateCommand(OnGameLocation)); } }
         public ICommand NewWindowCommand { get { return _NewWindowCommand ?? (_NewWindowCommand = new Commands.DelegateCommand(OnNewWindowCommand)); } }
         public ICommand ShowOffsetsCommand { get { return _ShowOffsetsCommand ?? (_ShowOffsetsCommand = new Commands.DelegateCommand(OnShowOffsetsCommand)); } }
+        public ICommand SortByOffsetsCommand { get { return _SortByOffsetsCommand ?? (_SortByOffsetsCommand= new Commands.DelegateCommand(OnSortByOffsetsCommand)); } }
 
         private void OnLanguage(SaintCoinach.Ex.Language newLanguage) {
             Realm.GameData.ActiveLanguage = newLanguage;
@@ -115,6 +118,14 @@ namespace Godbert.ViewModels {
             Settings.Default.ShowOffsets = !Settings.Default.ShowOffsets;
 
             OnPropertyChanged(() => ShowOffsets);
+
+            DataGridChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnSortByOffsetsCommand() {
+            Settings.Default.SortByOffsets = !Settings.Default.SortByOffsets;
+
+            OnPropertyChanged(() => SortByOffsets);
 
             DataGridChanged?.Invoke(this, EventArgs.Empty);
         }

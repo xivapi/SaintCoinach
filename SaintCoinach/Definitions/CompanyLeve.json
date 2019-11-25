@@ -2,16 +2,75 @@
   "sheet": "CompanyLeve",
   "definitions": [
     {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Time"
+      }
+    },
+    {
+      "index": 8,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDo"
+      }
+    },
+    {
+      "index": 16,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "EnemyLevel"
+      }
+    },
+    {
+      "index": 24,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "BNpcName",
+        "converter": {
+          "type": "link",
+          "target": "BNpcName"
+        }
+      }
+    },
+    {
       "index": 32,
-      "name": "EventItem",
-      "converter": {
-        "type": "link",
-        "target": "EventItem"
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ItemsInvolved",
+        "converter": {
+          "type": "link",
+          "target": "EventItem"
+        }
       }
     },
     {
       "index": 40,
-      "name": "EventItem{Amount}"
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ItemsInvolvedQty"
+      }
+    },
+    {
+      "index": 48,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ItemDropRate"
+      }
+    },
+    {
+      "index": 56,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoNumberInvolved"
+      }
     },
     {
       "index": 176,

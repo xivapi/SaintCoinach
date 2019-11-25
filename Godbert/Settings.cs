@@ -50,5 +50,6 @@ namespace Godbert {
         public string FilterSheetTerm;
         public string FilterDataTerm;
         public bool ShowOffsets;
+        public bool SortByOffsets;
     }
 }
