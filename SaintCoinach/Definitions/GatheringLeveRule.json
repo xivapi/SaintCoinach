@@ -1,0 +1,9 @@
+{
+  "sheet": "GatheringLeveRule",
+  "defaultColumn": "Rule",
+  "definitions": [
+    {
+      "name": "Rule"
+    }
+  ]
+}

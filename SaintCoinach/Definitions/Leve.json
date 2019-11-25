@@ -26,12 +26,28 @@
       }
     },
     {
+      "index": 4,
+      "name": "Town",
+      "converter": {
+        "type": "link",
+        "target": "Town"
+      }
+    },
+    {
       "index": 5,
       "name": "ClassJobLevel"
     },
     {
+      "index": 6,
+      "name": "TimeLimit"
+    },
+    {
       "index": 7,
       "name": "AllowanceCost"
+    },
+    {
+      "index": 8,
+      "name": "Evaluation"
     },
     {
       "index": 9,
@@ -94,6 +110,18 @@
       }
     },
     {
+      "index": 18,
+      "name": "CanCancel"
+    },
+    {
+      "index": 19,
+      "name": "MaxDifficulty"
+    },
+    {
+      "index": 20,
+      "name": "ExpFactor"
+    },
+    {
       "index": 21,
       "name": "ExpReward"
     },
@@ -139,6 +167,10 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 28,
+      "name": "LockedLeve"
     },
     {
       "index": 29,
