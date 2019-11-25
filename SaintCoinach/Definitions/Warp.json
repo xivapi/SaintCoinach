@@ -56,6 +56,22 @@
         "type": "link",
         "target": "WarpLogic"
       }
+    },
+    {
+      "index": 7,
+      "name": "StartCutscene",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
+    },
+    {
+      "index": 8,
+      "name": "EndCutscene",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
     }
   ]
 }

@@ -2,12 +2,19 @@
   "sheet": "GatheringPoint",
   "definitions": [
     {
+      "name": "Type"
+    },
+    {
       "index": 1,
       "name": "GatheringPointBase",
       "converter": {
         "type": "link",
         "target": "GatheringPointBase"
       }
+    },
+    {
+      "index": 2,
+      "name": "Count"
     },
     {
       "index": 3,
