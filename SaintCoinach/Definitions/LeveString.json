@@ -1,0 +1,9 @@
+{
+  "sheet": "LeveString",
+  "defaultColumn": "Objective",
+  "definitions": [
+    {
+      "name": "Objective"
+    }
+  ]
+}
