@@ -2555,6 +2555,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\GatheringLeveRule.json">
+    <Content Include="Definitions\LeveString.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\BattleLeveRule.json">
