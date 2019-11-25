@@ -49,6 +49,9 @@ namespace Godbert.Controls {
                 //prevent multiple enumeration
                 var columns = newValue.Header.Columns.ToList();
 
+                if (Settings.Default.SortByOffsets)
+                    columns.Sort((x, y) => x.Offset.CompareTo(y.Offset));
+
                 ColumnSetToRaw = new bool[columns.Count];
 
                 Columns.Add(new RawDataGridKeyColumn(keyPath) { CanUserSort = true });

@@ -39,6 +39,9 @@
                 <MenuItem Header="Show Offsets"
                           IsChecked="{Binding Path=ShowOffsets, Mode=OneWay}"
                           Command="{Binding Path=ShowOffsetsCommand}" />
+                <MenuItem Header="Sort by Offsets"
+                          IsChecked="{Binding Path=SortByOffsets, Mode=OneWay}"
+                          Command="{Binding Path=SortByOffsetsCommand}" />
             </MenuItem>
         </Menu>
         <TabControl>
