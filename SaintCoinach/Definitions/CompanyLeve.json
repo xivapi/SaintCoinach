@@ -13,7 +13,14 @@
       "type": "repeat",
       "count": 8,
       "definition": {
-        "name": "ToDo"
+        "name": "BaseID",
+        "converter": {
+          "type": "multiref",
+          "targets": [
+            "EventItem",
+            "BNpcBase"
+          ]
+        }
       }
     },
     {
@@ -73,12 +80,24 @@
       }
     },
     {
+      "index": 64,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoParam"
+      }
+    },
+    {
       "index": 176,
-      "name": "CompanyLeveRule",
+      "name": "Rule",
       "converter": {
         "type": "link",
         "target": "CompanyLeveRule"
       }
+    },
+    {
+      "index": 177,
+      "name": "RuleParam"
     }
   ]
 }
