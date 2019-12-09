@@ -7,6 +7,10 @@
       "name": "WarpName"
     },
     {
+      "index": 2,
+      "name": "CanSkipCutscene"
+    },
+    {
       "index": 3,
       "type": "repeat",
       "count": 10,

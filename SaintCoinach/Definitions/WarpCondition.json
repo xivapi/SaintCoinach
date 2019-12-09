@@ -2,6 +2,13 @@
   "sheet": "WarpCondition",
   "definitions": [
     {
+      "name": "Gil"
+    },
+    {
+      "index": 1,
+      "name": "CompleteParam"
+    },
+    {
       "index": 2,
       "name": "RequiredQuest{1}",
       "converter": {
@@ -32,6 +39,14 @@
         "type": "link",
         "target": "Quest"
       }
+    },
+    {
+      "index": 6,
+      "name": "QuestReward"
+    },
+    {
+      "index": 7,
+      "name": "Class{Level}"
     }
   ]
 }

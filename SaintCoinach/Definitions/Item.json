@@ -252,6 +252,10 @@
       "name": "IsCollectable"
     },
     {
+      "index": 37,
+      "name": "AlwaysCollectable"
+    },
+    {
       "index": 38,
       "name": "AetherialReduce"
     },
