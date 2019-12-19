@@ -10,7 +10,15 @@
     },
     {
       "index": 1,
-      "name": "Stars"
+      "name": "NeededKills"
+    },
+    {
+      "index": 2,
+      "name": "Type"
+    },
+    {
+      "index": 3,
+      "name": "Rank"
     },
     {
       "index": 4,

@@ -1,5 +1,6 @@
 {
   "sheet": "MobHuntTarget",
+  "defaultColumn": "Name",
   "definitions": [
     {
       "name": "Name",
