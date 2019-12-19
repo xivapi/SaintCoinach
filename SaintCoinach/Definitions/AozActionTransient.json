@@ -3,6 +3,9 @@
   "defaultColumn": "Action",
   "definitions": [
     {
+      "name": "Number"
+    },
+    {
       "index": 1,
       "name": "Icon",
       "converter": {
