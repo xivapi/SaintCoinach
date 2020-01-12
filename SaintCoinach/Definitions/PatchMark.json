@@ -2,7 +2,7 @@
   "sheet": "PatchMark",
   "definitions": [
     {
-      "name": "Category",
+      "name": "Category"
     },
     {
       "index": 1,

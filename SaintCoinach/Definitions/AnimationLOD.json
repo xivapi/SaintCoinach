@@ -17,7 +17,7 @@
       "type": "repeat",
       "count": 8,
       "definition": {
-        "name": "AnimationEnable",
+        "name": "AnimationEnable"
       }
     }
   ]
