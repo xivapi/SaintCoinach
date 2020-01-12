@@ -3,7 +3,7 @@
   "defaultColumn": "Item{Result}",
   "definitions": [
     {
-      "name": "Number",
+      "name": "Number"
     },
     {
       "index": 1,
