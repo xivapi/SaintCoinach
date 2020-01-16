@@ -94,12 +94,7 @@
       "type": "repeat",
       "count": 13,
       "definition": {
-        "type": "group",
-        "members": [
-          {
-            "name": "MeldParam"
-          }
-        ]
+        "name": "MeldParam"
       }
     }
   ]
