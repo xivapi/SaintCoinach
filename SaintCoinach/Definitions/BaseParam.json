@@ -88,6 +88,19 @@
     {
       "index": 24,
       "name": "ChestLegsFeet<%>"
+    },
+    {
+      "index": 25,
+      "type": "repeat",
+      "count": 13,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "MeldParam"
+          }
+        ]
+      }
     }
   ]
 }
