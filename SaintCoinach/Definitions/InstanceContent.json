@@ -1,6 +1,5 @@
 {
   "sheet": "InstanceContent",
-  "defaultColumn": "Name",
   "definitions": [
     {
       "name": "InstanceContentType",
