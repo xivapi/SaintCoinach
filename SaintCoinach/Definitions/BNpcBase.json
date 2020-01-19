@@ -26,7 +26,7 @@
     },
     {
       "index": 3,
-      "name": "Rank",
+      "name": "Rank"
     },
     {
       "index": 4,
@@ -58,11 +58,11 @@
     },
     {
       "index": 8,
-      "name": "Special",
+      "name": "Special"
     },
     {
       "index": 9,
-      "name": "SEPack",
+      "name": "SEPack"
     },
     {
       "index": 11,
@@ -82,11 +82,11 @@
     },
     {
       "index": 14,
-      "name": "IsTargetLine",
+      "name": "IsTargetLine"
     },
     {
       "index": 15,
-      "name": "IsDisplayLevel",
+      "name": "IsDisplayLevel"
     }
   ]
 }

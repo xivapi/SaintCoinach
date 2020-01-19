@@ -10,15 +10,15 @@
     },
     {
       "index": 1,
-      "name": "UseField",
+      "name": "UseField"
     },
     {
       "index": 2,
-      "name": "UseTraining",
+      "name": "UseTraining"
     },
     {
       "index": 4,
-      "name": "Status",
+      "name": "Status"
     }
   ]
 }
