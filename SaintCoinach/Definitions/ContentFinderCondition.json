@@ -3,6 +3,9 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "name": "ShortCode"
+    },
+    {
       "index": 1,
       "name": "TerritoryType",
       "converter": {
