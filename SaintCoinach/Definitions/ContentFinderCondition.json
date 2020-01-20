@@ -3,6 +3,9 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "name": "ShortCode"
+    },
+    {
       "index": 1,
       "name": "TerritoryType",
       "converter": {
@@ -47,8 +50,27 @@
               "value": 4
             },
             "sheet": "GoldSaucerContent"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 5
+            },
+            "sheet": "QuestBattle"
           }
         ]
+      }
+    },
+    {
+      "index": 4,
+      "name": "PvP"
+    },
+    {
+      "index": 8,
+      "name": "AcceptClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
       }
     },
     {
