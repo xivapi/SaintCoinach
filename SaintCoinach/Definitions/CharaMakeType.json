@@ -33,7 +33,7 @@
       "type": "repeat",
       "count": 28,
       "definition": {
-        "name": "IntValue"
+        "name": "InitVal"
       }
     },
     {
