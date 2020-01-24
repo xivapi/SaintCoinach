@@ -1,5 +1,6 @@
 {
   "sheet": "Lobby",
+  "defaultColumn": "Text",
   "definitions": [
     {
       "name": "TYPE"
