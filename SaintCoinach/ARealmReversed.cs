@@ -187,6 +187,11 @@ namespace SaintCoinach {
         /// <param name="language">Initial language to use.</param>
         /// <param name="libraFile">Location of the Libra Eorzea database file, or <c>null</c> if it should not be used.</param>
         public ARealmReversed(DirectoryInfo gameDirectory, FileInfo storeFile, Language language, FileInfo libraFile) {
+
+            // Fix for being referenced in a .Net Core 2.1+ application (https://stackoverflow.com/questions/50449314/ibm437-is-not-a-supported-encoding-name => https://stackoverflow.com/questions/44659499/epplus-error-reading-file)
+            // PM> dotnet add package System.Text.Encoding.CodePages
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             _GameDirectory = gameDirectory;
             _Packs = new PackCollection(Path.Combine(gameDirectory.FullName, "game", "sqpack"));
             _GameData = new XivCollection(Packs, libraFile) {
