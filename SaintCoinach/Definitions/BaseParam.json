@@ -3,7 +3,7 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Order"
+      "name": "PacketIndex"
     },
     {
       "index": 1,
@@ -12,6 +12,10 @@
     {
       "index": 2,
       "name": "Description"
+    },
+    {
+      "index": 3,
+      "name": "OrderPriority"
     },
     {
       "index": 4,
@@ -66,6 +70,10 @@
       "name": "2HWpn<%>"
     },
     {
+      "index": 17,
+      "name": "UnderArmor<%>"
+    },
+    {
       "index": 18,
       "name": "ChestHead<%>"
     },
@@ -88,6 +96,14 @@
     {
       "index": 24,
       "name": "ChestLegsFeet<%>"
+    },
+    {
+      "index": 25,
+      "type": "repeat",
+      "count": 13,
+      "definition": {
+        "name": "MeldParam"
+      }
     }
   ]
 }
