@@ -1,0 +1,33 @@
+{
+  "sheet": "Description",
+  "defaultColumn": "Text[Long]",
+  "definitions": [
+    {
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Text[Long]"
+    },
+    {
+      "index": 2,
+      "name": "Text[Short]"
+    },
+    {
+      "index": 3,
+      "name": "Text[Commentary]"
+    },
+    {
+      "index": 5,
+      "name": "Section",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionSection"
+      }
+    }
+  ]
+}
