@@ -1,0 +1,21 @@
+{
+  "sheet": "DescriptionSection",
+  "defaultColumn": "String",
+  "definitions": [
+    {
+      "name": "String",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionString"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Page",
+      "converter": {
+        "type": "link",
+        "target": "DescriptionPage"
+      }
+    }
+  ]
+}
