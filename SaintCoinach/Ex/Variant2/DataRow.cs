@@ -65,12 +65,10 @@ namespace SaintCoinach.Ex.Variant2 {
             _IsRead = true;
         }
         
-        public override object this[int column] {
-            get { throw new InvalidOperationException(); }
-        }
+        public override object this[int column] => throw new InvalidOperationException("Cannot get column on Variant 2 DataRow. Use GetSubRow instead.");
 
         public override object GetRaw(int column) {
-            throw new InvalidOperationException();
+            throw new InvalidOperationException("Cannot get column on Variant 2 DataRow. Use GetSubRow instead.");
         }
     }
 }

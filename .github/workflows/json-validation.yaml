@@ -1,0 +1,14 @@
+name: Validate ex JSON definitions
+# This workflow is triggered on pushes to the repository.
+on: [push]
+
+jobs:
+  build:
+    name: validate-json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install jsonlint
+        run: sudo npm install jsonlint -g
+      - name: Validate schemas
+        run: set -e; for f in $(find SaintCoinach/Definitions/ -name *.json -print); do echo -n "$f - "; jsonlint $f -q; echo "OK!"; done
