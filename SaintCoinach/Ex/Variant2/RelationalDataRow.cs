@@ -14,7 +14,7 @@ namespace SaintCoinach.Ex.Variant2 {
             var defCol = Sheet.Header.DefaultColumn;
             return defCol == null
                        ? string.Format("{0}#{1}", Sheet.Header.Name, Key)
-                       : string.Format("{0}", this[defCol.Index]);
+                       : string.Format("{0}", GetSubRow(defCol.Index).DefaultValue);
         }
 
         #region Constructors
