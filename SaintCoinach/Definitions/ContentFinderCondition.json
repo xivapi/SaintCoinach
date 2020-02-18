@@ -122,11 +122,11 @@
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 34,
+      "index": 35,
       "name": "Name"
     },
     {
-      "index": 35,
+      "index": 36,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -134,11 +134,11 @@
       }
     },
     {
-      "index": 36,
+      "index": 37,
       "name": "TransientKey"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -161,65 +161,65 @@
       }
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "SortKey"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "LevelingRoulette"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "Level50/60Roulette"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "MSQRoulette"
     },
     {
-      "index": 45,
+      "index": 46,
       "name": "GuildHestRoulette"
     },
     {
-      "index": 46,
+      "index": 47,
       "name": "ExpertRoulette"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "TrialRoulette"
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "DailyFrontlineChallenge"
     },
     {
-      "index": 49,
+      "index": 50,
       "name": "Level70Roulette"
     },
     {
-      "index": 50,
+      "index": 51,
       "name": "MentorRoulette"
     },
     {
-      "index": 56,
+      "index": 57,
       "name": "AllianceRoulette"
     },
     {
-      "index": 58,
+      "index": 59,
       "name": "NormalRaidRoulette"
     }
   ]
