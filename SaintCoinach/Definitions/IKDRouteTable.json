@@ -1,0 +1,13 @@
+{
+  "sheet": "IKDRouteTable",
+  "defaultColumn": "Route",
+  "definitions": [
+    {
+      "name": "Route",
+      "converter": {
+        "type": "link",
+        "target": "IKDRoute"
+      }
+    }
+  ]
+}

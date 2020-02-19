@@ -18,6 +18,10 @@
       }
     },
     {
+      "index": 2,
+      "name": "LevelUnlock"
+    },
+    {
       "index": 3,
       "name": "DeliveriesPerWeek"
     },

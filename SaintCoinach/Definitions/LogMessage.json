@@ -3,11 +3,7 @@
   "defaultColumn": "Text",
   "definitions": [
     {
-      "name": "LogKind",
-      "converter": {
-        "type": "link",
-        "target": "LogKind"
-      }
+      "name": "LogKind"
     },
     {
       "index": 4,
