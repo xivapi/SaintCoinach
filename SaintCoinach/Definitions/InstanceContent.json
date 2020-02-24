@@ -17,10 +17,6 @@
       "name": "TimeLimit{min}"
     },
     {
-      "index": 3,
-      "name": "Name"
-    },
-    {
       "index": 5,
       "name": "BGM",
       "converter": {
