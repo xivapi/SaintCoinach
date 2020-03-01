@@ -3,7 +3,7 @@
   "defaultColumn": "Quest",
   "definitions": [
     {
-      "name": "Quest",
+      "name": "FinalQuest",
       "converter": {
         "type": "link",
         "target": "Quest"
