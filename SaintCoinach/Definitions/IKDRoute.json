@@ -1,0 +1,44 @@
+{
+  "sheet": "IKDRoute",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Spot",
+        "converter": {
+          "type": "link",
+          "target": "IKDSpot"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "TimeDefine",
+      "converter": {
+        "type": "link",
+        "target": "IKDTimeDefine"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 7,
+      "name": "TerritoryType",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryType"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Name"
+    }
+  ]
+}
