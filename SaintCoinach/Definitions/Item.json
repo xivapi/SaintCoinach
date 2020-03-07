@@ -240,12 +240,8 @@
       }
     },
     {
-      "index": 35,
-      "name": "Salvage",
-      "converter": {
-        "type": "link",
-        "target": "Salvage"
-      }
+      "index": 36,
+      "name": "Salvage"
     },
     {
       "index": 37,
