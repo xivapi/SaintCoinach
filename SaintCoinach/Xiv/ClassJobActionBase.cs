@@ -65,7 +65,9 @@ namespace SaintCoinach.Xiv {
         SealsAll,
         SoulVoice,
         Unknown60,
-        Heat
+        Heat,
+        Battery,
+        Meditation
     }
 
     public abstract class ClassJobActionBase : ActionBase {

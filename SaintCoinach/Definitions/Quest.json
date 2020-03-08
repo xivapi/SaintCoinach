@@ -163,10 +163,6 @@
       }
     },
     {
-      "index": 33,
-      "name": "Level{Max}"
-    },
-    {
       "index": 36,
       "name": "Mount{Required}",
       "converter": {
@@ -356,6 +352,10 @@
           }
         }
       }
+    },
+    {
+      "index": 1438,
+      "name": "Level{Max}"
     },
     {
       "index": 1439,
