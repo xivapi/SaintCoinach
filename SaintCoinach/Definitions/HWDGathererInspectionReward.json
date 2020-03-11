@@ -1,0 +1,13 @@
+{
+  "sheet": "HWDGathererInspectionReward",
+  "defaultColumn": "Scrips",
+  "definitions": [
+    {
+      "name": "Scrips"
+    },
+    {
+      "index": 1,
+      "name": "Points"
+    }
+  ]
+}
