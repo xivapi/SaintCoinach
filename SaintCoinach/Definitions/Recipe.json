@@ -130,6 +130,10 @@
       "name": "IsSpecializationRequired"
     },
     {
+      "index": 43,
+      "name": "IsExpert"
+    },
+    {
       "index": 44,
       "name": "PatchNumber"
     }
