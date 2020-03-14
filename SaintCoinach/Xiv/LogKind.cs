@@ -7,7 +7,6 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Format { get { return AsString("Format"); } }
         public Text.XivString Name { get { return AsString("Name"); } }
         public Text.XivString Example { get { return AsString("Example"); } }
-        public LogKindCategoryText LogKindCategoryText { get { return As<LogKindCategoryText>(); } }
 
         #endregion
 
