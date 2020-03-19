@@ -1,0 +1,20 @@
+{
+  "sheet": "GatheringRarePopTimeTable",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "name": "StartTime"
+          },
+          {
+            "name": "Duration(m)"
+          }
+        ]
+      }
+    }
+  ]
+}
