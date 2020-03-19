@@ -17,10 +17,10 @@
       "type": "repeat",
       "count": 32,
       "definition": {
-        "name": "FATE",
+        "name": "FishParameter",
         "converter": {
           "type": "link",
-          "target": "Fate"
+          "target": "FishParameter"
         }
       }
     },

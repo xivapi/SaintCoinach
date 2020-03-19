@@ -751,7 +751,6 @@
     <Compile Include="Xiv\LeveRewardItemGroup.cs" />
     <Compile Include="Xiv\LogFilter.cs" />
     <Compile Include="Xiv\LogKind.cs" />
-    <Compile Include="Xiv\LogKindCategoryText.cs" />
     <Compile Include="Xiv\LogMessage.cs" />
     <Compile Include="Xiv\MainCommand.cs" />
     <Compile Include="Xiv\MainCommandCategory.cs" />
@@ -1762,9 +1761,6 @@
     <Content Include="Definitions\LogKind.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Definitions\LogKindCategoryText.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Definitions\LogMessage.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2531,9 +2527,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\HWDDevProgress.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Definitions\HWDIntroduction.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\HWDLevelChangeDeception.json">

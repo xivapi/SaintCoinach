@@ -241,7 +241,11 @@
     },
     {
       "index": 36,
-      "name": "Salvage"
+      "name": "Salvage",
+      "converter": {
+      	"type": "link",
+      	"target": "Salvage"
+      }
     },
     {
       "index": 37,
