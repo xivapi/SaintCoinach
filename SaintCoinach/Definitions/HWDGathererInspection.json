@@ -1,0 +1,84 @@
+{
+  "sheet": "HWDGathererInspection",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "ItemRequired",
+        "converter": {
+          "type": "link",
+          "target": "GatheringItem"
+        }
+      }
+    },
+    {
+      "index": 32,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "FishParameter",
+        "converter": {
+          "type": "link",
+          "target": "FishParameter"
+        }
+      }
+    },
+    {
+      "index": 64,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "AmountRequired"
+      }
+    },
+    {
+      "index": 96,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "ItemReceived",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 128,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Reward(1)",
+        "converter": {
+          "type": "link",
+          "target": "HWDGathererInspectionReward"
+        }
+      }
+    },
+    {
+      "index": 160,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Reward(2)",
+        "converter": {
+          "type": "link",
+          "target": "HWDGathererInspectionReward"
+        }
+      }
+    },
+    {
+      "index": 192,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Phase",
+        "converter": {
+          "type": "link",
+          "target": "HWDGathereInspectTerm"
+        }
+      }
+    }
+  ]
+}
