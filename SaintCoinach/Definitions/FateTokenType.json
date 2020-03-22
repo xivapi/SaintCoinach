@@ -6,7 +6,7 @@
       "name": "Currency",
       "converter": {
         "type": "link",
-        "target": "Currency"
+        "target": "Item"
       }
     }
   ]
