@@ -10,6 +10,14 @@
       "name": "Rule"
     },
     {
+      "index": 2,
+      "name": "FateRuleEx",
+      "converter": {
+        "type": "link",
+        "target": "FateRuleEx"
+      }
+    },
+    {
       "index": 3,
       "name": "Location"
     },
@@ -103,8 +111,28 @@
       "name": "IsQuest"
     },
     {
-      "index": 29,
-      "name": "Name"
+      "index": 20,
+      "name": "SpecialFate"
+    },
+    {
+      "index": 21,
+      "name": "GivenStatus",
+      "converter": {
+        "type": "link",
+        "target": "Status"
+      }
+    },
+    {
+      "index": 23,
+      "name": "AdventEvent"
+    },
+    {
+      "index": 24,
+      "name": "MoonFaireEvent"
+    },
+    {
+      "index": 26,
+      "name": "FATEChain"
     },
     {
       "index": 30,
@@ -128,6 +156,33 @@
       "converter": {
         "type": "link",
         "target": "ArrayEventHandler"
+      }
+    },
+    {
+      "index": 37,
+      "name": "ReqEventItem",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    },
+    {
+      "index": 38,
+      "name": "TurnInEventItem",
+      "converter": {
+        "type": "link",
+        "target": "EventItem"
+      }
+    },
+    {
+      "index": 39,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ObjectiveIcon",
+        "converter": {
+          "type": "icon"
+        }
       }
     }
   ]
