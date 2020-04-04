@@ -135,6 +135,10 @@
       "name": "FATEChain"
     },
     {
+      "index": 19,
+      "name": "Name"
+    },
+    {
       "index": 30,
       "name": "Description"
     },
