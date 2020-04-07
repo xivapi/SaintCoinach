@@ -4,6 +4,14 @@
   "definitions": [
     {
       "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "HideCategory"
+    },
+    {
+      "index": 3,
+      "name": "Order"
     }
   ]
 }
