@@ -5,7 +5,7 @@
       "type": "repeat",
       "count": 8,
       "definition": {
-        "name": "Time"
+        "name": "RoutePointTime"
       }
     },
     {
@@ -74,17 +74,43 @@
     {
       "index": 56,
       "type": "repeat",
-      "count": 8,
+      "count": 6,
       "definition": {
-        "name": "ToDoNumberInvolved"
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 8,
+            "definition": {
+              "name": "ToDoParam"
+            }
+          }
+        ]
       }
     },
     {
-      "index": 64,
+      "index": 104,
       "type": "repeat",
       "count": 8,
       "definition": {
-        "name": "ToDoParam"
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 8,
+            "definition": {
+              "name": "NumOfAppearance"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 168,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoSequence"
       }
     },
     {
