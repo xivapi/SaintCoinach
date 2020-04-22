@@ -82,9 +82,43 @@
     {
       "index": 64,
       "type": "repeat",
+      "count": 5,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 8,
+            "definition": {
+              "name": "ToDoParam"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 104,
+      "type": "repeat",
       "count": 8,
       "definition": {
-        "name": "ToDoParam"
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 8,
+            "definition": {
+              "name": "NumOfAppearance"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 168,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoSequence"
       }
     },
     {
@@ -114,6 +148,22 @@
         "type": "link",
         "target": "LeveString"
       }
+    },
+    {
+      "index": 180,
+      "name": "Objective[2]",
+      "converter": {
+        "type": "link",
+        "target": "LeveString"
+      }
+    },
+    {
+      "index": 181,
+      "name": "Help[0]"
+    },
+    {
+      "index": 182,
+      "name": "Help[1]"
     }
   ]
 }
