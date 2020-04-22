@@ -121,13 +121,13 @@
     {
       "index": 3291,
       "type": "repeat",
-      "count": 8,
+      "count": 7,
       "definition": {
         "type": "group",
         "members": [
           {
             "type": "repeat",
-            "count": 7,
+            "count": 8,
             "definition": {
               "name": "FacialFeatureOption",
               "converter": {
