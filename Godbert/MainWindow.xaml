@@ -27,6 +27,14 @@
                           IsChecked="{Binding Path=IsFrench, Mode=OneWay}"
                           Command="{Binding Path=LanguageCommand}"
                           CommandParameter="{x:Static ex:Language.French}"  />
+                <MenuItem Header="ChineseSimplified"
+                          IsChecked="{Binding Path=IsChineseSimplified, Mode=OneWay}"
+                          Command="{Binding Path=LanguageCommand}"
+                          CommandParameter="{x:Static ex:Language.ChineseSimplified}"  />
+                <MenuItem Header="Korean"
+                          IsChecked="{Binding Path=IsKorean, Mode=OneWay}"
+                          Command="{Binding Path=LanguageCommand}"
+                          CommandParameter="{x:Static ex:Language.Korean}"  />
             </MenuItem>
             <MenuItem Header="Various">
                 <MenuItem Header="New Window"
