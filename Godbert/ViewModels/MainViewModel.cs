@@ -28,6 +28,8 @@ namespace Godbert.ViewModels {
         public bool IsJapanese { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.Japanese; } }
         public bool IsFrench { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.French; } }
         public bool IsGerman { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.German; } }
+        public bool IsChineseSimplified { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.ChineseSimplified; } }
+        public bool IsKorean { get { return Realm.GameData.ActiveLanguage == SaintCoinach.Ex.Language.Korean; } }
 
         public bool SortByOffsets { get { return Settings.Default.SortByOffsets;} }
         public bool ShowOffsets { get { return Settings.Default.ShowOffsets; } }
@@ -41,8 +43,26 @@ namespace Godbert.ViewModels {
         public MainViewModel() {
             if (!App.IsValidGamePath(Properties.Settings.Default.GamePath))
                 return;
-            var realm = new ARealmReversed(Properties.Settings.Default.GamePath, SaintCoinach.Ex.Language.English);
-            Initialize(realm);
+
+            var languages = new[] { SaintCoinach.Ex.Language.English, SaintCoinach.Ex.Language.ChineseSimplified, SaintCoinach.Ex.Language.Korean };
+            NotSupportedException lastException = null;
+
+            foreach (var language in languages) {
+                try {
+                    var realm = new ARealmReversed(Properties.Settings.Default.GamePath, language);
+                    Initialize(realm);
+                    lastException = null;
+                    break;
+                }
+                catch (NotSupportedException e) {
+                    lastException = e;
+                    continue;
+                }
+            }
+
+            if (lastException != null) {
+                throw new AggregateException(new[] { lastException });
+            }
         }
 
         public MainViewModel(ARealmReversed realm) {
@@ -83,6 +103,8 @@ namespace Godbert.ViewModels {
             OnPropertyChanged(() => IsJapanese);
             OnPropertyChanged(() => IsGerman);
             OnPropertyChanged(() => IsFrench);
+            OnPropertyChanged(() => IsChineseSimplified);
+            OnPropertyChanged(() => IsKorean);
 
             Equipment.Refresh();
             Territories.Refresh();
