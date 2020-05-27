@@ -3,7 +3,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "Item{TradeIn}",
         "converter": {
@@ -15,7 +15,7 @@
     {
       "index": 16,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "Level"
       }
@@ -23,7 +23,7 @@
     {
       "index": 32,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "LevelMax"
       }
@@ -31,7 +31,7 @@
     {
       "index": 64,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "BaseCollectable{Rating}"
       }
@@ -39,7 +39,7 @@
     {
       "index": 80,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "MidBaseCollectable{Rating}"
       }
@@ -47,7 +47,7 @@
     {
       "index": 96,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "HighBaseCollectable{Rating}"
       }
@@ -55,7 +55,7 @@
     {
       "index": 112,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "BaseCollectable{Reward}",
         "converter": {
@@ -67,7 +67,7 @@
     {
       "index": 128,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "MidCollectable{Reward}",
         "converter": {
@@ -79,7 +79,7 @@
     {
       "index": 144,
       "type": "repeat",
-      "count": 5,
+      "count": 16,
       "definition": {
         "name": "HighCollectable{Reward}",
         "converter": {
