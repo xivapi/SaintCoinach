@@ -91,6 +91,10 @@
       }
     },
     {
+      "index": 16,
+      "name": "Header"
+    },
+    {
       "index": 19,
       "name": "ClassJob{Unlock}",
       "converter": {
@@ -139,6 +143,14 @@
       }
     },
     {
+      "index": 27,
+      "name": "FestivalBegin"
+    },
+    {
+      "index": 28,
+      "name": "FestivalEnd"
+    },
+    {
       "index": 29,
       "name": "Bell{Start}"
     },
@@ -161,6 +173,10 @@
         "type": "link",
         "target": "BeastReputationRank"
       }
+    },
+    {
+      "index": 33,
+      "name": "BeastReputationValue"
     },
     {
       "index": 36,
@@ -233,6 +249,10 @@
       "name": "UnlocksSystemContent"
     },
     {
+      "index": 47,
+      "name": "CanCancel"
+    },
+    {
       "index": 48,
       "name": "Type"
     },
@@ -281,16 +301,7 @@
       "type": "repeat",
       "count": 64,
       "definition": {
-        "name": "ActorSpawn",
-        "converter": {
-          "type": "multiref",
-          "targets": [
-            "EObjName",
-            "ENpcResident",
-            "ENpcBase",
-            "BNpcName"
-          ]
-        }
+        "name": "Listener"
       }
     },
     {
@@ -307,6 +318,102 @@
       "count": 32,
       "definition": {
         "name": "QuestUInt8B"
+      }
+    },
+    {
+      "index": 406,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ConditionType"
+      }
+    },
+    {
+      "index": 470,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ConditionValue"
+      }
+    },
+    {
+      "index": 534,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ConditionOperator"
+      }
+    },
+    {
+      "index": 598,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "Behavior"
+      }
+    },
+    {
+      "index": 662,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "VisibleBool"
+      }
+    },
+    {
+      "index": 726,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ConditionBool"
+      }
+    },
+    {
+      "index": 790,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "ItemBool"
+      }
+    },
+    {
+      "index": 854,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "AnnounceBool"
+      }
+    },
+    {
+      "index": 918,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "BehaviorBool"
+      }
+    },
+    {
+      "index": 982,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "AcceptBool"
+      }
+    },
+    {
+      "index": 1046,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "QualifiedBool"
+      }
+    },
+    {
+      "index": 1110,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "CanTargetBool"
       }
     },
     {
@@ -351,6 +458,14 @@
             "target": "Level"
           }
         }
+      }
+    },
+    {
+      "index": 1414,
+      "type": "repeat",
+      "count": 24,
+      "definition": {
+        "name": "CountableNum"
       }
     },
     {
@@ -404,7 +519,7 @@
     {
       "index": 1452,
       "type": "repeat",
-      "count": 6,
+      "count": 7,
       "definition": {
         "name": "Item{Reward}[0]",
         "converter": {
@@ -501,6 +616,30 @@
       }
     },
     {
+      "index": 1497,
+      "name": "System{Reward}[0]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 1499,
+      "name": "System{Reward}[1]",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
+      "index": 1500,
+      "name": "GCType{Reward}",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    },
+    {
       "index": 1495,
       "type": "repeat",
       "count": 2,
@@ -579,6 +718,14 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 1511,
+      "name": "Introduction"
+    },
+    {
+      "index": 1512,
+      "name": "HideOfferIcon"
     },
     {
       "index": 1513,
