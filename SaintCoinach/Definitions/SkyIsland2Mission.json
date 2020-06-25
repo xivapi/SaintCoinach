@@ -18,12 +18,24 @@
       }
     },
     {
+      "index": 2,
+      "name": "PlaceName",
+      "converter": {
+        "type": "link",
+        "target": "PlaceName"
+      }
+    },
+    {
       "index": 4,
       "name": "Objective{1}",
       "converter": {
         "type": "link",
         "target": "SkyIsland2MissionDetail"
       }
+    },
+    {
+      "index": 5,
+      "name": "PopRange[0]"
     },
     {
       "index": 6,
@@ -38,6 +50,10 @@
       }
     },
     {
+      "index": 10,
+      "name": "PopRange[1]"
+    },
+    {
       "index": 11,
       "name": "RequiredAmount{2}"
     },
@@ -48,6 +64,10 @@
         "type": "link",
         "target": "SkyIsland2MissionDetail"
       }
+    },
+    {
+      "index": 15,
+      "name": "PopRange[2]"
     },
     {
       "index": 20,
