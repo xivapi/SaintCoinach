@@ -41,6 +41,14 @@
       "name": "RequiredItemLevel"
     },
     {
+      "index": 9,
+      "name": "ConditionParam[0]"
+    },
+    {
+      "index": 10,
+      "name": "ConditionParam[1]"
+    },
+    {
       "index": 11,
       "name": "RequiredGathering"
     },
