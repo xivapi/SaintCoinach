@@ -123,19 +123,14 @@
       "type": "repeat",
       "count": 7,
       "definition": {
-        "type": "group",
-        "members": [
-          {
-            "type": "repeat",
-            "count": 8,
-            "definition": {
-              "name": "FacialFeatureOption",
-              "converter": {
-                "type": "icon"
-              }
-            }
+        "type": "repeat",
+        "count": 8,
+        "definition": {
+          "name": "FacialFeatureOption",
+          "converter": {
+            "type": "icon"
           }
-        ]
+        }
       }
     },
     {
