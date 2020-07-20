@@ -15,7 +15,11 @@
     },
     {
       "index": 3,
-      "name": "Color"
+      "name": "Color",
+      "converter": {
+        "type": "link",
+        "target": "UIColor"
+      }
     },
     {
       "index": 4,
