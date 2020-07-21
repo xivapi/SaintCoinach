@@ -57,6 +57,34 @@
       "name": "Name"
     },
     {
+      "index": 10,
+      "name": "Adjective"
+    },
+    {
+      "index": 11,
+      "name": "Plural"
+    },
+    {
+      "index": 12,
+      "name": "PossessivePronoun"
+    },
+    {
+      "index": 13,
+      "name": "StartsWithVowel"
+    },
+    {
+      "index": 14,
+      "name": "Pronoun"
+    },
+    {
+      "index": 15,
+      "name": "Article"
+    },
+    {
+      "index": 16,
+      "name": "DEF"
+    },
+    {
       "index": 17,
       "name": "Name{Relation}"
     }

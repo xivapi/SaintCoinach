@@ -2,12 +2,36 @@
   "sheet": "Behavior",
   "definitions": [
     {
+      "index": 2,
+      "name": "Condition[0]Target"
+    },
+    {
+      "index": 3,
+      "name": "Condition[0]Type"
+    },
+    {
       "index": 4,
       "name": "Balloon",
       "converter": {
         "type": "link",
         "target": "Balloon"
       }
+    },
+    {
+      "index": 9,
+      "name": "Condition[1]Target"
+    },
+    {
+      "index": 10,
+      "name": "Condition[1]Type"
+    },
+    {
+      "index": 11,
+      "name": "ContentArgument[0]"
+    },
+    {
+      "index": 12,
+      "name": "ContentArgument[1]"
     }
   ]
 }
