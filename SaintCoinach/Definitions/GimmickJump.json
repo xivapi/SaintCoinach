@@ -13,7 +13,7 @@
       "name": "LoopMotion",
       "converter": {
         "type": "link",
-        "target": "MotionTimeline"
+        "target": "ActionTimeline"
       }
     },
     {
@@ -21,7 +21,7 @@
       "name": "EndMotion",
       "converter": {
         "type": "link",
-        "target": "MotionTimeline"
+        "target": "ActionTimeline"
       }
     },
     {
