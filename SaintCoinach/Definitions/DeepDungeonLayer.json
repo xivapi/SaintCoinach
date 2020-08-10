@@ -7,6 +7,42 @@
         "type": "link",
         "target": "DeepDungeon"
       }
+    },
+    {
+      "index": 1,
+      "name": "FloorSet"
+    },
+    {
+      "index": 2,
+      "name": "RoomA",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonMap5X"
+      }
+    },
+    {
+      "index": 3,
+      "name": "RoomB",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonMap5X"
+      }
+    },
+    {
+      "index": 4,
+      "name": "RoomC",
+      "converter": {
+        "type": "link",
+        "target": "DeepDungeonMap5X"
+      }
+    },
+    {
+      "index": 5,
+      "name": "WepMinLv"
+    },
+    {
+      "index": 6,
+      "name": "ArmourMinLv"
     }
   ]
 }

@@ -15,6 +15,14 @@
         "type": "link",
         "target": "Quest"
       }
+    },
+    {
+      "index": 3,
+      "name": "BGM",
+      "converter": {
+        "type": "link",
+        "target": "BGM"
+      }
     }
   ]
 }
