@@ -190,7 +190,10 @@
                 "key": "Type",
                 "value": 24
               },
-              "sheet": "Quest"
+              "sheets": [
+                "ClassJob",
+                "Quest"
+              ]
             }
           ]
         }
