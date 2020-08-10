@@ -138,6 +138,22 @@
     {
       "index": 28,
       "name": "IsPvpZone"
+    },
+    {
+      "index": 29,
+      "name": "ExVersion",
+      "converter": {
+        "type": "link",
+        "target": "ExVersion"
+      }
+    },
+    {
+      "index": 32,
+      "name": "MountSpeed",
+      "converter": {
+        "type": "link",
+        "target": "MountSpeed"
+      }
     }
   ]
 }
