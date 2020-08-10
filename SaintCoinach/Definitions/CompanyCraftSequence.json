@@ -10,6 +10,10 @@
       }
     },
     {
+      "index": 1,
+      "name": "Category"
+    },
+    {
       "index": 2,
       "name": "CompanyCraftDraftCategory",
       "converter": {
@@ -44,6 +48,10 @@
           "target": "CompanyCraftPart"
         }
       }
+    },
+    {
+      "index": 13,
+      "name": "Order"
     }
   ]
 }
