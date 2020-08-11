@@ -2,29 +2,5 @@
   "sheet": "SwitchTalk",
   "isGenericReferenceTarget": true,
   "definitions": [
-    {
-      "index": 2,
-      "type": "repeat",
-      "count": 15,
-      "definition": {
-        "name": "Quest",
-        "converter": {
-          "type": "link",
-          "target": "Quest"
-        }
-      }
-    },
-    {
-      "index": 17,
-      "type": "repeat",
-      "count": 16,
-      "definition": {
-        "name": "DefaultTalk",
-        "converter": {
-          "type": "link",
-          "target": "DefaultTalk"
-        }
-      }
-    }
   ]
 }
