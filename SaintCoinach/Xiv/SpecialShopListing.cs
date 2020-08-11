@@ -63,7 +63,7 @@ namespace SaintCoinach.Xiv {
             _Rewards = rewards.ToArray();
             Quest = shop.As<Quest>("Quest{Item}", index);
 
-            const int CostCount = 3;
+            const int CostCount = 2;
             var costs = new List<ShopListingItem>();
             for (var i = 0; i < CostCount; ++i) {
                 var item = shop.As<Item>("Item{Cost}", index, i);
