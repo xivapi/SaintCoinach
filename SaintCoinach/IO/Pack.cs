@@ -41,8 +41,10 @@ namespace SaintCoinach.IO {
                 if (value == _KeepInMemory)
                     return;
 
-                if (_DataStreams.Any(i => i.Value.TryGetTarget(out var t)))
-                    throw new InvalidOperationException();
+                if (_DataStreams.Any(i => i.Value.TryGetTarget(out var t))) {
+                    Console.WriteLine($"Failed to keep pack {Id} in memory.");
+                    return;
+                }
                 _DataStreams.Clear();
 
                 _KeepInMemory = value;

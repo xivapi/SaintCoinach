@@ -4,7 +4,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 5,
+      "count": 6,
       "definition": {
         "name": "Weather",
         "converter": {
@@ -14,9 +14,17 @@
       }
     },
     {
-      "index": 10,
+      "index": 12,
+      "name": "AddedIn{5-3}[0]"
+    },
+    {
+      "index": 13,
+      "name": "AddedIn{5-3}[1]"
+    },
+    {
+      "index": 15,
       "type": "repeat",
-      "count": 5,
+      "count": 6,
       "definition": {
         "name": "Quest",
         "converter": {
