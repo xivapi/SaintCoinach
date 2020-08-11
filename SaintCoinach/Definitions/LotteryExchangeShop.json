@@ -20,6 +20,22 @@
       "definition": {
         "name": "AmountAccepted"
       }
+    },
+    {
+      "index": 65,
+      "name": "Lua"
+    },
+    {
+      "index": 66,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "LogMessage",
+        "converter": {
+          "type": "link",
+          "target": "LogMessage"
+        }
+      }
     }
   ]
 }

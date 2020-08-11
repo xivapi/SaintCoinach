@@ -82,6 +82,14 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 72,
+      "name": "AddedIn{5-3}[0]"
+    },
+    {
+      "index": 73,
+      "name": "AddedIn{5-3}[1]"
     }
   ]
 }
