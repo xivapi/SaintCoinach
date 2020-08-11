@@ -55,7 +55,7 @@
     {
       "index": 481,
       "type": "repeat",
-      "count": 3,
+      "count": 2,
       "definition": {
         "type": "group",
         "members": [
@@ -127,24 +127,7 @@
       }
     },
     {
-      "index": 1381,
-      "type": "repeat",
-      "count": 2,
-      "definition": {
-        "type": "group",
-        "members": [
-          {
-            "type": "repeat",
-            "count": 60,
-            "definition": {
-              "name": "Unknown"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "index": 1801,
+      "index": 1441,
       "type": "repeat",
       "count": 60,
       "definition": {
@@ -152,11 +135,11 @@
       }
     },
     {
-      "index": 1861,
+      "index": 1501,
       "name": "UseCurrencyType"
     },
     {
-      "index": 1862,
+      "index": 1502,
       "name": "Quest{Unlock}",
       "converter": {
         "type": "link",
@@ -164,7 +147,7 @@
       }
     },
     {
-      "index": 1863,
+      "index": 1503,
       "name": "CompleteText",
       "converter": {
         "type": "link",
@@ -172,7 +155,7 @@
       }
     },
     {
-      "index": 1864,
+      "index": 1504,
       "name": "NotCompleteText",
       "converter": {
         "type": "link",

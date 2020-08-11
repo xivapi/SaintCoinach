@@ -1,0 +1,33 @@
+{
+  "sheet": "FateMode",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "MotivationIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "MotivationMapMarker",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 3,
+      "name": "ObjectiveIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 4,
+      "name": "ObjectiveMapMarker",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

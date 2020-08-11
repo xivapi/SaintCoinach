@@ -1,0 +1,45 @@
+{
+  "sheet": "CollectablesShopItem",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "CollectablesShopItemGroup",
+      "converter": {
+        "type": "link",
+        "target": "CollectablesShopItemGroup"
+      }
+    },
+    {
+      "index": 2,
+      "name": "LevelMin"
+    },
+    {
+      "index": 3,
+      "name": "LevelMax"
+    },
+    {
+      "index": 6,
+      "name": "CollectablesShopRefine",
+      "converter": {
+        "type": "link",
+        "target": "CollectablesShopRefine"
+      }
+    },
+    {
+      "index": 7,
+      "name": "CollectablesShopRewardScrip",
+      "converter": {
+        "type": "link",
+        "target": "CollectablesShopRewardScrip"
+      }
+    }
+  ]
+}
