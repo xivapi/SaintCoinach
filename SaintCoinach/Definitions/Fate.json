@@ -103,19 +103,11 @@
       }
     },
     {
-      "index": 18,
-      "name": "HasWorldMapIcon"
-    },
-    {
-      "index": 19,
-      "name": "IsQuest"
-    },
-    {
       "index": 20,
       "name": "SpecialFate"
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "GivenStatus",
       "converter": {
         "type": "link",
@@ -123,31 +115,31 @@
       }
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "AdventEvent"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "MoonFaireEvent"
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "FATEChain"
     },
     {
-      "index": 29,
+      "index": 30,
       "name": "Name"
     },
     {
-      "index": 30,
+      "index": 31,
       "name": "Description"
     },
     {
-      "index": 31,
+      "index": 32,
       "name": "Objective"
     },
     {
-      "index": 32,
+      "index": 33,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -155,7 +147,7 @@
       }
     },
     {
-      "index": 35,
+      "index": 36,
       "name": "ArrayIndex",
       "converter": {
         "type": "link",
@@ -163,7 +155,7 @@
       }
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "ReqEventItem",
       "converter": {
         "type": "link",
@@ -171,7 +163,7 @@
       }
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "TurnInEventItem",
       "converter": {
         "type": "link",
@@ -179,7 +171,7 @@
       }
     },
     {
-      "index": 39,
+      "index": 40,
       "type": "repeat",
       "count": 8,
       "definition": {

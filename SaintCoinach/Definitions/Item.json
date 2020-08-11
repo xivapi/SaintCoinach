@@ -165,46 +165,50 @@
     },
     {
       "index": 19,
-      "name": "StackSize"
+      "name": "AddedIn{5-3}"
     },
     {
       "index": 20,
-      "name": "IsUnique"
+      "name": "StackSize"
     },
     {
       "index": 21,
-      "name": "IsUntradable"
+      "name": "IsUnique"
     },
     {
       "index": 22,
-      "name": "IsIndisposable"
+      "name": "IsUntradable"
     },
     {
       "index": 23,
-      "name": "Lot"
+      "name": "IsIndisposable"
     },
     {
       "index": 24,
-      "name": "Price{Mid}"
+      "name": "Lot"
     },
     {
       "index": 25,
-      "name": "Price{Low}"
+      "name": "Price{Mid}"
     },
     {
       "index": 26,
-      "name": "CanBeHq"
+      "name": "Price{Low}"
     },
     {
       "index": 27,
-      "name": "IsDyeable"
+      "name": "CanBeHq"
     },
     {
       "index": 28,
-      "name": "IsCrestWorthy"
+      "name": "IsDyeable"
     },
     {
       "index": 29,
+      "name": "IsCrestWorthy"
+    },
+    {
+      "index": 30,
       "name": "ItemAction",
       "converter": {
         "type": "link",
@@ -212,11 +216,11 @@
       }
     },
     {
-      "index": 31,
+      "index": 32,
       "name": "Cooldown<s>"
     },
     {
-      "index": 32,
+      "index": 33,
       "name": "ClassJob{Repair}",
       "converter": {
         "type": "link",
@@ -224,7 +228,7 @@
       }
     },
     {
-      "index": 33,
+      "index": 34,
       "name": "Item{Repair}",
       "converter": {
         "type": "link",
@@ -232,19 +236,11 @@
       }
     },
     {
-      "index": 34,
+      "index": 35,
       "name": "Item{Glamour}",
       "converter": {
         "type": "link",
         "target": "Item"
-      }
-    },
-    {
-      "index": 36,
-      "name": "Salvage",
-      "converter": {
-      	"type": "link",
-      	"target": "Salvage"
       }
     },
     {
@@ -412,4 +408,3 @@
       "name": "IsGlamourous"
     }
   ]
-}
