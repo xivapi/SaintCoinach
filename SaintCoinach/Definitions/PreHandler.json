@@ -3,6 +3,7 @@
   "defaultColumn": "",
   "definitions": [
     {
+      "index": 2,
       "name": "Target",
       "converter": {
         "type": "multiref",
@@ -11,14 +12,6 @@
           "SpecialShop",
           "Description"
         ]
-      }
-    },
-    {
-      "index": 2,
-      "name": "ActionTimeline",
-      "converter": {
-        "type": "link",
-        "target": "ActionTimeline"
       }
     }
   ]
