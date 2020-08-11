@@ -3,7 +3,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "Item{TradeIn}",
         "converter": {
@@ -13,7 +13,7 @@
       }
     },
     {
-      "index": 16,
+      "index": 17,
       "type": "repeat",
       "count": 16,
       "definition": {
@@ -21,7 +21,7 @@
       }
     },
     {
-      "index": 32,
+      "index": 33,
       "type": "repeat",
       "count": 16,
       "definition": {
@@ -29,33 +29,33 @@
       }
     },
     {
-      "index": 64,
+      "index": 68,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "BaseCollectable{Rating}"
       }
     },
     {
-      "index": 80,
+      "index": 85,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "MidBaseCollectable{Rating}"
       }
     },
     {
-      "index": 96,
+      "index": 102,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "HighBaseCollectable{Rating}"
       }
     },
     {
-      "index": 112,
+      "index": 119,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "BaseCollectable{Reward}",
         "converter": {
@@ -65,9 +65,9 @@
       }
     },
     {
-      "index": 128,
+      "index": 136,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "MidCollectable{Reward}",
         "converter": {
@@ -77,9 +77,9 @@
       }
     },
     {
-      "index": 144,
+      "index": 153,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "HighCollectable{Reward}",
         "converter": {

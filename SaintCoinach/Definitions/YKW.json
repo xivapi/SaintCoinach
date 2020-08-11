@@ -12,7 +12,7 @@
     {
       "index": 2,
       "type": "repeat",
-      "count": 3,
+      "count": 6,
       "definition": {
         "name": "Location",
         "converter": {

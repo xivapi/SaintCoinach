@@ -4,6 +4,10 @@
   "definitions": [
     {
       "index": 1,
+      "name": "AddedIn{5-3}"
+    },
+    {
+      "index": 2,
       "name": "AssignmentTalk",
       "converter": {
         "type": "link",
@@ -11,7 +15,7 @@
       }
     },
     {
-      "index": 2,
+      "index": 3,
       "type": "repeat",
       "count": 2,
       "definition": {

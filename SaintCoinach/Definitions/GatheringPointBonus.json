@@ -23,6 +23,10 @@
     {
       "index": 4,
       "name": "BonusValue"
+    },
+    {
+      "index": 6,
+      "name": "AddedIn{5-3}"
     }
   ]
 }

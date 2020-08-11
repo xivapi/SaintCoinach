@@ -98,19 +98,19 @@
       }
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "CanQuickSynth"
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "CanHq"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "ExpRewarded"
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "Status{Required}",
       "converter": {
         "type": "link",
@@ -118,7 +118,7 @@
       }
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "Item{Required}",
       "converter": {
         "type": "link",
@@ -126,15 +126,15 @@
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "IsSpecializationRequired"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "IsExpert"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "PatchNumber"
     }
   ]

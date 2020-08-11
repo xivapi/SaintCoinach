@@ -37,7 +37,7 @@
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "ContentFinderCondition",
       "converter": {
         "type": "link",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "AdditionalData",
       "converter": {
         "type": "complexlink",

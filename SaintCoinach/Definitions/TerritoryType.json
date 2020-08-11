@@ -149,6 +149,10 @@
     },
     {
       "index": 32,
+      "name": "AddedIn{5-3}"
+    },
+    {
+      "index": 33,
       "name": "MountSpeed",
       "converter": {
         "type": "link",
