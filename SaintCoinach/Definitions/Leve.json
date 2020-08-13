@@ -34,23 +34,23 @@
       }
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "ClassJobLevel"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "TimeLimit"
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "AllowanceCost"
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "Evaluation"
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "PlaceName{Start}",
       "converter": {
         "type": "link",
@@ -58,7 +58,7 @@
       }
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "PlaceName{Issued}",
       "converter": {
         "type": "link",
@@ -66,7 +66,7 @@
       }
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",
@@ -74,7 +74,7 @@
       }
     },
     {
-      "index": 13,
+      "index": 14,
       "name": "JournalGenre",
       "converter": {
         "type": "link",
@@ -82,7 +82,7 @@
       }
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "PlaceName{StartZone}",
       "converter": {
         "type": "link",
@@ -90,14 +90,14 @@
       }
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "Icon{CityState}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "DataId",
       "converter": {
         "type": "multiref",
@@ -110,27 +110,27 @@
       }
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "CanCancel"
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "MaxDifficulty"
     },
     {
-      "index": 20,
+      "index": 21,
       "name": "ExpFactor"
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "ExpReward"
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "GilReward"
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "LeveRewardItem",
       "converter": {
         "type": "link",
@@ -138,7 +138,7 @@
       }
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "LeveVfx",
       "converter": {
         "type": "link",
@@ -146,7 +146,7 @@
       }
     },
     {
-      "index": 25,
+      "index": 26,
       "name": "LeveVfx{Frame}",
       "converter": {
         "type": "link",
@@ -154,7 +154,7 @@
       }
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "Level{Levemete}",
       "converter": {
         "type": "link",
@@ -162,18 +162,18 @@
       }
     },
     {
-      "index": 27,
+      "index": 28,
       "name": "Icon{Issuer}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 28,
+      "index": 29,
       "name": "LockedLeve"
     },
     {
-      "index": 29,
+      "index": 30,
       "name": "Level{Start}",
       "converter": {
         "type": "link",
@@ -181,7 +181,7 @@
       }
     },
     {
-      "index": 30,
+      "index": 31,
       "name": "BGM",
       "converter": {
         "type": "link",

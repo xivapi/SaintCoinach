@@ -210,14 +210,6 @@
       }
     },
     {
-      "index": 40,
-      "name": "Behavior",
-      "converter": {
-        "type": "link",
-        "target": "Behavior"
-      }
-    },
-    {
       "index": 42,
       "name": "Target{End}",
       "converter": {
