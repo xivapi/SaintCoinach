@@ -1,0 +1,14 @@
+{
+  "sheet": "SatisfactionArbitration",
+  "defaultColumn": "Quest",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}

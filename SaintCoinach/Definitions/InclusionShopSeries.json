@@ -1,0 +1,13 @@
+{
+  "sheet": "InclusionShopSeries",
+  "defaultColumn": "SpecialShop",
+  "definitions": [
+    {
+      "name": "SpecialShop",
+      "converter": {
+        "type": "link",
+        "target": "SpecialShop"
+      }
+    }
+  ]
+}
