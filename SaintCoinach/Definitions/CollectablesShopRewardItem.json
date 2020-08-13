@@ -1,6 +1,6 @@
 {
   "sheet": "CollectablesShopRewardItem",
-  "defaultColumn": "Name",
+  "defaultColumn": "Item",
   "definitions": [
     {
       "name": "Item",
@@ -8,6 +8,6 @@
         "type": "link",
         "target": "Item"
       }
-    },
+    }
   ]
 }
