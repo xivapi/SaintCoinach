@@ -1,0 +1,9 @@
+{
+  "sheet": "ItemSortCategory",
+  "defaultColumn": "Param",
+  "definitions": [
+    {
+      "name": "Param"
+    }
+  ]
+}
