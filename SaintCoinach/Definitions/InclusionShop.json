@@ -1,0 +1,17 @@
+{
+  "sheet": "InclusionShop",
+  "definitions": [
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 30,
+      "definition": {
+        "name": "Category",
+        "converter": {
+          "type": "link",
+          "target": "InclusionShopCategory"
+        }
+      }
+    }
+  ]
+}

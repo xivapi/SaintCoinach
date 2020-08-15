@@ -164,8 +164,12 @@
       }
     },
     {
-      "index": 19,
-      "name": "AddedIn{5-3}"
+      "index": 18,
+      "name": "ItemSortCatgegory",
+      "converter": {
+        "type": "link",
+        "target": "ItemSortCatgegory"
+      }
     },
     {
       "index": 20,
