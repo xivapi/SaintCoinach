@@ -165,10 +165,10 @@
     },
     {
       "index": 18,
-      "name": "ItemSortCatgegory",
+      "name": "ItemSortCategory",
       "converter": {
         "type": "link",
-        "target": "ItemSortCatgegory"
+        "target": "ItemSortCategory"
       }
     },
     {
