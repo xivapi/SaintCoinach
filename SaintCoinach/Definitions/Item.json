@@ -248,6 +248,10 @@
       }
     },
     {
+      "index": 36,
+      "name": "Desynth"
+    },
+    {
       "index": 37,
       "name": "IsCollectable"
     },
