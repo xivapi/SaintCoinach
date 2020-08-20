@@ -165,10 +165,10 @@
     },
     {
       "index": 18,
-      "name": "ItemSortCatgegory",
+      "name": "ItemSortCategory",
       "converter": {
         "type": "link",
-        "target": "ItemSortCatgegory"
+        "target": "ItemSortCategory"
       }
     },
     {
@@ -246,6 +246,10 @@
         "type": "link",
         "target": "Item"
       }
+    },
+    {
+      "index": 36,
+      "name": "Desynth"
     },
     {
       "index": 37,

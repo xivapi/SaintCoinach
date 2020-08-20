@@ -1,0 +1,52 @@
+﻿{
+  "sheet": "Ornament",
+  "defaultColumn": "Singular",
+  "definitions": [
+    {
+      "name": "Model"
+    },
+    {
+      "index": 4,
+      "name": "Order"
+    },
+    {
+      "index": 5,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Transient"
+    },
+    {
+      "index": 7,
+      "name": "Singular"
+    },
+    {
+      "index": 8,
+      "name": "Adjective"
+    },
+    {
+      "index": 9,
+      "name": "Plural"
+    },
+    {
+      "index": 10,
+      "name": "PossessivePronoun"
+    },
+    {
+      "index": 11,
+      "name": "StartsWithVowel"
+    },
+    {
+      "index": 13,
+      "name": "Pronoun"
+    },
+    {
+      "index": 14,
+      "name": "Article"
+    }
+  ]
+}

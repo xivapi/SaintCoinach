@@ -123,6 +123,7 @@
     <Compile Include="Xiv\ItemActions\FateContentAction.cs" />
     <Compile Include="Xiv\JournalSection.cs" />
     <Compile Include="Xiv\NpcEquip.cs" />
+    <Compile Include="Xiv\Ornament.cs" />
     <Compile Include="Xiv\Salvage.cs" />
     <Compile Include="Xiv\SpearfishingItem.cs" />
     <Compile Include="Xiv\GatheringItemBase.cs" />
@@ -2678,6 +2679,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\SwitchTalkVariation.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\Ornament.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\CollectablesShop.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Libra\LibraModel.Context.tt">

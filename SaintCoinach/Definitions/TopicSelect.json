@@ -19,7 +19,8 @@
               "type": "multiref",
               "targets": [
                 "SpecialShop",
-                "GilShop"
+                "GilShop",
+                "PreHandler"
               ]
             }
           }
