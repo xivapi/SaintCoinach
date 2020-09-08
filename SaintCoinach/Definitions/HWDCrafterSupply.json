@@ -15,15 +15,15 @@
     {
       "index": 17,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "Level"
       }
     },
     {
-      "index": 33,
+      "index": 34,
       "type": "repeat",
-      "count": 16,
+      "count": 17,
       "definition": {
         "name": "LevelMax"
       }
