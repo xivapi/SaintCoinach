@@ -87,6 +87,18 @@
           "target": "HWDCrafterSupplyReward"
         }
       }
+    },
+    {
+      "index": 221,
+      "type": "repeat",
+      "count": 17,
+      "definition": {
+        "name": "TermName",
+    	  "converter": {
+    	    "type": "link",
+    	    "target": "HWDCrafterSupplyTerm"
+    		}
+    	}
     }
   ]
 }
