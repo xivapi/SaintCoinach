@@ -14,6 +14,10 @@
       }
     },
     {
+      "index": 8,
+      "name": "AddedIn{5-3}[1]"
+    },
+    {
       "index": 9,
       "name": "Behavior",
       "converter": {
@@ -23,10 +27,14 @@
     },
     {
       "index": 36,
-      "name": "Model{MainHand}"
+      "name": "AddedIn{5-3}[2]"
     },
     {
       "index": 37,
+      "name": "Model{MainHand}"
+    },
+    {
+      "index": 38,
       "name": "Dye{MainHand}",
       "converter": {
         "type": "link",
@@ -34,11 +42,11 @@
       }
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "Model{OffHand}"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "Dye{OffHand}",
       "converter": {
         "type": "link",
@@ -46,11 +54,11 @@
       }
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "Model{Head}"
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "Dye{Head}",
       "converter": {
         "type": "link",
@@ -58,11 +66,11 @@
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "Model{Body}"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "Dye{Body}",
       "converter": {
         "type": "link",
@@ -70,11 +78,11 @@
       }
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "Model{Hands}"
     },
     {
-      "index": 45,
+      "index": 46,
       "name": "Dye{Hands}",
       "converter": {
         "type": "link",
@@ -82,11 +90,11 @@
       }
     },
     {
-      "index": 46,
+      "index": 47,
       "name": "Model{Legs}"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "Dye{Legs}",
       "converter": {
         "type": "link",
@@ -94,11 +102,11 @@
       }
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "Model{Feet}"
     },
     {
-      "index": 49,
+      "index": 50,
       "name": "Dye{Feet}",
       "converter": {
         "type": "link",
