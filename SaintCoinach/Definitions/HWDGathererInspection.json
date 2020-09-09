@@ -3,7 +3,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "ItemRequired",
         "converter": {
@@ -25,17 +25,17 @@
       }
     },
     {
-      "index": 105,
+      "index": 106,
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "AmountRequired"
       }
     },
     {
-      "index": 157,
+      "index": 159,
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "ItemReceived",
         "converter": {
@@ -45,9 +45,9 @@
       }
     },
     {
-      "index": 209,
+      "index": 212,
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "Reward(1)",
         "converter": {
@@ -57,9 +57,9 @@
       }
     },
     {
-      "index": 261,
+      "index": 265,
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "Reward(2)",
         "converter": {
@@ -69,9 +69,9 @@
       }
     },
     {
-      "index": 313,
+      "index": 318,
       "type": "repeat",
-      "count": 52,
+      "count": 53,
       "definition": {
         "name": "Phase",
         "converter": {
