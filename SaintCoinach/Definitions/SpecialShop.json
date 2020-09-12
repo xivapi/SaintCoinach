@@ -9,7 +9,7 @@
     {
       "index": 1,
       "type": "repeat",
-      "count": 2,
+      "count": 3,
       "definition": {
         "type": "group",
         "members": [
