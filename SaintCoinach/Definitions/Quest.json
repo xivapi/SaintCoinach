@@ -210,6 +210,22 @@
       }
     },
     {
+      "index": 40,
+      "name": "Issuer{Location}",
+      "converter": {
+        "type": "link",
+        "target": "Level"
+      }
+    },
+    {
+      "index": 41,
+      "name": "ClientBehavior",
+      "converter": {
+        "type": "link",
+        "target": "Behavior"
+      }
+    },
+    {
       "index": 42,
       "name": "Target{End}",
       "converter": {
