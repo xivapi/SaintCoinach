@@ -10,6 +10,18 @@
       "name": "Location"
     },
     {
+      "index": 5,
+      "name": "Map",
+      "converter": {
+        "type": "link",
+        "target": "SubmarineMap"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Stars"
+    },
+    {
       "index": 8,
       "name": "RankReq"
     },

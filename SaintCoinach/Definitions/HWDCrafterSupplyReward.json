@@ -7,6 +7,10 @@
     {
       "index": 1,
       "name": "ExpReward"
+    },
+    {
+      "index": 2,
+      "name": " Points"
     }
   ]
 }
