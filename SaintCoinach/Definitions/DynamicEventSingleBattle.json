@@ -1,0 +1,22 @@
+{
+  "sheet": "DynamicEventSingleBattle",
+  "definitions": [
+    {
+      "name": "ActionIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Text"
+    }
+  ]
+}
