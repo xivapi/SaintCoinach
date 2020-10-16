@@ -98,7 +98,7 @@
       "type": "repeat",
       "count": 110,
       "definition": {
-        "name": "AcceptedQuestSequence[0]",
+        "name": "AcceptedQuestSequence[0]"
       }
     },
     {
