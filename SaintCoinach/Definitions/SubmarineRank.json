@@ -2,7 +2,7 @@
   "sheet": "SubmarineRank",
   "definitions": [
     {
-      "name": "Rank"
+      "name": "Capacity"
     },
     {
       "index": 1,
