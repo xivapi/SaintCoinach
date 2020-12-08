@@ -207,6 +207,14 @@
     {
       "index": 53,
       "name": "PartyCondition"
+    },
+    {
+      "index": 61,
+      "name": "Unknown[5-4][0]"
+    },
+    {
+      "index": 62,
+      "name": "Unknown[5-4][1]"
     }
   ]
 }

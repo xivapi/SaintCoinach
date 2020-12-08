@@ -1,0 +1,9 @@
+{
+  "sheet": "WebURL",
+  "defaultColumn": "URL",
+  "definitions": [
+    {
+      "name": "URL"
+    }
+  ]
+}
