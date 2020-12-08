@@ -40,6 +40,22 @@
     {
       "index": 8,
       "name": "SortKey"
+    },
+    {
+      "index": 9,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Unknown[5-4]"
+      }
+    },
+    {
+      "index": 15,
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
     }
   ]
 }

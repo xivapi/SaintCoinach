@@ -3,7 +3,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
         "name": "ItemRequired",
         "converter": {
@@ -13,9 +13,9 @@
       }
     },
     {
-      "index": 53,
+      "index": 79,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
         "name": "FishParameter",
         "converter": {
@@ -25,17 +25,17 @@
       }
     },
     {
-      "index": 106,
+      "index": 158,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
         "name": "AmountRequired"
       }
     },
     {
-      "index": 159,
+      "index": 237,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
         "name": "ItemReceived",
         "converter": {
@@ -45,11 +45,11 @@
       }
     },
     {
-      "index": 212,
+      "index": 316,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
-        "name": "Reward(1)",
+        "name": "Reward[1]",
         "converter": {
           "type": "link",
           "target": "HWDGathererInspectionReward"
@@ -57,11 +57,11 @@
       }
     },
     {
-      "index": 265,
+      "index": 395,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
-        "name": "Reward(2)",
+        "name": "Reward[2]",
         "converter": {
           "type": "link",
           "target": "HWDGathererInspectionReward"
@@ -69,9 +69,9 @@
       }
     },
     {
-      "index": 318,
+      "index": 474,
       "type": "repeat",
-      "count": 53,
+      "count": 79,
       "definition": {
         "name": "Phase",
         "converter": {

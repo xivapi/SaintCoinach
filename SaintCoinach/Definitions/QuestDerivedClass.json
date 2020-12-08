@@ -1,12 +1,12 @@
 {
   "sheet": "QuestDerivedClass",
-  "defaultColumn": "Quest",
+  "defaultColumn": "ClassJob",
   "definitions": [
     {
-      "name": "Quest",
+      "name": "ClassJob",
       "converter": {
         "type": "link",
-        "target": "Quest"
+        "target": "ClassJob"
       }
     }
   ]

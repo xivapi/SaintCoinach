@@ -4,7 +4,7 @@
     {
       "index": 1,
       "type": "repeat",
-      "count": 16,
+      "count": 32,
       "definition": {
         "name": "ItemAccepted",
         "converter": {
@@ -14,21 +14,37 @@
       }
     },
     {
-      "index": 17,
+      "index": 33,
       "type": "repeat",
-      "count": 16,
+      "count": 32,
       "definition": {
         "name": "AmountAccepted"
       }
     },
     {
       "index": 65,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Unknown[5-4][0]"
+      }
+    },
+    {
+      "index": 97,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Unknown[5-4][1]"
+      }
+    },
+    {
+      "index": 129,
       "name": "Lua"
     },
     {
-      "index": 66,
+      "index": 130,
       "type": "repeat",
-      "count": 2,
+      "count": 3,
       "definition": {
         "name": "LogMessage",
         "converter": {

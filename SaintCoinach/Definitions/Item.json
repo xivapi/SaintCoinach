@@ -265,14 +265,18 @@
     },
     {
       "index": 40,
+      "name": "Unknown[5-4]"
+    },
+    {
+      "index": 41,
       "name": "Level{Equip}"
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "EquipRestriction"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",
@@ -280,7 +284,7 @@
       }
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "GrandCompany",
       "converter": {
         "type": "link",
@@ -288,7 +292,7 @@
       }
     },
     {
-      "index": 45,
+      "index": 46,
       "name": "ItemSeries",
       "converter": {
         "type": "link",
@@ -296,19 +300,19 @@
       }
     },
     {
-      "index": 46,
+      "index": 47,
       "name": "BaseParamModifier"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "Model{Main}"
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "Model{Sub}"
     },
     {
-      "index": 49,
+      "index": 50,
       "name": "ClassJob{Use}",
       "converter": {
         "type": "link",
@@ -316,35 +320,35 @@
       }
     },
     {
-      "index": 51,
+      "index": 52,
       "name": "Damage{Phys}"
     },
     {
-      "index": 52,
+      "index": 53,
       "name": "Damage{Mag}"
     },
     {
-      "index": 53,
+      "index": 54,
       "name": "Delay<ms>"
     },
     {
-      "index": 55,
+      "index": 56,
       "name": "BlockRate"
     },
     {
-      "index": 56,
+      "index": 57,
       "name": "Block"
     },
     {
-      "index": 57,
+      "index": 58,
       "name": "Defense{Phys}"
     },
     {
-      "index": 58,
+      "index": 59,
       "name": "Defense{Mag}"
     },
     {
-      "index": 59,
+      "index": 60,
       "type": "repeat",
       "count": 6,
       "definition": {
@@ -364,7 +368,7 @@
       }
     },
     {
-      "index": 71,
+      "index": 72,
       "name": "ItemSpecialBonus",
       "converter": {
         "type": "link",
@@ -372,11 +376,11 @@
       }
     },
     {
-      "index": 72,
+      "index": 73,
       "name": "ItemSpecialBonus{Param}"
     },
     {
-      "index": 73,
+      "index": 74,
       "type": "repeat",
       "count": 6,
       "definition": {
@@ -396,23 +400,23 @@
       }
     },
     {
-      "index": 85,
+      "index": 86,
       "name": "MaterializeType"
     },
     {
-      "index": 86,
+      "index": 87,
       "name": "MateriaSlotCount"
     },
     {
-      "index": 87,
+      "index": 88,
       "name": "IsAdvancedMeldingPermitted"
     },
     {
-      "index": 88,
+      "index": 89,
       "name": "IsPvP"
     },
     {
-      "index": 90,
+      "index": 91,
       "name": "IsGlamourous"
     }
   ]
