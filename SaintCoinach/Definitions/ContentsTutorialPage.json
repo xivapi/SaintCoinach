@@ -1,0 +1,15 @@
+{
+  "sheet": "ContentsTutorialPage",
+  "definitions": [
+    {
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    }
+  ]
+}

@@ -3,11 +3,7 @@
   "defaultColumn": "Currency",
   "definitions": [
     {
-      "name": "Currency",
-      "converter": {
-        "type": "link",
-        "target": "Currency"
-      }
+      "name": "Currency"
     },
     {
       "index": 1,

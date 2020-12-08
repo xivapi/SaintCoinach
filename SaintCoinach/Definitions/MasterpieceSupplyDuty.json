@@ -14,11 +14,7 @@
     },
     {
       "index": 2,
-      "name": "Reward{Currency}",
-      "converter": {
-        "type": "link",
-        "target": "Currency"
-      }
+      "name": "Reward{Currency}"
     },
     {
       "index": 3,
