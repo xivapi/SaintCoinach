@@ -2,6 +2,9 @@
   "sheet": "AirshipExplorationLevel",
   "definitions": [
     {
+      "name": "Capacity"
+    },
+    {
       "index": 1,
       "name": "ExpToNext"
     }
