@@ -6,19 +6,23 @@
       "name": "Name"
     },
     {
-      "index": 2,
-      "name": "Description"
+      "index": 1,
+      "name": "Category"
     },
     {
       "index": 3,
+      "name": "Description"
+    },
+    {
+      "index": 4,
       "name": "DutyType"
     },
     {
-      "index": 6,
+      "index": 8,
       "name": "IsInDutyFinder"
     },
     {
-      "index": 7,
+      "index": 9,
       "name": "OpenRule",
       "converter": {
         "type": "link",
@@ -26,22 +30,22 @@
       }
     },
     {
-      "index": 9,
+      "index": 11,
       "name": "RequiredLevel"
     },
     {
-      "index": 11,
+      "index": 13,
       "name": "ItemLevel{Required}"
     },
     {
-      "index": 13,
+      "index": 15,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 14,
+      "index": 16,
       "name": "ContentRouletteRoleBonus",
       "converter": {
         "type": "link",
@@ -49,23 +53,23 @@
       }
     },
     {
-      "index": 15,
+      "index": 17,
       "name": "Reward{TomeA}"
     },
     {
-      "index": 16,
+      "index": 18,
       "name": "Reward{TomeB}"
     },
     {
-      "index": 17,
+      "index": 19,
       "name": "Reward{TomeC}"
     },
     {
-      "index": 20,
+      "index": 22,
       "name": "SortKey"
     },
     {
-      "index": 22,
+      "index": 24,
       "name": "ContentMemberType",
       "converter": {
         "type": "link",
@@ -73,15 +77,15 @@
       }
     },
     {
-      "index": 32,
+      "index": 34,
       "name": "RequireAllDuties"
     },
     {
-      "index": 34,
+      "index": 36,
       "name": "ContentRouletteOpenRule"
     },
     {
-      "index": 35,
+      "index": 37,
       "name": "InstanceContent",
       "converter": {
         "type": "link",

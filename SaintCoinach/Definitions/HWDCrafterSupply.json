@@ -3,7 +3,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "Item{TradeIn}",
         "converter": {
@@ -13,49 +13,49 @@
       }
     },
     {
-      "index": 17,
+      "index": 23,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "Level"
       }
     },
     {
-      "index": 34,
+      "index": 46,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "LevelMax"
       }
     },
     {
-      "index": 68,
+      "index": 69,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "BaseCollectable{Rating}"
       }
     },
     {
-      "index": 85,
+      "index": 92,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "MidCollectable{Rating}"
       }
     },
     {
-      "index": 102,
+      "index": 115,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "HighCollectable{Rating}"
       }
     },
     {
-      "index": 119,
+      "index": 230,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "BaseCollectable{Reward}",
         "converter": {
@@ -65,9 +65,9 @@
       }
     },
     {
-      "index": 136,
+      "index": 253,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "MidCollectable{Reward}",
         "converter": {
@@ -77,9 +77,9 @@
       }
     },
     {
-      "index": 153,
+      "index": 276,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "HighCollectable{Reward}",
         "converter": {
@@ -89,9 +89,9 @@
       }
     },
     {
-      "index": 221,
+      "index": 299,
       "type": "repeat",
-      "count": 17,
+      "count": 23,
       "definition": {
         "name": "TermName",
     	  "converter": {

@@ -27,6 +27,10 @@
     {
       "index": 6,
       "name": "Durability"
+    },
+    {
+      "index": 7,
+      "name": "Unknown[5-4]"
     }
   ]
 }
