@@ -43,11 +43,11 @@
     },
     {
       "index": 9,
-      "type": "repeat",
-      "count": 6,
-      "definition": {
-        "name": "Unknown[5-4]"
-      }
+      "name": "Order"
+    },
+    {
+      "index": 10,
+      "name": "UIPriority"
     },
     {
       "index": 15,
