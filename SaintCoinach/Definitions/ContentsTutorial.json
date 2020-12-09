@@ -1,0 +1,25 @@
+{
+  "sheet": "ContentsTutorial",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Description"
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Page",
+        "converter": {
+          "type": "link",
+          "target": "ContentsTutorialPage"
+        }
+      }
+    }
+  ]
+}

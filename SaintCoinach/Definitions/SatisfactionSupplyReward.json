@@ -9,11 +9,7 @@
         "type": "group",
         "members": [
           {
-            "name": "Reward{Currency}",
-            "converter": {
-              "type": "link",
-              "target": "Currency"
-            }
+            "name": "Reward{Currency}"
           },
           {
             "name": "Quantity{Low}"
