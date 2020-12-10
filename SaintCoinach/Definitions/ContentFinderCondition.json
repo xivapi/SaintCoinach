@@ -118,6 +118,10 @@
       "name": "AllowReplacement"
     },
     {
+      "index": 23,
+      "name": "AllowExplorerMode"
+    },
+    {
       "index": 25,
       "name": "Unknown[5-4]"
     },
@@ -192,7 +196,7 @@
     },
     {
       "index": 46,
-      "name": "Level50/60Roulette"
+      "name": "Level50/60/70Roulette"
     },
     {
       "index": 47,
@@ -216,7 +220,7 @@
     },
     {
       "index": 52,
-      "name": "Level70Roulette"
+      "name": "Level80Roulette"
     },
     {
       "index": 53,
