@@ -89,16 +89,52 @@
       }
     },
     {
+      "index": 230,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "BaseCollectable{Reward}[PostPhase]",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 253,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "MidCollectable{Reward}[PostPhase]",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 276,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "HighCollectable{Reward}[PostPhase]",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
       "index": 299,
       "type": "repeat",
       "count": 23,
       "definition": {
         "name": "TermName",
-    	  "converter": {
-    	    "type": "link",
-    	    "target": "HWDCrafterSupplyTerm"
-    		}
-    	}
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyTerm"
+        }
+      }
     }
   ]
 }
