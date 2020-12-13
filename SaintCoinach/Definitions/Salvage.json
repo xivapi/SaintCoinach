@@ -1,9 +1,0 @@
-{
-  "sheet": "Salvage",
-  "defaultColumn": "OptimalSkill",
-  "definitions": [
-    {
-      "name": "OptimalSkill"
-    }
-  ]
-}
