@@ -6,6 +6,10 @@
       "name": "Name"
     },
     {
+      "index": 1,
+      "name": "Description"
+    },
+    {
       "index": 4,
       "name": "Unknown[5-4]"
     }
