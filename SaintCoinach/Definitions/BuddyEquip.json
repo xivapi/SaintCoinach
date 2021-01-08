@@ -73,6 +73,10 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 16,
+      "name": "Order"
     }
   ]
 }
