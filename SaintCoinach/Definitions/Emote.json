@@ -42,6 +42,10 @@
       "name": "DrawsWeapon"
     },
     {
+      "index": 17,
+      "name": "Order"
+    },
+    {
       "index": 18,
       "name": "TextCommand",
       "converter": {
