@@ -29,7 +29,7 @@
       }
     },
     {
-      "index": 69,
+      "index": 92,
       "type": "repeat",
       "count": 23,
       "definition": {
@@ -37,7 +37,7 @@
       }
     },
     {
-      "index": 92,
+      "index": 115,
       "type": "repeat",
       "count": 23,
       "definition": {
@@ -45,7 +45,7 @@
       }
     },
     {
-      "index": 115,
+      "index": 138,
       "type": "repeat",
       "count": 23,
       "definition": {
@@ -53,7 +53,7 @@
       }
     },
     {
-      "index": 230,
+      "index": 161,
       "type": "repeat",
       "count": 23,
       "definition": {
@@ -65,7 +65,7 @@
       }
     },
     {
-      "index": 253,
+      "index": 184,
       "type": "repeat",
       "count": 23,
       "definition": {
@@ -77,11 +77,47 @@
       }
     },
     {
-      "index": 276,
+      "index": 207,
       "type": "repeat",
       "count": 23,
       "definition": {
         "name": "HighCollectable{Reward}",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 230,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "BaseCollectable{Reward}[PostPhase]",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 253,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "MidCollectable{Reward}[PostPhase]",
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyReward"
+        }
+      }
+    },
+    {
+      "index": 276,
+      "type": "repeat",
+      "count": 23,
+      "definition": {
+        "name": "HighCollectable{Reward}[PostPhase]",
         "converter": {
           "type": "link",
           "target": "HWDCrafterSupplyReward"
@@ -94,11 +130,11 @@
       "count": 23,
       "definition": {
         "name": "TermName",
-    	  "converter": {
-    	    "type": "link",
-    	    "target": "HWDCrafterSupplyTerm"
-    		}
-    	}
+        "converter": {
+          "type": "link",
+          "target": "HWDCrafterSupplyTerm"
+        }
+      }
     }
   ]
 }
