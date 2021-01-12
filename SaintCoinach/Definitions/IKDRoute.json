@@ -1,24 +1,27 @@
 {
   "sheet": "IKDRoute",
   "defaultColumn": "Name",
-  "definitions": [
-    {
+  "definitions": [    {
       "type": "repeat",
-      "count": 5,
+      "count": 3,
       "definition": {
-        "name": "Spot",
-        "converter": {
-          "type": "link",
-          "target": "IKDSpot"
-        }
-      }
-    },
-    {
-      "index": 5,
-      "name": "TimeDefine",
-      "converter": {
-        "type": "link",
-        "target": "IKDTimeDefine"
+        "type": "group",
+        "members": [
+          {
+            "name": "Spot",
+            "converter": {
+              "type": "link",
+              "target": "IKDSpot"
+            }
+          },
+          {
+            "name": "Time",
+            "converter": {
+              "type": "link",
+              "target": "IKDTimeDefine"
+            }
+          }
+        ]
       }
     },
     {
