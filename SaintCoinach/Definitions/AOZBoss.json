@@ -8,6 +8,10 @@
         "type": "link",
         "target": "AOZContentBriefingBNpc"
       }
+    },
+    {
+      "index": 1,
+      "name": "Position"
     }
   ]
 }

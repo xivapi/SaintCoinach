@@ -24,6 +24,10 @@
       }
     },
     {
+      "index": 3,
+      "name": "HideStats"
+    },
+    {
       "index": 4,
       "name": "Endurance"
     },
@@ -69,43 +73,43 @@
     },
     {
       "index": 15,
-      "name": "SlowResistance"
+      "name": "SlowVuln"
     },
     {
       "index": 16,
-      "name": "PetrificationResistance"
+      "name": "PetrificationVuln"
     },
     {
       "index": 17,
-      "name": "ParalysisResistance"
+      "name": "ParalysisVuln"
     },
     {
       "index": 18,
-      "name": "SilenceResistance"
+      "name": "InterruptionVuln"
     },
     {
       "index": 19,
-      "name": "BlindResistance"
+      "name": "BlindVuln"
     },
     {
       "index": 20,
-      "name": "StunResistance"
+      "name": "StunVuln"
     },
     {
       "index": 21,
-      "name": "SleepResistance"
+      "name": "SleepVuln"
     },
     {
       "index": 22,
-      "name": "BindResistance"
+      "name": "BindVuln"
     },
     {
       "index": 23,
-      "name": "HeavyResistance"
+      "name": "HeavyVuln"
     },
     {
       "index": 24,
-      "name": "InstaDeathResistance"
+      "name": "FlatOrDeathVuln"
     }
   ]
 }
