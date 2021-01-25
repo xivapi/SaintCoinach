@@ -2,6 +2,9 @@
   "sheet": "AirshipExplorationPart",
   "definitions": [
     {
+      "name": "Slot"
+    },
+    {
       "index": 1,
       "name": "Rank"
     },
