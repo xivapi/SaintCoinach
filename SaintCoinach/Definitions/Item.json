@@ -118,7 +118,7 @@
           {
             "when": {
               "key": "FilterGroup",
-              "value": 37
+              "value": 36
             },
             "sheet": "SubmarinePart"
           },
