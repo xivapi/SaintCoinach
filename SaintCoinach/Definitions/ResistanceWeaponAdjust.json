@@ -1,0 +1,12 @@
+{
+  "sheet": "ResistanceWeaponAdjust",
+  "definitions": [
+    {
+      "index": 6,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}
