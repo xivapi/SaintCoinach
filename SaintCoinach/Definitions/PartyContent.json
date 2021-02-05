@@ -1,6 +1,6 @@
 {
   "sheet": "PartyContent",
-  "defaultColumn": "Name",
+  "defaultColumn": "ContentFinderCondition",
   "definitions": [
     {
       "name": "Key"
@@ -27,6 +27,30 @@
       "converter": {
         "type": "link",
         "target": "PartyContentTextData"
+      }
+    },
+    {
+      "index": 5,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "LGB[EventObject][0]"
+      }
+    },
+    {
+      "index": 14,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "LGB[EventRange]"
+      }
+    },
+    {
+      "index": 23,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "LGB[EventObject][1]"
       }
     },
     {

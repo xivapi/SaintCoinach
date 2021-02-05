@@ -24,10 +24,13 @@
       "index": 5,
       "name": "Location",
       "converter": {
-        "type": "link",
-        "target": "ContentFinderCondition"
+        "type": "multiref",
+        "targets": [
+          "PlaceName",
+          "ContentFinderCondition"
+        ]
       }
-    },
+     },
     {
       "index": 6,
       "name": "StartQuest",
