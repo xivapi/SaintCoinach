@@ -7,7 +7,14 @@
     },
     {
       "index": 1,
-      "name": "HideCategory"
+      "name": "HideOrder"
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
     },
     {
       "index": 3,
