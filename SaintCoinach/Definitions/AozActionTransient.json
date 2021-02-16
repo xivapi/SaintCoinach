@@ -21,16 +21,35 @@
       "name": "Description"
     },
     {
+      "index": 4,
+      "name": "LocationKey"
+    },
+    {
       "index": 5,
       "name": "Location",
       "converter": {
-        "type": "link",
-        "target": "ContentFinderCondition"
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "LocationKey",
+              "value": 1
+            },
+            "sheet": "PlaceName"
+          },
+          {
+            "when": {
+              "key": "LocationKey",
+              "value": 4
+            },
+            "sheet": "ContentFinderCondition"
+          }
+        ]
       }
     },
     {
       "index": 6,
-      "name": "StartQuest",
+      "name": "RequiredForQuest",
       "converter": {
         "type": "link",
         "target": "Quest"
@@ -38,11 +57,59 @@
     },
     {
       "index": 7,
-      "name": "NextQuest",
+      "name": "PreviousQuest",
       "converter": {
         "type": "link",
         "target": "Quest"
       }
+    },
+    {
+      "index": 8,
+      "name": "TargetsEnemy"
+    },
+    {
+      "index": 9,
+      "name": "TargetsSelfOrAlly"
+    },
+    {
+      "index": 10,
+      "name": "CauseSlow"
+    },
+    {
+      "index": 11,
+      "name": "CausePetrify"
+    },
+    {
+      "index": 12,
+      "name": "CauseParalysis"
+    },
+    {
+      "index": 13,
+      "name": "CauseInterrupt"
+    },
+    {
+      "index": 14,
+      "name": "CauseBlind"
+    },
+    {
+      "index": 15,
+      "name": "CauseStun"
+    },
+    {
+      "index": 16,
+      "name": "CauseSleep"
+    },
+    {
+      "index": 17,
+      "name": "CauseBind"
+    },
+    {
+      "index": 18,
+      "name": "CauseHeavy"
+    },
+    {
+      "index": 19,
+      "name": "CauseDeath"
     }
   ]
 }

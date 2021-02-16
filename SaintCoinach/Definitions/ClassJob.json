@@ -30,6 +30,10 @@
       "name": "JobIndex"
     },
     {
+      "index": 8,
+      "name": "DohDolJobIndex"
+    },
+    {
       "index": 9,
       "name": "Modifier{HitPoints}"
     },

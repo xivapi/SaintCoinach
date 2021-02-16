@@ -34,6 +34,10 @@
       "name": "Favor"
     },
     {
+      "index": 8,
+      "name": "Class"
+    },
+    {
       "index": 9,
       "name": "RepairMaterials"
     }
