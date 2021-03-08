@@ -66,6 +66,10 @@
       "name": "Modifier{Piety}"
     },
     {
+      "index": 24,
+      "name": "PvPActionSortRow"
+    },
+    {
       "index": 26,
       "name": "ClassJob{Parent}",
       "converter": {
