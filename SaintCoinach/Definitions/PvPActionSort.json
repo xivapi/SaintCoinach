@@ -3,14 +3,29 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Name"
+      "name": "Action{Type}",
     },
     {
       "index": 1,
       "name": "Action",
       "converter": {
-        "type": "link",
-        "target": "Action"
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Action{Type}",
+              "value": 1
+            },
+            "sheet": "Action"
+          },
+          {
+            "when": {
+              "key": "Action{Type}",
+              "value": 2
+            },
+            "sheet": "ActionComboRoute"
+          }
+        ]
       }
     }
   ]
