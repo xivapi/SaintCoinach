@@ -1,0 +1,10 @@
+{
+  "sheet": "PetMirage",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 2,
+      "name": "Name"
+    }
+  ]
+}
