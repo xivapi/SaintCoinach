@@ -107,14 +107,6 @@
       }
     },
     {
-      "index": 1261,
-      "type": "repeat",
-      "count": 60,
-      "definition": {
-        "name": "Unknown"
-      }
-    },
-    {
       "index": 1321,
       "type": "repeat",
       "count": 60,

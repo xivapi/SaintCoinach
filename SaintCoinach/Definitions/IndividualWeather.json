@@ -14,14 +14,6 @@
       }
     },
     {
-      "index": 12,
-      "name": "AddedIn{5-3}[0]"
-    },
-    {
-      "index": 13,
-      "name": "AddedIn{5-3}[1]"
-    },
-    {
       "index": 15,
       "type": "repeat",
       "count": 6,

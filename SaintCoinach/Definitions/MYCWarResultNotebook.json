@@ -6,14 +6,6 @@
       "name": "Number"
     },
     {
-      "index": 1,
-      "name": "Unknown[5-4][0]"
-    },
-    {
-      "index": 2,
-      "name": "Unknown[5-4][1]"
-    },
-    {
       "index": 3,
       "name": "Quest",
       "converter": {

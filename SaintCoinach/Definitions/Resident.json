@@ -14,10 +14,6 @@
       }
     },
     {
-      "index": 3,
-      "name": "AddedIn{5-3}"
-    },
-    {
       "index": 4,
       "name": "ResidentMotionType",
       "converter": {
