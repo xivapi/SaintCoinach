@@ -37,12 +37,25 @@
       }
     },
     {
-      "index": 66,
-      "name": "Text"
+      "index": 64,
+      "name": "MainOption"
     },
     {
-      "index": 77,
-      "name": "Unknown[5-4]"
+      "index": 65,
+      "name": "SubOption"
+    },
+    {
+      "index": 75,
+      "name": "SpecialLinks",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "CollectablesShop",
+          "ContentEntry",
+          "SpecialShop",
+          "CustomTalkNestHandlers"
+        ]
+      }
     }
   ]
 }

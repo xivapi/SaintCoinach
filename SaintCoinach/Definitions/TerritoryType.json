@@ -148,20 +148,12 @@
       }
     },
     {
-      "index": 32,
-      "name": "AddedIn{5-3}"
-    },
-    {
       "index": 33,
       "name": "MountSpeed",
       "converter": {
         "type": "link",
         "target": "MountSpeed"
       }
-    },
-    {
-      "index": 40,
-      "name": "Unknown[5-4]"
     }
   ]
 }

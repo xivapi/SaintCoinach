@@ -22,22 +22,6 @@
       }
     },
     {
-      "index": 65,
-      "type": "repeat",
-      "count": 32,
-      "definition": {
-        "name": "Unknown[5-4][0]"
-      }
-    },
-    {
-      "index": 97,
-      "type": "repeat",
-      "count": 32,
-      "definition": {
-        "name": "Unknown[5-4][1]"
-      }
-    },
-    {
       "index": 129,
       "name": "Lua"
     },

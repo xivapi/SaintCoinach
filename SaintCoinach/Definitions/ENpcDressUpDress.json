@@ -2,10 +2,6 @@
   "sheet": "ENpcDressUpDress",
   "definitions": [
     {
-      "index": 5,
-      "name": "AddedIn{5-3}[0]"
-    },
-    {
       "index": 7,
       "name": "ENpc",
       "converter": {
@@ -14,20 +10,12 @@
       }
     },
     {
-      "index": 8,
-      "name": "AddedIn{5-3}[1]"
-    },
-    {
       "index": 9,
       "name": "Behavior",
       "converter": {
         "type": "link",
         "target": "Behavior"
       }
-    },
-    {
-      "index": 36,
-      "name": "AddedIn{5-3}[2]"
     },
     {
       "index": 37,

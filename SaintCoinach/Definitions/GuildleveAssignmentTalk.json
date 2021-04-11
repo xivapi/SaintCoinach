@@ -1,0 +1,13 @@
+{
+  "sheet": "GuildleveAssignmentTalk",
+  "definitions": [
+    {
+      "index": 30,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Talk"
+      }
+    }
+  ]
+}
