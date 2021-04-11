@@ -179,6 +179,10 @@
       "name": "CooldownGroup"
     },
     {
+      "index": 40,
+      "name": "AdditionalCooldownGroup"
+    },
+    {
       "index": 41,
       "name": "MaxCharges"
     },

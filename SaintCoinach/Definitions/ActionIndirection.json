@@ -8,6 +8,14 @@
         "type": "link",
         "target": "Action"
       }
+    },
+    {
+      "index": 1,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
     }
   ]
 }
