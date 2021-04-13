@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\HDUiCommand.cs" />
     <Compile Include="Commands\AllExdCommand.cs" />
     <Compile Include="Commands\AllExdRawCommand.cs" />
     <Compile Include="Commands\BgmCommand.cs" />
