@@ -3,14 +3,34 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "EurekaFate"
+      "name": "Name"
     },
     {
       "index": 1,
-      "name": "Rule"
+      "name": "Description"
     },
     {
       "index": 2,
+      "name": "Objective"
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "StatusText"
+      }
+    },
+    {
+      "index": 6,
+      "name": "EurekaFate"
+    },
+    {
+      "index": 7,
+      "name": "Rule"
+    },
+    {
+      "index": 8,
       "name": "FateRuleEx",
       "converter": {
         "type": "link",
@@ -18,19 +38,19 @@
       }
     },
     {
-      "index": 3,
+      "index": 9,
       "name": "Location"
     },
     {
-      "index": 4,
+      "index": 10,
       "name": "ClassJobLevel"
     },
     {
-      "index": 5,
+      "index": 11,
       "name": "ClassJobLevel{Max}"
     },
     {
-      "index": 6,
+      "index": 12,
       "name": "EventItem",
       "converter": {
         "type": "link",
@@ -38,7 +58,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 13,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -46,28 +66,28 @@
       }
     },
     {
-      "index": 10,
+      "index": 16,
       "name": "Icon{Objective}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 11,
+      "index": 17,
       "name": "Icon{Map}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 12,
+      "index": 18,
       "name": "IconInactive{Map}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 13,
+      "index": 19,
       "name": "Music",
       "converter": {
         "type": "link",
@@ -75,11 +95,11 @@
       }
     },
     {
-      "index": 14,
+      "index": 20,
       "name": "LGBGuardNPCLocation"
     },
     {
-      "index": 15,
+      "index": 21,
       "name": "ScreenImage{Accept}",
       "converter": {
         "type": "link",
@@ -87,7 +107,7 @@
       }
     },
     {
-      "index": 16,
+      "index": 22,
       "name": "ScreenImage{Complete}",
       "converter": {
         "type": "link",
@@ -95,7 +115,7 @@
       }
     },
     {
-      "index": 17,
+      "index": 23,
       "name": "ScreenImage{Failed}",
       "converter": {
         "type": "link",
@@ -103,11 +123,11 @@
       }
     },
     {
-      "index": 20,
+      "index": 26,
       "name": "SpecialFate"
     },
     {
-      "index": 22,
+      "index": 29,
       "name": "GivenStatus",
       "converter": {
         "type": "link",
@@ -115,36 +135,16 @@
       }
     },
     {
-      "index": 24,
+      "index": 30,
       "name": "AdventEvent"
     },
     {
-      "index": 25,
+      "index": 31,
       "name": "MoonFaireEvent"
     },
     {
-      "index": 27,
-      "name": "FATEChain"
-    },
-    {
-      "index": 30,
-      "name": "Name"
-    },
-    {
-      "index": 31,
-      "name": "Description"
-    },
-    {
-      "index": 32,
-      "name": "Objective"
-    },
-    {
       "index": 33,
-      "type": "repeat",
-      "count": 3,
-      "definition": {
-        "name": "StatusText"
-      }
+      "name": "FATEChain"
     },
     {
       "index": 36,
@@ -171,7 +171,7 @@
       }
     },
     {
-      "index": 40,
+      "index": 43,
       "type": "repeat",
       "count": 8,
       "definition": {
