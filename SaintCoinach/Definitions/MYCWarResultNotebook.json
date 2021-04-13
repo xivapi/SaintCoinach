@@ -14,33 +14,33 @@
       }
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "Rarity"
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "NameJP"
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "Name"
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "Description"
     }
   ]
