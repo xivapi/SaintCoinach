@@ -1,0 +1,252 @@
+
+ Channeling.json:
+{
+  "index": 2,
+  "name": "AddedIn{5-3}"
+}
+
+
+
+ ContentFinderCondition.json:
+ {
+   "index": 19,
+   "name": "AddedIn{5-3}"
+ },
+
+
+ ENpcDressUpDress.json:
+{
+  "index": 5,
+  "name": "AddedIn{5-3}[0]"
+},
+{
+
+{
+  "index": 8,
+  "name": "AddedIn{5-3}[1]"
+},
+{
+
+{
+  "index": 36,
+  "name": "AddedIn{5-3}[2]"
+},
+
+
+ EObj.json:
+{
+  "index": 18,
+  "name": "AddedIn{5-3}"
+}
+
+
+ GuildleveAssignment.json:
+{
+  "index": 1,
+  "name": "AddedIn{5-3}"
+},
+
+ IndividualWeather.json:
+{
+  "index": 12,
+  "name": "AddedIn{5-3}[0]"
+},
+{
+  "index": 13,
+  "name": "AddedIn{5-3}[1]"
+},
+
+ Resident.json:
+{
+  "index": 3,
+  "name": "AddedIn{5-3}"
+},
+
+ SatisfactionNpc.json:
+{
+  "index": 72,
+  "name": "AddedIn{5-3}[0]"
+},
+{
+  "index": 73,
+  "name": "AddedIn{5-3}[1]"
+}
+
+ TerritoryType.json:
+{
+  "index": 32,
+  "name": "AddedIn{5-3}"
+},
+
+{
+  "index": 40,
+  "name": "Unknown[5-4]"
+}
+
+ ContentMemberType.json:
+{
+  "index": 13,
+  "name": "Unknown[5-4]"
+}
+
+ CreditBackImage.json:
+{
+  "index": 2,
+  "name": "Unknown[5-4]"
+},
+
+ CustomTalk.json:
+{
+  "index": 77,
+  "name": "Unknown[5-4]"
+}
+
+ GatheringPointBonus.json:
+{
+  "index": 6,
+  "name": "Unknown[5-3]"
+},
+{
+  "index": 7,
+  "name": "Unknown[5-4]"
+}
+
+ GroupPoseFrame.json:
+{
+  "index": 6,
+  "name": "Unknown[5-4]"
+},
+
+ GroupPoseStamp.json:
+{
+  "index": 4,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 5,
+  "name": "Unknown[5-4][1]"
+},
+
+ IKDFishParam.json:
+{
+  "index": 2,
+  "name": "Unknown[5-4]"
+}
+
+ InstanceContent.json:
+{
+  "index": 61,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 62,
+  "name": "Unknown[5-4][1]"
+}
+
+ InstanceContentCSBonus.json:
+{
+  "index": 3,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 4,
+  "name": "Unknown[5-4][1]"
+}
+
+ Item.json:
+{
+  "index": 40,
+  "name": "Unknown[5-4]"
+},
+
+ LotteryExchangeShop.json:
+"count": 32,
+"definition": {
+  "name": "Unknown[5-4][0]"
+}
+
+
+"count": 32,
+"definition": {
+  "name": "Unknown[5-4][1]"
+}
+
+ MYCWarResultNotebook.json:
+{
+  "index": 1,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 2,
+  "name": "Unknown[5-4][1]"
+},
+
+ NpcYell.json:
+{
+  "index": 9,
+  "name": "Unknown[5-4]"
+},
+
+ PublicContent.json:
+{
+  "index": 13,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 14,
+  "name": "Unknown[5-4][1]"
+},
+{
+  "index": 15,
+  "name": "Unknown[5-4][2]"
+}
+
+ Quest.json:
+{
+  "index": 1515,
+  "name": "Unknown[5-4]"
+}
+
+ Race.json:
+{
+  "index": 10,
+  "name": "Unknown[5-4]"
+},
+
+ ScenarioTree.json:
+{
+  "index": 3,
+  "name": "Unknown[5-4][0]"
+},
+{
+  "index": 4,
+  "name": "Unknown[5-4][1]"
+},
+{
+  "index": 5,
+  "name": "Unknown[5-4][2]"
+}
+
+ Transformation.json:
+{
+  "index": 36,
+  "name": "Unknown[5-4]"
+}
+
+ TripleTriadCardResident.json:
+{
+  "index": 11,
+  "name": "Unknown[5-4]"
+},
+
+ TripleTriadRule.json:
+{
+  "index": 4,
+  "name": "Unknown[5-4]"
+}
+
+ WebGuidance.json:
+{
+  "index": 3,
+  "name": "Unknown[5-4]"
+},

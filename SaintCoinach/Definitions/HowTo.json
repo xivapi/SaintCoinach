@@ -1,12 +1,32 @@
 {
   "sheet": "HowTo",
+  "defaultColumn": "Name",
   "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Announce"
+    },
     {
       "index": 2,
       "type": "repeat",
-      "count": 10,
+      "count": 5,
       "definition": {
-        "name": "Images",
+        "name": "HowToPagePC",
+        "converter": {
+          "type": "link",
+          "target": "HowToPage"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "HowToPageController",
         "converter": {
           "type": "link",
           "target": "HowToPage"
@@ -20,6 +40,10 @@
         "type": "link",
         "target": "HowToCategory"
       }
+    },
+    {
+      "index": 13,
+      "name": "Sort"
     }
   ]
 }

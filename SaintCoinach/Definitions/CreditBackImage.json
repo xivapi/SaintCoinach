@@ -2,10 +2,6 @@
   "sheet": "CreditBackImage",
   "definitions": [
     {
-      "index": 2,
-      "name": "Unknown[5-4]"
-    },
-    {
       "index": 3,
       "name": "BackImage",
       "converter": {

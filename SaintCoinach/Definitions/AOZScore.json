@@ -1,5 +1,5 @@
 {
-  "sheet": "TripleTriadRule",
+  "sheet": "AOZScore",
   "defaultColumn": "Name",
   "definitions": [
     {
@@ -8,6 +8,14 @@
     {
       "index": 1,
       "name": "Description"
+    },
+    {
+      "index": 2,
+      "name": "Score"
+    },
+    {
+      "index": 3,
+      "name": "IsHidden"
     }
   ]
 }
