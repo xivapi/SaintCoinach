@@ -142,6 +142,27 @@
       "converter": {
         "type": "icon"
       }
+    },
+    {
+      "index": 20,
+      "name": "Image[10]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 22,
+      "name": "Image[11]",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 24,
+      "name": "Image[12]",
+      "converter": {
+        "type": "icon"
+      }
     }
   ]
 }

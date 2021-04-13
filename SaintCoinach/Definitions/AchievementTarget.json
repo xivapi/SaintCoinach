@@ -1,0 +1,13 @@
+{
+  "sheet": "AchievementTarget",
+  "defaultColumn": "Value",
+  "definitions": [
+    {
+      "name": "Type"
+    },
+    {
+      "index": 1,
+      "name": "Value"
+    }
+  ]
+}

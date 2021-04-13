@@ -18,6 +18,14 @@
       "name": "Description"
     },
     {
+      "index": 3,
+      "name": "AchievementTarget",
+      "converter": {
+        "type": "link",
+        "target": "AchievementTarget"
+      }
+    },
+    {
       "index": 5,
       "name": "Points"
     },
