@@ -1,0 +1,13 @@
+{
+  "sheet": "MapCondition",
+  "defaultColumn": "Quest",
+  "definitions": [
+    {
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
+}
