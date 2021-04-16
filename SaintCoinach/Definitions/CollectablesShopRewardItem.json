@@ -10,12 +10,15 @@
       }
     },
     {
+      "index": 2,
       "name": "RewardLow"
     },
     {
+      "index": 3,
       "name": "RewardMid"
     },
     {
+      "index": 4,
       "name": "RewardHigh"
     }
   ]
