@@ -8,6 +8,15 @@
         "type": "link",
         "target": "Item"
       }
+    },
+    {
+      "name": "RewardLow"
+    },
+    {
+      "name": "RewardMid"
+    },
+    {
+      "name": "RewardHigh"
     }
   ]
 }

@@ -26,6 +26,14 @@
       "name": "LevelMax"
     },
     {
+      "index": 4,
+      "name": "Stars"
+    },
+    {
+      "index": 5,
+      "name": "Key"
+    },
+    {
       "index": 6,
       "name": "CollectablesShopRefine",
       "converter": {
