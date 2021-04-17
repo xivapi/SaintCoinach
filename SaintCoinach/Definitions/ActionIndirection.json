@@ -16,6 +16,14 @@
         "type": "link",
         "target": "ClassJob"
       }
+    },
+    {
+      "index": 2,
+      "name": "PreviousComboAction",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
     }
   ]
 }

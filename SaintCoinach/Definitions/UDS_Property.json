@@ -1,0 +1,13 @@
+{
+  "sheet": "UDS_Property",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    },
+    {
+      "index": 1,
+      "name": "Type"
+    }
+  ]
+}

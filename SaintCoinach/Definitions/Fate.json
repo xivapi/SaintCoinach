@@ -123,11 +123,19 @@
       }
     },
     {
+      "index": 25,
+      "name": "RequiredQuest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
       "index": 26,
       "name": "SpecialFate"
     },
     {
-      "index": 29,
+      "index": 28,
       "name": "GivenStatus",
       "converter": {
         "type": "link",

@@ -1,0 +1,25 @@
+{
+  "sheet": "UDS_Event",
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    },
+    {
+      "index": 1,
+      "name": "Type"
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 32,
+      "definition": {
+        "name": "Property",
+        "converter": {
+          "type": "link",
+          "target": "UDS_Property"
+        }
+      }
+    }
+  ]
+}
