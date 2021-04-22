@@ -104,7 +104,7 @@ Godbert is a simple application to display game data and 3D models from **Final 
 ## Functionality 
 ### Fully implemented
 
-* Display of game data / text.
+* Display of game data/text.
 * Rendering of equipment, including ability to dye (if the item supports it.)
 * Rendering of monsters.
 * Rendering of demi-humans (non-playable races with exchangable equipment.)
