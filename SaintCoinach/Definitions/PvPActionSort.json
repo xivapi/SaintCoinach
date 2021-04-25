@@ -3,7 +3,7 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Action{Type}",
+      "name": "Action{Type}"
     },
     {
       "index": 1,
