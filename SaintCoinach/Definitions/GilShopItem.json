@@ -12,16 +12,21 @@
     {
       "index": 3,
       "type": "repeat",
-      "count": 3,
+      "count": 2,
       "definition": {
-        "name": "Row{Required}",
+        "name": "Quest{Required}",
         "converter": {
-          "type": "multiref",
-          "targets": [
-            "Quest",
-            "Achievement"
-          ]
+          "type": "link",
+          "target": "Quest"
         }
+      }
+    },
+    {
+      "index": 5,
+      "name": "Achievement{Required}",
+      "converter": {
+        "type": "link",
+        "target": "Achievement"
       }
     },
     {
