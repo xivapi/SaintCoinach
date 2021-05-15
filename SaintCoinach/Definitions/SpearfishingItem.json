@@ -25,8 +25,8 @@
       "index": 3,
       "name": "FishingRecordType",
       "converter": {
-      	"type": "link",
-      	"target": "FishingRecordType"
+        "type": "link",
+        "target": "FishingRecordType"
       }
     },
     {
