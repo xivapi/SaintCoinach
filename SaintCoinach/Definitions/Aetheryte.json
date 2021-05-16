@@ -74,6 +74,10 @@
       "name": "AethernetGroup"
     },
     {
+      "index": 18,
+      "name": "Invisible"
+    },
+    {
       "index": 19,
       "name": "RequiredQuest",
       "converter": {

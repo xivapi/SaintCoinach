@@ -10,6 +10,14 @@
       }
     },
     {
+      "index": 1,
+      "name": "UITab",
+      "converter": {
+        "type": "link",
+        "target": "QuestRedoChapterUITab"
+      }
+    },
+    {
       "index": 2,
       "name": "Category",
       "converter": {

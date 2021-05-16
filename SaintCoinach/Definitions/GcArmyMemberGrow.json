@@ -15,6 +15,42 @@
         "type": "link",
         "target": "Item"
       }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "EquipPreset",
+        "converter": {
+          "type": "link",
+          "target": "GcArmyEquipPreset"
+        }
+      }
+    },
+    {
+      "index": 63,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "Physical"
+      }
+    },
+    {
+      "index": 124,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "Mental"
+      }
+    },
+    {
+      "index": 185,
+      "type": "repeat",
+      "count": 60,
+      "definition": {
+        "name": "Tactical"
+      }
     }
   ]
 }
