@@ -6,6 +6,10 @@
       "name": "Number"
     },
     {
+      "index": 2,
+      "name": "Link"
+    },
+    {
       "index": 3,
       "name": "Quest",
       "converter": {
