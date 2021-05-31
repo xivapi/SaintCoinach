@@ -1,18 +1,16 @@
 {
-  "sheet": "RecipeNotebookList",
+  "sheet": "StanceChange",
+  "defaultColumn": "Action[0]",
   "definitions": [
-    {
-      "name": "Count"
-    },
     {
       "index": 1,
       "type": "repeat",
-      "count": 160,
+      "count": 2,
       "definition": {
-        "name": "Recipe",
+        "name": "Action",
         "converter": {
           "type": "link",
-          "target": "Recipe"
+          "target": "Action"
         }
       }
     }

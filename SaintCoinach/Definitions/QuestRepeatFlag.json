@@ -5,8 +5,11 @@
     {
       "name": "Quest",
       "converter": {
-        "type": "link",
-        "target": "Quest"
+        "type": "multiref",
+        "targets": [
+          "ArrayEventHandler",
+          "Quest"
+        ]
       }
     }
   ]

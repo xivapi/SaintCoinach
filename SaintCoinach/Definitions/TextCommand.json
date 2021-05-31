@@ -21,6 +21,14 @@
     {
       "index": 9,
       "name": "ShortAlias"
+    },
+    {
+      "index": 10,
+      "name": "Param",
+      "converter": {
+        "type": "link",
+        "target": "TextCommandParam"
+      }
     }
   ]
 }

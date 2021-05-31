@@ -1,0 +1,16 @@
+{
+  "sheet": "RideShootingTargetType",
+  "definitions": [
+    {
+      "name": "EObj",
+      "converter": {
+        "type": "link",
+        "target": "EObj"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Score"
+    }
+  ]
+}

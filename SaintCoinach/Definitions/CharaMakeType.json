@@ -25,7 +25,11 @@
       "type": "repeat",
       "count": 28,
       "definition": {
-        "name": "Menu"
+        "name": "Menu",
+        "converter": {
+          "type": "link",
+          "target": "Lobby"
+        }
       }
     },
     {

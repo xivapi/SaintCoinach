@@ -212,7 +212,7 @@
       "name": "Order"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "AchievementHideCondition",
       "converter": {
         "type": "link",

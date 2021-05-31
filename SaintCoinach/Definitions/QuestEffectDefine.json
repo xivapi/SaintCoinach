@@ -1,0 +1,13 @@
+{
+  "sheet": "QuestEffectDefine",
+  "defaultColumn": "Effect",
+  "definitions": [
+    {
+      "name": "Effect",
+      "converter": {
+        "type": "link",
+        "target": "QuestEffect"
+      }
+    }
+  ]
+}
