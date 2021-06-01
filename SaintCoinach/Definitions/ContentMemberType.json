@@ -3,19 +3,19 @@
   "defaultColumn": "InstanceContent",
   "definitions": [
     {
-      "index": 9,
+      "index": 10,
       "name": "TanksPerParty"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "HealersPerParty"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "MeleesPerParty"
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "RangedPerParty"
     }
   ]
