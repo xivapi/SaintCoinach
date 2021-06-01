@@ -225,6 +225,10 @@
     {
       "index": 61,
       "name": "FeastTeamRoulette"
+    },
+    {
+      "index": 62,
+      "name": "NormalRaidRoulette"
     }
   ]
 }
