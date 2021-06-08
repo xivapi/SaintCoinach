@@ -2,9 +2,10 @@
   "sheet": "DynamicEventSingleBattle",
   "definitions": [
     {
-      "name": "ActionIcon",
+      "name": "BNpcName",
       "converter": {
-        "type": "icon"
+        "type": "link",
+        "target": "BNpcName"
       }
     },
     {
