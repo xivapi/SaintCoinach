@@ -1,6 +1,5 @@
 {
   "sheet": "QuestClassJobSupply",
-  "defaultColumn": "Name",
   "definitions": [
     {
       "name": "ClassJobCategory",
@@ -24,6 +23,14 @@
         "type": "link",
         "target": "Item"
       }
+    },
+    {
+      "index": 4,
+      "name": "AmountRequired"
+    },
+    {
+      "index": 5,
+      "name": "ItemHQ"
     }
   ]
 }

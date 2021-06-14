@@ -412,6 +412,10 @@
       "name": "IsPvP"
     },
     {
+      "index": 89,
+      "name": "SubStatCategory"
+    },
+    {
       "index": 90,
       "name": "IsGlamourous"
     }

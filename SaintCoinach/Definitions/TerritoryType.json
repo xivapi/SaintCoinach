@@ -62,6 +62,14 @@
       "name": "TerritoryIntendedUse"
     },
     {
+      "index": 10,
+      "name": "ContentFinderCondition",
+      "converter": {
+        "type": "link",
+        "target": "ContentFinderCondition"
+      }
+    },
+    {
       "index": 12,
       "name": "WeatherRate"
     },
@@ -81,8 +89,11 @@
       "index": 19,
       "name": "BGM",
       "converter": {
-        "type": "link",
-        "target": "BGM"
+        "type": "multiref",
+        "targets": [
+          "BGM",
+          "BGMSituation"
+        ]
       }
     },
     {
