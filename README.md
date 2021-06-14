@@ -1,3 +1,6 @@
+# **THIS REPOSITORY HAS BEEN MOVED TO https://github.com/xivapi/SaintCoinach. NO NEW RELEASES WILL BE PUSHED TO THIS REPOSITORY** 
+
+
 # Saint Coinach
 
 A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV**, now with support for including the Libra Eorzea database.
