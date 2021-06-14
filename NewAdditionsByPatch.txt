@@ -16,7 +16,7 @@
 
  ENpcDressUpDress.json:
 {
-  "index": 5,
+  "index": 5,d
   "name": "AddedIn{5-3}[0]"
 },
 {
