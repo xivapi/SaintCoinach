@@ -26,7 +26,6 @@ jobs:
           ($env:BRANCH) >> VERSION
           ($env:COMMIT) >> VERSION
           
-          echo "::set-output name=version::$VERSION"
           echo "::set-output name=commit::$env:COMMIT"
       - name: Build DotNet4
         run: |
@@ -45,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: release-out\**
-          name: Release ${{ steps.define-version.outputs.version }}
+          name: Release for ${{ steps.define-version.outputs.commit }}
           body_path:  .github\RELEASE.md
           prerelease: false
           tag_name:  ${{ steps.define-version.outputs.commit }}
