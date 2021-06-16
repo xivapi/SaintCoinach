@@ -40,7 +40,8 @@ jobs:
           Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
 
       - name: Create Release
-        uses: softprops/action-gh-release@91409e712cf565ce9eff10c87a8d1b11b81757ae
+        uses: softprops/action-gh-release@v1
+        if: github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
