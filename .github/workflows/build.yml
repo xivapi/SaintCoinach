@@ -1,0 +1,49 @@
+name: Build SaintCoinach
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    name: Build on Windows
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup Nuget
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: latest
+      - name: Restore Nuget Packages
+        run: nuget restore SaintCoinach.sln
+      - name: Define VERSION
+        id: define-version
+        run: |
+          $env:COMMIT = $env:GITHUB_SHA.Substring(0, 7)
+          $env:REPO_NAME = $env:GITHUB_REPOSITORY -replace '.*/'
+          $env:BRANCH = $env:GITHUB_REF -replace '.*/'
+
+          ($env:REPO_NAME) >> VERSION
+          ($env:BRANCH) >> VERSION
+          ($env:COMMIT) >> VERSION
+          
+          echo "::set-output name=version::$VERSION"
+      - name: Build DotNet4
+        run: |
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SaintCoinach.sln /t:Build /p:Configuration=Release
+          
+      - name: Create Release ZIPs
+        run: |
+          mkdir release-out
+          zip -r -j release-out/Godbert.zip . -i Godbert/bin/Release/
+          zip -r -j release-out/SaintCoinach.Cmd.zip . -i SaintCoinach.Cmd/bin/Release/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@91409e712cf565ce9eff10c87a8d1b11b81757ae
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: release-out\**
+          name: Release ${{ steps.define-version.outputs.version }}
+          body_path:  RELEASE.md
+          prerelease: false
