@@ -35,8 +35,8 @@ jobs:
       - name: Create Release ZIPs
         run: |
           mkdir release-out
-          Compress-Archive -Path .\Godbert\bin\Debug\* -DestinationPath .\release-out\Godbert.zip -Force
-          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Debug\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
+          Compress-Archive -Path .\Godbert\bin\Release\* -DestinationPath .\release-out\Godbert.zip -Force
+          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
 
       - name: Create Release
         uses: softprops/action-gh-release@91409e712cf565ce9eff10c87a8d1b11b81757ae
