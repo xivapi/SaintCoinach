@@ -27,6 +27,7 @@ jobs:
           ($env:COMMIT) >> VERSION
           
           echo "::set-output name=version::$VERSION"
+          echo "::set-output name=commit::$env:COMMIT"
       - name: Build DotNet4
         run: |
           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
@@ -47,3 +48,4 @@ jobs:
           name: Release ${{ steps.define-version.outputs.version }}
           body_path:  .github\RELEASE.md
           prerelease: false
+          tag_name:  ${{ steps.define-version.outputs.commit }}
