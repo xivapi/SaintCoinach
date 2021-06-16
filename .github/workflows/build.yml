@@ -35,8 +35,8 @@ jobs:
       - name: Create Release ZIPs
         run: |
           mkdir release-out
-          zip -r -j release-out/Godbert.zip . -i Godbert/bin/Release/
-          zip -r -j release-out/SaintCoinach.Cmd.zip . -i SaintCoinach.Cmd/bin/Release/
+          Compress-Archive -Path .\Godbert\bin\Debug\* -DestinationPath .\release-out\Godbert.zip -Force
+          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Debug\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
 
       - name: Create Release
         uses: softprops/action-gh-release@91409e712cf565ce9eff10c87a8d1b11b81757ae
@@ -45,5 +45,5 @@ jobs:
         with:
           files: release-out\**
           name: Release ${{ steps.define-version.outputs.version }}
-          body_path:  RELEASE.md
+          body_path:  .github\RELEASE.md
           prerelease: false
