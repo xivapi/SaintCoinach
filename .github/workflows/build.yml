@@ -1,5 +1,5 @@
 name: Build SaintCoinach
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 concurrency: build_sc
 
 jobs:
@@ -20,13 +20,6 @@ jobs:
         id: define-version
         run: |
           $env:COMMIT = $env:GITHUB_SHA.Substring(0, 7)
-          $env:REPO_NAME = $env:GITHUB_REPOSITORY -replace '.*/'
-          $env:BRANCH = $env:GITHUB_REF -replace '.*/'
-
-          ($env:REPO_NAME) >> VERSION
-          ($env:BRANCH) >> VERSION
-          ($env:COMMIT) >> VERSION
-          
           echo "::set-output name=commit::$env:COMMIT"
       - name: Build DotNet4
         run: |
