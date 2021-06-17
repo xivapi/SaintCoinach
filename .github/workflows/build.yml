@@ -1,6 +1,6 @@
 name: Build SaintCoinach
 on: [push, pull_request]
-concurrency: build_sc
+concurrency: build-${{ github.ref }}
 
 jobs:
   build:
