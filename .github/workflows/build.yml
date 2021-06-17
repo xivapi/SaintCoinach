@@ -30,6 +30,7 @@ jobs:
           .\MSBuild.exe $Env:GITHUB_WORKSPACE\SaintCoinach.sln /t:Build /p:Configuration=Release
           
       - name: Create Release ZIPs
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           mkdir release-out
           Compress-Archive -Path .\Godbert\bin\Release\* -DestinationPath .\release-out\Godbert.zip -Force
