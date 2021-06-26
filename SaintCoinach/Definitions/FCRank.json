@@ -19,6 +19,10 @@
     {
       "index": 6,
       "name": "FCActionStockNum"
+    },
+    {
+      "index": 7,
+      "name": "FCChestCompartments"
     }
   ]
 }
