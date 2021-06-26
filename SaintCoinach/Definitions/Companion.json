@@ -79,19 +79,23 @@
     },
     {
       "index": 18,
-      "name": "Roulette"
+      "name": "Handover"
+    },
+    {
+      "index": 19,
+      "name": "Pet"
     },
     {
       "index": 20,
-      "name": "Battle"
+      "name": "Beckon"
     },
     {
       "index": 21,
-      "name": "LookAt"
+      "name": "Poke"
     },
     {
       "index": 22,
-      "name": "Poke"
+      "name": "Slap"
     },
     {
       "index": 23,
@@ -99,11 +103,11 @@
     },
     {
       "index": 24,
-      "name": "Stroke"
+      "name": "Battle"
     },
     {
       "index": 25,
-      "name": "Clapping"
+      "name": "Roulette"
     },
     {
       "index": 26,
@@ -115,6 +119,10 @@
     {
       "index": 27,
       "name": "Order"
+    },
+    {
+      "index": 28,
+      "name": "IdleAnimation"
     },
     {
       "index": 30,
