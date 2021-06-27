@@ -485,6 +485,14 @@
       }
     },
     {
+      "index": 1439,
+      "name": "QuestRewardOtherDisplay",
+      "converter": {
+        "type": "link",
+        "target": "QuestRewardOther"
+      }
+    },
+    {
       "index": 1440,
       "name": "ExpFactor"
     },
@@ -525,7 +533,7 @@
       "type": "repeat",
       "count": 7,
       "definition": {
-        "name": "Item{Reward}[0]",
+        "name": "Item{Reward}",
         "converter": {
           "type": "complexlink",
           "links": [
@@ -546,17 +554,17 @@
     {
       "index": 1458,
       "type": "repeat",
-      "count": 6,
+      "count": 7,
       "definition": {
-        "name": "ItemCount{Reward}[0]"
+        "name": "ItemCount{Reward}"
       }
     },
     {
       "index": 1465,
       "type": "repeat",
-      "count": 6,
+      "count": 7,
       "definition": {
-        "name": "Stain{Reward}[0]",
+        "name": "Stain{Reward}",
         "converter": {
           "type": "link",
           "target": "Stain"
@@ -568,7 +576,7 @@
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "Item{Reward}[1]",
+        "name": "OptionalItem{Reward}",
         "converter": {
           "type": "link",
           "target": "Item"
@@ -580,7 +588,7 @@
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "ItemCount{Reward}[1]"
+        "name": "OptionalItemCount{Reward}"
       }
     },
     {
@@ -588,7 +596,7 @@
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "IsHQ{Reward}[1]"
+        "name": "OptionalItemIsHQ{Reward}"
       }
     },
     {
@@ -596,7 +604,7 @@
       "type": "repeat",
       "count": 5,
       "definition": {
-        "name": "Stain{Reward}[1]",
+        "name": "OptionalItemStain{Reward}",
         "converter": {
           "type": "link",
           "target": "Stain"
@@ -670,6 +678,10 @@
         "type": "link",
         "target": "InstanceContent"
       }
+    },
+    {
+      "index": 1501,
+      "name": "Tomestone"
     },
     {
       "index": 1502,
