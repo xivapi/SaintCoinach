@@ -10,6 +10,14 @@
       "name": "Name{Short}"
     },
     {
+      "index": 3,
+      "name": "X"
+    },
+    {
+      "index": 4,
+      "name": "Y"
+    },
+    {
       "index": 5,
       "name": "RequiredLevel"
     },
