@@ -545,6 +545,13 @@
               "sheet": "QuestClassJobReward"
             },
             {
+              "when": {
+                "key": "ItemRewardType",
+                "value": 7
+              },
+              "sheet": "BeastRankBonus"
+            },
+            {
               "sheet": "Item"
             }
           ]
@@ -641,11 +648,7 @@
     },
     {
       "index": 1496,
-      "name": "System{Reward}[0]",
-      "converter": {
-        "type": "link",
-        "target": "Action"
-      }
+      "name": "System{Reward}[0]"
     },
     {
       "index": 1497,
@@ -657,19 +660,11 @@
     },
     {
       "index": 1498,
-      "name": "System{Reward}[1]",
-      "converter": {
-        "type": "link",
-        "target": "Action"
-      }
+      "name": "System{Reward}[1]"
     },
     {
       "index": 1499,
-      "name": "GCType{Reward}",
-      "converter": {
-        "type": "link",
-        "target": "Action"
-      }
+      "name": "GCType{Reward}"
     },
     {
       "index": 1500,
