@@ -501,8 +501,16 @@
       "name": "GilReward"
     },
     {
+      "index": 1442,
+      "name": "CurrencyReward",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
       "index": 1443,
-      "name": "GCSeals"
+      "name": "CurrencyRewardCount"
     },
     {
       "index": 1444,
