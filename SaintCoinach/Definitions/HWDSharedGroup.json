@@ -3,7 +3,7 @@
   "defaultColumn": "LGB",
   "definitions": [
     {
-      "name": "LGB"
+      "name": "LGB{SharedGroup}"
     },
     {
       "index": 1,

@@ -3,6 +3,7 @@
   "defaultColumn": "Quest",
   "definitions": [
     {
+      "index": 1,
       "name": "Quest",
       "converter": {
         "type": "link",

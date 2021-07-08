@@ -98,6 +98,14 @@
       }
     },
     {
+      "index": 37,
+      "name": "Quest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    },
+    {
       "index": 38,
       "name": "CanQuickSynth"
     },

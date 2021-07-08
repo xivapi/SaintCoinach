@@ -2,9 +2,21 @@
   "sheet": "GFATE",
   "definitions": [
     {
-      "index": 22,
+      "index": 7,
       "type": "repeat",
-      "count": 16,
+      "count": 15,
+      "definition": {
+        "name": "LGB{PopRange}",
+        "converter": {
+          "type": "link",
+          "target": "Level"
+        }
+      }
+    },
+    {
+      "index": 23,
+      "type": "repeat",
+      "count": 15,
       "definition": {
         "name": "Icon",
         "converter": {

@@ -24,5 +24,13 @@
         "target": "Adventure"
       }
     }
+    {
+      "index": 3,
+      "name": "Expansion",
+      "converter": {
+        "type": "link",
+        "target": "ExVersion"
+      }
+    }
   ]
 }
