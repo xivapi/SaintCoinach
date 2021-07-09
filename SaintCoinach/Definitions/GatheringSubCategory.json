@@ -18,6 +18,16 @@
       }
     },
     {
+      "index": 2,
+      "name": "Data",
+      "converter": {
+        "type": "multiref",
+        "targets": [
+          "Quest"
+        ]
+      }
+    },
+    {
       "index": 3,
       "name": "Division"
     },
