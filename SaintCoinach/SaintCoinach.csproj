@@ -872,6 +872,9 @@
     <Content Include="Definitions\QuestEffect.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Definitions\ItemRepairResource.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Definitions\RetainerFortuneRewardRange.json" />
     <Content Include="Definitions\StanceChange.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -880,6 +883,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Definitions\RideShootingTargetType.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\TripleTriadCardObtain.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Definitions\TelepoRelay.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Libra\LibraModel.Context.tt">

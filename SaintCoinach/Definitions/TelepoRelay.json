@@ -1,0 +1,16 @@
+{
+  "sheet": "TelepoRelay",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Location",
+        "converter": {
+          "type": "link",
+          "target": "TerritoryType"
+        }
+      }
+    }
+  ]
+}

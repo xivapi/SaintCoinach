@@ -1,0 +1,19 @@
+{
+  "sheet": "TripleTriadCardObtain",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Addon",
+      "converter": {
+        "type": "link",
+        "target": "Addon"
+      }
+    }
+  ]
+}
