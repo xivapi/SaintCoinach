@@ -1,5 +1,6 @@
 {
   "sheet": "ScenarioTree",
+  "defaultColumn": "Name",
   "definitions": [
     {
       "name": "Type",
@@ -9,12 +10,24 @@
       }
     },
     {
-      "index": 1,
-      "name": "Image",
+      "index": 2,
+      "name": "Addon",
       "converter": {
         "type": "link",
-        "target": "ScreenImage"
+        "target": "Addon"
       }
+    },
+    {
+      "index": 3,
+      "name": "QuestChapter",
+      "converter": {
+        "type": "link",
+        "target": "QuestChapter"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Name"
     }
   ]
 }
