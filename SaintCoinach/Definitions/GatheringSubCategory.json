@@ -19,12 +19,10 @@
     },
     {
       "index": 2,
-      "name": "Data",
+      "name": "Quest",
       "converter": {
-        "type": "multiref",
-        "targets": [
-          "Quest"
-        ]
+        "type": "link",
+        "target": "Quest"
       }
     },
     {
