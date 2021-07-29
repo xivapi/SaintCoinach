@@ -179,6 +179,18 @@
       "name": "BeastReputationValue"
     },
     {
+      "index": 34,
+      "name": "SatisfactionNpc",
+      "converter": {
+        "type": "link",
+        "target": "SatisfactionNpc"
+      }
+    },
+    {
+      "index": 35,
+      "name": "SatisfactionLevel"
+    },
+    {
       "index": 36,
       "name": "Mount{Required}",
       "converter": {
