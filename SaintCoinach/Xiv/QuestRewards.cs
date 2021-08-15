@@ -80,9 +80,9 @@ namespace SaintCoinach.Xiv {
 
             if (groupsType == 3) {
                 {
-                    var mItem = Quest.As<Item>("Item{Reward}[0]", 0);
-                    var mCount = Quest.AsInt32("ItemCount{Reward}[0]", 0);
-                    var mStain = Quest.As<Stain>("Stain{Reward}[0]", 0);
+                    var mItem = Quest.As<Item>("Item{Reward}", 0);
+                    var mCount = Quest.AsInt32("ItemCount{Reward}", 0);
+                    var mStain = Quest.As<Stain>("Stain{Reward}", 0);
 
                     groups.Add(
                         new QuestRewardItemGroup(
@@ -90,9 +90,9 @@ namespace SaintCoinach.Xiv {
                             QuestRewardGroupType.GenderSpecificMale, null));
                 }
                 {
-                    var fItem = Quest.As<Item>("Item{Reward}[0]", 1);
-                    var fCount = Quest.AsInt32("ItemCount{Reward}[0]", 1);
-                    var fStain = Quest.As<Stain>("Stain{Reward}[0]", 1);
+                    var fItem = Quest.As<Item>("Item{Reward}", 1);
+                    var fCount = Quest.AsInt32("ItemCount{Reward}", 1);
+                    var fStain = Quest.As<Stain>("Stain{Reward}", 1);
 
                     groups.Add(
                         new QuestRewardItemGroup(
@@ -101,8 +101,8 @@ namespace SaintCoinach.Xiv {
                 }
             }
             else if (groupsType == 6) {
-                groups.AddRange(BuildClassQuestJobRewardItemGroups("Item{Reward}[0]", Group1Count));
-                groups.Add(BuildItemGroup(t2, "Item{Reward}[1]", "ItemCount{Reward}[1]", "Stain{Reward}[1]", "IsHQ{Reward}[1]", Group2Count));
+                groups.AddRange(BuildClassQuestJobRewardItemGroups("Item{Reward}", Group1Count));
+                groups.Add(BuildItemGroup(t2, "OptionalItem{Reward}", "OptionalItemCount{Reward}", "OptionalItemStain{Reward}", "OptionalItemIsHQ{Reward}", Group2Count));
             }
             else if (groupsType == 7) {
                 var beastRankBonus = (XivRow)Quest.BeastTribe["BeastRankBonus"];
@@ -112,8 +112,8 @@ namespace SaintCoinach.Xiv {
                     counts.Add(beastRankBonus.AsInt32("Item{Quantity}", i));
                 groups.Add(new QuestRewardItemGroup(new[] { new QuestRewardItem(item, counts.Distinct(), null, false) }, QuestRewardGroupType.BeastRankBonus, null));
             } else {
-                groups.Add(BuildItemGroup(t1, "Item{Reward}[0]", "ItemCount{Reward}[0]", "Stain{Reward}[0]", null, Group1Count));
-                groups.Add(BuildItemGroup(t2, "Item{Reward}[1]", "ItemCount{Reward}[1]", "Stain{Reward}[1]", "IsHQ{Reward}[1]", Group2Count));
+                groups.Add(BuildItemGroup(t1, "Item{Reward}", "ItemCount{Reward}", "Stain{Reward}", null, Group1Count));
+                groups.Add(BuildItemGroup(t2, "OptionalItem{Reward}", "OptionalItemCount{Reward}", "OptionalItemStain{Reward}", "OptionalItemIsHQ{Reward}", Group2Count));
             }
 
             return groups.Where(g => g.Items.Any()).ToArray();
