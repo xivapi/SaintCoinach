@@ -18,6 +18,10 @@
       "name": "Y"
     },
     {
+      "index": 4,
+      "name": "Z"
+    },
+    {
       "index": 5,
       "name": "Map",
       "converter": {
