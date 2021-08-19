@@ -78,26 +78,6 @@
       "name": "Priority"
     },
     {
-      "index": 18,
-      "name": "Handover"
-    },
-    {
-      "index": 19,
-      "name": "Pet"
-    },
-    {
-      "index": 20,
-      "name": "Beckon"
-    },
-    {
-      "index": 21,
-      "name": "Poke"
-    },
-    {
-      "index": 22,
-      "name": "Slap"
-    },
-    {
       "index": 23,
       "name": "Enemy"
     },
