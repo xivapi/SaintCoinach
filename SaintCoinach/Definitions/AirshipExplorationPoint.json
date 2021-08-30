@@ -10,6 +10,10 @@
       "name": "Name{Short}"
     },
     {
+      "index": 2,
+      "name": "CanFerry"
+    },
+    {
       "index": 3,
       "name": "X"
     },
