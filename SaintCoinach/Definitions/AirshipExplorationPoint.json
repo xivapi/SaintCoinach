@@ -19,19 +19,19 @@
     },
     {
       "index": 5,
-      "name": "RequiredLevel"
+      "name": "RankReq"
     },
     {
       "index": 6,
-      "name": "RequiredFuel"
+      "name": "CeruleumTankReq"
     },
     {
       "index": 7,
-      "name": "Duration<min>"
+      "name": "SurveyDuration<min>"
     },
     {
       "index": 10,
-      "name": "RequiredSurveillance"
+      "name": "SurveillanceReq"
     },
     {
       "index": 13,
