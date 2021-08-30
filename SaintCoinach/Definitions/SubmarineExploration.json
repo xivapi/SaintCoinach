@@ -39,11 +39,11 @@
     },
     {
       "index": 10,
-      "name": "Duration<min>"
+      "name": "SurveyDuration<min>"
     },
     {
       "index": 11,
-      "name": "DistanceForSurvey"
+      "name": "SurveyDistance"
     },
     {
       "index": 12,
