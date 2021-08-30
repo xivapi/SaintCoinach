@@ -11,7 +11,7 @@
     },
     {
       "index": 2,
-      "name": "CanFerry"
+      "name": "Passengers"
     },
     {
       "index": 3,
@@ -32,6 +32,10 @@
     {
       "index": 7,
       "name": "SurveyDuration<min>"
+    },
+    {
+      "index": 8,
+      "name": "SurveyDistance"
     },
     {
       "index": 10,
