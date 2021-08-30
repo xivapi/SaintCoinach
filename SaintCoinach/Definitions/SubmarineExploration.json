@@ -26,6 +26,10 @@
       }
     },
     {
+      "index": 6,
+      "name": "CanFerry"
+    },
+    {
       "index": 7,
       "name": "Stars"
     },
