@@ -10,6 +10,10 @@
       "name": "Name{Short}"
     },
     {
+      "index": 2,
+      "name": "Passengers"
+    },
+    {
       "index": 3,
       "name": "X"
     },
@@ -19,19 +23,23 @@
     },
     {
       "index": 5,
-      "name": "RequiredLevel"
+      "name": "RankReq"
     },
     {
       "index": 6,
-      "name": "RequiredFuel"
+      "name": "CeruleumTankReq"
     },
     {
       "index": 7,
-      "name": "Duration<min>"
+      "name": "SurveyDuration<min>"
+    },
+    {
+      "index": 8,
+      "name": "SurveyDistance"
     },
     {
       "index": 10,
-      "name": "RequiredSurveillance"
+      "name": "SurveillanceReq"
     },
     {
       "index": 13,
