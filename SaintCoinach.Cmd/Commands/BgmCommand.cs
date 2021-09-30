@@ -15,12 +15,18 @@ namespace SaintCoinach.Cmd.Commands {
         private ARealmReversed _Realm;
 
         public BgmCommand(ARealmReversed realm)
-            : base("bgm", "Export all BGM files.") {
+            : base("bgm", "Export all BGM files (default), or only those matching specific strings, separated by spaces (e.g. bgm_ride bgm_orch)") {
             _Realm = realm;
         }
 
         public override async Task<bool> InvokeAsync(string paramList) {
             var bgms = _Realm.GameData.GetSheet("BGM");
+            String[] searchStrings;
+
+            if (string.IsNullOrWhiteSpace(paramList))
+                searchStrings = Array.Empty<String>();
+            else
+                searchStrings = paramList.Split(' ');
 
             var successCount = 0;
             var failCount = 0;
@@ -28,8 +34,7 @@ namespace SaintCoinach.Cmd.Commands {
                 var filePath = bgm["File"].ToString();
 
                 try {
-
-                    if (string.IsNullOrWhiteSpace(filePath))
+                    if (string.IsNullOrWhiteSpace(filePath) || !IsMatch(searchStrings, filePath))
                         continue;
 
                     if (ExportFile(filePath, null)) {
@@ -51,7 +56,7 @@ namespace SaintCoinach.Cmd.Commands {
                 var name = orchestrionInfo["Name"].ToString();
                 var filePath = path["File"].ToString();
 
-                if (string.IsNullOrWhiteSpace(filePath))
+                if (string.IsNullOrWhiteSpace(filePath) || !IsMatch(searchStrings, filePath))
                     continue;
 
                 try {
@@ -114,6 +119,10 @@ namespace SaintCoinach.Cmd.Commands {
             }
 
             return true;
+        }
+
+        private bool IsMatch(String[] searchStrings, string filePath) {
+            return searchStrings.Length == 0 || searchStrings.Any(searchString => filePath.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) > 0);
         }
     }
 }
