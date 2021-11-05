@@ -24,6 +24,14 @@
     {
       "index": 4,
       "name": "RankAAARequirement"
+    },
+    {
+      "index": 5,
+      "name": "RankSRequirement"
+    },
+    {
+      "index": 6,
+      "name": "IsSpearfishing"
     }
   ]
 }
