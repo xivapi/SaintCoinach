@@ -22,7 +22,11 @@
     },
     {
       "index": 4,
-      "name": "ClassJobCategory"
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
     },
     {
       "index": 5,
