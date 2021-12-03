@@ -2,10 +2,11 @@
   "sheet": "ContentGauge",
   "definitions": [
     {
-      "name": "Name"
+      "name": "Name",
+      "index": 1
     },
     {
-      "index": 1,
+      "index": 2,
       "name": "Color",
       "converter": {
         "type": "link",
@@ -13,7 +14,7 @@
       }
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "TextString"
     }
   ]

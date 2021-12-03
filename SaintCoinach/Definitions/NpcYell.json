@@ -3,23 +3,23 @@
   "defaultColumn": "Text",
   "definitions": [
     {
-      "index": 5,
+      "index": 4,
       "name": "OutputType"
     },
     {
-      "index": 6,
+      "index": 5,
       "name": "BalloonTime"
     },
     {
-      "index": 7,
+      "index": 6,
       "name": "IsBalloonSlow"
     },
     {
-      "index": 8,
+      "index": 7,
       "name": "BattleTalkTime"
     },
     {
-      "index": 10,
+      "index": 9,
       "name": "Text"
     }
   ]
