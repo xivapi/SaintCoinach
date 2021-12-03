@@ -122,19 +122,19 @@
       "name": "HighEndDuty"
     },
     {
-      "index": 32,
+      "index": 33,
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "Name"
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "NameShort"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -142,11 +142,11 @@
       }
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "TransientKey"
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -169,69 +169,69 @@
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "SortKey"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 46,
+      "index": 47,
       "name": "Level50/60/70Roulette"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "LevelingRoulette"
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "MSQRoulette"
     },
     {
-      "index": 49,
+      "index": 50,
       "name": "GuildHestRoulette"
     },
     {
-      "index": 50,
+      "index": 51,
       "name": "ExpertRoulette"
     },
     {
-      "index": 51,
+      "index": 52,
       "name": "TrialRoulette"
     },
     {
-      "index": 52,
+      "index": 53,
       "name": "DailyFrontlineChallenge"
     },
     {
-      "index": 53,
+      "index": 54,
       "name": "Level80Roulette"
     },
     {
-      "index": 54,
+      "index": 55,
       "name": "MentorRoulette"
     },
     {
-      "index": 60,
+      "index": 61,
       "name": "AllianceRoulette"
     },
     {
-      "index": 61,
+      "index": 62,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 62,
+      "index": 63,
       "name": "NormalRaidRoulette"
     }
   ]
