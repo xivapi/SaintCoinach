@@ -42,11 +42,11 @@
       "name": "DrawsWeapon"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "Order"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "TextCommand",
       "converter": {
         "type": "link",
@@ -54,14 +54,14 @@
       }
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 20,
+      "index": 21,
       "name": "LogMessage{Targeted}",
       "converter": {
         "type": "link",
@@ -69,7 +69,7 @@
       }
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "LogMessage{Untargeted}",
       "converter": {
         "type": "link",
@@ -77,7 +77,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "UnlockLink"
     }
   ]
