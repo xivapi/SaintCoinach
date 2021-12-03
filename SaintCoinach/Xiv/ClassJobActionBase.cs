@@ -67,7 +67,27 @@ namespace SaintCoinach.Xiv {
         Unknown60,
         Heat,
         Battery,
-        Meditation
+        Meditation,
+        Soul,
+        Shroud,
+        LemureShroud,
+        VoidShroud,
+        Addersgall,
+        Addersting, 
+        Unknown70, // Don't know what's this. maybe a skill dismisser, used by Eukrasian Diagnosis
+        Arcanum, // This is strange, mark this, 1 is ifrit, 2 is titan, 3 is garuda
+        FireAttunement,
+        EarthAttunement,
+        WindAttunement,
+        Firstmind,
+        Paradox,
+        Unknown77,
+        ManaStack,
+        BeastChakra,
+        Unknown80,
+        Coda,
+        Enshrouded,
+        Unknown83, // Don't know what's this for, used by Eukrasian Prognosis
     }
 
     public abstract class ClassJobActionBase : ActionBase {
