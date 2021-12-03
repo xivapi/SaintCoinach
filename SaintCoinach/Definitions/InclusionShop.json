@@ -2,7 +2,7 @@
   "sheet": "InclusionShop",
   "definitions": [
     {
-      "index": 2,
+      "index": 3,
       "type": "repeat",
       "count": 30,
       "definition": {
