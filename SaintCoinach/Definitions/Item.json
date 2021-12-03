@@ -236,7 +236,7 @@
       "name": "Item{Repair}",
       "converter": {
         "type": "link",
-        "target": "Item"
+        "target": "ItemRepairResource"
       }
     },
     {
