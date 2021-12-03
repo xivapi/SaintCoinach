@@ -587,7 +587,7 @@
       }
     },
     {
-      "index": 1465,
+      "index": 1472,
       "type": "repeat",
       "count": 7,
       "definition": {
@@ -599,7 +599,7 @@
       }
     },
     {
-      "index": 1472,
+      "index": 1479,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -611,7 +611,7 @@
       }
     },
     {
-      "index": 1477,
+      "index": 1484,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -619,7 +619,7 @@
       }
     },
     {
-      "index": 1482,
+      "index": 1489,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -627,7 +627,7 @@
       }
     },
     {
-      "index": 1487,
+      "index": 1494,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -639,7 +639,7 @@
       }
     },
     {
-      "index": 1492,
+      "index": 1499,
       "name": "Emote{Reward}",
       "converter": {
         "type": "link",
@@ -647,7 +647,7 @@
       }
     },
     {
-      "index": 1493,
+      "index": 1500,
       "name": "Action{Reward}",
       "converter": {
         "type": "link",
@@ -655,7 +655,7 @@
       }
     },
     {
-      "index": 1494,
+      "index": 1501,
       "type": "repeat",
       "count": 2,
       "definition": {
@@ -667,11 +667,11 @@
       }
     },
     {
-      "index": 1496,
+      "index": 1503,
       "name": "System{Reward}[0]"
     },
     {
-      "index": 1497,
+      "index": 1504,
       "name": "Other{Reward}",
       "converter": {
         "type": "link",
@@ -679,15 +679,15 @@
       }
     },
     {
-      "index": 1498,
+      "index": 1505,
       "name": "System{Reward}[1]"
     },
     {
-      "index": 1499,
+      "index": 1506,
       "name": "GCType{Reward}"
     },
     {
-      "index": 1500,
+      "index": 1507,
       "name": "InstanceContent{Unlock}",
       "converter": {
         "type": "link",
@@ -695,11 +695,11 @@
       }
     },
     {
-      "index": 1501,
+      "index": 1508,
       "name": "Tomestone"
     },
     {
-      "index": 1502,
+      "index": 1509,
       "name": "Tomestone{Reward}",
       "converter": {
         "type": "complexlink",
@@ -713,15 +713,15 @@
       }
     },
     {
-      "index": 1503,
+      "index": 1510,
       "name": "TomestoneCount{Reward}"
     },
     {
-      "index": 1504,
+      "index": 1511,
       "name": "ReputationReward"
     },
     {
-      "index": 1505,
+      "index": 1512,
       "name": "PlaceName",
       "converter": {
         "type": "link",
@@ -729,7 +729,7 @@
       }
     },
     {
-      "index": 1506,
+      "index": 1513,
       "name": "JournalGenre",
       "converter": {
         "type": "link",
@@ -737,29 +737,29 @@
       }
     },
     {
-      "index": 1508,
+      "index": 1515,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 1509,
+      "index": 1516,
       "name": "Icon{Special}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 1510,
+      "index": 1517,
       "name": "Introduction"
     },
     {
-      "index": 1511,
+      "index": 1518,
       "name": "HideOfferIcon"
     },
     {
-      "index": 1512,
+      "index": 1519,
       "name": "EventIconType",
       "converter": {
         "type": "link",
@@ -767,7 +767,7 @@
       }
     },
     {
-      "index": 1514,
+      "index": 1521,
       "name": "SortKey"
     }
   ]
