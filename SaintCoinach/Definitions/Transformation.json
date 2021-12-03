@@ -102,27 +102,27 @@
       }
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "Speed"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "Scale"
     },
     {
-      "index": 25,
+      "index": 26,
       "name": "IsPvP"
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "IsEvent"
     },
     {
-      "index": 27,
+      "index": 28,
       "name": "PlayerCamera"
     },
     {
-      "index": 30,
+      "index": 31,
       "name": "StartVFX",
       "converter": {
         "type": "link",
@@ -130,7 +130,7 @@
       }
     },
     {
-      "index": 31,
+      "index": 32,
       "name": "EndVFX",
       "converter": {
         "type": "link",
@@ -138,7 +138,7 @@
       }
     },
     {
-      "index": 32,
+      "index": 33,
       "name": "Action[6]",
       "converter": {
         "type": "link",
@@ -146,7 +146,7 @@
       }
     },
     {
-      "index": 35,
+      "index": 36,
       "name": "Action[7]",
       "converter": {
         "type": "link",
