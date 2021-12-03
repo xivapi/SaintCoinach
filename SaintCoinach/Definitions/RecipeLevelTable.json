@@ -25,6 +25,14 @@
       "name": "Quality"
     },
     {
+      "index": 6,
+      "name": "ProgressDivider"
+    },
+    {
+      "index": 7,
+      "name": "QualityDivider"
+    },
+    {
       "index": 10,
       "name": "Durability"
     },
