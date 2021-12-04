@@ -3,7 +3,7 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Name",
+      "name": "Item",
       "converter": {
         "type": "link",
         "target": "Item"
