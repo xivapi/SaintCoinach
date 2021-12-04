@@ -33,6 +33,14 @@
       "name": "QualityDivider"
     },
     {
+      "index": 8,
+      "name": "ProgressModifier"
+    },
+    {
+      "index": 9,
+      "name": "QualityModifier"
+    },
+    {
       "index": 10,
       "name": "Durability"
     },
