@@ -85,7 +85,7 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the <see cref="Item" /> required to repair the current item.
         /// </summary>
         /// <value>The <see cref="Item" /> required to repair the current item.</value>
-        public Item RepairItem { get { return As<Item>("Item{Repair}"); } }
+        public Item RepairItem { get { return As<XivRow>("Item{Repair}").As<Item>("Item"); } }
 
         /// <summary>
         ///     Gets the type of <see cref="ItemSpecialBonus" /> required to grant additional bonuses of the current item.
