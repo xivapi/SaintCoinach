@@ -1,0 +1,13 @@
+{
+  "sheet": "ItemRepairResource",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
+}

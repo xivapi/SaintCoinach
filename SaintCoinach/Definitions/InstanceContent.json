@@ -193,7 +193,7 @@
       "name": "FinalBossExp"
     },
     {
-      "index": 50,
+      "index": 51,
       "name": "InstanceContentBuff",
       "converter": {
         "type": "link",
@@ -201,7 +201,7 @@
       }
     },
     {
-      "index": 51,
+      "index": 53,
       "name": "ReqInstance",
       "converter": {
         "type": "link",
@@ -209,7 +209,7 @@
       }
     },
     {
-      "index": 53,
+      "index": 54,
       "name": "PartyCondition"
     }
   ]

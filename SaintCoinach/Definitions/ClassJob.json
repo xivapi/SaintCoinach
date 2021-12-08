@@ -182,11 +182,11 @@
       "name": "PartyBonus"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "IsLimitedJob"
     },
     {
-      "index": 45,
+      "index": 46,
       "name": "CanQueueForDuty"
     }
   ]

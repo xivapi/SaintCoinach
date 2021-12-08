@@ -171,23 +171,23 @@
       "name": "Cast<100ms>"
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "Recast<100ms>"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "CooldownGroup"
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "AdditionalCooldownGroup"
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "MaxCharges"
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "AttackType",
       "converter": {
         "type": "link",
@@ -195,11 +195,11 @@
       }
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "Aspect"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "ActionProcStatus",
       "converter": {
         "type": "link",
@@ -207,7 +207,7 @@
       }
     },
     {
-      "index": 46,
+      "index": 47,
       "name": "Status{GainSelf}",
       "converter": {
         "type": "link",
@@ -215,14 +215,14 @@
       }
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "UnlockLink",
       "converter": {
         "type": "generic"
       }
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",
@@ -230,11 +230,11 @@
       }
     },
     {
-      "index": 51,
+      "index": 52,
       "name": "AffectsPosition"
     },
     {
-      "index": 52,
+      "index": 53,
       "name": "Omen",
       "converter": {
         "type": "link",
@@ -242,11 +242,11 @@
       }
     },
     {
-      "index": 53,
+      "index": 55,
       "name": "IsPvP"
     },
     {
-      "index": 65,
+      "index": 67,
       "name": "IsPlayerAction"
     }
   ]

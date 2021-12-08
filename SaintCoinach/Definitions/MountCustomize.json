@@ -62,71 +62,71 @@
       "name": "VieraMaleScale"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "VieraFemaleScale"
     },
     {
-      "index": 17,
+      "index": 19,
       "name": "HyurMaleCameraHeight"
     },
     {
-      "index": 18,
+      "index": 20,
       "name": "HyurFemaleCameraHeight"
     },
     {
-      "index": 19,
+      "index": 21,
       "name": "ElezenMaleCameraHeight"
     },
     {
-      "index": 20,
+      "index": 22,
       "name": "ElezenFemaleCameraHeight"
     },
     {
-      "index": 21,
+      "index": 23,
       "name": "LalaMaleCameraHeight"
     },
     {
-      "index": 22,
+      "index": 24,
       "name": "LalaFemaleCameraHeight"
     },
     {
-      "index": 23,
+      "index": 25,
       "name": "MiqoMaleCameraHeight"
     },
     {
-      "index": 24,
+      "index": 26,
       "name": "MiqoFemaleCameraHeight"
     },
     {
-      "index": 25,
+      "index": 27,
       "name": "RoeMaleCameraHeight"
     },
     {
-      "index": 26,
+      "index": 28,
       "name": "RoeFemaleCameraHeight"
     },
     {
-      "index": 27,
+      "index": 29,
       "name": "AuRaMaleCameraHeight"
     },
     {
-      "index": 28,
+      "index": 30,
       "name": "AuRaFemaleCameraHeight"
     },
     {
-      "index": 29,
+      "index": 31,
       "name": "HrothgarMaleCameraHeight"
     },
     {
-      "index": 30,
+      "index": 32,
       "name": "HrothgarRoeFemaleCameraHeight"
     },
     {
-      "index": 31,
+      "index": 33,
       "name": "VieraMaleCameraHeight"
     },
     {
-      "index": 32,
+      "index": 34,
       "name": "VieraFemaleCameraHeight"
     }
   ]

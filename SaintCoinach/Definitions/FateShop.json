@@ -1,0 +1,29 @@
+{
+  "sheet": "FateShop",
+  "definitions": [
+    {
+      "index": 0,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "SpecialShop",
+        "converter": {
+          "type": "link",
+          "target": "SpecialShop"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "DefaultTalk",
+        "converter": {
+          "type": "link",
+          "target": "DefaultTalk"
+        }
+      }
+    }
+  ]
+}

@@ -17,15 +17,15 @@
       }
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "MaxStacks"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Category"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "HitEffect",
       "converter": {
         "type": "link",
@@ -33,7 +33,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "VFX",
       "converter": {
         "type": "link",
@@ -41,47 +41,47 @@
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "LockMovement"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "LockActions"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "LockControl"
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "Transfiguration"
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "CanDispel"
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "InflictedByActor"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "IsPermanent"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "PartyListPriority"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "Log"
     },
     {
-      "index": 25,
+      "index": 26,
       "name": "IsFcBuff"
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "Invisibility"
     }
   ]
