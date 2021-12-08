@@ -12,6 +12,18 @@
           "target": "SpecialShop"
         }
       }
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "DefaultTalk",
+        "converter": {
+          "type": "link",
+          "target": "DefaultTalk"
+        }
+      }
     }
   ]
 }
