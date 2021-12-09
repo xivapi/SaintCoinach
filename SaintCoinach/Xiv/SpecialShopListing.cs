@@ -5,6 +5,26 @@ namespace SaintCoinach.Xiv {
     ///     Class representing a listing in a <see cref="SpecialShop" />.
     /// </summary>
     public class SpecialShopListing : IShopListing {
+        #region Currency
+
+        private static Dictionary<int, int> _Currencies = new Dictionary<int, int>() {
+            { 1, 28 },
+            { 2, 25199 },
+            { 4, 25200 },
+            { 6, 33913 },
+            { 7, 33914 }
+        };
+
+        private static Dictionary<int, int> _Tomestones = new Dictionary<int, int>() {
+            { 1, 28 },
+            { 2, 42 },
+            { 3, 41 },
+            { 4, 40 },
+            { 5, 39 }
+        };
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -63,16 +83,36 @@ namespace SaintCoinach.Xiv {
             _Rewards = rewards.ToArray();
             Quest = shop.As<Quest>("Quest{Item}", index);
 
-            const int CostCount = 2;
+            int UseCurrencyType = shop.As<byte>("UseCurrencyType");
+
+            const int CostCount = 3;
             var costs = new List<ShopListingItem>();
             for (var i = 0; i < CostCount; ++i) {
                 var item = shop.As<Item>("Item{Cost}", index, i);
+
                 if (item.Key == 0)
                     continue;
 
                 var count = shop.AsInt32("Count{Cost}", index, i);
                 if (count == 0)
                     continue;
+
+                if (item.Key < 8) {
+                    switch (UseCurrencyType) {
+                        case 16:
+                            item = shop.Sheet.Collection.GetSheet<Item>()
+                                [_Currencies[item.Key]];
+                            break;
+                        case 8:
+                            item = shop.Sheet.Collection.GetSheet<Item>()
+                                [1];
+                            break;
+                        case 4:
+                            item = shop.Sheet.Collection.GetSheet<Item>()
+                                [_Tomestones[item.Key]];
+                            break;
+                    }
+                }
 
                 var hq = shop.AsBoolean("HQ{Cost}", index, i);
                 var collectabilityRating = shop.AsInt16("CollectabilityRating{Cost}", index, i);
