@@ -73,13 +73,23 @@ namespace SaintCoinach.Xiv {
             get {
                 if (_WeatherRate != null) return _WeatherRate;
 
-                if (WeatherGroups == null)
-                    WeatherGroups = BuildWeatherGroups();
-
                 var rateKey = AsInt32("WeatherRate");
-                if (!WeatherGroups.TryGetValue(rateKey, out _WeatherRate))
-                    _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
-                return _WeatherRate;
+                try { 
+                    return _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
+                } catch (KeyNotFoundException notFound) {
+
+                    // Weather Groups seems already deprecated
+
+                    /*
+                    if (WeatherGroups == null)
+                        WeatherGroups = BuildWeatherGroups();
+
+                    if (!WeatherGroups.TryGetValue(rateKey, out _WeatherRate))
+                        _WeatherRate = Sheet.Collection.GetSheet<WeatherRate>()[rateKey];
+                    return _WeatherRate;
+                    */
+                    throw;
+                }
             }
         }
 
