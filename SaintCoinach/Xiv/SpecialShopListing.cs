@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SaintCoinach.Xiv {
     /// <summary>
@@ -15,13 +16,22 @@ namespace SaintCoinach.Xiv {
             { 7, 33914 }
         };
 
-        private static Dictionary<int, int> _Tomestones = new Dictionary<int, int>() {
-            { 1, 28 },
-            { 2, 42 },
-            { 3, 41 },
-            { 4, 40 },
-            { 5, 39 }
-        };
+        private static Dictionary<int, int> _Tomestones;
+
+        private void BuildTomestones() {
+            // Tomestone currencies rotate across patches.
+            // These keys correspond to currencies A, B, and C.
+            var sTomestonesItems = SpecialShop.Sheet.Collection.GetSheet<TomestonesItem>()
+                .Where(t => t.Tomestone.Key > 0)
+                .OrderBy(t => t.Tomestone.Key)
+                .ToArray();
+
+            _Tomestones = new Dictionary<int, int>();
+
+            for (int i = 0; i < sTomestonesItems.Length; i++) {
+                _Tomestones[i + 1] = sTomestonesItems[i].Item.Key;
+            }
+        }
 
         #endregion
 
@@ -97,6 +107,8 @@ namespace SaintCoinach.Xiv {
                 if (count == 0)
                     continue;
 
+                var hq = shop.AsBoolean("HQ{Cost}", index, i);
+
                 if (item.Key < 8) {
                     switch (UseCurrencyType) {
                         case 16:
@@ -108,13 +120,16 @@ namespace SaintCoinach.Xiv {
                                 [1];
                             break;
                         case 4:
+                            if (_Tomestones == null) {
+                                BuildTomestones();
+                            }
                             item = shop.Sheet.Collection.GetSheet<Item>()
                                 [_Tomestones[item.Key]];
                             break;
                     }
+                    hq = false;
                 }
-
-                var hq = shop.AsBoolean("HQ{Cost}", index, i);
+                
                 var collectabilityRating = shop.AsInt16("CollectabilityRating{Cost}", index, i);
 
                 costs.Add(new ShopListingItem(this, item, count, hq, collectabilityRating));
