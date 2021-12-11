@@ -22,6 +22,14 @@
       "name": "Quantity[2]"
     },
     {
+      "index": 4,
+      "name": "Quantity[3]"
+    },
+    {
+      "index": 5,
+      "name": "Quantity[4]"
+    },
+    {
       "index": 6,
       "name": "GatheringLog",
       "converter": {
