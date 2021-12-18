@@ -11,7 +11,11 @@
     },
     {
       "index": 1,
-      "name": "Exp"
+      "name": "Exp{BelowExMaxLvl}"
+    },
+    {
+      "index": 2,
+      "name": "Exp{AboveExMaxLvl}"
     }
   ]
 }
