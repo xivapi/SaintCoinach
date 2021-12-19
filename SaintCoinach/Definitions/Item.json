@@ -118,6 +118,13 @@
           {
             "when": {
               "key": "FilterGroup",
+              "value": 32
+            },
+            "sheet": "Orchestrion"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
               "value": 36
             },
             "sheet": "SubmarinePart"
