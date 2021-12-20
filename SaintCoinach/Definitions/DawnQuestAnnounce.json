@@ -10,16 +10,12 @@
     },
     {
       "index": 1,
-      "name": "Content",
-      "converter": {
-        "type": "link",
-        "target": "DawnContent"
-      }
+      "name": "QuestStep"
     },
     {
       "index": 2,
       "type": "repeat",
-      "count": 6,
+      "count": 7,
       "definition": {
         "name": "ENPC",
         "converter": {
