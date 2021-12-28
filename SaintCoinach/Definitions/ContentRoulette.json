@@ -34,6 +34,10 @@
       }
     },
     {
+      "index": 10,
+      "name": "IsPvP"
+    },
+    {
       "index": 11,
       "name": "RequiredLevel"
     },
