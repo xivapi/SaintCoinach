@@ -18,6 +18,10 @@
       "name": "DutyType"
     },
     {
+      "index": 7,
+      "name": "IsGoldSaucer"
+    },
+    {
       "index": 8,
       "name": "IsInDutyFinder"
     },
