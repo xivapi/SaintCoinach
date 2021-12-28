@@ -18,6 +18,10 @@
       "name": "DutyType"
     },
     {
+      "index": 7,
+      "name": "IsGoldSaucer"
+    },
+    {
       "index": 8,
       "name": "IsInDutyFinder"
     },
@@ -28,6 +32,10 @@
         "type": "link",
         "target": "ContentRouletteOpenRule"
       }
+    },
+    {
+      "index": 10,
+      "name": "IsPvP"
     },
     {
       "index": 11,
