@@ -249,7 +249,7 @@ namespace SaintCoinach.Xiv.Items {
             // Velveteen Work Gloves (#3601) for gathering (34.5 -> 35)
             // Gryphonskin Ring (#4526) for wind resistance (4.5 -> 5)
             // Fingerless Goatskin Gloves of Gathering (#3578) for GP (2.5 -> 3)
-            return (int)Math.Round(maxBase * slotFactor * roleModifier / 10000.0, MidpointRounding.AwayFromZero);
+            return (int)Math.Round(maxBase * slotFactor * roleModifier / 100000.0, MidpointRounding.AwayFromZero);
         }
 
         public int GetModelCharacterType() {
