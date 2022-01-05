@@ -122,6 +122,7 @@
     <Compile Include="Xiv\ItemActions\CompanyEffect.cs" />
     <Compile Include="Xiv\ItemActions\FieldNoteUnlock.cs" />
     <Compile Include="Xiv\ItemActions\OrnamentUnlock.cs" />
+    <Compile Include="Xiv\ItemActions\TeleportationTicket.cs" />
     <Compile Include="Xiv\ItemActions\SustainPotion.cs" />
     <Compile Include="Xiv\ItemActions\FateContentAction.cs" />
     <Compile Include="Xiv\JournalSection.cs" />
