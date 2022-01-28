@@ -102,7 +102,11 @@
     },
     {
       "index": 17,
-      "name": "InstanceClearExp"
+      "name": "NewPlayerBonusGil"
+    },
+    {
+      "index": 18,
+      "name": "NewPlayerBonusExp"
     },
     {
       "index": 19,
@@ -110,22 +114,26 @@
     },
     {
       "index": 20,
-      "name": "FinalBossCurrencyC"
-    },
-    {
-      "index": 22,
-      "name": "FinalBossCurrencyA"
-    },
-    {
-      "index": 23,
-      "name": "FinalBossCurrencyB"
-    },
-    {
-      "index": 24,
       "name": "NewPlayerBonusB"
     },
     {
+      "index": 21,
+      "name": "FinalBossExp"
+    },
+    {
+      "index": 23,
+      "name": "FinalBossCurrencyA"
+    },
+    {
+      "index": 24,
+      "name": "FinalBossCurrencyB"
+    },
+    {
       "index": 25,
+      "name": "FinalBossCurrencyC"
+    },
+    {
+      "index": 26,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -138,7 +146,7 @@
       }
     },
     {
-      "index": 30,
+      "index": 31,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -151,7 +159,7 @@
       }
     },
     {
-      "index": 35,
+      "index": 36,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -164,7 +172,7 @@
       }
     },
     {
-      "index": 40,
+      "index": 41,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -178,19 +186,19 @@
     },
     {
       "index": 46,
-      "name": "InstanceClearGil"
+      "name": "InstanceClearExp"
     },
     {
       "index": 47,
+      "name": "InstanceClearGil"
+    },
+    {
+      "index": 48,
       "name": "InstanceContentRewardItem",
       "converter": {
         "type": "link",
         "target": "InstanceContentRewardItem"
       }
-    },
-    {
-      "index": 49,
-      "name": "FinalBossExp"
     },
     {
       "index": 51,
