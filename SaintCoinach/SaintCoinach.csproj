@@ -116,12 +116,17 @@
     <Compile Include="Xiv\CraftLevelDifference.cs" />
     <Compile Include="Xiv\GatheringSubCategory.cs" />
     <Compile Include="Xiv\GCScripShopCategory.cs" />
+    <Compile Include="Xiv\ItemActions\AchievementScroll.cs" />
     <Compile Include="Xiv\ItemActions\AdventureBook.cs" />
     <Compile Include="Xiv\ItemActions\EquipmentCoffer.cs" />
     <Compile Include="Xiv\ItemActions\CompanyEffect.cs" />
+    <Compile Include="Xiv\ItemActions\FieldNoteUnlock.cs" />
+    <Compile Include="Xiv\ItemActions\OrnamentUnlock.cs" />
+    <Compile Include="Xiv\ItemActions\TeleportationTicket.cs" />
     <Compile Include="Xiv\ItemActions\SustainPotion.cs" />
     <Compile Include="Xiv\ItemActions\FateContentAction.cs" />
     <Compile Include="Xiv\JournalSection.cs" />
+    <Compile Include="Xiv\MYCWarResultNotebook.cs" />
     <Compile Include="Xiv\NpcEquip.cs" />
     <Compile Include="Xiv\Ornament.cs" />
     <Compile Include="Xiv\Salvage.cs" />

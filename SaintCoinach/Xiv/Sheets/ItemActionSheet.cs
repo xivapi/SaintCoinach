@@ -101,6 +101,18 @@ namespace SaintCoinach.Xiv.Sheets {
                 8667, typeof(IA.SustainPotion)
             }, {
                 9343, typeof(IA.FateContentAction)
+            }, { 
+                9994, typeof(IA.TeleportationTicket)
+            }, { 
+                18083, typeof(IA.AchievementScroll)
+            }, {
+                19743, typeof(IA.FieldNoteUnlock)
+            }, {
+                20086, typeof(IA.OrnamentUnlock)
+            }, {
+                25174, typeof(IA.AdventureBook)
+            }, {
+                25183, typeof(IA.OrchestrionRollUnlock)
             }
         };
 
