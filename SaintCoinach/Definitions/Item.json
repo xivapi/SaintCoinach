@@ -227,6 +227,10 @@
       }
     },
     {
+      "index": 31,
+      "name": "CastTime<s>"
+    },
+    {
       "index": 32,
       "name": "Cooldown<s>"
     },
