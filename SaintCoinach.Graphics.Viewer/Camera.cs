@@ -165,11 +165,12 @@ namespace SaintCoinach.Graphics.Viewer {
 
                 if (_CurrentMouseState.LeftButton || _CurrentMouseState.RightButton) {
                     var mouseMove = _CurrentMouseState.AbsolutePosition - _PreviousMouseState.AbsolutePosition;
-                    _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
-                    if (_CurrentMouseState.LeftButton)
+                    if (_CurrentMouseState.LeftButton) {
+                        _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
                         _Pitch -= mouseMove.Y * MouseRotationSpeedPitch;
+                    }
                     if (_CurrentMouseState.RightButton)
-                        moveVector += new Vector3(0, mouseMove.Y / -16f, 0);
+                        moveVector += new Vector3(mouseMove.X / -16f, mouseMove.Y / 16f, 0);
                     if (_CurrentMouseState.LeftButton && _CurrentMouseState.RightButton)
                         moveVector += new Vector3(0, 0, -1);
                 }
