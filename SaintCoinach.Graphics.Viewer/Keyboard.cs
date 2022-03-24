@@ -80,7 +80,7 @@ namespace SaintCoinach.Graphics.Viewer {
                     _RepeatKeys.Add(key);
                 }
             }
-            foreach (var pair in _SubsequentRepeatKeys) {
+            foreach (var pair in _SubsequentRepeatKeys.ToArray()) {
                 if (pair.Value <= Environment.TickCount) {
                     _SubsequentRepeatKeys[pair.Key] = Environment.TickCount + subsequentRepeatDelay;
                     _RepeatKeys.Add(pair.Key);
