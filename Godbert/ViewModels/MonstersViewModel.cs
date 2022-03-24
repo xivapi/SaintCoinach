@@ -178,13 +178,33 @@ namespace Godbert.ViewModels {
              *  a0002 animations are decided?   */
             string[] searchPaths =
             {
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/ability",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/battle",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/blownaway",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/bnpc_gesture",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/bnpc_gimmickjump",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/bnpc_passmove",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/cr_mon",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/emote",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/event",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/event_base",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/gs_roulette/m{0:D4}",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/human_sp/c0101",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/idle_sp",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/lcut",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/loop_sp",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/minion",
                 "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}",
                 "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}/hide",
                 "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mon_sp/m{0:D4}/show",
-                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/event",
-                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/minion",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/mount_sp/m{0:D4}",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/normal",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/parts_idle_sp",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/pc_contentsaction",
                 "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/resident",
-                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/specialpop"
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/specialpop",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/trans_sp/m{0:D4}",
+                "chara/monster/m{0:D4}/animation/a{1:D4}/bt_common/warp",
             };
 
             SaintCoinach.IO.Directory d;
@@ -213,22 +233,27 @@ namespace Godbert.ViewModels {
             var component = new AnimatedModel(engine, skeleton, variant, model, ModelQuality.High) {};
             var papPath = string.Format(PapPathFormat, m, b);
 
-            SaintCoinach.IO.File papFileBase;
-            if (Parent.Realm.Packs.TryGetFile(papPath, out papFileBase)) {
-                var anim = new AnimationContainer(skeleton, new PapFile(papFileBase));
-
+            var allPaps = SearchPaps(model.File.Path, m);
+            if (allPaps.Any()) {
                 var hasAnim = false;
-                for(var i = 0; i < DefaultAnimationNames.Length && !hasAnim; ++i) {
-                    var n = DefaultAnimationNames[i];
-                    if (anim.AnimationNames.Contains(n)) {
-                        component.AnimationPlayer.Animation = anim.Get(n);
-                        hasAnim = true;
+
+                foreach (var pap in allPaps) {
+                    var anim = new AnimationContainer(skeleton, pap);
+                    foreach (var name in anim.AnimationNames) {
+                        component.AnimationPlayer.AddAnimation(anim.Get(name));
+                        if (!hasAnim && DefaultAnimationNames.Contains(name)) {
+                            hasAnim = true;
+                            component.AnimationPlayer.AnimationIndex = component.AnimationPlayer.Animations.Count - 1;
+                        }
                     }
                 }
-                
-                if (!hasAnim)
-                    component.AnimationPlayer.Animation = anim.Get(0);
+
+                if (!hasAnim && component.AnimationPlayer.Animations.Any())
+                    component.AnimationPlayer.AnimationIndex = 0;
+
+                component.AnimationPlayer.SortAnimationsByName();
             }
+
             return component;
         }
 
