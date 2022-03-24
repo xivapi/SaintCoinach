@@ -174,7 +174,7 @@ namespace SaintCoinach.Graphics.Viewer {
                         moveVector += new Vector3(0, 0, -1);
                 }
 
-                moveVector += new Vector3(0, 0, _CurrentMouseState.WheelDelta / 12f);
+                moveVector += new Vector3(0, 0, _CurrentMouseState.WheelDelta / -12f);
 
                 AddToCameraPosition(moveVector * amount);
             }
