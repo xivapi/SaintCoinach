@@ -117,18 +117,17 @@ namespace SaintCoinach.Graphics.Viewer {
             if (_Engine.Keyboard.WasKeyPressedRepeatable(Keys.N)) {
                 _IsAnimating = false;
                 elapsedTime = 0;
-                _CurrentPlaybackPosition -= Animation.FrameDuration;
+                _CurrentPlaybackPosition = (int)Math.Round((_CurrentPlaybackPosition + Animation.Duration - Animation.FrameDuration) / Animation.FrameDuration) % Animation.FrameCount * Animation.FrameDuration;
             }
             if (_Engine.Keyboard.WasKeyPressedRepeatable(Keys.M)) {
                 _IsAnimating = false;
                 elapsedTime = 0;
-                _CurrentPlaybackPosition += Animation.FrameDuration;
+                _CurrentPlaybackPosition = (int)Math.Round((_CurrentPlaybackPosition + Animation.FrameDuration) / Animation.FrameDuration) % Animation.FrameCount * Animation.FrameDuration;
             }
             if (_Engine.Keyboard.WasKeyPressedRepeatable(Keys.K))
                 PlaybackSpeed = Math.Max(1, Math.Round(PlaybackSpeed * 20) - 1) / 20;
             if (_Engine.Keyboard.WasKeyPressedRepeatable(Keys.L))
                 PlaybackSpeed = Math.Min(80, Math.Round(PlaybackSpeed * 20) + 1) / 20;
-            UpdateTitle();
 
             _IsDirty = true;
             _CurrentPlaybackPosition += elapsedTime * PlaybackSpeed;
@@ -139,6 +138,8 @@ namespace SaintCoinach.Graphics.Viewer {
                     _CurrentPlaybackPosition -= Animation.Duration;
             } else if (_CurrentPlaybackPosition <= 0 || _CurrentPlaybackPosition > Animation.Duration)
                 _IsAnimating = false;
+
+            UpdateTitle();
         }
         #endregion
 
