@@ -3,50 +3,49 @@
   "defaultColumn": "Singular",
   "definitions": [
     {
-      "name": "Model",
-      "index": 5
+      "name": "Model"
     },
     {
-      "index": 9,
+      "index": 6,
       "name": "Order"
     },
     {
-      "index": 10,
+      "index": 7,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 11,
+      "index": 8,
       "name": "Transient"
     },
     {
-      "index": 12,
+      "index": 9,
       "name": "Singular"
     },
     {
-      "index": 13,
+      "index": 10,
       "name": "Adjective"
     },
     {
-      "index": 14,
+      "index": 11,
       "name": "Plural"
     },
     {
-      "index": 15,
+      "index": 12,
       "name": "PossessivePronoun"
     },
     {
-      "index": 16,
+      "index": 13,
       "name": "StartsWithVowel"
     },
     {
-      "index": 18,
+      "index": 14,
       "name": "Pronoun"
     },
     {
-      "index": 19,
+      "index": 15,
       "name": "Article"
     }
   ]
