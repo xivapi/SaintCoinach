@@ -10,13 +10,6 @@
       }
     },
     {
-      "index": 0,
-      "name": "Image{Name}",
-      "converter": {
-        "type": "icon"
-      }
-    },
-    {
       "index": 1,
       "name": "BigImage{Old}",
       "converter": {
