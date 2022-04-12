@@ -54,6 +54,14 @@
       }
     },
     {
+      "index": 25,
+      "name": "RecipeNotebookList",
+      "converter": {
+        "type": "link",
+        "target": "RecipeNotebookList"
+      }
+    },
+    {
       "index": 26,
       "name": "IsSecondary"
     },
