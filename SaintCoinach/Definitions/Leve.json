@@ -66,7 +66,7 @@
       }
     },
     {
-      "index": 13,
+      "index": 15,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",
@@ -74,7 +74,7 @@
       }
     },
     {
-      "index": 14,
+      "index": 16,
       "name": "JournalGenre",
       "converter": {
         "type": "link",
@@ -82,7 +82,7 @@
       }
     },
     {
-      "index": 16,
+      "index": 18,
       "name": "PlaceName{StartZone}",
       "converter": {
         "type": "link",
@@ -90,14 +90,14 @@
       }
     },
     {
-      "index": 17,
+      "index": 19,
       "name": "Icon{CityState}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 18,
+      "index": 20,
       "name": "DataId",
       "converter": {
         "type": "multiref",
@@ -110,27 +110,27 @@
       }
     },
     {
-      "index": 19,
+      "index": 21,
       "name": "CanCancel"
     },
     {
-      "index": 20,
+      "index": 22,
       "name": "MaxDifficulty"
     },
     {
-      "index": 21,
+      "index": 23,
       "name": "ExpFactor"
     },
     {
-      "index": 22,
+      "index": 24,
       "name": "ExpReward"
     },
     {
-      "index": 23,
+      "index": 25,
       "name": "GilReward"
     },
     {
-      "index": 24,
+      "index": 26,
       "name": "LeveRewardItem",
       "converter": {
         "type": "link",
@@ -138,7 +138,7 @@
       }
     },
     {
-      "index": 25,
+      "index": 27,
       "name": "LeveVfx",
       "converter": {
         "type": "link",
@@ -146,7 +146,7 @@
       }
     },
     {
-      "index": 26,
+      "index": 28,
       "name": "LeveVfx{Frame}",
       "converter": {
         "type": "link",
@@ -154,7 +154,7 @@
       }
     },
     {
-      "index": 27,
+      "index": 29,
       "name": "Level{Levemete}",
       "converter": {
         "type": "link",
@@ -162,18 +162,18 @@
       }
     },
     {
-      "index": 28,
+      "index": 30,
       "name": "Icon{Issuer}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 29,
+      "index": 31,
       "name": "LockedLeve"
     },
     {
-      "index": 30,
+      "index": 32,
       "name": "Level{Start}",
       "converter": {
         "type": "link",
@@ -181,7 +181,7 @@
       }
     },
     {
-      "index": 31,
+      "index": 33,
       "name": "BGM",
       "converter": {
         "type": "link",
