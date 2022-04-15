@@ -28,14 +28,11 @@ namespace SaintCoinach.Text.Nodes {
             return sb.ToString();
         }
         public void ToString(StringBuilder builder) {
-            builder.Append(ComparisonType);
-            builder.Append(StringTokens.ArgumentsOpen);
+            builder.Append(((byte)ComparisonType).ToString("X2"));
             if (Left != null)
                 Left.ToString(builder);
-            builder.Append(StringTokens.ArgumentsSeperator);
             if (Right != null)
                 Right.ToString(builder);
-            builder.Append(StringTokens.ArgumentsClose);
         }
 
         public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {

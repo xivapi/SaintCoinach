@@ -10,20 +10,23 @@ namespace SaintCoinach.Text.Nodes {
         private readonly INode _Condition;
         private readonly INode _TrueValue;
         private readonly INode _FalseValue;
+        private readonly String _LenByte;
 
         public TagType Tag { get { return _Tag; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression | NodeFlags.IsConditional; } }
         public INode Condition { get { return _Condition; } }
         public INode TrueValue { get { return _TrueValue; } }
         public INode FalseValue { get { return _FalseValue; } }
+        public String LenByte { get { return _LenByte; } }
 
-        public IfElement(TagType tag, INode condition, INode trueValue, INode falseValue) {
+        public IfElement(TagType tag, INode condition, INode trueValue, INode falseValue, String lenByte) {
             if (condition == null)
                 throw new ArgumentNullException("condition");
             _Tag = tag;
             _Condition = condition;
             _TrueValue = trueValue;
             _FalseValue = falseValue;
+            _LenByte = lenByte;
         }
 
         public override string ToString() {
@@ -33,23 +36,19 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             builder.Append(StringTokens.TagOpen);
-            builder.Append(Tag);
-            builder.Append(StringTokens.ArgumentsOpen);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2")); /* X means hex, 2 means 2-digit */
+            builder.Append(LenByte);
             Condition.ToString(builder);
-            builder.Append(StringTokens.ArgumentsClose);
-            builder.Append(StringTokens.TagClose);
 
             if (TrueValue != null)
                 TrueValue.ToString(builder);
 
             if (FalseValue != null) {
-                builder.Append(StringTokens.ElseTag);
                 FalseValue.ToString(builder);
             }
 
-            builder.Append(StringTokens.TagOpen);
-            builder.Append(StringTokens.ElementClose);
-            builder.Append(Tag);
+            builder.Append("03");
             builder.Append(StringTokens.TagClose);
         }
 

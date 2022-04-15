@@ -10,13 +10,15 @@ namespace SaintCoinach.Text.Nodes {
         private readonly TagType _Tag;
         private readonly INode _CaseSwitch;
         private readonly ReadOnlyDictionary<int, INode> _Cases;
+        private readonly String _LenByte;
 
         public TagType Tag { get { return _Tag; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public INode CaseSwitch { get { return _CaseSwitch; } }
         public IReadOnlyDictionary<int, INode> Cases { get { return _Cases; } }
+        public String LenByte { get { return _LenByte; } } 
 
-        public SwitchElement(TagType tag, INode caseSwitch, IDictionary<int, INode> cases) {
+        public SwitchElement(TagType tag, INode caseSwitch, IDictionary<int, INode> cases, String lenByte) {
             if (caseSwitch == null)
                 throw new ArgumentNullException("caseSwitch");
             if (cases == null)
@@ -24,6 +26,7 @@ namespace SaintCoinach.Text.Nodes {
             _Tag = tag;
             _CaseSwitch = caseSwitch;
             _Cases = new ReadOnlyDictionary<int, INode>(cases);
+            _LenByte = lenByte;
         }
 
         public override string ToString() {
@@ -33,31 +36,16 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             builder.Append(StringTokens.TagOpen);
-            builder.Append(Tag);
-            builder.Append(StringTokens.ArgumentsOpen);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2")); /* X means hex, 2 means 2-digit */
+            builder.Append(LenByte);
             CaseSwitch.ToString(builder);
-            builder.Append(StringTokens.ArgumentsClose);
-            builder.Append(StringTokens.TagClose);
 
-            foreach(var caseValue in Cases){
-                builder.Append(StringTokens.TagOpen);
-                builder.Append(StringTokens.CaseTagName);
-                builder.Append(StringTokens.ArgumentsOpen);
-                builder.Append(caseValue.Key);
-                builder.Append(StringTokens.ArgumentsClose);
-                builder.Append(StringTokens.TagClose);
-
+            foreach (var caseValue in Cases) {
                 caseValue.Value.ToString(builder);
-
-                builder.Append(StringTokens.TagOpen);
-                builder.Append(StringTokens.ElementClose);
-                builder.Append(StringTokens.CaseTagName);
-                builder.Append(StringTokens.TagClose);
             }
 
-            builder.Append(StringTokens.TagOpen);
-            builder.Append(StringTokens.ElementClose);
-            builder.Append(Tag);
+            builder.Append("03");
             builder.Append(StringTokens.TagClose);
         }
 

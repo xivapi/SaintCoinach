@@ -25,13 +25,9 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             if (HasItems) {
-                builder.Append(StringTokens.ArgumentsOpen);
                 for (var i = 0; i < _Items.Length; ++i) {
-                    if (i > 0)
-                        builder.Append(StringTokens.ArgumentsSeperator);
                     _Items[i].ToString(builder);
                 }
-                builder.Append(StringTokens.ArgumentsClose);
             }
         }
 

@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Text.Nodes {
     public class OpenTag : INode, IExpressionNode {
         private readonly TagType _Tag;
+        private readonly String _LenByte;
         private readonly ArgumentCollection _Arguments;
 
         public TagType Tag { get { return _Tag; } }
+        public String LenByte { get { return _LenByte;  }  }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression; } }
         public IEnumerable<INode> Arguments { get { return _Arguments; } }
 
-        public OpenTag(TagType tag, params INode[] arguments) : this(tag, (IEnumerable<INode>)arguments) { }
-        public OpenTag(TagType tag, IEnumerable<INode> arguments) {
+        public OpenTag(TagType tag, String lenByte, params INode[] arguments) : this(tag, lenByte, (IEnumerable<INode>)arguments) { }
+        public OpenTag(TagType tag, String lenByte, IEnumerable<INode> arguments) {
             _Tag = tag;
+            _LenByte = lenByte;
             _Arguments = new ArgumentCollection(arguments);
         }
 
@@ -26,10 +29,13 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             builder.Append(StringTokens.TagOpen);
-            builder.Append(Tag);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2")); /* X means hex, 2 means 2-digit */
+            builder.Append(LenByte);
 
             _Arguments.ToString(builder);
 
+            builder.Append("03");
             builder.Append(StringTokens.TagClose);
         }
 

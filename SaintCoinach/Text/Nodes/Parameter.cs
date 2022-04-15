@@ -27,10 +27,8 @@ namespace SaintCoinach.Text.Nodes {
             return sb.ToString();
         }
         public void ToString(StringBuilder builder) {
-            builder.Append(ParameterType);
-            builder.Append(StringTokens.ArgumentsOpen);
+            builder.Append(((byte)ParameterType).ToString("X2"));
             ParameterIndex.ToString(builder);
-            builder.Append(StringTokens.ArgumentsClose);
         }
 
         public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {

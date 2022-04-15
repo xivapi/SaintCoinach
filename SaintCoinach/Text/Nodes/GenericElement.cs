@@ -9,10 +9,12 @@ namespace SaintCoinach.Text.Nodes {
         private TagType _Tag;
         private ArgumentCollection _Arguments;
         private INode _Content;
+        private String _LenByte;
 
         public TagType Tag { get { return _Tag; } }
         public IEnumerable<INode> Arguments { get { return _Arguments; } }
         public INode Content { get { return _Content; } }
+        public String LenByte { get { return _LenByte;  } }
         NodeFlags INode.Flags {
             get {
                 var f = NodeFlags.IsExpression;
@@ -24,11 +26,12 @@ namespace SaintCoinach.Text.Nodes {
             }
         }
 
-        public GenericElement(TagType tag, INode content, params INode[] arguments) : this(tag, content, (IEnumerable<INode>)arguments) { }
-        public GenericElement(TagType tag, INode content, IEnumerable<INode> arguments) {
+        public GenericElement(TagType tag, INode content, String lenByte, params INode[] arguments) : this(tag, content, lenByte, (IEnumerable<INode>)arguments) { }
+        public GenericElement(TagType tag, INode content, String lenByte, IEnumerable<INode> arguments) {
             _Tag = tag;
             _Arguments = new ArgumentCollection(arguments);
             _Content = content;
+            _LenByte = lenByte;
         }
 
         public override string ToString() {
@@ -38,23 +41,17 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             builder.Append(StringTokens.TagOpen);
-            builder.Append(Tag);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2")); /* X means hex, 2 means 2-digit */
+            builder.Append(LenByte);
+
+            if (Content != null) {
+                Content.ToString(builder);
+            }
 
             _Arguments.ToString(builder);
-
-            if (Content == null) {
-                builder.Append(StringTokens.ElementClose);
-                builder.Append(StringTokens.TagClose);
-            } else {
-                builder.Append(StringTokens.TagClose);
-
-                Content.ToString(builder);
-
-                builder.Append(StringTokens.TagOpen);
-                builder.Append(StringTokens.ElementClose);
-                builder.Append(Tag);
-                builder.Append(StringTokens.TagClose);
-            }
+            builder.Append("03");
+            builder.Append(StringTokens.TagClose);
         }
 
         public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {

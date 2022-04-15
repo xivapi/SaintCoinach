@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Text.Nodes {
     public class TopLevelParameter : INode, IExpressionNode {
         private readonly int _Value;
+        private readonly String _LenByte;
 
         public int Value { get { return _Value; } }
+        public String LenByte { get { return _LenByte; } }
 
-        public TopLevelParameter(int value) {
+        public TopLevelParameter(int value, String lenByte) {
             _Value = value;
+            _LenByte = lenByte;
         }
 
         #region IExpressionNode Members
@@ -34,10 +37,7 @@ namespace SaintCoinach.Text.Nodes {
             return sb.ToString();
         }
         public void ToString(StringBuilder builder) {
-            builder.Append(StringTokens.TopLevelParameterName);
-            builder.Append(StringTokens.ArgumentsOpen);
-            builder.Append(Value);
-            builder.Append(StringTokens.ArgumentsClose);
+            builder.Append(LenByte);
         }
 
         public T Accept<T>(SaintCoinach.Text.Nodes.INodeVisitor<T> visitor) {

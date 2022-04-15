@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SaintCoinach.Text.Nodes {
     public class IfEqualsElement : IfElement {
-        public IfEqualsElement(TagType tag, INode leftValue, INode rightValue, INode trueValue, INode falseValue)
-            : base(tag, new Comparison(DecodeExpressionType.Equal, leftValue, rightValue), trueValue, rightValue) {
+        public IfEqualsElement(TagType tag, INode leftValue, INode rightValue, INode trueValue, INode falseValue, String lenByte)
+            : base(tag, new Comparison(DecodeExpressionType.Equal, leftValue, rightValue), trueValue, rightValue, lenByte) {
         }
     }
 }

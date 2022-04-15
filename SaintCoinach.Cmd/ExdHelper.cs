@@ -17,12 +17,14 @@ namespace SaintCoinach.Cmd {
             using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
                 var indexLine = new StringBuilder("key");
                 var nameLine = new StringBuilder("#");
+                var offsetLine = new StringBuilder("offset"); // added
                 var typeLine = new StringBuilder("int32");
 
                 var colIndices = new List<int>();
                 foreach (var col in sheet.Header.Columns) {
                     indexLine.AppendFormat(",{0}", col.Index);
                     nameLine.AppendFormat(",{0}", col.Name);
+                    offsetLine.AppendFormat(",{0}", col.Offset); // added
                     typeLine.AppendFormat(",{0}", col.ValueType);
 
                     colIndices.Add(col.Index);
@@ -30,6 +32,7 @@ namespace SaintCoinach.Cmd {
 
                 s.WriteLine(indexLine);
                 s.WriteLine(nameLine);
+                s.WriteLine(offsetLine); // added
                 s.WriteLine(typeLine);
 
                 ExdHelper.WriteRows(s, sheet, language, colIndices, writeRaw);

@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 namespace SaintCoinach.Text.Nodes {
     public class CloseTag : IExpressionNode {
         private readonly TagType _Tag;
+        private readonly String _LenByte;
 
         public TagType Tag { get { return _Tag; } }
         NodeFlags INode.Flags { get { return NodeFlags.IsExpression | NodeFlags.IsStatic; } }
+        public String LenByte { get { return _LenByte; } }
 
-        public CloseTag(TagType tag) {
+        public CloseTag(TagType tag, String lenByte) {
             _Tag = tag;
+            _LenByte = lenByte;
         }
 
         public override string ToString() {
@@ -22,8 +25,10 @@ namespace SaintCoinach.Text.Nodes {
         }
         public void ToString(StringBuilder builder) {
             builder.Append(StringTokens.TagOpen);
-            builder.Append(StringTokens.ElementClose);
-            builder.Append(Tag);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2"));
+            builder.Append(LenByte);
+            builder.Append("03");
             builder.Append(StringTokens.TagClose);
         }
 

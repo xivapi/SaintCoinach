@@ -8,14 +8,17 @@ namespace SaintCoinach.Text.Nodes {
     public class DefaultElement : INode {
         private readonly TagType _Tag;
         private readonly StaticByteArray _Data;
+        private readonly String _LenByte;
 
         public TagType Tag { get { return _Tag; } }
         public INode Data { get { return _Data; } }
+        public String LenByte { get { return _LenByte;  } }
         NodeFlags INode.Flags { get { return NodeFlags.IsStatic; } }
 
-        public DefaultElement(TagType tag, byte[] innerBuffer) {
+        public DefaultElement(TagType tag, byte[] innerBuffer, String lenByte) {
             _Tag = tag;
             _Data = new StaticByteArray(innerBuffer);
+            _LenByte = lenByte;
         }
 
         public override string ToString() {
@@ -24,19 +27,18 @@ namespace SaintCoinach.Text.Nodes {
             return sb.ToString();
         }
         public void ToString(StringBuilder builder) {
+            // edit here!!!!
             builder.Append(StringTokens.TagOpen);
-            builder.Append(Tag);
+            builder.Append("hex:02");
+            builder.Append(((byte)Tag).ToString("X2")); /* X means hex, 2 means 2-digit */
+            builder.Append(LenByte);
             if (_Data.Value.Length == 0) {
-                builder.Append(StringTokens.ElementClose);
+                builder.Append("03");
                 builder.Append(StringTokens.TagClose);
-            } else {
-                builder.Append(StringTokens.TagClose);
-
+            }
+            else {
                 _Data.ToString(builder);
-
-                builder.Append(StringTokens.TagOpen);
-                builder.Append(StringTokens.ElementClose);
-                builder.Append(Tag);
+                builder.Append("03");
                 builder.Append(StringTokens.TagClose);
             }
         }
