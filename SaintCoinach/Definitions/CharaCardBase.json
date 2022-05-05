@@ -1,4 +1,32 @@
 {
   "sheet": "CharaCardBase",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "FontColor"
+    },
+    {
+      "index": 5,
+      "name": "UnlockCondition",
+      "converter": {
+        "type": "link",
+        "target": "BannerCondition"
+      }
+    },
+    {
+      "index": 6,
+      "name": "SortKey"
+    },
+    {
+      "index": 7,
+      "name": "Name"
+    }
+  ]
 }
