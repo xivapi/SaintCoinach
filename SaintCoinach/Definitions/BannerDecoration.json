@@ -1,4 +1,35 @@
 {
   "sheet": "BannerDecoration",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "UnlockCondition",
+      "converter": {
+        "type": "link",
+        "target": "BannerCondition"
+      }
+    },
+    {
+      "index": 3,
+      "name": "SortKey"
+    },
+    {
+      "index": 4,
+      "name": "Name"
+    }
+  ]
 }

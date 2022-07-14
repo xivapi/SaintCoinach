@@ -1,4 +1,24 @@
 {
   "sheet": "BannerFacial",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Emote",
+      "converter": {
+        "type": "link",
+        "target": "Emote"
+      }
+    },
+    {
+      "index": 1,
+      "name": "UnlockCondition",
+      "converter": {
+        "type": "link",
+        "target": "BannerCondition"
+      }
+    },
+    {
+      "index": 2,
+      "name": "SortKey"
+    }
+  ]
 }
