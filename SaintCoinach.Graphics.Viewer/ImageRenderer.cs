@@ -27,6 +27,10 @@ namespace SaintCoinach.Graphics.Viewer {
                 yield break;
             }
 
+            public int GetNextWheelDelta() {
+                return 0;
+            }
+
             #endregion
         }
         #endregion

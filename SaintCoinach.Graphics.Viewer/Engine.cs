@@ -50,6 +50,7 @@ namespace SaintCoinach.Graphics.Viewer {
         private MaterialFactory _MaterialFactory;
 
         private Size2 _ViewportSize;
+        private string _Subtitle;
         #endregion
 
         #region Properties
@@ -72,6 +73,7 @@ namespace SaintCoinach.Graphics.Viewer {
         public MaterialFactory MaterialFactory { get { return _MaterialFactory; } }
         public abstract IInputService InputService { get; }
         public virtual Size2 ViewportSize { get { return _ViewportSize; } }
+        public virtual string Subtitle { get { return _Subtitle; } set { _Subtitle = value; } }
         public abstract bool IsActive { get; }
 
         public DepthStencilState DepthStencilState {
