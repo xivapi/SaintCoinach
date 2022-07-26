@@ -3,7 +3,7 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Category",
+      "name": "Category"
     },
     {
       "index": 1,
