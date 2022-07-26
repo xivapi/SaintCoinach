@@ -81,6 +81,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AllJsonCommand.cs" />
+    <Compile Include="Commands\AllJsonRawCommand.cs" />
     <Compile Include="Commands\HDUiCommand.cs" />
     <Compile Include="Commands\AllExdCommand.cs" />
     <Compile Include="Commands\AllExdRawCommand.cs" />
@@ -88,6 +90,8 @@
     <Compile Include="Commands\ExdCommand.cs" />
     <Compile Include="Commands\ExdHeaderCommand.cs" />
     <Compile Include="Commands\FurnitureExpCommand.cs" />
+    <Compile Include="Commands\RawJsonCommand.cs" />
+    <Compile Include="Commands\JsonCommand.cs" />
     <Compile Include="Commands\LanguageCommand.cs" />
     <Compile Include="Commands\ImageCommand.cs" />
     <Compile Include="Commands\MapCommand.cs" />

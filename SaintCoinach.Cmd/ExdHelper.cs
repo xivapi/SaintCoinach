@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SaintCoinach.Cmd {
     using Ex;
@@ -33,6 +34,90 @@ namespace SaintCoinach.Cmd {
                 s.WriteLine(typeLine);
 
                 ExdHelper.WriteRows(s, sheet, language, colIndices, writeRaw);
+            }
+        }
+
+        public static void SaveAsJson(Ex.Relational.IRelationalSheet sheet, Language language, string path, bool writeRaw) {
+            using (var s = new StreamWriter(path, false, Encoding.UTF8)) {
+                var data = new Dictionary<string, object>();
+
+                var cols = new Dictionary<int, string>();
+                var items = new Dictionary<string, object>();
+
+                foreach (var col in sheet.Header.Columns) {
+                    string key = "";
+                    if (col.Name != null)
+                        key = col.Name.Replace("{", ".").Replace("[", ".").Replace("}", "").Replace("]", "");
+                    cols.Add(col.Index, key);
+                }
+
+                var rows = new List<IEnumerable<Ex.IRow>>();
+                if (sheet.Header.Variant == 1) {
+                    rows.Add(sheet.Cast<Ex.IRow>());
+                } else {
+                    var parentRows = sheet.Cast<XivRow>().Select(_ => (Ex.Variant2.DataRow)_.SourceRow);
+                    foreach (var parentRow in parentRows.OrderBy(_ => _.Key))
+                        rows.Add(parentRow.SubRows);
+                }
+
+                foreach (var sub in rows) {
+                    foreach (var row in sub.OrderBy(_ => _.Key)) {
+                        var useRow = row;
+                        if (useRow is IXivRow)
+                            useRow = ((IXivRow)row).SourceRow;
+                        var multiRow = useRow as IMultiRow;
+
+                        var insert = new Dictionary<string, object>();
+
+                        string itemKey = row.Key.ToString();
+                        if (sheet.Header.Variant != 1)
+                            itemKey = ((Ex.Variant2.SubRow)row).FullKey;
+                        SetJsonKey(insert, "Key", itemKey);
+
+                        foreach (KeyValuePair<int, string> item in cols) {
+                            int index = item.Key;
+                            string key = item.Value;
+                            if (key == "")
+                                key = "col_" + index;
+
+                            object v;
+
+                            if (language == Language.None || multiRow == null)
+                                v = writeRaw ? useRow.GetRaw(index) : useRow[index];
+                            else
+                                v = writeRaw ? multiRow.GetRaw(index, language) : multiRow[index, language];
+
+                            if (v == null)
+                                continue;
+                            SetJsonKey(insert, key, v.ToString());
+                        }
+
+                        items.Add(itemKey, insert);
+                    }
+                }
+
+                s.WriteLine(JsonConvert.SerializeObject(items, cols.Count<=100? Formatting.Indented : Formatting.None));
+            }
+        }
+
+        public static void SetJsonKey(Dictionary<string, object> dict, string path, string val) {
+            var keys = path.Split('.');
+            var toSet = dict;
+            for (int i = 0; i<keys.Length; i++) {
+                var key = keys[i];
+                if (i == keys.Length - 1) {
+                    toSet[key] = val;
+                } else {
+                    if (!toSet.ContainsKey(key))
+                        toSet.Add(key, new Dictionary<string, object>());
+
+                    if (toSet[key] is String) {
+                        var mod = new Dictionary<string, object>();
+                        mod.Add("Value", toSet[key]);
+                        toSet[key] = mod;
+                    }
+                    toSet = (Dictionary<string, object>)toSet[key];
+                }
             }
         }
 

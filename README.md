@@ -2,7 +2,7 @@
 
 A .NET library written in C# for extracting game assets and reading game assets from **Final Fantasy XIV**, now with support for including the Libra Eorzea database.
 
-## Functionality 
+## Functionality
 ### Fully implemented
 
 * Extraction of files from the game's SqPack files based on their friendly name (or by Int32 identifiers, if preferred).
@@ -90,18 +90,29 @@ The project `SaintCoinach.Cmd` is a very basic console application that can be u
 The following commands are currently supported:
 
 * `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`. If no argument is supplied the currently used language is shown.
-* `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
+* `exdheader`: Export all data headers.
+* `furn_mdl_tex`: Export all MDL Furniture/Yard files.
+* `sql`: Exports the EXD data as SQL schema and associated imports.
 * `image`: Exports a file from the game assets as a PNG-image. The argument should be the friendly name of the image file.
 * `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
+* `uihd`: Exports one or multiple UI icons in higher resolution as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
+* `maps`: Exports one or multiple MAP icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
+* `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
+* `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
 * `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
-* `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
+* `allexd`: Export all data (default), or only specific data files, seperated by spaces; including all languages.
+* `allrawexd`: Export all data (default), or only specific data files, seperated by spaces; including all languages. No post-processing is applied to values.
+* `json`: Exports all or a specified number of game data sheets as JSON-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
+* `rawexd`: Exports all or a specified number of game data sheets as JSON-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
+* `alljson`: Export all data (default), or only specific data files, as JSON-files; including all languages.
+* `allrawjson`:  Export all data (default), or only specific data files, as JSON-files; including all languages. No post-processing is applied to values.
 
 # Godbert
 
 Godbert is a simple application to display game data and 3D models from **Final Fantasy XIV** using the above-mentioned library.
 
-## Functionality 
+## Functionality
 ### Fully implemented
 
 * Display of game data/text.
