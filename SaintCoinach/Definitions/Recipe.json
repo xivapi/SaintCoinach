@@ -82,28 +82,20 @@
       "name": "DurabilityFactor"
     },
     {
-      "index": 32,
+      "index": 33,
       "name": "RequiredCraftsmanship"
     },
     {
-      "index": 33,
+      "index": 34,
       "name": "RequiredControl"
     },
     {
-      "index": 34,
+      "index": 35,
       "name": "QuickSynthCraftsmanship"
     },
     {
-      "index": 35,
-      "name": "QuickSynthControl"
-    },
-    {
       "index": 36,
-      "name": "SecretRecipeBook",
-      "converter": {
-        "type": "link",
-        "target": "SecretRecipeBook"
-      }
+      "name": "QuickSynthControl"
     },
     {
       "index": 37,
