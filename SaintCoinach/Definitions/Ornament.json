@@ -6,46 +6,46 @@
       "name": "Model"
     },
     {
-      "index": 6,
+      "index": 5,
       "name": "Order"
     },
     {
-      "index": 7,
+      "index": 6,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 8,
+      "index": 7,
       "name": "Transient"
     },
     {
-      "index": 9,
+      "index": 8,
       "name": "Singular"
     },
     {
-      "index": 10,
+      "index": 9,
       "name": "Adjective"
     },
     {
-      "index": 11,
+      "index": 10,
       "name": "Plural"
     },
     {
-      "index": 12,
+      "index": 11,
       "name": "PossessivePronoun"
     },
     {
-      "index": 13,
+      "index": 12,
       "name": "StartsWithVowel"
     },
     {
-      "index": 15,
+      "index": 13,
       "name": "Pronoun"
     },
     {
-      "index": 16,
+      "index": 14,
       "name": "Article"
     }
   ]
