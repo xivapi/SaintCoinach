@@ -3,21 +3,13 @@
   "defaultColumn": "Item",
   "definitions": [
     {
-      "name": "Item",
-      "converter": {
-        "type": "link",
-        "target": "Item"
-      }
-    },
-    {
-      "index": 1,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 2,
+      "index": 1,
       "name": "Signature"
     }
   ]

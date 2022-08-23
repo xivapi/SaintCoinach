@@ -3,14 +3,6 @@
   "defaultColumn": "Member",
   "definitions": [
     {
-      "name": "Member",
-      "converter": {
-        "type": "link",
-        "target": "ENpcResident"
-      },
-      "index": -1
-    },
-    {
       "index": 0,
       "type": "repeat",
       "count": 3,

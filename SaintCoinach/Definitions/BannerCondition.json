@@ -1,4 +1,144 @@
 {
   "sheet": "BannerCondition",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "UnlockType1"
+    },
+    {
+      "index": 1,
+      "name": "UnlockCriteria1",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "UnlockType1",
+              "value": 1
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "UnlockType1",
+              "value": 5
+            },
+            "sheet": "Emote"
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "name": "UnlockType2"
+    },
+    {
+      "index": 3,
+      "name": "UnlockCriteria2",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 2
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 4
+            },
+            "sheet": "ENpcResident"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 5
+            },
+            "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 6
+            },
+            "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 7
+            },
+            "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 8
+            },
+            "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 11
+            },
+            "sheet": "Achievement"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 12
+            },
+            "sheet": "Item"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "name": "UnlockCriteria3",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 4
+            },
+            "sheet": "Level"
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "name": "UnlockCriteria4",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 4
+            },
+            "sheet": "Item"
+          }
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "name": "HasPrerequisite"
+    },
+    {
+      "index": 7,
+      "name": "Prerequisite",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
 }
