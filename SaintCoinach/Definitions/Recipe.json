@@ -82,6 +82,10 @@
       "name": "DurabilityFactor"
     },
     {
+      "index": 32,
+      "name": "RequiredQuality"
+    },
+    {
       "index": 33,
       "name": "RequiredCraftsmanship"
     },
@@ -99,7 +103,11 @@
     },
     {
       "index": 37,
-      "name": "RequiredQualityPercent"
+      "name": "SecretRecipeBook",
+      "converter": {
+        "type": "link",
+        "target": "SecretRecipeBook"
+      }
     },
     {
       "index": 38,
