@@ -1,4 +1,31 @@
 {
   "sheet": "CharaCardHeader",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "TopImage",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "BottomImage",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "FontColor"
+    },
+    {
+      "index": 7,
+      "name": "SortKey"
+    },
+    {
+      "index": 8,
+      "name": "Name"
+    }
+  ]
 }
