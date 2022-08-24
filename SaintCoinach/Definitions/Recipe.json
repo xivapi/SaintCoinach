@@ -83,22 +83,26 @@
     },
     {
       "index": 32,
-      "name": "RequiredCraftsmanship"
+      "name": "RequiredQuality"
     },
     {
       "index": 33,
-      "name": "RequiredControl"
+      "name": "RequiredCraftsmanship"
     },
     {
       "index": 34,
-      "name": "QuickSynthCraftsmanship"
+      "name": "RequiredControl"
     },
     {
       "index": 35,
-      "name": "QuickSynthControl"
+      "name": "QuickSynthCraftsmanship"
     },
     {
       "index": 36,
+      "name": "QuickSynthControl"
+    },
+    {
+      "index": 37,
       "name": "SecretRecipeBook",
       "converter": {
         "type": "link",
@@ -106,7 +110,7 @@
       }
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -114,19 +118,19 @@
       }
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "CanQuickSynth"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "CanHq"
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "ExpRewarded"
     },
     {
-      "index": 41,
+      "index": 42,
       "name": "Status{Required}",
       "converter": {
         "type": "link",
@@ -134,7 +138,7 @@
       }
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "Item{Required}",
       "converter": {
         "type": "link",
@@ -142,11 +146,11 @@
       }
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "IsSpecializationRequired"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "IsExpert"
     },
     {

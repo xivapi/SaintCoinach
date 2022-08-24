@@ -1,4 +1,73 @@
 {
   "sheet": "BannerTimeline",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Type"
+    },
+    {
+      "index": 1,
+      "name": "AdditionalData",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "Type",
+              "value": 2
+            },
+            "sheet": "Action"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 11
+            },
+            "sheet": "Emote"
+          },
+          {
+            "when": {
+              "key": "Type",
+              "value": 20
+            },
+            "sheet": "ActionTimeline"
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "name": "AcceptClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },     
+    {
+      "index": 4,
+      "name": "Category"
+    },
+    {
+      "index": 5,
+      "name": "UnlockCondition",
+      "converter": {
+        "type": "link",
+        "target": "BannerCondition"
+      }
+    },
+    {
+      "index": 6,
+      "name": "SortKey"
+    },
+    {
+      "index": 7,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Name"
+    }
+  ]
 }
