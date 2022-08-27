@@ -1,4 +1,9 @@
 {
   "sheet": "MJIText",
-  "definitions": []
+  "defaultColumn": "Text",
+  "definitions": [
+    {
+      "name": "Text"
+    }
+  ]
 }

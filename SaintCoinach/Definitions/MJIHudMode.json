@@ -1,4 +1,13 @@
 {
   "sheet": "MJIHudMode",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    },
+    {
+      "index": 1,
+      "name": "Title"
+    }
+  ]
 }

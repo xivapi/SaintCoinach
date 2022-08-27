@@ -1,4 +1,8 @@
 {
   "sheet": "MJIRank",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "ExpToNext"
+    }
+  ]
 }
