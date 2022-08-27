@@ -11,18 +11,14 @@
     },
     {
       "index": 1,
-      "name": "Theme{0}",
-      "converter": {
-        "type": "link",
-        "target": "MJICraftworksObjectTheme"
-      }
-    },
-    {
-      "index": 2,
-      "name": "Theme{1}",
-      "converter": {
-        "type": "link",
-        "target": "MJICraftworksObjectTheme"
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Theme",
+        "converter": {
+          "type": "link",
+          "target": "MJICraftworksObjectTheme"
+        }
       }
     },
     {
