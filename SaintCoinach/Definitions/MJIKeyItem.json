@@ -1,5 +1,6 @@
 {
   "sheet": "MJIKeyItem",
+  "defaultColumn": "Item",
   "definitions": [
     {
       "name": "Item",
