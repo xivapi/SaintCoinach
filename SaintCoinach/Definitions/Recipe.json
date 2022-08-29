@@ -83,31 +83,31 @@
     },
     {
       "index": 32,
-      "name": "RequiredCraftsmanship"
+      "name": "RequiredQuality"
     },
     {
       "index": 33,
-      "name": "RequiredControl"
+      "name": "RequiredCraftsmanship"
     },
     {
       "index": 34,
-      "name": "QuickSynthCraftsmanship"
+      "name": "RequiredControl"
     },
     {
       "index": 35,
-      "name": "QuickSynthControl"
+      "name": "QuickSynthCraftsmanship"
     },
     {
       "index": 36,
+      "name": "QuickSynthControl"
+    },
+    {
+      "index": 37,
       "name": "SecretRecipeBook",
       "converter": {
         "type": "link",
         "target": "SecretRecipeBook"
       }
-    },
-    {
-      "index": 37,
-      "name": "RequiredQualityPercent"
     },
     {
       "index": 38,

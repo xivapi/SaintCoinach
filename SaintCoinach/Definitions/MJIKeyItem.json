@@ -1,4 +1,13 @@
 {
   "sheet": "MJIKeyItem",
-  "definitions": []
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    }
+  ]
 }
