@@ -1,4 +1,28 @@
 {
   "sheet": "MJIAnimals",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Size"
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Reward",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
 }

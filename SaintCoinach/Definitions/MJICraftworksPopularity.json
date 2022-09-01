@@ -1,4 +1,16 @@
 {
   "sheet": "MJICraftworksPopularity",
-  "definitions": []
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 62,
+      "definition": {
+        "name": "Popularity",
+        "converter": {
+          "type": "link",
+          "target": "MJICraftworksPopularityType"
+        }
+      }
+    }
+  ]
 }
