@@ -1,4 +1,40 @@
 {
   "sheet": "MJILandmark",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 17,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Material",
+        "converter": {
+          "type": "link",
+          "target": "MJIItemPouch"
+        }
+      }
+    },
+    {
+      "index": 22,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Amount"
+      }
+    },
+    {
+      "name": "Name",
+      "index": 27,
+      "converter": {
+        "type": "link",
+        "target": "MJIText"
+      }
+    },
+    {
+      "index": 29,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
 }
