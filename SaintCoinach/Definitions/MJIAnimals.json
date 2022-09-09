@@ -2,6 +2,13 @@
   "sheet": "MJIAnimals",
   "definitions": [
     {
+      "name": "BNpcBase",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
       "index": 1,
       "name": "Size"
     },

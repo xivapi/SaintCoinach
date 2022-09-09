@@ -8,6 +8,13 @@
     {
       "index": 1,
       "name": "Title"
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
     }
   ]
 }
