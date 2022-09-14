@@ -73,6 +73,10 @@
       "name": "PartyListPriority"
     },
     {
+      "index": 19,
+      "name": "HUDGroup"
+    },
+    {
       "index": 25,
       "name": "Log"
     },
