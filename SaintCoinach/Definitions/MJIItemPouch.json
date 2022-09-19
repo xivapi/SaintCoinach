@@ -19,7 +19,7 @@
     },
     {
       "index": 2,
-      "name": "Seed",
+      "name": "Crop",
       "converter": {
         "type": "link",
         "target": "MJICropSeed"
