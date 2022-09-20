@@ -1,4 +1,9 @@
 {
   "sheet": "MJIGatheringObject",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
 }

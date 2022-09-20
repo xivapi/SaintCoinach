@@ -1,5 +1,6 @@
 {
   "sheet": "MJICropSeed",
+  "defaultColumn": "Item",
   "definitions": [
     {
       "name": "Item",

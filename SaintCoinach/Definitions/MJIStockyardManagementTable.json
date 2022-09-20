@@ -1,4 +1,13 @@
 {
   "sheet": "MJIStockyardManagementTable",
-  "definitions": []
+  "defaultColumn": "Material",
+  "definitions": [
+    {
+      "name": "Material",
+      "converter": {
+        "type": "link",
+        "target": "MJIItemPouch"
+      }
+    }
+  ]
 }
