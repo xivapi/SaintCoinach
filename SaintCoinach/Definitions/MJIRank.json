@@ -3,6 +3,18 @@
   "definitions": [
     {
       "name": "ExpToNext"
+    },
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "LogMessage",
+        "converter": {
+          "type": "link",
+          "target": "LogMessage"
+        }
+      }
     }
   ]
 }

@@ -1,4 +1,9 @@
 {
   "sheet": "MJIDisposalShopUICategory",
-  "definitions": []
+  "defaultColumn": "Category",
+  "definitions": [
+    {
+      "name": "Category"
+    }
+  ]
 }
