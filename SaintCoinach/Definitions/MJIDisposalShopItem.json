@@ -1,4 +1,13 @@
 {
   "sheet": "MJIDisposalShopItem",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Category",
+      "index": 3,
+      "converter": {
+        "type": "link",
+        "target": "MJIDisposalShopUICategory"
+      }
+    }
+  ]
 }
