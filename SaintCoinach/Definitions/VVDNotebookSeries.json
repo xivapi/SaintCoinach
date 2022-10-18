@@ -1,4 +1,9 @@
 {
   "sheet": "VVDNotebookSeries",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
 }
