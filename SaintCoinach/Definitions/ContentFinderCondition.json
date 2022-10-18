@@ -187,51 +187,51 @@
       }
     },
     {
-      "index": 50,
-      "name": "Level50/60/70Roulette"
-    },
-    {
       "index": 51,
       "name": "LevelingRoulette"
     },
     {
       "index": 52,
-      "name": "MSQRoulette"
+      "name": "HighLevelRoulette"
     },
     {
       "index": 53,
-      "name": "GuildHestRoulette"
+      "name": "MSQRoulette"
     },
     {
       "index": 54,
-      "name": "ExpertRoulette"
+      "name": "GuildHestRoulette"
     },
     {
       "index": 55,
-      "name": "TrialRoulette"
+      "name": "ExpertRoulette"
     },
     {
       "index": 56,
-      "name": "DailyFrontlineChallenge"
+      "name": "TrialRoulette"
     },
     {
       "index": 57,
-      "name": "Level80Roulette"
+      "name": "DailyFrontlineChallenge"
     },
     {
       "index": 58,
+      "name": "LevelCapRoulette"
+    },
+    {
+      "index": 59,
       "name": "MentorRoulette"
     },
     {
-      "index": 64,
+      "index": 65,
       "name": "AllianceRoulette"
     },
     {
-      "index": 65,
+      "index": 66,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 66,
+      "index": 67,
       "name": "NormalRaidRoulette"
     }
   ]

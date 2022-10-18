@@ -28,11 +28,11 @@
       }
     },
     {
-      "index": 2,
+      "index": 7,
       "name": "UnlockType2"
     },
     {
-      "index": 3,
+      "index": 8,
       "name": "UnlockCriteria2",
       "converter": {
         "type": "complexlink",
@@ -97,7 +97,7 @@
       }
     },
     {
-      "index": 4,
+      "index": 9,
       "name": "UnlockCriteria3",
       "converter": {
         "type": "complexlink",
@@ -113,7 +113,7 @@
       }
     },
     {
-      "index": 5,
+      "index": 10,
       "name": "UnlockCriteria4",
       "converter": {
         "type": "complexlink",
@@ -129,11 +129,11 @@
       }
     },
     {
-      "index": 6,
+      "index": 11,
       "name": "HasPrerequisite"
     },
     {
-      "index": 7,
+      "index": 12,
       "name": "Prerequisite",
       "converter": {
         "type": "link",
