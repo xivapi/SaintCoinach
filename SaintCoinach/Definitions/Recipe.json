@@ -3,6 +3,7 @@
   "defaultColumn": "Item{Result}",
   "definitions": [
     {
+      "index": 0,
       "name": "Number"
     },
     {
@@ -154,7 +155,7 @@
       "name": "IsExpert"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "PatchNumber"
     }
   ]
