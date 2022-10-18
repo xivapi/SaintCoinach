@@ -4,6 +4,18 @@
   "definitions": [
     {
       "name": "Name"
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 12,
+      "definition": {
+        "name": "Contents",
+        "converter": {
+          "type": "link",
+          "target": "VVDNotebookContents"
+        }
+      }
     }
   ]
 }
