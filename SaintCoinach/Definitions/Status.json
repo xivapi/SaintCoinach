@@ -21,8 +21,15 @@
       "name": "MaxStacks"
     },
     {
+      "index": 5,
+      "name": "ClassJobCategory",
+      "converter": {
+        "type": "link",
+        "target": "ClassJobCategory"
+      }
+    },
       "index": 6,
-      "name": "Category"
+      "name": "StatusCategory"
     },
     {
       "index": 7,
@@ -57,6 +64,10 @@
       "name": "Transfiguration"
     },
     {
+      "index": 14,
+      "name": "IsGaze"
+    },
+    {
       "index": 15,
       "name": "CanDispel"
     },
@@ -73,6 +84,22 @@
       "name": "PartyListPriority"
     },
     {
+      "index": 19,
+      "name": "CanIncreaseRewards"
+    },
+    {
+      "index": 22,
+      "name": "ParamModifier"
+    },
+    {
+      "index": 23,
+      "name": "ParamEffect"
+    },
+    {
+      "index": 24,
+      "name": "CanStatusOff"
+    },
+    {
       "index": 25,
       "name": "Log"
     },
@@ -83,6 +110,14 @@
     {
       "index": 27,
       "name": "Invisibility"
+    },
+    {
+      "index": 28,
+      "name": "TargetType"
+    },
+    {
+      "index": 29,
+      "name": "Flags"
     }
   ]
 }
