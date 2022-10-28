@@ -1,0 +1,13 @@
+{
+  "sheet": "MJIItemCategory",
+  "defaultColumn": "Singular",
+  "definitions": [
+    {
+      "name": "Singular"
+    },
+    {
+      "index": 1,
+      "name": "Plural"
+    }
+  ]
+}

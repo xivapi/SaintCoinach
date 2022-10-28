@@ -1,0 +1,13 @@
+{
+  "sheet": "MJIRecipeMaterial",
+  "defaultColumn": "ItemPouch",
+  "definitions": [
+    {
+      "name": "ItemPouch",
+      "converter": {
+        "type": "link",
+        "target": "MJIItemPouch"
+      }
+    }
+  ]
+}

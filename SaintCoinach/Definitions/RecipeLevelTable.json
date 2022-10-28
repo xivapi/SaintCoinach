@@ -26,10 +26,26 @@
     },
     {
       "index": 6,
-      "name": "Durability"
+      "name": "ProgressDivider"
     },
     {
       "index": 7,
+      "name": "QualityDivider"
+    },
+    {
+      "index": 8,
+      "name": "ProgressModifier"
+    },
+    {
+      "index": 9,
+      "name": "QualityModifier"
+    },
+    {
+      "index": 10,
+      "name": "Durability"
+    },
+    {
+      "index": 11,
       "name": "ConditionsFlag"
     }
   ]

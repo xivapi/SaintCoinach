@@ -1,0 +1,43 @@
+{
+  "sheet": "PvPSeries",
+  "definitions": [
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 32,
+            "definition": {
+              "name": "LevelRewardItem",
+              "converter": {
+                "type": "link",
+                "target": "Item"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "index": 65,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 32,
+            "definition": {
+              "name": "LevelRewardCount"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

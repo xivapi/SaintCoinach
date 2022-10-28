@@ -1,0 +1,37 @@
+{
+  "sheet": "BannerDesignPreset",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Background",
+      "converter": {
+        "type": "link",
+        "target": "BannerBg"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Frame",
+      "converter": {
+        "type": "link",
+        "target": "BannerFrame"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Decoration",
+      "converter": {
+        "type": "link",
+        "target": "BannerDecoration"
+      }
+    },
+    {
+      "index": 3,
+      "name": "SortKey"
+    },
+    {
+      "index": 4,
+      "name": "Name"
+    }
+  ]
+}

@@ -26,10 +26,6 @@
           ]
         }
       }
-    },
-    {
-      "index": 10,
-      "name": "IsLimited"
     }
   ]
 }

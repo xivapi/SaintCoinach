@@ -1,0 +1,29 @@
+{
+  "sheet": "MJIItemPouch",
+  "defaultColumn": "Item",
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Category",
+      "converter": {
+        "type": "link",
+        "target": "MJIItemCategory"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Crop",
+      "converter": {
+        "type": "link",
+        "target": "MJICropSeed"
+      }
+    }
+  ]
+}

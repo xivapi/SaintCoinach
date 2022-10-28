@@ -3,45 +3,25 @@
   "defaultColumn": "Member",
   "definitions": [
     {
-      "name": "Member",
-      "converter": {
-        "type": "link",
-        "target": "ENpcResident"
-      }
-    },
-    {
-      "index": 1,
-      "name": "Image{Name}",
-      "converter": {
-        "type": "icon"
-      }
-    },
-    {
-      "index": 2,
-      "name": "BigImage{Old}",
-      "converter": {
-        "type": "icon"
+      "index": 0,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "SelectImage",
+        "converter": {
+          "type": "icon"
+        }
       }
     },
     {
       "index": 3,
-      "name": "BigImage{New}",
-      "converter": {
-        "type": "icon"
-      }
-    },
-    {
-      "index": 4,
-      "name": "SmallImage{Old}",
-      "converter": {
-        "type": "icon"
-      }
-    },
-    {
-      "index": 5,
-      "name": "SmallImage{New}",
-      "converter": {
-        "type": "icon"
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "PortraitImage",
+        "converter": {
+          "type": "icon"
+        }
       }
     },
     {

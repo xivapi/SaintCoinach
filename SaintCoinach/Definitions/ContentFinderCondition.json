@@ -90,51 +90,51 @@
       }
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "ClassJobLevel{Required}"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "ClassJobLevel{Sync}"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "ItemLevel{Required}"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "ItemLevel{Sync}"
     },
     {
-      "index": 20,
+      "index": 21,
       "name": "AllowUndersized"
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "AllowReplacement"
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "AllowExplorerMode"
     },
     {
-      "index": 28,
+      "index": 29,
       "name": "HighEndDuty"
     },
     {
-      "index": 32,
+      "index": 34,
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 37,
+      "index": 39,
       "name": "Name"
     },
     {
-      "index": 38,
+      "index": 40,
       "name": "NameShort"
     },
     {
-      "index": 39,
+      "index": 41,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -142,11 +142,11 @@
       }
     },
     {
-      "index": 40,
+      "index": 42,
       "name": "TransientKey"
     },
     {
-      "index": 41,
+      "index": 43,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -169,69 +169,69 @@
       }
     },
     {
-      "index": 42,
+      "index": 44,
       "name": "SortKey"
     },
     {
-      "index": 43,
+      "index": 45,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 44,
+      "index": 46,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 46,
-      "name": "Level50/60/70Roulette"
-    },
-    {
-      "index": 47,
+      "index": 51,
       "name": "LevelingRoulette"
     },
     {
-      "index": 48,
-      "name": "MSQRoulette"
-    },
-    {
-      "index": 49,
-      "name": "GuildHestRoulette"
-    },
-    {
-      "index": 50,
-      "name": "ExpertRoulette"
-    },
-    {
-      "index": 51,
-      "name": "TrialRoulette"
-    },
-    {
       "index": 52,
-      "name": "DailyFrontlineChallenge"
+      "name": "HighLevelRoulette"
     },
     {
       "index": 53,
-      "name": "Level80Roulette"
+      "name": "MSQRoulette"
     },
     {
       "index": 54,
+      "name": "GuildHestRoulette"
+    },
+    {
+      "index": 55,
+      "name": "ExpertRoulette"
+    },
+    {
+      "index": 56,
+      "name": "TrialRoulette"
+    },
+    {
+      "index": 57,
+      "name": "DailyFrontlineChallenge"
+    },
+    {
+      "index": 58,
+      "name": "LevelCapRoulette"
+    },
+    {
+      "index": 59,
       "name": "MentorRoulette"
     },
     {
-      "index": 60,
+      "index": 65,
       "name": "AllianceRoulette"
     },
     {
-      "index": 61,
+      "index": 66,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 62,
+      "index": 67,
       "name": "NormalRaidRoulette"
     }
   ]

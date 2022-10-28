@@ -1,0 +1,13 @@
+{
+  "sheet": "MJIGathering",
+  "defaultColumn": "GatheringObject",
+  "definitions": [
+    {
+      "name": "GatheringObject",
+      "converter": {
+        "type": "link",
+        "target": "MJIGatheringObject"
+      }
+    }
+  ]
+}

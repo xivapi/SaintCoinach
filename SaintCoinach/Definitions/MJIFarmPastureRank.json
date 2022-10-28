@@ -1,0 +1,25 @@
+{
+  "sheet": "MJIFarmPastureRank",
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "type": "group",
+        "members": [
+          {
+            "type": "repeat",
+            "count": 4,
+            "definition": {
+              "name": "SGB",
+              "converter": {
+                "type": "link",
+                "target": "ExportedSG"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sheet": "MJIProgress",
+  "definitions": [
+    {
+      "name": "Vision"
+    },
+    {
+      "index": 1,
+      "name": "Objective"
+    },
+    {
+      "index": 2,
+      "name": "PreviousObjective"
+    }
+  ]
+}

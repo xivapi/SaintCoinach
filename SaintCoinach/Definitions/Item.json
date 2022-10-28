@@ -118,6 +118,13 @@
           {
             "when": {
               "key": "FilterGroup",
+              "value": 32
+            },
+            "sheet": "Orchestrion"
+          },
+          {
+            "when": {
+              "key": "FilterGroup",
               "value": 36
             },
             "sheet": "SubmarinePart"
@@ -220,6 +227,10 @@
       }
     },
     {
+      "index": 31,
+      "name": "CastTime<s>"
+    },
+    {
       "index": 32,
       "name": "Cooldown<s>"
     },
@@ -236,7 +247,7 @@
       "name": "Item{Repair}",
       "converter": {
         "type": "link",
-        "target": "Item"
+        "target": "ItemRepairResource"
       }
     },
     {

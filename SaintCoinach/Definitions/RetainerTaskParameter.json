@@ -3,25 +3,25 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 2,
+      "count": 4,
       "definition": {
         "name": "ItemLevel{DoW}"
       }
     },
     {
-      "index": 2,
+      "index": 4,
       "type": "repeat",
-      "count": 2,
+      "count": 4,
       "definition": {
-        "name": "Gathering{DoL}"
+        "name": "Perception{DoL}"
       }
     },
     {
-      "index": 4,
+      "index": 8,
       "type": "repeat",
-      "count": 2,
+      "count": 4,
       "definition": {
-        "name": "Gathering{FSH}"
+        "name": "Perception{FSH}"
       }
     }
   ]
