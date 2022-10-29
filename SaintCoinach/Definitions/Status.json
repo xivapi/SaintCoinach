@@ -28,6 +28,7 @@
         "target": "ClassJobCategory"
       }
     },
+    {
       "index": 6,
       "name": "StatusCategory"
     },
