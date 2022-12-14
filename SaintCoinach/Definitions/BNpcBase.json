@@ -73,7 +73,7 @@
       }
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "BNpcParts",
       "converter": {
         "type": "link",
@@ -81,11 +81,11 @@
       }
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "IsTargetLine"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "IsDisplayLevel"
     }
   ]
