@@ -3,12 +3,12 @@
   "defaultColumn": "Member",
   "definitions": [
     {
+      "index": 2,
       "name": "Member",
       "converter": {
         "type": "link",
         "target": "ENpcResident"
-      },
-      "index": 2
+      }
     },
     {
       "index": 3,

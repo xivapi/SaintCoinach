@@ -1,4 +1,35 @@
 {
   "sheet": "MJIAnimals",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "BNpcBase",
+      "converter": {
+        "type": "link",
+        "target": "BNpcBase"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Size"
+    },
+    {
+      "index": 4,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Reward",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
 }

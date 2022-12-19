@@ -1,4 +1,11 @@
 {
   "sheet": "MJIVillageAppearanceUI",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Floor",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
 }
