@@ -1,0 +1,9 @@
+{
+  "sheet": "FashionCheckThemeCategory",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}

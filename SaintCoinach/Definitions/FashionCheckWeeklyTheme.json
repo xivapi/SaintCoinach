@@ -1,0 +1,9 @@
+{
+  "sheet": "FashionCheckWeeklyTheme",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
+}
