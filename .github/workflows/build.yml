@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: release-out\**
+          files: release-out/**
           name: Release for ${{ steps.define-version.outputs.commit }}
           body_path:  .github\RELEASE.md
           prerelease: false
