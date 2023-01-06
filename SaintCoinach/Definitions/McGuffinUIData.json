@@ -1,0 +1,19 @@
+{
+  "sheet": "McGuffinUIData",
+  "definitions": [
+    {
+      "name": "Order"
+    },
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Name"
+    }
+  ]
+}

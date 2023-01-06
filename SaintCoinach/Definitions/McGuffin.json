@@ -1,0 +1,12 @@
+{
+  "sheet": "McGuffin",
+  "definitions": [
+    {
+      "name": "UIData",
+      "converter": {
+        "type": "link",
+        "target": "McGuffinUIData"
+      }
+    }
+  ]
+}

@@ -451,24 +451,12 @@
     {
       "index": 1221,
       "type": "repeat",
-      "count": 24,
-      "definition": {
-        "name": "ToDoMainLocation",
-        "converter": {
-          "type": "link",
-          "target": "Level"
-        }
-      }
-    },
-    {
-      "index": 1245,
-      "type": "repeat",
-      "count": 7,
+      "count": 8,
       "definition": {
         "type": "repeat",
         "count": 24,
         "definition": {
-          "name": "ToDoChildLocation",
+          "name": "ToDoLocation",
           "converter": {
             "type": "link",
             "target": "Level"
