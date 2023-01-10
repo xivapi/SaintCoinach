@@ -52,23 +52,9 @@
     },
     {
       "index": 9,
-      "name": "PreviousQuest[0]",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 11,
-      "name": "PreviousQuest[1]",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 12,
-      "name": "PreviousQuest[2]",
+      "name": "PreviousQuest",
+      "type": "repeat",
+      "count": 3,
       "converter": {
         "type": "link",
         "target": "Quest"

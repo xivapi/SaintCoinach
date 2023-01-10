@@ -3,7 +3,7 @@
   "definitions": [
     {
       "name": "SGB[0]",
-      "index": 2,
+      "index": 3,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
@@ -11,7 +11,7 @@
     },
     {
       "name": "SGB[1]",
-      "index": 4,
+      "index": 5,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
@@ -19,7 +19,7 @@
     },
     {
       "name": "SGB[2]",
-      "index": 6,
+      "index": 7,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
@@ -27,7 +27,7 @@
     },
     {
       "name": "SGB[3]",
-      "index": 8,
+      "index": 9,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
@@ -35,14 +35,14 @@
     },
     {
       "name": "SGB[4]",
-      "index": 10,
+      "index": 11,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "index": 17,
+      "index": 18,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -54,7 +54,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 23,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -63,14 +63,14 @@
     },
     {
       "name": "Name",
-      "index": 27,
+      "index": 28,
       "converter": {
         "type": "link",
         "target": "MJIText"
       }
     },
     {
-      "index": 29,
+      "index": 30,
       "name": "Icon",
       "converter": {
         "type": "icon"
