@@ -127,11 +127,11 @@
       }
     },
     {
-      "index": 1501,
+      "index": 1621,
       "name": "UseCurrencyType"
     },
     {
-      "index": 1502,
+      "index": 1622,
       "name": "Quest{Unlock}",
       "converter": {
         "type": "link",
@@ -139,7 +139,7 @@
       }
     },
     {
-      "index": 1503,
+      "index": 1623,
       "name": "CompleteText",
       "converter": {
         "type": "link",
@@ -147,7 +147,7 @@
       }
     },
     {
-      "index": 1504,
+      "index": 1624,
       "name": "NotCompleteText",
       "converter": {
         "type": "link",

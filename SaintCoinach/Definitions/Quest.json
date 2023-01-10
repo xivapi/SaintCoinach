@@ -55,9 +55,12 @@
       "name": "PreviousQuest",
       "type": "repeat",
       "count": 3,
-      "converter": {
-        "type": "link",
-        "target": "Quest"
+      "definition": {
+        "name": "PreviousQuest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
       }
     },
     {
