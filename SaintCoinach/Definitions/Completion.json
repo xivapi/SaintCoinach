@@ -3,7 +3,6 @@
   "defaultColumn": "Text",
   "definitions": [
     {
-      "index": 0,
       "name": "Group"
     },
     {

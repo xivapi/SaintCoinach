@@ -53,14 +53,6 @@
       "name": "LGBPopRange"
     },
     {
-      "index": 16,
-      "name": "EndCutscene",
-      "converter": {
-        "type": "link",
-        "target": "PublicContentCutscene"
-      }
-    },
-    {
       "index": 9,
       "name": "ContentFinderCondition",
       "converter": {
@@ -89,6 +81,14 @@
             "sheet": "GFateClimbing2Content"
           }
         ]
+      }
+    },
+    {
+      "index": 16,
+      "name": "EndCutscene",
+      "converter": {
+        "type": "link",
+        "target": "PublicContentCutscene"
       }
     }
   ]

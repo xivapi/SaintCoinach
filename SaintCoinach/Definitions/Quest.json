@@ -95,6 +95,14 @@
       "name": "Header"
     },
     {
+      "index": 17,
+      "name": "JournalGenre",
+      "converter": {
+        "type": "link",
+        "target": "JournalGenre"
+      }
+    },
+    {
       "index": 19,
       "name": "ClassJob{Unlock}",
       "converter": {
@@ -714,14 +722,6 @@
       "converter": {
         "type": "link",
         "target": "PlaceName"
-      }
-    },
-    {
-      "index": 1513,
-      "name": "JournalGenre",
-      "converter": {
-        "type": "link",
-        "target": "JournalGenre"
       }
     },
     {

@@ -2,7 +2,6 @@
   "sheet": "FateShop",
   "definitions": [
     {
-      "index": 0,
       "type": "repeat",
       "count": 2,
       "definition": {

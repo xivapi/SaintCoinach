@@ -85,15 +85,15 @@
       }
     },
     {
-      "index": 34,
+      "index": 35,
       "name": "RequireAllDuties"
     },
     {
-      "index": 36,
+      "index": 37,
       "name": "ContentRouletteOpenRule"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "InstanceContent",
       "converter": {
         "type": "link",

@@ -30,7 +30,7 @@
       }
     },
     {
-      "index": 18,
+      "index": 19,
       "type": "repeat",
       "count": 4,
       "definition": {
@@ -42,11 +42,11 @@
       }
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "Name"
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "ContentFinderCondition{Start}",
       "converter": {
         "type": "link",

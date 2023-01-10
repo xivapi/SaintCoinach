@@ -11,10 +11,10 @@
     {
       "index": 2,
       "name": "GatheringType",
-       "converter": {
+      "converter": {
         "type": "link",
         "target": "GatheringType"
-    }
+      }
     },
     {
       "index": 3,

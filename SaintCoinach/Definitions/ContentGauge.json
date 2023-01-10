@@ -2,8 +2,8 @@
   "sheet": "ContentGauge",
   "definitions": [
     {
-      "name": "Name",
-      "index": 1
+      "index": 1,
+      "name": "Name"
     },
     {
       "index": 2,

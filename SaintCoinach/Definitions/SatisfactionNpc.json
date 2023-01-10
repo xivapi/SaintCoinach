@@ -77,7 +77,7 @@
       }
     },
     {
-      "index": 70,
+      "index": 88,
       "name": "Icon",
       "converter": {
         "type": "icon"

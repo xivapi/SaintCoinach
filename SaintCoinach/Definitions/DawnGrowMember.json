@@ -3,7 +3,6 @@
   "defaultColumn": "Member",
   "definitions": [
     {
-      "index": 0,
       "type": "repeat",
       "count": 3,
       "definition": {

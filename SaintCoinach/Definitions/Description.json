@@ -3,6 +3,7 @@
   "defaultColumn": "Text[Long]",
   "definitions": [
     {
+      "index": 1,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -10,19 +11,19 @@
       }
     },
     {
-      "index": 1,
+      "index": 2,
       "name": "Text[Long]"
     },
     {
-      "index": 2,
+      "index": 3,
       "name": "Text[Short]"
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "Text[Commentary]"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Section",
       "converter": {
         "type": "link",

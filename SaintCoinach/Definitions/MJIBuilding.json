@@ -2,40 +2,40 @@
   "sheet": "MJIBuilding",
   "definitions": [
     {
-      "name": "sgb[0]",
       "index": 1,
+      "name": "sgb[0]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "name": "sgb[1]",
       "index": 4,
+      "name": "sgb[1]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "name": "sgb[2]",
       "index": 6,
+      "name": "sgb[2]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "name": "sgb[3]",
       "index": 8,
+      "name": "sgb[3]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "name": "sgb[4]",
       "index": 10,
+      "name": "sgb[4]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"
@@ -62,8 +62,8 @@
       }
     },
     {
-      "name": "Name",
       "index": 29,
+      "name": "Name",
       "converter": {
         "type": "link",
         "target": "MJIText"
