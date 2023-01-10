@@ -53,15 +53,15 @@
       }
     },
     {
-      "index": 11,
+      "index": 10,
       "name": "IsInLog"
     },
     {
-      "index": 12,
+      "index": 11,
       "name": "TimeRestricted"
     },
     {
-      "index": 13,
+      "index": 12,
       "name": "WeatherRestricted"
     }
   ]
