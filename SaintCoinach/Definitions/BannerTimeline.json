@@ -41,13 +41,13 @@
         "type": "link",
         "target": "ClassJobCategory"
       }
-    },     
+    },
     {
-      "index": 4,
+      "index": 3,
       "name": "Category"
     },
     {
-      "index": 5,
+      "index": 4,
       "name": "UnlockCondition",
       "converter": {
         "type": "link",
@@ -55,18 +55,18 @@
       }
     },
     {
-      "index": 6,
+      "index": 5,
       "name": "SortKey"
     },
     {
-      "index": 7,
+      "index": 6,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 8,
+      "index": 7,
       "name": "Name"
     }
   ]

@@ -1,4 +1,8 @@
 {
   "sheet": "MJICraftworksRankRatio",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Ratio"
+    }
+  ]
 }

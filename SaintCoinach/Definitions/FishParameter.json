@@ -37,15 +37,15 @@
       }
     },
     {
-      "index": 7,
-      "name": "TerritoryType",
+      "index": 8,
+      "name": "FishingSpot",
       "converter": {
         "type": "link",
-        "target": "TerritoryType"
+        "target": "FishingSpot"
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "GatheringSubCategory",
       "converter": {
         "type": "link",
@@ -53,15 +53,15 @@
       }
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "IsInLog"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "TimeRestricted"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "WeatherRestricted"
     }
   ]

@@ -1,4 +1,13 @@
 {
   "sheet": "VVDVariantAction",
-  "definitions": []
+  "defaultColumn": "Action",
+  "definitions": [
+    {
+      "name": "Action",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
+    }
+  ]
 }

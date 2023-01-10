@@ -3,6 +3,7 @@
   "defaultColumn": "Item{Result}",
   "definitions": [
     {
+      "index": 0,
       "name": "Number"
     },
     {
@@ -82,27 +83,27 @@
       "name": "DurabilityFactor"
     },
     {
-      "index": 32,
+      "index": 31,
       "name": "RequiredQuality"
     },
     {
-      "index": 33,
+      "index": 32,
       "name": "RequiredCraftsmanship"
     },
     {
-      "index": 34,
+      "index": 33,
       "name": "RequiredControl"
     },
     {
-      "index": 35,
+      "index": 34,
       "name": "QuickSynthCraftsmanship"
     },
     {
-      "index": 36,
+      "index": 35,
       "name": "QuickSynthControl"
     },
     {
-      "index": 37,
+      "index": 36,
       "name": "SecretRecipeBook",
       "converter": {
         "type": "link",
@@ -110,7 +111,7 @@
       }
     },
     {
-      "index": 38,
+      "index": 37,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -118,19 +119,19 @@
       }
     },
     {
-      "index": 39,
+      "index": 38,
       "name": "CanQuickSynth"
     },
     {
-      "index": 40,
+      "index": 39,
       "name": "CanHq"
     },
     {
-      "index": 41,
+      "index": 40,
       "name": "ExpRewarded"
     },
     {
-      "index": 42,
+      "index": 41,
       "name": "Status{Required}",
       "converter": {
         "type": "link",
@@ -138,7 +139,7 @@
       }
     },
     {
-      "index": 43,
+      "index": 42,
       "name": "Item{Required}",
       "converter": {
         "type": "link",
@@ -146,11 +147,11 @@
       }
     },
     {
-      "index": 44,
+      "index": 43,
       "name": "IsSpecializationRequired"
     },
     {
-      "index": 45,
+      "index": 44,
       "name": "IsExpert"
     },
     {

@@ -114,27 +114,27 @@
       "name": "AllowReplacement"
     },
     {
-      "index": 24,
+      "index": 26,
       "name": "AllowExplorerMode"
     },
     {
-      "index": 29,
+      "index": 32,
       "name": "HighEndDuty"
     },
     {
-      "index": 34,
+      "index": 37,
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 39,
+      "index": 41,
       "name": "Name"
     },
     {
-      "index": 40,
+      "index": 42,
       "name": "NameShort"
     },
     {
-      "index": 41,
+      "index": 43,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -142,11 +142,11 @@
       }
     },
     {
-      "index": 42,
+      "index": 44,
       "name": "TransientKey"
     },
     {
-      "index": 43,
+      "index": 45,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -169,69 +169,69 @@
       }
     },
     {
-      "index": 44,
+      "index": 46,
       "name": "SortKey"
     },
     {
-      "index": 45,
+      "index": 47,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 46,
+      "index": 48,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 50,
-      "name": "Level50/60/70Roulette"
-    },
-    {
-      "index": 51,
+      "index": 53,
       "name": "LevelingRoulette"
     },
     {
-      "index": 52,
-      "name": "MSQRoulette"
-    },
-    {
-      "index": 53,
-      "name": "GuildHestRoulette"
-    },
-    {
       "index": 54,
-      "name": "ExpertRoulette"
+      "name": "HighLevelRoulette"
     },
     {
       "index": 55,
-      "name": "TrialRoulette"
+      "name": "MSQRoulette"
     },
     {
       "index": 56,
-      "name": "DailyFrontlineChallenge"
+      "name": "GuildHestRoulette"
     },
     {
       "index": 57,
-      "name": "Level80Roulette"
+      "name": "ExpertRoulette"
     },
     {
       "index": 58,
+      "name": "TrialRoulette"
+    },
+    {
+      "index": 59,
+      "name": "DailyFrontlineChallenge"
+    },
+    {
+      "index": 60,
+      "name": "LevelCapRoulette"
+    },
+    {
+      "index": 61,
       "name": "MentorRoulette"
     },
     {
-      "index": 64,
+      "index": 67,
       "name": "AllianceRoulette"
     },
     {
-      "index": 65,
+      "index": 68,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 66,
+      "index": 69,
       "name": "NormalRaidRoulette"
     }
   ]

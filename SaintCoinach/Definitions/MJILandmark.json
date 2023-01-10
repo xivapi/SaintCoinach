@@ -1,4 +1,80 @@
 {
   "sheet": "MJILandmark",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "SGB[0]",
+      "index": 3,
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "name": "SGB[1]",
+      "index": 5,
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "name": "SGB[2]",
+      "index": 7,
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "name": "SGB[3]",
+      "index": 9,
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "name": "SGB[4]",
+      "index": 11,
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "index": 18,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Material",
+        "converter": {
+          "type": "link",
+          "target": "MJIItemPouch"
+        }
+      }
+    },
+    {
+      "index": 23,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "Amount"
+      }
+    },
+    {
+      "name": "Name",
+      "index": 28,
+      "converter": {
+        "type": "link",
+        "target": "MJIText"
+      }
+    },
+    {
+      "index": 30,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
 }

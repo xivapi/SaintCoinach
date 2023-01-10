@@ -1,4 +1,16 @@
 {
   "sheet": "MJIVillageAppearanceSG",
-  "definitions": []
+  "definitions": [
+    {
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "SGB",
+        "converter": {
+          "type": "link",
+          "target": "ExportedSG"
+        }
+      }
+    }
+  ]
 }

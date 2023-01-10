@@ -17,7 +17,6 @@ namespace SaintCoinach.Xiv {
         public GatheringType Type { get { return As<GatheringType>(); } }
         public int GatheringLevel { get { return AsInt32("GatheringLevel"); } }
         public IEnumerable<GatheringItemBase> Items { get { return _Items ?? (_Items = BuildItems()); } }
-        public bool IsLimited { get { return AsBoolean("IsLimited"); } }
         #endregion
 
         #region Constructors

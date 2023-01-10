@@ -1,4 +1,9 @@
 {
   "sheet": "MJICraftworksPopularityType",
-  "definitions": []
+  "defaultColumn": "Ratio",
+  "definitions": [
+    {
+      "name": "Ratio"
+    }
+  ]
 }

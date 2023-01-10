@@ -1,4 +1,28 @@
 {
   "sheet": "MJIGatheringObject",
-  "definitions": []
+  "defaultColumn": "EObjName",
+  "definitions": [
+    {
+      "name": "SGB",
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "index": 1,
+      "name": "MapIcon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "name": "Name",
+      "index": 3,
+      "converter": {
+        "type": "link",
+        "target": "EObjName"
+      }
+    }
+  ]
 }

@@ -1,4 +1,9 @@
 {
   "sheet": "MJICraftworksObjectTheme",
-  "definitions": []
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "name": "Name"
+    }
+  ]
 }
