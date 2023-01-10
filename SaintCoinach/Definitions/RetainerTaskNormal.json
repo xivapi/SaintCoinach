@@ -11,9 +11,11 @@
     },
     {
       "index": 1,
-      "name": "Quantity",
       "type": "repeat",
-      "count": 5
+      "count": 5,
+      "definition": {
+        "name": "Quantity"
+      }
     },
     {
       "index": 6,
