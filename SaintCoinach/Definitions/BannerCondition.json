@@ -6,25 +6,29 @@
     },
     {
       "index": 1,
-      "name": "UnlockCriteria1",
-      "converter": {
-        "type": "complexlink",
-        "links": [
-          {
-            "when": {
-              "key": "UnlockType1",
-              "value": 1
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "UnlockCriteria1",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 1
+              },
+              "sheet": "Quest"
             },
-            "sheet": "Quest"
-          },
-          {
-            "when": {
-              "key": "UnlockType1",
-              "value": 5
-            },
-            "sheet": "Emote"
-          }
-        ]
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 5
+              },
+              "sheet": "Emote"
+            }
+          ]
+        }
       }
     },
     {
