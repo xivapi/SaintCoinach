@@ -110,6 +110,20 @@
               "value": 12
             },
             "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 13
+            },
+            "sheet": "ENpcBase"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
+            },
+            "sheet": "ENpcBase"
           }
         ]
       }
@@ -126,6 +140,20 @@
               "value": 4
             },
             "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 13
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
+            },
+            "sheet": "Level"
           }
         ]
       }
@@ -140,6 +168,13 @@
             "when": {
               "key": "UnlockType2",
               "value": 4
+            },
+            "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
             },
             "sheet": "Item"
           }
