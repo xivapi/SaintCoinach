@@ -66,6 +66,14 @@
       }
     },
     {
+      "index": 12,
+      "name": "FishingSpot",
+      "converter": {
+        "type": "link",
+        "target": "FishingSpot"
+      }
+    },
+    {
       "index": 15,
       "name": "ClassJobCategory",
       "converter": {
