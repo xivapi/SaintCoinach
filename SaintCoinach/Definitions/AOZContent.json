@@ -40,11 +40,11 @@
       "name": "ArenaType[1]"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Act2FightType"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "Act2",
       "converter": {
         "type": "complexlink",
@@ -67,15 +67,15 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "ArenaType[2]"
     },
     {
-      "index": 8,
+      "index": 10,
       "name": "Act3FightType"
     },
     {
-      "index": 9,
+      "index": 11,
       "name": "Act3",
       "converter": {
         "type": "complexlink",
@@ -98,11 +98,11 @@
       }
     },
     {
-      "index": 10,
+      "index": 12,
       "name": "ArenaType[3]"
     },
     {
-      "index": 11,
+      "index": 14,
       "name": "ContentEntry",
       "converter": {
         "type": "link",
@@ -110,19 +110,19 @@
       }
     },
     {
-      "index": 12,
+      "index": 15,
       "name": "Order"
     },
     {
-      "index": 13,
+      "index": 16,
       "name": "GilReward"
     },
     {
-      "index": 14,
+      "index": 17,
       "name": "AlliedSealsReward"
     },
     {
-      "index": 15,
+      "index": 18,
       "name": "TomestonesReward"
     }
   ]

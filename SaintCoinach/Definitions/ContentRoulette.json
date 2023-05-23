@@ -73,11 +73,11 @@
       "name": "Reward{TomeC}"
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "SortKey"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "ContentMemberType",
       "converter": {
         "type": "link",
@@ -85,15 +85,15 @@
       }
     },
     {
-      "index": 35,
+      "index": 36,
       "name": "RequireAllDuties"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "ContentRouletteOpenRule"
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "InstanceContent",
       "converter": {
         "type": "link",
