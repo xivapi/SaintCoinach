@@ -22,19 +22,19 @@
       "name": "LevelMin"
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "LevelMax"
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Stars"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Key"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "CollectablesShopRefine",
       "converter": {
         "type": "link",
@@ -42,7 +42,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "CollectablesShopRewardScrip",
       "converter": {
         "type": "link",

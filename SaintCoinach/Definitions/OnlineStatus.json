@@ -3,18 +3,19 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "List"
-    },
-    {
-      "index": 2,
-      "name": "Priority"
+      "name": "List",
+      "index": 1
     },
     {
       "index": 3,
+      "name": "Priority"
+    },
+    {
+      "index": 5,
       "name": "Name"
     },
     {
-      "index": 4,
+      "index": 6,
       "name": "Icon",
       "converter": {
         "type": "icon"
