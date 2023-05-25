@@ -1,15 +1,11 @@
 {
-  "sheet": "Marker",
+  "sheet": "QuestLinkMarkerIcon",
   "definitions": [
     {
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
-    },
-    {
-      "index": 2,
-      "name": "Name"
     }
   ]
 }
