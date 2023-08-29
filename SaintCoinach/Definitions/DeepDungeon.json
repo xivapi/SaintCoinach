@@ -30,9 +30,9 @@
       }
     },
     {
-      "index": 18,
+      "index": 19,
       "type": "repeat",
-      "count": 5,
+      "count": 4,
       "definition": {
         "name": "MagiciteSlot",
         "converter": {
