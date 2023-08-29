@@ -6,13 +6,6 @@
       "converter": {
         "type": "icon"
       }
-    },
-    {
-      "index": 1,
-      "name": "Icon2",
-      "converter": {
-        "type": "icon"
-      }
     }
   ]
 }
