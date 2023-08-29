@@ -6,14 +6,14 @@
       "name": "Category"
     },
     {
-      "index": 1,
+      "index": 2,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "UnlockCondition",
       "converter": {
         "type": "link",
@@ -21,11 +21,11 @@
       }
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "SortKey"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Name"
     }
   ]

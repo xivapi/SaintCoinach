@@ -52,26 +52,15 @@
     },
     {
       "index": 9,
-      "name": "PreviousQuest[0]",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 11,
-      "name": "PreviousQuest[1]",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 12,
-      "name": "PreviousQuest[2]",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
+      "name": "PreviousQuest",
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "PreviousQuest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
       }
     },
     {
@@ -451,24 +440,12 @@
     {
       "index": 1221,
       "type": "repeat",
-      "count": 24,
-      "definition": {
-        "name": "ToDoMainLocation",
-        "converter": {
-          "type": "link",
-          "target": "Level"
-        }
-      }
-    },
-    {
-      "index": 1245,
-      "type": "repeat",
-      "count": 7,
+      "count": 8,
       "definition": {
         "type": "repeat",
         "count": 24,
         "definition": {
-          "name": "ToDoChildLocation",
+          "name": "ToDoLocation",
           "converter": {
             "type": "link",
             "target": "Level"

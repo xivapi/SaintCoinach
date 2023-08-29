@@ -2,47 +2,47 @@
   "sheet": "MJILandmark",
   "definitions": [
     {
+      "index": 3,
       "name": "SGB[0]",
-      "index": 2,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
+      "index": 5,
       "name": "SGB[1]",
-      "index": 4,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
+      "index": 7,
       "name": "SGB[2]",
-      "index": 6,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
+      "index": 9,
       "name": "SGB[3]",
-      "index": 8,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
+      "index": 11,
       "name": "SGB[4]",
-      "index": 10,
       "converter": {
         "type": "link",
         "target": "ExportedSG"
       }
     },
     {
-      "index": 17,
+      "index": 18,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -54,7 +54,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 23,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -62,15 +62,15 @@
       }
     },
     {
+      "index": 28,
       "name": "Name",
-      "index": 27,
       "converter": {
         "type": "link",
         "target": "MJIText"
       }
     },
     {
-      "index": 29,
+      "index": 30,
       "name": "Icon",
       "converter": {
         "type": "icon"

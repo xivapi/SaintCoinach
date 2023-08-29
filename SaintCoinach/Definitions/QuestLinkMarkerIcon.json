@@ -1,0 +1,11 @@
+{
+  "sheet": "QuestLinkMarkerIcon",
+  "definitions": [
+    {
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    }
+  ]
+}

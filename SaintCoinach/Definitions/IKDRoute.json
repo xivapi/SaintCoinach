@@ -1,7 +1,8 @@
 {
   "sheet": "IKDRoute",
   "defaultColumn": "Name",
-  "definitions": [    {
+  "definitions": [
+    {
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -32,7 +33,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 9,
       "name": "TerritoryType",
       "converter": {
         "type": "link",
@@ -40,7 +41,7 @@
       }
     },
     {
-      "index": 8,
+      "index": 11,
       "name": "Name"
     }
   ]

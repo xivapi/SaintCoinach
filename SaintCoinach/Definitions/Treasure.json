@@ -4,10 +4,10 @@
   "definitions": [
     {
       "index": 8,
-      "name": "Item",
+      "name": "SGB",
       "converter": {
         "type": "link",
-        "target": "Item"
+        "target": "ExportedSG"
       }
     }
   ]

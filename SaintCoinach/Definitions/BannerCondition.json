@@ -6,25 +6,43 @@
     },
     {
       "index": 1,
-      "name": "UnlockCriteria1",
-      "converter": {
-        "type": "complexlink",
-        "links": [
-          {
-            "when": {
-              "key": "UnlockType1",
-              "value": 1
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "UnlockCriteria1",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 1
+              },
+              "sheet": "Quest"
             },
-            "sheet": "Quest"
-          },
-          {
-            "when": {
-              "key": "UnlockType1",
-              "value": 5
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 4
+              },
+              "sheet": "ContentFinderCondition"
             },
-            "sheet": "Emote"
-          }
-        ]
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 5
+              },
+              "sheet": "Emote"
+            },
+            {
+              "when": {
+                "key": "UnlockType1",
+                "value": 6
+              },
+              "sheet": "Companion"
+            }
+          ]
+        }
       }
     },
     {
@@ -92,6 +110,20 @@
               "value": 12
             },
             "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 13
+            },
+            "sheet": "ENpcBase"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
+            },
+            "sheet": "ENpcBase"
           }
         ]
       }
@@ -106,6 +138,20 @@
             "when": {
               "key": "UnlockType2",
               "value": 4
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 13
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
             },
             "sheet": "Level"
           }
@@ -124,20 +170,57 @@
               "value": 4
             },
             "sheet": "Item"
+          },
+          {
+            "when": {
+              "key": "UnlockType2",
+              "value": 21
+            },
+            "sheet": "Item"
           }
         ]
       }
     },
     {
       "index": 11,
-      "name": "HasPrerequisite"
+      "name": "PrerequisiteType"
     },
     {
       "index": 12,
       "name": "Prerequisite",
       "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "PrerequisiteType",
+              "value": 1
+            },
+            "sheet": "Quest"
+          },
+          {
+            "when": {
+              "key": "PrerequisiteType",
+              "value": 3
+            },
+            "sheet": "ContentFinderCondition"
+          },
+          {
+            "when": {
+              "key": "PrerequisiteType",
+              "value": 4
+            },
+            "sheet": "ContentFinderCondition"
+          }
+        ]
+      }
+    },
+    {
+      "index": 13,
+      "name": "UnlockHint",
+      "converter": {
         "type": "link",
-        "target": "Quest"
+        "target": "BannerObtainHintType"
       }
     }
   ]
