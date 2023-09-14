@@ -13,8 +13,7 @@
     <Copyright>Copyright © Rogueadyn 2015</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <UseWpf>true</UseWpf>
-    <PlatformTarget>x86</PlatformTarget>
-<!--    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>-->
+<!--    <PlatformTarget>x86</PlatformTarget>-->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
