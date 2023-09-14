@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{957699E4-8310-4D1E-BA83-13B7A4932807}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyTitle>SaintCoinach.Cmd</AssemblyTitle>
     <Product>SaintCoinach.Cmd</Product>
     <Copyright>Copyright © Rogueadyn 2014</Copyright>
@@ -22,7 +22,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Tharga.Console.Standard" Version="3.3.2" />
+    <PackageReference Include="Tharga.Console" Version="3.3.2" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

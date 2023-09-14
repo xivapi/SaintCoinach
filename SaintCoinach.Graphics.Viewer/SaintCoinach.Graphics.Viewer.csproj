@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{226BF71E-334F-4585-8FEC-4239704CF539}</ProjectGuid>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <AssemblyTitle>SaintCoinach.Graphics.Viewer</AssemblyTitle>
     <Product>SaintCoinach.Graphics.Viewer</Product>
     <Copyright>Copyright ©  2015</Copyright>
