@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SaintCoinach.Xiv;
-using Tharga.Toolkit.Console.Command.Base;
-using System.Reflection;
-using System.Windows.Forms;
 using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational;
+using Tharga.Console.Commands.Base;
+
+#pragma warning disable CS1998
 
 namespace SaintCoinach.Cmd.Commands
 {
-    public class SqlExport : ActionCommandBase
+    public class SqlExport : AsyncActionCommandBase
     {
         private ARealmReversed _Realm;
         
@@ -174,7 +172,7 @@ namespace SaintCoinach.Cmd.Commands
                 WriteVairant2Rows(sheet, sb);
         }
 
-        public override async Task<bool> InvokeAsync(string paramList)
+        public override async Task InvokeAsync(string[] paramList)
         {
             var imports = new List<string>();
             
@@ -234,8 +232,6 @@ namespace SaintCoinach.Cmd.Commands
             }
             
             File.WriteAllText("schema.sql", string.Join(Environment.NewLine, imports));
-
-            return true;
         }
     }
 }

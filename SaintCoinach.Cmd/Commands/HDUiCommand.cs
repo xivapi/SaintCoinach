@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
-using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
 namespace SaintCoinach.Cmd.Commands {
-    public class HDUiCommand : ActionCommandBase {
+    public class HDUiCommand : AsyncActionCommandBase {
         const string UiImagePathFormat = "ui/icon/{0:D3}000{1}/{2:D6}_hr1.tex";
         static readonly string[] UiVersions = new string[] {
             "",
@@ -31,35 +25,32 @@ namespace SaintCoinach.Cmd.Commands {
             _Realm = realm;
         }
 
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override async Task InvokeAsync(string[] paramList) {
             var min = 0;
             var max = 999999;
 
-            if (!string.IsNullOrWhiteSpace(paramList)) {
-                var splitParam = paramList.Split(' ');
-
-                if (splitParam.Length == 1) {
-                    if (int.TryParse(splitParam[0], out var parsed))
+            if (paramList.Length != 0) {
+                if (paramList.Length == 1) {
+                    if (int.TryParse(paramList[0], out var parsed))
                         min = max = parsed;
                     else {
                         OutputError("Failed to parse parameters.");
-                        return false;
                     }
                 }
-                else if (splitParam.Length == 2) {
-                    if (!int.TryParse(splitParam[0], out min) || !int.TryParse(splitParam[1], out max)) {
+                else if (paramList.Length == 2) {
+                    if (!int.TryParse(paramList[0], out min) || !int.TryParse(paramList[1], out max)) {
                         OutputError("Failed to parse parameters.");
-                        return false;
+                        return;
                     }
 
                     if (max < min) {
                         OutputError("Invalid parameters.");
-                        return false;
+                        return;
                     }
                 }
                 else {
                     OutputError("Failed to parse parameters.");
-                    return false;
+                    return;
                 }
             }
 
@@ -69,12 +60,10 @@ namespace SaintCoinach.Cmd.Commands {
                     count += Process(i);
                 }
                 catch (Exception e) {
-                    OutputError("{0:D6}: {1}", i, e.Message);
+                    OutputError($"{i:D6}: {e.Message}");
                 }
             }
-            OutputInformation("{0} images processed", count);
-
-            return true;
+            OutputInformation($"{count} images processed");
         }
 
         private int Process(int i) {
@@ -101,7 +90,7 @@ namespace SaintCoinach.Cmd.Commands {
                     return true;
                 }
                 else {
-                    OutputError("{0} is not an image.", filePath);
+                    OutputError($"{filePath} is not an image.");
                 }
             }
             return false;

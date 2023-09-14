@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
 namespace SaintCoinach.Cmd.Commands {
-    public class BgmCommand : ActionCommandBase {
+    public class BgmCommand : AsyncActionCommandBase {
         private ARealmReversed _Realm;
 
         public BgmCommand(ARealmReversed realm)
@@ -19,14 +16,14 @@ namespace SaintCoinach.Cmd.Commands {
             _Realm = realm;
         }
 
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override async Task InvokeAsync(string[] paramList) {
             var bgms = _Realm.GameData.GetSheet("BGM");
-            String[] searchStrings;
+            string[] searchStrings;
 
-            if (string.IsNullOrWhiteSpace(paramList))
+            if (paramList.Length == 0)
                 searchStrings = Array.Empty<String>();
             else
-                searchStrings = paramList.Split(' ');
+                searchStrings = paramList;
 
             var successCount = 0;
             var failCount = 0;
@@ -40,11 +37,12 @@ namespace SaintCoinach.Cmd.Commands {
                     if (ExportFile(filePath, null)) {
                         ++successCount;
                     } else {
-                        OutputError("File {0} not found.", filePath);
+                        OutputError($"File {filePath} not found.");
                         ++failCount;
                     }
                 } catch(Exception e) {
-                    OutputError("Export of {0} failed: {1}", filePath, e.Message);
+                    OutputError($"Export of {filePath} failed!");
+                    OutputError(e, true);
                     ++failCount;
                 }
             }
@@ -63,19 +61,18 @@ namespace SaintCoinach.Cmd.Commands {
                     if (ExportFile(filePath, name)) {
                         ++successCount;
                     } else {
-                        OutputError("File {0} not found.", filePath);
+                        OutputError($"File {filePath} not found.");
                         ++failCount;
                     }
                 }
                 catch (Exception e) {
-                    OutputError("Export of {0} failed: {1}", filePath, e.Message);
+                    OutputError($"Export of {filePath} failed!");
+                    OutputError(e, true);
                     ++failCount;
                 }
             }
 
-            OutputInformation("{0} files exported, {1} failed", successCount, failCount);
-
-            return true;
+            OutputInformation($"{successCount} files exported, {failCount} failed");
         }
 
         private bool ExportFile(string filePath, string suffix) {

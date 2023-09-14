@@ -3,10 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Tharga.Toolkit.Console.Command.Base;
-
 using SaintCoinach.Xiv;
 using SaintCoinach.Cmd.Commands;
+using Tharga.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
@@ -14,7 +13,7 @@ using SaintCoinach.Cmd.Commands;
 /// Class responsible for saving mdl and texture files for furniteres and housing yards.
 /// </summary>
 namespace SaintCoinach.Cmd.Commands {
-    public class MdlCommand : ActionCommandBase {
+    public class MdlCommand : AsyncActionCommandBase {
         private ARealmReversed _Realm;
         private HousingItem[] _AllFurniture;
 
@@ -28,7 +27,7 @@ namespace SaintCoinach.Cmd.Commands {
         /// </summary>
         /// <param name="paramList">List of parameters being used in this function</param>
         /// <return name="result">A boolean indicating if the process failed or not.</return>
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override async Task InvokeAsync(string[] paramList) {
             var indoor = _Realm.GameData.GetSheet("HousingFurniture");
             var outdoor = _Realm.GameData.GetSheet("HousingYardObject");
             _AllFurniture = indoor.Cast<HousingItem>().Concat(outdoor.Cast<HousingItem>()).Where(_ => _.Item != null && _.Item.Key != 0 && _.Item.Name.ToString().Length > 0).OrderBy(_ => _.Item.Name).ToArray();
@@ -47,20 +46,17 @@ namespace SaintCoinach.Cmd.Commands {
                         ++successCount;
                     }
                     else {
-                        OutputError("File {0} not found.", filePath);
+                        OutputError($"File {filePath} not found.");
                         ++failCount;
                     }
                 }
                 catch (Exception e) {
-                    OutputError("Export of {0} failed: {1}", filePath, e.Message);
+                    OutputError("Export of {filePath} failed!");
+                    OutputError(e, true);
                     ++failCount;
                 }
             }
-
-
-            OutputInformation("{0} files exported, {1} failed", successCount, failCount);
-
-            return true;
+            OutputInformation($"{successCount} files exported, {failCount} failed");
         }
 
         /// <summary>

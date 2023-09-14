@@ -4,15 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
 namespace SaintCoinach.Cmd.Commands {
-    public class RawExdCommand : ActionCommandBase {
+    public class RawExdCommand : AsyncActionCommandBase {
         private ARealmReversed _Realm;
 
         public RawExdCommand(ARealmReversed realm)
@@ -20,15 +17,15 @@ namespace SaintCoinach.Cmd.Commands {
             _Realm = realm;
         }
 
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override async Task InvokeAsync(string[] paramList) {
             const string CsvFileFormat = "rawexd/{0}.csv";
 
             IEnumerable<string> filesToExport;
 
-            if (string.IsNullOrWhiteSpace(paramList))
+            if (paramList.Length == 0)
                 filesToExport = _Realm.GameData.AvailableSheets;
             else
-                filesToExport = paramList.Split(' ').Select(_ => _Realm.GameData.FixName(_));
+                filesToExport = paramList.Select(_ => _Realm.GameData.FixName(_));
 
             var successCount = 0;
             var failCount = 0;
@@ -44,14 +41,12 @@ namespace SaintCoinach.Cmd.Commands {
 
                     ++successCount;
                 } catch (Exception e) {
-                    OutputError("Export of {0} failed: {1}", name, e.Message);
+                    OutputError($"Export of {name} failed: {e.Message}");
                     try { if (target.Exists) { target.Delete(); } } catch { }
                     ++failCount;
                 }
             }
-            OutputInformation("{0} files exported, {1} failed", successCount, failCount);
-
-            return true;
+            OutputInformation($"{successCount} files exported, {failCount} failed");
         }
     }
 }
