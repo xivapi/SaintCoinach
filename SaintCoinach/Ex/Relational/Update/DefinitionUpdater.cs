@@ -16,13 +16,13 @@ namespace SaintCoinach.Ex.Relational.Update {
 
         #region Properties
 
-        public PositionedDataDefintion DataDefinition { get; private set; }
+        public PositionedDataDefinition DataDefinition { get; private set; }
         
         #endregion
 
         #region Constructors
         
-        public DefinitionUpdater(SheetDefinition sheetDefinition, PositionedDataDefintion dataDefinition) {
+        public DefinitionUpdater(SheetDefinition sheetDefinition, PositionedDataDefinition dataDefinition) {
             _SheetDefinition = sheetDefinition;
             DataDefinition = dataDefinition;
         }
@@ -96,7 +96,7 @@ namespace SaintCoinach.Ex.Relational.Update {
         //    ++_RowMatchCount;
         //}
 
-        public PositionedDataDefintion GetDefinition(int index) {
+        public PositionedDataDefinition GetDefinition(int index) {
             var newDef = DataDefinition.Clone();
             newDef.Index = index;
             return newDef;
