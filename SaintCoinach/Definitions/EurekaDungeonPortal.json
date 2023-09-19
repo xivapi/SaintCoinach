@@ -1,0 +1,12 @@
+{
+  "sheet": "EurekaDungeonPortal",
+  "definitions": [
+    {
+      "name": "LevelId",
+      "converter": {
+        "type": "link",
+        "target": "Level"
+      }
+    }
+  ]
+}
