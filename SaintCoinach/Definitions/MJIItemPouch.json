@@ -24,6 +24,10 @@
         "type": "link",
         "target": "MJICropSeed"
       }
+    },
+    {
+      "index": 3,
+      "name": "Sort"
     }
   ]
 }

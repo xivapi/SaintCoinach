@@ -24,6 +24,10 @@
     {
       "index": 5,
       "name": "Radius"
+    },
+    {
+      "index": 6,
+      "name": "Map"
     }
   ]
 }
