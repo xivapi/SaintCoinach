@@ -4,11 +4,7 @@
   "definitions": [
     {
       "index": 1,
-      "name": "Tips1",
-      "converter": {
-        "type": "link",
-        "target": "ScenarioTreeTipsQuest"
-      }
+      "name": "Tips1"
     },
     {
       "index": 3,
