@@ -2,14 +2,7 @@
   "sheet": "EventIconPriorityPair",
   "definitions": [
     {
-      "name": "Icon1",
-      "converter": {
-        "type": "icon"
-      }
-    },
-    {
-      "index": 1,
-      "name": "Icon2",
+      "name": "Icon",
       "converter": {
         "type": "icon"
       }
