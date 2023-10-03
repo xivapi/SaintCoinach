@@ -42,7 +42,7 @@
       }
     },
     {
-      "index": 18,
+      "index": 20,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -54,7 +54,7 @@
       }
     },
     {
-      "index": 23,
+      "index": 25,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -62,7 +62,7 @@
       }
     },
     {
-      "index": 28,
+      "index": 30,
       "name": "Name",
       "converter": {
         "type": "link",
@@ -70,7 +70,7 @@
       }
     },
     {
-      "index": 30,
+      "index": 32,
       "name": "Icon",
       "converter": {
         "type": "icon"
