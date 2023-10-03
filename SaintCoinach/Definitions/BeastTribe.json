@@ -41,7 +41,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "CurrencyItem",
       "converter": {
         "type": "link",
@@ -49,43 +49,43 @@
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "DisplayOrder"
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "Name"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "Adjective"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "Plural"
     },
     {
-      "index": 12,
+      "index": 13,
       "name": "PossessivePronoun"
     },
     {
-      "index": 13,
+      "index": 14,
       "name": "StartsWithVowel"
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "Pronoun"
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "Article"
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "DEF"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "Name{Relation}"
     }
   ]

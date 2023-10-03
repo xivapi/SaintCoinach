@@ -23,9 +23,11 @@ namespace SaintCoinach.Cmd.Commands {
 
         public override async Task<bool> InvokeAsync(string paramList) {
             var format = ImageFormat.Png;
+            var rawFileNames = false;
 
             if (!string.IsNullOrEmpty(paramList)) {
                 var parameters = paramList.Split(' ');
+                rawFileNames = parameters.Contains("raw");
                 if (parameters.Contains("jpg"))
                     format = ImageFormat.Jpeg;
                 else if (parameters.Contains("png"))
@@ -45,27 +47,32 @@ namespace SaintCoinach.Cmd.Commands {
                     continue;
 
                 var outPathSb = new StringBuilder("ui/map/");
-                var territoryName = map.TerritoryType?.Name?.ToString();
-                if (!string.IsNullOrEmpty(territoryName)) {
-                    if (territoryName.Length < 3) {
-                        outPathSb.AppendFormat("{0}/", territoryName);
-                    }
-                    else {
-                        outPathSb.AppendFormat("{0}/", territoryName.Substring(0, 3));
-                    }
+                if(rawFileNames) {
+                    outPathSb.AppendFormat("{0}/{1}", map.Id.ToString().Split('/')[0], map.Id.ToString().Replace("/", "."));
+                    outPathSb.Append(FormatToExtension(format));
+                } else {
+                    var territoryName = map.TerritoryType?.Name?.ToString();
+                    if (!string.IsNullOrEmpty(territoryName)) {
+                        if (territoryName.Length < 3) {
+                            outPathSb.AppendFormat("{0}/", territoryName);
+                        }
+                        else {
+                            outPathSb.AppendFormat("{0}/", territoryName.Substring(0, 3));
+                        }
 
-                    outPathSb.AppendFormat("{0} - ", territoryName);
+                        outPathSb.AppendFormat("{0} - ", territoryName);
+                    }
+                    outPathSb.AppendFormat("{0}", ToPathSafeString(map.PlaceName.Name.ToString()));
+                    if (map.LocationPlaceName != null && map.LocationPlaceName.Key != 0 && !map.LocationPlaceName.Name.IsEmpty)
+                        outPathSb.AppendFormat(" - {0}", ToPathSafeString(map.LocationPlaceName.Name.ToString()));
+                    var mapKey = outPathSb.ToString();
+                    fileSet.TryGetValue(mapKey, out int mapIndex);
+                    if (mapIndex > 0) {
+                        outPathSb.AppendFormat(" - {0}", mapIndex);
+                    }
+                    fileSet[mapKey] = mapIndex + 1;
+                    outPathSb.Append(FormatToExtension(format));
                 }
-                outPathSb.AppendFormat("{0}", ToPathSafeString(map.PlaceName.Name.ToString()));
-                if (map.LocationPlaceName != null && map.LocationPlaceName.Key != 0 && !map.LocationPlaceName.Name.IsEmpty)
-                    outPathSb.AppendFormat(" - {0}", ToPathSafeString(map.LocationPlaceName.Name.ToString()));
-                var mapKey = outPathSb.ToString();
-                fileSet.TryGetValue(mapKey, out int mapIndex);
-                if (mapIndex > 0) {
-                    outPathSb.AppendFormat(" - {0}", mapIndex);
-                }
-                fileSet[mapKey] = mapIndex + 1;
-                outPathSb.Append(FormatToExtension(format));
 
                 var outFile = new FileInfo(Path.Combine(_Realm.GameVersion, outPathSb.ToString()));
                 if (!outFile.Directory.Exists)
