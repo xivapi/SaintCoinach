@@ -9,8 +9,8 @@
       }
     },
     {
-      "name": "Behavior",
       "index": 1,
+      "name": "Behavior",
       "converter": {
         "type": "link",
         "target": "Behavior"
