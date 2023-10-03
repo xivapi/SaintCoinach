@@ -10,7 +10,7 @@
       }
     },
     {
-      "index": 5,
+      "index": 4,
       "name": "SGB[1]",
       "converter": {
         "type": "link",
@@ -18,7 +18,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 5,
       "name": "SGB[2]",
       "converter": {
         "type": "link",
@@ -26,7 +26,7 @@
       }
     },
     {
-      "index": 9,
+      "index": 7,
       "name": "SGB[3]",
       "converter": {
         "type": "link",
@@ -34,8 +34,24 @@
       }
     },
     {
-      "index": 11,
+      "index": 9,
       "name": "SGB[4]",
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "index": 11,
+      "name": "SGB[5]",
+      "converter": {
+        "type": "link",
+        "target": "ExportedSG"
+      }
+    },
+    {
+      "index": 13,
+      "name": "SGB[6]",
       "converter": {
         "type": "link",
         "target": "ExportedSG"

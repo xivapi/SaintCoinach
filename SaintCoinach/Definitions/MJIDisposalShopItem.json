@@ -17,8 +17,8 @@
       "name": "Count"
     },
     {
-      "name": "Category",
       "index": 3,
+      "name": "Category",
       "converter": {
         "type": "link",
         "target": "MJIDisposalShopUICategory"

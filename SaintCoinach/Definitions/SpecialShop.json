@@ -107,7 +107,7 @@
       }
     },
     {
-      "index": 1441,
+      "index": 1741,
       "type": "repeat",
       "count": 60,
       "definition": {
@@ -119,7 +119,7 @@
       }
     },
     {
-      "index": 1561,
+      "index": 1981,
       "type": "repeat",
       "count": 60,
       "definition": {
@@ -127,11 +127,11 @@
       }
     },
     {
-      "index": 1621,
+      "index": 2041,
       "name": "UseCurrencyType"
     },
     {
-      "index": 1622,
+      "index": 2042,
       "name": "Quest{Unlock}",
       "converter": {
         "type": "link",
@@ -139,7 +139,7 @@
       }
     },
     {
-      "index": 1623,
+      "index": 2043,
       "name": "CompleteText",
       "converter": {
         "type": "link",
@@ -147,7 +147,7 @@
       }
     },
     {
-      "index": 1624,
+      "index": 2044,
       "name": "NotCompleteText",
       "converter": {
         "type": "link",
