@@ -59,7 +59,11 @@
     },
     {
       "index": 9,
-      "name": "TerritoryIntendedUse"
+      "name": "TerritoryIntendedUse",
+      "converter": {
+        "type": "link",
+        "target": "TerritoryIntendedUse"
+      }
     },
     {
       "index": 10,
