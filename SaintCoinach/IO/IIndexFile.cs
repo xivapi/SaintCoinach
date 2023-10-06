@@ -8,7 +8,7 @@ namespace SaintCoinach.IO {
     public interface IIndexFile : IEquatable<IIndexFile> {
         PackIdentifier PackId { get; }
         uint FileKey { get; }
-        int Offset { get; }
+        uint Offset { get; }
         byte DatFile { get; }
     }
 }

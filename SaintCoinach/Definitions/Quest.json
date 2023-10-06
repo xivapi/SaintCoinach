@@ -537,6 +537,27 @@
             {
               "when": {
                 "key": "ItemRewardType",
+                "value": 1
+              },
+              "sheet": "Item"
+            },
+            {
+              "when": {
+                "key": "ItemRewardType",
+                "value": 3
+              },
+              "sheet": "Item"
+            },
+            {
+              "when": {
+                "key": "ItemRewardType",
+                "value": 5
+              },
+              "sheet": "Item"
+            },
+            {
+              "when": {
+                "key": "ItemRewardType",
                 "value": 6
               },
               "sheet": "QuestClassJobReward"
@@ -547,9 +568,6 @@
                 "value": 7
               },
               "sheet": "BeastRankBonus"
-            },
-            {
-              "sheet": "Item"
             }
           ]
         }

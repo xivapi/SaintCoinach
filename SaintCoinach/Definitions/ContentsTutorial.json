@@ -3,14 +3,6 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "Name"
-    },
-    {
-      "index": 1,
-      "name": "Description"
-    },
-    {
-      "index": 2,
       "type": "repeat",
       "count": 8,
       "definition": {
@@ -20,6 +12,14 @@
           "target": "ContentsTutorialPage"
         }
       }
+    },
+    {
+      "index": 8,
+      "name": "Name"
+    },
+    {
+      "index": 9,
+      "name": "Description"
     }
   ]
 }

@@ -70,15 +70,15 @@
       "name": "IsAetheryte"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "AethernetGroup"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "Invisible"
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "RequiredQuest",
       "converter": {
         "type": "link",
@@ -86,7 +86,7 @@
       }
     },
     {
-      "index": 20,
+      "index": 21,
       "name": "Map",
       "converter": {
         "type": "link",
@@ -94,15 +94,15 @@
       }
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "Aetherstream{X}"
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "Aetherstream{Y}"
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "Order"
     }
   ]
