@@ -11,7 +11,7 @@ namespace SaintCoinach.IO {
 
         public PackIdentifier PackId { get; private set; }
         public uint FileKey { get; private set; }
-        public int Offset { get; private set; }
+        public uint Offset { get; private set; }
 
         /// <summary>
         ///     In which .dat* file the data is located.
@@ -28,7 +28,7 @@ namespace SaintCoinach.IO {
 
             var baseOffset = reader.ReadInt32();
             DatFile = (byte)((baseOffset & 0x7) >> 1);
-            Offset = (int)((baseOffset & 0xFFFFFFF8) << 3);
+            Offset = (uint)((baseOffset & 0xFFFFFFF8) << 3);
         }
 
         #endregion

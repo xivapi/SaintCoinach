@@ -40,14 +40,6 @@
     {
       "index": 8,
       "name": "DestroyOnRemoval"
-    },
-    {
-      "index": 9,
-      "name": "Tooltip",
-      "converter": {
-        "type": "link",
-        "target": "HousingPlacement"
-      }
     }
   ]
 }

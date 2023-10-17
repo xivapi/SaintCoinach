@@ -9,8 +9,8 @@
       }
     },
     {
-      "name": "Location",
       "index": 2,
+      "name": "Location",
       "converter": {
         "type": "link",
         "target": "Level"

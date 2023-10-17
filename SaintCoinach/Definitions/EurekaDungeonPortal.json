@@ -1,11 +1,11 @@
 {
-  "sheet": "MJIGatheringTool",
+  "sheet": "EurekaDungeonPortal",
   "definitions": [
     {
-      "name": "Item",
+      "name": "LevelId",
       "converter": {
         "type": "link",
-        "target": "MJIKeyItem"
+        "target": "Level"
       }
     }
   ]

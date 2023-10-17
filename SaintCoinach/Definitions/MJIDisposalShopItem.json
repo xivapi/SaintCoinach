@@ -2,12 +2,31 @@
   "sheet": "MJIDisposalShopItem",
   "definitions": [
     {
-      "name": "Category",
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "MJIItemPouch"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Currency"
+    },
+    {
+      "index": 2,
+      "name": "Count"
+    },
+    {
       "index": 3,
+      "name": "Category",
       "converter": {
         "type": "link",
         "target": "MJIDisposalShopUICategory"
       }
+    },
+    {
+      "index": 4,
+      "name": "Sort"
     }
   ]
 }

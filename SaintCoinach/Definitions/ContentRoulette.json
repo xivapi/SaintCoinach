@@ -46,14 +46,14 @@
       "name": "ItemLevel{Required}"
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "ContentRouletteRoleBonus",
       "converter": {
         "type": "link",
@@ -61,23 +61,23 @@
       }
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "Reward{TomeA}"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "Reward{TomeB}"
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "Reward{TomeC}"
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "SortKey"
     },
     {
-      "index": 25,
+      "index": 26,
       "name": "ContentMemberType",
       "converter": {
         "type": "link",
@@ -85,15 +85,15 @@
       }
     },
     {
-      "index": 36,
+      "index": 37,
       "name": "RequireAllDuties"
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "ContentRouletteOpenRule"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "InstanceContent",
       "converter": {
         "type": "link",
