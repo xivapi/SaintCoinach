@@ -26,12 +26,6 @@
     <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Numerics.Vectors" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Update="Keyboard.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>

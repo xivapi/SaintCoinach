@@ -25,11 +25,6 @@
     <PackageReference Include="Tharga.Console" Version="3.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Cmd.ico" />
   </ItemGroup>
   <ItemGroup>
