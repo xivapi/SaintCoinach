@@ -22,8 +22,8 @@ namespace SaintCoinach.Cmd.Commands {
             var format = ImageFormat.Png;
             var rawFileNames = false;
 
-            if (!string.IsNullOrEmpty(paramList)) {
-                var parameters = paramList.Split(' ');
+            if (paramList.Length != 0) {
+                var parameters = paramList;
                 rawFileNames = parameters.Contains("raw");
                 if (parameters.Contains("jpg"))
                     format = ImageFormat.Jpeg;

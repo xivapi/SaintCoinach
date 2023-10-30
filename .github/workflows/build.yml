@@ -8,33 +8,18 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
         with:
-          submodules: recursive
-
-      - name: Define Version
-        id: define-version
-        run: |
-          $env:COMMIT = $env:GITHUB_SHA.Substring(0, 7)
-          echo "::set-output name=commit::$env:COMMIT"
-
-      - uses: nuget/setup-nuget@v1
-        with:
-          nuget-version: latest
-
-      - name: Restore Nuget Packages
-        run: nuget restore SaintCoinach.sln
-
-      - name: Build DotNet4
-        run: |
-          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SaintCoinach.sln /t:Build /p:Configuration=Release
-          
+          dotnet-version: '7.x.x'
+      - name: Restore dependencies
+        run: dotnet restore
       - name: Create Release ZIPs
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           mkdir release-out
-          Compress-Archive -Path .\Godbert\bin\Release\* -DestinationPath .\release-out\Godbert.zip -Force
-          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
+          Compress-Archive -Path .\Godbert\bin\Release\net7.0-windows\* -DestinationPath .\release-out\Godbert.zip -Force
+          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\net7.0-windows\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
