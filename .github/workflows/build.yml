@@ -12,8 +12,15 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.x.x'
+      - name: Define Version
+        id: define-version
+        run: |
+          $env:COMMIT = $env:GITHUB_SHA.Substring(0, 7)
+          echo "::set-output name=commit::$env:COMMIT"
       - name: Restore dependencies
         run: dotnet restore
+      - name: Build
+        run: dotnet build -c Release
       - name: Create Release ZIPs
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |
