@@ -3,13 +3,13 @@
 namespace SaintCoinach.Ex.Relational {
     public class RelationalColumn : Column {
         private bool _hasDefinition;
-        private PositionedDataDefintion _Definition;
+        private PositionedDataDefinition _Definition;
 
         #region Properties
 
         public new RelationalHeader Header { get { return (RelationalHeader)base.Header; } }
 
-        public PositionedDataDefintion Definition {
+        public PositionedDataDefinition Definition {
             get {
                 if (_hasDefinition)
                     return _Definition;

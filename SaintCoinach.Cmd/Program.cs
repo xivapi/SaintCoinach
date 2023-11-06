@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Console;
+using Tharga.Console.Commands;
+using Tharga.Console.Commands.Base;
 
 namespace SaintCoinach.Cmd {
     class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
@@ -55,21 +50,21 @@ namespace SaintCoinach.Cmd {
                 } else
                     Console.WriteLine("Skipping update");
             }
-
-            var cns = new Tharga.Toolkit.Console.Command.Base.ClientConsole();
+            
+            var cns = new Tharga.Console.Consoles.ClientConsole();
             var cmd = new RootCommand(cns);
 
             Setup(cmd, realm);
 
-            (new CommandEngine(cmd)).Run(args);
+            (new CommandEngine(cmd)).Start(args);
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {
             var assembly = typeof(Program).Assembly;
-            foreach (var t in assembly.GetTypes().Where(t => typeof(ActionCommandBase).IsAssignableFrom(t)))
+            foreach (var t in assembly.GetTypes().Where(t => typeof(AsyncActionCommandBase).IsAssignableFrom(t)))
             {
                 var cons = t.GetConstructor(new[] { typeof(ARealmReversed) });
-                rootCmd.RegisterCommand((ActionCommandBase)cons.Invoke(new[] { realm }));
+                rootCmd.RegisterCommand((AsyncActionCommandBase)cons.Invoke(new[] { realm }));
             }
         }
 

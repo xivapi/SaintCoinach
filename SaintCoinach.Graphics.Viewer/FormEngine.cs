@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using System.IO;
 using System.Reflection;
+using SharpDX.Windows;
 
 namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
@@ -14,7 +15,6 @@ namespace SaintCoinach.Graphics.Viewer {
     using SharpDX.Direct3D;
     using SharpDX.Direct3D11;
     using SharpDX.DXGI;
-    using SharpDX.Windows;
     using Buffer = SharpDX.Direct3D11.Buffer;
     using Device = SharpDX.Direct3D11.Device;
 
@@ -165,7 +165,7 @@ namespace SaintCoinach.Graphics.Viewer {
             Device.ImmediateContext.ClearRenderTargetView(_ScreenshotTargetView, Color.Transparent);
             base.Draw(time);
 
-            Texture2D.ToFile(Device.ImmediateContext, _ScreenshotTarget, ImageFileFormat.Png, string.Format("SS-{0:yyyyMMdd-HHmmss}.png", DateTime.Now));
+            // Texture2D.ToFile(Device.ImmediateContext, _ScreenshotTarget, ImageFileFormat.Png, string.Format("SS-{0:yyyyMMdd-HHmmss}.png", DateTime.Now));
             ResizeToClient();
         }
         protected override void Update(EngineTime time) {

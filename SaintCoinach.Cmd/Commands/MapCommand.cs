@@ -1,19 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
 namespace SaintCoinach.Cmd.Commands {
-    public class MapCommand : ActionCommandBase {
+    public class MapCommand : AsyncActionCommandBase {
         private ARealmReversed _Realm;
 
         public MapCommand(ARealmReversed realm)
@@ -21,19 +18,19 @@ namespace SaintCoinach.Cmd.Commands {
             _Realm = realm;
         }
 
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override async Task InvokeAsync(string[] paramList) {
             var format = ImageFormat.Png;
             var rawFileNames = false;
 
-            if (!string.IsNullOrEmpty(paramList)) {
-                var parameters = paramList.Split(' ');
+            if (paramList.Length != 0) {
+                var parameters = paramList;
                 rawFileNames = parameters.Contains("raw");
                 if (parameters.Contains("jpg"))
                     format = ImageFormat.Jpeg;
-                else if (parameters.Contains("png"))
+                else if (paramList.Contains("png"))
                     format = ImageFormat.Png;
                 else
-                    OutputError("Invalid map format " + paramList);
+                    OutputError($"Invalid map format {paramList}");
             }
 
             var c = 0;
@@ -81,9 +78,7 @@ namespace SaintCoinach.Cmd.Commands {
                 img.Save(outFile.FullName, format);
                 ++c;
             }
-            OutputInformation("{0} maps saved", c);
-
-            return true;
+            OutputInformation($"{c} maps saved");
         }
         
         static string FormatToExtension(ImageFormat format) {

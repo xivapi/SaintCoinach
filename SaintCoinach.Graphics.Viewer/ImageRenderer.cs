@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpDX.Direct3D10;
 
 namespace SaintCoinach.Graphics.Viewer {
     using SharpDX;
@@ -137,7 +138,7 @@ namespace SaintCoinach.Graphics.Viewer {
                 _Source.CurrentTargetFile.Directory.Create();
 
             var ext = "." + _OutputFormat.ToString().ToLower();
-            SharpDX.Direct3D11.Texture2D.ToFile(Device.ImmediateContext, RenderTarget, _OutputFormat, _Source.CurrentTargetFile.FullName + ext);
+            // Texture2D.ToFile(Device.ImmediateContext, RenderTarget, _OutputFormat, _Source.CurrentTargetFile.FullName + ext);
         }
 
         protected override void Draw(EngineTime time) {
