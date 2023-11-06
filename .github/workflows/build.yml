@@ -26,7 +26,7 @@ jobs:
         run: |
           mkdir release-out
           Compress-Archive -Path .\Godbert\bin\Release\net7.0-windows\* -DestinationPath .\release-out\Godbert.zip -Force
-          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\net7.0-windows\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
+          Compress-Archive -Path .\SaintCoinach.Cmd\bin\Release\net7.0\* -DestinationPath .\release-out\SaintCoinach.Cmd.zip -Force
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
