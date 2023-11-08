@@ -67,7 +67,7 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the level required to equip the current item.
         /// </summary>
         /// <value>The level required to equip the current item.</value>
-        public int EquipmentLevel { get { return AsInt32("Level{Equip}"); } }
+        public int EquipmentLevel { get { return AsInt32("LevelEquip"); } }
 
         /// <summary>
         ///     Gets the modifier used for <see cref="BaseParam" />s on the current item.
@@ -85,7 +85,7 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the <see cref="Item" /> required to repair the current item.
         /// </summary>
         /// <value>The <see cref="Item" /> required to repair the current item.</value>
-        public Item RepairItem { get { return As<XivRow>("Item{Repair}").As<Item>("Item"); } }
+        public Item RepairItem { get { return As<XivRow>("ItemRepair").As<Item>("Item"); } }
 
         /// <summary>
         ///     Gets the type of <see cref="ItemSpecialBonus" /> required to grant additional bonuses of the current item.
@@ -97,7 +97,7 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the parameter used for some <see cref="ItemSpecialBonus"/> required to grant additional bonuses of the current item. 
         /// </summary>
         /// <value>The parameter used for some <see cref="ItemSpecialBonus"/> required to grant additional bonuses of the current item. </value>
-        public byte ItemSpecialBonusParam {  get { return As<byte>("ItemSpecialBonus{Param}"); } }
+        public byte ItemSpecialBonusParam {  get { return As<byte>("ItemSpecialBonusParam"); } }
 
         /// <summary>
         ///     Gets the <see cref="ItemSeries" /> of the current item.
@@ -121,13 +121,13 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the model identifier used for the current item's primary model.
         /// </summary>
         /// <value>The model identifier used for the current item's primary model.</value>
-        public Quad PrimaryModelKey { get { return AsQuad("Model{Main}"); } }
+        public Quad PrimaryModelKey { get { return AsQuad("ModelMain"); } }
 
         /// <summary>
         ///     Gets the model identifier used for the current item's secondary model.
         /// </summary>
         /// <value>The model identifier used for the current item's secondary model.</value>
-        public Quad SecondaryModelKey { get { return AsQuad("Model{Sub}"); } }
+        public Quad SecondaryModelKey { get { return AsQuad("ModelSub"); } }
         
         /// <summary>
         ///     Gets the number of Grand Company seals rewarded for expert delivery of the item.
@@ -135,7 +135,7 @@ namespace SaintCoinach.Xiv.Items {
         /// <value>The number of Grand Company seals.</value>
         public int ExpertDeliverySeals {
             get {
-                if (Rarity <= 1 || AsInt32("Price{Low}") <= 0)
+                if (Rarity <= 1 || AsInt32("PriceLow") <= 0)
                     return 0;
 
                 // Formula used for GCSupplyDutyReward seals:
@@ -337,8 +337,8 @@ namespace SaintCoinach.Xiv.Items {
             }
 
             for (var i = 0; i < Count; ++i) {
-                var baseParam = As<BaseParam>("BaseParam{Special}", i);
-                var value = AsInt32("BaseParamValue{Special}", i);
+                var baseParam = As<BaseParam>("BaseParamSpecial", i);
+                var value = AsInt32("BaseParamValueSpecial", i);
 
                 AddParameter(parameters, type, baseParam, value, i);
             }

@@ -24,12 +24,12 @@ namespace SaintCoinach.Xiv {
         public GrandCompany GrandCompany { get { return Quest.As<GrandCompany>(); } }
         public GrandCompanyRank GrandCompanyRank { get { return Quest.As<GrandCompanyRank>(); } }
 
-        public int StartBell { get { return Quest.AsInt32("Bell{Start}"); } }
-        public int EndBell { get { return Quest.AsInt32("Bell{End}"); } }
+        public int StartBell { get { return Quest.AsInt32("BellStart"); } }
+        public int EndBell { get { return Quest.AsInt32("BellEnd"); } }
 
         public BeastReputationRank BeastReputationRank { get { return Quest.As<BeastReputationRank>(); } }
 
-        public Mount Mount { get { return Quest.As<Mount>("Mount{Required}"); } }
+        public Mount Mount { get { return Quest.As<Mount>("MountRequired"); } }
 
         public bool RequiresHousing { get { return Quest.AsBoolean("IsHouseRequired"); } }
         #endregion

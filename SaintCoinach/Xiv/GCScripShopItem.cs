@@ -14,8 +14,8 @@ namespace SaintCoinach.Xiv {
         public GCScripShopCategory GCScripShopCategory { get; private set; }
 
         public Item Item => As<Item>();
-        public GrandCompanyRank RequiredGrandCompanyRank => As<GrandCompanyRank>("Required{GrandCompanyRank}");
-        public int GCSealsCost => AsInt32("Cost{GCSeals}");
+        public GrandCompanyRank RequiredGrandCompanyRank => As<GrandCompanyRank>("RequiredGrandCompanyRank");
+        public int GCSealsCost => AsInt32("CostGCSeals");
         public byte SortKey => As<byte>("SortKey");
 
         #endregion

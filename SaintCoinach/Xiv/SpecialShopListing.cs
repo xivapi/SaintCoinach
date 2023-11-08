@@ -78,36 +78,36 @@ namespace SaintCoinach.Xiv {
             const int RewardCount = 2;
             var rewards = new List<ShopListingItem>();
             for (var i = 0; i < RewardCount; ++i) {
-                var item = shop.As<Item>("Item{Receive}", index, i);
+                var item = shop.As<Item>("ItemReceive", index, i);
                 if (item.Key == 0)
                     continue;
 
-                var count = shop.AsInt32("Count{Receive}", index, i);
+                var count = shop.AsInt32("CountReceive", index, i);
                 if (count == 0)
                     continue;
 
-                var hq = shop.AsBoolean("HQ{Receive}", index, i);
+                var hq = shop.AsBoolean("HQReceive", index, i);
 
                 rewards.Add(new ShopListingItem(this, item, count, hq, 0));
             }
             _Rewards = rewards.ToArray();
-            Quest = shop.As<Quest>("Quest{Item}", index);
+            Quest = shop.As<Quest>("QuestItem", index);
 
             int UseCurrencyType = shop.As<byte>("UseCurrencyType");
 
             const int CostCount = 3;
             var costs = new List<ShopListingItem>();
             for (var i = 0; i < CostCount; ++i) {
-                var item = shop.As<Item>("Item{Cost}", index, i);
+                var item = shop.As<Item>("ItemCost", index, i);
 
                 if (item.Key == 0)
                     continue;
 
-                var count = shop.AsInt32("Count{Cost}", index, i);
+                var count = shop.AsInt32("CountCost", index, i);
                 if (count == 0)
                     continue;
 
-                var hq = shop.AsBoolean("HQ{Cost}", index, i);
+                var hq = shop.AsBoolean("HQCost", index, i);
 
                 if (item.Key < 8) {
                     switch (UseCurrencyType) {
@@ -130,7 +130,7 @@ namespace SaintCoinach.Xiv {
                     hq = false;
                 }
                 
-                var collectabilityRating = shop.AsInt16("CollectabilityRating{Cost}", index, i);
+                var collectabilityRating = shop.AsInt16("CollectabilityRatingCost", index, i);
 
                 costs.Add(new ShopListingItem(this, item, count, hq, collectabilityRating));
             }

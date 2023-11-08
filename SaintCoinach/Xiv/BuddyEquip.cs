@@ -9,9 +9,9 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Singular { get { return AsString("Singular"); } }
         public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public GrandCompany GrandCompany { get { return As<GrandCompany>(); } }
-        public ImageFile HeadIcon { get { return AsImage("Icon{Head}"); } }
-        public ImageFile BodyIcon { get { return AsImage("Icon{Body}"); } }
-        public ImageFile LegsIcon { get { return AsImage("Icon{Legs}"); } }
+        public ImageFile HeadIcon { get { return AsImage("IconHead"); } }
+        public ImageFile BodyIcon { get { return AsImage("IconBody"); } }
+        public ImageFile LegsIcon { get { return AsImage("IconLegs"); } }
 
         #endregion
 

@@ -50,11 +50,11 @@ namespace SaintCoinach.Xiv {
 
                 var isRel = AsBoolean("IsRelative", i);
                 var val = AsInt32("Value", i);
-                var valHq = AsInt32("Value{HQ}", i);
+                var valHq = AsInt32("ValueHQ", i);
 
                 if (isRel) {
                     var max = AsInt32("Max", i);
-                    var maxHq = AsInt32("Max{HQ}", i);
+                    var maxHq = AsInt32("MaxHQ", i);
 
                     parameters.AddParameterValue(param,
                         max == 0

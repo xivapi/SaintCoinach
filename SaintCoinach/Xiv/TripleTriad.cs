@@ -51,7 +51,7 @@ namespace SaintCoinach.Xiv {
 
             var cards = new List<TripleTriadCard>();
             for (var i = 0; i < Count; ++i) {
-                var card = As<TripleTriadCard>("TripleTriadCard{Fixed}", i);
+                var card = As<TripleTriadCard>("TripleTriadCardFixed", i);
                 if (card.Key != 0)
                     cards.Add(card);
             }
@@ -63,7 +63,7 @@ namespace SaintCoinach.Xiv {
 
             var cards = new List<TripleTriadCard>();
             for (var i = 0; i < Count; ++i) {
-                var card = As<TripleTriadCard>("TripleTriadCard{Variable}", i);
+                var card = As<TripleTriadCard>("TripleTriadCardVariable", i);
                 if (card.Key != 0)
                     cards.Add(card);
             }
@@ -75,7 +75,7 @@ namespace SaintCoinach.Xiv {
 
             var cards = new List<Item>();
             for (var i = 0; i < Count; ++i) {
-                var card = As<Item>("Item{PossibleReward}", i);
+                var card = As<Item>("ItemPossibleReward", i);
                 if (card.Key != 0)
                     cards.Add(card);
             }

@@ -6,9 +6,9 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
-        public Text.XivString RelationName { get { return AsString("Name{Relation}"); } }
+        public Text.XivString RelationName { get { return AsString("NameRelation"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
-        public ImageFile ReputationIcon { get { return AsImage("Icon{Reputation}"); } }
+        public ImageFile ReputationIcon { get { return AsImage("IconReputation"); } }
 
         #endregion
 

@@ -52,25 +52,25 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="PlaceName" /> the current leve starts.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> the current leve starts.</value>
-        public PlaceName PlaceNameStart { get { return As<PlaceName>("PlaceName{Start}"); } }
+        public PlaceName PlaceNameStart { get { return As<PlaceName>("PlaceNameStart"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> the current leve is issued.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> where the current leve is issued.</value>
-        public PlaceName PlaceNameIssued { get { return As<PlaceName>("PlaceName{Issued}"); } }
+        public PlaceName PlaceNameIssued { get { return As<PlaceName>("PlaceNameIssued"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the zone the current leve takes place in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the zone the current leve takes place in.</value>
-        public PlaceName PlaceNameStartZone { get { return As<PlaceName>("PlaceName{StartZone}"); } }
+        public PlaceName PlaceNameStartZone { get { return As<PlaceName>("PlaceNameStartZone"); } }
 
         /// <summary>
         ///     Gets the icon of the city state that issued the current leve.
         /// </summary>
         /// <value>The icon of the city state that issued the current leve.</value>
-        public ImageFile CityStateIcon { get { return AsImage("Icon{CityState}"); } }
+        public ImageFile CityStateIcon { get { return AsImage("IconCityState"); } }
 
         /// <summary>
         ///     Gets the integer key of the object containing additional information.
@@ -100,19 +100,19 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="Level" /> object for the levemete of the current leve.
         /// </summary>
         /// <value>The <see cref="Level" /> object for the levemete of the current leve.</value>
-        public Level LevemeteLevel { get { return As<Level>("Level{Levemete}"); } }
+        public Level LevemeteLevel { get { return As<Level>("LevelLevemete"); } }
 
         /// <summary>
         ///     Gets the <see cref="Level" /> object for the start of the current leve.
         /// </summary>
         /// <value>The <see cref="Level" /> object for the start of the current leve.</value>
-        public Level StartLevel { get { return As<Level>("Level{Start}"); } }
+        public Level StartLevel { get { return As<Level>("LevelStart"); } }
 
         /// <summary>
         ///     Gets the icon for the location of the current leve.
         /// </summary>
         /// <value>The icon for the location of the current leve.</value>
-        public ImageFile IssuerIcon { get { return AsImage("Icon{Issuer}"); } }
+        public ImageFile IssuerIcon { get { return AsImage("IconIssuer"); } }
 
         /// <summary>
         /// Gets the locations of the current object.
@@ -142,7 +142,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the <see cref="LeveVfx"/> used for the current leve.
         /// </summary>
         /// <value>The <see cref="LeveVfx"/> used for the current leve.</value>
-        public LeveVfx FrameLeveVfx { get { return As<LeveVfx>("LeveVfx{Frame}"); } }
+        public LeveVfx FrameLeveVfx { get { return As<LeveVfx>("LeveVfxFrame"); } }
 
         /// <summary>
         /// Gets the plate icon used for the current leve.

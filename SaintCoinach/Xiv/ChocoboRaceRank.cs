@@ -11,8 +11,8 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return As<GoldSaucerTextData>("Name").Text; } }
-        public int MinimumRating { get { return AsInt32("Rating{Min}"); } }
-        public int MaximumRating { get { return AsInt32("Rating{Max}"); } }
+        public int MinimumRating { get { return AsInt32("RatingMin"); } }
+        public int MaximumRating { get { return AsInt32("RatingMax"); } }
         public int Fee { get { return AsInt32("Fee"); } }
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
 

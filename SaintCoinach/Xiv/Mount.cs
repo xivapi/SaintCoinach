@@ -8,7 +8,7 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Singular { get { return AsString("Singular"); } }
         public Text.XivString Plural { get { return Sheet.Collection.ActiveLanguage == Ex.Language.Japanese ? Singular : AsString("Plural"); } }
         public Text.XivString Description { get { return AsString("Description"); } }
-        public Text.XivString GuideDescription { get { return AsString("Description{Enhanced}"); } }
+        public Text.XivString GuideDescription { get { return AsString("DescriptionEnhanced"); } }
         public Text.XivString Tooltip { get { return AsString("Tooltip"); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
         public ModelChara ModelChara => As<ModelChara>();

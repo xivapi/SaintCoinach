@@ -31,13 +31,13 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the physical damage of the current item.
         /// </summary>
         /// <value>The physical damage of the current item.</value>
-        public int PhysicalDamage { get { return AsInt32("Damage{Phys}"); } }
+        public int PhysicalDamage { get { return AsInt32("DamagePhys"); } }
 
         /// <summary>
         ///     Gets the magic damage of the current item.
         /// </summary>
         /// <value>The magic damage of the current item.</value>
-        public int MagicDamage { get { return AsInt32("Damage{Mag}"); } }
+        public int MagicDamage { get { return AsInt32("DamageMag"); } }
 
         /// <summary>
         ///     Gets the delay of the current item.

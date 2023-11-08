@@ -64,7 +64,7 @@ namespace SaintCoinach.Xiv {
                     continue;
 
                 var cost = AsInt32("Cost", i);
-                var requiredRank = As<FCRank>("FCRank{Required}", i);
+                var requiredRank = As<FCRank>("FCRankRequired", i);
 
                 listings.Add(new Listing(this, item, costItem, cost, requiredRank));
             }

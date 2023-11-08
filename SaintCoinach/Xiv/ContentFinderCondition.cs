@@ -30,25 +30,25 @@ namespace SaintCoinach.Xiv {
         /// Gets the minimum level required for the current content.
         /// </summary>
         /// <value>The minimum level required for the current content.</value>
-        public int RequiredClassJobLevel => AsInt32("ClassJobLevel{Required}");
+        public int RequiredClAssJobLevel => AsInt32("ClassJobLevelRequired");
 
         /// <summary>
         /// Gets the maximum level for the current content.
         /// </summary>
         /// <value>The maximum level for the current content.</value>
-        public int ClassJobLevelSync => AsInt32("ClassJobLevel{Sync}");
+        public int ClAssJobLevelSync => AsInt32("ClassJobLevelSync");
 
         /// <summary>
         /// Gets the item level required to enter the current content.
         /// </summary>
         /// <value>The item level required to enter the current content.</value>
-        public virtual int RequiredItemLevel => AsInt32("ItemLevel{Required}");
+        public virtual int RequiredItemLevel => AsInt32("ItemLevelRequired");
 
         /// <summary>
         /// Gets the item level the current content gets synced to if it is higher.
         /// </summary>
         /// <value>The item level the current content gets synced to if it is higher.</value>
-        public int ItemLevelSync => AsInt32("ItemLevel{Sync}");
+        public int ItemLevelSync => AsInt32("ItemLevelSync");
 
         public virtual Imaging.ImageFile Image => AsImage("Image");
 

@@ -29,13 +29,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the text indicating special conditions have been met.
         /// </summary>
         /// <value>The text indicating special conditions have been met.</value>
-        public Text.XivString OnReachBigFish { get { return AsString("BigFish{OnReach}"); } }
+        public Text.XivString OnReachBigFish { get { return AsString("BigFishOnReach"); } }
 
         /// <summary>
         ///     Gets the text indicating special conditions have ended.
         /// </summary>
         /// <value>The text indicating special conditions have ended.</value>
-        public Text.XivString OnEndBigFish { get { return AsString("BigFish{OnEnd}"); } }
+        public Text.XivString OnEndBigFish { get { return AsString("BigFishOnEnd"); } }
 
         /// <summary>
         ///     Gets the FishingSpotCategory of the current <see cref="FishingSpot" />.

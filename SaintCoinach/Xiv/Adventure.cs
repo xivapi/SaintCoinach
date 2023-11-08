@@ -17,9 +17,9 @@ namespace SaintCoinach.Xiv {
 
         public PlaceName PlaceName { get { return As<PlaceName>(); } }
 
-        public Imaging.ImageFile ListIcon { get { return AsImage("Icon{List}"); } }
-        public Imaging.ImageFile DiscoveredIcon { get { return AsImage("Icon{Discovered}"); } }
-        public Imaging.ImageFile UndiscoveredIcon { get { return AsImage("Icon{Undiscovered}"); } }
+        public Imaging.ImageFile ListIcon { get { return AsImage("IconList"); } }
+        public Imaging.ImageFile DiscoveredIcon { get { return AsImage("IconDiscovered"); } }
+        public Imaging.ImageFile UndiscoveredIcon { get { return AsImage("IconUndiscovered"); } }
 
         public bool IsInitial { get { return AsBoolean("IsInitial"); } }
 

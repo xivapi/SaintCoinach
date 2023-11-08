@@ -40,12 +40,12 @@ namespace SaintCoinach.Xiv {
             var commands = new List<ScriptCommand>();
 
             for(var i = 0; i < Count; ++i) {
-                var instr = AsString("Script{Instruction}", i).ToString();
+                var instr = AsString("ScriptInstruction", i).ToString();
                 if (string.IsNullOrWhiteSpace(instr))
                     continue;
                 commands.Add(new ScriptCommand {
                     Instruction = instr,
-                    Argument = AsInt32("Script{Arg}", i)
+                    Argument = AsInt32("ScriptArg", i)
                 });
             }
 

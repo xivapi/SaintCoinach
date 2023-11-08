@@ -12,7 +12,7 @@ namespace SaintCoinach.Xiv {
         public bool IsRandom { get { return AsBoolean("IsRandom"); } }
         public int RetainerLevel { get { return AsInt32("RetainerLevel"); } }
         public int VentureCost { get { return AsInt32("VentureCost"); } }
-        public TimeSpan BaseDuration { get { return TimeSpan.FromMinutes(AsInt32("MaxTime{min}")); } }
+        public TimeSpan BAseDuration { get { return TimeSpan.FromMinutes(AsInt32("MaxTimemin")); } }
         public int Experience { get { return AsInt32("Experience"); } }
         public int RequiredItemLevel { get { return AsInt32("RequiredItemLevel"); } }
         public int RequiredGathering { get { return AsInt32("RequiredGathering"); } }

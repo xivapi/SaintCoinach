@@ -15,18 +15,18 @@ namespace SaintCoinach.Xiv {
 
         public IEnumerable<Item> MaleRse {
             get {
-                yield return As<Item>("RSE{M}{Body}");
-                yield return As<Item>("RSE{M}{Hands}");
-                yield return As<Item>("RSE{M}{Legs}");
-                yield return As<Item>("RSE{M}{Feet}");
+                yield return As<Item>("RSEM}{Body");
+                yield return As<Item>("RSEM}{Hands");
+                yield return As<Item>("RSEM}{Legs");
+                yield return As<Item>("RSEM}{Feet");
             }
         }
         public IEnumerable<Item> FemaleRse {
             get {
-                yield return As<Item>("RSE{F}{Body}");
-                yield return As<Item>("RSE{F}{Hands}");
-                yield return As<Item>("RSE{F}{Legs}");
-                yield return As<Item>("RSE{F}{Feet}");
+                yield return As<Item>("RSEF}{Body");
+                yield return As<Item>("RSEF}{Hands");
+                yield return As<Item>("RSEF}{Legs");
+                yield return As<Item>("RSEF}{Feet");
             }
         }
 

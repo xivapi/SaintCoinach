@@ -9,7 +9,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
-        public Text.XivString ShortName { get { return AsString("Name{Short}"); } }
+        public Text.XivString ShortName { get { return AsString("NameShort"); } }
 
         public int RequiredLevel { get { return AsInt32("RequiredLevel"); } }
 

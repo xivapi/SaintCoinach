@@ -22,7 +22,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the time limit to complete the current content.
         /// </summary>
         /// <value>The time limit to complete the current content.</value>
-        public TimeSpan TimeLimit { get { return TimeSpan.FromMinutes(AsInt32("TimeLimit{min}")); } }
+        public TimeSpan TimeLimit { get { return TimeSpan.FromMinutes(AsInt32("TimeLimitmin")); } }
 
         /// <summary>
         /// Gets the number of parties for the current content.
@@ -97,7 +97,7 @@ namespace SaintCoinach.Xiv {
 
         public InstanceContentData Data { get { return _Data ?? (_Data = new InstanceContentData(this)); } }
 
-        public BNpcBase Boss { get { return As<BNpcBase>("BNpcBase{Boss}"); } }
+        public BNpcBase Boss { get { return As<BNpcBase>("BNpcBaseBoss"); } }
 
         #endregion
 
