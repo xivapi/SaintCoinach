@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Buffers.Text;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace SaintCoinach {
         ///     Pack collection for the data files.
         /// </summary>
         private readonly PackCollection _Packs;
-
+        
         private readonly HttpClient _httpClient;
 
         #endregion
@@ -214,16 +215,6 @@ namespace SaintCoinach {
             }
         }
 
-        public static void TestThing()
-        {
-            HttpClient client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Head, string.Format(DefinitionUrl, "2023.10.23.0000.0000"));
-            var response = client.Send(request);
-            Console.WriteLine("hey");
-            var success = response.IsSuccessStatusCode;
-            Console.WriteLine(response);
-        }
-
         public void UpdateDefinition()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, string.Format(DefinitionUrl, GameVersion));
@@ -232,10 +223,13 @@ namespace SaintCoinach {
             {
                 throw new Exception($"Failed to download definition for version {GameVersion}.");
             }
+
+            var latestPath = Path.Combine("Definitions", "latest.zip");
+            using (var stream = response.Content.ReadAsStream())
+                using (var fileStream = File.Create(latestPath))
+                    stream.CopyTo(fileStream);
             
-            using var stream = response.Content.ReadAsStream();
-            using var zip = ZipFile.Read(stream);
-            zip.Save(Path.Combine("Definitions", "latest.zip"));
+            using var zip = ZipFile.Read(latestPath);
             Directory.CreateDirectory(Path.Combine("Definitions", GameVersion));
             zip.ExtractAll("Definitions", ExtractExistingFileAction.OverwriteSilently);
         }
