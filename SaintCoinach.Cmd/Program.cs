@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Tharga.Console;
 using Tharga.Console.Commands;
@@ -27,6 +28,19 @@ namespace SaintCoinach.Cmd {
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
+            
+            if (realm.IsUpdateAvailable()) {
+                Console.Write("Update is available, download update (Y/n)? ");
+                var updateQuery = Console.ReadLine();
+                if (string.IsNullOrEmpty(updateQuery) || string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
+                    var time = Stopwatch.StartNew();
+                    realm.UpdateDefinition();
+                    Console.WriteLine($"Updated in {TimeSpan.FromMilliseconds(time.ElapsedMilliseconds):c}");
+                    Console.WriteLine($"Please restart the application.");
+                    return;
+                } else
+                    Console.WriteLine("Skipping update.");
+            }
             
             var cns = new Tharga.Console.Consoles.ClientConsole();
             var cmd = new RootCommand(cns);

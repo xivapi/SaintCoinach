@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using Ionic.Zip;
 using Newtonsoft.Json;
@@ -22,12 +24,7 @@ namespace SaintCoinach {
     /// </summary>
     public class ARealmReversed {
         #region Static
-
-        /// <summary>
-        ///     Default file name of the archive containing current and past data mappings.
-        /// </summary>
-        private const string DefaultStateFile = "SaintCoinach.History.zip";
-
+        
         /// <summary>
         ///     File name containing the current version string.
         /// </summary>
@@ -37,6 +34,8 @@ namespace SaintCoinach {
         ///     <see cref="Encoding" /> to use inside the <see cref="ZipFile" />.
         /// </summary>
         private static readonly Encoding ZipEncoding = Encoding.UTF8;
+        
+        private const string DefinitionUrl = "https://github.com/xivdev/EXDSchema/releases/latest/download/{0}.zip";
 
         #endregion
 
@@ -62,10 +61,7 @@ namespace SaintCoinach {
         /// </summary>
         private readonly PackCollection _Packs;
 
-        /// <summary>
-        ///     Archive file containing current and past data mappings. 
-        /// </summary>
-        private readonly FileInfo _StateFile;
+        private readonly HttpClient _httpClient;
 
         #endregion
 
@@ -101,39 +97,6 @@ namespace SaintCoinach {
         /// <value>The version of the loaded definition.</value>
         public string DefinitionVersion { get { return GameData.Definition.Version; } }
 
-        /// <summary>
-        ///     Gets a value indicating whether the loaded definition is the same as the game data version.
-        /// </summary>
-        /// <value>Whether the loaded definition is the same as the game data version.</value>
-        public bool IsCurrentVersion { get { return GameVersion == DefinitionVersion; } }
-
-        /// <summary>
-        ///     Gets the archive file containing current and past data mappings.
-        /// </summary>
-        /// <value>The archive file containing current and past data mappings.</value>
-        public FileInfo StateFile { get { return _StateFile; } }
-
-        #endregion
-
-        #region Setup
-
-        /// <summary>
-        ///     Perform first-time setup on the archive.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> used for storage.</param>
-        /// <returns>Returns the initial <see cref="RelationDefinition" /> object.</returns>
-        private void Setup(ZipFile zip) {
-            var def = _GameData.Definition;
-            if (def.Version != GameVersion)
-                System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
-
-            def.Version = GameVersion;
-            StorePacks(zip);
-            UpdateVersion(zip);
-
-            zip.Save();
-        }
-
         #endregion
 
         #region Constructors
@@ -143,7 +106,7 @@ namespace SaintCoinach {
         /// </summary>
         /// <param name="gamePath">Directory path to the game installation.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), new FileInfo(DefaultStateFile), language, null) { }
+        public ARealmReversed(string gamePath, Language language) : this(new DirectoryInfo(gamePath), language, null) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
@@ -151,7 +114,7 @@ namespace SaintCoinach {
         /// <param name="gamePath">Directory path to the game installation.</param>
         /// <param name="storePath">Path to the file used for storing definitions and history.</param>
         /// <param name="language">Initial language to use.</param>
-        public ARealmReversed(string gamePath, string storePath, Language language) : this(new DirectoryInfo(gamePath), new FileInfo(storePath), language, null) { }
+        public ARealmReversed(string gamePath, string storePath, Language language) : this(new DirectoryInfo(gamePath), language, null) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
@@ -160,7 +123,7 @@ namespace SaintCoinach {
         /// <param name="storePath">Path to the file used for storing definitions and history.</param>
         /// <param name="language">Initial language to use.</param>
         /// <param name="libraPath">Path to the Libra Eorzea database file.</param>
-        public ARealmReversed(string gamePath, string storePath, Language language, string libraPath) : this(new DirectoryInfo(gamePath), new FileInfo(storePath), language, new FileInfo(libraPath)) { }
+        public ARealmReversed(string gamePath, string storePath, Language language, string libraPath) : this(new DirectoryInfo(gamePath), language, new FileInfo(libraPath)) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ARealmReversed" /> class.
@@ -169,7 +132,7 @@ namespace SaintCoinach {
         /// <param name="storeFile">File used for storing definitions and history.</param>
         /// <param name="language">Initial language to use.</param>
         /// <param name="libraFile">Location of the Libra Eorzea database file, or <c>null</c> if it should not be used.</param>
-        public ARealmReversed(DirectoryInfo gameDirectory, FileInfo storeFile, Language language, FileInfo libraFile) {
+        public ARealmReversed(DirectoryInfo gameDirectory, Language language, FileInfo libraFile) {
 
             // Fix for being referenced in a .Net Core 2.1+ application (https://stackoverflow.com/questions/50449314/ibm437-is-not-a-supported-encoding-name => https://stackoverflow.com/questions/44659499/epplus-error-reading-file)
             // PM> dotnet add package System.Text.Encoding.CodePages
@@ -181,15 +144,10 @@ namespace SaintCoinach {
                 ActiveLanguage = language
             };
 
+            _httpClient = new HttpClient();
+
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
-            _StateFile = storeFile;
             _GameData.Definition = ReadDefinition();
-
-            using (var zipFile = new ZipFile(StateFile.FullName, ZipEncoding)) {
-                if (!zipFile.ContainsEntry(VersionFile))
-                    Setup(zipFile);
-            }
-
             _GameData.Definition.Compile();
         }
 
@@ -201,7 +159,10 @@ namespace SaintCoinach {
         {
             var definitionPath = "Definitions";
             var versionDirs = Directory.GetDirectories(definitionPath).ToList();
-            var versionDirToUse = versionDirs.Last();
+            if (versionDirs.Count == 0)
+                throw new DirectoryNotFoundException($"No definition directories found in {definitionPath}.");
+            
+            var versionDirToUse = versionDirs.Where(v => v.Contains(GameVersion)).FirstOrDefault(versionDirs.Last());
             var version = Path.GetFileName(versionDirToUse);
             
             var def = new RelationDefinition() { Version = version };
@@ -220,6 +181,63 @@ namespace SaintCoinach {
             }
 
             return def;
+        }
+
+        public bool IsUpdateAvailable()
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Head, string.Format(DefinitionUrl, GameVersion));
+                var response = _httpClient.SendAsync(request).Result;
+
+                var latestPath = Path.Combine("Definitions", "latest.zip");
+
+                if (!File.Exists(latestPath))
+                    return response.IsSuccessStatusCode;
+
+                var latestBytes = File.ReadAllBytes(latestPath);
+                var latestMd5 = MD5.HashData(latestBytes);
+
+                var md5 = response.Content.Headers.GetValues("Content-MD5").FirstOrDefault();
+                var md5Bytes = Convert.FromBase64String(md5);
+
+                if (latestMd5.SequenceEqual(md5Bytes))
+                    return false;
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.Message);
+                Console.Error.WriteLine(e.StackTrace);
+                return false;
+            }
+        }
+
+        public static void TestThing()
+        {
+            HttpClient client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Head, string.Format(DefinitionUrl, "2023.10.23.0000.0000"));
+            var response = client.Send(request);
+            Console.WriteLine("hey");
+            var success = response.IsSuccessStatusCode;
+            Console.WriteLine(response);
+        }
+
+        public void UpdateDefinition()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, string.Format(DefinitionUrl, GameVersion));
+            var response = _httpClient.Send(request);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to download definition for version {GameVersion}.");
+            }
+            
+            using var stream = response.Content.ReadAsStream();
+            using var zip = ZipFile.Read(stream);
+            zip.Save(Path.Combine("Definitions", "latest.zip"));
+            Directory.CreateDirectory(Path.Combine("Definitions", GameVersion));
+            zip.ExtractAll("Definitions", ExtractExistingFileAction.OverwriteSilently);
         }
 
         /// <summary>

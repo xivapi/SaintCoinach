@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 using System.Windows.Input;
+using Cursors = System.Windows.Input.Cursors;
 
 namespace Godbert.ViewModels {
     using Commands;
@@ -50,6 +52,18 @@ namespace Godbert.ViewModels {
             foreach (var language in languages) {
                 try {
                     var realm = new ARealmReversed(Properties.Settings.Default.GamePath, language);
+                    
+                    if (realm.IsUpdateAvailable()) {
+                        var result = MessageBox.Show("A definition update is available, download now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes) {
+                            var time = Stopwatch.StartNew();
+                            realm.UpdateDefinition();
+                            MessageBox.Show($"Updated in {TimeSpan.FromMilliseconds(time.ElapsedMilliseconds):c}\nPlease restart the application.", "Update complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Environment.Exit(0);
+                        } else
+                            Console.WriteLine("Skipping update.");
+                    }
+                    
                     Initialize(realm);
                     lastException = null;
                     break;
