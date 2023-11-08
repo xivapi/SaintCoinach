@@ -96,7 +96,7 @@ namespace SaintCoinach {
         ///     Gets the version of the loaded definition.
         /// </summary>
         /// <value>The version of the loaded definition.</value>
-        public string DefinitionVersion { get { return GameData.Definition.Version; } }
+        public string DefinitionVersion { get { return GameData.Definition?.Version; } }
 
         #endregion
 
@@ -139,7 +139,7 @@ namespace SaintCoinach {
 
             _GameVersion = File.ReadAllText(Path.Combine(gameDirectory.FullName, "game", "ffxivgame.ver"));
             _GameData.Definition = ReadDefinition();
-            _GameData.Definition.Compile();
+            _GameData.Definition?.Compile();
         }
 
         #endregion
@@ -151,7 +151,8 @@ namespace SaintCoinach {
             var definitionPath = "Definitions";
             var versionDirs = Directory.GetDirectories(definitionPath).ToList();
             if (versionDirs.Count == 0)
-                throw new DirectoryNotFoundException($"No definition directories found in {definitionPath}.");
+                return null;
+                // throw new DirectoryNotFoundException($"No definition directories found in {definitionPath}.");
             
             var versionDirToUse = versionDirs.Where(v => v.Contains(GameVersion)).FirstOrDefault(versionDirs.Last());
             var version = Path.GetFileName(versionDirToUse);
