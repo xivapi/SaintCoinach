@@ -30,7 +30,7 @@ namespace SaintCoinach.Ex.Relational {
         private void BuildIndex() {
             _IndexedRows = new Dictionary<int, T>();
 
-            var index = IndexColumn.Index;
+            var index = IndexColumn.ColumnBasedIndex;
 
             foreach (var row in SourceSheet) {
                 var value = row.GetRaw(index);

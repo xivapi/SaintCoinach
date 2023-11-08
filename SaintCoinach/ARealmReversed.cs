@@ -2,19 +2,19 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-
 using Ionic.Zip;
 using Newtonsoft.Json;
 using SaintCoinach.Ex;
 using SaintCoinach.Ex.Relational.Definition;
-using SaintCoinach.Ex.Relational.Update;
+using SaintCoinach.Ex.Relational.Definition.EXDSchema;
 using SaintCoinach.IO;
 using SaintCoinach.Xiv;
 
 using Directory = System.IO.Directory;
 using File = System.IO.File;
+using SerializeUtil = SaintCoinach.Ex.Relational.Definition.EXDSchema.SerializeUtil;
+using Sheet = SaintCoinach.Ex.Relational.Definition.EXDSchema.Sheet;
 
 namespace SaintCoinach {
     /// <summary>
@@ -32,22 +32,6 @@ namespace SaintCoinach {
         ///     File name containing the current version string.
         /// </summary>
         private const string VersionFile = "ffxivgame.ver";
-
-        /// <summary>
-        ///     Format string to create the file name for update reports in text form. {0} is the previous and {1} the new version.
-        /// </summary>
-        private const string UpdateReportTextFile = "logs/report-{0}-{1}.log";
-
-        /// <summary>
-        ///     Format string to create the file name for update reports in JSON form. {0} is the previous and {1} the new version.
-        /// </summary>
-        private const string UpdateReportJsonFile = "logs/report-{0}-{1}.json";
-
-        /// <summary>
-        ///     Format string to create the file name for update reports in binary form. {0} is the previous and {1} the new
-        ///     version.
-        /// </summary>
-        private const string UpdateReportBinFile = "logs/report-{0}-{1}.bin";
 
         /// <summary>
         ///     <see cref="Encoding" /> to use inside the <see cref="ZipFile" />.
@@ -144,7 +128,6 @@ namespace SaintCoinach {
                 System.Diagnostics.Trace.WriteLine(string.Format("Definition and game version mismatch ({0} != {1})", def.Version, GameVersion));
 
             def.Version = GameVersion;
-            StoreDefinitionInZip(zip, def);
             StorePacks(zip);
             UpdateVersion(zip);
 
@@ -214,17 +197,20 @@ namespace SaintCoinach {
 
         #region Shared
 
-        private RelationDefinition ReadDefinition() {
-            var versionPath = Path.Combine("Definitions", "game.ver");
-            if (!File.Exists(versionPath))
-                throw new InvalidOperationException("Definitions\\game.ver must exist.");
-
-            var version = File.ReadAllText(versionPath).Trim();
+        private RelationDefinition ReadDefinition()
+        {
+            var definitionPath = "Definitions";
+            var versionDirs = Directory.GetDirectories(definitionPath).ToList();
+            var versionDirToUse = versionDirs.Last();
+            var version = Path.GetFileName(versionDirToUse);
+            
             var def = new RelationDefinition() { Version = version };
-            foreach (var sheetFileName in Directory.EnumerateFiles("Definitions", "*.json")) {
+            foreach (var sheetFileName in Directory.EnumerateFiles(versionDirToUse, "*.yml")) {
                 var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
-                var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(json);
-                var sheetDef = SheetDefinition.FromJson(obj);
+                var sheet = SerializeUtil.Deserialize<Sheet>(json);
+                // sheet = SchemaUtil.PostProcess(sheet);
+                sheet = SchemaUtil.Flatten(sheet);
+                var sheetDef = SheetDefinition.FromYaml(sheet);
                 def.SheetDefinitions.Add(sheetDef);
 
                 if (!_GameData.SheetExists(sheetDef.Name)) {
@@ -276,48 +262,6 @@ namespace SaintCoinach {
         /// <param name="zip"><see cref="ZipFile" /> to store the version string in.</param>
         private void UpdateVersion(ZipFile zip) {
             zip.UpdateEntry(VersionFile, GameVersion);
-        }
-
-        /// <summary>
-        ///     Serialize a <see cref="RelationDefinition" /> into a <see cref="ZipFile" />.
-        /// </summary>
-        /// <param name="zip"><see cref="ZipFile" /> to write to.</param>
-        /// <param name="definition"><see cref="RelationDefinition" /> to store.</param>
-        /// <param name="version">Version these definitions are for.</param>
-        private static void StoreDefinitionInZip(ZipFile zip, RelationDefinition definition) {
-            // Since this method is only ever called to update the zip with the
-            // lateset definitions, store these for both the given version *and*
-            // root.
-
-            // todo: prior to storage, delete everything under "Definitions" to prevent
-            // dead sheets from resurrecting.
-
-            var versionBasePath = Path.Combine(definition.Version, "Definitions");
-            foreach (var sheetDef in definition.SheetDefinitions) {
-                var json = SheetToJson(sheetDef);
-                var sheetFileName = sheetDef.Name + ".json";
-                zip.UpdateEntry(Path.Combine(versionBasePath, sheetFileName), json);
-                zip.UpdateEntry(Path.Combine("Definitions", sheetFileName), json);
-            }
-
-            // Store version in root definition path for quick copying.
-            var versionPath = Path.Combine("Definitions", "game.ver");
-            zip.UpdateEntry(versionPath, definition.Version);
-        }
-
-        private static void StoreDefinitionOnFilesystem(RelationDefinition definition, string basePath) {
-            foreach (var sheetDef in definition.SheetDefinitions) {
-                var sheetDefPath = Path.Combine(basePath, "Definitions", sheetDef.Name + ".json");
-                File.WriteAllText(sheetDefPath, SheetToJson(sheetDef));
-            }
-
-            var versionPath = Path.Combine(basePath, "Definitions", "game.ver");
-            File.WriteAllText(versionPath, definition.Version);
-        }
-
-        private static string SheetToJson(SheetDefinition sheetDef) {
-            var obj = sheetDef.ToJson();
-            return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
         #endregion

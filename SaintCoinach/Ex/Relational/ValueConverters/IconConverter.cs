@@ -24,16 +24,6 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         #region Serialization
 
-        public JObject ToJson() {
-            return new JObject() {
-                ["type"] = "icon"
-            };
-        }
-
-        public static IconConverter FromJson(JToken obj) {
-            return new IconConverter();
-        }
-
         public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion

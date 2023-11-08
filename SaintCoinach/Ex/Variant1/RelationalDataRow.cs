@@ -19,7 +19,7 @@ namespace SaintCoinach.Ex.Variant1 {
             var defCol = Sheet.Header.DefaultColumn;
             return defCol == null
                        ? string.Format("{0}#{1}", Sheet.Header.Name, Key)
-                       : string.Format("{0}", this[defCol.Index]);
+                       : string.Format("{0}", this[defCol.ColumnBasedIndex]);
         }
 
         #region Constructors
@@ -35,7 +35,7 @@ namespace SaintCoinach.Ex.Variant1 {
         public object DefaultValue {
             get {
                 var defCol = Sheet.Header.DefaultColumn;
-                return defCol == null ? null : this[defCol.Index];
+                return defCol == null ? null : this[defCol.ColumnBasedIndex];
             }
         }
 
@@ -55,7 +55,7 @@ namespace SaintCoinach.Ex.Variant1 {
             var col = Sheet.Header.FindColumn(columnName);
             if (col == null)
                 throw new KeyNotFoundException();
-            return this[col.Index];
+            return this[col.ColumnBasedIndex];
         }
 
         object IRelationalRow.GetRaw(string columnName) {

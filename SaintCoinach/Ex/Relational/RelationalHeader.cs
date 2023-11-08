@@ -31,14 +31,18 @@ namespace SaintCoinach.Ex.Relational {
             }
         }
 
-        public SheetDefinition SheetDefinition {
-            get {
-                SheetDefinition def;
-                return Collection.Definition.TryGetSheet(Name, out def) ? def : null;
+        public SheetDefinition SheetDefinition
+        {
+            get
+            {
+                if (!Collection.Definition.TryGetSheet(Name, out var def)) return null;
+                if (!def.IsPostProcessed)
+                    def.PostProcess(_Columns);
+                return def;
             }
         }
 
-        #endregion
+#endregion
 
         #region Constructors
 

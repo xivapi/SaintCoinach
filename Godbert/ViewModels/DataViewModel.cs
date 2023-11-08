@@ -133,11 +133,11 @@ namespace Godbert.ViewModels {
 
                 var colIndices = new List<int>();
                 foreach (var col in sheet.Header.Columns) {
-                    indexLine.AppendFormat(",{0}", col.Index);
+                    indexLine.AppendFormat(",{0}", col.ColumnBasedIndex);
                     nameLine.AppendFormat(",{0}", col.Name);
                     typeLine.AppendFormat(",{0}", col.ValueType);
 
-                    colIndices.Add(col.Index);
+                    colIndices.Add(col.ColumnBasedIndex);
                 }
 
                 s.WriteLine(indexLine);

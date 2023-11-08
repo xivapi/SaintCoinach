@@ -15,7 +15,13 @@
         ///     Gets the index of the column inside the EX file.
         /// </summary>
         /// <value>The index of the column inside the EX file.</value>
-        public int Index { get; private set; }
+        public int ColumnBasedIndex { get; private set; }
+        
+        /// <summary>
+        ///     Gets the index of the column based on offset position.
+        /// </summary>
+        /// <value>The index of the column based on offset position.</value>
+        public int OffsetBasedIndex { get; set; }
 
         /// <summary>
         ///     Gets the integer identifier for the type of the column's data.
@@ -53,15 +59,15 @@
         ///     Initializes a new instance of the <see cref="Column" /> class.
         /// </summary>
         /// <param name="header">The <see cref="Header" /> of the EX file the column is in.</param>
-        /// <param name="index">The index of the column inside the EX file.</param>
+        /// <param name="Index">The index of the column inside the EX file.</param>
         /// <param name="buffer">A byte-array containing the contents of the header file.</param>
         /// <param name="offset">The position of the column information inside <c>buffer</c>.</param>
-        public Column(Header header, int index, byte[] buffer, int offset) {
+        public Column(Header header, int columnBasedIndex, byte[] buffer, int offset) {
             const int TypeOffset = 0x00;
             const int PositionOffset = 0x02;
 
             Header = header;
-            Index = index;
+            ColumnBasedIndex = columnBasedIndex;
             Type = OrderedBitConverter.ToUInt16(buffer, offset + TypeOffset, true);
             Offset = OrderedBitConverter.ToUInt16(buffer, offset + PositionOffset, true);
 

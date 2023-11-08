@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using SaintCoinach.Ex.Relational.Definition;
-using SaintCoinach.Xiv;
+using Condition = SaintCoinach.Ex.Relational.Definition.EXDSchema.Condition;
 
 namespace SaintCoinach.Ex.Relational.ValueConverters {
     public class ComplexLinkConverter : IValueConverter {
@@ -56,6 +53,13 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static ComplexLinkConverter FromYaml(Condition condition)
+        {
+            return new ComplexLinkConverter() {
+                _Links = condition.Cases.Select(o => SheetLinkData.FromYaml(condition, o.Key)).ToArray()
+            };
+        }
+
         #endregion
 
         #region SheetLinkData
@@ -99,12 +103,15 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         class LinkCondition {
             public string KeyColumnName;
-            public int KeyColumnIndex;
+            public int KeyColumnColumnBasedIndex = -1;
+            public int KeyColumnOffsetBasedIndex;
             public object Value;
             bool _ValueTypeChanged;
 
             public bool Match(IDataRow row) {
-                var rowValue = row[KeyColumnIndex];
+                if (KeyColumnColumnBasedIndex == -1)
+                    KeyColumnColumnBasedIndex = row.Sheet.Header.Columns.First(c => c.OffsetBasedIndex == KeyColumnOffsetBasedIndex).ColumnBasedIndex;
+                var rowValue = row[KeyColumnColumnBasedIndex];
                 if (!_ValueTypeChanged && rowValue != null) {
                     Value = System.Convert.ChangeType(Value, rowValue.GetType());
                     _ValueTypeChanged = true;
@@ -114,9 +121,6 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
         }
 
         abstract class SheetLinkData {
-            public string ProjectedColumnName;
-            public string KeyColumnName;
-
             public IRowProducer RowProducer;
             public IProjectable Projection;
 
@@ -126,10 +130,6 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
             public virtual JObject ToJson() {
                 var obj = new JObject();
-                if (ProjectedColumnName != null)
-                    obj["project"] = ProjectedColumnName;
-                if (KeyColumnName != null)
-                    obj["key"] = KeyColumnName;
                 if (When != null) {
                     obj["when"] = new JObject() {
                         ["key"] = When.KeyColumnName,
@@ -153,19 +153,8 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 } else
                     throw new InvalidOperationException("complexlink link must contain either 'sheet' or 'sheets'.");
 
-                if (obj["project"] == null)
-                    data.Projection = new IdentityProjection();
-                else {
-                    data.ProjectedColumnName = (string)obj["project"];
-                    data.Projection = new ColumnProjection() { ProjectedColumnName = data.ProjectedColumnName };
-                }
-
-                if (obj["key"] == null)
-                    data.RowProducer = new PrimaryKeyRowProducer();
-                else {
-                    data.KeyColumnName = (string)obj["key"];
-                    data.RowProducer = new IndexedRowProducer() { KeyColumnName = data.KeyColumnName };
-                }
+                data.Projection = new IdentityProjection();
+                data.RowProducer = new PrimaryKeyRowProducer();
 
                 var when = obj["when"];
                 if (when != null) {
@@ -174,6 +163,34 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                     condition.Value = when["value"].ToObject<object>();
                     data.When = condition;
                 }
+
+                return data;
+            }
+
+            public static SheetLinkData FromYaml(Condition condition, int when)
+            {
+                var thisCase = condition.Cases[when];
+                
+                SheetLinkData data;
+                if (thisCase.Count == 1) {
+                    data = new SingleSheetLinkData() {
+                        SheetName = thisCase[0]
+                    };
+                } else {
+                    data = new MultiSheetLinkData()
+                    {
+                        SheetNames = thisCase.ToArray()
+                    };
+                }
+
+                data.Projection = new IdentityProjection();
+                data.RowProducer = new PrimaryKeyRowProducer();
+                
+                data.When = new LinkCondition
+                {
+                    KeyColumnName = condition.Switch,
+                    Value = when,
+                };
 
                 return data;
             }
@@ -225,7 +242,7 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                     if (keyDefinition == null)
                         throw new InvalidOperationException($"Can't find conditional key column '{link.When.KeyColumnName}' in sheet '{sheetDef.Name}'");
 
-                    link.When.KeyColumnIndex = keyDefinition.Index;
+                    link.When.KeyColumnOffsetBasedIndex = keyDefinition.OffsetBasedIndex;
                 }
             }
         }

@@ -18,7 +18,7 @@ namespace Godbert.Controls {
             var sheetDef = column.Header.SheetDefinition;
             Type defType = null;
             if (sheetDef != null)
-                defType = sheetDef.GetValueType(column.Index);
+                defType = sheetDef.GetValueType(column.ColumnBasedIndex);
             var targetType = defType ?? column.Reader.Type;
 
             var header = BuildHeader(column);
@@ -47,7 +47,7 @@ namespace Godbert.Controls {
         private static string BuildHeader(RelationalColumn column) {
             var sb = new StringBuilder();
 
-            sb.Append(column.Index);
+            sb.Append(column.ColumnBasedIndex);
             if (!string.IsNullOrWhiteSpace(column.Name))
                 sb.AppendFormat(": {0}", column.Name);
             sb.Append(Environment.NewLine);
@@ -68,7 +68,7 @@ namespace Godbert.Controls {
         private static Binding CreateCellBinding(RelationalColumn column) {
             return new Binding {
                 Converter = CellConverterInstance,
-                ConverterParameter = column.Index,
+                ConverterParameter = column.ColumnBasedIndex,
                 Mode = BindingMode.OneWay
             };
         }

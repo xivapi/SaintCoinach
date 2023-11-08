@@ -120,6 +120,30 @@ namespace SaintCoinach.Ex {
                 _Columns[i] = CreateColumn(i, buffer, position);
                 position += Length;
             }
+
+            var sortedColumns = _Columns.ToList();
+            sortedColumns.Sort((a, b) =>
+            {
+                var aOffset = a.Offset;
+                var bOffset = b.Offset;
+
+                var aBits = aOffset * 8;
+                var bBits = bOffset * 8;
+
+                var aPosBits = a.Type - 0x19;
+                var bPosBits = b.Type - 0x19;
+
+                if (aPosBits > 0) aBits += aPosBits;
+                if (bPosBits > 0) bBits += bPosBits;
+
+                return aBits.CompareTo(bBits);
+            });
+
+            for (int i = 0; i < sortedColumns.Count; i++)
+            {
+                var remap = sortedColumns[i].ColumnBasedIndex;
+                _Columns[remap].OffsetBasedIndex = i;
+            }
         }
 
         private void ReadPartialFiles(byte[] buffer, ref int position) {

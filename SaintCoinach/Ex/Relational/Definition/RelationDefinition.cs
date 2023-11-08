@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 
 using Newtonsoft.Json.Linq;
+using SharpYaml.Serialization;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class RelationDefinition {
@@ -57,29 +58,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 _SheetDefinitionMap[name] = def;
             }
             return def;
-        }
-
-        #endregion
-
-        #region Serialization
-
-        public JObject ToJson() {
-            return new JObject {
-                ["version"] = Version,
-                ["sheets"] = new JArray(_SheetDefinitions.OrderBy(s => s.Name).Select(s => s.ToJson()))
-            };
-        }
-
-        public static RelationDefinition FromJson(JToken obj) {
-            return new RelationDefinition() {
-                Version = (string)obj["version"],
-                SheetDefinitions = new List<SheetDefinition>(obj["sheets"].Select(j => SheetDefinition.FromJson(j)))
-            };
-        }
-
-        public static RelationDefinition FromJson(string json) {
-            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<JObject>(json);
-            return RelationDefinition.FromJson(obj);
         }
 
         #endregion

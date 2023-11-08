@@ -52,9 +52,18 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
                 Targets = obj["targets"].Select(t => (string)t).ToArray()
             };
         }
+        
+        public static MultiReferenceConverter FromYaml(List<string> fieldTargets)
+        {
+            return new MultiReferenceConverter {
+                Targets = fieldTargets.ToArray()
+            };
+        }
 
         public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion
+
+        
     }
 }

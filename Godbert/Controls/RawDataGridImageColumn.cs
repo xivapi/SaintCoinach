@@ -36,7 +36,7 @@ namespace Godbert.Controls {
             if (ctx == null)
                 return;
 
-            var img = ctx[_Column.Index] as SaintCoinach.Imaging.ImageFile;
+            var img = ctx[_Column.ColumnBasedIndex] as SaintCoinach.Imaging.ImageFile;
             if (img == null)
                 return;
 
@@ -118,8 +118,8 @@ namespace Godbert.Controls {
                 if (ry == null)
                     return 1;
 
-                var vx = rx[Column.Index] as SaintCoinach.Imaging.ImageFile;
-                var vy = ry[Column.Index] as SaintCoinach.Imaging.ImageFile;
+                var vx = rx[Column.ColumnBasedIndex] as SaintCoinach.Imaging.ImageFile;
+                var vy = ry[Column.ColumnBasedIndex] as SaintCoinach.Imaging.ImageFile;
 
                 if (vx == vy)
                     return 0;

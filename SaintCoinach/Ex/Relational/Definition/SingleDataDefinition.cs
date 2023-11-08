@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using SaintCoinach.Ex.Relational.ValueConverters;
 using System;
+using Field = SaintCoinach.Ex.Relational.Definition.EXDSchema.Field;
+using FieldType = SaintCoinach.Ex.Relational.Definition.EXDSchema.FieldType;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class SingleDataDefinition : IDataDefinition {
@@ -54,32 +56,21 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Serialization
 
-        public JObject ToJson() {
-            var obj = new JObject() {
-                ["name"] = Name
-            };
-            if (Converter != null)
-                obj["converter"] = Converter.ToJson();
-            return obj;
-        }
-
         public static SingleDataDefinition FromJson(JToken obj) {
             var converterObj = (JObject)obj["converter"];
             IValueConverter converter = null;
             if (converterObj != null) {
                 var type = (string)converterObj["type"];
                 if (type == "color")
-                    converter = ColorConverter.FromJson(converterObj);
+                    converter = new ColorConverter();
                 else if (type == "generic")
                     converter = GenericReferenceConverter.FromJson(converterObj);
                 else if (type == "icon")
-                    converter = IconConverter.FromJson(converterObj);
+                    converter = new IconConverter();
                 else if (type == "multiref")
                     converter = MultiReferenceConverter.FromJson(converterObj);
                 else if (type == "link")
                     converter = SheetLinkConverter.FromJson(converterObj);
-                else if (type == "tomestone")
-                    converter = TomestoneOrItemReferenceConverter.FromJson(converterObj);
                 else if (type == "complexlink")
                     converter = ComplexLinkConverter.FromJson(converterObj);
                 else
@@ -88,6 +79,49 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
             return new SingleDataDefinition() {
                 Name = (string)obj["name"],
+                Converter = converter
+            };
+        }
+        
+        public static IDataDefinition FromYaml(Field field)
+        {
+            IValueConverter converter = null;
+
+            switch (field.Type)
+            {
+                case FieldType.Array:
+                case FieldType.Scalar:
+                    break;
+                case FieldType.Icon:
+                    converter = new IconConverter();
+                    break;
+                case FieldType.ModelId:
+                    // TODO
+                    break;
+                case FieldType.Color:
+                    converter = new ColorConverter();
+                    break;
+                case FieldType.Link:
+                    if (field.Condition == null)
+                    {
+                        // Single or multi
+                        if (field.Targets.Count == 1) 
+                            converter = SheetLinkConverter.FromYaml(field.Targets[0]);
+                        else
+                            converter = MultiReferenceConverter.FromYaml(field.Targets);
+                    }
+                    else
+                    {
+                        converter = ComplexLinkConverter.FromYaml(field.Condition);
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return new SingleDataDefinition()
+            {
+                Name = field.Name,
                 Converter = converter
             };
         }
