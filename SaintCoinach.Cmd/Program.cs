@@ -5,16 +5,6 @@ using Tharga.Console.Commands;
 using Tharga.Console.Commands.Base;
 
 namespace SaintCoinach.Cmd {
-    class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
-
-        #region IProgress<UpdateProgress> Members
-
-        public void Report(Ex.Relational.Update.UpdateProgress value) {
-            Console.WriteLine(value);
-        }
-
-        #endregion
-    }
     class Program {
         private static void Main(string[] args) {
             var dataPath = Properties.Settings.Default.DataPath;
@@ -37,19 +27,6 @@ namespace SaintCoinach.Cmd {
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
-            
-            if (!realm.IsCurrentVersion) {
-                Console.Write("Update is available, perform update (Y/n)? ");
-                var updateQuery = Console.ReadLine();
-                if (string.IsNullOrEmpty(updateQuery) || string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
-                    var stopWatch = new System.Diagnostics.Stopwatch();
-                    stopWatch.Start();
-                    realm.Update(true, new ConsoleProgressReporter());
-                    stopWatch.Stop();
-                    Console.WriteLine(stopWatch.Elapsed);
-                } else
-                    Console.WriteLine("Skipping update");
-            }
             
             var cns = new Tharga.Console.Consoles.ClientConsole();
             var cmd = new RootCommand(cns);
