@@ -1,9 +1,0 @@
-{
-  "sheet": "ActionParam",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

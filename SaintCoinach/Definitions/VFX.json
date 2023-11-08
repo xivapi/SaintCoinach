@@ -1,9 +1,0 @@
-{
-  "sheet": "VFX",
-  "defaultColumn": "Location",
-  "definitions": [
-    {
-      "name": "Location"
-    }
-  ]
-}

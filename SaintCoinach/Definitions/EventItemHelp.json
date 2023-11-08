@@ -1,9 +1,0 @@
-{
-  "sheet": "EventItemHelp",
-  "defaultColumn": "Description",
-  "definitions": [
-    {
-      "name": "Description"
-    }
-  ]
-}

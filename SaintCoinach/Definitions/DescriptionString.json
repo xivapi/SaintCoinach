@@ -1,9 +1,0 @@
-{
-  "sheet": "DescriptionString",
-  "defaultColumn": "Text",
-  "definitions": [
-    {
-      "name": "Text"
-    }
-  ]
-}

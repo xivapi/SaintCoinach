@@ -1,9 +1,0 @@
-{
-  "sheet": "FCAuthorityCategory",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

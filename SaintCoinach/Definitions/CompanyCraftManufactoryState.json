@@ -1,9 +1,0 @@
-{
-  "sheet": "CompanyCraftManufactoryState",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

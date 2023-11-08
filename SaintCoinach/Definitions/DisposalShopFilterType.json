@@ -1,9 +1,0 @@
-{
-  "sheet": "DisposalShopFilterType",
-  "defaultColumn": "Category",
-  "definitions": [
-    {
-      "name": "Category"
-    }
-  ]
-}

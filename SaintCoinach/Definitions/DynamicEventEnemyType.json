@@ -1,9 +1,0 @@
-{
-  "sheet": "DynamicEventEnemyType",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

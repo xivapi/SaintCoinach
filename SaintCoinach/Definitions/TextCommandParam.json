@@ -1,9 +1,0 @@
-{
-  "sheet": "TextCommandParam",
-  "defaultColumn": "Param",
-  "definitions": [
-    {
-      "name": "Param"
-    }
-  ]
-}

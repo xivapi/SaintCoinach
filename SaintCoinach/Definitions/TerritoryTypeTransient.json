@@ -1,9 +1,0 @@
-{
-  "sheet": "TerritoryTypeTransient",
-  "defaultColumn": "Offset{Z}",
-  "definitions": [
-    {
-      "name": "Offset{Z}"
-    }
-  ]
-}

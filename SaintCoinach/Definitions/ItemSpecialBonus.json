@@ -1,9 +1,0 @@
-{
-  "sheet": "ItemSpecialBonus",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

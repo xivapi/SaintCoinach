@@ -1,9 +1,0 @@
-{
-  "sheet": "SkyIsland2MissionType",
-  "defaultColumn": "Type",
-  "definitions": [
-    {
-      "name": "Type"
-    }
-  ]
-}

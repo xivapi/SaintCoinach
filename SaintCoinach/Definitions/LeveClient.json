@@ -1,9 +1,0 @@
-{
-  "sheet": "LeveClient",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}
