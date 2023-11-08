@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{8A7D65EB-3DE3-4631-B286-CC73A3126002}</ProjectGuid>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,14 +16,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotSquish\DotSquish.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Definitions\*.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Definitions\game.ver">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetZip" Version="1.16.0" />
