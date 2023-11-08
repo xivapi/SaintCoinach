@@ -208,7 +208,6 @@ namespace SaintCoinach {
             foreach (var sheetFileName in Directory.EnumerateFiles(versionDirToUse, "*.yml")) {
                 var json = File.ReadAllText(Path.Combine(sheetFileName), Encoding.UTF8);
                 var sheet = SerializeUtil.Deserialize<Sheet>(json);
-                // sheet = SchemaUtil.PostProcess(sheet);
                 sheet = SchemaUtil.Flatten(sheet);
                 var sheetDef = SheetDefinition.FromYaml(sheet);
                 def.SheetDefinitions.Add(sheetDef);

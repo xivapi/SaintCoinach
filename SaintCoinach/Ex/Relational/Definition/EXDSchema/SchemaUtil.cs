@@ -7,32 +7,6 @@ namespace SaintCoinach.Ex.Relational.Definition.EXDSchema;
 /// </summary>
 public static class SchemaUtil
 {
-	public static int GetColumnCount(Sheet sheet)
-	{
-		var total = 0;
-		foreach (var field in sheet.Fields)
-			total += GetFieldCount(field);
-		return total;
-	}
-
-    // public static Sheet PostProcess(Sheet sheet)
-    // {
-    //     int index = 0;
-    //     for (int i = 0; i < sheet.Fields.Count; i++)
-    //     {
-    //         sheet.Fields[i] = PostProcess(sheet.Fields[i], index);
-    //         index += sheet.Fields[i].FieldCount;
-    //     }
-    //     return sheet;
-    // }
-    //
-    // public static Field PostProcess(Field field, int index)
-    // {
-    //     field.Index = index;
-    //     field.FieldCount = GetFieldCount(field);
-    //     return field;
-    // }
-    
     public static Sheet Flatten(Sheet sheet)
     {
         var fields = new List<Field>();
@@ -45,11 +19,6 @@ public static class SchemaUtil
             sheet.Fields[i].Index = i;
         }
         return sheet;
-    }
-
-    private static string GetFieldName()
-    {
-        return "";
     }
 
     private static void Emit(List<Field> list, Field field, List<string> hierarchy = null)
@@ -114,24 +83,5 @@ public static class SchemaUtil
 			addedField.Name = name;
 		}
 		return addedField;
-	}
-
-	private static int GetFieldCount(Field field)
-	{
-		if (field.Type == FieldType.Array)
-		{
-			var total = 0;
-			if (field.Fields != null)
-			{
-				foreach (var nestedField in field.Fields)
-					total += GetFieldCount(nestedField);
-			}
-			else
-			{
-				total = 1;
-			}
-			return total * field.Count.Value;
-		}
-		return 1;
 	}
 }
