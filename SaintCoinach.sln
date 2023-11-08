@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintCoinach.Graphics.Viewe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godbert", "Godbert\Godbert.csproj", "{6A5DA7FF-791E-4A43-BF65-B6942917F7D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{B609958F-59B9-4128-8500-13FF8C12B201}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +54,8 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38B9D19B-5177-445E-8E3F-6C69A809DAB9}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9681545-4BEA-4FD3-9AB9-A67BD37AB36D} = {B609958F-59B9-4128-8500-13FF8C12B201}
 	EndGlobalSection
 EndGlobal
