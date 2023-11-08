@@ -8,8 +8,8 @@
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
-    <DockPanel LastChildFill="True">
-        <Menu DockPanel.Dock="Top">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" HorizontalAlignment="Stretch">
             <MenuItem Header="Language">
                 <MenuItem Header="English"
                           IsChecked="{Binding Path=IsEnglish, Mode=OneWay}"
@@ -51,6 +51,8 @@
                           IsChecked="{Binding Path=SortByOffsets, Mode=OneWay}"
                           Command="{Binding Path=SortByOffsetsCommand}" />
             </MenuItem>
+            <MenuItem Header="{Binding Realm.GameVersion}" HeaderStringFormat="Game: {0}" IsEnabled="False" HorizontalAlignment="Right"/>
+            <MenuItem Header="{Binding Realm.DefinitionVersion}" HeaderStringFormat="Definition: {0}" IsEnabled="False" HorizontalAlignment="Right" />
         </Menu>
         <TabControl>
             <TabItem Header="Data" DataContext="{Binding Path=Data}">
