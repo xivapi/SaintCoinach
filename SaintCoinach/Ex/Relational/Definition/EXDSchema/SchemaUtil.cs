@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SaintCoinach.Ex.Relational.Definition.EXDSchema;
 
@@ -9,6 +10,8 @@ public static class SchemaUtil
 {
     public static Sheet Flatten(Sheet sheet)
     {
+        if (sheet.Name == "SpecialShop")
+            Debugger.Break();
         var fields = new List<Field>();
         foreach (var field in sheet.Fields)
             Emit(fields, field);
@@ -26,7 +29,7 @@ public static class SchemaUtil
 		if (field.Type != FieldType.Array)
 		{
 			// Single field
-			list.Add(CreateField(field, 0, hierarchy));
+			list.Add(CreateField(field, false, 0, hierarchy));
 		}
 		else if (field.Type == FieldType.Array)
 		{
@@ -35,16 +38,16 @@ public static class SchemaUtil
 			{
 				for (int i = 0; i < field.Count.Value; i++)
 				{
-					list.Add(CreateField(field, i, hierarchy));	
+					list.Add(CreateField(field, true, i, hierarchy));	
 				}
 			}
 			else
 			{
 				for (int i = 0; i < field.Count.Value; i++)
                 {
-                    var usableHierarchy = hierarchy == null ? new List<string>() : new List<string>(hierarchy);
 					foreach (var nestedField in field.Fields)
                     {
+                        var usableHierarchy = hierarchy == null ? new List<string>() : new List<string>(hierarchy);
                         usableHierarchy.Add($"{field.Name}[{i}]");
 						Emit(list, nestedField, usableHierarchy);
 					}	
@@ -53,7 +56,7 @@ public static class SchemaUtil
 		}
 	}
 
-	private static Field CreateField(Field baseField, int index, List<string> hierarchy)
+	private static Field CreateField(Field baseField, bool fieldIsArrayElement, int index, List<string> hierarchy)
 	{
 		var addedField = new Field
 		{
@@ -67,21 +70,27 @@ public static class SchemaUtil
 
 		var name = $"{baseField.Name}";
 		
-		if (index != 0)
+		if (fieldIsArrayElement)
 		{
 			name = $"{name}[{index}]";
 		}
 
 		if (hierarchy != null)
 		{
-			if (!string.IsNullOrEmpty(name))
-				hierarchy.Add(name);
-			addedField.Name = string.Join(".", hierarchy);	
-		}
+			addedField.Name = string.Join(".", hierarchy);
+            if (!string.IsNullOrEmpty(name))
+                addedField.Name += $".{name}";
+        }
 		else
 		{
 			addedField.Name = name;
 		}
 		return addedField;
 	}
+    
+    private static string StripArrayIndices(string name)
+    {
+        var index = name.IndexOf('[');
+        return index == -1 ? name : name[..index];
+    }
 }
