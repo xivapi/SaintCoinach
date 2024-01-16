@@ -43,6 +43,7 @@ namespace SaintCoinach.Graphics.Viewer {
             _CurrentState.LeftButton = buttons.Contains(System.Windows.Forms.MouseButtons.Left);
             _CurrentState.RightButton = buttons.Contains(System.Windows.Forms.MouseButtons.Right);
             _CurrentState.MiddleButton = buttons.Contains(System.Windows.Forms.MouseButtons.Middle);
+            _CurrentState.WheelDelta = _Engine.InputService.GetNextWheelDelta();
         }
 
         #endregion
