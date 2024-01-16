@@ -279,6 +279,10 @@
       "name": "Level{Equip}"
     },
     {
+      "index": 41,
+      "name": "RequiredPvpRank"
+    },
+    {
       "index": 42,
       "name": "EquipRestriction"
     },
