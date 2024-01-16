@@ -1,9 +1,0 @@
-{
-  "sheet": "BannerObtainHintType",
-  "defaultColumn": "Text",
-  "definitions": [
-    {
-      "name": "Text"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "sheet": "Pet",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

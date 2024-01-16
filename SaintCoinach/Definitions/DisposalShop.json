@@ -1,9 +1,0 @@
-{
-  "sheet": "DisposalShop",
-  "defaultColumn": "ShopName",
-  "definitions": [
-    {
-      "name": "ShopName"
-    }
-  ]
-}

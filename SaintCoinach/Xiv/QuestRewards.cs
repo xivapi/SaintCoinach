@@ -13,17 +13,17 @@ namespace SaintCoinach.Xiv {
 
         #region Properties
         public Quest Quest { get { return _Quest; } }
-        public ClassJob ClassJob { get { return Quest.As<ClassJob>("ClassJob{Unlock}"); } }
+        public ClassJob ClassJob { get { return Quest.As<ClassJob>("ClassJobUnlock"); } }
         public int Gil { get { return Quest.AsInt32("GilReward"); } }
         public int ExpFactor { get { return Quest.AsInt32("ExpFactor"); } }
         public int GrandCompanySeals { get { return Quest.AsInt32("GCSeals"); } }
         public IEnumerable<QuestRewardItemGroup> Items { get { return _Items ?? (_Items = BuildItems()); } }
-        public Emote Emote { get { return Quest.As<Emote>("Emote{Reward}"); } }
-        public Action Action { get { return Quest.As<Action>("Action{Reward}"); } }
-        public GeneralAction GeneralAction { get { return Quest.As<GeneralAction>("GeneralAction{Reward}"); } }
-        public InstanceContent InstanceContent { get { return Quest.As<InstanceContent>("InstanceContent{Unlock}"); } }
+        public Emote Emote { get { return Quest.As<Emote>("EmoteReward"); } }
+        public Action Action { get { return Quest.As<Action>("ActionReward"); } }
+        public GeneralAction GeneralAction { get { return Quest.As<GeneralAction>("GeneralActionReward"); } }
+        public InstanceContent InstanceContent { get { return Quest.As<InstanceContent>("InstanceContentUnlock"); } }
         public int Reputation { get { return Quest.AsInt32("ReputationReward"); } }
-        public QuestRewardOther QuestRewardOther { get { return Quest.As<QuestRewardOther>("Other{Reward}"); } }
+        public QuestRewardOther QuestRewardOther { get { return Quest.As<QuestRewardOther>("OtherReward"); } }
         #endregion
 
         #region Constructors
@@ -66,9 +66,9 @@ namespace SaintCoinach.Xiv {
             var catalysts = BuildItemGroup(QuestRewardGroupType.All, "Item{Catalyst}", "ItemCount{Catalyst}", null, null, CatalystCount);
             groups.Add(catalysts);
 
-            var tomestoneCount = Quest.AsInt32("TomestoneCount{Reward}");
+            var tomestoneCount = Quest.AsInt32("TomestoneCountReward");
             if (tomestoneCount > 0) {
-                var tomestoneItem = Quest.As<Item>("Tomestone{Reward}");
+                var tomestoneItem = Quest.As<Item>("TomestoneReward");
                 if (tomestoneItem != null)
                 {
                     groups.Add(
@@ -80,9 +80,9 @@ namespace SaintCoinach.Xiv {
 
             if (groupsType == 3) {
                 {
-                    var mItem = Quest.As<Item>("Item{Reward}", 0);
-                    var mCount = Quest.AsInt32("ItemCount{Reward}", 0);
-                    var mStain = Quest.As<Stain>("Stain{Reward}", 0);
+                    var mItem = Quest.As<Item>("ItemReward", 0);
+                    var mCount = Quest.AsInt32("ItemCountReward", 0);
+                    var mStain = Quest.As<Stain>("StainReward", 0);
 
                     groups.Add(
                         new QuestRewardItemGroup(
@@ -90,9 +90,9 @@ namespace SaintCoinach.Xiv {
                             QuestRewardGroupType.GenderSpecificMale, null));
                 }
                 {
-                    var fItem = Quest.As<Item>("Item{Reward}", 1);
-                    var fCount = Quest.AsInt32("ItemCount{Reward}", 1);
-                    var fStain = Quest.As<Stain>("Stain{Reward}", 1);
+                    var fItem = Quest.As<Item>("ItemReward", 1);
+                    var fCount = Quest.AsInt32("ItemCountReward", 1);
+                    var fStain = Quest.As<Stain>("StainReward", 1);
 
                     groups.Add(
                         new QuestRewardItemGroup(
@@ -101,7 +101,7 @@ namespace SaintCoinach.Xiv {
                 }
             }
             else if (groupsType == 6) {
-                groups.AddRange(BuildClassQuestJobRewardItemGroups("Item{Reward}", Group1Count));
+                groups.AddRange(BuildClassQuestJobRewardItemGroups("ItemReward", Group1Count));
                 groups.Add(BuildItemGroup(t2, "OptionalItem{Reward}", "OptionalItemCount{Reward}", "OptionalItemStain{Reward}", "OptionalItemIsHQ{Reward}", Group2Count));
             }
             else if (groupsType == 7) {
@@ -109,7 +109,7 @@ namespace SaintCoinach.Xiv {
                 var item = beastRankBonus.As<Item>();
                 var counts = new List<int>();
                 for (var i = 0; i < 8; i++)
-                    counts.Add(beastRankBonus.AsInt32("Item{Quantity}", i));
+                    counts.Add(beastRankBonus.AsInt32("ItemQuantity", i));
                 groups.Add(new QuestRewardItemGroup(new[] { new QuestRewardItem(item, counts.Distinct(), null, false) }, QuestRewardGroupType.BeastRankBonus, null));
             } else {
                 groups.Add(BuildItemGroup(t1, "Item{Reward}", "ItemCount{Reward}", "Stain{Reward}", null, Group1Count));

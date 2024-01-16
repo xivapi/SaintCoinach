@@ -44,8 +44,8 @@ namespace SaintCoinach.Xiv {
             var maps = Sheet.Collection.GetSheet<Map>();
 
             for (var i = 0; i < Count; ++i) {
-                var zone = As<PlaceName>("PlaceName{Zone}", i);
-                var location = As<PlaceName>("PlaceName{Location}", i);
+                var zone = As<PlaceName>("PlaceNameZone", i);
+                var location = As<PlaceName>("PlaceNameLocation", i);
 
                 if (zone.Key != 0)
                     locations.Add(new Location(zone, location));

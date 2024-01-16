@@ -5,7 +5,7 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
-        public Text.XivString NameWithoutArticle { get { return AsString("Name{NoArticle}"); } }
+        public Text.XivString NameWithoutArticle { get { return AsString("NameNoArticle"); } }
 
         #endregion
 

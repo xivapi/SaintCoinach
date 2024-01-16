@@ -17,10 +17,10 @@ namespace SaintCoinach.Xiv {
         public bool CanTargetDead => AsBoolean("CanTargetDead");
         public bool TargetArea => AsBoolean("TargetArea");
         public int EffectRange => AsInt32("EffectRange");
-        public Action ComboFrom => As<Action>("Action{Combo}");
-        public Status GainedStatus => As<Status>("Status{GainSelf}");
-        public ActionCostType CostType => (ActionCostType)As<byte>("PrimaryCost{Type}");
-        public int Cost => AsInt32("PrimaryCost{Value}");
+        public Action ComboFrom => As<Action>("ActionCombo");
+        public Status GainedStatus => As<Status>("StatusGainSelf");
+        public ActionCostType CostType => (ActionCostType)As<byte>("PrimaryCostType");
+        public int Cost => AsInt32("PrimaryCostValue");
 
         public TimeSpan CastTime {
             get { return TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond * 100 * AsInt32("Cast<100ms>")); }

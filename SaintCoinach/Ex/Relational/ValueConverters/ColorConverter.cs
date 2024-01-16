@@ -37,16 +37,6 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
 
         #region Serialization
 
-        public JObject ToJson() {
-            return new JObject() {
-                ["type"] = "color"
-            };
-        }
-
-        public static ColorConverter FromJson(JToken obj) {
-            return new ColorConverter();
-        }
-
         public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion

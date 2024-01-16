@@ -1,20 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Tharga.Console;
 using Tharga.Console.Commands;
 using Tharga.Console.Commands.Base;
 
 namespace SaintCoinach.Cmd {
-    class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
-
-        #region IProgress<UpdateProgress> Members
-
-        public void Report(Ex.Relational.Update.UpdateProgress value) {
-            Console.WriteLine(value);
-        }
-
-        #endregion
-    }
     class Program {
         private static void Main(string[] args) {
             var dataPath = Properties.Settings.Default.DataPath;
@@ -32,23 +23,23 @@ namespace SaintCoinach.Cmd {
                 return;
             }
 
-            var realm = new ARealmReversed(dataPath, @"SaintCoinach.History.zip", Ex.Language.English, @"app_data.sqlite");
+            var realm = new ARealmReversed(dataPath, Ex.Language.English, @"app_data.sqlite");
             realm.Packs.GetPack(new IO.PackIdentifier("exd", IO.PackIdentifier.DefaultExpansion, 0)).KeepInMemory = true;
 
             Console.WriteLine("Game version: {0}", realm.GameVersion);
             Console.WriteLine("Definition version: {0}", realm.DefinitionVersion);
             
-            if (!realm.IsCurrentVersion) {
-                Console.Write("Update is available, perform update (Y/n)? ");
+            if (realm.IsUpdateAvailable()) {
+                Console.Write("Update is available, download update (Y/n)? ");
                 var updateQuery = Console.ReadLine();
                 if (string.IsNullOrEmpty(updateQuery) || string.Equals("y", updateQuery, StringComparison.OrdinalIgnoreCase)) {
-                    var stopWatch = new System.Diagnostics.Stopwatch();
-                    stopWatch.Start();
-                    realm.Update(true, new ConsoleProgressReporter());
-                    stopWatch.Stop();
-                    Console.WriteLine(stopWatch.Elapsed);
+                    var time = Stopwatch.StartNew();
+                    realm.UpdateDefinition();
+                    Console.WriteLine($"Updated in {TimeSpan.FromMilliseconds(time.ElapsedMilliseconds):c}");
+                    Console.WriteLine($"Please restart the application.");
+                    return;
                 } else
-                    Console.WriteLine("Skipping update");
+                    Console.WriteLine("Skipping update.");
             }
             
             var cns = new Tharga.Console.Consoles.ClientConsole();

@@ -31,13 +31,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the minor order of the current category.
         /// </summary>
         /// <value>The minor order of the current category.</value>
-        public int MinorOrder { get { return AsInt32("Order{Minor}"); } }
+        public int MinorOrder { get { return AsInt32("OrderMinor"); } }
 
         /// <summary>
         ///     Gets the major order of the current category.
         /// </summary>
         /// <value>The major order of the current category.</value>
-        public int MajorOrder { get { return AsInt32("Order{Major}"); } }
+        public int MajorOrder { get { return AsInt32("OrderMajor"); } }
 
         #endregion
 

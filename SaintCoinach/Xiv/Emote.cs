@@ -8,8 +8,8 @@ namespace SaintCoinach.Xiv {
         public Text.XivString Name { get { return AsString("Name"); } }
         public EmoteCategory EmoteCategory { get { return As<EmoteCategory>(); } }
         public ImageFile Icon { get { return AsImage("Icon"); } }
-        public LogMessage TargetedLogMessage { get { return As<LogMessage>("LogMessage{Targeted}"); } }
-        public LogMessage UntargetedLogMessage { get { return As<LogMessage>("LogMessage{Untargeted}"); } }
+        public LogMessage TargetedLogMessage { get { return As<LogMessage>("LogMessageTargeted"); } }
+        public LogMessage UntargetedLogMessage { get { return As<LogMessage>("LogMessageUntargeted"); } }
 
         #endregion
 

@@ -1,9 +1,0 @@
-{
-  "sheet": "TripleTriadCardType",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

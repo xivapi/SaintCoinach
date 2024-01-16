@@ -30,13 +30,13 @@ namespace SaintCoinach.Xiv.Items {
         ///     Gets the physical defense of the current item.
         /// </summary>
         /// <value>The physical defense of the current item.</value>
-        public int PhysicalDefense { get { return AsInt32("Defense{Phys}"); } }
+        public int PhysicalDefense { get { return AsInt32("DefensePhys"); } }
 
         /// <summary>
         ///     Gets the magical defense of the current item.
         /// </summary>
         /// <value>The magical defense of the current item.</value>
-        public int MagicDefense { get { return AsInt32("Defense{Mag}"); } }
+        public int MagicDefense { get { return AsInt32("DefenseMag"); } }
 
         #endregion
 

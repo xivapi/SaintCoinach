@@ -43,6 +43,13 @@ namespace SaintCoinach.Ex.Relational.ValueConverters {
             };
         }
 
+        public static SheetLinkConverter FromYaml(string targetName)
+        {
+            return new SheetLinkConverter {
+                TargetSheet = targetName
+            };
+        }
+
         public void ResolveReferences(SheetDefinition sheetDef) { }
 
         #endregion

@@ -12,10 +12,10 @@ namespace SaintCoinach.Xiv {
         public Text.XivString StatusText1 { get { return AsString("StatusText", 1); } }
         public Text.XivString StatusText2 { get { return AsString("StatusText", 2); } }
         public int ClassJobLevel { get { return AsInt32("ClassJobLevel"); } }
-        public int MaximumClassJobLevel { get { return AsInt32("ClassJobLevel{Max}"); } }
+        public int MaximumClAssJobLevel { get { return AsInt32("ClassJobLevelMax"); } }
         public EventItem EventItem { get { return As<EventItem>(); } }
-        public ImageFile ObjectiveIcon { get { return AsImage("Icon{Objective}"); } }
-        public ImageFile MapIcon { get { return AsImage("Icon{Map}"); } }
+        public ImageFile ObjectiveIcon { get { return AsImage("IconObjective"); } }
+        public ImageFile MapIcon { get { return AsImage("IconMap"); } }
 
         #endregion
 

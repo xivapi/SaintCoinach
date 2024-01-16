@@ -96,7 +96,7 @@ namespace SaintCoinach.Xiv {
 
             var targets = new Target[Count];
             for (var i = 0; i < targets.Length; ++i) {
-                var monster = As<MonsterNoteTarget>("MonsterNoteTarget{Common}", i);
+                var monster = As<MonsterNoteTarget>("MonsterNoteTargetCommon", i);
                 var count = AsInt32("MonsterCount", i);
 
                 targets[i] = new Target(monster, count);
@@ -110,7 +110,7 @@ namespace SaintCoinach.Xiv {
 
             var targets = new MonsterNoteTarget[Count];
             for (var i = 0; i < targets.Length; ++i)
-                targets[i] = As<MonsterNoteTarget>("MonsterNoteTarget{NM}", i);
+                targets[i] = As<MonsterNoteTarget>("MonsterNoteTargetNM", i);
 
             return targets;
         }
@@ -121,7 +121,7 @@ namespace SaintCoinach.Xiv {
             var fates = new FateTarget[Count];
             for (var i = 0; i < fates.Length; ++i) {
                 var fate = As<Fate>("Fate", i);
-                var place = As<PlaceName>("PlaceName{Fate}", i);
+                var place = As<PlaceName>("PlaceNameFate", i);
 
                 fates[i] = new FateTarget(fate, place);
             }

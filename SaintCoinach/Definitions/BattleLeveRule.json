@@ -1,9 +1,0 @@
-{
-  "sheet": "BattleLeveRule",
-  "defaultColumn": "Rule",
-  "definitions": [
-    {
-      "name": "Rule"
-    }
-  ]
-}

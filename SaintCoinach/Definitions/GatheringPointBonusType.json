@@ -1,9 +1,0 @@
-{
-  "sheet": "GatheringPointBonusType",
-  "defaultColumn": "Text",
-  "definitions": [
-    {
-      "name": "Text"
-    }
-  ]
-}

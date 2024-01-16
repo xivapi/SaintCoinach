@@ -1,9 +1,0 @@
-{
-  "sheet": "GCShopItemCategory",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

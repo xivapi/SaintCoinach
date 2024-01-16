@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SaintCoinach.Ex.Relational.Definition.EXDSchema;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class GroupDataDefinition : IDataDefinition {
@@ -115,16 +116,15 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Serialization
 
-        public JObject ToJson() {
-            return new JObject() {
-                ["type"] = "group",
-                ["members"] = new JArray(_Members.Select(m => m.ToJson())),
-            };
-        }
-
         public static GroupDataDefinition FromJson(JToken obj) {
             return new GroupDataDefinition() {
                 Members = obj["members"].Select(m => DataDefinitionSerializer.FromJson(m)).ToList()
+            };
+        }
+        
+        public static GroupDataDefinition FromYaml(Field field) {
+            return new GroupDataDefinition() {
+                Members = field.Fields.Select(m => DataDefinitionSerializer.FromYaml(m)).ToList()
             };
         }
 

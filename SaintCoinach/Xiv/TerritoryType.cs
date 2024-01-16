@@ -57,13 +57,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="PlaceName" /> of the region the current map is in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the region the current map is in.</value>
-        public PlaceName RegionPlaceName { get { return As<PlaceName>("PlaceName{Region}"); } }
+        public PlaceName RegionPlaceName { get { return As<PlaceName>("PlaceNameRegion"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the zone the current territory is in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the zone the current territory is in.</value>
-        public PlaceName ZonePlaceName { get { return As<PlaceName>("PlaceName{Zone}"); } }
+        public PlaceName ZonePlaceName { get { return As<PlaceName>("PlaceNameZone"); } }
 
         /// <summary>
         ///     Gets the <see cref="WeatherRate" /> of the current territory.

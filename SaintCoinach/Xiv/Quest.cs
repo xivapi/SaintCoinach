@@ -42,7 +42,7 @@ namespace SaintCoinach.Xiv {
         public JournalGenre JournalGenre { get { return As<JournalGenre>(); } }
 
         public Imaging.ImageFile Icon { get { return AsImage("Icon"); } }
-        public Imaging.ImageFile SpecialIcon { get { return AsImage("Icon{Special}"); } }
+        public Imaging.ImageFile SpecialIcon { get { return AsImage("IconSpecial"); } }
 
         public int SortKey { get { return AsInt32("SortKey"); } }
 

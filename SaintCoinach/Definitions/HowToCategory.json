@@ -1,9 +1,0 @@
-{
-  "sheet": "HowToCategory",
-  "defaultColumn": "Category",
-  "definitions": [
-    {
-      "name": "Category"
-    }
-  ]
-}

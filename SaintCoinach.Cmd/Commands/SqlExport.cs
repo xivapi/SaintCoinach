@@ -115,7 +115,7 @@ namespace SaintCoinach.Cmd.Commands
 
             foreach (var col in sheet.Header.Columns.Cast<RelationalColumn>())
             {
-                string name = string.IsNullOrEmpty(col.Name) ? $"unk{col.Index}" : col.Name;
+                string name = string.IsNullOrEmpty(col.Name) ? $"unk{col.ColumnBasedIndex}" : col.Name;
                 
                 cols.Add($"`{name}`");
             }
@@ -144,7 +144,7 @@ namespace SaintCoinach.Cmd.Commands
 
             foreach (var col in sheet.Header.Columns.Cast<RelationalColumn>())
             {
-                string name = string.IsNullOrEmpty(col.Name) ? $"unk{col.Index}" : col.Name;
+                string name = string.IsNullOrEmpty(col.Name) ? $"unk{col.ColumnBasedIndex}" : col.Name;
                 
                 cols.Add($"`{name}`");
             }
@@ -208,7 +208,7 @@ namespace SaintCoinach.Cmd.Commands
                 {
                     var colName = column.Name;
                     if (string.IsNullOrEmpty(colName))
-                        colName = $"unk{column.Index}";
+                        colName = $"unk{column.ColumnBasedIndex}";
                     
                     sb.AppendLine($"  `{colName}` {GetSqlType(column.Reader.Type)},");
                 }

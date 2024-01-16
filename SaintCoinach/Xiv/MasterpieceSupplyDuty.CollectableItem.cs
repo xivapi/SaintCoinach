@@ -28,12 +28,12 @@ namespace SaintCoinach.Xiv {
                 MasterpieceSupplyDuty = duty;
                 RequiredItem = duty.As<Item>("RequiredItem", index);
                 Quantity = duty.AsInt32("Quantity", index);
-                CollectabilityHighBonus = duty.AsInt32("Collectability{HighBonus}", index);
-                CollectabilityBonus = duty.AsInt32("Collectability{Bonus}", index);
-                CollectabilityBase = duty.AsInt32("Collectability{Base}", index);
+                CollectabilityHighBonus = duty.AsInt32("CollectabilityHighBonus", index);
+                CollectabilityBonus = duty.AsInt32("CollectabilityBonus", index);
+                CollectabilityBase = duty.AsInt32("CollectabilityBase", index);
                 ExpModifier = duty.AsInt32("ExpModifier", index);
-                ScripRewards = duty.AsInt32("Reward{Scrips}", index);
-                MaxClassJobLevel = duty.AsInt32("ClassJobLevel{Max}", index);
+                ScripRewards = duty.AsInt32("RewardScrips", index);
+                MaxClassJobLevel = duty.AsInt32("ClassJobLevelMax", index);
                 Stars = duty.AsInt32("Stars", index);
 
                 var bonusMultiplierRow = duty.As<IXivRow>("BonusMultiplier", index);

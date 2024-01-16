@@ -3,31 +3,31 @@
 namespace SaintCoinach.Xiv {
     public class NpcEquip : XivRow {
         #region Properties
-        public Quad ModelMain { get { return AsQuad("Model{MainHand}"); } }
-        public Stain DyeMain { get { return As<Stain>("Dye{MainHand}"); } }
+        public Quad ModelMain { get { return AsQuad("ModelMainHand"); } }
+        public Stain DyeMain { get { return As<Stain>("DyeMainHand"); } }
 
-        public Quad ModelSub { get { return AsQuad("Model{OffHand}"); } }
-        public Stain DyeOff { get { return As<Stain>("Dye{OffHand}"); } }
-        public int[] ModelHead { get { return AsIntArray("Model{Head}"); } }
-        public int[] ModelBody { get { return AsIntArray("Model{Body}"); } }
-        public int[] ModelHands { get { return AsIntArray("Model{Hands}"); } }
-        public int[] ModelLegs { get { return AsIntArray("Model{Legs}"); } }
-        public int[] ModelFeet { get { return AsIntArray("Model{Feet}"); } }
-        public int[] ModelEars { get { return AsIntArray("Model{Ears}"); } }
-        public int[] ModelNeck { get { return AsIntArray("Model{Neck}"); } }
-        public int[] ModelWrists { get { return AsIntArray("Model{Wrists}"); } }
-        public int[] ModelLeftRing { get { return AsIntArray("Model{LeftRing}"); } }
-        public int[] ModelRightRing { get { return AsIntArray("Model{RightRing}"); } }
-        public Stain DyeHead { get { return As<Stain>("Dye{Head}"); } }
-        public Stain DyeBody { get { return As<Stain>("Dye{Body}"); } }
-        public Stain DyeHands { get { return As<Stain>("Dye{Hands}"); } }
-        public Stain DyeLegs { get { return As<Stain>("Dye{Legs}"); } }
-        public Stain DyeFeet { get { return As<Stain>("Dye{Feet}"); } }
-        public Stain DyeEars { get { return As<Stain>("Dye{Ears}"); } }
-        public Stain DyeNeck { get { return As<Stain>("Dye{Neck}"); } }
-        public Stain DyeWrists { get { return As<Stain>("Dye{Wrists}"); } }
-        public Stain DyeLeftRing { get { return As<Stain>("Dye{LeftRing}"); } }
-        public Stain DyeRightRing { get { return As<Stain>("Dye{RightRing}"); } }
+        public Quad ModelSub { get { return AsQuad("ModelOffHand"); } }
+        public Stain DyeOff { get { return As<Stain>("DyeOffHand"); } }
+        public int[] ModelHead { get { return AsIntArray("ModelHead"); } }
+        public int[] ModelBody { get { return AsIntArray("ModelBody"); } }
+        public int[] ModelHands { get { return AsIntArray("ModelHands"); } }
+        public int[] ModelLegs { get { return AsIntArray("ModelLegs"); } }
+        public int[] ModelFeet { get { return AsIntArray("ModelFeet"); } }
+        public int[] ModelEars { get { return AsIntArray("ModelEars"); } }
+        public int[] ModelNeck { get { return AsIntArray("ModelNeck"); } }
+        public int[] ModelWrists { get { return AsIntArray("ModelWrists"); } }
+        public int[] ModelLeftRing { get { return AsIntArray("ModelLeftRing"); } }
+        public int[] ModelRightRing { get { return AsIntArray("ModelRightRing"); } }
+        public Stain DyeHead { get { return As<Stain>("DyeHead"); } }
+        public Stain DyeBody { get { return As<Stain>("DyeBody"); } }
+        public Stain DyeHands { get { return As<Stain>("DyeHands"); } }
+        public Stain DyeLegs { get { return As<Stain>("DyeLegs"); } }
+        public Stain DyeFeet { get { return As<Stain>("DyeFeet"); } }
+        public Stain DyeEars { get { return As<Stain>("DyeEars"); } }
+        public Stain DyeNeck { get { return As<Stain>("DyeNeck"); } }
+        public Stain DyeWrists { get { return As<Stain>("DyeWrists"); } }
+        public Stain DyeLeftRing { get { return As<Stain>("DyeLeftRing"); } }
+        public Stain DyeRightRing { get { return As<Stain>("DyeRightRing"); } }
 
         #endregion
         #region Constructors

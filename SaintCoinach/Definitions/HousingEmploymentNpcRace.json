@@ -1,9 +1,0 @@
-{
-  "sheet": "HousingEmploymentNpcRace",
-  "defaultColumn": "Race",
-  "definitions": [
-    {
-      "name": "Race"
-    }
-  ]
-}

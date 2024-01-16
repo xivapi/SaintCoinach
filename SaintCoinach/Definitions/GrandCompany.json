@@ -1,9 +1,0 @@
-{
-  "sheet": "GrandCompany",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

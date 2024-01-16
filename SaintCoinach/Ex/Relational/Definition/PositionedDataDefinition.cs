@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using Field = SaintCoinach.Ex.Relational.Definition.EXDSchema.Field;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class PositionedDataDefinition {
@@ -9,24 +10,25 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         public int Length { get { return InnerDefinition == null ? 0 : InnerDefinition.Length; } }
 
-        public int Index { get; set; }
+        public int ColumnBasedIndex { get; set; }
+        public int OffsetBasedIndex { get; private set; }
 
         #endregion
 
         public PositionedDataDefinition Clone() {
             var clone = new PositionedDataDefinition {
-                Index = Index,
+                ColumnBasedIndex = ColumnBasedIndex,
+                OffsetBasedIndex = OffsetBasedIndex,
                 InnerDefinition = InnerDefinition.Clone()
             };
-
-
+            
             return clone;
         }
 
         #region Things
 
         public object Convert(IDataRow row, object value, int index) {
-            var innerIndex = index - Index;
+            var innerIndex = index - ColumnBasedIndex;
             if (innerIndex < 0 || innerIndex >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
@@ -34,7 +36,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public string GetName(int index) {
-            var innerIndex = index - Index;
+            var innerIndex = index - ColumnBasedIndex;
             if (innerIndex < 0 || innerIndex >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
@@ -42,7 +44,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public string GetValueTypeName(int index) {
-            var innerIndex = index - Index;
+            var innerIndex = index - ColumnBasedIndex;
             if (innerIndex < 0 || innerIndex >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
@@ -50,7 +52,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         }
 
         public Type GetValueType(int index) {
-            var innerIndex = index - Index;
+            var innerIndex = index - ColumnBasedIndex;
             if (innerIndex < 0 || innerIndex >= Length)
                 throw new ArgumentOutOfRangeException("index");
 
@@ -61,17 +63,17 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Serialization
 
-        public JObject ToJson() {
-            var obj = InnerDefinition.ToJson();
-            if (Index > 0)
-                obj.AddFirst(new JProperty("index", Index));
-            return obj;
-        }
-
         public static PositionedDataDefinition FromJson(JToken obj) {
             return new PositionedDataDefinition() {
-                Index = (int?)obj["index"] ?? 0,
+                ColumnBasedIndex = (int?)obj["index"] ?? 0,
                 InnerDefinition = DataDefinitionSerializer.FromJson(obj)
+            };
+        }
+        
+        public static PositionedDataDefinition FromYaml(Field field) {
+            return new PositionedDataDefinition() {
+                OffsetBasedIndex = field.Index,
+                InnerDefinition = DataDefinitionSerializer.FromYaml(field)
             };
         }
 

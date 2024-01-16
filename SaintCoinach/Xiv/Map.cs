@@ -49,18 +49,18 @@ namespace SaintCoinach.Xiv {
         /// <summary>
         ///     Gets the X value offset of the current map.
         /// </summary>
-        public int OffsetX { get { return AsInt32("Offset{X}"); } }
+        public int OffsetX { get { return AsInt32("OffsetX"); } }
 
         /// <summary>
         ///     Gets the Y value offset of the current map.
         /// </summary>
-        public int OffsetY { get { return AsInt32("Offset{Y}"); } }
+        public int OffsetY { get { return AsInt32("OffsetY"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of the region the current map is in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the region the current map is in.</value>
-        public PlaceName RegionPlaceName { get { return As<PlaceName>("PlaceName{Region}"); } }
+        public PlaceName RegionPlaceName { get { return As<PlaceName>("PlaceNameRegion"); } }
 
         /// <summary>
         ///     Gets the <see cref="PlaceName" /> of current map is in.
@@ -72,7 +72,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="PlaceName" /> of the more specific location the current map is in.
         /// </summary>
         /// <value>The <see cref="PlaceName" /> of the more specific location the current map is in.</value>
-        public PlaceName LocationPlaceName { get { return As<PlaceName>("PlaceName{Sub}"); } }
+        public PlaceName LocationPlaceName { get { return As<PlaceName>("PlaceNameSub"); } }
 
         /// <summary>
         ///     Gets the <see cref="TerritoryType" /> for the current map.

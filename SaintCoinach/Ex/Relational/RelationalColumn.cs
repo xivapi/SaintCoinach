@@ -3,7 +3,7 @@
 namespace SaintCoinach.Ex.Relational {
     public class RelationalColumn : Column {
         private bool _hasDefinition;
-        private PositionedDataDefinition _Definition;
+        private PositionedDataDefinition _definition;
 
         #region Properties
 
@@ -12,21 +12,21 @@ namespace SaintCoinach.Ex.Relational {
         public PositionedDataDefinition Definition {
             get {
                 if (_hasDefinition)
-                    return _Definition;
+                    return _definition;
 
                 if (Header.SheetDefinition != null) {
-                    if (Header.SheetDefinition.TryGetDefinition(Index, out var definition))
-                        _Definition = definition;
+                    if (Header.SheetDefinition.TryGetDefinition(ColumnBasedIndex, out var definition))
+                        _definition = definition;
                 }
 
                 _hasDefinition = true;
-                return _Definition;
+                return _definition;
             }
         }
 
         public string Name {
             get {
-                return Header.SheetDefinition?.GetColumnName(Index);
+                return Header.SheetDefinition?.GetColumnName(ColumnBasedIndex);
             }
         }
 
@@ -35,7 +35,7 @@ namespace SaintCoinach.Ex.Relational {
                 var def = Header.SheetDefinition;
                 if (def == null) return base.ValueType;
 
-                var t = def.GetValueTypeName(Index);
+                var t = def.GetValueTypeName(ColumnBasedIndex);
                 return t ?? base.ValueType;
             }
         }
@@ -46,8 +46,8 @@ namespace SaintCoinach.Ex.Relational {
 
         #region Constructor
 
-        public RelationalColumn(RelationalHeader header, int index, byte[] buffer, int offset)
-            : base(header, index, buffer, offset) { }
+        public RelationalColumn(RelationalHeader header, int columnBasedIndex, byte[] buffer, int offset)
+            : base(header, columnBasedIndex, buffer, offset) { }
 
         #endregion
 
@@ -59,20 +59,20 @@ namespace SaintCoinach.Ex.Relational {
             var baseVal = base.Read(buffer, row);
 
             var def = Definition;
-            return def != null ? def.Convert(row, baseVal, Index) : baseVal;
+            return def != null ? def.Convert(row, baseVal, ColumnBasedIndex) : baseVal;
         }
 
         public override object Read(byte[] buffer, IDataRow row, int offset) {
             var baseVal = base.Read(buffer, row, offset);
 
             var def = Definition;
-            return def != null ? def.Convert(row, baseVal, Index) : baseVal;
+            return def != null ? def.Convert(row, baseVal, ColumnBasedIndex) : baseVal;
         }
 
         #endregion
 
         public override string ToString() {
-            return Name ?? Index.ToString();
+            return Name ?? ColumnBasedIndex.ToString();
         }
     }
 }

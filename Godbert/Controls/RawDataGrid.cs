@@ -132,7 +132,7 @@ namespace Godbert.Controls {
                         cellHeader.Column is RawDataGridColorColumn)
                     {
 
-                        var columnIndex = ((IRawDataColumn) cellHeader.Column).Column.Index;
+                        var columnIndex = ((IRawDataColumn) cellHeader.Column).Column.ColumnBasedIndex;
                         ColumnSetToRaw[columnIndex] = !ColumnSetToRaw[columnIndex];
                         Items.Refresh();
                         e.Handled = true;
@@ -167,7 +167,7 @@ namespace Godbert.Controls {
                     Key = row.Key,
                     RowDefault = row.ToString(),
                     ColumnName = dataColumn.Column?.Name,
-                    ColumnIndex = dataColumn.Column?.Index
+                    ColumnIndex = dataColumn.Column?.ColumnBasedIndex
                 };
 
                 if (dataViewModel.Bookmarks.Contains(bookmark)) {
@@ -236,7 +236,7 @@ namespace Godbert.Controls {
 
             DataGridColumn selectedColumn = null;
             if (columnIndex != null)
-                selectedColumn = (DataGridColumn)this.Columns.OfType<IRawDataColumn>().FirstOrDefault(c => c.Column?.Index == columnIndex);
+                selectedColumn = (DataGridColumn)this.Columns.OfType<IRawDataColumn>().FirstOrDefault(c => c.Column?.ColumnBasedIndex == columnIndex);
 
             this.ScrollIntoView(this.SelectedItem, selectedColumn);
         }

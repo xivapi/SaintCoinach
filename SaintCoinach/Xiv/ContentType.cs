@@ -27,7 +27,7 @@ namespace SaintCoinach.Xiv {
         /// Gets the icon for the current content show in the duty finder.
         /// </summary>
         /// <value>The icon for the current content show in the duty finder.</value>
-        public ImageFile DutyFinderIcon { get { return AsImage("Icon{DutyFinder}"); } }
+        public ImageFile DutyFinderIcon { get { return AsImage("IconDutyFinder"); } }
 
         #endregion
 

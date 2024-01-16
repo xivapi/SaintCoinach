@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using SaintCoinach.Ex.Relational.Definition.EXDSchema;
+using Field = SaintCoinach.Ex.Relational.Definition.EXDSchema.Field;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public interface IDataDefinition {
@@ -25,8 +27,6 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         IDataDefinition Clone();
 
-        JObject ToJson();
-
         void ResolveReferences(SheetDefinition sheetDef);
     }
 
@@ -41,6 +41,29 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 return RepeatDataDefinition.FromJson(obj);
             else
                 throw new ArgumentException("Invalid definition type.", "obj");
+        }
+        
+        public static IDataDefinition FromYaml(Field field, bool isFromRepeat = false)
+        {
+            switch (field.Type)
+            {
+                case FieldType.Array:
+                    if (isFromRepeat) {
+                        if (field.Fields == null || field.Fields.Count == 1)
+                            return SingleDataDefinition.FromYaml(field);
+                        if (field.Fields.Count > 1)
+                            return GroupDataDefinition.FromYaml(field);
+                    }
+                    return RepeatDataDefinition.FromYaml(field);
+                case FieldType.Scalar:
+                case FieldType.Icon:
+                case FieldType.ModelId:
+                case FieldType.Color:
+                case FieldType.Link:
+                    return SingleDataDefinition.FromYaml(field);
+                default:
+                    throw new ArgumentException("Invalid definition type.", "obj");
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="ItemLevel" /> of the current item.
         /// </summary>
         /// <value>The <see cref="ItemLevel" /> of the current item.</value>
-        public ItemLevel ItemLevel { get { return As<ItemLevel>("Level{Item}"); } }
+        public ItemLevel ItemLevel { get { return As<ItemLevel>("LevelItem"); } }
 
         /// <summary>
         ///     Gets a value indicating whether the current item is unique.
@@ -118,13 +118,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the price NPCs offer when selling the current item.
         /// </summary>
         /// <value>The price NPCs offer when selling the current item.</value>
-        public int Bid { get { return AsInt32("Price{Low}"); } }
+        public int Bid { get { return AsInt32("PriceLow"); } }
 
         /// <summary>
         ///     Gets the price in Gil of the current item in shops.
         /// </summary>
         /// <value>The price in Gil of the current item in shops.</value>
-        public int Ask { get { return AsInt32("Price{Mid}"); } }
+        public int Ask { get { return AsInt32("PriceMid"); } }
 
         /// <summary>
         ///     Gets the recipes using the current item as material.
@@ -210,15 +210,15 @@ namespace SaintCoinach.Xiv {
 
         public bool IsGlamourous => AsBoolean("IsGlamourous");
 
-        public Quad ModelMain { get { return AsQuad("Model{Main}"); } }
+        public Quad ModelMain { get { return AsQuad("ModelMain"); } }
 
-        public Quad ModelSub { get { return AsQuad("Model{Sub}"); } }
+        public Quad ModelSub { get { return AsQuad("ModelSub"); } }
 
         /// <summary>
         ///     Gets the <see cref="ClassJob" /> required to repair or desynth the current item.
         /// </summary>
         /// <value>The <see cref="ClassJob" /> required to repair or desynth the current item.</value>
-        public ClassJob RepairClassJob => As<ClassJob>("ClassJob{Repair}");
+        public ClassJob RepairClassJob => As<ClassJob>("ClassJobRepair");
         #endregion
 
         #region Constructors

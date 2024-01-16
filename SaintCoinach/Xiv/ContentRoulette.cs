@@ -50,8 +50,8 @@ namespace SaintCoinach.Xiv {
                 const int SoldieryItemKey = 26;
                 const int PoeticsItemKey = 28;
 
-                var sold = AsInt32("Reward{Soldiery}");
-                var poe = AsInt32("Reward{Poetics}");
+                var sold = AsInt32("RewardSoldiery");
+                var poe = AsInt32("RewardPoetics");
                 if (sold == 0 && poe == 0)
                     yield break;
 

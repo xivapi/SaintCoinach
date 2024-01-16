@@ -55,7 +55,7 @@ namespace SaintCoinach.Xiv {
         /// <param name="index">Index of the data field to get.</param>
         /// <returns>The integer value at a specified data field for HQ items.</returns>
         public int GetHqData(int index) {
-            return AsInt32("Data{HQ}", index);
+            return AsInt32("DataHQ", index);
         }
 
         #endregion

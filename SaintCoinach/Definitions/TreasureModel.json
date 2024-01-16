@@ -1,9 +1,0 @@
-{
-  "sheet": "TreasureModel",
-  "defaultColumn": "Path",
-  "definitions": [
-    {
-      "name": "Path"
-    }
-  ]
-}

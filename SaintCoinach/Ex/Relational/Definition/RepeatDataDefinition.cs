@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-
+using SaintCoinach.Ex.Relational.Definition.EXDSchema;
 
 namespace SaintCoinach.Ex.Relational.Definition {
     public class RepeatDataDefinition : IDataDefinition {
@@ -74,18 +74,17 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Serialization
 
-        public JObject ToJson() {
-            return new JObject {
-                ["type"] = "repeat",
-                ["count"] = RepeatCount,
-                ["definition"] = RepeatedDefinition.ToJson()
-            };
-        }
-
         public static RepeatDataDefinition FromJson(JToken obj) {
             return new RepeatDataDefinition() {
                 RepeatCount = (int)obj["count"],
                 RepeatedDefinition = DataDefinitionSerializer.FromJson(obj["definition"])
+            };
+        }
+        
+        public static RepeatDataDefinition FromYaml(Field field) {
+            return new RepeatDataDefinition() {
+                RepeatCount = field.Count!.Value,
+                RepeatedDefinition = DataDefinitionSerializer.FromYaml(field, isFromRepeat: true)
             };
         }
 

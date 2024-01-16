@@ -1,9 +1,0 @@
-{
-  "sheet": "TraitTransient",
-  "defaultColumn": "Description",
-  "definitions": [
-    {
-      "name": "Description"
-    }
-  ]
-}

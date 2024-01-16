@@ -1,9 +1,0 @@
-{
-  "sheet": "HWDInfoBoardArticleType",
-  "defaultColumn": "Type",
-  "definitions": [
-    {
-      "name": "Type"
-    }
-  ]
-}

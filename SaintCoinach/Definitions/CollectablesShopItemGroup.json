@@ -1,9 +1,0 @@
-{
-  "sheet": "CollectablesShopItemGroup",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

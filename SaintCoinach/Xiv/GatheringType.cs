@@ -6,8 +6,8 @@ namespace SaintCoinach.Xiv {
         #region Properties
 
         public Text.XivString Name { get { return AsString("Name"); } }
-        public ImageFile MainIcon { get { return AsImage("Icon{Main}"); } }
-        public ImageFile SubIcon { get { return AsImage("Icon{Off}"); } }
+        public ImageFile MainIcon { get { return AsImage("IconMain"); } }
+        public ImageFile SubIcon { get { return AsImage("IconOff"); } }
 
         #endregion
 

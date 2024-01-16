@@ -120,8 +120,8 @@ namespace Godbert.Controls {
                 if (ry == null)
                     return 1;
 
-                var vx = rx[Column.Index];
-                var vy = ry[Column.Index];
+                var vx = rx[Column.ColumnBasedIndex];
+                var vy = ry[Column.ColumnBasedIndex];
 
                 if (vx == vy)
                     return 0;

@@ -1,9 +1,0 @@
-{
-  "sheet": "EurekaMagiciteItemType",
-  "defaultColumn": "Type",
-  "definitions": [
-    {
-      "name": "Type"
-    }
-  ]
-}

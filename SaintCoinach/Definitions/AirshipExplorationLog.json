@@ -1,9 +1,0 @@
-{
-  "sheet": "AirshipExplorationLog",
-  "defaultColumn": "Text",
-  "definitions": [
-    {
-      "name": "Text"
-    }
-  ]
-}

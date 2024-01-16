@@ -57,13 +57,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the <see cref="Item" /> created by the current recipe.
         /// </summary>
         /// <value>The <see cref="Item" /> created by the current recipe.</value>
-        public Item ResultItem { get { return As<Item>("Item{Result}"); } }
+        public Item ResultItem { get { return As<Item>("ItemResult"); } }
 
         /// <summary>
         ///     Gets the number of items created by the current recipe.
         /// </summary>
         /// <value>The number of items created by the current recipe.</value>
-        public int ResultCount { get { return AsInt32("Amount{Result}"); } }
+        public int ResultCount { get { return AsInt32("AmountResult"); } }
 
         /// <summary>
         ///     Gets the <see cref="RecipeIngredient" />s of the current recipe.
@@ -119,13 +119,13 @@ namespace SaintCoinach.Xiv {
         ///     Gets the required <see cref="Status" /> to attempt the current recipe.
         /// </summary>
         /// <value>The required <see cref="Status" /> to attempt the current recipe.</value>
-        public Status RequiredStatus { get { return As<Status>("Status{Required}"); } }
+        public Status RequiredStatus { get { return As<Status>("StatusRequired"); } }
 
         /// <summary>
         ///     Gets the required equipped <see cref="Item" /> to attempt the current recipe.
         /// </summary>
         /// <value>The required equipped <see cref="Item" /> to attempt the current recipe.</value>
-        public Item RequiredItem { get { return As<Item>("Item{Required}"); } }
+        public Item RequiredItem { get { return As<Item>("ItemRequired"); } }
 
         /// <summary>
         ///     Gets the <see cref="RecipeLevelTable" /> used by the current recipe.
@@ -205,11 +205,11 @@ namespace SaintCoinach.Xiv {
             var ingredients = new List<RecipeIngredient>();
 
             for (var i = 0; i < MaterialCount; ++i) {
-                var item = As<Item>("Item{Ingredient}", i);
+                var item = As<Item>("ItemIngredient", i);
                 if (item == null || item.Key == 0)
                     continue;
 
-                var count = AsInt32("Amount{Ingredient}", i);
+                var count = AsInt32("AmountIngredient", i);
                 if (count == 0)
                     continue;
 

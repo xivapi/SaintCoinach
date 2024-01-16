@@ -34,7 +34,7 @@ namespace Godbert.Controls {
             if (ctx == null)
                 return;
 
-            var val = ctx[_Column.Index];
+            var val = ctx[_Column.ColumnBasedIndex];
             if (val == null)
                 return;
 
@@ -50,7 +50,7 @@ namespace Godbert.Controls {
             if (ctx == null)
                 return null;
 
-            return ctx[_Column.Index] as IRow;
+            return ctx[_Column.ColumnBasedIndex] as IRow;
         }
  
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem) {
@@ -94,8 +94,8 @@ namespace Godbert.Controls {
                     return 1;
 
 
-                var vx = ColumnFactory.ForceRaw || RawDataGrid.ColumnSetToRaw[Column.Index] ? rx.GetRaw(Column.Index) : rx[Column.Index];
-                var vy = ColumnFactory.ForceRaw || RawDataGrid.ColumnSetToRaw[Column.Index] ? ry.GetRaw(Column.Index) : ry[Column.Index];
+                var vx = ColumnFactory.ForceRaw || RawDataGrid.ColumnSetToRaw[Column.ColumnBasedIndex] ? rx.GetRaw(Column.ColumnBasedIndex) : rx[Column.ColumnBasedIndex];
+                var vy = ColumnFactory.ForceRaw || RawDataGrid.ColumnSetToRaw[Column.ColumnBasedIndex] ? ry.GetRaw(Column.ColumnBasedIndex) : ry[Column.ColumnBasedIndex];
 
                 if (vx == vy)
                     return 0;

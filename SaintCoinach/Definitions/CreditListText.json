@@ -1,9 +1,0 @@
-{
-  "sheet": "CreditListText",
-  "defaultColumn": "Name",
-  "definitions": [
-    {
-      "name": "Name"
-    }
-  ]
-}

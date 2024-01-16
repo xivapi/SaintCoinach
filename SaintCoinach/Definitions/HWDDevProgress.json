@@ -1,9 +1,0 @@
-{
-  "sheet": "HWDDevProgress",
-  "defaultColumn": "CanGoNext",
-  "definitions": [
-    {
-      "name": "CanGoNext"
-    }
-  ]
-}
