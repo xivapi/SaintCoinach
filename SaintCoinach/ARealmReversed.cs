@@ -149,6 +149,10 @@ namespace SaintCoinach {
         private RelationDefinition ReadDefinition()
         {
             var definitionPath = "Definitions";
+            
+            if (!Directory.Exists(definitionPath))
+                Directory.CreateDirectory(definitionPath);
+            
             var versionDirs = Directory.GetDirectories(definitionPath).ToList();
             if (versionDirs.Count == 0)
                 return null;

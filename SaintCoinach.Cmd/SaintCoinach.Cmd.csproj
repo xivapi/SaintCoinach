@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{957699E4-8310-4D1E-BA83-13B7A4932807}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyTitle>SaintCoinach.Cmd</AssemblyTitle>
     <Product>SaintCoinach.Cmd</Product>
     <Copyright>Copyright © Rogueadyn 2014</Copyright>

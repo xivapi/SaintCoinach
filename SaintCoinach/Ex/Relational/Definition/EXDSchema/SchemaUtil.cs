@@ -10,8 +10,6 @@ public static class SchemaUtil
 {
     public static Sheet Flatten(Sheet sheet)
     {
-        if (sheet.Name == "SpecialShop")
-            Debugger.Break();
         var fields = new List<Field>();
         foreach (var field in sheet.Fields)
             Emit(fields, field);

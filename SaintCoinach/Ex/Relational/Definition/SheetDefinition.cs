@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using SchemaUtil = SaintCoinach.Ex.Relational.Definition.EXDSchema.SchemaUtil;
 using Sheet = SaintCoinach.Ex.Relational.Definition.EXDSchema.Sheet;
@@ -17,6 +18,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
         private ICollection<PositionedDataDefinition> _DataDefinitions = new List<PositionedDataDefinition>();
         private int? _DefaultColumnIndex;
         private bool _IsCompiled;
+
+        private readonly object _lock = new();
 
         #endregion
 
@@ -40,34 +43,39 @@ namespace SaintCoinach.Ex.Relational.Definition {
         {
             if (!IsPostProcessed || _IsCompiled) return;
             
-            _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefinition>();
-            _ColumnNameToIndexMap = new Dictionary<string, int>();
-            _ColumnIndexToNameMap = new Dictionary<int, string>();
-            _ColumnValueTypeNames = new Dictionary<int, string>();
-            _ColumnValueTypes = new Dictionary<int, Type>();
-            DataDefinitions = DataDefinitions.OrderBy(d => d.ColumnBasedIndex).ToList();
-            foreach (var def in DataDefinitions) {
-                for (var i = 0; i < def.Length; ++i) {
-                    var offset = def.ColumnBasedIndex + i;
-                    _ColumnDefinitionMap.Add(offset, def);
+            lock (_lock)
+            {
+                if (!IsPostProcessed || _IsCompiled) return;
+            
+                _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefinition>();
+                _ColumnNameToIndexMap = new Dictionary<string, int>();
+                _ColumnIndexToNameMap = new Dictionary<int, string>();
+                _ColumnValueTypeNames = new Dictionary<int, string>();
+                _ColumnValueTypes = new Dictionary<int, Type>();
+                DataDefinitions = DataDefinitions.OrderBy(d => d.ColumnBasedIndex).ToList();
+                foreach (var def in DataDefinitions) {
+                    for (var i = 0; i < def.Length; ++i) {
+                        var offset = def.ColumnBasedIndex + i;
+                        _ColumnDefinitionMap.Add(offset, def);
 
-                    var name = def.GetName(offset);
-                    _ColumnNameToIndexMap.Add(name, offset);
-                    _ColumnIndexToNameMap.Add(offset, name);
-                    _ColumnValueTypeNames.Add(offset, def.GetValueTypeName(offset));
-                    _ColumnValueTypes.Add(offset, def.GetValueType(offset));
+                        var name = def.GetName(offset);
+                        _ColumnNameToIndexMap.Add(name, offset);
+                        _ColumnIndexToNameMap.Add(offset, name);
+                        _ColumnValueTypeNames.Add(offset, def.GetValueTypeName(offset));
+                        _ColumnValueTypes.Add(offset, def.GetValueType(offset));
+                    }
                 }
-            }
 
-            if (!string.IsNullOrWhiteSpace(DefaultColumn)) {
-                if (_ColumnNameToIndexMap.TryGetValue(DefaultColumn, out var defCol))
-                    _DefaultColumnIndex = defCol;
-                else
+                if (!string.IsNullOrWhiteSpace(DefaultColumn)) {
+                    if (_ColumnNameToIndexMap.TryGetValue(DefaultColumn, out var defCol))
+                        _DefaultColumnIndex = defCol;
+                    else
+                        _DefaultColumnIndex = null;
+                } else
                     _DefaultColumnIndex = null;
-            } else
-                _DefaultColumnIndex = null;
 
-            _IsCompiled = true;
+                _IsCompiled = true;
+            }
         }
 
         #endregion
