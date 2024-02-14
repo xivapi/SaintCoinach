@@ -7,12 +7,12 @@ namespace SaintCoinach.Ex.Relational.Definition {
     public class SheetDefinition {
         #region Fields
 
-        private Dictionary<int, PositionedDataDefintion> _ColumnDefinitionMap;
+        private Dictionary<int, PositionedDataDefinition> _ColumnDefinitionMap;
         private Dictionary<int, string> _ColumnIndexToNameMap;
         private Dictionary<string, int> _ColumnNameToIndexMap;
         private Dictionary<int, string> _ColumnValueTypeNames;
         private Dictionary<int, Type> _ColumnValueTypes;
-        private ICollection<PositionedDataDefintion> _DataDefinitions = new List<PositionedDataDefintion>();
+        private ICollection<PositionedDataDefinition> _DataDefinitions = new List<PositionedDataDefinition>();
         private int? _DefaultColumnIndex;
         private bool _IsCompiled;
 
@@ -20,7 +20,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Properties
 
-        public ICollection<PositionedDataDefintion> DataDefinitions {
+        public ICollection<PositionedDataDefinition> DataDefinitions {
             get { return _DataDefinitions; }
             internal set { _DataDefinitions = value; }
         }
@@ -34,7 +34,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
         #region Compile
 
         public void Compile() {
-            _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefintion>();
+            _ColumnDefinitionMap = new Dictionary<int, PositionedDataDefinition>();
             _ColumnNameToIndexMap = new Dictionary<string, int>();
             _ColumnIndexToNameMap = new Dictionary<int, string>();
             _ColumnValueTypeNames = new Dictionary<int, string>();
@@ -68,7 +68,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #region Helpers
 
-        public bool TryGetDefinition(int index, out PositionedDataDefintion definition) {
+        public bool TryGetDefinition(int index, out PositionedDataDefinition definition) {
             if (_IsCompiled)
                 return _ColumnDefinitionMap.TryGetValue(index, out definition);
 
@@ -159,7 +159,7 @@ namespace SaintCoinach.Ex.Relational.Definition {
                 Name = (string)obj["sheet"],
                 DefaultColumn = (string)obj["defaultColumn"],
                 IsGenericReferenceTarget = (bool?)obj["isGenericReferenceTarget"] ?? false,
-                DataDefinitions = new List<PositionedDataDefintion>(obj["definitions"].Select(j => PositionedDataDefintion.FromJson(j)))
+                DataDefinitions = new List<PositionedDataDefinition>(obj["definitions"].Select(j => PositionedDataDefinition.FromJson(j)))
             };
 
             foreach (var dataDef in sheetDef.DataDefinitions)

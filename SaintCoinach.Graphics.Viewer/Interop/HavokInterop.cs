@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SaintCoinach.Graphics.Viewer.Interop {
     public static class HavokInterop {
@@ -39,7 +41,6 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
 
             _IsThreaded = true;
             _IsLive = true;
-            _Initialized = true;
         }
 
         internal static void Execute(Action action) {
@@ -68,6 +69,7 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
         static void HavokLoop() {
             try {
                 initHkInterop();
+                _Initialized = true;
 
                 while (true) {
                     if (_IsAwaiting) {
@@ -76,9 +78,28 @@ namespace SaintCoinach.Graphics.Viewer.Interop {
                     } else
                         System.Threading.Thread.Sleep(5);
                 }
+            } catch (BadImageFormatException e) {
+                var result = MessageBox.Show("Failed to load Havok interop library.\nPlease ensure that the 32-bit (x86) Visual C++ Redistributable is installed.\nWould you like to download it now?", "Havok interop error", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Process.Start(new ProcessStartInfo("https://www.microsoft.com/en-us/download/details.aspx?id=30679")
+                    {
+                        UseShellExecute = true,
+                    });
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    result = MessageBox.Show("Would you like to run Godbert anyways, without 3D animation support?", "Havok interop error", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                    if (result == MessageBoxResult.No)
+                    {
+                        Environment.Exit(0);
+                    }
+                }
             } finally {
                 _IsLive = false;
-                quitHkInterop();
+                if (_Initialized)
+                    quitHkInterop();
             }
         }
 

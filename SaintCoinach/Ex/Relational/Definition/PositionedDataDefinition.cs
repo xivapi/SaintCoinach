@@ -2,7 +2,7 @@
 using System;
 
 namespace SaintCoinach.Ex.Relational.Definition {
-    public class PositionedDataDefintion {
+    public class PositionedDataDefinition {
         #region Properties
 
         public IDataDefinition InnerDefinition { get; set; }
@@ -13,8 +13,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
 
         #endregion
 
-        public PositionedDataDefintion Clone() {
-            var clone = new PositionedDataDefintion {
+        public PositionedDataDefinition Clone() {
+            var clone = new PositionedDataDefinition {
                 Index = Index,
                 InnerDefinition = InnerDefinition.Clone()
             };
@@ -68,8 +68,8 @@ namespace SaintCoinach.Ex.Relational.Definition {
             return obj;
         }
 
-        public static PositionedDataDefintion FromJson(JToken obj) {
-            return new PositionedDataDefintion() {
+        public static PositionedDataDefinition FromJson(JToken obj) {
+            return new PositionedDataDefinition() {
                 Index = (int?)obj["index"] ?? 0,
                 InnerDefinition = DataDefinitionSerializer.FromJson(obj)
             };

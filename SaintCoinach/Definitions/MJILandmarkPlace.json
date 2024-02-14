@@ -2,16 +2,16 @@
   "sheet": "MJILandmarkPlace",
   "definitions": [
     {
-      "name": "Name",
       "index": 1,
+      "name": "Name",
       "converter": {
         "type": "link",
         "target": "EObjName"
       }
     },
     {
+      "index": 3,
       "name": "SGB",
-      "index": 2,
       "converter": {
         "type": "link",
         "target": "ExportedSG"

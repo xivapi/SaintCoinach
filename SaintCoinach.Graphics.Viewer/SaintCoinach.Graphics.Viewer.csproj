@@ -1,9 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{226BF71E-334F-4585-8FEC-4239704CF539}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -14,25 +10,18 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <AssemblyTitle>SaintCoinach.Graphics.Viewer</AssemblyTitle>
+    <Product>SaintCoinach.Graphics.Viewer</Product>
+    <Copyright>Copyright ©  2015</Copyright>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
@@ -64,82 +53,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D10" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11.Effects" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimatedModel.cs" />
-    <Compile Include="Animation.cs" />
-    <Compile Include="AnimationContainer.cs" />
-    <Compile Include="AnimationPlayer.cs" />
-    <Compile Include="Camera.cs" />
-    <Compile Include="Component.cs" />
-    <Compile Include="ComponentContainer.cs" />
-    <Compile Include="Content\BgColorChangeMaterial.cs" />
-    <Compile Include="Content\BgMaterial.cs" />
-    <Compile Include="Content\CharacterMaterial.cs" />
-    <Compile Include="Content\ContentSgb.cs" />
-    <Compile Include="Content\ContentTerritory.cs" />
-    <Compile Include="Content\CrystalMaterial.cs" />
-    <Compile Include="Content\Cube.cs" />
-    <Compile Include="Content\HairMaterial.cs" />
-    <Compile Include="Content\IrisMaterial.cs" />
-    <Compile Include="Content\MaterialBase.cs" />
-    <Compile Include="Content\ContentMesh.cs" />
-    <Compile Include="Content\ContentMeshPart.cs" />
-    <Compile Include="Content\ContentModel.cs" />
-    <Compile Include="Content\PrimitiveMesh.cs" />
-    <Compile Include="Content\PrimitiveModel.cs" />
-    <Compile Include="Content\SkinMaterial.cs" />
-    <Compile Include="Data\CustomizeParameters.cs" />
-    <Compile Include="Data\ParametersBase.cs" />
-    <Compile Include="Drawable3DComponent.cs" />
-    <Compile Include="EffectFactory.cs" />
-    <Compile Include="Effects\BgColorChangeEffect.cs" />
-    <Compile Include="Effects\BgEffect.cs" />
-    <Compile Include="Effects\CharacterEffect.cs" />
-    <Compile Include="Effects\CrystalEffect.cs" />
-    <Compile Include="Effects\CustomizeParameterEffectVariable.cs" />
-    <Compile Include="Effects\EffectBase.cs" />
-    <Compile Include="Effects\EffectDirectionalLightVariable.cs" />
-    <Compile Include="Effects\DirectionalLight.cs" />
-    <Compile Include="Effects\EffectTextureVariable.cs" />
-    <Compile Include="Effects\HairEffect.cs" />
-    <Compile Include="Effects\IrisEffect.cs" />
-    <Compile Include="Effects\SkinEffect.cs" />
-    <Compile Include="Effects\SkinnedEffect.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="EngineTime.cs" />
-    <Compile Include="Interop\FbxExport.cs" />
-    <Compile Include="Interop\HavokInterop.cs" />
-    <Compile Include="Interop\InteropAnimation.cs" />
-    <Compile Include="Interop\InteropMesh.cs" />
-    <Compile Include="Interop\InteropTransform.cs" />
-    <Compile Include="Interop\InteropVector4.cs" />
-    <Compile Include="Interop\InteropVertex.cs" />
-    <Compile Include="RendererSources\BaseImageRendererSource.cs" />
-    <Compile Include="RendererSources\EquipmentImageRendererSource.cs" />
-    <Compile Include="FormEngine.cs" />
-    <Compile Include="IComponent.cs" />
-    <Compile Include="IContentComponent.cs" />
-    <Compile Include="IDrawable3DComponent.cs" />
-    <Compile Include="IImageRendererSource.cs" />
-    <Compile Include="IInputService.cs" />
-    <Compile Include="FormInputService.cs" />
-    <Compile Include="ImageRenderer.cs" />
-    <Compile Include="IUpdateableComponent.cs" />
-    <Compile Include="Keyboard.cs">
+    <Compile Update="Keyboard.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="MaterialFactory.cs" />
-    <Compile Include="ModelFactory.cs" />
-    <Compile Include="Mouse.cs" />
-    <Compile Include="MouseState.cs" />
-    <Compile Include="ParametersExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RendererSources\MonsterImageRendererSource.cs" />
-    <Compile Include="Skeleton.cs" />
-    <Compile Include="TextureFactory.cs" />
-    <Compile Include="Vertex3D.cs" />
-    <Compile Include="VectorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="sharpdx_direct3d11_effects_x64.dll" />
@@ -198,12 +125,15 @@
     <Content Include="libfbxsdk.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sharpdx_direct3d11_1_effects_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sharpdx_direct3d11_1_effects_x86.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
-      <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
-      <Name>SaintCoinach</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

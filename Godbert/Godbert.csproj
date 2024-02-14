@@ -1,18 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6A5DA7FF-791E-4A43-BF65-B6942917F7D9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Godbert</RootNamespace>
-    <AssemblyName>Godbert</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -28,29 +19,19 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>Godbert</AssemblyTitle>
+    <Product>Godbert</Product>
+    <Copyright>Copyright © Rogueadyn 2015</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <UseWpf>true</UseWpf>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Godbert.ico</ApplicationIcon>
@@ -83,148 +64,13 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Controls\AttachedImage.cs" />
-    <Compile Include="Controls\ColumnFactory.cs" />
-    <Compile Include="Controls\INavigatable.cs" />
-    <Compile Include="Controls\IRawDataColumn.cs" />
-    <Compile Include="Controls\RawDataGrid.cs" />
-    <Compile Include="Controls\RawDataGridColorColumn.cs" />
-    <Compile Include="Controls\RawDataGridImageColumn.cs" />
-    <Compile Include="Controls\RawDataGridKeyColumn.cs" />
-    <Compile Include="Controls\RawDataGridTextColumn.cs" />
-    <Compile Include="Controls\RawDataItemsSource.cs" />
-    <Compile Include="EngineHelper.cs" />
-    <Compile Include="EngineInstance.cs" />
-    <Compile Include="NaturalComparer.cs" />
-    <Compile Include="ObservableBase.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\BookmarkViewModel.cs" />
-    <Compile Include="ViewModels\DataViewModel.cs" />
-    <Compile Include="ViewModels\DemihumanViewModel.cs" />
-    <Compile Include="ViewModels\EquipmentViewModel.cs" />
-    <Compile Include="ViewModels\FurnitureViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\TerritoryViewModel.cs" />
-    <Compile Include="ViewModels\MapsViewModel.cs" />
-    <Compile Include="Models\ModelCharaHierarchy.cs" />
-    <Compile Include="Models\ModelCharaMain.cs" />
-    <Compile Include="Models\ModelCharaSub.cs" />
-    <Compile Include="Models\ModelCharaVariant.cs" />
-    <Compile Include="ViewModels\MonstersViewModel.cs" />
-    <Compile Include="Views\DataView.xaml.cs">
-      <DependentUpon>DataView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DemihumansView.xaml.cs">
-      <DependentUpon>DemihumansView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EquipmentView.xaml.cs">
-      <DependentUpon>EquipmentView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FurnitureView.xaml.cs">
-      <DependentUpon>FurnitureView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Help3DView.xaml.cs">
-      <DependentUpon>Help3DView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MapsView.xaml.cs">
-      <DependentUpon>MapsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MonstersView.xaml.cs">
-      <DependentUpon>MonstersView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TerritoryView.xaml.cs">
-      <DependentUpon>TerritoryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WpfHelper.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\DataView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DemihumansView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EquipmentView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FurnitureView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Help3DView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MapsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MonstersView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TerritoryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SaintCoinach.Graphics.Viewer\SaintCoinach.Graphics.Viewer.csproj">
-      <Project>{226bf71e-334f-4585-8fec-4239704cf539}</Project>
-      <Name>SaintCoinach.Graphics.Viewer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
-      <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
-      <Name>SaintCoinach</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\SaintCoinach.Graphics.Viewer\SaintCoinach.Graphics.Viewer.csproj" />
+    <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Godbert.ico" />

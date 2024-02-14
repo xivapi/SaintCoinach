@@ -1,4 +1,12 @@
 {
   "sheet": "MJIGatheringTool",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "MJIKeyItem"
+      }
+    }
+  ]
 }
