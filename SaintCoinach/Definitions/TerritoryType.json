@@ -165,6 +165,14 @@
         "type": "link",
         "target": "MountSpeed"
       }
+    },
+    {
+      "index": 42,
+      "name": "NotoriousMonsterTerritory",
+      "converter": {
+        "type": "link",
+        "target": "NotoriousMonsterTerritory"
+      }
     }
   ]
 }
