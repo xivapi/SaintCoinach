@@ -4,7 +4,7 @@
   "definitions": [
     {
       "type": "repeat",
-      "count": 10,
+      "count": 16,
       "definition": {
         "name": "Item",
         "converter": {
@@ -24,7 +24,7 @@
     {
       "index": 17,
       "type": "repeat",
-      "count": 10,
+      "count": 16,
       "definition": {
         "name": "Value"
       }

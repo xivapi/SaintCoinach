@@ -18,7 +18,11 @@
     },
     {
       "index": 4,
-      "name": "Type"
+      "name": "Action",
+      "converter": {
+        "type": "link",
+        "target": "Action"
+      }
     },
     {
       "index": 5,
