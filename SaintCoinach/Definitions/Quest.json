@@ -54,7 +54,7 @@
       "index": 9,
       "name": "PreviousQuest",
       "type": "repeat",
-      "count": 3,
+      "count": 4,
       "definition": {
         "name": "PreviousQuest",
         "converter": {
