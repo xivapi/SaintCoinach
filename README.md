@@ -87,9 +87,14 @@ There should, however, be enough documentation available to know how to use the 
 ### SaintCoinach.Cmd
 
 The project `SaintCoinach.Cmd` is a very basic console application that can be used to extract various assets.
+  
+To use it, run `SaintCoinach.Cmd.exe` in your terminal with a parameter which helps locate your game installation. For example: 
+```
+.\SaintCoinach.Cmd.exe 'C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn'
+```
 The following commands are currently supported:
 
-* `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`. If no argument is supplied the currently used language is shown.
+* `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`, `ChineseSimplified`. If no argument is supplied the currently used language is shown.
 * `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
 * `image`: Exports a file from the game assets as a PNG-image. The argument should be the friendly name of the image file.
 * `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
