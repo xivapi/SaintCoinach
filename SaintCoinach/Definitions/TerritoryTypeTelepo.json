@@ -1,4 +1,25 @@
 {
   "sheet": "TerritoryTypeTelepo",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 0,
+      "name": "X"
+    },
+    {
+      "index": 1,
+      "name": "Y"
+    },
+    {
+      "index": 2,
+      "name": "Expansion"
+    },
+    {
+      "index": 3,
+      "name": "TelepoRelay",
+      "converter": {
+        "type": "link",
+        "target": "TelepoRelay"
+      }
+    }
+  ]
 }
