@@ -1,4 +1,73 @@
 {
   "sheet": "CSBonusContent",
-  "definitions": []
+  "defaultColumn": "Content{0}",
+  "definitions": [
+  {
+      "name": "ContentType",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContentType"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Content{0}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContentIdentifier"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Content{1}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContentIdentifier"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Score{0}"
+    },
+    {
+      "index": 4,
+      "name": "Score{1}"
+    },
+    {
+      "index": 5,
+      "name": "Score{2}"
+    },
+    {
+      "index": 6,
+      "name": "Score{3}"
+    },
+    {
+      "index": 7,
+      "name": "Score{4}"
+    },
+    {
+      "index": 8,
+      "name": "Score{5}"
+    },
+    {
+      "index": 9,
+      "name": "RewardCount{0}"
+    },
+    {
+      "index": 10,
+      "name": "RewardCount{1}"
+    },
+    {
+      "index": 11,
+      "name": "RewardCount{2}"
+    },
+    {
+      "index": 12,
+      "name": "RewardCount{3}"
+    },
+    {
+      "index": 13,
+      "name": "RewardCount{4}"
+    }
+  ]
 }

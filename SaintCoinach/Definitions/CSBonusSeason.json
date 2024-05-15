@@ -1,4 +1,45 @@
 {
   "sheet": "CSBonusSeason",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 5,
+      "name": "Item",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Category{0}"
+    },
+    {
+      "index": 7,
+      "name": "Category{1}"
+    },
+    {
+      "index": 8,
+      "name": "Category{2}"
+    },
+    {
+      "index": 9,
+      "name": "Category{3}"
+    },
+    {
+      "index": 10,
+      "name": "Text{0}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusTextData"
+      }
+    },
+    {
+      "index": 11,
+      "name": "Text{1}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusTextData"
+      }
+    }
+  ]
 }
