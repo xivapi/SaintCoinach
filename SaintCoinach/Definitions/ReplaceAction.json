@@ -36,7 +36,21 @@
           {
             "when": {
               "key": "Type1",
+              "value": 4
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type1",
               "value": 7
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type1",
+              "value": 12
             },
             "sheet": "Status"
           },
@@ -85,7 +99,21 @@
           {
             "when": {
               "key": "Type2",
+              "value": 4
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type2",
               "value": 7
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type2",
+              "value": 12
             },
             "sheet": "Status"
           },
@@ -134,7 +162,21 @@
           {
             "when": {
               "key": "Type3",
+              "value": 4
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type3",
               "value": 7
+            },
+            "sheet": "Status"
+          },
+          {
+            "when": {
+              "key": "Type3",
+              "value": 12
             },
             "sheet": "Status"
           },
