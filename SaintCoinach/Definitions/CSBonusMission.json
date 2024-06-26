@@ -1,4 +1,20 @@
 {
   "sheet": "CSBonusMission",
-  "definitions": []
+  "definitions": [
+    {
+      "name": "Content{0}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContent"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Content{1}",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContent"
+      }
+    }
+  ]
 }
