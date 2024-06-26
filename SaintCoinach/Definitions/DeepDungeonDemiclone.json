@@ -1,4 +1,29 @@
 {
   "sheet": "DeepDungeonDemiclone",
-  "definitions": []
+  "defaultColumn": "TitleCase",
+  "definitions": [
+    {
+      "index": 0,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 1,
+      "name": "Singular"
+    },
+    {
+      "index": 3,
+      "name": "Plural"
+    },
+    {
+      "index": 9,
+      "name": "TitleCase"
+    },
+    {
+      "index": 10,
+      "name": "Description"
+    }
+  ]
 }
