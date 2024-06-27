@@ -1,6 +1,6 @@
 {
   "sheet": "TreasureHuntRank",
-  "defaultColumn": "Name",
+  "defaultColumn": "ItemName",
   "definitions": [
     {
       "index": 1,

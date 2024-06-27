@@ -11,34 +11,22 @@
     },
     {
       "index": 6,
-      "name": "Category{0}"
-    },
-    {
-      "index": 7,
-      "name": "Category{1}"
-    },
-    {
-      "index": 8,
-      "name": "Category{2}"
-    },
-    {
-      "index": 9,
-      "name": "Category{3}"
-    },
-    {
-      "index": 10,
-      "name": "Text{0}",
-      "converter": {
-        "type": "link",
-        "target": "CSBonusTextData"
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Category"
       }
     },
     {
-      "index": 11,
-      "name": "Text{1}",
-      "converter": {
-        "type": "link",
-        "target": "CSBonusTextData"
+      "index": 10,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Text",
+        "converter": {
+          "type": "link",
+          "target": "CSBonusTextData"
+        }
       }
     }
   ]

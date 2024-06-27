@@ -3,6 +3,7 @@
   "defaultColumn": "Item{Result}",
   "definitions": [
     {
+      "index": 0,
       "name": "Number"
     },
     {
@@ -36,7 +37,7 @@
     {
       "index": 5,
       "type": "repeat",
-      "count": 6,
+      "count": 8,
       "definition": {
         "type": "group",
         "members": [
@@ -60,6 +61,10 @@
         "type": "link",
         "target": "RecipeNotebookList"
       }
+    },
+    {
+      "index": 22,
+      "name": "DisplayPriority"
     },
     {
       "index": 23,

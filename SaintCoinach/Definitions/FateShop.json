@@ -4,7 +4,7 @@
     {
       "index": 0,
       "type": "repeat",
-      "count": 2,
+      "count": 3,
       "definition": {
         "name": "SpecialShop",
         "converter": {
@@ -14,9 +14,9 @@
       }
     },
     {
-      "index": 2,
+      "index": 3,
       "type": "repeat",
-      "count": 8,
+      "count": 10,
       "definition": {
         "name": "DefaultTalk",
         "converter": {

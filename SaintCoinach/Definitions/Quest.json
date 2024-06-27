@@ -724,7 +724,7 @@
       }
     },
     {
-      "index": 1515,
+      "index": 1514,
       "name": "JournalGenre",
       "converter": {
         "type": "link",
