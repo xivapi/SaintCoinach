@@ -14,38 +14,34 @@
     },
     {
       "index": 3,
-      "name": "SuggestedControl"
-    },
-    {
-      "index": 4,
       "name": "Difficulty"
     },
     {
-      "index": 5,
+      "index": 4,
       "name": "Quality"
     },
     {
-      "index": 6,
+      "index": 5,
       "name": "ProgressDivider"
     },
     {
-      "index": 7,
+      "index": 6,
       "name": "QualityDivider"
     },
     {
-      "index": 8,
+      "index": 7,
       "name": "ProgressModifier"
     },
     {
-      "index": 9,
+      "index": 8,
       "name": "QualityModifier"
     },
     {
-      "index": 10,
+      "index": 9,
       "name": "Durability"
     },
     {
-      "index": 11,
+      "index": 10,
       "name": "ConditionsFlag"
     }
   ]

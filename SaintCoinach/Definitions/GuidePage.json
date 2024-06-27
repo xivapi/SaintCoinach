@@ -5,7 +5,7 @@
       "name": "Key"
     },
     {
-      "index": 1,
+      "index": 2,
       "name": "Output",
       "converter": {
         "type": "complexlink",
