@@ -26,15 +26,15 @@
     {
       "index": 4,
       "type": "repeat",
-      "count": 200,
+      "count": 220,
       "definition": {
         "name": "ScriptInstruction"
       }
     },
     {
-      "index": 204,
+      "index": 224,
       "type": "repeat",
-      "count": 200,
+      "count": 220,
       "definition": {
         "name": "ScriptValue"
       }

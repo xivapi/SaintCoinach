@@ -14,15 +14,15 @@
       "name": "BigFish{OnEnd}"
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "FishingSpotCategory"
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Rare"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "TerritoryType",
       "converter": {
         "type": "link",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "PlaceName{Main}",
       "converter": {
         "type": "link",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "PlaceName{Sub}",
       "converter": {
         "type": "link",
@@ -46,19 +46,19 @@
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "X"
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "Z"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "Radius"
     },
     {
-      "index": 12,
+      "index": 13,
       "type": "repeat",
       "count": 10,
       "definition": {
@@ -70,7 +70,7 @@
       }
     },
     {
-      "index": 22,
+      "index": 23,
       "name": "PlaceName",
       "converter": {
         "type": "link",
@@ -78,7 +78,7 @@
       }
     },
     {
-      "index": 23,
+      "index": 24,
       "name": "Order"
     }
   ]

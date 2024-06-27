@@ -57,26 +57,26 @@
     },
     {
       "index": 9,
-      "name": "Name"
-    },
-    {
-      "index": 10,
-      "name": "Impression"
-    },
-    {
-      "index": 11,
-      "name": "Description"
-    },
-    {
-      "index": 12,
       "name": "Icon{Undiscovered}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 13,
+      "index": 10,
       "name": "IsInitial"
+    },
+    {
+      "index": 11,
+      "name": "Name"
+    },
+    {
+      "index": 12,
+      "name": "Impression"
+    },
+    {
+      "index": 13,
+      "name": "Description"
     }
   ]
 }

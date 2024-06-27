@@ -7,19 +7,19 @@
       "name": "OutputType"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "BalloonTime"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "IsBalloonSlow"
     },
     {
-      "index": 7,
+      "index": 8,
       "name": "BattleTalkTime"
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "Text"
     }
   ]
