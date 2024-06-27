@@ -168,6 +168,14 @@
     {
       "index": 41,
       "name": "SGE"
+    },
+    {
+      "index": 42,
+      "name": "VPR"
+    },
+    {
+      "index": 43,
+      "name": "PCT"
     }
   ]
 }
