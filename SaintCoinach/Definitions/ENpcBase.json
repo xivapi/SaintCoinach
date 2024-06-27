@@ -192,7 +192,7 @@
       }
     },
     {
-      "index": 66,
+      "index": 70,
       "name": "Dye2{OffHand}",
       "converter": {
         "type": "link",
@@ -213,7 +213,7 @@
     },
     {
       "index": 73,
-      "name": "Dye2{MainHand}",
+      "name": "Dye2{Head}",
       "converter": {
         "type": "link",
         "target": "Stain"
