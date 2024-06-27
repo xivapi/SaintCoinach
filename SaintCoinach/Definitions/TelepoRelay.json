@@ -4,7 +4,7 @@
     {
       "index": 0,
       "type": "repeat",
-      "count": 7,
+      "count": 8,
       "definition": {
         "name": "TerritoryType{Entry}",
         "converter": {
@@ -19,9 +19,9 @@
       }
     },
     {
-      "index": 7,
+      "index": 8,
       "type": "repeat",
-      "count": 7,
+      "count": 8,
       "definition": {
         "name": "TerritoryType{Exit}",
         "converter": {
@@ -36,9 +36,9 @@
       }
     },
     {
-      "index": 14,
+      "index": 16,
       "type": "repeat",
-      "count": 7,
+      "count": 8,
       "definition": {
         "name": "Cost"
       }

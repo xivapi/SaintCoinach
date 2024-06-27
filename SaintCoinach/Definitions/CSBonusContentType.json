@@ -11,34 +11,14 @@
     },
     {
       "index": 1,
-      "name": "Text{0}",
-      "converter": {
-        "type": "link",
-        "target": "Addon"
-      }
-    },
-    {
-      "index": 2,
-      "name": "Text{1}",
-      "converter": {
-        "type": "link",
-        "target": "Addon"
-      }
-    },
-    {
-      "index": 3,
-      "name": "Text{2}",
-      "converter": {
-        "type": "link",
-        "target": "Addon"
-      }
-    },
-    {
-      "index": 4,
-      "name": "Text{3}",
-      "converter": {
-        "type": "link",
-        "target": "Addon"
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Text",
+        "converter": {
+          "type": "link",
+          "target": "Addon"
+        }
       }
     },
     {
@@ -49,24 +29,8 @@
       }
     },
     {
-      "index": 8,
-      "name": "UnlockQuest{0}",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 9,
-      "name": "UnlockQuest{1}",
-      "converter": {
-        "type": "link",
-        "target": "Quest"
-      }
-    },
-    {
-      "index": 10,
-      "name": "UnlockQuest{2}",
+      "index": 7,
+      "name": "UnlockQuest",
       "converter": {
         "type": "link",
         "target": "Quest"

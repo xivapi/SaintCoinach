@@ -6,7 +6,7 @@
       "name": "Text"
     },
     {
-      "index": 1,
+      "index": 4,
       "name": "Item",
       "converter": {
         "type": "multiref",
@@ -17,7 +17,7 @@
       }
     },
     {
-      "index": 2,
+      "index": 5,
       "name": "GatheringItemLevel",
       "converter": {
         "type": "link",
@@ -25,15 +25,15 @@
       }
     },
     {
-      "index": 3,
+      "index": 6,
       "name": "OceanStars"
     },
     {
-      "index": 5,
+      "index": 8,
       "name": "IsHidden"
     },
     {
-      "index": 6,
+      "index": 9,
       "name": "FishingRecordType",
       "converter": {
         "type": "link",
@@ -41,7 +41,7 @@
       }
     },
     {
-      "index": 7,
+      "index": 10,
       "name": "FishingSpot",
       "converter": {
         "type": "link",
@@ -49,7 +49,7 @@
       }
     },
     {
-      "index": 8,
+      "index": 11,
       "name": "GatheringSubCategory",
       "converter": {
         "type": "link",
@@ -57,11 +57,11 @@
       }
     },
     {
-      "index": 9,
+      "index": 12,
       "name": "IsInLog"
     },
     {
-      "index": 10,
+      "index": 13,
       "name": "AchievementCredit"
     }
   ]
