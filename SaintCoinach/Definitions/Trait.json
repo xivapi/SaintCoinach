@@ -21,11 +21,11 @@
       }
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "Level"
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -33,11 +33,11 @@
       }
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Value"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "ClassJobCategory",
       "converter": {
         "type": "link",

@@ -3,17 +3,13 @@
   "defaultColumn": "Name",
   "definitions": [
     {
-      "name": "IsFaction"
-    },
-    {
-      "index": 1,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 2,
+      "index": 1,
       "name": "Name"
     }
   ]
