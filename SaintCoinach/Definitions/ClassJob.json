@@ -66,11 +66,11 @@
       "name": "Modifier{Piety}"
     },
     {
-      "index": 24,
+      "index": 26,
       "name": "PvPActionSortRow"
     },
     {
-      "index": 26,
+      "index": 28,
       "name": "ClassJob{Parent}",
       "converter": {
         "type": "link",
@@ -78,11 +78,11 @@
       }
     },
     {
-      "index": 27,
+      "index": 29,
       "name": "Name{English}"
     },
     {
-      "index": 28,
+      "index": 30,
       "name": "Item{StartingWeapon}",
       "converter": {
         "type": "link",
@@ -90,11 +90,11 @@
       }
     },
     {
-      "index": 30,
+      "index": 32,
       "name": "Role"
     },
     {
-      "index": 31,
+      "index": 33,
       "name": "StartingTown",
       "converter": {
         "type": "link",
@@ -102,7 +102,7 @@
       }
     },
     {
-      "index": 32,
+      "index": 34,
       "name": "MonsterNote",
       "converter": {
         "type": "link",
@@ -110,11 +110,11 @@
       }
     },
     {
-      "index": 33,
+      "index": 35,
       "name": "PrimaryStat"
     },
     {
-      "index": 34,
+      "index": 36,
       "name": "LimitBreak1",
       "converter": {
         "type": "link",
@@ -122,7 +122,7 @@
       }
     },
     {
-      "index": 35,
+      "index": 37,
       "name": "LimitBreak2",
       "converter": {
         "type": "link",
@@ -130,7 +130,7 @@
       }
     },
     {
-      "index": 36,
+      "index": 38,
       "name": "LimitBreak3",
       "converter": {
         "type": "link",
@@ -138,11 +138,11 @@
       }
     },
     {
-      "index": 37,
+      "index": 39,
       "name": "UIPriority"
     },
     {
-      "index": 38,
+      "index": 40,
       "name": "Item{SoulCrystal}",
       "converter": {
         "type": "link",
@@ -150,7 +150,7 @@
       }
     },
     {
-      "index": 39,
+      "index": 41,
       "name": "UnlockQuest",
       "converter": {
         "type": "link",
@@ -158,7 +158,7 @@
       }
     },
     {
-      "index": 40,
+      "index": 42,
       "name": "RelicQuest",
       "converter": {
         "type": "link",
@@ -166,7 +166,7 @@
       }
     },
     {
-      "index": 41,
+      "index": 43,
       "name": "Prerequisite",
       "converter": {
         "type": "link",
@@ -174,19 +174,19 @@
       }
     },
     {
-      "index": 42,
+      "index": 44,
       "name": "StartingLevel"
     },
     {
-      "index": 43,
+      "index": 45,
       "name": "PartyBonus"
     },
     {
-      "index": 45,
+      "index": 47,
       "name": "IsLimitedJob"
     },
     {
-      "index": 46,
+      "index": 48,
       "name": "CanQueueForDuty"
     }
   ]

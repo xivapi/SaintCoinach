@@ -6,6 +6,10 @@
       "name": "Category"
     },
     {
+      "index": 1,
+      "name": "SubType"
+    },
+    {
       "index": 2,
       "name": "Image",
       "converter": {
@@ -21,11 +25,11 @@
       }
     },
     {
-      "index": 6,
+      "index": 8,
       "name": "SortKey"
     },
     {
-      "index": 7,
+      "index": 9,
       "name": "Name"
     }
   ]

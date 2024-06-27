@@ -140,16 +140,12 @@ namespace Godbert.ViewModels {
             Settings.Default.ShowOffsets = !Settings.Default.ShowOffsets;
 
             OnPropertyChanged(() => ShowOffsets);
-
-            DataGridChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSortByOffsetsCommand() {
             Settings.Default.SortByOffsets = !Settings.Default.SortByOffsets;
 
             OnPropertyChanged(() => SortByOffsets);
-
-            DataGridChanged?.Invoke(this, EventArgs.Empty);
         }
         #endregion
     }

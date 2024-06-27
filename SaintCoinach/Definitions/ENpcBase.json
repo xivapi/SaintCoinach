@@ -173,10 +173,18 @@
     },
     {
       "index": 67,
-      "name": "Model{OffHand}"
+      "name": "Dye2{MainHand}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
     },
     {
       "index": 68,
+      "name": "Model{OffHand}"
+    },
+    {
+      "index": 69,
       "name": "Dye{OffHand}",
       "converter": {
         "type": "link",
@@ -184,12 +192,8 @@
       }
     },
     {
-      "index": 69,
-      "name": "Model{Head}"
-    },
-    {
       "index": 70,
-      "name": "Dye{Head}",
+      "name": "Dye2{OffHand}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -197,15 +201,19 @@
     },
     {
       "index": 71,
-      "name": "Visor"
+      "name": "Model{Head}"
     },
     {
       "index": 72,
-      "name": "Model{Body}"
+      "name": "Dye{Head}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
     },
     {
       "index": 73,
-      "name": "Dye{Body}",
+      "name": "Dye2{Head}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -213,23 +221,23 @@
     },
     {
       "index": 74,
-      "name": "Model{Hands}"
+      "name": "Visor"
     },
     {
       "index": 75,
-      "name": "Dye{Hands}",
+      "name": "Model{Body}"
+    },
+    {
+      "index": 76,
+      "name": "Dye{Body}",
       "converter": {
         "type": "link",
         "target": "Stain"
       }
     },
     {
-      "index": 76,
-      "name": "Model{Legs}"
-    },
-    {
       "index": 77,
-      "name": "Dye{Legs}",
+      "name": "Dye2{Body}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -237,11 +245,11 @@
     },
     {
       "index": 78,
-      "name": "Model{Feet}"
+      "name": "Model{Hands}"
     },
     {
       "index": 79,
-      "name": "Dye{Feet}",
+      "name": "Dye{Hands}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -249,23 +257,27 @@
     },
     {
       "index": 80,
-      "name": "Model{Ears}"
-    },
-    {
-      "index": 81,
-      "name": "Dye{Ears}",
+      "name": "Dye2{Hands}",
       "converter": {
         "type": "link",
         "target": "Stain"
       }
     },
     {
+      "index": 81,
+      "name": "Model{Legs}"
+    },
+    {
       "index": 82,
-      "name": "Model{Neck}"
+      "name": "Dye{Legs}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
     },
     {
       "index": 83,
-      "name": "Dye{Neck}",
+      "name": "Dye2{Legs}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -273,11 +285,11 @@
     },
     {
       "index": 84,
-      "name": "Model{Wrists}"
+      "name": "Model{Feet}"
     },
     {
       "index": 85,
-      "name": "Dye{Wrists}",
+      "name": "Dye{Feet}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -285,23 +297,27 @@
     },
     {
       "index": 86,
-      "name": "Model{LeftRing}"
-    },
-    {
-      "index": 87,
-      "name": "Dye{LeftRing}",
+      "name": "Dye2{Feet}",
       "converter": {
         "type": "link",
         "target": "Stain"
       }
     },
     {
+      "index": 87,
+      "name": "Model{Ears}"
+    },
+    {
       "index": 88,
-      "name": "Model{RightRing}"
+      "name": "Dye{Ears}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
     },
     {
       "index": 89,
-      "name": "Dye{RightRing}",
+      "name": "Dye2{Ears}",
       "converter": {
         "type": "link",
         "target": "Stain"
@@ -309,10 +325,90 @@
     },
     {
       "index": 90,
-      "name": "Invisibility"
+      "name": "Model{Neck}"
     },
     {
       "index": 91,
+      "name": "Dye{Neck}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 92,
+      "name": "Dye2{Neck}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 93,
+      "name": "Model{Wrists}"
+    },
+    {
+      "index": 94,
+      "name": "Dye{Wrists}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 95,
+      "name": "Dye2{Wrists}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 96,
+      "name": "Model{LeftRing}"
+    },
+    {
+      "index": 97,
+      "name": "Dye{LeftRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 98,
+      "name": "Dye2{LeftRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 99,
+      "name": "Model{RightRing}"
+    },
+    {
+      "index": 100,
+      "name": "Dye{RightRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 101,
+      "name": "Dye2{RightRing}",
+      "converter": {
+        "type": "link",
+        "target": "Stain"
+      }
+    },
+    {
+      "index": 104,
+      "name": "Invisibility"
+    },
+    {
+      "index": 105,
       "name": "Balloon",
       "converter": {
         "type": "link",
@@ -320,11 +416,11 @@
       }
     },
     {
-      "index": 92,
+      "index": 106,
       "name": "NotRewriteHeight"
     },
     {
-      "index": 93,
+      "index": 107,
       "name": "DefaultBalloon"
     }
   ]

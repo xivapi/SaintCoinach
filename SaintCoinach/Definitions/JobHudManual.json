@@ -3,7 +3,7 @@
   "defaultColumn": "Action",
   "definitions": [
     {
-      "index": 2,
+      "index": 3,
       "name": "Action",
       "converter": {
         "type": "link",
@@ -11,7 +11,7 @@
       }
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "Guide",
       "converter": {
         "type": "link",

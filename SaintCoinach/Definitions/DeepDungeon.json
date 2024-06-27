@@ -31,13 +31,32 @@
     },
     {
       "index": 18,
+      "name": "DeepDungeonType"
+    },
+    {
+      "index": 19,
       "type": "repeat",
-      "count": 5,
+      "count": 4,
       "definition": {
-        "name": "MagiciteSlot",
+        "name": "StoneSlot",
         "converter": {
-          "type": "link",
-          "target": "DeepDungeonMagicStone"
+          "type": "complexlink",
+          "links": [
+            {
+              "when": {
+                "key": "DeepDungeonType",
+                "value": 1
+              },
+              "sheet": "DeepDungeonMagicStone"
+            },
+            {
+              "when": {
+                "key": "DeepDungeonType",
+                "value": 2
+              },
+              "sheet": "DeepDungeonDemiclone"
+            }
+          ]
         }
       }
     },
