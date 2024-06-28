@@ -60,6 +60,7 @@ namespace SaintCoinach.Text {
         InstanceContent = 0x40,     // Presumably so it can be clicked?
         UIForeground    = 0x48,
         UIGlow          = 0x49,
+        RubyCharaters   = 0x4A,     // Mostly used on Japanese, which means 
         ZeroPaddedValue = 0x50,
         Unknown60       = 0x60,     // TODO: Used as prefix in Gold Saucer announcements.
     }
