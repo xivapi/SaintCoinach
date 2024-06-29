@@ -1,0 +1,41 @@
+{
+  "sheet": "GlassesStyle",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Order"
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 12,
+      "definition": {
+        "name": "Glasses",
+        "converter": {
+          "type": "link",
+          "target": "Glasses"
+        }
+      }
+    },
+    {
+      "index": 15,
+      "name": "Singular"
+    },
+    {
+      "index": 17,
+      "name": "Plural"
+    },
+    {
+      "index": 23,
+      "name": "Name"
+    }
+  ]
+}
