@@ -2,18 +2,15 @@
   "sheet": "CSBonusMission",
   "definitions": [
     {
-      "name": "Content{0}",
-      "converter": {
-        "type": "link",
-        "target": "CSBonusContent"
-      }
-    },
-    {
-      "index": 1,
-      "name": "Content{1}",
-      "converter": {
-        "type": "link",
-        "target": "CSBonusContent"
+      "index": 0,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Content",
+        "converter": {
+          "type": "link",
+          "target": "CSBonusContent"
+        }
       }
     }
   ]
