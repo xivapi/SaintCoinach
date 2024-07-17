@@ -1,4 +1,123 @@
 {
   "sheet": "CSBonusContentIdentifier",
-  "definitions": []
+  "defaultColumn": "Content",
+  "definitions": [
+    {
+      "name": "ContentLinkType"
+    },
+    {
+      "index": 1,
+      "name": "Content",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 1
+            },
+            "sheet": "InstanceContent"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 2
+            },
+            "sheet": "GoldSaucerContent"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 3
+            },
+            "sheet": "TerritoryType"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 4
+            },
+            "sheet": "MobHuntOrderType"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 5
+            },
+            "sheet": "TreasureHuntRank"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 6
+            },
+            "sheet": "FishParameter"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 7
+            },
+            "sheet": "ENpcResident"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 3,
+      "definition": {
+        "name": "UnlockQuest",
+        "converter": {
+          "type": "link",
+          "target": "Quest"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "name": "Map",
+      "converter": {
+        "type": "complexlink",
+        "links": [
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 1
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 2
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 3
+            },
+            "sheet": "Fate"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 4
+            },
+            "sheet": "Level"
+          },
+          {
+            "when": {
+              "key": "ContentLinkType",
+              "value": 7
+            },
+            "sheet": "Level"
+          }
+        ]
+      }
+    }
+  ]
 }

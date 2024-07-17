@@ -36,7 +36,8 @@ namespace SaintCoinach.IO {
                 { "ex1", 0x01 },
                 { "ex2", 0x02 },
                 { "ex3", 0x03 },
-                { "ex4", 0x04 }
+                { "ex4", 0x04 },
+                { "ex5", 0x05 }
             };
         public static readonly Dictionary<byte, string> KeyToExpansionMap = ExpansionToKeyMap.ToDictionary(_ => _.Value, _ => _.Key);
         #endregion

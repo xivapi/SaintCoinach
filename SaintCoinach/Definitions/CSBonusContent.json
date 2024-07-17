@@ -1,4 +1,41 @@
 {
   "sheet": "CSBonusContent",
-  "definitions": []
+  "defaultColumn": "Content[0]",
+  "definitions": [
+  {
+      "name": "ContentType",
+      "converter": {
+        "type": "link",
+        "target": "CSBonusContentType"
+      }
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 2,
+      "definition": {
+        "name": "Content",
+        "converter": {
+          "type": "link",
+          "target": "CSBonusContentIdentifier"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 6,
+      "definition": {
+        "name": "Score"
+      }
+    },
+    {
+      "index": 9,
+      "type": "repeat",
+      "count": 5,
+      "definition": {
+        "name": "RewardCount"
+      }
+    }
+  ]
 }

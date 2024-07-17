@@ -54,10 +54,6 @@
       "name": "ResidentPap"
     },
     {
-      "index": 12,
-      "name": "Resident"
-    },
-    {
       "index": 13,
       "name": "KillUpper"
     },
@@ -66,7 +62,7 @@
       "name": "IsMotionCanceledByMoving"
     },
     {
-      "index": 16,
+      "index": 18,
       "name": "IsLoop"
     }
   ]

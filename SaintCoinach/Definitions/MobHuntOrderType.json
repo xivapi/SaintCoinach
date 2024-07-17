@@ -1,5 +1,6 @@
 {
   "sheet": "MobHuntOrderType",
+  "defaultColumn": "EventItem",
   "definitions": [
     {
       "name": "Type"
