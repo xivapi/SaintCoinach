@@ -10,10 +10,20 @@ namespace SaintCoinach.Xiv {
 
         private static Dictionary<int, int> _Currencies = new Dictionary<int, int>() {
             { 1, 28 },
-            { 2, 25199 },
-            { 4, 25200 },
-            { 6, 33913 },
-            { 7, 33914 }
+
+            // 6.0
+            /*
+            { 2, 25199 }, // White Crafters Scrips
+            { 4, 25200 }, // White Gatherers Scrips
+            { 6, 33913 }, // Purple Crafters Scrips
+            { 7, 33914 }  // Purple Gatherers Scrips
+            */
+
+            // 7.0
+            { 2, 33913 }, // Purple Crafters Scrips
+            { 4, 33914 },  // Purple Gatherers Scrips
+            { 6, 41784 }, // Orange Crafters Scrips
+            { 7, 41785 }  // Orange Gatherers Scrips
         };
 
         private static Dictionary<int, int> _Tomestones;
@@ -129,7 +139,7 @@ namespace SaintCoinach.Xiv {
                     }
                     hq = false;
                 }
-                
+
                 var collectabilityRating = shop.AsInt16("CollectabilityRating{Cost}", index, i);
 
                 costs.Add(new ShopListingItem(this, item, count, hq, collectabilityRating));
