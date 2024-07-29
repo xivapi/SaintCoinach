@@ -187,20 +187,15 @@ namespace SaintCoinach {
                 var response = _httpClient.SendAsync(request).Result;
 
                 var latestPath = Path.Combine("Definitions", "latest.zip");
+                var latestETagPath = Path.Combine("Definitions", "latest_etag.txt");
 
-                if (!File.Exists(latestPath))
-                    return response.IsSuccessStatusCode;
+                if (!File.Exists(latestPath) || !File.Exists(latestETagPath)) return response.IsSuccessStatusCode;
 
-                var latestBytes = File.ReadAllBytes(latestPath);
-                var latestMd5 = MD5.HashData(latestBytes);
+                var latestETag = File.ReadAllText(latestETagPath);
 
-                var md5 = response.Content.Headers.GetValues("Content-MD5").FirstOrDefault();
-                var md5Bytes = Convert.FromBase64String(md5);
+                var eTag = response.Headers.GetValues("ETag").FirstOrDefault();
 
-                if (latestMd5.SequenceEqual(md5Bytes))
-                    return false;
-
-                return response.IsSuccessStatusCode;
+                return eTag != latestETag && response.IsSuccessStatusCode;
             }
             catch (Exception e)
             {
@@ -220,6 +215,9 @@ namespace SaintCoinach {
             }
 
             var latestPath = Path.Combine("Definitions", "latest.zip");
+            var latestETagPath = Path.Combine("Definitions", "latest_etag.txt");
+            var eTag = response.Headers.GetValues("ETag").FirstOrDefault();
+            
             using (var stream = response.Content.ReadAsStream())
                 using (var fileStream = File.Create(latestPath))
                     stream.CopyTo(fileStream);
@@ -227,6 +225,8 @@ namespace SaintCoinach {
             using var zip = ZipFile.Read(latestPath);
             Directory.CreateDirectory(Path.Combine("Definitions", GameVersion));
             zip.ExtractAll("Definitions", ExtractExistingFileAction.OverwriteSilently);
+
+            File.WriteAllText(latestETagPath, eTag);
         }
 
         /// <summary>
