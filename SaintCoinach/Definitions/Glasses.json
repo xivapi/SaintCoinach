@@ -3,6 +3,14 @@
   "defaultColumn": "Name",
   "definitions": [
     {
+      "index": 1,
+      "name": "GlassesStyle",
+        "converter": {
+          "type": "link",
+          "target": "GlassesStyle"
+        }
+    },
+    {
       "index": 2,
       "name": "Icon",
       "converter": {
