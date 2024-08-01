@@ -103,6 +103,8 @@ namespace SaintCoinach.Xiv {
             _Rewards = rewards.ToArray();
             Quest = shop.As<Quest>("Quest{Item}", index);
 
+            AchievementUnlock = shop.As<Achievement>("AchievementUnlock", index);
+
             int UseCurrencyType = shop.As<byte>("UseCurrencyType");
 
             const int CostCount = 3;
@@ -146,6 +148,8 @@ namespace SaintCoinach.Xiv {
             }
             _Costs = costs.ToArray();
         }
+
+        public Achievement AchievementUnlock { get; set; }
 
         #endregion
 
