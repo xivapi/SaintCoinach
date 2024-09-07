@@ -97,6 +97,25 @@ The following commands are currently supported:
 * `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
 
+#### SaintCoinach.Cmd Setup
+
+To run SaintCoinach.Cmd, you will need to configure where the game install can be found. Either by sending it as an argument when you launch it, e.g:
+
+```powerscript
+.\SaintCoinach.Cmd.exe "C:\Steam\steamapps\common\FINAL FANTASY XIV Online"
+```
+
+or update the application settings `SaintCoinach.Cmd.dll.config` to set the data path:
+
+```xml
+<SaintCoinach.Cmd.Properties.Settings>
+  <setting name="DataPath" serializeAs="String">
+    <value>C:\Steam\steamapps\common\FINAL FANTASY XIV Online</value>
+  </setting>
+</SaintCoinach.Cmd.Properties.Settings>
+```
+
+
 # Godbert
 
 Godbert is a simple application to display game data and 3D models from **Final Fantasy XIV** using the above-mentioned library.
