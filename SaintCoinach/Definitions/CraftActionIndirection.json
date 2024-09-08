@@ -1,0 +1,28 @@
+{
+  "sheet": "CraftActionIndirection",
+  "definitions": [
+    {
+      "name": "Name",
+      "converter": {
+        "type": "link",
+        "target": "CraftAction"
+      }
+    },
+    {
+      "index": 1,
+      "name": "PreviousComboAction",
+      "converter": {
+        "type": "link",
+        "target": "CraftAction"
+      }
+    },
+    {
+      "index": 2,
+      "name": "ClassJob",
+      "converter": {
+        "type": "link",
+        "target": "ClassJob"
+      }
+    }
+  ]
+}
