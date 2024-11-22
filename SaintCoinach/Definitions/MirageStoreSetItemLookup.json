@@ -1,15 +1,14 @@
 {
-  "sheet": "MirageStoreSetItem",
+  "sheet": "MirageStoreSetItemLookup",
   "definitions": [
     {
-      "index": 2,
       "type": "repeat",
-      "count": 9,
+      "count": 2,
       "definition": {
-        "name": "Item",
+        "name": "MirageStoreSetItem",
         "converter": {
           "type": "link",
-          "target": "Item"
+          "target": "MirageStoreSetItem"
         }
       }
     }
