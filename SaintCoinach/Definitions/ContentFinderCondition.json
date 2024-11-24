@@ -110,11 +110,11 @@
       "name": "AllowUndersized"
     },
     {
-      "index": 24,
+      "index": 25,
       "name": "AllowReplacement"
     },
     {
-      "index": 26,
+      "index": 27,
       "name": "AllowExplorerMode"
     },
     {
@@ -122,19 +122,19 @@
       "name": "HighEndDuty"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "Name"
     },
     {
-      "index": 43,
+      "index": 44,
       "name": "NameShort"
     },
     {
-      "index": 44,
+      "index": 45,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -142,11 +142,11 @@
       }
     },
     {
-      "index": 45,
+      "index": 46,
       "name": "TransientKey"
     },
     {
-      "index": 47,
+      "index": 48,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -169,69 +169,69 @@
       }
     },
     {
-      "index": 48,
+      "index": 49,
       "name": "SortKey"
     },
     {
-      "index": 49,
+      "index": 50,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 50,
+      "index": 51,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 55,
+      "index": 57,
       "name": "LevelingRoulette"
     },
     {
-      "index": 56,
+      "index": 58,
       "name": "HighLevelRoulette"
     },
     {
-      "index": 57,
+      "index": 59,
       "name": "MSQRoulette"
     },
     {
-      "index": 58,
+      "index": 60,
       "name": "GuildHestRoulette"
     },
     {
-      "index": 59,
+      "index": 61,
       "name": "ExpertRoulette"
     },
     {
-      "index": 60,
+      "index": 62,
       "name": "TrialRoulette"
     },
     {
-      "index": 61,
+      "index": 63,
       "name": "DailyFrontlineChallenge"
     },
     {
-      "index": 62,
+      "index": 64,
       "name": "LevelCapRoulette"
     },
     {
-      "index": 63,
+      "index": 65,
       "name": "MentorRoulette"
     },
     {
-      "index": 69,
+      "index": 71,
       "name": "AllianceRoulette"
     },
     {
-      "index": 70,
+      "index": 72,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 71,
+      "index": 73,
       "name": "NormalRaidRoulette"
     }
   ]
