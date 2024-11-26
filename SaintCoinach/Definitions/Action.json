@@ -93,6 +93,10 @@
       "name": "CanTargetHostile"
     },
     {
+      "index": 20,
+      "name": "IsMountOrEventOrSpecialAction"
+    },
+    {
       "index": 21,
       "name": "TargetArea"
     },
