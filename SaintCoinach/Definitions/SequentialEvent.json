@@ -1,0 +1,37 @@
+{
+  "sheet": "SequentialEvent",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "LogMessageOutOfRange",
+      "converter": {
+        "type": "link",
+        "target": "LogMessage"
+      }
+    },
+    {
+      "index": 2,
+      "name": "MaxDistance"
+    },
+    {
+      "index": 3,
+      "type": "repeat",
+      "count": 64,
+      "definition": {
+        "name": "Command"
+      }
+    },
+    {
+      "index": 67,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "type": "repeat",
+        "count": 64,
+        "definition": {
+          "name": "Param"
+        }
+      }
+    }
+  ]
+}
