@@ -90,12 +90,42 @@ The project `SaintCoinach.Cmd` is a very basic console application that can be u
 The following commands are currently supported:
 
 * `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`. If no argument is supplied the currently used language is shown.
-* `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
+* Raw file:
+  * `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
+  * `rawexd` Export all data (default), or only specific data files, seperated by spaces. No post-processing is applied to values. 
 * `image`: Exports a file from the game assets as a PNG-image. The argument should be the friendly name of the image file.
-* `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
-* `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
-* `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
+* UI Icons:
+  * `ui`: Exports one or multiple UI icons as PNG-images. The argument can either be the number of a single UI icon, or the first and last number for a range of icons seperated by a space. Valid numbers are in the interval [0, 999999].
+  * `uihd`: As above, but HD icons
+* Game Sheets:
+  * `exd`: Exports all or a specified number of game data sheets as CSV-files. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
+  * `allexd`: As `exd`, but including all languages
+  * `allrawexd`: As `exd`, all languages, No post-processing is applied to values.
+  * `exdheader`: Export all data headers.                              
+  * `rawexd`: Exports all or a specified number of game data sheets as CSV-files without post-processing applied. Arguments can either be empty to export all files, or a list of sheet names seperated by whitespace.
 * `bgm`: Exports all sound files referenced in the BGM sheet as OGG-files.
+* `maps`: Export all map images. 
+* `furn_mdl_tex`: Export all MDL Furniture/Yard files.
+* `sql`: Exports the EXD data as SQL schema and associated imports.
+
+#### SaintCoinach.Cmd Setup
+
+To run SaintCoinach.Cmd, you will need to configure where the game install can be found. Either by sending it as an argument when you launch it, e.g:
+
+```powerscript
+.\SaintCoinach.Cmd.exe "C:\Steam\steamapps\common\FINAL FANTASY XIV Online"
+```
+
+or update the application settings `SaintCoinach.Cmd.dll.config` to set the data path:
+
+```xml
+<SaintCoinach.Cmd.Properties.Settings>
+  <setting name="DataPath" serializeAs="String">
+    <value>C:\Steam\steamapps\common\FINAL FANTASY XIV Online</value>
+  </setting>
+</SaintCoinach.Cmd.Properties.Settings>
+```
+
 
 # Godbert
 
