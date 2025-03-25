@@ -90,38 +90,38 @@
       "name": "Roulette"
     },
     {
-      "index": 26,
+      "index": 28,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 27,
+      "index": 29,
       "name": "Order"
     },
     {
-      "index": 28,
+      "index": 30,
       "name": "IdleAnimation"
     },
     {
-      "index": 30,
+      "index": 32,
       "name": "Cost"
     },
     {
-      "index": 31,
+      "index": 33,
       "name": "HP"
     },
     {
-      "index": 33,
+      "index": 35,
       "name": "Skill{Angle}"
     },
     {
-      "index": 34,
+      "index": 36,
       "name": "Skill{Cost}"
     },
     {
-      "index": 37,
+      "index": 39,
       "name": "MinionRace",
       "converter": {
         "type": "link",
