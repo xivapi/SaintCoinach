@@ -121,11 +121,11 @@
       "name": "BaseMotionSpeed_Walk"
     },
     {
-      "index": 36,
+      "index": 37,
       "name": "ExtraSeats"
     },
     {
-      "index": 37,
+      "index": 38,
       "name": "MountAction",
       "converter": {
         "type": "link",
@@ -133,19 +133,19 @@
       }
     },
     {
-      "index": 38,
+      "index": 39,
       "name": "IsAirborne"
     },
     {
-      "index": 39,
+      "index": 40,
       "name": "ExHotbarEnableConfig"
     },
     {
-      "index": 40,
+      "index": 41,
       "name": "UseEP"
     },
     {
-      "index": 42,
+      "index": 43,
       "name": "IsImmobile"
     }
   ]
