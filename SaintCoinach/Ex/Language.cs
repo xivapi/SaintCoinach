@@ -14,6 +14,7 @@ namespace SaintCoinach.Ex {
         [Description("chs")] ChineseSimplified,
         [Description("cht")] ChineseTraditional,
         [Description("ko")] Korean,
+        [Description("tc")] TraditionalChinese,
 
         [Description("?")] Unsupported
     }
