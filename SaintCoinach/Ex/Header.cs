@@ -26,6 +26,8 @@ namespace SaintCoinach.Ex {
                 6, Language.ChineseTraditional /*"cht"*/
             }, {
                 7, Language.Korean /*"ko"*/
+            }, {
+                8, Language.TraditionalChinese
             }
         };
 
