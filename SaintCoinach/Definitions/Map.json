@@ -70,15 +70,15 @@
       }
     },
     {
-      "index": 13,
+      "index": 14,
       "name": "DiscoveryIndex"
     },
     {
-      "index": 14,
+      "index": 15,
       "name": "DiscoveryFlag"
     },
     {
-      "index": 15,
+      "index": 16,
       "name": "TerritoryType",
       "converter": {
         "type": "link",
@@ -86,11 +86,11 @@
       }
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "DiscoveryArrayByte"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "IsEvent"
     }
   ]
