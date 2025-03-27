@@ -23,7 +23,7 @@
       }
     },
     {
-      "index": 3,
+      "index": 4,
       "name": "Item{Result}",
       "converter": {
         "type": "link",
@@ -31,13 +31,13 @@
       }
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "Amount{Result}"
     },
     {
-      "index": 5,
+      "index": 6,
       "type": "repeat",
-      "count": 10,
+      "count": 8,
       "definition": {
         "type": "group",
         "members": [
@@ -55,7 +55,7 @@
       }
     },
     {
-      "index": 25,
+      "index": 22,
       "name": "RecipeNotebookList",
       "converter": {
         "type": "link",
@@ -63,47 +63,51 @@
       }
     },
     {
-      "index": 26,
+      "index": 23,
+      "name": "DisplayPriority"
+    },
+    {
+      "index": 24,
       "name": "IsSecondary"
     },
     {
-      "index": 27,
+      "index": 25,
       "name": "MaterialQualityFactor"
     },
     {
-      "index": 28,
+      "index": 26,
       "name": "DifficultyFactor"
     },
     {
-      "index": 29,
+      "index": 27,
       "name": "QualityFactor"
     },
     {
-      "index": 30,
+      "index": 28,
       "name": "DurabilityFactor"
     },
     {
-      "index": 31,
+      "index": 29,
       "name": "RequiredQuality"
     },
     {
-      "index": 32,
+      "index": 30,
       "name": "RequiredCraftsmanship"
     },
     {
-      "index": 33,
+      "index": 31,
       "name": "RequiredControl"
     },
     {
-      "index": 34,
+      "index": 32,
       "name": "QuickSynthCraftsmanship"
     },
     {
-      "index": 35,
+      "index": 33,
       "name": "QuickSynthControl"
     },
     {
-      "index": 36,
+      "index": 34,
       "name": "SecretRecipeBook",
       "converter": {
         "type": "link",
@@ -111,7 +115,7 @@
       }
     },
     {
-      "index": 37,
+      "index": 35,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -119,19 +123,19 @@
       }
     },
     {
-      "index": 38,
+      "index": 36,
       "name": "CanQuickSynth"
     },
     {
-      "index": 39,
+      "index": 37,
       "name": "CanHq"
     },
     {
-      "index": 40,
+      "index": 38,
       "name": "ExpRewarded"
     },
     {
-      "index": 41,
+      "index": 39,
       "name": "Status{Required}",
       "converter": {
         "type": "link",
@@ -139,7 +143,7 @@
       }
     },
     {
-      "index": 42,
+      "index": 40,
       "name": "Item{Required}",
       "converter": {
         "type": "link",
@@ -147,15 +151,15 @@
       }
     },
     {
-      "index": 43,
+      "index": 41,
       "name": "IsSpecializationRequired"
     },
     {
-      "index": 44,
+      "index": 42,
       "name": "IsExpert"
     },
     {
-      "index": 47,
+      "index": 45,
       "name": "PatchNumber"
     }
   ]

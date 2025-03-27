@@ -1,4 +1,17 @@
 {
   "sheet": "MirageStoreSetItem",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 2,
+      "type": "repeat",
+      "count": 9,
+      "definition": {
+        "name": "Item",
+        "converter": {
+          "type": "link",
+          "target": "Item"
+        }
+      }
+    }
+  ]
 }

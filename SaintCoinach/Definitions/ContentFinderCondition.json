@@ -66,7 +66,7 @@
       "name": "PvP"
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "AcceptClassJobCategory",
       "converter": {
         "type": "link",
@@ -74,7 +74,7 @@
       }
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "ContentMemberType",
       "converter": {
         "type": "link",
@@ -82,7 +82,7 @@
       }
     },
     {
-      "index": 13,
+      "index": 14,
       "name": "UnlockQuest",
       "converter": {
         "type": "link",
@@ -90,51 +90,51 @@
       }
     },
     {
-      "index": 16,
+      "index": 17,
       "name": "ClassJobLevel{Required}"
     },
     {
-      "index": 17,
+      "index": 18,
       "name": "ClassJobLevel{Sync}"
     },
     {
-      "index": 18,
+      "index": 19,
       "name": "ItemLevel{Required}"
     },
     {
-      "index": 19,
+      "index": 20,
       "name": "ItemLevel{Sync}"
     },
     {
-      "index": 21,
+      "index": 22,
       "name": "AllowUndersized"
     },
     {
-      "index": 23,
+      "index": 25,
       "name": "AllowReplacement"
     },
     {
-      "index": 25,
+      "index": 27,
       "name": "AllowExplorerMode"
     },
     {
-      "index": 31,
+      "index": 32,
       "name": "HighEndDuty"
     },
     {
-      "index": 36,
+      "index": 38,
       "name": "DutyRecorderAllowed"
     },
     {
-      "index": 41,
+      "index": 43,
       "name": "Name"
     },
     {
-      "index": 42,
+      "index": 44,
       "name": "NameShort"
     },
     {
-      "index": 43,
+      "index": 45,
       "name": "ContentType",
       "converter": {
         "type": "link",
@@ -142,11 +142,11 @@
       }
     },
     {
-      "index": 44,
+      "index": 46,
       "name": "TransientKey"
     },
     {
-      "index": 45,
+      "index": 48,
       "name": "Transient",
       "converter": {
         "type": "complexlink",
@@ -169,69 +169,69 @@
       }
     },
     {
-      "index": 46,
+      "index": 49,
       "name": "SortKey"
     },
     {
-      "index": 47,
+      "index": 50,
       "name": "Image",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 48,
+      "index": 51,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 53,
+      "index": 57,
       "name": "LevelingRoulette"
     },
     {
-      "index": 54,
+      "index": 58,
       "name": "HighLevelRoulette"
     },
     {
-      "index": 55,
+      "index": 59,
       "name": "MSQRoulette"
     },
     {
-      "index": 56,
+      "index": 60,
       "name": "GuildHestRoulette"
     },
     {
-      "index": 57,
+      "index": 61,
       "name": "ExpertRoulette"
     },
     {
-      "index": 58,
+      "index": 62,
       "name": "TrialRoulette"
     },
     {
-      "index": 59,
+      "index": 63,
       "name": "DailyFrontlineChallenge"
     },
     {
-      "index": 60,
+      "index": 64,
       "name": "LevelCapRoulette"
     },
     {
-      "index": 61,
+      "index": 65,
       "name": "MentorRoulette"
     },
     {
-      "index": 67,
+      "index": 71,
       "name": "AllianceRoulette"
     },
     {
-      "index": 68,
+      "index": 72,
       "name": "FeastTeamRoulette"
     },
     {
-      "index": 69,
+      "index": 73,
       "name": "NormalRaidRoulette"
     }
   ]

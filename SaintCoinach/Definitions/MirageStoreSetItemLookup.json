@@ -1,15 +1,14 @@
 {
-  "sheet": "CSBonusMission",
+  "sheet": "MirageStoreSetItemLookup",
   "definitions": [
     {
-      "index": 0,
       "type": "repeat",
       "count": 2,
       "definition": {
-        "name": "Content",
+        "name": "MirageStoreSetItem",
         "converter": {
           "type": "link",
-          "target": "CSBonusContent"
+          "target": "MirageStoreSetItem"
         }
       }
     }

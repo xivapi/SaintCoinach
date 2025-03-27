@@ -8,8 +8,8 @@ using SaintCoinach.Ex.Relational;
 
 namespace SaintCoinach.Xiv {
     public class TripleTriadCard : XivRow {
-        public const int PlateIconOffset = 82100;
-        public const int IconOffset = 82500;
+        public const int PlateIconOffset = 87000;
+        public const int IconOffset = 88000;
 
         #region Fields
         private TripleTriadCardResident _Resident;

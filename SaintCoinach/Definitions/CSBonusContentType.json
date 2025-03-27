@@ -1,4 +1,40 @@
 {
   "sheet": "CSBonusContentType",
-  "definitions": []
+  "defaultColumn": "ContentType",
+  "definitions": [
+    {
+      "name": "ContentType",
+      "converter": {
+        "type": "link",
+        "target": "ContentType"
+      }
+    },
+    {
+      "index": 1,
+      "type": "repeat",
+      "count": 4,
+      "definition": {
+        "name": "Text",
+        "converter": {
+          "type": "link",
+          "target": "Addon"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 7,
+      "name": "UnlockQuest",
+      "converter": {
+        "type": "link",
+        "target": "Quest"
+      }
+    }
+  ]
 }

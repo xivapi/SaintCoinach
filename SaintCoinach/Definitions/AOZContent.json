@@ -31,6 +31,13 @@
               "value": 2
             },
             "sheet": "AOZBoss"
+          },
+          {
+            "when": {
+              "key": "Act1FightType",
+              "value": 3
+            },
+            "sheet": "AOZBoss"
           }
         ]
       }
@@ -62,6 +69,13 @@
               "value": 2
             },
             "sheet": "AOZBoss"
+          },
+          {
+            "when": {
+              "key": "Act1FightType",
+              "value": 3
+            },
+            "sheet": "AOZBoss"
           }
         ]
       }
@@ -91,6 +105,13 @@
             "when": {
               "key": "Act3FightType",
               "value": 2
+            },
+            "sheet": "AOZBoss"
+          },
+          {
+            "when": {
+              "key": "Act1FightType",
+              "value": 3
             },
             "sheet": "AOZBoss"
           }

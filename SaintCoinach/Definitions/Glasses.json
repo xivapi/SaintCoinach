@@ -1,0 +1,37 @@
+{
+  "sheet": "Glasses",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "GlassesStyle",
+        "converter": {
+          "type": "link",
+          "target": "GlassesStyle"
+        }
+    },
+    {
+      "index": 2,
+      "name": "Icon",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Singular"
+    },
+    {
+      "index": 6,
+      "name": "Plural"
+    },
+    {
+      "index": 12,
+      "name": "Description"
+    },
+    {
+      "index": 13,
+      "name": "Name"
+    }
+  ]
+}

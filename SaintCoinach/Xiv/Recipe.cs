@@ -199,7 +199,7 @@ namespace SaintCoinach.Xiv {
         /// </summary>
         /// <returns>An array of <see cref="RecipeIngredient" />s used in the current recipe.</returns>
         private RecipeIngredient[] BuildIngredients() {
-            const int MaterialCount = 10;
+            const int MaterialCount = 8;
             const int CrystalCategory = 59;
 
             var ingredients = new List<RecipeIngredient>();

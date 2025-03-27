@@ -1,4 +1,47 @@
 {
   "sheet": "TelepoRelay",
-  "definitions": []
+  "definitions": [
+    {
+      "index": 0,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "TerritoryType{Entry}",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "sheet": "TerritoryType",
+              "project": "PlaceName"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "index": 8,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "TerritoryType{Exit}",
+        "converter": {
+          "type": "complexlink",
+          "links": [
+            {
+              "sheet": "TerritoryType",
+              "project": "PlaceName"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "index": 16,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Cost"
+      }
+    }
+  ]
 }

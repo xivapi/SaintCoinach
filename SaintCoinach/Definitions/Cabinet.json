@@ -20,6 +20,10 @@
         "type": "link",
         "target": "CabinetCategory"
       }
+    },
+    {
+      "index": 3,
+      "name": "SortKey"
     }
   ]
 }

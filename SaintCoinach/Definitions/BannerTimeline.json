@@ -55,18 +55,18 @@
       }
     },
     {
-      "index": 5,
+      "index": 7,
       "name": "SortKey"
     },
     {
-      "index": 6,
+      "index": 8,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 7,
+      "index": 9,
       "name": "Name"
     }
   ]

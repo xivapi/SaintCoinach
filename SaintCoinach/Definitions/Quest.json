@@ -54,7 +54,7 @@
       "index": 9,
       "name": "PreviousQuest",
       "type": "repeat",
-      "count": 3,
+      "count": 4,
       "definition": {
         "name": "PreviousQuest",
         "converter": {
@@ -270,7 +270,7 @@
       }
     },
     {
-      "index": 49,
+      "index": 50,
       "type": "repeat",
       "count": 50,
       "definition": {
@@ -278,7 +278,7 @@
       }
     },
     {
-      "index": 99,
+      "index": 100,
       "type": "repeat",
       "count": 50,
       "definition": {
@@ -286,7 +286,7 @@
       }
     },
     {
-      "index": 149,
+      "index": 150,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -294,7 +294,7 @@
       }
     },
     {
-      "index": 213,
+      "index": 214,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -302,7 +302,7 @@
       }
     },
     {
-      "index": 277,
+      "index": 278,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -310,7 +310,7 @@
       }
     },
     {
-      "index": 341,
+      "index": 342,
       "type": "repeat",
       "count": 32,
       "definition": {
@@ -318,7 +318,7 @@
       }
     },
     {
-      "index": 373,
+      "index": 374,
       "type": "repeat",
       "count": 32,
       "definition": {
@@ -326,7 +326,7 @@
       }
     },
     {
-      "index": 405,
+      "index": 406,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -334,7 +334,7 @@
       }
     },
     {
-      "index": 469,
+      "index": 470,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -342,7 +342,7 @@
       }
     },
     {
-      "index": 533,
+      "index": 534,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -350,7 +350,7 @@
       }
     },
     {
-      "index": 597,
+      "index": 598,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -358,7 +358,7 @@
       }
     },
     {
-      "index": 661,
+      "index": 662,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -366,7 +366,7 @@
       }
     },
     {
-      "index": 725,
+      "index": 726,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -374,7 +374,7 @@
       }
     },
     {
-      "index": 789,
+      "index": 790,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -382,7 +382,7 @@
       }
     },
     {
-      "index": 853,
+      "index": 854,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -390,7 +390,7 @@
       }
     },
     {
-      "index": 917,
+      "index": 918,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -398,7 +398,7 @@
       }
     },
     {
-      "index": 981,
+      "index": 982,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -406,7 +406,7 @@
       }
     },
     {
-      "index": 1045,
+      "index": 1046,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -414,7 +414,7 @@
       }
     },
     {
-      "index": 1109,
+      "index": 1110,
       "type": "repeat",
       "count": 64,
       "definition": {
@@ -422,7 +422,7 @@
       }
     },
     {
-      "index": 1173,
+      "index": 1174,
       "type": "repeat",
       "count": 24,
       "definition": {
@@ -430,7 +430,7 @@
       }
     },
     {
-      "index": 1197,
+      "index": 1198,
       "type": "repeat",
       "count": 24,
       "definition": {
@@ -438,7 +438,7 @@
       }
     },
     {
-      "index": 1221,
+      "index": 1222,
       "type": "repeat",
       "count": 8,
       "definition": {
@@ -454,7 +454,7 @@
       }
     },
     {
-      "index": 1413,
+      "index": 1414,
       "type": "repeat",
       "count": 24,
       "definition": {
@@ -462,11 +462,11 @@
       }
     },
     {
-      "index": 1437,
+      "index": 1438,
       "name": "Level{Max}"
     },
     {
-      "index": 1438,
+      "index": 1439,
       "name": "ClassJob{Required}",
       "converter": {
         "type": "link",
@@ -474,7 +474,7 @@
       }
     },
     {
-      "index": 1439,
+      "index": 1440,
       "name": "QuestRewardOtherDisplay",
       "converter": {
         "type": "link",
@@ -482,15 +482,15 @@
       }
     },
     {
-      "index": 1440,
+      "index": 1441,
       "name": "ExpFactor"
     },
     {
-      "index": 1441,
+      "index": 1442,
       "name": "GilReward"
     },
     {
-      "index": 1442,
+      "index": 1443,
       "name": "CurrencyReward",
       "converter": {
         "type": "link",
@@ -498,11 +498,11 @@
       }
     },
     {
-      "index": 1443,
+      "index": 1444,
       "name": "CurrencyRewardCount"
     },
     {
-      "index": 1444,
+      "index": 1445,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -514,7 +514,7 @@
       }
     },
     {
-      "index": 1447,
+      "index": 1448,
       "type": "repeat",
       "count": 3,
       "definition": {
@@ -522,11 +522,11 @@
       }
     },
     {
-      "index": 1450,
+      "index": 1451,
       "name": "ItemRewardType"
     },
     {
-      "index": 1451,
+      "index": 1452,
       "type": "repeat",
       "count": 7,
       "definition": {
@@ -574,7 +574,7 @@
       }
     },
     {
-      "index": 1458,
+      "index": 1459,
       "type": "repeat",
       "count": 7,
       "definition": {
@@ -582,7 +582,7 @@
       }
     },
     {
-      "index": 1472,
+      "index": 1473,
       "type": "repeat",
       "count": 7,
       "definition": {
@@ -594,7 +594,7 @@
       }
     },
     {
-      "index": 1479,
+      "index": 1480,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -606,7 +606,7 @@
       }
     },
     {
-      "index": 1484,
+      "index": 1485,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -614,7 +614,7 @@
       }
     },
     {
-      "index": 1489,
+      "index": 1490,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -622,7 +622,7 @@
       }
     },
     {
-      "index": 1494,
+      "index": 1495,
       "type": "repeat",
       "count": 5,
       "definition": {
@@ -634,7 +634,7 @@
       }
     },
     {
-      "index": 1499,
+      "index": 1500,
       "name": "Emote{Reward}",
       "converter": {
         "type": "link",
@@ -642,7 +642,7 @@
       }
     },
     {
-      "index": 1500,
+      "index": 1501,
       "name": "Action{Reward}",
       "converter": {
         "type": "link",
@@ -650,7 +650,7 @@
       }
     },
     {
-      "index": 1501,
+      "index": 1502,
       "type": "repeat",
       "count": 2,
       "definition": {
@@ -662,11 +662,11 @@
       }
     },
     {
-      "index": 1503,
+      "index": 1504,
       "name": "System{Reward}[0]"
     },
     {
-      "index": 1504,
+      "index": 1505,
       "name": "Other{Reward}",
       "converter": {
         "type": "link",
@@ -674,15 +674,15 @@
       }
     },
     {
-      "index": 1505,
+      "index": 1506,
       "name": "System{Reward}[1]"
     },
     {
-      "index": 1506,
+      "index": 1507,
       "name": "GCType{Reward}"
     },
     {
-      "index": 1507,
+      "index": 1508,
       "name": "InstanceContent{Unlock}",
       "converter": {
         "type": "link",
@@ -690,11 +690,11 @@
       }
     },
     {
-      "index": 1508,
+      "index": 1509,
       "name": "Tomestone"
     },
     {
-      "index": 1509,
+      "index": 1510,
       "name": "Tomestone{Reward}",
       "converter": {
         "type": "complexlink",
@@ -708,15 +708,15 @@
       }
     },
     {
-      "index": 1510,
+      "index": 1511,
       "name": "TomestoneCount{Reward}"
     },
     {
-      "index": 1511,
+      "index": 1512,
       "name": "ReputationReward"
     },
     {
-      "index": 1512,
+      "index": 1513,
       "name": "PlaceName",
       "converter": {
         "type": "link",
@@ -724,7 +724,7 @@
       }
     },
     {
-      "index": 1513,
+      "index": 1514,
       "name": "JournalGenre",
       "converter": {
         "type": "link",
@@ -732,29 +732,29 @@
       }
     },
     {
-      "index": 1515,
+      "index": 1516,
       "name": "Icon",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 1516,
+      "index": 1517,
       "name": "Icon{Special}",
       "converter": {
         "type": "icon"
       }
     },
     {
-      "index": 1517,
+      "index": 1518,
       "name": "Introduction"
     },
     {
-      "index": 1518,
+      "index": 1519,
       "name": "HideOfferIcon"
     },
     {
-      "index": 1519,
+      "index": 1520,
       "name": "EventIconType",
       "converter": {
         "type": "link",
@@ -762,7 +762,7 @@
       }
     },
     {
-      "index": 1521,
+      "index": 1522,
       "name": "SortKey"
     }
   ]
