@@ -45,6 +45,15 @@ namespace SaintCoinach.Graphics.Viewer {
             get { return _InputService; }
         }
         public RenderForm Form { get { return _Form; } }
+        public override string Subtitle {
+            get {
+                return base.Subtitle; 
+            }
+            set {
+                base.Subtitle = value;
+                _Form.Text = string.IsNullOrEmpty(value) ? _Title : _Title + " - " + value;
+            } 
+        }
         public override bool IsActive {
             get { return Form.ContainsFocus; }
         }
