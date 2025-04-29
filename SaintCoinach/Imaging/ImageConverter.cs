@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-
+using System.Drawing.Text;
+using BCnEncoder.Decoder;
+using BCnEncoder.Shared;
 using DotSquish;
 
 namespace SaintCoinach.Imaging {
@@ -103,6 +105,10 @@ namespace SaintCoinach.Imaging {
                     ImageFormat.Dxt5, ProcessDxt5
                 }, {
                     ImageFormat.R3G3B2, ProcessR3G3B2
+                }, {
+                    ImageFormat.BC5, ProcessBC5
+                }, {
+                    ImageFormat.BC7, ProcessBC7
                 }
             };
 
@@ -288,6 +294,32 @@ namespace SaintCoinach.Imaging {
             }
         }
 
+        // https://github.com/0ceal0t/Dalamud-VFXEditor/blob/main/VFXEditor/Formats/TextureFormat/TextureDataFile.cs#L275
+
+        private static void ProcessBC5(byte[] src, byte[] dst, int width, int height) {
+            ProcessBC(src, dst, width, height, CompressionFormat.Bc5);
+        }
+
+        private static void ProcessBC7(byte[] src, byte[] dst, int width, int height) {
+            ProcessBC(src, dst, width, height, CompressionFormat.Bc7);
+        }
+
+        private static void ProcessBC(byte[] src, byte[] dst, int width, int height, CompressionFormat format) {
+            var decoder = new BcDecoder();
+            var output = decoder.DecodeRaw2D(src, width, height, format).ToArray();
+
+            var p = 0;
+            for (var i = 0; i < height; i++) {
+                for (var j = 0; j < width; j++) {
+                    var pixel = output[i, j];
+                    dst[p] = pixel.b;
+                    dst[p + 1] = pixel.g;
+                    dst[p + 2] = pixel.r;
+                    dst[p + 3] = pixel.a;
+                    p += 4;
+                }
+            }
+        }
         #endregion
     }
 }
