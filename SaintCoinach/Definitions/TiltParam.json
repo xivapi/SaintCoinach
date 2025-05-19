@@ -1,0 +1,21 @@
+{
+  "sheet": "TiltParam",
+  "defaultColumn": "Unknown",
+  "definitions": [
+    {
+      "name": "Unknown"
+    },
+    {
+      "index": 0,
+      "name": "RotationOriginOffset"
+    },
+    {
+      "index": 1,
+      "name": "MaxAngle"
+    },
+    {
+      "index": 3,
+      "name": "TiltRate"
+    }
+  ]
+}
