@@ -38,6 +38,14 @@
       }
     },
     {
+      "index": 9,
+      "name": "MoveControl",
+      "converter": {
+        "type": "link",
+        "target": "MoveControl"
+      }
+    },
+    {
       "index": 10,
       "name": "FlyingCondition",
       "converter": {
@@ -147,6 +155,42 @@
     {
       "index": 43,
       "name": "IsImmobile"
+    },
+    {
+      "index": 47,
+      "name": "HideHeadgear"
+    },
+    {
+      "index": 48,
+      "name": "TiltGround",
+      "converter": {
+        "type": "link",
+        "target": "TiltParam"
+      }
+    },
+    {
+      "index": 49,
+      "name": "TiltAir/Swim",
+      "converter": {
+        "type": "link",
+        "target": "TiltParam"
+      }
+    },
+    {
+      "index": 50,
+      "name": "TiltParam3",
+      "converter": {
+        "type": "link",
+        "target": "TiltParam"
+      }
+    },
+    {
+      "index": 52,
+      "name": "TiltParam4",
+      "converter": {
+        "type": "link",
+        "target": "TiltParam"
+      }
     }
   ]
 }
