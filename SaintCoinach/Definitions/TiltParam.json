@@ -2,9 +2,6 @@
   "sheet": "TiltParam",
   "definitions": [
     {
-      "name": "Unknown"
-    },
-    {
       "index": 0,
       "name": "RotationOriginOffset"
     },
