@@ -129,6 +129,10 @@
       "name": "BaseMotionSpeed_Walk"
     },
     {
+      "index": 36,
+      "name": "UnderwaterAnimationSpeed"
+    },
+    {
       "index": 37,
       "name": "ExtraSeats"
     },
