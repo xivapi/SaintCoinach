@@ -1,0 +1,21 @@
+{
+  "sheet": "MKDLore",
+  "defaultColumn": "Name",
+  "definitions": [
+    {
+      "index": 1,
+      "name": "Image",
+      "converter": {
+        "type": "icon"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Name"
+    },
+    {
+      "index": 6,
+      "name": "Description"
+    }
+  ]
+}
