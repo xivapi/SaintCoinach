@@ -3,14 +3,74 @@
   "definitions": [
     {
       "index": 2,
-      "type": "repeat",
-      "count": 9,
-      "definition": {
-        "name": "Item",
-        "converter": {
-          "type": "link",
-          "target": "Item"
-        }
+      "name": "Head",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Body",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Hands",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Legs",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Feet",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Earrings",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Necklace",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 9,
+      "name": "Bracelets",
+      "converter": {
+        "type": "link",
+        "target": "Item"
+      }
+    },
+    {
+      "index": 10,
+      "name": "Ring",
+      "converter": {
+        "type": "link",
+        "target": "Item"
       }
     }
   ]
