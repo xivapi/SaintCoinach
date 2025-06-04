@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
@@ -36,6 +37,17 @@ namespace SaintCoinach.Imaging {
             var stream = GetSourceStream();
             stream.Position = CommonHeader.EndOfHeader;
             ImageHeader = new ImageHeader(stream);
+        }
+
+        // For atex texture files
+        public ImageFile(FileDefault file) : base(file.Pack, file.CommonHeader) {
+            var data = file.GetData();
+
+            var stream = new MemoryStream(data);
+            ImageHeader = new ImageHeader(stream);
+            var imgData = new byte[data.Length - ImageHeader.EndOfHeader];
+            Array.Copy(data, ImageHeader.EndOfHeader, imgData, 0, imgData.Length);
+            _BufferCache = new WeakReference<byte[]>(imgData);
         }
 
         #endregion
