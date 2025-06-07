@@ -48,7 +48,19 @@ namespace SaintCoinach.Cmd.Commands {
                     outPathSb.AppendFormat("{0}/{1}", map.Id.ToString().Split('/')[0], map.Id.ToString().Replace("/", "."));
                     outPathSb.Append(FormatToExtension(format));
                 } else {
-                    var territoryName = map.TerritoryType?.Name?.ToString();
+                    // this line is occasionally throwing an exception at map.TerritoryType
+                    //var territoryName = map.TerritoryType?.Name?.ToString();
+
+                    // I wrapped the line in a try/catch just to have the loop continue to process other maps when it encounters an exception.
+                    string territoryName = "";
+                    try {
+                        territoryName = map.TerritoryType?.Name?.ToString();
+                    }
+                    catch (Exception ex) {
+                        OutputError($"Error processing map {map.Id}: {ex.Message}");
+                        continue;
+                    }
+
                     if (!string.IsNullOrEmpty(territoryName)) {
                         if (territoryName.Length < 3) {
                             outPathSb.AppendFormat("{0}/", territoryName);
