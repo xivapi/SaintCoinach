@@ -3,7 +3,7 @@
     <ProjectGuid>{6A5DA7FF-791E-4A43-BF65-B6942917F7D9}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
@@ -38,5 +38,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Godbert.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\projects\SaintCoinach\Godbert\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\projects\SaintCoinach\Godbert\.editorconfig" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{8A7D65EB-3DE3-4631-B286-CC73A3126002}</ProjectGuid>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <AssemblyTitle>SaintCoinach</AssemblyTitle>
     <Product>SaintCoinach</Product>
     <Copyright>Copyright © Rogueadyn 2014</Copyright>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{F9681545-4BEA-4FD3-9AB9-A67BD37AB36D}</ProjectGuid>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>

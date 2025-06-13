@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{226BF71E-334F-4585-8FEC-4239704CF539}</ProjectGuid>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <AssemblyTitle>SaintCoinach.Graphics.Viewer</AssemblyTitle>
     <Product>SaintCoinach.Graphics.Viewer</Product>
     <Copyright>Copyright ©  2015</Copyright>
@@ -94,5 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\projects\SaintCoinach\SaintCoinach.Graphics.Viewer\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\projects\SaintCoinach\SaintCoinach.Graphics.Viewer\.editorconfig" />
   </ItemGroup>
 </Project>
