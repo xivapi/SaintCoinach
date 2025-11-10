@@ -201,6 +201,10 @@
       }
     },
     {
+      "index": 47,
+      "name": "ExpCoefficient"
+    },
+    {
       "index": 51,
       "name": "InstanceContentBuff",
       "converter": {
