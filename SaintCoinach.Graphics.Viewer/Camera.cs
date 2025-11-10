@@ -163,13 +163,19 @@ namespace SaintCoinach.Graphics.Viewer {
                 if (_Engine.Keyboard.IsKeyDown(Keys.Down))
                     _Pitch -= RotationSpeed * amount * 2;
 
-                if (_CurrentMouseState.LeftButton) {
-                    if (_CurrentMouseState.RightButton)
-                        moveVector += new Vector3(0, 0, -1);
+                if (_CurrentMouseState.LeftButton || _CurrentMouseState.RightButton) {
                     var mouseMove = _CurrentMouseState.AbsolutePosition - _PreviousMouseState.AbsolutePosition;
-                    _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
-                    _Pitch -= mouseMove.Y * MouseRotationSpeedPitch;
+                    if (_CurrentMouseState.LeftButton) {
+                        _Yaw -= mouseMove.X * MouseRotationSpeedYaw;
+                        _Pitch -= mouseMove.Y * MouseRotationSpeedPitch;
+                    }
+                    if (_CurrentMouseState.RightButton)
+                        moveVector += new Vector3(mouseMove.X / -16f, mouseMove.Y / 16f, 0);
+                    if (_CurrentMouseState.LeftButton && _CurrentMouseState.RightButton)
+                        moveVector += new Vector3(0, 0, -1);
                 }
+
+                moveVector += new Vector3(0, 0, _CurrentMouseState.WheelDelta / -12f);
 
                 AddToCameraPosition(moveVector * amount);
             }

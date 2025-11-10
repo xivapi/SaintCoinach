@@ -31,7 +31,7 @@ namespace SaintCoinach.Graphics.Viewer {
             : base(engine, variant, definition, quality) {
 
             Skeleton = skeleton;
-            _AnimationPlayer = new AnimationPlayer();
+            _AnimationPlayer = new AnimationPlayer(engine);
 
             var nameMap = new Dictionary<string, int>();
             for (var i = 0; i < Skeleton.BoneNames.Length; ++i)

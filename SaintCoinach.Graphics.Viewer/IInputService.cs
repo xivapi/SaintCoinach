@@ -13,5 +13,6 @@ namespace SaintCoinach.Graphics.Viewer {
         Point MousePosition { get; }
         IEnumerable<Keys> GetDownKeys();
         IEnumerable<MouseButtons> GetDownMouseButtons();
+        int GetNextWheelDelta();
     }
 }
