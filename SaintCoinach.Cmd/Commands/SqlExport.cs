@@ -179,56 +179,63 @@ namespace SaintCoinach.Cmd.Commands
             // .Where(n => !n.Contains("quest/") && !n.Contains("custom/"))
             foreach (var name in _Realm.GameData.AvailableSheets)
             {
-                var sheet = _Realm.GameData.GetSheet(name);
-                var variant = sheet.Header.Variant;
-                var sheet2 = sheet as XivSheet2<XivSubRow>;
-                
-                Console.WriteLine($"Sheet: {name}, variant: {variant}");
+                try
+                {
+                    var sheet = _Realm.GameData.GetSheet(name);
+                    var variant = sheet.Header.Variant;
+                    var sheet2 = sheet as XivSheet2<XivSubRow>;
 
-                if (sheet.Count == 0)
-                    continue;
+                    Console.WriteLine($"Sheet: {name}, variant: {variant}");
 
-                var sb = new StringBuilder();
+                    if (sheet.Count == 0)
+                        continue;
 
-                sb.AppendLine($"CREATE TABLE {GetTableName(sheet)} (");
-                
-                // key meme
-                if (sheet.Header.Variant == 1)
-                {
-                    sb.AppendLine($"  `_Key` INT NOT NULL,");
+                    var sb = new StringBuilder();
+
+                    sb.AppendLine($"CREATE TABLE {GetTableName(sheet)} (");
+
+                    // key meme
+                    if (sheet.Header.Variant == 1)
+                    {
+                        sb.AppendLine($"  `_Key` INT NOT NULL,");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"  `_Key` INT NOT NULL,");
+                        sb.AppendLine($"  `_SubKey` INT NOT NULL,");
+                    }
+
+                    // add cols
+                    foreach (var column in sheet.Header.Columns)
+                    {
+                        var colName = column.Name;
+                        if (string.IsNullOrEmpty(colName))
+                            colName = $"unk{column.Index}";
+
+                        sb.AppendLine($"  `{colName}` {GetSqlType(column.Reader.Type)},");
+                    }
+
+                    // primary key
+                    if (sheet.Header.Variant == 1)
+                    {
+                        sb.AppendLine($"  PRIMARY KEY (`_Key`)");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"  PRIMARY KEY (`_Key`, `_SubKey`)");
+                    }
+
+                    sb.AppendLine(") COLLATE='utf8mb4_unicode_ci' ENGINE=MyISAM;");
+                    sb.AppendLine();
+
+                    WriteRows(sheet, sb);
+
+                    imports.Add(sb.ToString());
                 }
-                else
+                catch (Exception e)
                 {
-                    sb.AppendLine($"  `_Key` INT NOT NULL,");
-                    sb.AppendLine($"  `_SubKey` INT NOT NULL,");
+                    Console.WriteLine($"Failed to export {name}: {e}");
                 }
-                
-                // add cols
-                foreach (var column in sheet.Header.Columns)
-                {
-                    var colName = column.Name;
-                    if (string.IsNullOrEmpty(colName))
-                        colName = $"unk{column.Index}";
-                    
-                    sb.AppendLine($"  `{colName}` {GetSqlType(column.Reader.Type)},");
-                }
-                
-                // primary key
-                if (sheet.Header.Variant == 1)
-                {
-                    sb.AppendLine($"  PRIMARY KEY (`_Key`)");
-                }
-                else
-                {
-                    sb.AppendLine($"  PRIMARY KEY (`_Key`, `_SubKey`)");
-                }
-            
-                sb.AppendLine(") COLLATE='utf8mb4_unicode_ci' ENGINE=MyISAM;");
-                sb.AppendLine();
-                
-                WriteRows(sheet, sb);
-                
-                imports.Add(sb.ToString());
             }
             
             File.WriteAllText("schema.sql", string.Join(Environment.NewLine, imports));
