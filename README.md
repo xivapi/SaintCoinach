@@ -89,7 +89,22 @@ There should, however, be enough documentation available to know how to use the 
 The project `SaintCoinach.Cmd` is a very basic console application that can be used to extract various assets.
 The following commands are currently supported:
 
-* `lang`: Displays or changes the language used for data files. Valid arguments are `Japanese`, `English`, `German`, `French`. If no argument is supplied the currently used language is shown.
+* `lang`: Displays or changes the language used for data files, _e.g._ `lang English` / `lang en`.
+  
+  * Valid language arguments are:
+    *  `Japanese` / `ja`
+    *  `English` / `en`
+    *  `German` / `de`
+    *  `French` / `fr`
+
+  * The following languages are intended for non-global game clients:
+    *  `ChineseSimplified` / `chs`
+    *  `ChineseTraditional` / `cht`
+    *  `Korean` / `ko`
+    *  `TraditionalChinese` / `tc`
+
+  * If no argument is supplied, the currently used language is shown.
+  
 * Raw file:
   * `raw`: Exports a file from the game assets without any conversions. The argument should be the friendly name of the file.
   * `rawexd` Export all data (default), or only specific data files, seperated by spaces. No post-processing is applied to values. 
