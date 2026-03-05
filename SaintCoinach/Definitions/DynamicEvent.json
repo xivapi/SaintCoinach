@@ -18,15 +18,15 @@
       }
     },
     {
-      "index": 4,
+      "index": 5,
       "name": "LGBEventObject"
     },
     {
-      "index": 5,
+      "index": 6,
       "name": "LGBMapRange"
     },
     {
-      "index": 6,
+      "index": 7,
       "name": "Quest",
       "converter": {
         "type": "link",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "index": 8,
+      "index": 9,
       "name": "SingleBattle",
       "converter": {
         "type": "link",
@@ -42,7 +42,7 @@
       }
     },
     {
-      "index": 9,
+      "index": 10,
       "name": "Announce",
       "converter": {
         "type": "link",
@@ -50,11 +50,11 @@
       }
     },
     {
-      "index": 10,
+      "index": 11,
       "name": "Name"
     },
     {
-      "index": 11,
+      "index": 12,
       "name": "Description"
     }
   ]
