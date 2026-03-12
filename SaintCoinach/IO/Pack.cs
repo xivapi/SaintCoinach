@@ -23,6 +23,7 @@ namespace SaintCoinach.IO {
 
         private readonly Dictionary<Tuple<Thread, byte>, WeakReference<Stream>> _DataStreams =
             new Dictionary<Tuple<Thread, byte>, WeakReference<Stream>>();
+        private readonly IPackSource _AlternateSource;
 
         private bool _KeepInMemory = false;
         private Dictionary<int, byte[]> _Buffers = new Dictionary<int,byte[]>();
@@ -119,9 +120,11 @@ namespace SaintCoinach.IO {
 
             var indexPath = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(IndexFileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
             var index2Path = Path.Combine(DataDirectory.FullName, id.Expansion, string.Format(Index2FileFormat, Id.TypeKey, Id.ExpansionKey, Id.Number));
-            if (IOFile.Exists(indexPath))
+            if (IOFile.Exists(indexPath)) {
                 Source = new IndexSource(this, new Index(id, indexPath));
-            else if (IOFile.Exists(index2Path))
+                if (IOFile.Exists(index2Path))
+                    _AlternateSource = new Index2Source(this, new Index2(id, index2Path));
+            } else if (IOFile.Exists(index2Path))
                 Source = new Index2Source(this, new Index2(id, index2Path));
             else
                 throw new FileNotFoundException();
@@ -132,13 +135,23 @@ namespace SaintCoinach.IO {
         #region Fields
 
         public bool FileExists(string path) {
-            return Source.FileExists(path);
+            return Source.FileExists(path) || (_AlternateSource != null && _AlternateSource.FileExists(path));
         }
         public bool TryGetFile(string path, out File value) {
-            return Source.TryGetFile(path, out value);
+            if (_AlternateSource != null && _AlternateSource.TryGetFile(path, out value)) {
+                return true;
+            }
+
+            if (Source.TryGetFile(path, out value))
+                return true;
+
+            value = null;
+            return false;
         }
         public File GetFile(string path) {
-            return Source.GetFile(path);
+            if (TryGetFile(path, out var value))
+                return value;
+            throw new FileNotFoundException("Pack file not found '" + path + "'");
         }
 
         #endregion

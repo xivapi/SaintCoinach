@@ -143,6 +143,16 @@ namespace Godbert.ViewModels {
                 Dictionary<string, bool> exportedPaths = new Dictionary<string, bool>();
                 UInt64 vs = 1, vt = 1, vn = 1, i = 0;
                 Matrix IdentityMatrix = Matrix.Identity;
+                const int VertLineFlushThreshold = 50000;
+
+                void FlushVertLines(bool force = false) {
+                    if (!force && vertStr.Count < VertLineFlushThreshold)
+                        return;
+                    if (vertStr.Count == 0)
+                        return;
+                    System.IO.File.AppendAllLines(_ExportFileName, vertStr);
+                    vertStr.Clear();
+                }
 
                 void ExportMaterials(Material m, string path) {
                     vertStr.Add($"mtllib {path}.mtl");
@@ -164,14 +174,26 @@ namespace Godbert.ViewModels {
                         if (mtlName.Contains("_dummy_"))
                             continue;
 
-                        var ddsBytes = SaintCoinach.Imaging.ImageConverter.GetDDS(img);
+                        byte[] ddsBytes = null;
+                        var fileExt = ".png";
+                        try {
+                            ddsBytes = SaintCoinach.Imaging.ImageConverter.GetDDS(img);
+                            fileExt = ddsBytes != null ? ".dds" : ".png";
 
-                        var fileExt = ddsBytes != null ? ".dds" : ".png";
-                        
-                        if (fileExt == ".dds")
-                            System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
-                        else
-                            SaintCoinach.Imaging.ImageConverter.Convert(img).Save($"{_ExportDirectory}/{mtlName}.png");
+                            if (fileExt == ".dds") {
+                                System.IO.File.WriteAllBytes($"{_ExportDirectory}/{mtlName}.dds", ddsBytes);
+                            }
+                            else {
+                                using (var convertedImage = SaintCoinach.Imaging.ImageConverter.Convert(img)) {
+                                    convertedImage.Save($"{_ExportDirectory}/{mtlName}.png", System.Drawing.Imaging.ImageFormat.Png);
+                                }
+                            }
+                        }
+                        catch (Exception texEx) {
+                            System.Diagnostics.Debug.WriteLine(
+                                $"Failed to export texture '{img.Path}' ({img.Width}x{img.Height}, {img.Format}) for material '{path}': {texEx.Message}");
+                            continue;
+                        }
 
 
                         if (mtlName.Contains("_n.tex")) {
@@ -235,20 +257,23 @@ namespace Godbert.ViewModels {
                             vertStr.Add($"vt {v.UV.Value.X} {v.UV.Value.Y * -1.0}".Replace(',', '.'));
                             tempVt++;
                         }
+
+                        if (vertStr.Count >= VertLineFlushThreshold)
+                            FlushVertLines();
                     }
                     vertStr.Add($"g {modelFilePath}_{i.ToString()}_{k.ToString()}");
                     vertStr.Add($"usemtl {materialName}");
-                    for (UInt64 j = 0; j + 3 < (UInt64)mesh.Indices.Length + 1; j += 3) {
+                    for (var j = 0; j + 2 < mesh.Indices.Length; j += 3) {
                         vertStr.Add(
                             $"f " +
                             $"{mesh.Indices[j] + vs}/{mesh.Indices[j] + vt}/{mesh.Indices[j] + vn} " +
                             $"{mesh.Indices[j + 1] + vs}/{mesh.Indices[j + 1] + vt}/{mesh.Indices[j + 1] + vn} " +
                             $"{mesh.Indices[j + 2] + vs}/{mesh.Indices[j + 2] + vt}/{mesh.Indices[j + 2] + vn}");
+
+                        if (vertStr.Count >= VertLineFlushThreshold)
+                            FlushVertLines();
                     }
-                    if (i % 1000 == 0) {
-                        System.IO.File.AppendAllLines(_ExportFileName, vertStr);
-                        vertStr.Clear();
-                    }
+                    FlushVertLines();
                     vs += tempVs;
                     vn += tempVn;
                     vt += tempVt;
@@ -339,8 +364,7 @@ namespace Godbert.ViewModels {
                     }
                 }
 
-                System.IO.File.AppendAllLines(_ExportFileName, vertStr);
-                vertStr.Clear();
+                FlushVertLines(true);
                 vs = 1; vn = 1; vt = 1; i = 0;
                 foreach (var lgb in territory.LgbFiles) {
                     foreach (var lgbGroup in lgb.Groups) {
@@ -356,8 +380,7 @@ namespace Godbert.ViewModels {
 
                                 newGroup = false;
 
-                                System.IO.File.AppendAllLines(_ExportFileName, vertStr);
-                                vertStr.Clear();
+                                FlushVertLines(true);
 
                                 //vertStr.Add($"o {lgbGroup.Name}");
 
@@ -461,8 +484,7 @@ namespace Godbert.ViewModels {
                         lightStrs.Clear();
                     }
                 }
-                System.IO.File.AppendAllLines(_ExportFileName, vertStr);
-                vertStr.Clear();
+                FlushVertLines(true);
                 System.IO.File.AppendAllLines(lightsFileName, lightStrs);
                 lightStrs.Clear();
                 System.Windows.Forms.MessageBox.Show("Finished exporting " + territory.Name, "", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
@@ -471,8 +493,8 @@ namespace Godbert.ViewModels {
                 System.Windows.Forms.MessageBox.Show(e.Message, $"Canceled {teriName} export");
             }
             catch (Exception e) {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                System.Windows.Forms.MessageBox.Show(e.StackTrace, $"Unable to export {teriName}");
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+                System.Windows.Forms.MessageBox.Show($"{e.GetType().FullName}: {e.Message}{Environment.NewLine}{e.StackTrace}", $"Unable to export {teriName}");
             }
         }
         #endregion

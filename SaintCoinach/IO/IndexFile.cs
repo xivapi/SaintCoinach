@@ -10,7 +10,7 @@ namespace SaintCoinach.IO {
         public PackIdentifier PackId { get; private set; }
         public uint FileKey { get; private set; }
         public uint DirectoryKey { get; private set; }
-        public uint Offset { get; private set; }
+        public long Offset { get; private set; }
 
         /// <summary>
         ///     In which .dat* file the data is located.
@@ -26,9 +26,9 @@ namespace SaintCoinach.IO {
             FileKey = reader.ReadUInt32();
             DirectoryKey = reader.ReadUInt32();
 
-            var baseOffset = reader.ReadInt32();
-            DatFile = (byte)((baseOffset & 0x000F) / 2);
-            Offset = (uint)(baseOffset - (baseOffset & 0x000F)) * 0x08;
+            var baseOffset = reader.ReadUInt32();
+            DatFile = (byte)((baseOffset & 0x000F) >> 1);
+            Offset = ((long)(baseOffset & 0xFFFFFFF0u)) * 0x08L;
 
             reader.ReadInt32(); // Zero
         }
@@ -38,7 +38,7 @@ namespace SaintCoinach.IO {
         #region IEquatable<IIndexFile> Members
 
         public override int GetHashCode() {
-            return (int)(((DatFile << 24) | PackId.GetHashCode()) ^ Offset);
+            return (int)(((DatFile << 24) | PackId.GetHashCode()) ^ Offset.GetHashCode());
         }
         public override bool Equals(object obj) {
             if (obj is IIndexFile)

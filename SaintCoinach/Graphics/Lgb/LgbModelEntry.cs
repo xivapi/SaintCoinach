@@ -38,18 +38,45 @@ namespace SaintCoinach.Graphics.Lgb {
         public Pcb.PcbFile CollisionFile { get; private set; }
         #endregion
 
+        private static string NormalizePath(string value, string extension) {
+            if (string.IsNullOrWhiteSpace(value))
+                return string.Empty;
+
+            var path = value.Trim().Trim('\0').Replace('\\', '/');
+            var roots = new[] { "bg/", "bgcommon/", "common/", "chara/", "vfx/", "cut/" };
+
+            var start = -1;
+            foreach (var root in roots) {
+                var index = path.IndexOf(root, StringComparison.OrdinalIgnoreCase);
+                if (index >= 0 && (start < 0 || index < start))
+                    start = index;
+            }
+            if (start > 0)
+                path = path.Substring(start);
+
+            var extIndex = path.IndexOf(extension, StringComparison.OrdinalIgnoreCase);
+            if (extIndex >= 0)
+                path = path.Substring(0, extIndex + extension.Length);
+
+            return path;
+        }
+
         #region Constructor
         public LgbModelEntry(IO.PackCollection packs, byte[] buffer, int offset) {
             this.Header = buffer.ToStructure<HeaderData>(offset);
             this.Name = buffer.ReadString(offset + Header.NameOffset);
 
-            ModelFilePath = buffer.ReadString(offset + Header.ModelFileOffset);
-            CollisionFilePath = buffer.ReadString(offset + Header.CollisionFileOffset);
+            ModelFilePath = NormalizePath(buffer.ReadString(offset + Header.ModelFileOffset), ".mdl");
+            CollisionFilePath = NormalizePath(buffer.ReadString(offset + Header.CollisionFileOffset), ".pcb");
 
             if (!string.IsNullOrWhiteSpace(ModelFilePath)) {
-                SaintCoinach.IO.File mdlFile;
-                if (packs.TryGetFile(ModelFilePath, out mdlFile))
-                    this.Model = new TransformedModel(((Graphics.ModelFile)mdlFile).GetModelDefinition(), Header.Translation, Header.Rotation, Header.Scale);
+                try {
+                    SaintCoinach.IO.File mdlFile;
+                    if (packs.TryGetFile(ModelFilePath, out mdlFile))
+                        this.Model = new TransformedModel(((Graphics.ModelFile)mdlFile).GetModelDefinition(), Header.Translation, Header.Rotation, Header.Scale);
+                } catch (Exception ex) {
+                    Debug.WriteLine($"{Name} at 0x{offset:X} model '{ModelFilePath}' failure: {ex.Message}");
+                }
             }
             
             if (!string.IsNullOrWhiteSpace(CollisionFilePath)) {

@@ -71,6 +71,7 @@ namespace SaintCoinach.IO {
             const int BlockPadding = 0x80;
 
             const int CompressionThreshold = 0x7D00;
+            const int MaxAllowedBlockBytes = 16 * 1024 * 1024;
 
             /*
              * Block:
@@ -96,9 +97,17 @@ namespace SaintCoinach.IO {
             if (magicCheck != Magic)
                 throw new NotSupportedException("Magic number not present (-> don't know how to continue).");
 
+            if (sourceSize <= 0 || rawSize <= 0)
+                throw new InvalidDataException($"Invalid block size. Source={sourceSize}, Raw={rawSize}.");
+
+            if (sourceSize > MaxAllowedBlockBytes || rawSize > MaxAllowedBlockBytes)
+                throw new InvalidDataException($"Block too large. Source={sourceSize}, Raw={rawSize}, Limit={MaxAllowedBlockBytes}.");
+
             var isCompressed = sourceSize < CompressionThreshold;
 
             var blockSize = isCompressed ? sourceSize : rawSize;
+            if (blockSize <= 0 || blockSize > MaxAllowedBlockBytes)
+                throw new InvalidDataException($"Invalid block payload size {blockSize}. Limit={MaxAllowedBlockBytes}.");
 
             // An uncompressed block in an ScdOggFile was corrupted due to this
             // extra padding injecting extra 0s into the output stream.  I'm
@@ -114,7 +123,7 @@ namespace SaintCoinach.IO {
 
             if (isCompressed) {
                 var currentPosition = outStream.Position;
-                Inflate(buffer, outStream);
+                Inflate(buffer, outStream, rawSize);
                 var dLen = outStream.Position - currentPosition;
                 if (dLen != rawSize)
                     throw new InvalidDataException("Inflated block does not match indicated size.");
@@ -123,9 +132,75 @@ namespace SaintCoinach.IO {
             }
         }
 
-        private static void Inflate(byte[] buffer, Stream outStream) {
-            var unc = Ionic.Zlib.DeflateStream.UncompressBuffer(buffer);
-            outStream.Write(unc, 0, unc.Length);
+        private static void Inflate(byte[] buffer, Stream outStream, int expectedSize) {
+            if (expectedSize <= 0)
+                throw new InvalidDataException($"Invalid expected inflated size {expectedSize}.");
+
+            var temp = new byte[8192];
+            var startPos = outStream.CanSeek ? outStream.Position : -1;
+
+            void InflateFrom(Stream decompressor) {
+                var total = 0;
+                while (true) {
+                    var read = decompressor.Read(temp, 0, temp.Length);
+                    if (read <= 0)
+                        break;
+
+                    total += read;
+                    if (total > expectedSize)
+                        throw new InvalidDataException($"Inflated block exceeds expected size. Expected={expectedSize}, Actual>{total}.");
+
+                    outStream.Write(temp, 0, read);
+                }
+            }
+
+            bool LooksLikeZlibHeader(byte[] data) {
+                if (data == null || data.Length < 2)
+                    return false;
+
+                var cmf = data[0];
+                var flg = data[1];
+
+                // RFC1950: compression method must be DEFLATE (8)
+                if ((cmf & 0x0F) != 8)
+                    return false;
+
+                // RFC1950: window size CINFO <= 7
+                if ((cmf >> 4) > 7)
+                    return false;
+
+                // RFC1950: header checksum (CMF*256 + FLG) % 31 == 0
+                return ((cmf << 8) + flg) % 31 == 0;
+            }
+
+            // Pick decompressor by header to avoid flooding first-chance ZlibException in debugger.
+            if (!LooksLikeZlibHeader(buffer)) {
+                using (var compressedStream = new MemoryStream(buffer, false))
+                using (var deflateStream = new Ionic.Zlib.DeflateStream(compressedStream, Ionic.Zlib.CompressionMode.Decompress, false)) {
+                    InflateFrom(deflateStream);
+                }
+                return;
+            }
+
+            try {
+                using (var compressedStream = new MemoryStream(buffer, false))
+                using (var zlibStream = new Ionic.Zlib.ZlibStream(compressedStream, Ionic.Zlib.CompressionMode.Decompress, false)) {
+                    InflateFrom(zlibStream);
+                }
+                return;
+            } catch (Ionic.Zlib.ZlibException) {
+                if (startPos >= 0)
+                    outStream.Position = startPos;
+            }
+
+            try {
+                using (var compressedStream = new MemoryStream(buffer, false))
+                using (var deflateStream = new Ionic.Zlib.DeflateStream(compressedStream, Ionic.Zlib.CompressionMode.Decompress, false)) {
+                    InflateFrom(deflateStream);
+                }
+            } catch (Exception ex) {
+                throw new InvalidDataException("Unable to inflate block with zlib/deflate fallback.", ex);
+            }
         }
 
         #endregion

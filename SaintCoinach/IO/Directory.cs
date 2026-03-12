@@ -105,7 +105,28 @@ namespace SaintCoinach.IO {
                 return true;
 
             if (Index.Files.TryGetValue(key, out var index)) {
-                var theFile = FileFactory.Get(this.Pack, index);
+                File theFile;
+                try {
+                    theFile = FileFactory.Get(this.Pack, index);
+                } catch (System.IO.InvalidDataException ex) {
+                    System.Diagnostics.Debug.WriteLine(
+                        string.Format("Failed to parse file in TryGetFile. Pack={0}, Dat={1}, Offset=0x{2:X}. {3}",
+                            this.Pack.Id, index.DatFile, index.Offset, ex.Message));
+                    file = null;
+                    return false;
+                } catch (System.IO.EndOfStreamException ex) {
+                    System.Diagnostics.Debug.WriteLine(
+                        string.Format("Unexpected end of stream in TryGetFile. Pack={0}, Dat={1}, Offset=0x{2:X}. {3}",
+                            this.Pack.Id, index.DatFile, index.Offset, ex.Message));
+                    file = null;
+                    return false;
+                } catch (System.NotSupportedException ex) {
+                    System.Diagnostics.Debug.WriteLine(
+                        string.Format("Unsupported file format in TryGetFile. Pack={0}, Dat={1}, Offset=0x{2:X}. {3}",
+                            this.Pack.Id, index.DatFile, index.Offset, ex.Message));
+                    file = null;
+                    return false;
+                }
                 _Files.AddOrUpdate(key,
                     k => new WeakReference<File>(theFile),
                     (k, r) => {

@@ -70,6 +70,8 @@ namespace SaintCoinach.Imaging {
     ///     to formats useable in .NET
     /// </summary>
     public class ImageConverter {
+        private const long MaxDecodedArgbBytes = 256L * 1024L * 1024L;
+
         /// <summary>
         ///     Method signature for processing data as stored in SqPack into ARGB.
         /// </summary>
@@ -138,7 +140,16 @@ namespace SaintCoinach.Imaging {
             if (!Preprocessors.TryGetValue(format, out var proc))
                 throw new NotSupportedException(string.Format("Unsupported image format {0}", format));
 
-            var argb = new byte[width * height * 4];
+            if (width <= 0 || height <= 0)
+                throw new System.IO.InvalidDataException($"Invalid image dimensions {width}x{height} for format {format}.");
+
+            var pixelCount = (long)width * height;
+            var byteCount = pixelCount * 4;
+            if (byteCount <= 0 || byteCount > MaxDecodedArgbBytes)
+                throw new System.IO.InvalidDataException(
+                    $"Decoded image is too large ({width}x{height}, {byteCount} bytes) for format {format}. Limit={MaxDecodedArgbBytes} bytes.");
+
+            var argb = new byte[(int)byteCount];
             proc(src, argb, width, height);
             return argb;
         }
@@ -148,10 +159,24 @@ namespace SaintCoinach.Imaging {
         /// </summary>
 
         public static byte[] GetDDS(ImageFile file) {
-            var bytes2 = file.GetData();
-            //var offset = bytes2[file.ImageHeader.EndOfHeader];
             var width = file.ImageHeader.Width;
             var height = file.ImageHeader.Height;
+            var imageFormat = file.ImageHeader.Format;
+            var addDx10Header = false;
+
+            switch (imageFormat) {
+                case ImageFormat.Dxt1:
+                case ImageFormat.Dxt3:
+                case ImageFormat.Dxt5:
+                case ImageFormat.BC5:
+                case ImageFormat.BC7:
+                    break;
+                default:
+                    return null;
+            }
+
+            var bytes2 = file.GetData();
+            //var offset = bytes2[file.ImageHeader.EndOfHeader];
 
             DDS_HEADER header = new DDS_HEADER();
             DDS_PIXELFORMAT format = header.ddspf;
@@ -161,7 +186,7 @@ namespace SaintCoinach.Imaging {
             header.dwFlags |= (uint)(DDSD_ENUM.DDSD_CAPS | DDSD_ENUM.DDSD_HEIGHT | DDSD_ENUM.DDSD_WIDTH | DDSD_ENUM.DDSD_PIXELFORMAT | DDSD_ENUM.DDSD_LINEARSIZE);
             header.dwFlags |= (uint)DDSD_ENUM.DDSD_MIPMAPCOUNT;
 
-            switch (file.ImageHeader.Format) {
+            switch (imageFormat) {
                 case ImageFormat.Dxt1:
                     format.dwFourCC = 0x31545844;
                     header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 8);
@@ -173,6 +198,17 @@ namespace SaintCoinach.Imaging {
                 case ImageFormat.Dxt5:
                     format.dwFourCC = 0x35545844;
                     header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
+                    break;
+                case ImageFormat.BC5:
+                    // 'ATI2' block-compressed normal map format.
+                    format.dwFourCC = 0x32495441;
+                    header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
+                    break;
+                case ImageFormat.BC7:
+                    // BC7 requires DX10 extension header.
+                    format.dwFourCC = 0x30315844; // "DX10"
+                    header.dwPitchOrLinearSize = (uint)(Math.Max((uint)1, ((width + 3) / 4)) * Math.Max((uint)1, ((height + 3) / 4)) * 16);
+                    addDx10Header = true;
                     break;
                 /*
                 case ImageFormat.A8R8G8B8_1:
@@ -187,9 +223,7 @@ namespace SaintCoinach.Imaging {
                     break;
                 */
                 default:
-                    System.Diagnostics.Debug.WriteLine("Texture format " + file.ImageHeader.Format.ToString() + " DDS export not supported!\n");
                     return null;
-                    break;
             }
 
             format.dwSize = 32;
@@ -214,6 +248,14 @@ namespace SaintCoinach.Imaging {
 
             data.AddRange(System.Text.ASCIIEncoding.UTF8.GetBytes("DDS "));
             data.AddRange(headerBytes);
+            if (addDx10Header) {
+                // DDS_HEADER_DXT10
+                data.AddRange(BitConverter.GetBytes((uint)98)); // DXGI_FORMAT_BC7_UNORM
+                data.AddRange(BitConverter.GetBytes((uint)3));  // D3D10_RESOURCE_DIMENSION_TEXTURE2D
+                data.AddRange(BitConverter.GetBytes((uint)0));  // miscFlag
+                data.AddRange(BitConverter.GetBytes((uint)1));  // arraySize
+                data.AddRange(BitConverter.GetBytes((uint)0));  // miscFlags2
+            }
             data.AddRange(bytes2);
 
             return data.ToArray();

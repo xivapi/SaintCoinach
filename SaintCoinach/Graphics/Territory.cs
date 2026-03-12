@@ -21,14 +21,54 @@ namespace SaintCoinach.Graphics {
         public Territory(IO.PackCollection packs, string name, string levelPath) {
             this.Packs = packs;
             this.Name = name;
-            var i = levelPath.IndexOf("/level/");
-            this.BasePath = "bg/" + levelPath.Substring(0, i + 1);
+            this.BasePath = ResolveBasePath(levelPath);
 
             Build();
         }
         #endregion
 
         #region Build
+        private string ResolveBasePath(string levelPath) {
+            var normalized = (levelPath ?? string.Empty).Replace('\\', '/').Trim().Trim('/');
+            if (normalized.StartsWith("bg/", StringComparison.OrdinalIgnoreCase))
+                normalized = normalized.Substring(3);
+
+            var candidates = new List<string>();
+
+            var levelSegmentIndex = normalized.IndexOf("/level/", StringComparison.OrdinalIgnoreCase);
+            if (levelSegmentIndex >= 0)
+                candidates.Add("bg/" + normalized.Substring(0, levelSegmentIndex + 1));
+
+            if (!string.IsNullOrEmpty(normalized))
+                candidates.Add("bg/" + normalized.TrimEnd('/') + "/");
+
+            if (normalized.EndsWith("/level", StringComparison.OrdinalIgnoreCase)) {
+                var withoutLevel = normalized.Substring(0, normalized.Length - "/level".Length).TrimEnd('/');
+                if (!string.IsNullOrEmpty(withoutLevel))
+                    candidates.Add("bg/" + withoutLevel + "/");
+            }
+
+            candidates.Add("bg/");
+
+            foreach (var candidate in candidates.Distinct(StringComparer.OrdinalIgnoreCase)) {
+                if (LooksLikeValidBasePath(candidate)) {
+                    return candidate;
+                } 
+            }
+
+            var fallback = candidates[0];
+            System.Diagnostics.Debug.WriteLine(
+                string.Format("Could not verify territory base path candidates. Bg='{0}', Fallback='{1}'", levelPath, fallback));
+            return fallback;
+        }
+
+        private bool LooksLikeValidBasePath(string basePath) {
+            return Packs.FileExists(basePath + "bgplate/terrain.tera")
+                || Packs.FileExists(basePath + "level/bg.lgb")
+                || Packs.FileExists(basePath + "level/planmap.lgb")
+                || Packs.FileExists(basePath + "level/planevent.lgb");
+        }
+
         private void Build() {
             var terrainPath = BasePath + "bgplate/terrain.tera";
             if (Packs.TryGetFile(terrainPath, out var terrainFile))

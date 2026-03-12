@@ -14,6 +14,8 @@ namespace SaintCoinach {
         public static T ToStructure<T>(this byte[] bytes, ref int offset) where T : struct {
             var t = typeof(T);
             var size = Marshal.SizeOf(t);
+            if (offset < 0 || size < 0 || offset > bytes.Length - size)
+                throw new System.IO.InvalidDataException($"Structure read out of range. Type={t.Name}, Offset={offset}, Size={size}, BufferLength={bytes.Length}.");
             IntPtr ptr = Marshal.AllocHGlobal(size);
             try {
                 Marshal.Copy(bytes, offset, ptr, size);
@@ -38,13 +40,21 @@ namespace SaintCoinach {
             return ReadString(buffer, ref offset);
         }
         public static string ReadString(this byte[] buffer, ref int offset) {
-            var strEnd = offset - 1;
-            while (buffer[++strEnd] != 0) { }
+            if (offset < 0 || offset >= buffer.Length)
+                return string.Empty;
+
+            var strEnd = Array.IndexOf(buffer, (byte)0, offset);
+            if (strEnd < 0)
+                strEnd = buffer.Length;
+
             var size = strEnd - offset;
+            if (size <= 0) {
+                offset = strEnd < buffer.Length ? strEnd + 1 : buffer.Length;
+                return string.Empty;
+            }
 
             var value = Encoding.ASCII.GetString(buffer, offset, size);
-
-            offset = strEnd + 1;
+            offset = strEnd < buffer.Length ? strEnd + 1 : buffer.Length;
             return value;
         }
     }
